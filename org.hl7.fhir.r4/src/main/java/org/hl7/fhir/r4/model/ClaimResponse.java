@@ -55,26 +55,26 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "ClaimResponse", profile = "http://hl7.org/fhir/StructureDefinition/ClaimResponse")
 public class ClaimResponse extends DomainResource {
 
-  public enum ClaimResponseStatus {
-    /**
+/*  public enum ClaimResponseStatus {
+    *//**
      * The instance is currently in-force.
-     */
+     *//*
     ACTIVE,
-    /**
+    *//**
      * The instance is withdrawn, rescinded or reversed.
-     */
+     *//*
     CANCELLED,
-    /**
+    *//**
      * A new instance the contents of which is not complete.
-     */
+     *//*
     DRAFT,
-    /**
+    *//**
      * The instance was entered in error.
-     */
+     *//*
     ENTEREDINERROR,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static ClaimResponseStatus fromCode(String codeString) throws FHIRException {
@@ -218,23 +218,23 @@ public class ClaimResponse extends DomainResource {
   }
 
   public enum Use {
-    /**
+    *//**
      * The treatment is complete and this represents a Claim for the services.
-     */
+     *//*
     CLAIM,
-    /**
+    *//**
      * The treatment is proposed and this represents a Pre-authorization for the
      * services.
-     */
+     *//*
     PREAUTHORIZATION,
-    /**
+    *//**
      * The treatment is proposed and this represents a Pre-determination for the
      * services.
-     */
+     *//*
     PREDETERMINATION,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static Use fromCode(String codeString) throws FHIRException {
@@ -362,27 +362,27 @@ public class ClaimResponse extends DomainResource {
   }
 
   public enum RemittanceOutcome {
-    /**
+    *//**
      * The Claim/Pre-authorization/Pre-determination has been received but
      * processing has not begun.
-     */
+     *//*
     QUEUED,
-    /**
+    *//**
      * The processing has completed without errors
-     */
+     *//*
     COMPLETE,
-    /**
+    *//**
      * One or more errors have been detected in the Claim
-     */
+     *//*
     ERROR,
-    /**
+    *//**
      * No errors have been detected in the Claim and some of the adjudication has
      * been performed.
-     */
+     *//*
     PARTIAL,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static RemittanceOutcome fromCode(String codeString) throws FHIRException {
@@ -523,7 +523,7 @@ public class ClaimResponse extends DomainResource {
     public String toSystem(RemittanceOutcome code) {
       return code.getSystem();
     }
-  }
+  }*/
 
   @Block()
   public static class ItemComponent extends BackboneElement implements IBaseBackboneElement {
@@ -6503,10 +6503,10 @@ public class ClaimResponse extends DomainResource {
     /**
      * The business purpose of the note text.
      */
-    @Child(name = "type", type = { CodeType.class }, order = 2, min = 0, max = 1, modifier = false, summary = false)
+    @Child(name = "type", type = { StringType.class }, order = 2, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "display | print | printoper", formalDefinition = "The business purpose of the note text.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/note-type")
-    protected Enumeration<NoteType> type;
+    protected StringType type;
 
     /**
      * The explanation or description associated with the processing.
@@ -6595,12 +6595,12 @@ public class ClaimResponse extends DomainResource {
      *         underlying object with id, value and extensions. The accessor
      *         "getType" gives direct access to the value
      */
-    public Enumeration<NoteType> getTypeElement() {
+    public StringType getTypeElement() {
       if (this.type == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create NoteComponent.type");
         else if (Configuration.doAutoCreate())
-          this.type = new Enumeration<NoteType>(new NoteTypeEnumFactory()); // bb
+          this.type = new StringType(); // bb
       return this.type;
     }
 
@@ -6617,7 +6617,7 @@ public class ClaimResponse extends DomainResource {
      *              the underlying object with id, value and extensions. The
      *              accessor "getType" gives direct access to the value
      */
-    public NoteComponent setTypeElement(Enumeration<NoteType> value) {
+    public NoteComponent setTypeElement(StringType value) {
       this.type = value;
       return this;
     }
@@ -6625,20 +6625,20 @@ public class ClaimResponse extends DomainResource {
     /**
      * @return The business purpose of the note text.
      */
-    public NoteType getType() {
-      return this.type == null ? null : this.type.getValue();
+    public StringType getType() {
+      return this.type == null ? null : this.type;
     }
 
     /**
      * @param value The business purpose of the note text.
      */
-    public NoteComponent setType(NoteType value) {
+    public NoteComponent setType(StringType value) {
       if (value == null)
         this.type = null;
       else {
         if (this.type == null)
-          this.type = new Enumeration<NoteType>(new NoteTypeEnumFactory());
-        this.type.setValue(value);
+          this.type = new StringType();
+        this.type=value;
       }
       return this;
     }
@@ -6773,8 +6773,8 @@ public class ClaimResponse extends DomainResource {
         this.number = castToPositiveInt(value); // PositiveIntType
         return value;
       case 3575610: // type
-        value = new NoteTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<NoteType>
+//        value = new NoteTypeEnumFactory().fromType(castToCode(value));
+        this.type = castToString(value); // Enumeration<NoteType>
         return value;
       case 3556653: // text
         this.text = castToString(value); // StringType
@@ -6793,8 +6793,8 @@ public class ClaimResponse extends DomainResource {
       if (name.equals("number")) {
         this.number = castToPositiveInt(value); // PositiveIntType
       } else if (name.equals("type")) {
-        value = new NoteTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<NoteType>
+//        value = new NoteTypeEnumFactory().fromType(castToCode(value));
+        this.type = castToString(value); // Enumeration<NoteType>
       } else if (name.equals("text")) {
         this.text = castToString(value); // StringType
       } else if (name.equals("language")) {
@@ -7983,10 +7983,10 @@ public class ClaimResponse extends DomainResource {
   /**
    * The status of the resource instance.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "active | cancelled | draft | entered-in-error", formalDefinition = "The status of the resource instance.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/fm-status")
-  protected Enumeration<ClaimResponseStatus> status;
+  protected StringType status;
 
   /**
    * A finer grained suite of claim type codes which may convey additional
@@ -8014,10 +8014,10 @@ public class ClaimResponse extends DomainResource {
    * non-binding adjudication of the listed products and services which could be
    * provided in the future.
    */
-  @Child(name = "use", type = { CodeType.class }, order = 4, min = 1, max = 1, modifier = false, summary = true)
+  @Child(name = "use", type = { StringType.class }, order = 4, min = 1, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "claim | preauthorization | predetermination", formalDefinition = "A code to indicate whether the nature of the request is: to request adjudication of products and services previously rendered; or requesting authorization and adjudication for provision in the future; or requesting the non-binding adjudication of the listed products and services which could be provided in the future.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/claim-use")
-  protected Enumeration<Use> use;
+  protected StringType use;
 
   /**
    * The party to whom the professional services and/or products have been
@@ -8086,10 +8086,10 @@ public class ClaimResponse extends DomainResource {
   /**
    * The outcome of the claim, predetermination, or preauthorization processing.
    */
-  @Child(name = "outcome", type = { CodeType.class }, order = 10, min = 1, max = 1, modifier = false, summary = true)
+  @Child(name = "outcome", type = { StringType.class }, order = 10, min = 1, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "queued | complete | error | partial", formalDefinition = "The outcome of the claim, predetermination, or preauthorization processing.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/remittance-outcome")
-  protected Enumeration<RemittanceOutcome> outcome;
+  protected StringType outcome;
 
   /**
    * A human readable description of the status of the adjudication.
@@ -8239,8 +8239,8 @@ public class ClaimResponse extends DomainResource {
   /**
    * Constructor
    */
-  public ClaimResponse(Enumeration<ClaimResponseStatus> status, CodeableConcept type, Enumeration<Use> use,
-      Reference patient, DateTimeType created, Reference insurer, Enumeration<RemittanceOutcome> outcome) {
+  public ClaimResponse(StringType status, CodeableConcept type, StringType use,
+      Reference patient, DateTimeType created, Reference insurer, StringType outcome) {
     super();
     this.status = status;
     this.type = type;
@@ -8311,12 +8311,12 @@ public class ClaimResponse extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<ClaimResponseStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create ClaimResponse.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<ClaimResponseStatus>(new ClaimResponseStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -8333,7 +8333,7 @@ public class ClaimResponse extends DomainResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public ClaimResponse setStatusElement(Enumeration<ClaimResponseStatus> value) {
+  public ClaimResponse setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -8341,17 +8341,17 @@ public class ClaimResponse extends DomainResource {
   /**
    * @return The status of the resource instance.
    */
-  public ClaimResponseStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The status of the resource instance.
    */
-  public ClaimResponse setStatus(ClaimResponseStatus value) {
+  public ClaimResponse setStatus(StringType value) {
     if (this.status == null)
-      this.status = new Enumeration<ClaimResponseStatus>(new ClaimResponseStatusEnumFactory());
-    this.status.setValue(value);
+      this.status = new StringType();
+    this.status=value;
     return this;
   }
 
@@ -8420,12 +8420,12 @@ public class ClaimResponse extends DomainResource {
    *         This is the underlying object with id, value and extensions. The
    *         accessor "getUse" gives direct access to the value
    */
-  public Enumeration<Use> getUseElement() {
+  public StringType getUseElement() {
     if (this.use == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create ClaimResponse.use");
       else if (Configuration.doAutoCreate())
-        this.use = new Enumeration<Use>(new UseEnumFactory()); // bb
+        this.use = new StringType(); // bb
     return this.use;
   }
 
@@ -8447,7 +8447,7 @@ public class ClaimResponse extends DomainResource {
    *              object with id, value and extensions. The accessor "getUse"
    *              gives direct access to the value
    */
-  public ClaimResponse setUseElement(Enumeration<Use> value) {
+  public ClaimResponse setUseElement(StringType value) {
     this.use = value;
     return this;
   }
@@ -8459,8 +8459,8 @@ public class ClaimResponse extends DomainResource {
    *         future; or requesting the non-binding adjudication of the listed
    *         products and services which could be provided in the future.
    */
-  public Use getUse() {
-    return this.use == null ? null : this.use.getValue();
+  public StringType getUse() {
+    return this.use == null ? null : this.use;
   }
 
   /**
@@ -8471,10 +8471,10 @@ public class ClaimResponse extends DomainResource {
    *              adjudication of the listed products and services which could be
    *              provided in the future.
    */
-  public ClaimResponse setUse(Use value) {
+  public ClaimResponse setUse(StringType value) {
     if (this.use == null)
-      this.use = new Enumeration<Use>(new UseEnumFactory());
-    this.use.setValue(value);
+      this.use = new StringType();
+    this.use=value;
     return this;
   }
 
@@ -8740,12 +8740,12 @@ public class ClaimResponse extends DomainResource {
    *         value and extensions. The accessor "getOutcome" gives direct access
    *         to the value
    */
-  public Enumeration<RemittanceOutcome> getOutcomeElement() {
+  public StringType getOutcomeElement() {
     if (this.outcome == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create ClaimResponse.outcome");
       else if (Configuration.doAutoCreate())
-        this.outcome = new Enumeration<RemittanceOutcome>(new RemittanceOutcomeEnumFactory()); // bb
+        this.outcome = new StringType(); // bb
     return this.outcome;
   }
 
@@ -8763,7 +8763,7 @@ public class ClaimResponse extends DomainResource {
    *              with id, value and extensions. The accessor "getOutcome" gives
    *              direct access to the value
    */
-  public ClaimResponse setOutcomeElement(Enumeration<RemittanceOutcome> value) {
+  public ClaimResponse setOutcomeElement(StringType value) {
     this.outcome = value;
     return this;
   }
@@ -8772,18 +8772,18 @@ public class ClaimResponse extends DomainResource {
    * @return The outcome of the claim, predetermination, or preauthorization
    *         processing.
    */
-  public RemittanceOutcome getOutcome() {
-    return this.outcome == null ? null : this.outcome.getValue();
+  public StringType getOutcome() {
+    return this.outcome == null ? null : this.outcome;
   }
 
   /**
    * @param value The outcome of the claim, predetermination, or preauthorization
    *              processing.
    */
-  public ClaimResponse setOutcome(RemittanceOutcome value) {
+  public ClaimResponse setOutcome(StringType value) {
     if (this.outcome == null)
-      this.outcome = new Enumeration<RemittanceOutcome>(new RemittanceOutcomeEnumFactory());
-    this.outcome.setValue(value);
+      this.outcome = new StringType();
+    this.outcome=value;
     return this;
   }
 
@@ -9738,8 +9738,8 @@ public class ClaimResponse extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new ClaimResponseStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ClaimResponseStatus>
+//      value = new ClaimResponseStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // Enumeration<ClaimResponseStatus>
       return value;
     case 3575610: // type
       this.type = castToCodeableConcept(value); // CodeableConcept
@@ -9748,8 +9748,8 @@ public class ClaimResponse extends DomainResource {
       this.subType = castToCodeableConcept(value); // CodeableConcept
       return value;
     case 116103: // use
-      value = new UseEnumFactory().fromType(castToCode(value));
-      this.use = (Enumeration) value; // Enumeration<Use>
+//      value = new UseEnumFactory().fromType(castToCode(value));
+      this.use = castToString(value); // Enumeration<Use>
       return value;
     case -791418107: // patient
       this.patient = castToReference(value); // Reference
@@ -9767,8 +9767,8 @@ public class ClaimResponse extends DomainResource {
       this.request = castToReference(value); // Reference
       return value;
     case -1106507950: // outcome
-      value = new RemittanceOutcomeEnumFactory().fromType(castToCode(value));
-      this.outcome = (Enumeration) value; // Enumeration<RemittanceOutcome>
+//      value = new RemittanceOutcomeEnumFactory().fromType(castToCode(value));
+      this.outcome = castToString(value); // Enumeration<RemittanceOutcome>
       return value;
     case 583380919: // disposition
       this.disposition = castToString(value); // StringType
@@ -9829,15 +9829,15 @@ public class ClaimResponse extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new ClaimResponseStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ClaimResponseStatus>
+//      value = new ClaimResponseStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // Enumeration<ClaimResponseStatus>
     } else if (name.equals("type")) {
       this.type = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("subType")) {
       this.subType = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("use")) {
-      value = new UseEnumFactory().fromType(castToCode(value));
-      this.use = (Enumeration) value; // Enumeration<Use>
+//      value = new UseEnumFactory().fromType(castToCode(value));
+      this.use = castToString(value); // Enumeration<Use>
     } else if (name.equals("patient")) {
       this.patient = castToReference(value); // Reference
     } else if (name.equals("created")) {
@@ -9849,8 +9849,8 @@ public class ClaimResponse extends DomainResource {
     } else if (name.equals("request")) {
       this.request = castToReference(value); // Reference
     } else if (name.equals("outcome")) {
-      value = new RemittanceOutcomeEnumFactory().fromType(castToCode(value));
-      this.outcome = (Enumeration) value; // Enumeration<RemittanceOutcome>
+//      value = new RemittanceOutcomeEnumFactory().fromType(castToCode(value));
+      this.outcome = castToString(value); // Enumeration<RemittanceOutcome>
     } else if (name.equals("disposition")) {
       this.disposition = castToString(value); // StringType
     } else if (name.equals("preAuthRef")) {

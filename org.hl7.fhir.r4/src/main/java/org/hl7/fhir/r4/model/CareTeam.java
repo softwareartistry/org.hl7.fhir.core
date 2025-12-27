@@ -50,34 +50,34 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "CareTeam", profile = "http://hl7.org/fhir/StructureDefinition/CareTeam")
 public class CareTeam extends DomainResource {
 
-  public enum CareTeamStatus {
-    /**
+/*  public enum CareTeamStatus {
+    *//**
      * The care team has been drafted and proposed, but not yet participating in the
      * coordination and delivery of patient care.
-     */
+     *//*
     PROPOSED,
-    /**
+    *//**
      * The care team is currently participating in the coordination and delivery of
      * care.
-     */
+     *//*
     ACTIVE,
-    /**
+    *//**
      * The care team is temporarily on hold or suspended and not participating in
      * the coordination and delivery of care.
-     */
+     *//*
     SUSPENDED,
-    /**
+    *//**
      * The care team was, but is no longer, participating in the coordination and
      * delivery of care.
-     */
+     *//*
     INACTIVE,
-    /**
+    *//**
      * The care team should have never existed.
-     */
+     *//*
     ENTEREDINERROR,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static CareTeamStatus fromCode(String codeString) throws FHIRException {
@@ -234,7 +234,7 @@ public class CareTeam extends DomainResource {
     public String toSystem(CareTeamStatus code) {
       return code.getSystem();
     }
-  }
+  }*/
 
   @Block()
   public static class CareTeamParticipantComponent extends BackboneElement implements IBaseBackboneElement {
@@ -700,10 +700,10 @@ public class CareTeam extends DomainResource {
   /**
    * Indicates the current state of the care team.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 0, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 0, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "proposed | active | suspended | inactive | entered-in-error", formalDefinition = "Indicates the current state of the care team.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/care-team-status")
-  protected Enumeration<CareTeamStatus> status;
+  protected StringType status;
 
   /**
    * Identifies what kind of team. This is to support differentiation between
@@ -889,12 +889,12 @@ public class CareTeam extends DomainResource {
    *         is the underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<CareTeamStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create CareTeam.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<CareTeamStatus>(new CareTeamStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -911,7 +911,7 @@ public class CareTeam extends DomainResource {
    *              This is the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public CareTeam setStatusElement(Enumeration<CareTeamStatus> value) {
+  public CareTeam setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -919,20 +919,20 @@ public class CareTeam extends DomainResource {
   /**
    * @return Indicates the current state of the care team.
    */
-  public CareTeamStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value Indicates the current state of the care team.
    */
-  public CareTeam setStatus(CareTeamStatus value) {
+  public CareTeam setStatus(StringType value) {
     if (value == null)
       this.status = null;
     else {
       if (this.status == null)
-        this.status = new Enumeration<CareTeamStatus>(new CareTeamStatusEnumFactory());
-      this.status.setValue(value);
+        this.status = new StringType();
+      this.status= value;
     }
     return this;
   }
@@ -1643,8 +1643,8 @@ public class CareTeam extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new CareTeamStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<CareTeamStatus>
+//      value = new CareTeamStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // Enumeration<CareTeamStatus>
       return value;
     case 50511102: // category
       this.getCategory().add(castToCodeableConcept(value)); // CodeableConcept
@@ -1690,8 +1690,8 @@ public class CareTeam extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new CareTeamStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<CareTeamStatus>
+//      value = new CareTeamStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // Enumeration<CareTeamStatus>
     } else if (name.equals("category")) {
       this.getCategory().add(castToCodeableConcept(value));
     } else if (name.equals("name")) {

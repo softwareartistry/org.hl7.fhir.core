@@ -51,54 +51,54 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Communication", profile = "http://hl7.org/fhir/StructureDefinition/Communication")
 public class Communication extends DomainResource {
 
-  public enum CommunicationStatus {
-    /**
+/*  public enum CommunicationStatus {
+    *//**
      * The core event has not started yet, but some staging activities have begun
      * (e.g. surgical suite preparation). Preparation stages may be tracked for
      * billing purposes.
-     */
+     *//*
     PREPARATION,
-    /**
+    *//**
      * The event is currently occurring.
-     */
+     *//*
     INPROGRESS,
-    /**
+    *//**
      * The event was terminated prior to any activity beyond preparation. I.e. The
      * 'main' activity has not yet begun. The boundary between preparatory and the
      * 'main' activity is context-specific.
-     */
+     *//*
     NOTDONE,
-    /**
+    *//**
      * The event has been temporarily stopped but is expected to resume in the
      * future.
-     */
+     *//*
     ONHOLD,
-    /**
+    *//**
      * The event was terminated prior to the full completion of the intended
      * activity but after at least some of the 'main' activity (beyond preparation)
      * has occurred.
-     */
+     *//*
     STOPPED,
-    /**
+    *//**
      * The event has now concluded.
-     */
+     *//*
     COMPLETED,
-    /**
+    *//**
      * This electronic record should never have existed, though it is possible that
      * real-world decisions were based on it. (If real-world activity has occurred,
      * the status should be "stopped" rather than "entered-in-error".).
-     */
+     *//*
     ENTEREDINERROR,
-    /**
+    *//**
      * The authoring/source system does not know which of the status values
      * currently applies for this event. Note: This concept is not to be used for
      * "other" - one of the listed statuses is presumed to apply, but the
      * authoring/source system does not know which.
-     */
+     *//*
     UNKNOWN,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static CommunicationStatus fromCode(String codeString) throws FHIRException {
@@ -306,27 +306,27 @@ public class Communication extends DomainResource {
   }
 
   public enum CommunicationPriority {
-    /**
+    *//**
      * The request has normal priority.
-     */
+     *//*
     ROUTINE,
-    /**
+    *//**
      * The request should be actioned promptly - higher priority than routine.
-     */
+     *//*
     URGENT,
-    /**
+    *//**
      * The request should be actioned as soon as possible - higher priority than
      * urgent.
-     */
+     *//*
     ASAP,
-    /**
+    *//**
      * The request should be actioned immediately - highest possible priority. E.g.
      * an emergency.
-     */
+     *//*
     STAT,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static CommunicationPriority fromCode(String codeString) throws FHIRException {
@@ -467,7 +467,7 @@ public class Communication extends DomainResource {
     public String toSystem(CommunicationPriority code) {
       return code.getSystem();
     }
-  }
+  }*/
 
   @Block()
   public static class CommunicationPayloadComponent extends BackboneElement implements IBaseBackboneElement {
@@ -801,10 +801,10 @@ public class Communication extends DomainResource {
   /**
    * The status of the transmission.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 6, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 6, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "preparation | in-progress | not-done | on-hold | stopped | completed | entered-in-error | unknown", formalDefinition = "The status of the transmission.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/event-status")
-  protected Enumeration<CommunicationStatus> status;
+  protected StringType status;
 
   /**
    * Captures the reason for the current state of the Communication.
@@ -829,10 +829,10 @@ public class Communication extends DomainResource {
    * Characterizes how quickly the planned or in progress communication must be
    * addressed. Includes concepts such as stat, urgent, routine.
    */
-  @Child(name = "priority", type = { CodeType.class }, order = 9, min = 0, max = 1, modifier = false, summary = true)
+  @Child(name = "priority", type = { StringType.class }, order = 9, min = 0, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "routine | urgent | asap | stat", formalDefinition = "Characterizes how quickly the planned or in progress communication must be addressed. Includes concepts such as stat, urgent, routine.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/request-priority")
-  protected Enumeration<CommunicationPriority> priority;
+  protected StringType priority;
 
   /**
    * A channel that was used for this communication (e.g. email, fax).
@@ -1002,7 +1002,7 @@ public class Communication extends DomainResource {
   /**
    * Constructor
    */
-  public Communication(Enumeration<CommunicationStatus> status) {
+  public Communication(StringType status) {
     super();
     this.status = status;
   }
@@ -1370,12 +1370,12 @@ public class Communication extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<CommunicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Communication.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<CommunicationStatus>(new CommunicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -1392,7 +1392,7 @@ public class Communication extends DomainResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getStatus" gives direct access to the value
    */
-  public Communication setStatusElement(Enumeration<CommunicationStatus> value) {
+  public Communication setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1400,17 +1400,17 @@ public class Communication extends DomainResource {
   /**
    * @return The status of the transmission.
    */
-  public CommunicationStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The status of the transmission.
    */
-  public Communication setStatus(CommunicationStatus value) {
+  public Communication setStatus(StringType value) {
     if (this.status == null)
-      this.status = new Enumeration<CommunicationStatus>(new CommunicationStatusEnumFactory());
-    this.status.setValue(value);
+      this.status = new StringType();
+    this.status=value;
     return this;
   }
 
@@ -1502,12 +1502,12 @@ public class Communication extends DomainResource {
    *         and extensions. The accessor "getPriority" gives direct access to the
    *         value
    */
-  public Enumeration<CommunicationPriority> getPriorityElement() {
+  public StringType getPriorityElement() {
     if (this.priority == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Communication.priority");
       else if (Configuration.doAutoCreate())
-        this.priority = new Enumeration<CommunicationPriority>(new CommunicationPriorityEnumFactory()); // bb
+        this.priority = new StringType(); // bb
     return this.priority;
   }
 
@@ -1526,7 +1526,7 @@ public class Communication extends DomainResource {
    *              id, value and extensions. The accessor "getPriority" gives
    *              direct access to the value
    */
-  public Communication setPriorityElement(Enumeration<CommunicationPriority> value) {
+  public Communication setPriorityElement(StringType value) {
     this.priority = value;
     return this;
   }
@@ -1535,8 +1535,8 @@ public class Communication extends DomainResource {
    * @return Characterizes how quickly the planned or in progress communication
    *         must be addressed. Includes concepts such as stat, urgent, routine.
    */
-  public CommunicationPriority getPriority() {
-    return this.priority == null ? null : this.priority.getValue();
+  public StringType getPriority() {
+    return this.priority == null ? null : this.priority;
   }
 
   /**
@@ -1544,13 +1544,13 @@ public class Communication extends DomainResource {
    *              communication must be addressed. Includes concepts such as stat,
    *              urgent, routine.
    */
-  public Communication setPriority(CommunicationPriority value) {
+  public Communication setPriority(StringType value) {
     if (value == null)
       this.priority = null;
     else {
       if (this.priority == null)
-        this.priority = new Enumeration<CommunicationPriority>(new CommunicationPriorityEnumFactory());
-      this.priority.setValue(value);
+        this.priority = new StringType();
+      this.priority=value;
     }
     return this;
   }
@@ -2477,8 +2477,8 @@ public class Communication extends DomainResource {
       this.getInResponseTo().add(castToReference(value)); // Reference
       return value;
     case -892481550: // status
-      value = new CommunicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<CommunicationStatus>
+//      value = new CommunicationStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // Enumeration<CommunicationStatus>
       return value;
     case 2051346646: // statusReason
       this.statusReason = castToCodeableConcept(value); // CodeableConcept
@@ -2487,8 +2487,8 @@ public class Communication extends DomainResource {
       this.getCategory().add(castToCodeableConcept(value)); // CodeableConcept
       return value;
     case -1165461084: // priority
-      value = new CommunicationPriorityEnumFactory().fromType(castToCode(value));
-      this.priority = (Enumeration) value; // Enumeration<CommunicationPriority>
+//      value = new CommunicationPriorityEnumFactory().fromType(castToCode(value));
+      this.priority = castToString(value); // Enumeration<CommunicationPriority>
       return value;
     case -1078030475: // medium
       this.getMedium().add(castToCodeableConcept(value)); // CodeableConcept
@@ -2550,15 +2550,15 @@ public class Communication extends DomainResource {
     } else if (name.equals("inResponseTo")) {
       this.getInResponseTo().add(castToReference(value));
     } else if (name.equals("status")) {
-      value = new CommunicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<CommunicationStatus>
+//      value = new CommunicationStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // Enumeration<CommunicationStatus>
     } else if (name.equals("statusReason")) {
       this.statusReason = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("category")) {
       this.getCategory().add(castToCodeableConcept(value));
     } else if (name.equals("priority")) {
-      value = new CommunicationPriorityEnumFactory().fromType(castToCode(value));
-      this.priority = (Enumeration) value; // Enumeration<CommunicationPriority>
+//      value = new CommunicationPriorityEnumFactory().fromType(castToCode(value));
+      this.priority = castToString(value); // Enumeration<CommunicationPriority>
     } else if (name.equals("medium")) {
       this.getMedium().add(castToCodeableConcept(value));
     } else if (name.equals("subject")) {
