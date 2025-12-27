@@ -51,263 +51,263 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/StructureDefinition/Observation")
 public class Observation extends DomainResource {
 
-  public enum ObservationStatus {
-    /**
-     * The existence of the observation is registered, but there is no result yet
-     * available.
-     */
-    REGISTERED,
-    /**
-     * This is an initial or interim observation: data may be incomplete or
-     * unverified.
-     */
-    PRELIMINARY,
-    /**
-     * The observation is complete and there are no further actions needed.
-     * Additional information such "released", "signed", etc would be represented
-     * using [Provenance](provenance.html) which provides not only the act but also
-     * the actors and dates and other related data. These act states would be
-     * associated with an observation status of `preliminary` until they are all
-     * completed and then a status of `final` would be applied.
-     */
-    FINAL,
-    /**
-     * Subsequent to being Final, the observation has been modified subsequent. This
-     * includes updates/new information and corrections.
-     */
-    AMENDED,
-    /**
-     * Subsequent to being Final, the observation has been modified to correct an
-     * error in the test result.
-     */
-    CORRECTED,
-    /**
-     * The observation is unavailable because the measurement was not started or not
-     * completed (also sometimes called "aborted").
-     */
-    CANCELLED,
-    /**
-     * The observation has been withdrawn following previous final release. This
-     * electronic record should never have existed, though it is possible that
-     * real-world decisions were based on it. (If real-world activity has occurred,
-     * the status should be "cancelled" rather than "entered-in-error".).
-     */
-    ENTEREDINERROR,
-    /**
-     * The authoring/source system does not know which of the status values
-     * currently applies for this observation. Note: This concept is not to be used
-     * for "other" - one of the listed statuses is presumed to apply, but the
-     * authoring/source system does not know which.
-     */
-    UNKNOWN,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ObservationStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("registered".equals(codeString))
-        return REGISTERED;
-      if ("preliminary".equals(codeString))
-        return PRELIMINARY;
-      if ("final".equals(codeString))
-        return FINAL;
-      if ("amended".equals(codeString))
-        return AMENDED;
-      if ("corrected".equals(codeString))
-        return CORRECTED;
-      if ("cancelled".equals(codeString))
-        return CANCELLED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return UNKNOWN;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ObservationStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case REGISTERED:
-        return "registered";
-      case PRELIMINARY:
-        return "preliminary";
-      case FINAL:
-        return "final";
-      case AMENDED:
-        return "amended";
-      case CORRECTED:
-        return "corrected";
-      case CANCELLED:
-        return "cancelled";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case UNKNOWN:
-        return "unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case REGISTERED:
-        return "http://hl7.org/fhir/observation-status";
-      case PRELIMINARY:
-        return "http://hl7.org/fhir/observation-status";
-      case FINAL:
-        return "http://hl7.org/fhir/observation-status";
-      case AMENDED:
-        return "http://hl7.org/fhir/observation-status";
-      case CORRECTED:
-        return "http://hl7.org/fhir/observation-status";
-      case CANCELLED:
-        return "http://hl7.org/fhir/observation-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/observation-status";
-      case UNKNOWN:
-        return "http://hl7.org/fhir/observation-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case REGISTERED:
-        return "The existence of the observation is registered, but there is no result yet available.";
-      case PRELIMINARY:
-        return "This is an initial or interim observation: data may be incomplete or unverified.";
-      case FINAL:
-        return "The observation is complete and there are no further actions needed. Additional information such \"released\", \"signed\", etc would be represented using [Provenance](provenance.html) which provides not only the act but also the actors and dates and other related data. These act states would be associated with an observation status of `preliminary` until they are all completed and then a status of `final` would be applied.";
-      case AMENDED:
-        return "Subsequent to being Final, the observation has been modified subsequent.  This includes updates/new information and corrections.";
-      case CORRECTED:
-        return "Subsequent to being Final, the observation has been modified to correct an error in the test result.";
-      case CANCELLED:
-        return "The observation is unavailable because the measurement was not started or not completed (also sometimes called \"aborted\").";
-      case ENTEREDINERROR:
-        return "The observation has been withdrawn following previous final release.  This electronic record should never have existed, though it is possible that real-world decisions were based on it. (If real-world activity has occurred, the status should be \"cancelled\" rather than \"entered-in-error\".).";
-      case UNKNOWN:
-        return "The authoring/source system does not know which of the status values currently applies for this observation. Note: This concept is not to be used for \"other\" - one of the listed statuses is presumed to apply, but the authoring/source system does not know which.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case REGISTERED:
-        return "Registered";
-      case PRELIMINARY:
-        return "Preliminary";
-      case FINAL:
-        return "Final";
-      case AMENDED:
-        return "Amended";
-      case CORRECTED:
-        return "Corrected";
-      case CANCELLED:
-        return "Cancelled";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case UNKNOWN:
-        return "Unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ObservationStatusEnumFactory implements EnumFactory<ObservationStatus> {
-    public ObservationStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("registered".equals(codeString))
-        return ObservationStatus.REGISTERED;
-      if ("preliminary".equals(codeString))
-        return ObservationStatus.PRELIMINARY;
-      if ("final".equals(codeString))
-        return ObservationStatus.FINAL;
-      if ("amended".equals(codeString))
-        return ObservationStatus.AMENDED;
-      if ("corrected".equals(codeString))
-        return ObservationStatus.CORRECTED;
-      if ("cancelled".equals(codeString))
-        return ObservationStatus.CANCELLED;
-      if ("entered-in-error".equals(codeString))
-        return ObservationStatus.ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return ObservationStatus.UNKNOWN;
-      throw new IllegalArgumentException("Unknown ObservationStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<ObservationStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ObservationStatus>(this, ObservationStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ObservationStatus>(this, ObservationStatus.NULL, code);
-      if ("registered".equals(codeString))
-        return new Enumeration<ObservationStatus>(this, ObservationStatus.REGISTERED, code);
-      if ("preliminary".equals(codeString))
-        return new Enumeration<ObservationStatus>(this, ObservationStatus.PRELIMINARY, code);
-      if ("final".equals(codeString))
-        return new Enumeration<ObservationStatus>(this, ObservationStatus.FINAL, code);
-      if ("amended".equals(codeString))
-        return new Enumeration<ObservationStatus>(this, ObservationStatus.AMENDED, code);
-      if ("corrected".equals(codeString))
-        return new Enumeration<ObservationStatus>(this, ObservationStatus.CORRECTED, code);
-      if ("cancelled".equals(codeString))
-        return new Enumeration<ObservationStatus>(this, ObservationStatus.CANCELLED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<ObservationStatus>(this, ObservationStatus.ENTEREDINERROR, code);
-      if ("unknown".equals(codeString))
-        return new Enumeration<ObservationStatus>(this, ObservationStatus.UNKNOWN, code);
-      throw new FHIRException("Unknown ObservationStatus code '" + codeString + "'");
-    }
-
-    public String toCode(ObservationStatus code) {
-       if (code == ObservationStatus.NULL)
-           return null;
-       if (code == ObservationStatus.REGISTERED)
-        return "registered";
-      if (code == ObservationStatus.PRELIMINARY)
-        return "preliminary";
-      if (code == ObservationStatus.FINAL)
-        return "final";
-      if (code == ObservationStatus.AMENDED)
-        return "amended";
-      if (code == ObservationStatus.CORRECTED)
-        return "corrected";
-      if (code == ObservationStatus.CANCELLED)
-        return "cancelled";
-      if (code == ObservationStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      if (code == ObservationStatus.UNKNOWN)
-        return "unknown";
-      return "?";
-   }
-
-    public String toSystem(ObservationStatus code) {
-      return code.getSystem();
-    }
-  }
+//  public enum ObservationStatus {
+//    /**
+//     * The existence of the observation is registered, but there is no result yet
+//     * available.
+//     */
+//    REGISTERED,
+//    /**
+//     * This is an initial or interim observation: data may be incomplete or
+//     * unverified.
+//     */
+//    PRELIMINARY,
+//    /**
+//     * The observation is complete and there are no further actions needed.
+//     * Additional information such "released", "signed", etc would be represented
+//     * using [Provenance](provenance.html) which provides not only the act but also
+//     * the actors and dates and other related data. These act states would be
+//     * associated with an observation status of `preliminary` until they are all
+//     * completed and then a status of `final` would be applied.
+//     */
+//    FINAL,
+//    /**
+//     * Subsequent to being Final, the observation has been modified subsequent. This
+//     * includes updates/new information and corrections.
+//     */
+//    AMENDED,
+//    /**
+//     * Subsequent to being Final, the observation has been modified to correct an
+//     * error in the test result.
+//     */
+//    CORRECTED,
+//    /**
+//     * The observation is unavailable because the measurement was not started or not
+//     * completed (also sometimes called "aborted").
+//     */
+//    CANCELLED,
+//    /**
+//     * The observation has been withdrawn following previous final release. This
+//     * electronic record should never have existed, though it is possible that
+//     * real-world decisions were based on it. (If real-world activity has occurred,
+//     * the status should be "cancelled" rather than "entered-in-error".).
+//     */
+//    ENTEREDINERROR,
+//    /**
+//     * The authoring/source system does not know which of the status values
+//     * currently applies for this observation. Note: This concept is not to be used
+//     * for "other" - one of the listed statuses is presumed to apply, but the
+//     * authoring/source system does not know which.
+//     */
+//    UNKNOWN,
+//    /**
+//     * added to help the parsers with the generic types
+//     */
+//    NULL;
+//
+//    public static ObservationStatus fromCode(String codeString) throws FHIRException {
+//      if (codeString == null || "".equals(codeString))
+//        return null;
+//      if ("registered".equals(codeString))
+//        return REGISTERED;
+//      if ("preliminary".equals(codeString))
+//        return PRELIMINARY;
+//      if ("final".equals(codeString))
+//        return FINAL;
+//      if ("amended".equals(codeString))
+//        return AMENDED;
+//      if ("corrected".equals(codeString))
+//        return CORRECTED;
+//      if ("cancelled".equals(codeString))
+//        return CANCELLED;
+//      if ("entered-in-error".equals(codeString))
+//        return ENTEREDINERROR;
+//      if ("unknown".equals(codeString))
+//        return UNKNOWN;
+//      if (Configuration.isAcceptInvalidEnums())
+//        return null;
+//      else
+//        throw new FHIRException("Unknown ObservationStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode() {
+//      switch (this) {
+//      case REGISTERED:
+//        return "registered";
+//      case PRELIMINARY:
+//        return "preliminary";
+//      case FINAL:
+//        return "final";
+//      case AMENDED:
+//        return "amended";
+//      case CORRECTED:
+//        return "corrected";
+//      case CANCELLED:
+//        return "cancelled";
+//      case ENTEREDINERROR:
+//        return "entered-in-error";
+//      case UNKNOWN:
+//        return "unknown";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getSystem() {
+//      switch (this) {
+//      case REGISTERED:
+//        return "http://hl7.org/fhir/observation-status";
+//      case PRELIMINARY:
+//        return "http://hl7.org/fhir/observation-status";
+//      case FINAL:
+//        return "http://hl7.org/fhir/observation-status";
+//      case AMENDED:
+//        return "http://hl7.org/fhir/observation-status";
+//      case CORRECTED:
+//        return "http://hl7.org/fhir/observation-status";
+//      case CANCELLED:
+//        return "http://hl7.org/fhir/observation-status";
+//      case ENTEREDINERROR:
+//        return "http://hl7.org/fhir/observation-status";
+//      case UNKNOWN:
+//        return "http://hl7.org/fhir/observation-status";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDefinition() {
+//      switch (this) {
+//      case REGISTERED:
+//        return "The existence of the observation is registered, but there is no result yet available.";
+//      case PRELIMINARY:
+//        return "This is an initial or interim observation: data may be incomplete or unverified.";
+//      case FINAL:
+//        return "The observation is complete and there are no further actions needed. Additional information such \"released\", \"signed\", etc would be represented using [Provenance](provenance.html) which provides not only the act but also the actors and dates and other related data. These act states would be associated with an observation status of `preliminary` until they are all completed and then a status of `final` would be applied.";
+//      case AMENDED:
+//        return "Subsequent to being Final, the observation has been modified subsequent.  This includes updates/new information and corrections.";
+//      case CORRECTED:
+//        return "Subsequent to being Final, the observation has been modified to correct an error in the test result.";
+//      case CANCELLED:
+//        return "The observation is unavailable because the measurement was not started or not completed (also sometimes called \"aborted\").";
+//      case ENTEREDINERROR:
+//        return "The observation has been withdrawn following previous final release.  This electronic record should never have existed, though it is possible that real-world decisions were based on it. (If real-world activity has occurred, the status should be \"cancelled\" rather than \"entered-in-error\".).";
+//      case UNKNOWN:
+//        return "The authoring/source system does not know which of the status values currently applies for this observation. Note: This concept is not to be used for \"other\" - one of the listed statuses is presumed to apply, but the authoring/source system does not know which.";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDisplay() {
+//      switch (this) {
+//      case REGISTERED:
+//        return "Registered";
+//      case PRELIMINARY:
+//        return "Preliminary";
+//      case FINAL:
+//        return "Final";
+//      case AMENDED:
+//        return "Amended";
+//      case CORRECTED:
+//        return "Corrected";
+//      case CANCELLED:
+//        return "Cancelled";
+//      case ENTEREDINERROR:
+//        return "Entered in Error";
+//      case UNKNOWN:
+//        return "Unknown";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//  }
+//
+//  public static class ObservationStatusEnumFactory implements EnumFactory<ObservationStatus> {
+//    public ObservationStatus fromCode(String codeString) throws IllegalArgumentException {
+//      if (codeString == null || "".equals(codeString))
+//        if (codeString == null || "".equals(codeString))
+//          return null;
+//      if ("registered".equals(codeString))
+//        return ObservationStatus.REGISTERED;
+//      if ("preliminary".equals(codeString))
+//        return ObservationStatus.PRELIMINARY;
+//      if ("final".equals(codeString))
+//        return ObservationStatus.FINAL;
+//      if ("amended".equals(codeString))
+//        return ObservationStatus.AMENDED;
+//      if ("corrected".equals(codeString))
+//        return ObservationStatus.CORRECTED;
+//      if ("cancelled".equals(codeString))
+//        return ObservationStatus.CANCELLED;
+//      if ("entered-in-error".equals(codeString))
+//        return ObservationStatus.ENTEREDINERROR;
+//      if ("unknown".equals(codeString))
+//        return ObservationStatus.UNKNOWN;
+//      throw new IllegalArgumentException("Unknown ObservationStatus code '" + codeString + "'");
+//    }
+//
+//    public Enumeration<ObservationStatus> fromType(PrimitiveType<?> code) throws FHIRException {
+//      if (code == null)
+//        return null;
+//      if (code.isEmpty())
+//        return new Enumeration<ObservationStatus>(this, ObservationStatus.NULL, code);
+//      String codeString = code.asStringValue();
+//      if (codeString == null || "".equals(codeString))
+//        return new Enumeration<ObservationStatus>(this, ObservationStatus.NULL, code);
+//      if ("registered".equals(codeString))
+//        return new Enumeration<ObservationStatus>(this, ObservationStatus.REGISTERED, code);
+//      if ("preliminary".equals(codeString))
+//        return new Enumeration<ObservationStatus>(this, ObservationStatus.PRELIMINARY, code);
+//      if ("final".equals(codeString))
+//        return new Enumeration<ObservationStatus>(this, ObservationStatus.FINAL, code);
+//      if ("amended".equals(codeString))
+//        return new Enumeration<ObservationStatus>(this, ObservationStatus.AMENDED, code);
+//      if ("corrected".equals(codeString))
+//        return new Enumeration<ObservationStatus>(this, ObservationStatus.CORRECTED, code);
+//      if ("cancelled".equals(codeString))
+//        return new Enumeration<ObservationStatus>(this, ObservationStatus.CANCELLED, code);
+//      if ("entered-in-error".equals(codeString))
+//        return new Enumeration<ObservationStatus>(this, ObservationStatus.ENTEREDINERROR, code);
+//      if ("unknown".equals(codeString))
+//        return new Enumeration<ObservationStatus>(this, ObservationStatus.UNKNOWN, code);
+//      throw new FHIRException("Unknown ObservationStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode(ObservationStatus code) {
+//       if (code == ObservationStatus.NULL)
+//           return null;
+//       if (code == ObservationStatus.REGISTERED)
+//        return "registered";
+//      if (code == ObservationStatus.PRELIMINARY)
+//        return "preliminary";
+//      if (code == ObservationStatus.FINAL)
+//        return "final";
+//      if (code == ObservationStatus.AMENDED)
+//        return "amended";
+//      if (code == ObservationStatus.CORRECTED)
+//        return "corrected";
+//      if (code == ObservationStatus.CANCELLED)
+//        return "cancelled";
+//      if (code == ObservationStatus.ENTEREDINERROR)
+//        return "entered-in-error";
+//      if (code == ObservationStatus.UNKNOWN)
+//        return "unknown";
+//      return "?";
+//   }
+//
+//    public String toSystem(ObservationStatus code) {
+//      return code.getSystem();
+//    }
+//  }
 
   @Block()
   public static class ObservationReferenceRangeComponent extends BackboneElement implements IBaseBackboneElement {
@@ -1709,10 +1709,10 @@ public class Observation extends DomainResource {
   /**
    * The status of the result value.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 3, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 3, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "registered | preliminary | final | amended +", formalDefinition = "The status of the result value.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/observation-status")
-  protected Enumeration<ObservationStatus> status;
+  protected StringType status;
 
   /**
    * A code that classifies the general type of observation being made.
@@ -1982,7 +1982,7 @@ public class Observation extends DomainResource {
   /**
    * Constructor
    */
-  public Observation(Enumeration<ObservationStatus> status, CodeableConcept code) {
+  public Observation(StringType status, CodeableConcept code) {
     super();
     this.status = status;
     this.code = code;
@@ -2161,12 +2161,12 @@ public class Observation extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<ObservationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Observation.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<ObservationStatus>(new ObservationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -2183,7 +2183,7 @@ public class Observation extends DomainResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getStatus" gives direct access to the value
    */
-  public Observation setStatusElement(Enumeration<ObservationStatus> value) {
+  public Observation setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -2191,17 +2191,17 @@ public class Observation extends DomainResource {
   /**
    * @return The status of the result value.
    */
-  public ObservationStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The status of the result value.
    */
-  public Observation setStatus(ObservationStatus value) {
+  public Observation setStatus(StringType value) {
     if (this.status == null)
-      this.status = new Enumeration<ObservationStatus>(new ObservationStatusEnumFactory());
-    this.status.setValue(value);
+      this.status = new StringType();
+    this.status = value;
     return this;
   }
 
@@ -3761,8 +3761,8 @@ public class Observation extends DomainResource {
       this.getPartOf().add(castToReference(value)); // Reference
       return value;
     case -892481550: // status
-      value = new ObservationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ObservationStatus>
+//      value = new ObservationStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // StringType
       return value;
     case 50511102: // category
       this.getCategory().add(castToCodeableConcept(value)); // CodeableConcept
@@ -3839,8 +3839,8 @@ public class Observation extends DomainResource {
     } else if (name.equals("partOf")) {
       this.getPartOf().add(castToReference(value));
     } else if (name.equals("status")) {
-      value = new ObservationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ObservationStatus>
+//      value = new ObservationStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // StringType
     } else if (name.equals("category")) {
       this.getCategory().add(castToCodeableConcept(value));
     } else if (name.equals("code")) {

@@ -49,147 +49,147 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "MedicationKnowledge", profile = "http://hl7.org/fhir/StructureDefinition/MedicationKnowledge")
 public class MedicationKnowledge extends DomainResource {
 
-  public enum MedicationKnowledgeStatus {
-    /**
-     * The medication is available for use.
-     */
-    ACTIVE,
-    /**
-     * The medication is not available for use.
-     */
-    INACTIVE,
-    /**
-     * The medication was entered in error.
-     */
-    ENTEREDINERROR,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static MedicationKnowledgeStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("active".equals(codeString))
-        return ACTIVE;
-      if ("inactive".equals(codeString))
-        return INACTIVE;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown MedicationKnowledgeStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ACTIVE:
-        return "active";
-      case INACTIVE:
-        return "inactive";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ACTIVE:
-        return "http://terminology.hl7.org/CodeSystem/medicationknowledge-status";
-      case INACTIVE:
-        return "http://terminology.hl7.org/CodeSystem/medicationknowledge-status";
-      case ENTEREDINERROR:
-        return "http://terminology.hl7.org/CodeSystem/medicationknowledge-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ACTIVE:
-        return "The medication is available for use.";
-      case INACTIVE:
-        return "The medication is not available for use.";
-      case ENTEREDINERROR:
-        return "The medication was entered in error.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ACTIVE:
-        return "Active";
-      case INACTIVE:
-        return "Inactive";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class MedicationKnowledgeStatusEnumFactory implements EnumFactory<MedicationKnowledgeStatus> {
-    public MedicationKnowledgeStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("active".equals(codeString))
-        return MedicationKnowledgeStatus.ACTIVE;
-      if ("inactive".equals(codeString))
-        return MedicationKnowledgeStatus.INACTIVE;
-      if ("entered-in-error".equals(codeString))
-        return MedicationKnowledgeStatus.ENTEREDINERROR;
-      throw new IllegalArgumentException("Unknown MedicationKnowledgeStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<MedicationKnowledgeStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<MedicationKnowledgeStatus>(this, MedicationKnowledgeStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<MedicationKnowledgeStatus>(this, MedicationKnowledgeStatus.NULL, code);
-      if ("active".equals(codeString))
-        return new Enumeration<MedicationKnowledgeStatus>(this, MedicationKnowledgeStatus.ACTIVE, code);
-      if ("inactive".equals(codeString))
-        return new Enumeration<MedicationKnowledgeStatus>(this, MedicationKnowledgeStatus.INACTIVE, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<MedicationKnowledgeStatus>(this, MedicationKnowledgeStatus.ENTEREDINERROR, code);
-      throw new FHIRException("Unknown MedicationKnowledgeStatus code '" + codeString + "'");
-    }
-
-    public String toCode(MedicationKnowledgeStatus code) {
-       if (code == MedicationKnowledgeStatus.NULL)
-           return null;
-       if (code == MedicationKnowledgeStatus.ACTIVE)
-        return "active";
-      if (code == MedicationKnowledgeStatus.INACTIVE)
-        return "inactive";
-      if (code == MedicationKnowledgeStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      return "?";
-   }
-
-    public String toSystem(MedicationKnowledgeStatus code) {
-      return code.getSystem();
-    }
-  }
+//  public enum MedicationKnowledgeStatus {
+//    /**
+//     * The medication is available for use.
+//     */
+//    ACTIVE,
+//    /**
+//     * The medication is not available for use.
+//     */
+//    INACTIVE,
+//    /**
+//     * The medication was entered in error.
+//     */
+//    ENTEREDINERROR,
+//    /**
+//     * added to help the parsers with the generic types
+//     */
+//    NULL;
+//
+//    public static MedicationKnowledgeStatus fromCode(String codeString) throws FHIRException {
+//      if (codeString == null || "".equals(codeString))
+//        return null;
+//      if ("active".equals(codeString))
+//        return ACTIVE;
+//      if ("inactive".equals(codeString))
+//        return INACTIVE;
+//      if ("entered-in-error".equals(codeString))
+//        return ENTEREDINERROR;
+//      if (Configuration.isAcceptInvalidEnums())
+//        return null;
+//      else
+//        throw new FHIRException("Unknown MedicationKnowledgeStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode() {
+//      switch (this) {
+//      case ACTIVE:
+//        return "active";
+//      case INACTIVE:
+//        return "inactive";
+//      case ENTEREDINERROR:
+//        return "entered-in-error";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getSystem() {
+//      switch (this) {
+//      case ACTIVE:
+//        return "http://terminology.hl7.org/CodeSystem/medicationknowledge-status";
+//      case INACTIVE:
+//        return "http://terminology.hl7.org/CodeSystem/medicationknowledge-status";
+//      case ENTEREDINERROR:
+//        return "http://terminology.hl7.org/CodeSystem/medicationknowledge-status";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDefinition() {
+//      switch (this) {
+//      case ACTIVE:
+//        return "The medication is available for use.";
+//      case INACTIVE:
+//        return "The medication is not available for use.";
+//      case ENTEREDINERROR:
+//        return "The medication was entered in error.";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDisplay() {
+//      switch (this) {
+//      case ACTIVE:
+//        return "Active";
+//      case INACTIVE:
+//        return "Inactive";
+//      case ENTEREDINERROR:
+//        return "Entered in Error";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//  }
+//
+//  public static class MedicationKnowledgeStatusEnumFactory implements EnumFactory<MedicationKnowledgeStatus> {
+//    public MedicationKnowledgeStatus fromCode(String codeString) throws IllegalArgumentException {
+//      if (codeString == null || "".equals(codeString))
+//        if (codeString == null || "".equals(codeString))
+//          return null;
+//      if ("active".equals(codeString))
+//        return MedicationKnowledgeStatus.ACTIVE;
+//      if ("inactive".equals(codeString))
+//        return MedicationKnowledgeStatus.INACTIVE;
+//      if ("entered-in-error".equals(codeString))
+//        return MedicationKnowledgeStatus.ENTEREDINERROR;
+//      throw new IllegalArgumentException("Unknown MedicationKnowledgeStatus code '" + codeString + "'");
+//    }
+//
+//    public Enumeration<MedicationKnowledgeStatus> fromType(PrimitiveType<?> code) throws FHIRException {
+//      if (code == null)
+//        return null;
+//      if (code.isEmpty())
+//        return new Enumeration<MedicationKnowledgeStatus>(this, MedicationKnowledgeStatus.NULL, code);
+//      String codeString = code.asStringValue();
+//      if (codeString == null || "".equals(codeString))
+//        return new Enumeration<MedicationKnowledgeStatus>(this, MedicationKnowledgeStatus.NULL, code);
+//      if ("active".equals(codeString))
+//        return new Enumeration<MedicationKnowledgeStatus>(this, MedicationKnowledgeStatus.ACTIVE, code);
+//      if ("inactive".equals(codeString))
+//        return new Enumeration<MedicationKnowledgeStatus>(this, MedicationKnowledgeStatus.INACTIVE, code);
+//      if ("entered-in-error".equals(codeString))
+//        return new Enumeration<MedicationKnowledgeStatus>(this, MedicationKnowledgeStatus.ENTEREDINERROR, code);
+//      throw new FHIRException("Unknown MedicationKnowledgeStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode(MedicationKnowledgeStatus code) {
+//       if (code == MedicationKnowledgeStatus.NULL)
+//           return null;
+//       if (code == MedicationKnowledgeStatus.ACTIVE)
+//        return "active";
+//      if (code == MedicationKnowledgeStatus.INACTIVE)
+//        return "inactive";
+//      if (code == MedicationKnowledgeStatus.ENTEREDINERROR)
+//        return "entered-in-error";
+//      return "?";
+//   }
+//
+//    public String toSystem(MedicationKnowledgeStatus code) {
+//      return code.getSystem();
+//    }
+//  }
 
   @Block()
   public static class MedicationKnowledgeRelatedMedicationKnowledgeComponent extends BackboneElement
@@ -5106,10 +5106,10 @@ public class MedicationKnowledge extends DomainResource {
    * the validity about the information of the medication and not to its medicinal
    * properties.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 0, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 0, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "active | inactive | entered-in-error", formalDefinition = "A code to indicate if the medication is in active use.  The status refers to the validity about the information of the medication and not to its medicinal properties.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/medicationknowledge-status")
-  protected Enumeration<MedicationKnowledgeStatus> status;
+  protected StringType status;
 
   /**
    * Describes the details of the manufacturer of the medication product. This is
@@ -5346,12 +5346,12 @@ public class MedicationKnowledge extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<MedicationKnowledgeStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create MedicationKnowledge.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<MedicationKnowledgeStatus>(new MedicationKnowledgeStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -5371,7 +5371,7 @@ public class MedicationKnowledge extends DomainResource {
    *              extensions. The accessor "getStatus" gives direct access to the
    *              value
    */
-  public MedicationKnowledge setStatusElement(Enumeration<MedicationKnowledgeStatus> value) {
+  public MedicationKnowledge setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -5381,8 +5381,8 @@ public class MedicationKnowledge extends DomainResource {
    *         refers to the validity about the information of the medication and
    *         not to its medicinal properties.
    */
-  public MedicationKnowledgeStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
@@ -5390,13 +5390,13 @@ public class MedicationKnowledge extends DomainResource {
    *              status refers to the validity about the information of the
    *              medication and not to its medicinal properties.
    */
-  public MedicationKnowledge setStatus(MedicationKnowledgeStatus value) {
+  public MedicationKnowledge setStatus(StringType value) {
     if (value == null)
       this.status = null;
     else {
       if (this.status == null)
-        this.status = new Enumeration<MedicationKnowledgeStatus>(new MedicationKnowledgeStatusEnumFactory());
-      this.status.setValue(value);
+        this.status = new StringType();
+      this.status = value;
     }
     return this;
   }
@@ -6602,7 +6602,7 @@ public class MedicationKnowledge extends DomainResource {
     case 3059181:
       /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // CodeableConcept
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<MedicationKnowledgeStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -1969347631:
       /* manufacturer */ return this.manufacturer == null ? new Base[0] : new Base[] { this.manufacturer }; // Reference
     case 1303858817:
@@ -6669,8 +6669,8 @@ public class MedicationKnowledge extends DomainResource {
       this.code = castToCodeableConcept(value); // CodeableConcept
       return value;
     case -892481550: // status
-      value = new MedicationKnowledgeStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<MedicationKnowledgeStatus>
+//      value = new MedicationKnowledgeStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // StringType
       return value;
     case -1969347631: // manufacturer
       this.manufacturer = castToReference(value); // Reference
@@ -6743,8 +6743,8 @@ public class MedicationKnowledge extends DomainResource {
     if (name.equals("code")) {
       this.code = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("status")) {
-      value = new MedicationKnowledgeStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<MedicationKnowledgeStatus>
+//      value = new MedicationKnowledgeStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // StringType
     } else if (name.equals("manufacturer")) {
       this.manufacturer = castToReference(value); // Reference
     } else if (name.equals("doseForm")) {

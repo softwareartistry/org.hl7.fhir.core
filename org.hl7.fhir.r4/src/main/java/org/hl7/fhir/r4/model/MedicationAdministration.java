@@ -53,234 +53,234 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "MedicationAdministration", profile = "http://hl7.org/fhir/StructureDefinition/MedicationAdministration")
 public class MedicationAdministration extends DomainResource {
 
-  public enum MedicationAdministrationStatus {
-    /**
-     * The administration has started but has not yet completed.
-     */
-    INPROGRESS,
-    /**
-     * The administration was terminated prior to any impact on the subject (though
-     * preparatory actions may have been taken)
-     */
-    NOTDONE,
-    /**
-     * Actions implied by the administration have been temporarily halted, but are
-     * expected to continue later. May also be called 'suspended'.
-     */
-    ONHOLD,
-    /**
-     * All actions that are implied by the administration have occurred.
-     */
-    COMPLETED,
-    /**
-     * The administration was entered in error and therefore nullified.
-     */
-    ENTEREDINERROR,
-    /**
-     * Actions implied by the administration have been permanently halted, before
-     * all of them occurred.
-     */
-    STOPPED,
-    /**
-     * The authoring system does not know which of the status values currently
-     * applies for this request. Note: This concept is not to be used for 'other' -
-     * one of the listed statuses is presumed to apply, it's just not known which
-     * one.
-     */
-    UNKNOWN,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static MedicationAdministrationStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("in-progress".equals(codeString))
-        return INPROGRESS;
-      if ("not-done".equals(codeString))
-        return NOTDONE;
-      if ("on-hold".equals(codeString))
-        return ONHOLD;
-      if ("completed".equals(codeString))
-        return COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if ("stopped".equals(codeString))
-        return STOPPED;
-      if ("unknown".equals(codeString))
-        return UNKNOWN;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown MedicationAdministrationStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case INPROGRESS:
-        return "in-progress";
-      case NOTDONE:
-        return "not-done";
-      case ONHOLD:
-        return "on-hold";
-      case COMPLETED:
-        return "completed";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case STOPPED:
-        return "stopped";
-      case UNKNOWN:
-        return "unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case INPROGRESS:
-        return "http://terminology.hl7.org/CodeSystem/medication-admin-status";
-      case NOTDONE:
-        return "http://terminology.hl7.org/CodeSystem/medication-admin-status";
-      case ONHOLD:
-        return "http://terminology.hl7.org/CodeSystem/medication-admin-status";
-      case COMPLETED:
-        return "http://terminology.hl7.org/CodeSystem/medication-admin-status";
-      case ENTEREDINERROR:
-        return "http://terminology.hl7.org/CodeSystem/medication-admin-status";
-      case STOPPED:
-        return "http://terminology.hl7.org/CodeSystem/medication-admin-status";
-      case UNKNOWN:
-        return "http://terminology.hl7.org/CodeSystem/medication-admin-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case INPROGRESS:
-        return "The administration has started but has not yet completed.";
-      case NOTDONE:
-        return "The administration was terminated prior to any impact on the subject (though preparatory actions may have been taken)";
-      case ONHOLD:
-        return "Actions implied by the administration have been temporarily halted, but are expected to continue later. May also be called 'suspended'.";
-      case COMPLETED:
-        return "All actions that are implied by the administration have occurred.";
-      case ENTEREDINERROR:
-        return "The administration was entered in error and therefore nullified.";
-      case STOPPED:
-        return "Actions implied by the administration have been permanently halted, before all of them occurred.";
-      case UNKNOWN:
-        return "The authoring system does not know which of the status values currently applies for this request. Note: This concept is not to be used for 'other' - one of the listed statuses is presumed to apply, it's just not known which one.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case INPROGRESS:
-        return "In Progress";
-      case NOTDONE:
-        return "Not Done";
-      case ONHOLD:
-        return "On Hold";
-      case COMPLETED:
-        return "Completed";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case STOPPED:
-        return "Stopped";
-      case UNKNOWN:
-        return "Unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class MedicationAdministrationStatusEnumFactory implements EnumFactory<MedicationAdministrationStatus> {
-    public MedicationAdministrationStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("in-progress".equals(codeString))
-        return MedicationAdministrationStatus.INPROGRESS;
-      if ("not-done".equals(codeString))
-        return MedicationAdministrationStatus.NOTDONE;
-      if ("on-hold".equals(codeString))
-        return MedicationAdministrationStatus.ONHOLD;
-      if ("completed".equals(codeString))
-        return MedicationAdministrationStatus.COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return MedicationAdministrationStatus.ENTEREDINERROR;
-      if ("stopped".equals(codeString))
-        return MedicationAdministrationStatus.STOPPED;
-      if ("unknown".equals(codeString))
-        return MedicationAdministrationStatus.UNKNOWN;
-      throw new IllegalArgumentException("Unknown MedicationAdministrationStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<MedicationAdministrationStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<MedicationAdministrationStatus>(this, MedicationAdministrationStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<MedicationAdministrationStatus>(this, MedicationAdministrationStatus.NULL, code);
-      if ("in-progress".equals(codeString))
-        return new Enumeration<MedicationAdministrationStatus>(this, MedicationAdministrationStatus.INPROGRESS, code);
-      if ("not-done".equals(codeString))
-        return new Enumeration<MedicationAdministrationStatus>(this, MedicationAdministrationStatus.NOTDONE, code);
-      if ("on-hold".equals(codeString))
-        return new Enumeration<MedicationAdministrationStatus>(this, MedicationAdministrationStatus.ONHOLD, code);
-      if ("completed".equals(codeString))
-        return new Enumeration<MedicationAdministrationStatus>(this, MedicationAdministrationStatus.COMPLETED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<MedicationAdministrationStatus>(this, MedicationAdministrationStatus.ENTEREDINERROR,
-            code);
-      if ("stopped".equals(codeString))
-        return new Enumeration<MedicationAdministrationStatus>(this, MedicationAdministrationStatus.STOPPED, code);
-      if ("unknown".equals(codeString))
-        return new Enumeration<MedicationAdministrationStatus>(this, MedicationAdministrationStatus.UNKNOWN, code);
-      throw new FHIRException("Unknown MedicationAdministrationStatus code '" + codeString + "'");
-    }
-
-    public String toCode(MedicationAdministrationStatus code) {
-       if (code == MedicationAdministrationStatus.NULL)
-           return null;
-       if (code == MedicationAdministrationStatus.INPROGRESS)
-        return "in-progress";
-      if (code == MedicationAdministrationStatus.NOTDONE)
-        return "not-done";
-      if (code == MedicationAdministrationStatus.ONHOLD)
-        return "on-hold";
-      if (code == MedicationAdministrationStatus.COMPLETED)
-        return "completed";
-      if (code == MedicationAdministrationStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      if (code == MedicationAdministrationStatus.STOPPED)
-        return "stopped";
-      if (code == MedicationAdministrationStatus.UNKNOWN)
-        return "unknown";
-      return "?";
-   }
-
-    public String toSystem(MedicationAdministrationStatus code) {
-      return code.getSystem();
-    }
-  }
+//  public enum MedicationAdministrationStatus {
+//    /**
+//     * The administration has started but has not yet completed.
+//     */
+//    INPROGRESS,
+//    /**
+//     * The administration was terminated prior to any impact on the subject (though
+//     * preparatory actions may have been taken)
+//     */
+//    NOTDONE,
+//    /**
+//     * Actions implied by the administration have been temporarily halted, but are
+//     * expected to continue later. May also be called 'suspended'.
+//     */
+//    ONHOLD,
+//    /**
+//     * All actions that are implied by the administration have occurred.
+//     */
+//    COMPLETED,
+//    /**
+//     * The administration was entered in error and therefore nullified.
+//     */
+//    ENTEREDINERROR,
+//    /**
+//     * Actions implied by the administration have been permanently halted, before
+//     * all of them occurred.
+//     */
+//    STOPPED,
+//    /**
+//     * The authoring system does not know which of the status values currently
+//     * applies for this request. Note: This concept is not to be used for 'other' -
+//     * one of the listed statuses is presumed to apply, it's just not known which
+//     * one.
+//     */
+//    UNKNOWN,
+//    /**
+//     * added to help the parsers with the generic types
+//     */
+//    NULL;
+//
+//    public static MedicationAdministrationStatus fromCode(String codeString) throws FHIRException {
+//      if (codeString == null || "".equals(codeString))
+//        return null;
+//      if ("in-progress".equals(codeString))
+//        return INPROGRESS;
+//      if ("not-done".equals(codeString))
+//        return NOTDONE;
+//      if ("on-hold".equals(codeString))
+//        return ONHOLD;
+//      if ("completed".equals(codeString))
+//        return COMPLETED;
+//      if ("entered-in-error".equals(codeString))
+//        return ENTEREDINERROR;
+//      if ("stopped".equals(codeString))
+//        return STOPPED;
+//      if ("unknown".equals(codeString))
+//        return UNKNOWN;
+//      if (Configuration.isAcceptInvalidEnums())
+//        return null;
+//      else
+//        throw new FHIRException("Unknown MedicationAdministrationStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode() {
+//      switch (this) {
+//      case INPROGRESS:
+//        return "in-progress";
+//      case NOTDONE:
+//        return "not-done";
+//      case ONHOLD:
+//        return "on-hold";
+//      case COMPLETED:
+//        return "completed";
+//      case ENTEREDINERROR:
+//        return "entered-in-error";
+//      case STOPPED:
+//        return "stopped";
+//      case UNKNOWN:
+//        return "unknown";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getSystem() {
+//      switch (this) {
+//      case INPROGRESS:
+//        return "http://terminology.hl7.org/CodeSystem/medication-admin-status";
+//      case NOTDONE:
+//        return "http://terminology.hl7.org/CodeSystem/medication-admin-status";
+//      case ONHOLD:
+//        return "http://terminology.hl7.org/CodeSystem/medication-admin-status";
+//      case COMPLETED:
+//        return "http://terminology.hl7.org/CodeSystem/medication-admin-status";
+//      case ENTEREDINERROR:
+//        return "http://terminology.hl7.org/CodeSystem/medication-admin-status";
+//      case STOPPED:
+//        return "http://terminology.hl7.org/CodeSystem/medication-admin-status";
+//      case UNKNOWN:
+//        return "http://terminology.hl7.org/CodeSystem/medication-admin-status";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDefinition() {
+//      switch (this) {
+//      case INPROGRESS:
+//        return "The administration has started but has not yet completed.";
+//      case NOTDONE:
+//        return "The administration was terminated prior to any impact on the subject (though preparatory actions may have been taken)";
+//      case ONHOLD:
+//        return "Actions implied by the administration have been temporarily halted, but are expected to continue later. May also be called 'suspended'.";
+//      case COMPLETED:
+//        return "All actions that are implied by the administration have occurred.";
+//      case ENTEREDINERROR:
+//        return "The administration was entered in error and therefore nullified.";
+//      case STOPPED:
+//        return "Actions implied by the administration have been permanently halted, before all of them occurred.";
+//      case UNKNOWN:
+//        return "The authoring system does not know which of the status values currently applies for this request. Note: This concept is not to be used for 'other' - one of the listed statuses is presumed to apply, it's just not known which one.";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDisplay() {
+//      switch (this) {
+//      case INPROGRESS:
+//        return "In Progress";
+//      case NOTDONE:
+//        return "Not Done";
+//      case ONHOLD:
+//        return "On Hold";
+//      case COMPLETED:
+//        return "Completed";
+//      case ENTEREDINERROR:
+//        return "Entered in Error";
+//      case STOPPED:
+//        return "Stopped";
+//      case UNKNOWN:
+//        return "Unknown";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//  }
+//
+//  public static class MedicationAdministrationStatusEnumFactory implements EnumFactory<MedicationAdministrationStatus> {
+//    public MedicationAdministrationStatus fromCode(String codeString) throws IllegalArgumentException {
+//      if (codeString == null || "".equals(codeString))
+//        if (codeString == null || "".equals(codeString))
+//          return null;
+//      if ("in-progress".equals(codeString))
+//        return MedicationAdministrationStatus.INPROGRESS;
+//      if ("not-done".equals(codeString))
+//        return MedicationAdministrationStatus.NOTDONE;
+//      if ("on-hold".equals(codeString))
+//        return MedicationAdministrationStatus.ONHOLD;
+//      if ("completed".equals(codeString))
+//        return MedicationAdministrationStatus.COMPLETED;
+//      if ("entered-in-error".equals(codeString))
+//        return MedicationAdministrationStatus.ENTEREDINERROR;
+//      if ("stopped".equals(codeString))
+//        return MedicationAdministrationStatus.STOPPED;
+//      if ("unknown".equals(codeString))
+//        return MedicationAdministrationStatus.UNKNOWN;
+//      throw new IllegalArgumentException("Unknown MedicationAdministrationStatus code '" + codeString + "'");
+//    }
+//
+//    public Enumeration<MedicationAdministrationStatus> fromType(PrimitiveType<?> code) throws FHIRException {
+//      if (code == null)
+//        return null;
+//      if (code.isEmpty())
+//        return new Enumeration<MedicationAdministrationStatus>(this, MedicationAdministrationStatus.NULL, code);
+//      String codeString = code.asStringValue();
+//      if (codeString == null || "".equals(codeString))
+//        return new Enumeration<MedicationAdministrationStatus>(this, MedicationAdministrationStatus.NULL, code);
+//      if ("in-progress".equals(codeString))
+//        return new Enumeration<MedicationAdministrationStatus>(this, MedicationAdministrationStatus.INPROGRESS, code);
+//      if ("not-done".equals(codeString))
+//        return new Enumeration<MedicationAdministrationStatus>(this, MedicationAdministrationStatus.NOTDONE, code);
+//      if ("on-hold".equals(codeString))
+//        return new Enumeration<MedicationAdministrationStatus>(this, MedicationAdministrationStatus.ONHOLD, code);
+//      if ("completed".equals(codeString))
+//        return new Enumeration<MedicationAdministrationStatus>(this, MedicationAdministrationStatus.COMPLETED, code);
+//      if ("entered-in-error".equals(codeString))
+//        return new Enumeration<MedicationAdministrationStatus>(this, MedicationAdministrationStatus.ENTEREDINERROR,
+//            code);
+//      if ("stopped".equals(codeString))
+//        return new Enumeration<MedicationAdministrationStatus>(this, MedicationAdministrationStatus.STOPPED, code);
+//      if ("unknown".equals(codeString))
+//        return new Enumeration<MedicationAdministrationStatus>(this, MedicationAdministrationStatus.UNKNOWN, code);
+//      throw new FHIRException("Unknown MedicationAdministrationStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode(MedicationAdministrationStatus code) {
+//       if (code == MedicationAdministrationStatus.NULL)
+//           return null;
+//       if (code == MedicationAdministrationStatus.INPROGRESS)
+//        return "in-progress";
+//      if (code == MedicationAdministrationStatus.NOTDONE)
+//        return "not-done";
+//      if (code == MedicationAdministrationStatus.ONHOLD)
+//        return "on-hold";
+//      if (code == MedicationAdministrationStatus.COMPLETED)
+//        return "completed";
+//      if (code == MedicationAdministrationStatus.ENTEREDINERROR)
+//        return "entered-in-error";
+//      if (code == MedicationAdministrationStatus.STOPPED)
+//        return "stopped";
+//      if (code == MedicationAdministrationStatus.UNKNOWN)
+//        return "unknown";
+//      return "?";
+//   }
+//
+//    public String toSystem(MedicationAdministrationStatus code) {
+//      return code.getSystem();
+//    }
+//  }
 
   @Block()
   public static class MedicationAdministrationPerformerComponent extends BackboneElement
@@ -1202,10 +1202,10 @@ public class MedicationAdministration extends DomainResource {
    * administration to be started but not completed or it may be paused while some
    * other process is under way.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 3, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 3, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "in-progress | not-done | on-hold | completed | entered-in-error | stopped | unknown", formalDefinition = "Will generally be set to show that the administration has been completed.  For some long running administrations such as infusions, it is possible for an administration to be started but not completed or it may be paused while some other process is under way.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/medication-admin-status")
-  protected Enumeration<MedicationAdministrationStatus> status;
+  protected StringType status;
 
   /**
    * A code indicating why the administration was not performed.
@@ -1396,7 +1396,7 @@ public class MedicationAdministration extends DomainResource {
   /**
    * Constructor
    */
-  public MedicationAdministration(Enumeration<MedicationAdministrationStatus> status, Type medication,
+  public MedicationAdministration(StringType status, Type medication,
       Reference subject, Type effective) {
     super();
     this.status = status;
@@ -1595,12 +1595,12 @@ public class MedicationAdministration extends DomainResource {
    *         object with id, value and extensions. The accessor "getStatus" gives
    *         direct access to the value
    */
-  public Enumeration<MedicationAdministrationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create MedicationAdministration.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<MedicationAdministrationStatus>(new MedicationAdministrationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -1621,7 +1621,7 @@ public class MedicationAdministration extends DomainResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getStatus" gives direct access to the value
    */
-  public MedicationAdministration setStatusElement(Enumeration<MedicationAdministrationStatus> value) {
+  public MedicationAdministration setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1632,8 +1632,8 @@ public class MedicationAdministration extends DomainResource {
    *         it is possible for an administration to be started but not completed
    *         or it may be paused while some other process is under way.
    */
-  public MedicationAdministrationStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
@@ -1643,10 +1643,10 @@ public class MedicationAdministration extends DomainResource {
    *              but not completed or it may be paused while some other process
    *              is under way.
    */
-  public MedicationAdministration setStatus(MedicationAdministrationStatus value) {
+  public MedicationAdministration setStatus(StringType value) {
     if (this.status == null)
-      this.status = new Enumeration<MedicationAdministrationStatus>(new MedicationAdministrationStatusEnumFactory());
-    this.status.setValue(value);
+      this.status = new StringType();
+    this.status = value;
     return this;
   }
 
@@ -2597,7 +2597,7 @@ public class MedicationAdministration extends DomainResource {
     case -995410646:
       /* partOf */ return this.partOf == null ? new Base[0] : this.partOf.toArray(new Base[this.partOf.size()]); // Reference
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<MedicationAdministrationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 2051346646:
       /* statusReason */ return this.statusReason == null ? new Base[0]
           : this.statusReason.toArray(new Base[this.statusReason.size()]); // CodeableConcept
@@ -2653,8 +2653,8 @@ public class MedicationAdministration extends DomainResource {
       this.getPartOf().add(castToReference(value)); // Reference
       return value;
     case -892481550: // status
-      value = new MedicationAdministrationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<MedicationAdministrationStatus>
+//      value = new MedicationAdministrationStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // StringType
       return value;
     case 2051346646: // statusReason
       this.getStatusReason().add(castToCodeableConcept(value)); // CodeableConcept
@@ -2716,8 +2716,8 @@ public class MedicationAdministration extends DomainResource {
     } else if (name.equals("partOf")) {
       this.getPartOf().add(castToReference(value));
     } else if (name.equals("status")) {
-      value = new MedicationAdministrationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<MedicationAdministrationStatus>
+//      value = new MedicationAdministrationStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // StringType
     } else if (name.equals("statusReason")) {
       this.getStatusReason().add(castToCodeableConcept(value));
     } else if (name.equals("category")) {

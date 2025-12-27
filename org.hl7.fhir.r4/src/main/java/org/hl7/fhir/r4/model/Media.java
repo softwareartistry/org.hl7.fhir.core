@@ -51,259 +51,259 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Media", profile = "http://hl7.org/fhir/StructureDefinition/Media")
 public class Media extends DomainResource {
 
-  public enum MediaStatus {
-    /**
-     * The core event has not started yet, but some staging activities have begun
-     * (e.g. surgical suite preparation). Preparation stages may be tracked for
-     * billing purposes.
-     */
-    PREPARATION,
-    /**
-     * The event is currently occurring.
-     */
-    INPROGRESS,
-    /**
-     * The event was terminated prior to any activity beyond preparation. I.e. The
-     * 'main' activity has not yet begun. The boundary between preparatory and the
-     * 'main' activity is context-specific.
-     */
-    NOTDONE,
-    /**
-     * The event has been temporarily stopped but is expected to resume in the
-     * future.
-     */
-    ONHOLD,
-    /**
-     * The event was terminated prior to the full completion of the intended
-     * activity but after at least some of the 'main' activity (beyond preparation)
-     * has occurred.
-     */
-    STOPPED,
-    /**
-     * The event has now concluded.
-     */
-    COMPLETED,
-    /**
-     * This electronic record should never have existed, though it is possible that
-     * real-world decisions were based on it. (If real-world activity has occurred,
-     * the status should be "stopped" rather than "entered-in-error".).
-     */
-    ENTEREDINERROR,
-    /**
-     * The authoring/source system does not know which of the status values
-     * currently applies for this event. Note: This concept is not to be used for
-     * "other" - one of the listed statuses is presumed to apply, but the
-     * authoring/source system does not know which.
-     */
-    UNKNOWN,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static MediaStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("preparation".equals(codeString))
-        return PREPARATION;
-      if ("in-progress".equals(codeString))
-        return INPROGRESS;
-      if ("not-done".equals(codeString))
-        return NOTDONE;
-      if ("on-hold".equals(codeString))
-        return ONHOLD;
-      if ("stopped".equals(codeString))
-        return STOPPED;
-      if ("completed".equals(codeString))
-        return COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return UNKNOWN;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown MediaStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case PREPARATION:
-        return "preparation";
-      case INPROGRESS:
-        return "in-progress";
-      case NOTDONE:
-        return "not-done";
-      case ONHOLD:
-        return "on-hold";
-      case STOPPED:
-        return "stopped";
-      case COMPLETED:
-        return "completed";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case UNKNOWN:
-        return "unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case PREPARATION:
-        return "http://hl7.org/fhir/event-status";
-      case INPROGRESS:
-        return "http://hl7.org/fhir/event-status";
-      case NOTDONE:
-        return "http://hl7.org/fhir/event-status";
-      case ONHOLD:
-        return "http://hl7.org/fhir/event-status";
-      case STOPPED:
-        return "http://hl7.org/fhir/event-status";
-      case COMPLETED:
-        return "http://hl7.org/fhir/event-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/event-status";
-      case UNKNOWN:
-        return "http://hl7.org/fhir/event-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case PREPARATION:
-        return "The core event has not started yet, but some staging activities have begun (e.g. surgical suite preparation).  Preparation stages may be tracked for billing purposes.";
-      case INPROGRESS:
-        return "The event is currently occurring.";
-      case NOTDONE:
-        return "The event was terminated prior to any activity beyond preparation.  I.e. The 'main' activity has not yet begun.  The boundary between preparatory and the 'main' activity is context-specific.";
-      case ONHOLD:
-        return "The event has been temporarily stopped but is expected to resume in the future.";
-      case STOPPED:
-        return "The event was terminated prior to the full completion of the intended activity but after at least some of the 'main' activity (beyond preparation) has occurred.";
-      case COMPLETED:
-        return "The event has now concluded.";
-      case ENTEREDINERROR:
-        return "This electronic record should never have existed, though it is possible that real-world decisions were based on it.  (If real-world activity has occurred, the status should be \"stopped\" rather than \"entered-in-error\".).";
-      case UNKNOWN:
-        return "The authoring/source system does not know which of the status values currently applies for this event.  Note: This concept is not to be used for \"other\" - one of the listed statuses is presumed to apply,  but the authoring/source system does not know which.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case PREPARATION:
-        return "Preparation";
-      case INPROGRESS:
-        return "In Progress";
-      case NOTDONE:
-        return "Not Done";
-      case ONHOLD:
-        return "On Hold";
-      case STOPPED:
-        return "Stopped";
-      case COMPLETED:
-        return "Completed";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case UNKNOWN:
-        return "Unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class MediaStatusEnumFactory implements EnumFactory<MediaStatus> {
-    public MediaStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("preparation".equals(codeString))
-        return MediaStatus.PREPARATION;
-      if ("in-progress".equals(codeString))
-        return MediaStatus.INPROGRESS;
-      if ("not-done".equals(codeString))
-        return MediaStatus.NOTDONE;
-      if ("on-hold".equals(codeString))
-        return MediaStatus.ONHOLD;
-      if ("stopped".equals(codeString))
-        return MediaStatus.STOPPED;
-      if ("completed".equals(codeString))
-        return MediaStatus.COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return MediaStatus.ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return MediaStatus.UNKNOWN;
-      throw new IllegalArgumentException("Unknown MediaStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<MediaStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<MediaStatus>(this, MediaStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<MediaStatus>(this, MediaStatus.NULL, code);
-      if ("preparation".equals(codeString))
-        return new Enumeration<MediaStatus>(this, MediaStatus.PREPARATION, code);
-      if ("in-progress".equals(codeString))
-        return new Enumeration<MediaStatus>(this, MediaStatus.INPROGRESS, code);
-      if ("not-done".equals(codeString))
-        return new Enumeration<MediaStatus>(this, MediaStatus.NOTDONE, code);
-      if ("on-hold".equals(codeString))
-        return new Enumeration<MediaStatus>(this, MediaStatus.ONHOLD, code);
-      if ("stopped".equals(codeString))
-        return new Enumeration<MediaStatus>(this, MediaStatus.STOPPED, code);
-      if ("completed".equals(codeString))
-        return new Enumeration<MediaStatus>(this, MediaStatus.COMPLETED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<MediaStatus>(this, MediaStatus.ENTEREDINERROR, code);
-      if ("unknown".equals(codeString))
-        return new Enumeration<MediaStatus>(this, MediaStatus.UNKNOWN, code);
-      throw new FHIRException("Unknown MediaStatus code '" + codeString + "'");
-    }
-
-    public String toCode(MediaStatus code) {
-       if (code == MediaStatus.NULL)
-           return null;
-       if (code == MediaStatus.PREPARATION)
-        return "preparation";
-      if (code == MediaStatus.INPROGRESS)
-        return "in-progress";
-      if (code == MediaStatus.NOTDONE)
-        return "not-done";
-      if (code == MediaStatus.ONHOLD)
-        return "on-hold";
-      if (code == MediaStatus.STOPPED)
-        return "stopped";
-      if (code == MediaStatus.COMPLETED)
-        return "completed";
-      if (code == MediaStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      if (code == MediaStatus.UNKNOWN)
-        return "unknown";
-      return "?";
-   }
-
-    public String toSystem(MediaStatus code) {
-      return code.getSystem();
-    }
-  }
+//  public enum MediaStatus {
+//    /**
+//     * The core event has not started yet, but some staging activities have begun
+//     * (e.g. surgical suite preparation). Preparation stages may be tracked for
+//     * billing purposes.
+//     */
+//    PREPARATION,
+//    /**
+//     * The event is currently occurring.
+//     */
+//    INPROGRESS,
+//    /**
+//     * The event was terminated prior to any activity beyond preparation. I.e. The
+//     * 'main' activity has not yet begun. The boundary between preparatory and the
+//     * 'main' activity is context-specific.
+//     */
+//    NOTDONE,
+//    /**
+//     * The event has been temporarily stopped but is expected to resume in the
+//     * future.
+//     */
+//    ONHOLD,
+//    /**
+//     * The event was terminated prior to the full completion of the intended
+//     * activity but after at least some of the 'main' activity (beyond preparation)
+//     * has occurred.
+//     */
+//    STOPPED,
+//    /**
+//     * The event has now concluded.
+//     */
+//    COMPLETED,
+//    /**
+//     * This electronic record should never have existed, though it is possible that
+//     * real-world decisions were based on it. (If real-world activity has occurred,
+//     * the status should be "stopped" rather than "entered-in-error".).
+//     */
+//    ENTEREDINERROR,
+//    /**
+//     * The authoring/source system does not know which of the status values
+//     * currently applies for this event. Note: This concept is not to be used for
+//     * "other" - one of the listed statuses is presumed to apply, but the
+//     * authoring/source system does not know which.
+//     */
+//    UNKNOWN,
+//    /**
+//     * added to help the parsers with the generic types
+//     */
+//    NULL;
+//
+//    public static MediaStatus fromCode(String codeString) throws FHIRException {
+//      if (codeString == null || "".equals(codeString))
+//        return null;
+//      if ("preparation".equals(codeString))
+//        return PREPARATION;
+//      if ("in-progress".equals(codeString))
+//        return INPROGRESS;
+//      if ("not-done".equals(codeString))
+//        return NOTDONE;
+//      if ("on-hold".equals(codeString))
+//        return ONHOLD;
+//      if ("stopped".equals(codeString))
+//        return STOPPED;
+//      if ("completed".equals(codeString))
+//        return COMPLETED;
+//      if ("entered-in-error".equals(codeString))
+//        return ENTEREDINERROR;
+//      if ("unknown".equals(codeString))
+//        return UNKNOWN;
+//      if (Configuration.isAcceptInvalidEnums())
+//        return null;
+//      else
+//        throw new FHIRException("Unknown MediaStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode() {
+//      switch (this) {
+//      case PREPARATION:
+//        return "preparation";
+//      case INPROGRESS:
+//        return "in-progress";
+//      case NOTDONE:
+//        return "not-done";
+//      case ONHOLD:
+//        return "on-hold";
+//      case STOPPED:
+//        return "stopped";
+//      case COMPLETED:
+//        return "completed";
+//      case ENTEREDINERROR:
+//        return "entered-in-error";
+//      case UNKNOWN:
+//        return "unknown";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getSystem() {
+//      switch (this) {
+//      case PREPARATION:
+//        return "http://hl7.org/fhir/event-status";
+//      case INPROGRESS:
+//        return "http://hl7.org/fhir/event-status";
+//      case NOTDONE:
+//        return "http://hl7.org/fhir/event-status";
+//      case ONHOLD:
+//        return "http://hl7.org/fhir/event-status";
+//      case STOPPED:
+//        return "http://hl7.org/fhir/event-status";
+//      case COMPLETED:
+//        return "http://hl7.org/fhir/event-status";
+//      case ENTEREDINERROR:
+//        return "http://hl7.org/fhir/event-status";
+//      case UNKNOWN:
+//        return "http://hl7.org/fhir/event-status";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDefinition() {
+//      switch (this) {
+//      case PREPARATION:
+//        return "The core event has not started yet, but some staging activities have begun (e.g. surgical suite preparation).  Preparation stages may be tracked for billing purposes.";
+//      case INPROGRESS:
+//        return "The event is currently occurring.";
+//      case NOTDONE:
+//        return "The event was terminated prior to any activity beyond preparation.  I.e. The 'main' activity has not yet begun.  The boundary between preparatory and the 'main' activity is context-specific.";
+//      case ONHOLD:
+//        return "The event has been temporarily stopped but is expected to resume in the future.";
+//      case STOPPED:
+//        return "The event was terminated prior to the full completion of the intended activity but after at least some of the 'main' activity (beyond preparation) has occurred.";
+//      case COMPLETED:
+//        return "The event has now concluded.";
+//      case ENTEREDINERROR:
+//        return "This electronic record should never have existed, though it is possible that real-world decisions were based on it.  (If real-world activity has occurred, the status should be \"stopped\" rather than \"entered-in-error\".).";
+//      case UNKNOWN:
+//        return "The authoring/source system does not know which of the status values currently applies for this event.  Note: This concept is not to be used for \"other\" - one of the listed statuses is presumed to apply,  but the authoring/source system does not know which.";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDisplay() {
+//      switch (this) {
+//      case PREPARATION:
+//        return "Preparation";
+//      case INPROGRESS:
+//        return "In Progress";
+//      case NOTDONE:
+//        return "Not Done";
+//      case ONHOLD:
+//        return "On Hold";
+//      case STOPPED:
+//        return "Stopped";
+//      case COMPLETED:
+//        return "Completed";
+//      case ENTEREDINERROR:
+//        return "Entered in Error";
+//      case UNKNOWN:
+//        return "Unknown";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//  }
+//
+//  public static class MediaStatusEnumFactory implements EnumFactory<MediaStatus> {
+//    public MediaStatus fromCode(String codeString) throws IllegalArgumentException {
+//      if (codeString == null || "".equals(codeString))
+//        if (codeString == null || "".equals(codeString))
+//          return null;
+//      if ("preparation".equals(codeString))
+//        return MediaStatus.PREPARATION;
+//      if ("in-progress".equals(codeString))
+//        return MediaStatus.INPROGRESS;
+//      if ("not-done".equals(codeString))
+//        return MediaStatus.NOTDONE;
+//      if ("on-hold".equals(codeString))
+//        return MediaStatus.ONHOLD;
+//      if ("stopped".equals(codeString))
+//        return MediaStatus.STOPPED;
+//      if ("completed".equals(codeString))
+//        return MediaStatus.COMPLETED;
+//      if ("entered-in-error".equals(codeString))
+//        return MediaStatus.ENTEREDINERROR;
+//      if ("unknown".equals(codeString))
+//        return MediaStatus.UNKNOWN;
+//      throw new IllegalArgumentException("Unknown MediaStatus code '" + codeString + "'");
+//    }
+//
+//    public Enumeration<MediaStatus> fromType(PrimitiveType<?> code) throws FHIRException {
+//      if (code == null)
+//        return null;
+//      if (code.isEmpty())
+//        return new Enumeration<MediaStatus>(this, MediaStatus.NULL, code);
+//      String codeString = code.asStringValue();
+//      if (codeString == null || "".equals(codeString))
+//        return new Enumeration<MediaStatus>(this, MediaStatus.NULL, code);
+//      if ("preparation".equals(codeString))
+//        return new Enumeration<MediaStatus>(this, MediaStatus.PREPARATION, code);
+//      if ("in-progress".equals(codeString))
+//        return new Enumeration<MediaStatus>(this, MediaStatus.INPROGRESS, code);
+//      if ("not-done".equals(codeString))
+//        return new Enumeration<MediaStatus>(this, MediaStatus.NOTDONE, code);
+//      if ("on-hold".equals(codeString))
+//        return new Enumeration<MediaStatus>(this, MediaStatus.ONHOLD, code);
+//      if ("stopped".equals(codeString))
+//        return new Enumeration<MediaStatus>(this, MediaStatus.STOPPED, code);
+//      if ("completed".equals(codeString))
+//        return new Enumeration<MediaStatus>(this, MediaStatus.COMPLETED, code);
+//      if ("entered-in-error".equals(codeString))
+//        return new Enumeration<MediaStatus>(this, MediaStatus.ENTEREDINERROR, code);
+//      if ("unknown".equals(codeString))
+//        return new Enumeration<MediaStatus>(this, MediaStatus.UNKNOWN, code);
+//      throw new FHIRException("Unknown MediaStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode(MediaStatus code) {
+//       if (code == MediaStatus.NULL)
+//           return null;
+//       if (code == MediaStatus.PREPARATION)
+//        return "preparation";
+//      if (code == MediaStatus.INPROGRESS)
+//        return "in-progress";
+//      if (code == MediaStatus.NOTDONE)
+//        return "not-done";
+//      if (code == MediaStatus.ONHOLD)
+//        return "on-hold";
+//      if (code == MediaStatus.STOPPED)
+//        return "stopped";
+//      if (code == MediaStatus.COMPLETED)
+//        return "completed";
+//      if (code == MediaStatus.ENTEREDINERROR)
+//        return "entered-in-error";
+//      if (code == MediaStatus.UNKNOWN)
+//        return "unknown";
+//      return "?";
+//   }
+//
+//    public String toSystem(MediaStatus code) {
+//      return code.getSystem();
+//    }
+//  }
 
   /**
    * Identifiers associated with the image - these may include identifiers for the
@@ -345,10 +345,10 @@ public class Media extends DomainResource {
   /**
    * The current state of the {{title}}.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 3, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 3, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "preparation | in-progress | not-done | on-hold | stopped | completed | entered-in-error | unknown", formalDefinition = "The current state of the {{title}}.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/event-status")
-  protected Enumeration<MediaStatus> status;
+  protected StringType status;
 
   /**
    * A code that classifies whether the media is an image, video or audio
@@ -543,7 +543,7 @@ public class Media extends DomainResource {
   /**
    * Constructor
    */
-  public Media(Enumeration<MediaStatus> status, Attachment content) {
+  public Media(StringType status, Attachment content) {
     super();
     this.status = status;
     this.content = content;
@@ -721,12 +721,12 @@ public class Media extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<MediaStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Media.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<MediaStatus>(new MediaStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -743,7 +743,7 @@ public class Media extends DomainResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public Media setStatusElement(Enumeration<MediaStatus> value) {
+  public Media setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -751,17 +751,17 @@ public class Media extends DomainResource {
   /**
    * @return The current state of the {{title}}.
    */
-  public MediaStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The current state of the {{title}}.
    */
-  public Media setStatus(MediaStatus value) {
+  public Media setStatus(StringType value) {
     if (this.status == null)
-      this.status = new Enumeration<MediaStatus>(new MediaStatusEnumFactory());
-    this.status.setValue(value);
+      this.status = new StringType();
+    this.status = value;
     return this;
   }
 
@@ -1769,7 +1769,7 @@ public class Media extends DomainResource {
     case -995410646:
       /* partOf */ return this.partOf == null ? new Base[0] : this.partOf.toArray(new Base[this.partOf.size()]); // Reference
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<MediaStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 3575610:
       /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // CodeableConcept
     case -622722335:
@@ -1826,8 +1826,8 @@ public class Media extends DomainResource {
       this.getPartOf().add(castToReference(value)); // Reference
       return value;
     case -892481550: // status
-      value = new MediaStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<MediaStatus>
+//      value = new MediaStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); //StringType
       return value;
     case 3575610: // type
       this.type = castToCodeableConcept(value); // CodeableConcept
@@ -1898,8 +1898,8 @@ public class Media extends DomainResource {
     } else if (name.equals("partOf")) {
       this.getPartOf().add(castToReference(value));
     } else if (name.equals("status")) {
-      value = new MediaStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<MediaStatus>
+//      value = new MediaStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // StringType
     } else if (name.equals("type")) {
       this.type = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("modality")) {

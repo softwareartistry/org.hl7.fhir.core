@@ -58,151 +58,152 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
     "event[x]", "category", "focus", "responseRequired", "allowedResponse", "graph" })
 public class MessageDefinition extends MetadataResource {
 
-  public enum MessageSignificanceCategory {
-    /**
-     * The message represents/requests a change that should not be processed more
-     * than once; e.g., making a booking for an appointment.
-     */
-    CONSEQUENCE,
-    /**
-     * The message represents a response to query for current information.
-     * Retrospective processing is wrong and/or wasteful.
-     */
-    CURRENCY,
-    /**
-     * The content is not necessarily intended to be current, and it can be
-     * reprocessed, though there may be version issues created by processing old
-     * notifications.
-     */
-    NOTIFICATION,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static MessageSignificanceCategory fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("consequence".equals(codeString))
-        return CONSEQUENCE;
-      if ("currency".equals(codeString))
-        return CURRENCY;
-      if ("notification".equals(codeString))
-        return NOTIFICATION;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown MessageSignificanceCategory code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case CONSEQUENCE:
-        return "consequence";
-      case CURRENCY:
-        return "currency";
-      case NOTIFICATION:
-        return "notification";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case CONSEQUENCE:
-        return "http://hl7.org/fhir/message-significance-category";
-      case CURRENCY:
-        return "http://hl7.org/fhir/message-significance-category";
-      case NOTIFICATION:
-        return "http://hl7.org/fhir/message-significance-category";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case CONSEQUENCE:
-        return "The message represents/requests a change that should not be processed more than once; e.g., making a booking for an appointment.";
-      case CURRENCY:
-        return "The message represents a response to query for current information. Retrospective processing is wrong and/or wasteful.";
-      case NOTIFICATION:
-        return "The content is not necessarily intended to be current, and it can be reprocessed, though there may be version issues created by processing old notifications.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case CONSEQUENCE:
-        return "Consequence";
-      case CURRENCY:
-        return "Currency";
-      case NOTIFICATION:
-        return "Notification";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class MessageSignificanceCategoryEnumFactory implements EnumFactory<MessageSignificanceCategory> {
-    public MessageSignificanceCategory fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("consequence".equals(codeString))
-        return MessageSignificanceCategory.CONSEQUENCE;
-      if ("currency".equals(codeString))
-        return MessageSignificanceCategory.CURRENCY;
-      if ("notification".equals(codeString))
-        return MessageSignificanceCategory.NOTIFICATION;
-      throw new IllegalArgumentException("Unknown MessageSignificanceCategory code '" + codeString + "'");
-    }
-
-    public Enumeration<MessageSignificanceCategory> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<MessageSignificanceCategory>(this, MessageSignificanceCategory.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<MessageSignificanceCategory>(this, MessageSignificanceCategory.NULL, code);
-      if ("consequence".equals(codeString))
-        return new Enumeration<MessageSignificanceCategory>(this, MessageSignificanceCategory.CONSEQUENCE, code);
-      if ("currency".equals(codeString))
-        return new Enumeration<MessageSignificanceCategory>(this, MessageSignificanceCategory.CURRENCY, code);
-      if ("notification".equals(codeString))
-        return new Enumeration<MessageSignificanceCategory>(this, MessageSignificanceCategory.NOTIFICATION, code);
-      throw new FHIRException("Unknown MessageSignificanceCategory code '" + codeString + "'");
-    }
-
-    public String toCode(MessageSignificanceCategory code) {
-       if (code == MessageSignificanceCategory.NULL)
-           return null;
-       if (code == MessageSignificanceCategory.CONSEQUENCE)
-        return "consequence";
-      if (code == MessageSignificanceCategory.CURRENCY)
-        return "currency";
-      if (code == MessageSignificanceCategory.NOTIFICATION)
-        return "notification";
-      return "?";
-   }
-
-    public String toSystem(MessageSignificanceCategory code) {
-      return code.getSystem();
-    }
-  }
+//  public enum MessageSignificanceCategory {
+//    /**
+//     * The message represents/requests a change that should not be processed more
+//     * than once; e.g., making a booking for an appointment.
+//     */
+//    CONSEQUENCE,
+//    /**
+//     * The message represents a response to query for current information.
+//     * Retrospective processing is wrong and/or wasteful.
+//     */
+//    CURRENCY,
+//    /**
+//     * The content is not necessarily intended to be current, and it can be
+//     * reprocessed, though there may be version issues created by processing old
+//     * notifications.
+//     */
+//    NOTIFICATION,
+//    /**
+//     * added to help the parsers with the generic types
+//     */
+//    NULL;
+//
+//    public static MessageSignificanceCategory fromCode(String codeString) throws FHIRException {
+//      if (codeString == null || "".equals(codeString))
+//        return null;
+//      if ("consequence".equals(codeString))
+//        return CONSEQUENCE;
+//      if ("currency".equals(codeString))
+//        return CURRENCY;
+//      if ("notification".equals(codeString))
+//        return NOTIFICATION;
+//      if (Configuration.isAcceptInvalidEnums())
+//        return null;
+//      else
+//        throw new FHIRException("Unknown MessageSignificanceCategory code '" + codeString + "'");
+//    }
+//
+//    public String toCode() {
+//      switch (this) {
+//      case CONSEQUENCE:
+//        return "consequence";
+//      case CURRENCY:
+//        return "currency";
+//      case NOTIFICATION:
+//        return "notification";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getSystem() {
+//      switch (this) {
+//      case CONSEQUENCE:
+//        return "http://hl7.org/fhir/message-significance-category";
+//      case CURRENCY:
+//        return "http://hl7.org/fhir/message-significance-category";
+//      case NOTIFICATION:
+//        return "http://hl7.org/fhir/message-significance-category";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDefinition() {
+//      switch (this) {
+//      case CONSEQUENCE:
+//        return "The message represents/requests a change that should not be processed more than once; e.g., making a booking for an appointment.";
+//      case CURRENCY:
+//        return "The message represents a response to query for current information. Retrospective processing is wrong and/or wasteful.";
+//      case NOTIFICATION:
+//        return "The content is not necessarily intended to be current, and it can be reprocessed, though there may be version issues created by processing old notifications.";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDisplay() {
+//      switch (this) {
+//      case CONSEQUENCE:
+//        return "Consequence";
+//      case CURRENCY:
+//        return "Currency";
+//      case NOTIFICATION:
+//        return "Notification";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//  }
+//
+//  public static class MessageSignificanceCategoryEnumFactory implements EnumFactory<MessageSignificanceCategory> {
+//    public MessageSignificanceCategory fromCode(String codeString) throws IllegalArgumentException {
+//      if (codeString == null || "".equals(codeString))
+//        if (codeString == null || "".equals(codeString))
+//          return null;
+//      if ("consequence".equals(codeString))
+//        return MessageSignificanceCategory.CONSEQUENCE;
+//      if ("currency".equals(codeString))
+//        return MessageSignificanceCategory.CURRENCY;
+//      if ("notification".equals(codeString))
+//        return MessageSignificanceCategory.NOTIFICATION;
+//      throw new IllegalArgumentException("Unknown MessageSignificanceCategory code '" + codeString + "'");
+//    }
+//
+//    public Enumeration<MessageSignificanceCategory> fromType(PrimitiveType<?> code) throws FHIRException {
+//      if (code == null)
+//        return null;
+//      if (code.isEmpty())
+//        return new Enumeration<MessageSignificanceCategory>(this, MessageSignificanceCategory.NULL, code);
+//      String codeString = code.asStringValue();
+//      if (codeString == null || "".equals(codeString))
+//        return new Enumeration<MessageSignificanceCategory>(this, MessageSignificanceCategory.NULL, code);
+//      if ("consequence".equals(codeString))
+//        return new Enumeration<MessageSignificanceCategory>(this, MessageSignificanceCategory.CONSEQUENCE, code);
+//      if ("currency".equals(codeString))
+//        return new Enumeration<MessageSignificanceCategory>(this, MessageSignificanceCategory.CURRENCY, code);
+//      if ("notification".equals(codeString))
+//        return new Enumeration<MessageSignificanceCategory>(this, MessageSignificanceCategory.NOTIFICATION, code);
+//      throw new FHIRException("Unknown MessageSignificanceCategory code '" + codeString + "'");
+//    }
+//
+//    public String toCode(MessageSignificanceCategory code) {
+//       if (code == MessageSignificanceCategory.NULL)
+//           return null;
+//       if (code == MessageSignificanceCategory.CONSEQUENCE)
+//        return "consequence";
+//      if (code == MessageSignificanceCategory.CURRENCY)
+//        return "currency";
+//      if (code == MessageSignificanceCategory.NOTIFICATION)
+//        return "notification";
+//      return "?";
+//   }
+//
+//    public String toSystem(MessageSignificanceCategory code) {
+//      return code.getSystem();
+//    }
+//  }
+//
 
   public enum MessageheaderResponseRequest {
     /**
@@ -1215,10 +1216,10 @@ public class MessageDefinition extends MetadataResource {
   /**
    * The impact of the content of the message.
    */
-  @Child(name = "category", type = { CodeType.class }, order = 7, min = 0, max = 1, modifier = false, summary = true)
+  @Child(name = "category", type = { StringType.class }, order = 7, min = 0, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "consequence | currency | notification", formalDefinition = "The impact of the content of the message.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/message-significance-category")
-  protected Enumeration<MessageSignificanceCategory> category;
+  protected StringType category;
 
   /**
    * Identifies the resource (or resources) that are being addressed by the event.
@@ -2417,12 +2418,12 @@ public class MessageDefinition extends MetadataResource {
    *         is the underlying object with id, value and extensions. The accessor
    *         "getCategory" gives direct access to the value
    */
-  public Enumeration<MessageSignificanceCategory> getCategoryElement() {
+  public StringType getCategoryElement() {
     if (this.category == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create MessageDefinition.category");
       else if (Configuration.doAutoCreate())
-        this.category = new Enumeration<MessageSignificanceCategory>(new MessageSignificanceCategoryEnumFactory()); // bb
+        this.category = new StringType(); // bb
     return this.category;
   }
 
@@ -2439,7 +2440,7 @@ public class MessageDefinition extends MetadataResource {
    *              This is the underlying object with id, value and extensions. The
    *              accessor "getCategory" gives direct access to the value
    */
-  public MessageDefinition setCategoryElement(Enumeration<MessageSignificanceCategory> value) {
+  public MessageDefinition setCategoryElement(StringType value) {
     this.category = value;
     return this;
   }
@@ -2447,20 +2448,20 @@ public class MessageDefinition extends MetadataResource {
   /**
    * @return The impact of the content of the message.
    */
-  public MessageSignificanceCategory getCategory() {
-    return this.category == null ? null : this.category.getValue();
+  public StringType getCategory() {
+    return this.category == null ? null : this.category;
   }
 
   /**
    * @param value The impact of the content of the message.
    */
-  public MessageDefinition setCategory(MessageSignificanceCategory value) {
+  public MessageDefinition setCategory(StringType value) {
     if (value == null)
       this.category = null;
     else {
       if (this.category == null)
-        this.category = new Enumeration<MessageSignificanceCategory>(new MessageSignificanceCategoryEnumFactory());
-      this.category.setValue(value);
+        this.category = new StringType();
+      this.category = value;
     }
     return this;
   }
@@ -2933,11 +2934,11 @@ public class MessageDefinition extends MetadataResource {
     case 96891546:
       /* event */ return this.event == null ? new Base[0] : new Base[] { this.event }; // Type
     case 50511102:
-      /* category */ return this.category == null ? new Base[0] : new Base[] { this.category }; // Enumeration<MessageSignificanceCategory>
+      /* category */ return this.category == null ? new Base[0] : new Base[] { this.category }; // StringType
     case 97604824:
       /* focus */ return this.focus == null ? new Base[0] : this.focus.toArray(new Base[this.focus.size()]); // MessageDefinitionFocusComponent
     case 791597824:
-      /* responseRequired */ return this.responseRequired == null ? new Base[0] : new Base[] { this.responseRequired }; // Enumeration<MessageheaderResponseRequest>
+      /* responseRequired */ return this.responseRequired == null ? new Base[0] : new Base[] { this.responseRequired }; // StringType
     case -1130933751:
       /* allowedResponse */ return this.allowedResponse == null ? new Base[0]
           : this.allowedResponse.toArray(new Base[this.allowedResponse.size()]); // MessageDefinitionAllowedResponseComponent
@@ -3011,8 +3012,8 @@ public class MessageDefinition extends MetadataResource {
       this.event = castToType(value); // Type
       return value;
     case 50511102: // category
-      value = new MessageSignificanceCategoryEnumFactory().fromType(castToCode(value));
-      this.category = (Enumeration) value; // Enumeration<MessageSignificanceCategory>
+//      value = new MessageSignificanceCategoryEnumFactory().fromType(castToCode(value));
+      this.category = castToString(value); // StringType
       return value;
     case 97604824: // focus
       this.getFocus().add((MessageDefinitionFocusComponent) value); // MessageDefinitionFocusComponent
@@ -3075,8 +3076,8 @@ public class MessageDefinition extends MetadataResource {
     } else if (name.equals("event[x]")) {
       this.event = castToType(value); // Type
     } else if (name.equals("category")) {
-      value = new MessageSignificanceCategoryEnumFactory().fromType(castToCode(value));
-      this.category = (Enumeration) value; // Enumeration<MessageSignificanceCategory>
+//      value = new MessageSignificanceCategoryEnumFactory().fromType(castToCode(value));
+      this.category = castToString(value); // StringType
     } else if (name.equals("focus")) {
       this.getFocus().add((MessageDefinitionFocusComponent) value);
     } else if (name.equals("responseRequired")) {

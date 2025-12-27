@@ -52,179 +52,179 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Patient", profile = "http://hl7.org/fhir/StructureDefinition/Patient")
 public class Patient extends DomainResource {
 
-  public enum LinkType {
-    /**
-     * The patient resource containing this link must no longer be used. The link
-     * points forward to another patient resource that must be used in lieu of the
-     * patient resource that contains this link.
-     */
-    REPLACEDBY,
-    /**
-     * The patient resource containing this link is the current active patient
-     * record. The link points back to an inactive patient resource that has been
-     * merged into this resource, and should be consulted to retrieve additional
-     * referenced information.
-     */
-    REPLACES,
-    /**
-     * The patient resource containing this link is in use and valid but not
-     * considered the main source of information about a patient. The link points
-     * forward to another patient resource that should be consulted to retrieve
-     * additional patient information.
-     */
-    REFER,
-    /**
-     * The patient resource containing this link is in use and valid, but points to
-     * another patient resource that is known to contain data about the same person.
-     * Data in this resource might overlap or contradict information found in the
-     * other patient resource. This link does not indicate any relative importance
-     * of the resources concerned, and both should be regarded as equally valid.
-     */
-    SEEALSO,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static LinkType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("replaced-by".equals(codeString))
-        return REPLACEDBY;
-      if ("replaces".equals(codeString))
-        return REPLACES;
-      if ("refer".equals(codeString))
-        return REFER;
-      if ("seealso".equals(codeString))
-        return SEEALSO;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown LinkType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case REPLACEDBY:
-        return "replaced-by";
-      case REPLACES:
-        return "replaces";
-      case REFER:
-        return "refer";
-      case SEEALSO:
-        return "seealso";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case REPLACEDBY:
-        return "http://hl7.org/fhir/link-type";
-      case REPLACES:
-        return "http://hl7.org/fhir/link-type";
-      case REFER:
-        return "http://hl7.org/fhir/link-type";
-      case SEEALSO:
-        return "http://hl7.org/fhir/link-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case REPLACEDBY:
-        return "The patient resource containing this link must no longer be used. The link points forward to another patient resource that must be used in lieu of the patient resource that contains this link.";
-      case REPLACES:
-        return "The patient resource containing this link is the current active patient record. The link points back to an inactive patient resource that has been merged into this resource, and should be consulted to retrieve additional referenced information.";
-      case REFER:
-        return "The patient resource containing this link is in use and valid but not considered the main source of information about a patient. The link points forward to another patient resource that should be consulted to retrieve additional patient information.";
-      case SEEALSO:
-        return "The patient resource containing this link is in use and valid, but points to another patient resource that is known to contain data about the same person. Data in this resource might overlap or contradict information found in the other patient resource. This link does not indicate any relative importance of the resources concerned, and both should be regarded as equally valid.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case REPLACEDBY:
-        return "Replaced-by";
-      case REPLACES:
-        return "Replaces";
-      case REFER:
-        return "Refer";
-      case SEEALSO:
-        return "See also";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class LinkTypeEnumFactory implements EnumFactory<LinkType> {
-    public LinkType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("replaced-by".equals(codeString))
-        return LinkType.REPLACEDBY;
-      if ("replaces".equals(codeString))
-        return LinkType.REPLACES;
-      if ("refer".equals(codeString))
-        return LinkType.REFER;
-      if ("seealso".equals(codeString))
-        return LinkType.SEEALSO;
-      throw new IllegalArgumentException("Unknown LinkType code '" + codeString + "'");
-    }
-
-    public Enumeration<LinkType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<LinkType>(this, LinkType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<LinkType>(this, LinkType.NULL, code);
-      if ("replaced-by".equals(codeString))
-        return new Enumeration<LinkType>(this, LinkType.REPLACEDBY, code);
-      if ("replaces".equals(codeString))
-        return new Enumeration<LinkType>(this, LinkType.REPLACES, code);
-      if ("refer".equals(codeString))
-        return new Enumeration<LinkType>(this, LinkType.REFER, code);
-      if ("seealso".equals(codeString))
-        return new Enumeration<LinkType>(this, LinkType.SEEALSO, code);
-      throw new FHIRException("Unknown LinkType code '" + codeString + "'");
-    }
-
-    public String toCode(LinkType code) {
-       if (code == LinkType.NULL)
-           return null;
-       if (code == LinkType.REPLACEDBY)
-        return "replaced-by";
-      if (code == LinkType.REPLACES)
-        return "replaces";
-      if (code == LinkType.REFER)
-        return "refer";
-      if (code == LinkType.SEEALSO)
-        return "seealso";
-      return "?";
-   }
-
-    public String toSystem(LinkType code) {
-      return code.getSystem();
-    }
-  }
+//  public enum LinkType {
+//    /**
+//     * The patient resource containing this link must no longer be used. The link
+//     * points forward to another patient resource that must be used in lieu of the
+//     * patient resource that contains this link.
+//     */
+//    REPLACEDBY,
+//    /**
+//     * The patient resource containing this link is the current active patient
+//     * record. The link points back to an inactive patient resource that has been
+//     * merged into this resource, and should be consulted to retrieve additional
+//     * referenced information.
+//     */
+//    REPLACES,
+//    /**
+//     * The patient resource containing this link is in use and valid but not
+//     * considered the main source of information about a patient. The link points
+//     * forward to another patient resource that should be consulted to retrieve
+//     * additional patient information.
+//     */
+//    REFER,
+//    /**
+//     * The patient resource containing this link is in use and valid, but points to
+//     * another patient resource that is known to contain data about the same person.
+//     * Data in this resource might overlap or contradict information found in the
+//     * other patient resource. This link does not indicate any relative importance
+//     * of the resources concerned, and both should be regarded as equally valid.
+//     */
+//    SEEALSO,
+//    /**
+//     * added to help the parsers with the generic types
+//     */
+//    NULL;
+//
+//    public static LinkType fromCode(String codeString) throws FHIRException {
+//      if (codeString == null || "".equals(codeString))
+//        return null;
+//      if ("replaced-by".equals(codeString))
+//        return REPLACEDBY;
+//      if ("replaces".equals(codeString))
+//        return REPLACES;
+//      if ("refer".equals(codeString))
+//        return REFER;
+//      if ("seealso".equals(codeString))
+//        return SEEALSO;
+//      if (Configuration.isAcceptInvalidEnums())
+//        return null;
+//      else
+//        throw new FHIRException("Unknown LinkType code '" + codeString + "'");
+//    }
+//
+//    public String toCode() {
+//      switch (this) {
+//      case REPLACEDBY:
+//        return "replaced-by";
+//      case REPLACES:
+//        return "replaces";
+//      case REFER:
+//        return "refer";
+//      case SEEALSO:
+//        return "seealso";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getSystem() {
+//      switch (this) {
+//      case REPLACEDBY:
+//        return "http://hl7.org/fhir/link-type";
+//      case REPLACES:
+//        return "http://hl7.org/fhir/link-type";
+//      case REFER:
+//        return "http://hl7.org/fhir/link-type";
+//      case SEEALSO:
+//        return "http://hl7.org/fhir/link-type";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDefinition() {
+//      switch (this) {
+//      case REPLACEDBY:
+//        return "The patient resource containing this link must no longer be used. The link points forward to another patient resource that must be used in lieu of the patient resource that contains this link.";
+//      case REPLACES:
+//        return "The patient resource containing this link is the current active patient record. The link points back to an inactive patient resource that has been merged into this resource, and should be consulted to retrieve additional referenced information.";
+//      case REFER:
+//        return "The patient resource containing this link is in use and valid but not considered the main source of information about a patient. The link points forward to another patient resource that should be consulted to retrieve additional patient information.";
+//      case SEEALSO:
+//        return "The patient resource containing this link is in use and valid, but points to another patient resource that is known to contain data about the same person. Data in this resource might overlap or contradict information found in the other patient resource. This link does not indicate any relative importance of the resources concerned, and both should be regarded as equally valid.";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDisplay() {
+//      switch (this) {
+//      case REPLACEDBY:
+//        return "Replaced-by";
+//      case REPLACES:
+//        return "Replaces";
+//      case REFER:
+//        return "Refer";
+//      case SEEALSO:
+//        return "See also";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//  }
+//
+//  public static class LinkTypeEnumFactory implements EnumFactory<LinkType> {
+//    public LinkType fromCode(String codeString) throws IllegalArgumentException {
+//      if (codeString == null || "".equals(codeString))
+//        if (codeString == null || "".equals(codeString))
+//          return null;
+//      if ("replaced-by".equals(codeString))
+//        return LinkType.REPLACEDBY;
+//      if ("replaces".equals(codeString))
+//        return LinkType.REPLACES;
+//      if ("refer".equals(codeString))
+//        return LinkType.REFER;
+//      if ("seealso".equals(codeString))
+//        return LinkType.SEEALSO;
+//      throw new IllegalArgumentException("Unknown LinkType code '" + codeString + "'");
+//    }
+//
+//    public Enumeration<LinkType> fromType(PrimitiveType<?> code) throws FHIRException {
+//      if (code == null)
+//        return null;
+//      if (code.isEmpty())
+//        return new Enumeration<LinkType>(this, LinkType.NULL, code);
+//      String codeString = code.asStringValue();
+//      if (codeString == null || "".equals(codeString))
+//        return new Enumeration<LinkType>(this, LinkType.NULL, code);
+//      if ("replaced-by".equals(codeString))
+//        return new Enumeration<LinkType>(this, LinkType.REPLACEDBY, code);
+//      if ("replaces".equals(codeString))
+//        return new Enumeration<LinkType>(this, LinkType.REPLACES, code);
+//      if ("refer".equals(codeString))
+//        return new Enumeration<LinkType>(this, LinkType.REFER, code);
+//      if ("seealso".equals(codeString))
+//        return new Enumeration<LinkType>(this, LinkType.SEEALSO, code);
+//      throw new FHIRException("Unknown LinkType code '" + codeString + "'");
+//    }
+//
+//    public String toCode(LinkType code) {
+//       if (code == LinkType.NULL)
+//           return null;
+//       if (code == LinkType.REPLACEDBY)
+//        return "replaced-by";
+//      if (code == LinkType.REPLACES)
+//        return "replaces";
+//      if (code == LinkType.REFER)
+//        return "refer";
+//      if (code == LinkType.SEEALSO)
+//        return "seealso";
+//      return "?";
+//   }
+//
+//    public String toSystem(LinkType code) {
+//      return code.getSystem();
+//    }
+//  }
 
   @Block()
   public static class ContactComponent extends BackboneElement implements IBaseBackboneElement {
@@ -1182,10 +1182,10 @@ public class Patient extends DomainResource {
     /**
      * The type of link between this patient resource and another patient resource.
      */
-    @Child(name = "type", type = { CodeType.class }, order = 2, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "type", type = { StringType.class }, order = 2, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "replaced-by | replaces | refer | seealso", formalDefinition = "The type of link between this patient resource and another patient resource.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/link-type")
-    protected Enumeration<LinkType> type;
+    protected StringType type;
 
     private static final long serialVersionUID = 1083576633L;
 
@@ -1199,7 +1199,7 @@ public class Patient extends DomainResource {
     /**
      * Constructor
      */
-    public PatientLinkComponent(Reference other, Enumeration<LinkType> type) {
+    public PatientLinkComponent(Reference other, StringType type) {
       super();
       this.other = other;
       this.type = type;
@@ -1257,12 +1257,12 @@ public class Patient extends DomainResource {
      *         value and extensions. The accessor "getType" gives direct access to
      *         the value
      */
-    public Enumeration<LinkType> getTypeElement() {
+    public StringType getTypeElement() {
       if (this.type == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create PatientLinkComponent.type");
         else if (Configuration.doAutoCreate())
-          this.type = new Enumeration<LinkType>(new LinkTypeEnumFactory()); // bb
+          this.type = new StringType(); // bb
       return this.type;
     }
 
@@ -1280,7 +1280,7 @@ public class Patient extends DomainResource {
      *              with id, value and extensions. The accessor "getType" gives
      *              direct access to the value
      */
-    public PatientLinkComponent setTypeElement(Enumeration<LinkType> value) {
+    public PatientLinkComponent setTypeElement(StringType value) {
       this.type = value;
       return this;
     }
@@ -1289,18 +1289,18 @@ public class Patient extends DomainResource {
      * @return The type of link between this patient resource and another patient
      *         resource.
      */
-    public LinkType getType() {
-      return this.type == null ? null : this.type.getValue();
+    public StringType getType() {
+      return this.type == null ? null : this.type;
     }
 
     /**
      * @param value The type of link between this patient resource and another
      *              patient resource.
      */
-    public PatientLinkComponent setType(LinkType value) {
+    public PatientLinkComponent setType(StringType value) {
       if (this.type == null)
-        this.type = new Enumeration<LinkType>(new LinkTypeEnumFactory());
-      this.type.setValue(value);
+        this.type = new StringType();
+      this.type = value;
       return this;
     }
 
@@ -1347,8 +1347,8 @@ public class Patient extends DomainResource {
         this.other = castToReference(value); // Reference
         return value;
       case 3575610: // type
-        value = new LinkTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<LinkType>
+//        value = new LinkTypeEnumFactory().fromType(castToCode(value));
+        this.type = castToString(value); // Enumeration<LinkType>
         return value;
       default:
         return super.setProperty(hash, name, value);
@@ -1361,8 +1361,8 @@ public class Patient extends DomainResource {
       if (name.equals("other")) {
         this.other = castToReference(value); // Reference
       } else if (name.equals("type")) {
-        value = new LinkTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<LinkType>
+//        value = new LinkTypeEnumFactory().fromType(castToCode(value));
+        this.type = castToString(value); // Enumeration<LinkType>
       } else
         return super.setProperty(name, value);
       return value;

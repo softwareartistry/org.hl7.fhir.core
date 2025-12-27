@@ -53,674 +53,674 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "MedicationRequest", profile = "http://hl7.org/fhir/StructureDefinition/MedicationRequest")
 public class MedicationRequest extends DomainResource {
 
-  public enum MedicationRequestStatus {
-    /**
-     * The prescription is 'actionable', but not all actions that are implied by it
-     * have occurred yet.
-     */
-    ACTIVE,
-    /**
-     * Actions implied by the prescription are to be temporarily halted, but are
-     * expected to continue later. May also be called 'suspended'.
-     */
-    ONHOLD,
-    /**
-     * The prescription has been withdrawn before any administrations have occurred
-     */
-    CANCELLED,
-    /**
-     * All actions that are implied by the prescription have occurred.
-     */
-    COMPLETED,
-    /**
-     * Some of the actions that are implied by the medication request may have
-     * occurred. For example, the medication may have been dispensed and the patient
-     * may have taken some of the medication. Clinical decision support systems
-     * should take this status into account
-     */
-    ENTEREDINERROR,
-    /**
-     * Actions implied by the prescription are to be permanently halted, before all
-     * of the administrations occurred. This should not be used if the original
-     * order was entered in error
-     */
-    STOPPED,
-    /**
-     * The prescription is not yet 'actionable', e.g. it is a work in progress,
-     * requires sign-off, verification or needs to be run through decision support
-     * process.
-     */
-    DRAFT,
-    /**
-     * The authoring/source system does not know which of the status values
-     * currently applies for this observation. Note: This concept is not to be used
-     * for 'other' - one of the listed statuses is presumed to apply, but the
-     * authoring/source system does not know which.
-     */
-    UNKNOWN,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static MedicationRequestStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("active".equals(codeString))
-        return ACTIVE;
-      if ("on-hold".equals(codeString))
-        return ONHOLD;
-      if ("cancelled".equals(codeString))
-        return CANCELLED;
-      if ("completed".equals(codeString))
-        return COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if ("stopped".equals(codeString))
-        return STOPPED;
-      if ("draft".equals(codeString))
-        return DRAFT;
-      if ("unknown".equals(codeString))
-        return UNKNOWN;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown MedicationRequestStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ACTIVE:
-        return "active";
-      case ONHOLD:
-        return "on-hold";
-      case CANCELLED:
-        return "cancelled";
-      case COMPLETED:
-        return "completed";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case STOPPED:
-        return "stopped";
-      case DRAFT:
-        return "draft";
-      case UNKNOWN:
-        return "unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ACTIVE:
-        return "http://hl7.org/fhir/CodeSystem/medicationrequest-status";
-      case ONHOLD:
-        return "http://hl7.org/fhir/CodeSystem/medicationrequest-status";
-      case CANCELLED:
-        return "http://hl7.org/fhir/CodeSystem/medicationrequest-status";
-      case COMPLETED:
-        return "http://hl7.org/fhir/CodeSystem/medicationrequest-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/CodeSystem/medicationrequest-status";
-      case STOPPED:
-        return "http://hl7.org/fhir/CodeSystem/medicationrequest-status";
-      case DRAFT:
-        return "http://hl7.org/fhir/CodeSystem/medicationrequest-status";
-      case UNKNOWN:
-        return "http://hl7.org/fhir/CodeSystem/medicationrequest-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ACTIVE:
-        return "The prescription is 'actionable', but not all actions that are implied by it have occurred yet.";
-      case ONHOLD:
-        return "Actions implied by the prescription are to be temporarily halted, but are expected to continue later.  May also be called 'suspended'.";
-      case CANCELLED:
-        return "The prescription has been withdrawn before any administrations have occurred";
-      case COMPLETED:
-        return "All actions that are implied by the prescription have occurred.";
-      case ENTEREDINERROR:
-        return "Some of the actions that are implied by the medication request may have occurred.  For example, the medication may have been dispensed and the patient may have taken some of the medication.  Clinical decision support systems should take this status into account";
-      case STOPPED:
-        return "Actions implied by the prescription are to be permanently halted, before all of the administrations occurred. This should not be used if the original order was entered in error";
-      case DRAFT:
-        return "The prescription is not yet 'actionable', e.g. it is a work in progress, requires sign-off, verification or needs to be run through decision support process.";
-      case UNKNOWN:
-        return "The authoring/source system does not know which of the status values currently applies for this observation. Note: This concept is not to be used for 'other' - one of the listed statuses is presumed to apply, but the authoring/source system does not know which.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ACTIVE:
-        return "Active";
-      case ONHOLD:
-        return "On Hold";
-      case CANCELLED:
-        return "Cancelled";
-      case COMPLETED:
-        return "Completed";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case STOPPED:
-        return "Stopped";
-      case DRAFT:
-        return "Draft";
-      case UNKNOWN:
-        return "Unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class MedicationRequestStatusEnumFactory implements EnumFactory<MedicationRequestStatus> {
-    public MedicationRequestStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("active".equals(codeString))
-        return MedicationRequestStatus.ACTIVE;
-      if ("on-hold".equals(codeString))
-        return MedicationRequestStatus.ONHOLD;
-      if ("cancelled".equals(codeString))
-        return MedicationRequestStatus.CANCELLED;
-      if ("completed".equals(codeString))
-        return MedicationRequestStatus.COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return MedicationRequestStatus.ENTEREDINERROR;
-      if ("stopped".equals(codeString))
-        return MedicationRequestStatus.STOPPED;
-      if ("draft".equals(codeString))
-        return MedicationRequestStatus.DRAFT;
-      if ("unknown".equals(codeString))
-        return MedicationRequestStatus.UNKNOWN;
-      throw new IllegalArgumentException("Unknown MedicationRequestStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<MedicationRequestStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<MedicationRequestStatus>(this, MedicationRequestStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<MedicationRequestStatus>(this, MedicationRequestStatus.NULL, code);
-      if ("active".equals(codeString))
-        return new Enumeration<MedicationRequestStatus>(this, MedicationRequestStatus.ACTIVE, code);
-      if ("on-hold".equals(codeString))
-        return new Enumeration<MedicationRequestStatus>(this, MedicationRequestStatus.ONHOLD, code);
-      if ("cancelled".equals(codeString))
-        return new Enumeration<MedicationRequestStatus>(this, MedicationRequestStatus.CANCELLED, code);
-      if ("completed".equals(codeString))
-        return new Enumeration<MedicationRequestStatus>(this, MedicationRequestStatus.COMPLETED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<MedicationRequestStatus>(this, MedicationRequestStatus.ENTEREDINERROR, code);
-      if ("stopped".equals(codeString))
-        return new Enumeration<MedicationRequestStatus>(this, MedicationRequestStatus.STOPPED, code);
-      if ("draft".equals(codeString))
-        return new Enumeration<MedicationRequestStatus>(this, MedicationRequestStatus.DRAFT, code);
-      if ("unknown".equals(codeString))
-        return new Enumeration<MedicationRequestStatus>(this, MedicationRequestStatus.UNKNOWN, code);
-      throw new FHIRException("Unknown MedicationRequestStatus code '" + codeString + "'");
-    }
-
-    public String toCode(MedicationRequestStatus code) {
-       if (code == MedicationRequestStatus.NULL)
-           return null;
-       if (code == MedicationRequestStatus.ACTIVE)
-        return "active";
-      if (code == MedicationRequestStatus.ONHOLD)
-        return "on-hold";
-      if (code == MedicationRequestStatus.CANCELLED)
-        return "cancelled";
-      if (code == MedicationRequestStatus.COMPLETED)
-        return "completed";
-      if (code == MedicationRequestStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      if (code == MedicationRequestStatus.STOPPED)
-        return "stopped";
-      if (code == MedicationRequestStatus.DRAFT)
-        return "draft";
-      if (code == MedicationRequestStatus.UNKNOWN)
-        return "unknown";
-      return "?";
-   }
-
-    public String toSystem(MedicationRequestStatus code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum MedicationRequestIntent {
-    /**
-     * The request is a suggestion made by someone/something that doesn't have an
-     * intention to ensure it occurs and without providing an authorization to act
-     */
-    PROPOSAL,
-    /**
-     * The request represents an intention to ensure something occurs without
-     * providing an authorization for others to act.
-     */
-    PLAN,
-    /**
-     * The request represents a request/demand and authorization for action
-     */
-    ORDER,
-    /**
-     * The request represents the original authorization for the medication request.
-     */
-    ORIGINALORDER,
-    /**
-     * The request represents an automatically generated supplemental authorization
-     * for action based on a parent authorization together with initial results of
-     * the action taken against that parent authorization..
-     */
-    REFLEXORDER,
-    /**
-     * The request represents the view of an authorization instantiated by a
-     * fulfilling system representing the details of the fulfiller's intention to
-     * act upon a submitted order.
-     */
-    FILLERORDER,
-    /**
-     * The request represents an instance for the particular order, for example a
-     * medication administration record.
-     */
-    INSTANCEORDER,
-    /**
-     * The request represents a component or option for a RequestGroup that
-     * establishes timing, conditionality and/or other constraints among a set of
-     * requests.
-     */
-    OPTION,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static MedicationRequestIntent fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("proposal".equals(codeString))
-        return PROPOSAL;
-      if ("plan".equals(codeString))
-        return PLAN;
-      if ("order".equals(codeString))
-        return ORDER;
-      if ("original-order".equals(codeString))
-        return ORIGINALORDER;
-      if ("reflex-order".equals(codeString))
-        return REFLEXORDER;
-      if ("filler-order".equals(codeString))
-        return FILLERORDER;
-      if ("instance-order".equals(codeString))
-        return INSTANCEORDER;
-      if ("option".equals(codeString))
-        return OPTION;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown MedicationRequestIntent code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case PROPOSAL:
-        return "proposal";
-      case PLAN:
-        return "plan";
-      case ORDER:
-        return "order";
-      case ORIGINALORDER:
-        return "original-order";
-      case REFLEXORDER:
-        return "reflex-order";
-      case FILLERORDER:
-        return "filler-order";
-      case INSTANCEORDER:
-        return "instance-order";
-      case OPTION:
-        return "option";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case PROPOSAL:
-        return "http://hl7.org/fhir/CodeSystem/medicationrequest-intent";
-      case PLAN:
-        return "http://hl7.org/fhir/CodeSystem/medicationrequest-intent";
-      case ORDER:
-        return "http://hl7.org/fhir/CodeSystem/medicationrequest-intent";
-      case ORIGINALORDER:
-        return "http://hl7.org/fhir/CodeSystem/medicationrequest-intent";
-      case REFLEXORDER:
-        return "http://hl7.org/fhir/CodeSystem/medicationrequest-intent";
-      case FILLERORDER:
-        return "http://hl7.org/fhir/CodeSystem/medicationrequest-intent";
-      case INSTANCEORDER:
-        return "http://hl7.org/fhir/CodeSystem/medicationrequest-intent";
-      case OPTION:
-        return "http://hl7.org/fhir/CodeSystem/medicationrequest-intent";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case PROPOSAL:
-        return "The request is a suggestion made by someone/something that doesn't have an intention to ensure it occurs and without providing an authorization to act";
-      case PLAN:
-        return "The request represents an intention to ensure something occurs without providing an authorization for others to act.";
-      case ORDER:
-        return "The request represents a request/demand and authorization for action";
-      case ORIGINALORDER:
-        return "The request represents the original authorization for the medication request.";
-      case REFLEXORDER:
-        return "The request represents an automatically generated supplemental authorization for action based on a parent authorization together with initial results of the action taken against that parent authorization..";
-      case FILLERORDER:
-        return "The request represents the view of an authorization instantiated by a fulfilling system representing the details of the fulfiller's intention to act upon a submitted order.";
-      case INSTANCEORDER:
-        return "The request represents an instance for the particular order, for example a medication administration record.";
-      case OPTION:
-        return "The request represents a component or option for a RequestGroup that establishes timing, conditionality and/or  other constraints among a set of requests.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case PROPOSAL:
-        return "Proposal";
-      case PLAN:
-        return "Plan";
-      case ORDER:
-        return "Order";
-      case ORIGINALORDER:
-        return "Original Order";
-      case REFLEXORDER:
-        return "Reflex Order";
-      case FILLERORDER:
-        return "Filler Order";
-      case INSTANCEORDER:
-        return "Instance Order";
-      case OPTION:
-        return "Option";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class MedicationRequestIntentEnumFactory implements EnumFactory<MedicationRequestIntent> {
-    public MedicationRequestIntent fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("proposal".equals(codeString))
-        return MedicationRequestIntent.PROPOSAL;
-      if ("plan".equals(codeString))
-        return MedicationRequestIntent.PLAN;
-      if ("order".equals(codeString))
-        return MedicationRequestIntent.ORDER;
-      if ("original-order".equals(codeString))
-        return MedicationRequestIntent.ORIGINALORDER;
-      if ("reflex-order".equals(codeString))
-        return MedicationRequestIntent.REFLEXORDER;
-      if ("filler-order".equals(codeString))
-        return MedicationRequestIntent.FILLERORDER;
-      if ("instance-order".equals(codeString))
-        return MedicationRequestIntent.INSTANCEORDER;
-      if ("option".equals(codeString))
-        return MedicationRequestIntent.OPTION;
-      throw new IllegalArgumentException("Unknown MedicationRequestIntent code '" + codeString + "'");
-    }
-
-    public Enumeration<MedicationRequestIntent> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<MedicationRequestIntent>(this, MedicationRequestIntent.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<MedicationRequestIntent>(this, MedicationRequestIntent.NULL, code);
-      if ("proposal".equals(codeString))
-        return new Enumeration<MedicationRequestIntent>(this, MedicationRequestIntent.PROPOSAL, code);
-      if ("plan".equals(codeString))
-        return new Enumeration<MedicationRequestIntent>(this, MedicationRequestIntent.PLAN, code);
-      if ("order".equals(codeString))
-        return new Enumeration<MedicationRequestIntent>(this, MedicationRequestIntent.ORDER, code);
-      if ("original-order".equals(codeString))
-        return new Enumeration<MedicationRequestIntent>(this, MedicationRequestIntent.ORIGINALORDER, code);
-      if ("reflex-order".equals(codeString))
-        return new Enumeration<MedicationRequestIntent>(this, MedicationRequestIntent.REFLEXORDER, code);
-      if ("filler-order".equals(codeString))
-        return new Enumeration<MedicationRequestIntent>(this, MedicationRequestIntent.FILLERORDER, code);
-      if ("instance-order".equals(codeString))
-        return new Enumeration<MedicationRequestIntent>(this, MedicationRequestIntent.INSTANCEORDER, code);
-      if ("option".equals(codeString))
-        return new Enumeration<MedicationRequestIntent>(this, MedicationRequestIntent.OPTION, code);
-      throw new FHIRException("Unknown MedicationRequestIntent code '" + codeString + "'");
-    }
-
-    public String toCode(MedicationRequestIntent code) {
-       if (code == MedicationRequestIntent.NULL)
-           return null;
-       if (code == MedicationRequestIntent.PROPOSAL)
-        return "proposal";
-      if (code == MedicationRequestIntent.PLAN)
-        return "plan";
-      if (code == MedicationRequestIntent.ORDER)
-        return "order";
-      if (code == MedicationRequestIntent.ORIGINALORDER)
-        return "original-order";
-      if (code == MedicationRequestIntent.REFLEXORDER)
-        return "reflex-order";
-      if (code == MedicationRequestIntent.FILLERORDER)
-        return "filler-order";
-      if (code == MedicationRequestIntent.INSTANCEORDER)
-        return "instance-order";
-      if (code == MedicationRequestIntent.OPTION)
-        return "option";
-      return "?";
-   }
-
-    public String toSystem(MedicationRequestIntent code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum MedicationRequestPriority {
-    /**
-     * The request has normal priority.
-     */
-    ROUTINE,
-    /**
-     * The request should be actioned promptly - higher priority than routine.
-     */
-    URGENT,
-    /**
-     * The request should be actioned as soon as possible - higher priority than
-     * urgent.
-     */
-    ASAP,
-    /**
-     * The request should be actioned immediately - highest possible priority. E.g.
-     * an emergency.
-     */
-    STAT,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static MedicationRequestPriority fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("routine".equals(codeString))
-        return ROUTINE;
-      if ("urgent".equals(codeString))
-        return URGENT;
-      if ("asap".equals(codeString))
-        return ASAP;
-      if ("stat".equals(codeString))
-        return STAT;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown MedicationRequestPriority code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ROUTINE:
-        return "routine";
-      case URGENT:
-        return "urgent";
-      case ASAP:
-        return "asap";
-      case STAT:
-        return "stat";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ROUTINE:
-        return "http://hl7.org/fhir/request-priority";
-      case URGENT:
-        return "http://hl7.org/fhir/request-priority";
-      case ASAP:
-        return "http://hl7.org/fhir/request-priority";
-      case STAT:
-        return "http://hl7.org/fhir/request-priority";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ROUTINE:
-        return "The request has normal priority.";
-      case URGENT:
-        return "The request should be actioned promptly - higher priority than routine.";
-      case ASAP:
-        return "The request should be actioned as soon as possible - higher priority than urgent.";
-      case STAT:
-        return "The request should be actioned immediately - highest possible priority.  E.g. an emergency.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ROUTINE:
-        return "Routine";
-      case URGENT:
-        return "Urgent";
-      case ASAP:
-        return "ASAP";
-      case STAT:
-        return "STAT";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class MedicationRequestPriorityEnumFactory implements EnumFactory<MedicationRequestPriority> {
-    public MedicationRequestPriority fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("routine".equals(codeString))
-        return MedicationRequestPriority.ROUTINE;
-      if ("urgent".equals(codeString))
-        return MedicationRequestPriority.URGENT;
-      if ("asap".equals(codeString))
-        return MedicationRequestPriority.ASAP;
-      if ("stat".equals(codeString))
-        return MedicationRequestPriority.STAT;
-      throw new IllegalArgumentException("Unknown MedicationRequestPriority code '" + codeString + "'");
-    }
-
-    public Enumeration<MedicationRequestPriority> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<MedicationRequestPriority>(this, MedicationRequestPriority.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<MedicationRequestPriority>(this, MedicationRequestPriority.NULL, code);
-      if ("routine".equals(codeString))
-        return new Enumeration<MedicationRequestPriority>(this, MedicationRequestPriority.ROUTINE, code);
-      if ("urgent".equals(codeString))
-        return new Enumeration<MedicationRequestPriority>(this, MedicationRequestPriority.URGENT, code);
-      if ("asap".equals(codeString))
-        return new Enumeration<MedicationRequestPriority>(this, MedicationRequestPriority.ASAP, code);
-      if ("stat".equals(codeString))
-        return new Enumeration<MedicationRequestPriority>(this, MedicationRequestPriority.STAT, code);
-      throw new FHIRException("Unknown MedicationRequestPriority code '" + codeString + "'");
-    }
-
-    public String toCode(MedicationRequestPriority code) {
-       if (code == MedicationRequestPriority.NULL)
-           return null;
-       if (code == MedicationRequestPriority.ROUTINE)
-        return "routine";
-      if (code == MedicationRequestPriority.URGENT)
-        return "urgent";
-      if (code == MedicationRequestPriority.ASAP)
-        return "asap";
-      if (code == MedicationRequestPriority.STAT)
-        return "stat";
-      return "?";
-   }
-
-    public String toSystem(MedicationRequestPriority code) {
-      return code.getSystem();
-    }
-  }
+//  public enum MedicationRequestStatus {
+//    /**
+//     * The prescription is 'actionable', but not all actions that are implied by it
+//     * have occurred yet.
+//     */
+//    ACTIVE,
+//    /**
+//     * Actions implied by the prescription are to be temporarily halted, but are
+//     * expected to continue later. May also be called 'suspended'.
+//     */
+//    ONHOLD,
+//    /**
+//     * The prescription has been withdrawn before any administrations have occurred
+//     */
+//    CANCELLED,
+//    /**
+//     * All actions that are implied by the prescription have occurred.
+//     */
+//    COMPLETED,
+//    /**
+//     * Some of the actions that are implied by the medication request may have
+//     * occurred. For example, the medication may have been dispensed and the patient
+//     * may have taken some of the medication. Clinical decision support systems
+//     * should take this status into account
+//     */
+//    ENTEREDINERROR,
+//    /**
+//     * Actions implied by the prescription are to be permanently halted, before all
+//     * of the administrations occurred. This should not be used if the original
+//     * order was entered in error
+//     */
+//    STOPPED,
+//    /**
+//     * The prescription is not yet 'actionable', e.g. it is a work in progress,
+//     * requires sign-off, verification or needs to be run through decision support
+//     * process.
+//     */
+//    DRAFT,
+//    /**
+//     * The authoring/source system does not know which of the status values
+//     * currently applies for this observation. Note: This concept is not to be used
+//     * for 'other' - one of the listed statuses is presumed to apply, but the
+//     * authoring/source system does not know which.
+//     */
+//    UNKNOWN,
+//    /**
+//     * added to help the parsers with the generic types
+//     */
+//    NULL;
+//
+//    public static MedicationRequestStatus fromCode(String codeString) throws FHIRException {
+//      if (codeString == null || "".equals(codeString))
+//        return null;
+//      if ("active".equals(codeString))
+//        return ACTIVE;
+//      if ("on-hold".equals(codeString))
+//        return ONHOLD;
+//      if ("cancelled".equals(codeString))
+//        return CANCELLED;
+//      if ("completed".equals(codeString))
+//        return COMPLETED;
+//      if ("entered-in-error".equals(codeString))
+//        return ENTEREDINERROR;
+//      if ("stopped".equals(codeString))
+//        return STOPPED;
+//      if ("draft".equals(codeString))
+//        return DRAFT;
+//      if ("unknown".equals(codeString))
+//        return UNKNOWN;
+//      if (Configuration.isAcceptInvalidEnums())
+//        return null;
+//      else
+//        throw new FHIRException("Unknown MedicationRequestStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode() {
+//      switch (this) {
+//      case ACTIVE:
+//        return "active";
+//      case ONHOLD:
+//        return "on-hold";
+//      case CANCELLED:
+//        return "cancelled";
+//      case COMPLETED:
+//        return "completed";
+//      case ENTEREDINERROR:
+//        return "entered-in-error";
+//      case STOPPED:
+//        return "stopped";
+//      case DRAFT:
+//        return "draft";
+//      case UNKNOWN:
+//        return "unknown";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getSystem() {
+//      switch (this) {
+//      case ACTIVE:
+//        return "http://hl7.org/fhir/CodeSystem/medicationrequest-status";
+//      case ONHOLD:
+//        return "http://hl7.org/fhir/CodeSystem/medicationrequest-status";
+//      case CANCELLED:
+//        return "http://hl7.org/fhir/CodeSystem/medicationrequest-status";
+//      case COMPLETED:
+//        return "http://hl7.org/fhir/CodeSystem/medicationrequest-status";
+//      case ENTEREDINERROR:
+//        return "http://hl7.org/fhir/CodeSystem/medicationrequest-status";
+//      case STOPPED:
+//        return "http://hl7.org/fhir/CodeSystem/medicationrequest-status";
+//      case DRAFT:
+//        return "http://hl7.org/fhir/CodeSystem/medicationrequest-status";
+//      case UNKNOWN:
+//        return "http://hl7.org/fhir/CodeSystem/medicationrequest-status";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDefinition() {
+//      switch (this) {
+//      case ACTIVE:
+//        return "The prescription is 'actionable', but not all actions that are implied by it have occurred yet.";
+//      case ONHOLD:
+//        return "Actions implied by the prescription are to be temporarily halted, but are expected to continue later.  May also be called 'suspended'.";
+//      case CANCELLED:
+//        return "The prescription has been withdrawn before any administrations have occurred";
+//      case COMPLETED:
+//        return "All actions that are implied by the prescription have occurred.";
+//      case ENTEREDINERROR:
+//        return "Some of the actions that are implied by the medication request may have occurred.  For example, the medication may have been dispensed and the patient may have taken some of the medication.  Clinical decision support systems should take this status into account";
+//      case STOPPED:
+//        return "Actions implied by the prescription are to be permanently halted, before all of the administrations occurred. This should not be used if the original order was entered in error";
+//      case DRAFT:
+//        return "The prescription is not yet 'actionable', e.g. it is a work in progress, requires sign-off, verification or needs to be run through decision support process.";
+//      case UNKNOWN:
+//        return "The authoring/source system does not know which of the status values currently applies for this observation. Note: This concept is not to be used for 'other' - one of the listed statuses is presumed to apply, but the authoring/source system does not know which.";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDisplay() {
+//      switch (this) {
+//      case ACTIVE:
+//        return "Active";
+//      case ONHOLD:
+//        return "On Hold";
+//      case CANCELLED:
+//        return "Cancelled";
+//      case COMPLETED:
+//        return "Completed";
+//      case ENTEREDINERROR:
+//        return "Entered in Error";
+//      case STOPPED:
+//        return "Stopped";
+//      case DRAFT:
+//        return "Draft";
+//      case UNKNOWN:
+//        return "Unknown";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//  }
+//
+//  public static class MedicationRequestStatusEnumFactory implements EnumFactory<MedicationRequestStatus> {
+//    public MedicationRequestStatus fromCode(String codeString) throws IllegalArgumentException {
+//      if (codeString == null || "".equals(codeString))
+//        if (codeString == null || "".equals(codeString))
+//          return null;
+//      if ("active".equals(codeString))
+//        return MedicationRequestStatus.ACTIVE;
+//      if ("on-hold".equals(codeString))
+//        return MedicationRequestStatus.ONHOLD;
+//      if ("cancelled".equals(codeString))
+//        return MedicationRequestStatus.CANCELLED;
+//      if ("completed".equals(codeString))
+//        return MedicationRequestStatus.COMPLETED;
+//      if ("entered-in-error".equals(codeString))
+//        return MedicationRequestStatus.ENTEREDINERROR;
+//      if ("stopped".equals(codeString))
+//        return MedicationRequestStatus.STOPPED;
+//      if ("draft".equals(codeString))
+//        return MedicationRequestStatus.DRAFT;
+//      if ("unknown".equals(codeString))
+//        return MedicationRequestStatus.UNKNOWN;
+//      throw new IllegalArgumentException("Unknown MedicationRequestStatus code '" + codeString + "'");
+//    }
+//
+//    public Enumeration<MedicationRequestStatus> fromType(PrimitiveType<?> code) throws FHIRException {
+//      if (code == null)
+//        return null;
+//      if (code.isEmpty())
+//        return new Enumeration<MedicationRequestStatus>(this, MedicationRequestStatus.NULL, code);
+//      String codeString = code.asStringValue();
+//      if (codeString == null || "".equals(codeString))
+//        return new Enumeration<MedicationRequestStatus>(this, MedicationRequestStatus.NULL, code);
+//      if ("active".equals(codeString))
+//        return new Enumeration<MedicationRequestStatus>(this, MedicationRequestStatus.ACTIVE, code);
+//      if ("on-hold".equals(codeString))
+//        return new Enumeration<MedicationRequestStatus>(this, MedicationRequestStatus.ONHOLD, code);
+//      if ("cancelled".equals(codeString))
+//        return new Enumeration<MedicationRequestStatus>(this, MedicationRequestStatus.CANCELLED, code);
+//      if ("completed".equals(codeString))
+//        return new Enumeration<MedicationRequestStatus>(this, MedicationRequestStatus.COMPLETED, code);
+//      if ("entered-in-error".equals(codeString))
+//        return new Enumeration<MedicationRequestStatus>(this, MedicationRequestStatus.ENTEREDINERROR, code);
+//      if ("stopped".equals(codeString))
+//        return new Enumeration<MedicationRequestStatus>(this, MedicationRequestStatus.STOPPED, code);
+//      if ("draft".equals(codeString))
+//        return new Enumeration<MedicationRequestStatus>(this, MedicationRequestStatus.DRAFT, code);
+//      if ("unknown".equals(codeString))
+//        return new Enumeration<MedicationRequestStatus>(this, MedicationRequestStatus.UNKNOWN, code);
+//      throw new FHIRException("Unknown MedicationRequestStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode(MedicationRequestStatus code) {
+//       if (code == MedicationRequestStatus.NULL)
+//           return null;
+//       if (code == MedicationRequestStatus.ACTIVE)
+//        return "active";
+//      if (code == MedicationRequestStatus.ONHOLD)
+//        return "on-hold";
+//      if (code == MedicationRequestStatus.CANCELLED)
+//        return "cancelled";
+//      if (code == MedicationRequestStatus.COMPLETED)
+//        return "completed";
+//      if (code == MedicationRequestStatus.ENTEREDINERROR)
+//        return "entered-in-error";
+//      if (code == MedicationRequestStatus.STOPPED)
+//        return "stopped";
+//      if (code == MedicationRequestStatus.DRAFT)
+//        return "draft";
+//      if (code == MedicationRequestStatus.UNKNOWN)
+//        return "unknown";
+//      return "?";
+//   }
+//
+//    public String toSystem(MedicationRequestStatus code) {
+//      return code.getSystem();
+//    }
+//  }
+//
+//  public enum MedicationRequestIntent {
+//    /**
+//     * The request is a suggestion made by someone/something that doesn't have an
+//     * intention to ensure it occurs and without providing an authorization to act
+//     */
+//    PROPOSAL,
+//    /**
+//     * The request represents an intention to ensure something occurs without
+//     * providing an authorization for others to act.
+//     */
+//    PLAN,
+//    /**
+//     * The request represents a request/demand and authorization for action
+//     */
+//    ORDER,
+//    /**
+//     * The request represents the original authorization for the medication request.
+//     */
+//    ORIGINALORDER,
+//    /**
+//     * The request represents an automatically generated supplemental authorization
+//     * for action based on a parent authorization together with initial results of
+//     * the action taken against that parent authorization..
+//     */
+//    REFLEXORDER,
+//    /**
+//     * The request represents the view of an authorization instantiated by a
+//     * fulfilling system representing the details of the fulfiller's intention to
+//     * act upon a submitted order.
+//     */
+//    FILLERORDER,
+//    /**
+//     * The request represents an instance for the particular order, for example a
+//     * medication administration record.
+//     */
+//    INSTANCEORDER,
+//    /**
+//     * The request represents a component or option for a RequestGroup that
+//     * establishes timing, conditionality and/or other constraints among a set of
+//     * requests.
+//     */
+//    OPTION,
+//    /**
+//     * added to help the parsers with the generic types
+//     */
+//    NULL;
+//
+//    public static MedicationRequestIntent fromCode(String codeString) throws FHIRException {
+//      if (codeString == null || "".equals(codeString))
+//        return null;
+//      if ("proposal".equals(codeString))
+//        return PROPOSAL;
+//      if ("plan".equals(codeString))
+//        return PLAN;
+//      if ("order".equals(codeString))
+//        return ORDER;
+//      if ("original-order".equals(codeString))
+//        return ORIGINALORDER;
+//      if ("reflex-order".equals(codeString))
+//        return REFLEXORDER;
+//      if ("filler-order".equals(codeString))
+//        return FILLERORDER;
+//      if ("instance-order".equals(codeString))
+//        return INSTANCEORDER;
+//      if ("option".equals(codeString))
+//        return OPTION;
+//      if (Configuration.isAcceptInvalidEnums())
+//        return null;
+//      else
+//        throw new FHIRException("Unknown MedicationRequestIntent code '" + codeString + "'");
+//    }
+//
+//    public String toCode() {
+//      switch (this) {
+//      case PROPOSAL:
+//        return "proposal";
+//      case PLAN:
+//        return "plan";
+//      case ORDER:
+//        return "order";
+//      case ORIGINALORDER:
+//        return "original-order";
+//      case REFLEXORDER:
+//        return "reflex-order";
+//      case FILLERORDER:
+//        return "filler-order";
+//      case INSTANCEORDER:
+//        return "instance-order";
+//      case OPTION:
+//        return "option";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getSystem() {
+//      switch (this) {
+//      case PROPOSAL:
+//        return "http://hl7.org/fhir/CodeSystem/medicationrequest-intent";
+//      case PLAN:
+//        return "http://hl7.org/fhir/CodeSystem/medicationrequest-intent";
+//      case ORDER:
+//        return "http://hl7.org/fhir/CodeSystem/medicationrequest-intent";
+//      case ORIGINALORDER:
+//        return "http://hl7.org/fhir/CodeSystem/medicationrequest-intent";
+//      case REFLEXORDER:
+//        return "http://hl7.org/fhir/CodeSystem/medicationrequest-intent";
+//      case FILLERORDER:
+//        return "http://hl7.org/fhir/CodeSystem/medicationrequest-intent";
+//      case INSTANCEORDER:
+//        return "http://hl7.org/fhir/CodeSystem/medicationrequest-intent";
+//      case OPTION:
+//        return "http://hl7.org/fhir/CodeSystem/medicationrequest-intent";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDefinition() {
+//      switch (this) {
+//      case PROPOSAL:
+//        return "The request is a suggestion made by someone/something that doesn't have an intention to ensure it occurs and without providing an authorization to act";
+//      case PLAN:
+//        return "The request represents an intention to ensure something occurs without providing an authorization for others to act.";
+//      case ORDER:
+//        return "The request represents a request/demand and authorization for action";
+//      case ORIGINALORDER:
+//        return "The request represents the original authorization for the medication request.";
+//      case REFLEXORDER:
+//        return "The request represents an automatically generated supplemental authorization for action based on a parent authorization together with initial results of the action taken against that parent authorization..";
+//      case FILLERORDER:
+//        return "The request represents the view of an authorization instantiated by a fulfilling system representing the details of the fulfiller's intention to act upon a submitted order.";
+//      case INSTANCEORDER:
+//        return "The request represents an instance for the particular order, for example a medication administration record.";
+//      case OPTION:
+//        return "The request represents a component or option for a RequestGroup that establishes timing, conditionality and/or  other constraints among a set of requests.";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDisplay() {
+//      switch (this) {
+//      case PROPOSAL:
+//        return "Proposal";
+//      case PLAN:
+//        return "Plan";
+//      case ORDER:
+//        return "Order";
+//      case ORIGINALORDER:
+//        return "Original Order";
+//      case REFLEXORDER:
+//        return "Reflex Order";
+//      case FILLERORDER:
+//        return "Filler Order";
+//      case INSTANCEORDER:
+//        return "Instance Order";
+//      case OPTION:
+//        return "Option";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//  }
+//
+//  public static class MedicationRequestIntentEnumFactory implements EnumFactory<MedicationRequestIntent> {
+//    public MedicationRequestIntent fromCode(String codeString) throws IllegalArgumentException {
+//      if (codeString == null || "".equals(codeString))
+//        if (codeString == null || "".equals(codeString))
+//          return null;
+//      if ("proposal".equals(codeString))
+//        return MedicationRequestIntent.PROPOSAL;
+//      if ("plan".equals(codeString))
+//        return MedicationRequestIntent.PLAN;
+//      if ("order".equals(codeString))
+//        return MedicationRequestIntent.ORDER;
+//      if ("original-order".equals(codeString))
+//        return MedicationRequestIntent.ORIGINALORDER;
+//      if ("reflex-order".equals(codeString))
+//        return MedicationRequestIntent.REFLEXORDER;
+//      if ("filler-order".equals(codeString))
+//        return MedicationRequestIntent.FILLERORDER;
+//      if ("instance-order".equals(codeString))
+//        return MedicationRequestIntent.INSTANCEORDER;
+//      if ("option".equals(codeString))
+//        return MedicationRequestIntent.OPTION;
+//      throw new IllegalArgumentException("Unknown MedicationRequestIntent code '" + codeString + "'");
+//    }
+//
+//    public Enumeration<MedicationRequestIntent> fromType(PrimitiveType<?> code) throws FHIRException {
+//      if (code == null)
+//        return null;
+//      if (code.isEmpty())
+//        return new Enumeration<MedicationRequestIntent>(this, MedicationRequestIntent.NULL, code);
+//      String codeString = code.asStringValue();
+//      if (codeString == null || "".equals(codeString))
+//        return new Enumeration<MedicationRequestIntent>(this, MedicationRequestIntent.NULL, code);
+//      if ("proposal".equals(codeString))
+//        return new Enumeration<MedicationRequestIntent>(this, MedicationRequestIntent.PROPOSAL, code);
+//      if ("plan".equals(codeString))
+//        return new Enumeration<MedicationRequestIntent>(this, MedicationRequestIntent.PLAN, code);
+//      if ("order".equals(codeString))
+//        return new Enumeration<MedicationRequestIntent>(this, MedicationRequestIntent.ORDER, code);
+//      if ("original-order".equals(codeString))
+//        return new Enumeration<MedicationRequestIntent>(this, MedicationRequestIntent.ORIGINALORDER, code);
+//      if ("reflex-order".equals(codeString))
+//        return new Enumeration<MedicationRequestIntent>(this, MedicationRequestIntent.REFLEXORDER, code);
+//      if ("filler-order".equals(codeString))
+//        return new Enumeration<MedicationRequestIntent>(this, MedicationRequestIntent.FILLERORDER, code);
+//      if ("instance-order".equals(codeString))
+//        return new Enumeration<MedicationRequestIntent>(this, MedicationRequestIntent.INSTANCEORDER, code);
+//      if ("option".equals(codeString))
+//        return new Enumeration<MedicationRequestIntent>(this, MedicationRequestIntent.OPTION, code);
+//      throw new FHIRException("Unknown MedicationRequestIntent code '" + codeString + "'");
+//    }
+//
+//    public String toCode(MedicationRequestIntent code) {
+//       if (code == MedicationRequestIntent.NULL)
+//           return null;
+//       if (code == MedicationRequestIntent.PROPOSAL)
+//        return "proposal";
+//      if (code == MedicationRequestIntent.PLAN)
+//        return "plan";
+//      if (code == MedicationRequestIntent.ORDER)
+//        return "order";
+//      if (code == MedicationRequestIntent.ORIGINALORDER)
+//        return "original-order";
+//      if (code == MedicationRequestIntent.REFLEXORDER)
+//        return "reflex-order";
+//      if (code == MedicationRequestIntent.FILLERORDER)
+//        return "filler-order";
+//      if (code == MedicationRequestIntent.INSTANCEORDER)
+//        return "instance-order";
+//      if (code == MedicationRequestIntent.OPTION)
+//        return "option";
+//      return "?";
+//   }
+//
+//    public String toSystem(MedicationRequestIntent code) {
+//      return code.getSystem();
+//    }
+//  }
+//
+//  public enum MedicationRequestPriority {
+//    /**
+//     * The request has normal priority.
+//     */
+//    ROUTINE,
+//    /**
+//     * The request should be actioned promptly - higher priority than routine.
+//     */
+//    URGENT,
+//    /**
+//     * The request should be actioned as soon as possible - higher priority than
+//     * urgent.
+//     */
+//    ASAP,
+//    /**
+//     * The request should be actioned immediately - highest possible priority. E.g.
+//     * an emergency.
+//     */
+//    STAT,
+//    /**
+//     * added to help the parsers with the generic types
+//     */
+//    NULL;
+//
+//    public static MedicationRequestPriority fromCode(String codeString) throws FHIRException {
+//      if (codeString == null || "".equals(codeString))
+//        return null;
+//      if ("routine".equals(codeString))
+//        return ROUTINE;
+//      if ("urgent".equals(codeString))
+//        return URGENT;
+//      if ("asap".equals(codeString))
+//        return ASAP;
+//      if ("stat".equals(codeString))
+//        return STAT;
+//      if (Configuration.isAcceptInvalidEnums())
+//        return null;
+//      else
+//        throw new FHIRException("Unknown MedicationRequestPriority code '" + codeString + "'");
+//    }
+//
+//    public String toCode() {
+//      switch (this) {
+//      case ROUTINE:
+//        return "routine";
+//      case URGENT:
+//        return "urgent";
+//      case ASAP:
+//        return "asap";
+//      case STAT:
+//        return "stat";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getSystem() {
+//      switch (this) {
+//      case ROUTINE:
+//        return "http://hl7.org/fhir/request-priority";
+//      case URGENT:
+//        return "http://hl7.org/fhir/request-priority";
+//      case ASAP:
+//        return "http://hl7.org/fhir/request-priority";
+//      case STAT:
+//        return "http://hl7.org/fhir/request-priority";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDefinition() {
+//      switch (this) {
+//      case ROUTINE:
+//        return "The request has normal priority.";
+//      case URGENT:
+//        return "The request should be actioned promptly - higher priority than routine.";
+//      case ASAP:
+//        return "The request should be actioned as soon as possible - higher priority than urgent.";
+//      case STAT:
+//        return "The request should be actioned immediately - highest possible priority.  E.g. an emergency.";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDisplay() {
+//      switch (this) {
+//      case ROUTINE:
+//        return "Routine";
+//      case URGENT:
+//        return "Urgent";
+//      case ASAP:
+//        return "ASAP";
+//      case STAT:
+//        return "STAT";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//  }
+//
+//  public static class MedicationRequestPriorityEnumFactory implements EnumFactory<MedicationRequestPriority> {
+//    public MedicationRequestPriority fromCode(String codeString) throws IllegalArgumentException {
+//      if (codeString == null || "".equals(codeString))
+//        if (codeString == null || "".equals(codeString))
+//          return null;
+//      if ("routine".equals(codeString))
+//        return MedicationRequestPriority.ROUTINE;
+//      if ("urgent".equals(codeString))
+//        return MedicationRequestPriority.URGENT;
+//      if ("asap".equals(codeString))
+//        return MedicationRequestPriority.ASAP;
+//      if ("stat".equals(codeString))
+//        return MedicationRequestPriority.STAT;
+//      throw new IllegalArgumentException("Unknown MedicationRequestPriority code '" + codeString + "'");
+//    }
+//
+//    public Enumeration<MedicationRequestPriority> fromType(PrimitiveType<?> code) throws FHIRException {
+//      if (code == null)
+//        return null;
+//      if (code.isEmpty())
+//        return new Enumeration<MedicationRequestPriority>(this, MedicationRequestPriority.NULL, code);
+//      String codeString = code.asStringValue();
+//      if (codeString == null || "".equals(codeString))
+//        return new Enumeration<MedicationRequestPriority>(this, MedicationRequestPriority.NULL, code);
+//      if ("routine".equals(codeString))
+//        return new Enumeration<MedicationRequestPriority>(this, MedicationRequestPriority.ROUTINE, code);
+//      if ("urgent".equals(codeString))
+//        return new Enumeration<MedicationRequestPriority>(this, MedicationRequestPriority.URGENT, code);
+//      if ("asap".equals(codeString))
+//        return new Enumeration<MedicationRequestPriority>(this, MedicationRequestPriority.ASAP, code);
+//      if ("stat".equals(codeString))
+//        return new Enumeration<MedicationRequestPriority>(this, MedicationRequestPriority.STAT, code);
+//      throw new FHIRException("Unknown MedicationRequestPriority code '" + codeString + "'");
+//    }
+//
+//    public String toCode(MedicationRequestPriority code) {
+//       if (code == MedicationRequestPriority.NULL)
+//           return null;
+//       if (code == MedicationRequestPriority.ROUTINE)
+//        return "routine";
+//      if (code == MedicationRequestPriority.URGENT)
+//        return "urgent";
+//      if (code == MedicationRequestPriority.ASAP)
+//        return "asap";
+//      if (code == MedicationRequestPriority.STAT)
+//        return "stat";
+//      return "?";
+//   }
+//
+//    public String toSystem(MedicationRequestPriority code) {
+//      return code.getSystem();
+//    }
+//  }
 
   @Block()
   public static class MedicationRequestDispenseRequestComponent extends BackboneElement
@@ -1884,10 +1884,10 @@ public class MedicationRequest extends DomainResource {
    * A code specifying the current state of the order. Generally, this will be
    * active or completed state.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown", formalDefinition = "A code specifying the current state of the order.  Generally, this will be active or completed state.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/medicationrequest-status")
-  protected Enumeration<MedicationRequestStatus> status;
+  protected StringType status;
 
   /**
    * Captures the reason for the current state of the MedicationRequest.
@@ -1901,10 +1901,10 @@ public class MedicationRequest extends DomainResource {
   /**
    * Whether the request is a proposal, plan, or an original order.
    */
-  @Child(name = "intent", type = { CodeType.class }, order = 3, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "intent", type = { StringType.class }, order = 3, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "proposal | plan | order | original-order | reflex-order | filler-order | instance-order | option", formalDefinition = "Whether the request is a proposal, plan, or an original order.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/medicationrequest-intent")
-  protected Enumeration<MedicationRequestIntent> intent;
+  protected StringType intent;
 
   /**
    * Indicates the type of medication request (for example, where the medication
@@ -1920,10 +1920,10 @@ public class MedicationRequest extends DomainResource {
    * Indicates how quickly the Medication Request should be addressed with respect
    * to other requests.
    */
-  @Child(name = "priority", type = { CodeType.class }, order = 5, min = 0, max = 1, modifier = false, summary = true)
+  @Child(name = "priority", type = { StringType.class }, order = 5, min = 0, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "routine | urgent | asap | stat", formalDefinition = "Indicates how quickly the Medication Request should be addressed with respect to other requests.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/request-priority")
-  protected Enumeration<MedicationRequestPriority> priority;
+  protected StringType priority;
 
   /**
    * If true indicates that the provider is asking for the medication request not
@@ -2260,7 +2260,7 @@ public class MedicationRequest extends DomainResource {
   /**
    * Constructor
    */
-  public MedicationRequest(Enumeration<MedicationRequestStatus> status, Enumeration<MedicationRequestIntent> intent,
+  public MedicationRequest(StringType status, StringType intent,
       Type medication, Reference subject) {
     super();
     this.status = status;
@@ -2334,12 +2334,12 @@ public class MedicationRequest extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<MedicationRequestStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create MedicationRequest.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<MedicationRequestStatus>(new MedicationRequestStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -2357,7 +2357,7 @@ public class MedicationRequest extends DomainResource {
    *              is the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public MedicationRequest setStatusElement(Enumeration<MedicationRequestStatus> value) {
+  public MedicationRequest setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -2366,18 +2366,18 @@ public class MedicationRequest extends DomainResource {
    * @return A code specifying the current state of the order. Generally, this
    *         will be active or completed state.
    */
-  public MedicationRequestStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value A code specifying the current state of the order. Generally,
    *              this will be active or completed state.
    */
-  public MedicationRequest setStatus(MedicationRequestStatus value) {
+  public MedicationRequest setStatus(StringType value) {
     if (this.status == null)
-      this.status = new Enumeration<MedicationRequestStatus>(new MedicationRequestStatusEnumFactory());
-    this.status.setValue(value);
+      this.status = new StringType();
+    this.status = value;
     return this;
   }
 
@@ -2412,12 +2412,12 @@ public class MedicationRequest extends DomainResource {
    *         original order.). This is the underlying object with id, value and
    *         extensions. The accessor "getIntent" gives direct access to the value
    */
-  public Enumeration<MedicationRequestIntent> getIntentElement() {
+  public StringType getIntentElement() {
     if (this.intent == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create MedicationRequest.intent");
       else if (Configuration.doAutoCreate())
-        this.intent = new Enumeration<MedicationRequestIntent>(new MedicationRequestIntentEnumFactory()); // bb
+        this.intent = new StringType(); // bb
     return this.intent;
   }
 
@@ -2435,7 +2435,7 @@ public class MedicationRequest extends DomainResource {
    *              and extensions. The accessor "getIntent" gives direct access to
    *              the value
    */
-  public MedicationRequest setIntentElement(Enumeration<MedicationRequestIntent> value) {
+  public MedicationRequest setIntentElement(StringType value) {
     this.intent = value;
     return this;
   }
@@ -2443,17 +2443,17 @@ public class MedicationRequest extends DomainResource {
   /**
    * @return Whether the request is a proposal, plan, or an original order.
    */
-  public MedicationRequestIntent getIntent() {
-    return this.intent == null ? null : this.intent.getValue();
+  public StringType getIntent() {
+    return this.intent == null ? null : this.intent;
   }
 
   /**
    * @param value Whether the request is a proposal, plan, or an original order.
    */
-  public MedicationRequest setIntent(MedicationRequestIntent value) {
+  public MedicationRequest setIntent(StringType value) {
     if (this.intent == null)
-      this.intent = new Enumeration<MedicationRequestIntent>(new MedicationRequestIntentEnumFactory());
-    this.intent.setValue(value);
+      this.intent = new StringType();
+    this.intent = value;
     return this;
   }
 
@@ -2519,12 +2519,12 @@ public class MedicationRequest extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getPriority" gives direct access to the value
    */
-  public Enumeration<MedicationRequestPriority> getPriorityElement() {
+  public StringType getPriorityElement() {
     if (this.priority == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create MedicationRequest.priority");
       else if (Configuration.doAutoCreate())
-        this.priority = new Enumeration<MedicationRequestPriority>(new MedicationRequestPriorityEnumFactory()); // bb
+        this.priority = new StringType(); // bb
     return this.priority;
   }
 
@@ -2542,7 +2542,7 @@ public class MedicationRequest extends DomainResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getPriority" gives direct access to the value
    */
-  public MedicationRequest setPriorityElement(Enumeration<MedicationRequestPriority> value) {
+  public MedicationRequest setPriorityElement(StringType value) {
     this.priority = value;
     return this;
   }
@@ -2551,21 +2551,21 @@ public class MedicationRequest extends DomainResource {
    * @return Indicates how quickly the Medication Request should be addressed with
    *         respect to other requests.
    */
-  public MedicationRequestPriority getPriority() {
-    return this.priority == null ? null : this.priority.getValue();
+  public StringType getPriority() {
+    return this.priority == null ? null : this.priority;
   }
 
   /**
    * @param value Indicates how quickly the Medication Request should be addressed
    *              with respect to other requests.
    */
-  public MedicationRequest setPriority(MedicationRequestPriority value) {
+  public MedicationRequest setPriority(StringType value) {
     if (value == null)
       this.priority = null;
     else {
       if (this.priority == null)
-        this.priority = new Enumeration<MedicationRequestPriority>(new MedicationRequestPriorityEnumFactory());
-      this.priority.setValue(value);
+        this.priority = new StringType();
+      this.priority = value;
     }
     return this;
   }
@@ -4263,22 +4263,22 @@ public class MedicationRequest extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new MedicationRequestStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<MedicationRequestStatus>
+//      value = new MedicationRequestStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // StringType
       return value;
     case 2051346646: // statusReason
       this.statusReason = castToCodeableConcept(value); // CodeableConcept
       return value;
     case -1183762788: // intent
-      value = new MedicationRequestIntentEnumFactory().fromType(castToCode(value));
-      this.intent = (Enumeration) value; // Enumeration<MedicationRequestIntent>
+//      value = new MedicationRequestIntentEnumFactory().fromType(castToCode(value));
+      this.intent = castToString(value); // StringType
       return value;
     case 50511102: // category
       this.getCategory().add(castToCodeableConcept(value)); // CodeableConcept
       return value;
     case -1165461084: // priority
-      value = new MedicationRequestPriorityEnumFactory().fromType(castToCode(value));
-      this.priority = (Enumeration) value; // Enumeration<MedicationRequestPriority>
+//      value = new MedicationRequestPriorityEnumFactory().fromType(castToCode(value));
+      this.priority = castToString(value); // StringType
       return value;
     case -1788508167: // doNotPerform
       this.doNotPerform = castToBoolean(value); // BooleanType
@@ -4369,18 +4369,18 @@ public class MedicationRequest extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new MedicationRequestStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<MedicationRequestStatus>
+//      value = new MedicationRequestStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // StringType
     } else if (name.equals("statusReason")) {
       this.statusReason = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("intent")) {
-      value = new MedicationRequestIntentEnumFactory().fromType(castToCode(value));
-      this.intent = (Enumeration) value; // Enumeration<MedicationRequestIntent>
+//      value = new MedicationRequestIntentEnumFactory().fromType(castToCode(value));
+      this.intent = castToString(value); // StringType
     } else if (name.equals("category")) {
       this.getCategory().add(castToCodeableConcept(value));
     } else if (name.equals("priority")) {
-      value = new MedicationRequestPriorityEnumFactory().fromType(castToCode(value));
-      this.priority = (Enumeration) value; // Enumeration<MedicationRequestPriority>
+//      value = new MedicationRequestPriorityEnumFactory().fromType(castToCode(value));
+      this.priority = castToString(value); // StringType
     } else if (name.equals("doNotPerform")) {
       this.doNotPerform = castToBoolean(value); // BooleanType
     } else if (name.equals("reported[x]")) {

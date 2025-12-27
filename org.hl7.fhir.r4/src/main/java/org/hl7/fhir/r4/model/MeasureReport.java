@@ -51,312 +51,312 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "MeasureReport", profile = "http://hl7.org/fhir/StructureDefinition/MeasureReport")
 public class MeasureReport extends DomainResource {
 
-  public enum MeasureReportStatus {
-    /**
-     * The report is complete and ready for use.
-     */
-    COMPLETE,
-    /**
-     * The report is currently being generated.
-     */
-    PENDING,
-    /**
-     * An error occurred attempting to generate the report.
-     */
-    ERROR,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static MeasureReportStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("complete".equals(codeString))
-        return COMPLETE;
-      if ("pending".equals(codeString))
-        return PENDING;
-      if ("error".equals(codeString))
-        return ERROR;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown MeasureReportStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case COMPLETE:
-        return "complete";
-      case PENDING:
-        return "pending";
-      case ERROR:
-        return "error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case COMPLETE:
-        return "http://hl7.org/fhir/measure-report-status";
-      case PENDING:
-        return "http://hl7.org/fhir/measure-report-status";
-      case ERROR:
-        return "http://hl7.org/fhir/measure-report-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case COMPLETE:
-        return "The report is complete and ready for use.";
-      case PENDING:
-        return "The report is currently being generated.";
-      case ERROR:
-        return "An error occurred attempting to generate the report.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case COMPLETE:
-        return "Complete";
-      case PENDING:
-        return "Pending";
-      case ERROR:
-        return "Error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class MeasureReportStatusEnumFactory implements EnumFactory<MeasureReportStatus> {
-    public MeasureReportStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("complete".equals(codeString))
-        return MeasureReportStatus.COMPLETE;
-      if ("pending".equals(codeString))
-        return MeasureReportStatus.PENDING;
-      if ("error".equals(codeString))
-        return MeasureReportStatus.ERROR;
-      throw new IllegalArgumentException("Unknown MeasureReportStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<MeasureReportStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<MeasureReportStatus>(this, MeasureReportStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<MeasureReportStatus>(this, MeasureReportStatus.NULL, code);
-      if ("complete".equals(codeString))
-        return new Enumeration<MeasureReportStatus>(this, MeasureReportStatus.COMPLETE, code);
-      if ("pending".equals(codeString))
-        return new Enumeration<MeasureReportStatus>(this, MeasureReportStatus.PENDING, code);
-      if ("error".equals(codeString))
-        return new Enumeration<MeasureReportStatus>(this, MeasureReportStatus.ERROR, code);
-      throw new FHIRException("Unknown MeasureReportStatus code '" + codeString + "'");
-    }
-
-    public String toCode(MeasureReportStatus code) {
-       if (code == MeasureReportStatus.NULL)
-           return null;
-       if (code == MeasureReportStatus.COMPLETE)
-        return "complete";
-      if (code == MeasureReportStatus.PENDING)
-        return "pending";
-      if (code == MeasureReportStatus.ERROR)
-        return "error";
-      return "?";
-   }
-
-    public String toSystem(MeasureReportStatus code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum MeasureReportType {
-    /**
-     * An individual report that provides information on the performance for a given
-     * measure with respect to a single subject.
-     */
-    INDIVIDUAL,
-    /**
-     * A subject list report that includes a listing of subjects that satisfied each
-     * population criteria in the measure.
-     */
-    SUBJECTLIST,
-    /**
-     * A summary report that returns the number of members in each population
-     * criteria for the measure.
-     */
-    SUMMARY,
-    /**
-     * A data collection report that contains data-of-interest for the measure.
-     */
-    DATACOLLECTION,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static MeasureReportType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("individual".equals(codeString))
-        return INDIVIDUAL;
-      if ("subject-list".equals(codeString))
-        return SUBJECTLIST;
-      if ("summary".equals(codeString))
-        return SUMMARY;
-      if ("data-collection".equals(codeString))
-        return DATACOLLECTION;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown MeasureReportType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case INDIVIDUAL:
-        return "individual";
-      case SUBJECTLIST:
-        return "subject-list";
-      case SUMMARY:
-        return "summary";
-      case DATACOLLECTION:
-        return "data-collection";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case INDIVIDUAL:
-        return "http://hl7.org/fhir/measure-report-type";
-      case SUBJECTLIST:
-        return "http://hl7.org/fhir/measure-report-type";
-      case SUMMARY:
-        return "http://hl7.org/fhir/measure-report-type";
-      case DATACOLLECTION:
-        return "http://hl7.org/fhir/measure-report-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case INDIVIDUAL:
-        return "An individual report that provides information on the performance for a given measure with respect to a single subject.";
-      case SUBJECTLIST:
-        return "A subject list report that includes a listing of subjects that satisfied each population criteria in the measure.";
-      case SUMMARY:
-        return "A summary report that returns the number of members in each population criteria for the measure.";
-      case DATACOLLECTION:
-        return "A data collection report that contains data-of-interest for the measure.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case INDIVIDUAL:
-        return "Individual";
-      case SUBJECTLIST:
-        return "Subject List";
-      case SUMMARY:
-        return "Summary";
-      case DATACOLLECTION:
-        return "Data Collection";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class MeasureReportTypeEnumFactory implements EnumFactory<MeasureReportType> {
-    public MeasureReportType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("individual".equals(codeString))
-        return MeasureReportType.INDIVIDUAL;
-      if ("subject-list".equals(codeString))
-        return MeasureReportType.SUBJECTLIST;
-      if ("summary".equals(codeString))
-        return MeasureReportType.SUMMARY;
-      if ("data-collection".equals(codeString))
-        return MeasureReportType.DATACOLLECTION;
-      throw new IllegalArgumentException("Unknown MeasureReportType code '" + codeString + "'");
-    }
-
-    public Enumeration<MeasureReportType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<MeasureReportType>(this, MeasureReportType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<MeasureReportType>(this, MeasureReportType.NULL, code);
-      if ("individual".equals(codeString))
-        return new Enumeration<MeasureReportType>(this, MeasureReportType.INDIVIDUAL, code);
-      if ("subject-list".equals(codeString))
-        return new Enumeration<MeasureReportType>(this, MeasureReportType.SUBJECTLIST, code);
-      if ("summary".equals(codeString))
-        return new Enumeration<MeasureReportType>(this, MeasureReportType.SUMMARY, code);
-      if ("data-collection".equals(codeString))
-        return new Enumeration<MeasureReportType>(this, MeasureReportType.DATACOLLECTION, code);
-      throw new FHIRException("Unknown MeasureReportType code '" + codeString + "'");
-    }
-
-    public String toCode(MeasureReportType code) {
-       if (code == MeasureReportType.NULL)
-           return null;
-       if (code == MeasureReportType.INDIVIDUAL)
-        return "individual";
-      if (code == MeasureReportType.SUBJECTLIST)
-        return "subject-list";
-      if (code == MeasureReportType.SUMMARY)
-        return "summary";
-      if (code == MeasureReportType.DATACOLLECTION)
-        return "data-collection";
-      return "?";
-   }
-
-    public String toSystem(MeasureReportType code) {
-      return code.getSystem();
-    }
-  }
+//  public enum MeasureReportStatus {
+//    /**
+//     * The report is complete and ready for use.
+//     */
+//    COMPLETE,
+//    /**
+//     * The report is currently being generated.
+//     */
+//    PENDING,
+//    /**
+//     * An error occurred attempting to generate the report.
+//     */
+//    ERROR,
+//    /**
+//     * added to help the parsers with the generic types
+//     */
+//    NULL;
+//
+//    public static MeasureReportStatus fromCode(String codeString) throws FHIRException {
+//      if (codeString == null || "".equals(codeString))
+//        return null;
+//      if ("complete".equals(codeString))
+//        return COMPLETE;
+//      if ("pending".equals(codeString))
+//        return PENDING;
+//      if ("error".equals(codeString))
+//        return ERROR;
+//      if (Configuration.isAcceptInvalidEnums())
+//        return null;
+//      else
+//        throw new FHIRException("Unknown MeasureReportStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode() {
+//      switch (this) {
+//      case COMPLETE:
+//        return "complete";
+//      case PENDING:
+//        return "pending";
+//      case ERROR:
+//        return "error";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getSystem() {
+//      switch (this) {
+//      case COMPLETE:
+//        return "http://hl7.org/fhir/measure-report-status";
+//      case PENDING:
+//        return "http://hl7.org/fhir/measure-report-status";
+//      case ERROR:
+//        return "http://hl7.org/fhir/measure-report-status";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDefinition() {
+//      switch (this) {
+//      case COMPLETE:
+//        return "The report is complete and ready for use.";
+//      case PENDING:
+//        return "The report is currently being generated.";
+//      case ERROR:
+//        return "An error occurred attempting to generate the report.";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDisplay() {
+//      switch (this) {
+//      case COMPLETE:
+//        return "Complete";
+//      case PENDING:
+//        return "Pending";
+//      case ERROR:
+//        return "Error";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//  }
+//
+//  public static class MeasureReportStatusEnumFactory implements EnumFactory<MeasureReportStatus> {
+//    public MeasureReportStatus fromCode(String codeString) throws IllegalArgumentException {
+//      if (codeString == null || "".equals(codeString))
+//        if (codeString == null || "".equals(codeString))
+//          return null;
+//      if ("complete".equals(codeString))
+//        return MeasureReportStatus.COMPLETE;
+//      if ("pending".equals(codeString))
+//        return MeasureReportStatus.PENDING;
+//      if ("error".equals(codeString))
+//        return MeasureReportStatus.ERROR;
+//      throw new IllegalArgumentException("Unknown MeasureReportStatus code '" + codeString + "'");
+//    }
+//
+//    public Enumeration<MeasureReportStatus> fromType(PrimitiveType<?> code) throws FHIRException {
+//      if (code == null)
+//        return null;
+//      if (code.isEmpty())
+//        return new Enumeration<MeasureReportStatus>(this, MeasureReportStatus.NULL, code);
+//      String codeString = code.asStringValue();
+//      if (codeString == null || "".equals(codeString))
+//        return new Enumeration<MeasureReportStatus>(this, MeasureReportStatus.NULL, code);
+//      if ("complete".equals(codeString))
+//        return new Enumeration<MeasureReportStatus>(this, MeasureReportStatus.COMPLETE, code);
+//      if ("pending".equals(codeString))
+//        return new Enumeration<MeasureReportStatus>(this, MeasureReportStatus.PENDING, code);
+//      if ("error".equals(codeString))
+//        return new Enumeration<MeasureReportStatus>(this, MeasureReportStatus.ERROR, code);
+//      throw new FHIRException("Unknown MeasureReportStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode(MeasureReportStatus code) {
+//       if (code == MeasureReportStatus.NULL)
+//           return null;
+//       if (code == MeasureReportStatus.COMPLETE)
+//        return "complete";
+//      if (code == MeasureReportStatus.PENDING)
+//        return "pending";
+//      if (code == MeasureReportStatus.ERROR)
+//        return "error";
+//      return "?";
+//   }
+//
+//    public String toSystem(MeasureReportStatus code) {
+//      return code.getSystem();
+//    }
+//  }
+//
+//  public enum MeasureReportType {
+//    /**
+//     * An individual report that provides information on the performance for a given
+//     * measure with respect to a single subject.
+//     */
+//    INDIVIDUAL,
+//    /**
+//     * A subject list report that includes a listing of subjects that satisfied each
+//     * population criteria in the measure.
+//     */
+//    SUBJECTLIST,
+//    /**
+//     * A summary report that returns the number of members in each population
+//     * criteria for the measure.
+//     */
+//    SUMMARY,
+//    /**
+//     * A data collection report that contains data-of-interest for the measure.
+//     */
+//    DATACOLLECTION,
+//    /**
+//     * added to help the parsers with the generic types
+//     */
+//    NULL;
+//
+//    public static MeasureReportType fromCode(String codeString) throws FHIRException {
+//      if (codeString == null || "".equals(codeString))
+//        return null;
+//      if ("individual".equals(codeString))
+//        return INDIVIDUAL;
+//      if ("subject-list".equals(codeString))
+//        return SUBJECTLIST;
+//      if ("summary".equals(codeString))
+//        return SUMMARY;
+//      if ("data-collection".equals(codeString))
+//        return DATACOLLECTION;
+//      if (Configuration.isAcceptInvalidEnums())
+//        return null;
+//      else
+//        throw new FHIRException("Unknown MeasureReportType code '" + codeString + "'");
+//    }
+//
+//    public String toCode() {
+//      switch (this) {
+//      case INDIVIDUAL:
+//        return "individual";
+//      case SUBJECTLIST:
+//        return "subject-list";
+//      case SUMMARY:
+//        return "summary";
+//      case DATACOLLECTION:
+//        return "data-collection";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getSystem() {
+//      switch (this) {
+//      case INDIVIDUAL:
+//        return "http://hl7.org/fhir/measure-report-type";
+//      case SUBJECTLIST:
+//        return "http://hl7.org/fhir/measure-report-type";
+//      case SUMMARY:
+//        return "http://hl7.org/fhir/measure-report-type";
+//      case DATACOLLECTION:
+//        return "http://hl7.org/fhir/measure-report-type";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDefinition() {
+//      switch (this) {
+//      case INDIVIDUAL:
+//        return "An individual report that provides information on the performance for a given measure with respect to a single subject.";
+//      case SUBJECTLIST:
+//        return "A subject list report that includes a listing of subjects that satisfied each population criteria in the measure.";
+//      case SUMMARY:
+//        return "A summary report that returns the number of members in each population criteria for the measure.";
+//      case DATACOLLECTION:
+//        return "A data collection report that contains data-of-interest for the measure.";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDisplay() {
+//      switch (this) {
+//      case INDIVIDUAL:
+//        return "Individual";
+//      case SUBJECTLIST:
+//        return "Subject List";
+//      case SUMMARY:
+//        return "Summary";
+//      case DATACOLLECTION:
+//        return "Data Collection";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//  }
+//
+//  public static class MeasureReportTypeEnumFactory implements EnumFactory<MeasureReportType> {
+//    public MeasureReportType fromCode(String codeString) throws IllegalArgumentException {
+//      if (codeString == null || "".equals(codeString))
+//        if (codeString == null || "".equals(codeString))
+//          return null;
+//      if ("individual".equals(codeString))
+//        return MeasureReportType.INDIVIDUAL;
+//      if ("subject-list".equals(codeString))
+//        return MeasureReportType.SUBJECTLIST;
+//      if ("summary".equals(codeString))
+//        return MeasureReportType.SUMMARY;
+//      if ("data-collection".equals(codeString))
+//        return MeasureReportType.DATACOLLECTION;
+//      throw new IllegalArgumentException("Unknown MeasureReportType code '" + codeString + "'");
+//    }
+//
+//    public Enumeration<MeasureReportType> fromType(PrimitiveType<?> code) throws FHIRException {
+//      if (code == null)
+//        return null;
+//      if (code.isEmpty())
+//        return new Enumeration<MeasureReportType>(this, MeasureReportType.NULL, code);
+//      String codeString = code.asStringValue();
+//      if (codeString == null || "".equals(codeString))
+//        return new Enumeration<MeasureReportType>(this, MeasureReportType.NULL, code);
+//      if ("individual".equals(codeString))
+//        return new Enumeration<MeasureReportType>(this, MeasureReportType.INDIVIDUAL, code);
+//      if ("subject-list".equals(codeString))
+//        return new Enumeration<MeasureReportType>(this, MeasureReportType.SUBJECTLIST, code);
+//      if ("summary".equals(codeString))
+//        return new Enumeration<MeasureReportType>(this, MeasureReportType.SUMMARY, code);
+//      if ("data-collection".equals(codeString))
+//        return new Enumeration<MeasureReportType>(this, MeasureReportType.DATACOLLECTION, code);
+//      throw new FHIRException("Unknown MeasureReportType code '" + codeString + "'");
+//    }
+//
+//    public String toCode(MeasureReportType code) {
+//       if (code == MeasureReportType.NULL)
+//           return null;
+//       if (code == MeasureReportType.INDIVIDUAL)
+//        return "individual";
+//      if (code == MeasureReportType.SUBJECTLIST)
+//        return "subject-list";
+//      if (code == MeasureReportType.SUMMARY)
+//        return "summary";
+//      if (code == MeasureReportType.DATACOLLECTION)
+//        return "data-collection";
+//      return "?";
+//   }
+//
+//    public String toSystem(MeasureReportType code) {
+//      return code.getSystem();
+//    }
+//  }
 
   @Block()
   public static class MeasureReportGroupComponent extends BackboneElement implements IBaseBackboneElement {
@@ -2461,10 +2461,10 @@ public class MeasureReport extends DomainResource {
    * The MeasureReport status. No data will be available until the MeasureReport
    * status is complete.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "complete | pending | error", formalDefinition = "The MeasureReport status. No data will be available until the MeasureReport status is complete.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/measure-report-status")
-  protected Enumeration<MeasureReportStatus> status;
+  protected StringType status;
 
   /**
    * The type of measure report. This may be an individual report, which provides
@@ -2475,10 +2475,10 @@ public class MeasureReport extends DomainResource {
    * the MeasureReport to be used to exchange the data-of-interest for a quality
    * measure.
    */
-  @Child(name = "type", type = { CodeType.class }, order = 2, min = 1, max = 1, modifier = false, summary = true)
+  @Child(name = "type", type = { StringType.class }, order = 2, min = 1, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "individual | subject-list | summary | data-collection", formalDefinition = "The type of measure report. This may be an individual report, which provides the score for the measure for an individual member of the population; a subject-listing, which returns the list of members that meet the various criteria in the measure; a summary report, which returns a population count for each of the criteria in the measure; or a data-collection, which enables the MeasureReport to be used to exchange the data-of-interest for a quality measure.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/measure-report-type")
-  protected Enumeration<MeasureReportType> type;
+  protected StringType type;
 
   /**
    * A reference to the Measure that was calculated to produce this report.
@@ -2574,7 +2574,7 @@ public class MeasureReport extends DomainResource {
   /**
    * Constructor
    */
-  public MeasureReport(Enumeration<MeasureReportStatus> status, Enumeration<MeasureReportType> type,
+  public MeasureReport(StringType status, StringType type,
       CanonicalType measure, Period period) {
     super();
     this.status = status;
@@ -2645,12 +2645,12 @@ public class MeasureReport extends DomainResource {
    *         object with id, value and extensions. The accessor "getStatus" gives
    *         direct access to the value
    */
-  public Enumeration<MeasureReportStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create MeasureReport.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<MeasureReportStatus>(new MeasureReportStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -2668,7 +2668,7 @@ public class MeasureReport extends DomainResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public MeasureReport setStatusElement(Enumeration<MeasureReportStatus> value) {
+  public MeasureReport setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -2677,18 +2677,18 @@ public class MeasureReport extends DomainResource {
    * @return The MeasureReport status. No data will be available until the
    *         MeasureReport status is complete.
    */
-  public MeasureReportStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The MeasureReport status. No data will be available until the
    *              MeasureReport status is complete.
    */
-  public MeasureReport setStatus(MeasureReportStatus value) {
+  public MeasureReport setStatus(StringType value) {
     if (this.status == null)
-      this.status = new Enumeration<MeasureReportStatus>(new MeasureReportStatusEnumFactory());
-    this.status.setValue(value);
+      this.status = new StringType();
+    this.status = value;
     return this;
   }
 
@@ -2703,12 +2703,12 @@ public class MeasureReport extends DomainResource {
    *         This is the underlying object with id, value and extensions. The
    *         accessor "getType" gives direct access to the value
    */
-  public Enumeration<MeasureReportType> getTypeElement() {
+  public StringType getTypeElement() {
     if (this.type == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create MeasureReport.type");
       else if (Configuration.doAutoCreate())
-        this.type = new Enumeration<MeasureReportType>(new MeasureReportTypeEnumFactory()); // bb
+        this.type = new StringType(); // bb
     return this.type;
   }
 
@@ -2732,7 +2732,7 @@ public class MeasureReport extends DomainResource {
    *              object with id, value and extensions. The accessor "getType"
    *              gives direct access to the value
    */
-  public MeasureReport setTypeElement(Enumeration<MeasureReportType> value) {
+  public MeasureReport setTypeElement(StringType value) {
     this.type = value;
     return this;
   }
@@ -2746,8 +2746,8 @@ public class MeasureReport extends DomainResource {
    *         or a data-collection, which enables the MeasureReport to be used to
    *         exchange the data-of-interest for a quality measure.
    */
-  public MeasureReportType getType() {
-    return this.type == null ? null : this.type.getValue();
+  public StringType getType() {
+    return this.type == null ? null : this.type;
   }
 
   /**
@@ -2760,10 +2760,10 @@ public class MeasureReport extends DomainResource {
    *              MeasureReport to be used to exchange the data-of-interest for a
    *              quality measure.
    */
-  public MeasureReport setType(MeasureReportType value) {
+  public MeasureReport setType(StringType value) {
     if (this.type == null)
-      this.type = new Enumeration<MeasureReportType>(new MeasureReportTypeEnumFactory());
-    this.type.setValue(value);
+      this.type = new StringType();
+    this.type = value;
     return this;
   }
 
@@ -3216,9 +3216,9 @@ public class MeasureReport extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<MeasureReportStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 3575610:
-      /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<MeasureReportType>
+      /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
     case 938321246:
       /* measure */ return this.measure == null ? new Base[0] : new Base[] { this.measure }; // CanonicalType
     case -1867885268:
@@ -3250,12 +3250,12 @@ public class MeasureReport extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new MeasureReportStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<MeasureReportStatus>
+//      value = new MeasureReportStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // StringType
       return value;
     case 3575610: // type
-      value = new MeasureReportTypeEnumFactory().fromType(castToCode(value));
-      this.type = (Enumeration) value; // Enumeration<MeasureReportType>
+//      value = new MeasureReportTypeEnumFactory().fromType(castToCode(value));
+      this.type = castToString(value); // StringType
       return value;
     case 938321246: // measure
       this.measure = castToCanonical(value); // CanonicalType
@@ -3292,11 +3292,11 @@ public class MeasureReport extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new MeasureReportStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<MeasureReportStatus>
+//      value = new MeasureReportStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // StringType
     } else if (name.equals("type")) {
-      value = new MeasureReportTypeEnumFactory().fromType(castToCode(value));
-      this.type = (Enumeration) value; // Enumeration<MeasureReportType>
+//      value = new MeasureReportTypeEnumFactory().fromType(castToCode(value));
+      this.type = castToString(value); // StringType
     } else if (name.equals("measure")) {
       this.measure = castToCanonical(value); // CanonicalType
     } else if (name.equals("subject")) {
