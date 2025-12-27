@@ -392,10 +392,10 @@ public class DocumentReference extends DomainResource {
     /**
      * The type of relationship that this document has with anther document.
      */
-    @Child(name = "code", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "code", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "replaces | transforms | signs | appends", formalDefinition = "The type of relationship that this document has with anther document.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/document-relationship-type")
-    protected Enumeration<DocumentRelationshipType> code;
+    protected StringType code;
 
     /**
      * The target document of this relationship.
@@ -423,7 +423,7 @@ public class DocumentReference extends DomainResource {
     /**
      * Constructor
      */
-    public DocumentReferenceRelatesToComponent(Enumeration<DocumentRelationshipType> code, Reference target) {
+    public DocumentReferenceRelatesToComponent(StringType code, Reference target) {
       super();
       this.code = code;
       this.target = target;
@@ -434,12 +434,12 @@ public class DocumentReference extends DomainResource {
      *         anther document.). This is the underlying object with id, value and
      *         extensions. The accessor "getCode" gives direct access to the value
      */
-    public Enumeration<DocumentRelationshipType> getCodeElement() {
+    public StringType getCodeElement() {
       if (this.code == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create DocumentReferenceRelatesToComponent.code");
         else if (Configuration.doAutoCreate())
-          this.code = new Enumeration<DocumentRelationshipType>(new DocumentRelationshipTypeEnumFactory()); // bb
+          this.code = new StringType(); // bb
       return this.code;
     }
 
@@ -457,7 +457,7 @@ public class DocumentReference extends DomainResource {
      *              value and extensions. The accessor "getCode" gives direct access
      *              to the value
      */
-    public DocumentReferenceRelatesToComponent setCodeElement(Enumeration<DocumentRelationshipType> value) {
+    public DocumentReferenceRelatesToComponent setCodeElement(StringType value) {
       this.code = value;
       return this;
     }
@@ -465,18 +465,18 @@ public class DocumentReference extends DomainResource {
     /**
      * @return The type of relationship that this document has with anther document.
      */
-    public DocumentRelationshipType getCode() {
-      return this.code == null ? null : this.code.getValue();
+    public StringType getCode() {
+      return this.code == null ? null : this.code;
     }
 
     /**
      * @param value The type of relationship that this document has with anther
      *              document.
      */
-    public DocumentReferenceRelatesToComponent setCode(DocumentRelationshipType value) {
+    public DocumentReferenceRelatesToComponent setCode(StringType value) {
       if (this.code == null)
-        this.code = new Enumeration<DocumentRelationshipType>(new DocumentRelationshipTypeEnumFactory());
-      this.code.setValue(value);
+        this.code = new StringType();
+      this.code = (value);
       return this;
     }
 
@@ -570,8 +570,8 @@ public class DocumentReference extends DomainResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3059181: // code
-        value = new DocumentRelationshipTypeEnumFactory().fromType(castToCode(value));
-        this.code = (Enumeration) value; // Enumeration<DocumentRelationshipType>
+//        value = new DocumentRelationshipTypeEnumFactory().fromType(castToCode(value));
+        this.code = castToString(value); // Enumeration<DocumentRelationshipType>
         return value;
       case -880905839: // target
         this.target = castToReference(value); // Reference
@@ -585,8 +585,8 @@ public class DocumentReference extends DomainResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("code")) {
-        value = new DocumentRelationshipTypeEnumFactory().fromType(castToCode(value));
-        this.code = (Enumeration) value; // Enumeration<DocumentRelationshipType>
+//        value = new DocumentRelationshipTypeEnumFactory().fromType(castToCode(value));
+        this.code =  castToString(value); // Enumeration<DocumentRelationshipType>
       } else if (name.equals("target")) {
         this.target = castToReference(value); // Reference
       } else
@@ -1657,7 +1657,7 @@ public class DocumentReference extends DomainResource {
   @Child(name = "docStatus", type = { CodeType.class }, order = 3, min = 0, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "preliminary | final | amended | entered-in-error", formalDefinition = "The status of the underlying document.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/composition-status")
-  protected Enumeration<ReferredDocumentStatus> docStatus;
+  protected StringType docStatus;
 
   /**
    * Specifies the particular kind of document referenced (e.g. History and
@@ -1951,12 +1951,12 @@ public class DocumentReference extends DomainResource {
    *         the underlying object with id, value and extensions. The accessor
    *         "getDocStatus" gives direct access to the value
    */
-  public Enumeration<ReferredDocumentStatus> getDocStatusElement() {
+  public StringType getDocStatusElement() {
     if (this.docStatus == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create DocumentReference.docStatus");
       else if (Configuration.doAutoCreate())
-        this.docStatus = new Enumeration<ReferredDocumentStatus>(new ReferredDocumentStatusEnumFactory()); // bb
+        this.docStatus = new StringType(); // bb
     return this.docStatus;
   }
 
@@ -1973,7 +1973,7 @@ public class DocumentReference extends DomainResource {
    *              This is the underlying object with id, value and extensions. The
    *              accessor "getDocStatus" gives direct access to the value
    */
-  public DocumentReference setDocStatusElement(Enumeration<ReferredDocumentStatus> value) {
+  public DocumentReference setDocStatusElement(StringType value) {
     this.docStatus = value;
     return this;
   }
@@ -1981,20 +1981,20 @@ public class DocumentReference extends DomainResource {
   /**
    * @return The status of the underlying document.
    */
-  public ReferredDocumentStatus getDocStatus() {
-    return this.docStatus == null ? null : this.docStatus.getValue();
+  public StringType getDocStatus() {
+    return this.docStatus == null ? null : this.docStatus;
   }
 
   /**
    * @param value The status of the underlying document.
    */
-  public DocumentReference setDocStatus(ReferredDocumentStatus value) {
+  public DocumentReference setDocStatus(StringType value) {
     if (value == null)
       this.docStatus = null;
     else {
       if (this.docStatus == null)
-        this.docStatus = new Enumeration<ReferredDocumentStatus>(new ReferredDocumentStatusEnumFactory());
-      this.docStatus.setValue(value);
+        this.docStatus = new StringType();
+      this.docStatus = (value);
     }
     return this;
   }
@@ -2771,8 +2771,8 @@ public class DocumentReference extends DomainResource {
       this.status = (Enumeration) value; // Enumeration<DocumentReferenceStatus>
       return value;
     case -23496886: // docStatus
-      value = new ReferredDocumentStatusEnumFactory().fromType(castToCode(value));
-      this.docStatus = (Enumeration) value; // Enumeration<ReferredDocumentStatus>
+//      value = new ReferredDocumentStatusEnumFactory().fromType(castToCode(value));
+      this.docStatus = castToString(value); // Enumeration<ReferredDocumentStatus>
       return value;
     case 3575610: // type
       this.type = castToCodeableConcept(value); // CodeableConcept
@@ -2826,8 +2826,8 @@ public class DocumentReference extends DomainResource {
       value = new DocumentReferenceStatusEnumFactory().fromType(castToCode(value));
       this.status = (Enumeration) value; // Enumeration<DocumentReferenceStatus>
     } else if (name.equals("docStatus")) {
-      value = new ReferredDocumentStatusEnumFactory().fromType(castToCode(value));
-      this.docStatus = (Enumeration) value; // Enumeration<ReferredDocumentStatus>
+//      value = new ReferredDocumentStatusEnumFactory().fromType(castToCode(value));
+      this.docStatus =  castToString(value); // Enumeration<ReferredDocumentStatus>
     } else if (name.equals("type")) {
       this.type = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("category")) {

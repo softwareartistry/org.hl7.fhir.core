@@ -293,9 +293,9 @@ public class RdfParser extends RdfParserBase {
     }
     composeElement(t, "Address", name, element, index);
     if (element.hasUseElement())
-      composeEnum(t, "Address", "use", element.getUseElement(), -1);
+      composeString(t, "Address", "use", element.getUseElement(), -1);
     if (element.hasTypeElement())
-      composeEnum(t, "Address", "type", element.getTypeElement(), -1);
+      composeString(t, "Address", "type", element.getTypeElement(), -1);
     if (element.hasTextElement())
       composeString(t, "Address", "text", element.getTextElement(), -1);
     for (int i = 0; i < element.getLine().size(); i++)
@@ -1497,7 +1497,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "Account", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "Account", "status", element.getStatusElement(), -1);
+      composeString(t, "Account", "status", element.getStatusElement(), -1);
     if (element.hasType())
       composeCodeableConcept(t, "Account", "type", element.getType(), -1);
     if (element.hasNameElement())
@@ -1710,7 +1710,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasIdentifier())
       composeIdentifier(t, "AdverseEvent", "identifier", element.getIdentifier(), -1);
     if (element.hasActualityElement())
-      composeEnum(t, "AdverseEvent", "actuality", element.getActualityElement(), -1);
+      composeString(t, "AdverseEvent", "actuality", element.getActualityElement(), -1);
     for (int i = 0; i < element.getCategory().size(); i++)
       composeCodeableConcept(t, "AdverseEvent", "category", element.getCategory().get(i), i);
     if (element.hasEvent())
@@ -1807,11 +1807,11 @@ public class RdfParser extends RdfParserBase {
     if (element.hasVerificationStatus())
       composeCodeableConcept(t, "AllergyIntolerance", "verificationStatus", element.getVerificationStatus(), -1);
     if (element.hasTypeElement())
-      composeEnum(t, "AllergyIntolerance", "type", element.getTypeElement(), -1);
+      composeString(t, "AllergyIntolerance", "type", element.getTypeElement(), -1);
     for (int i = 0; i < element.getCategory().size(); i++)
-      composeEnum(t, "AllergyIntolerance", "category", element.getCategory().get(i), i);
+      composeString(t, "AllergyIntolerance", "category", element.getCategory().get(i), i);
     if (element.hasCriticalityElement())
-      composeEnum(t, "AllergyIntolerance", "criticality", element.getCriticalityElement(), -1);
+      composeString(t, "AllergyIntolerance", "criticality", element.getCriticalityElement(), -1);
     if (element.hasCode())
       composeCodeableConcept(t, "AllergyIntolerance", "code", element.getCode(), -1);
     if (element.hasPatient())
@@ -1855,7 +1855,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasOnsetElement())
       composeDateTime(t, "AllergyIntolerance", "onset", element.getOnsetElement(), -1);
     if (element.hasSeverityElement())
-      composeEnum(t, "AllergyIntolerance", "severity", element.getSeverityElement(), -1);
+      composeString(t, "AllergyIntolerance", "severity", element.getSeverityElement(), -1);
     if (element.hasExposureRoute())
       composeCodeableConcept(t, "AllergyIntolerance", "exposureRoute", element.getExposureRoute(), -1);
     for (int i = 0; i < element.getNote().size(); i++)
@@ -1875,7 +1875,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "Appointment", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "Appointment", "status", element.getStatusElement(), -1);
+      composeString(t, "Appointment", "status", element.getStatusElement(), -1);
     if (element.hasCancelationReason())
       composeCodeableConcept(t, "Appointment", "cancelationReason", element.getCancelationReason(), -1);
     for (int i = 0; i < element.getServiceCategory().size(); i++)
@@ -1935,9 +1935,9 @@ public class RdfParser extends RdfParserBase {
     if (element.hasActor())
       composeReference(t, "Appointment", "actor", element.getActor(), -1);
     if (element.hasRequiredElement())
-      composeEnum(t, "Appointment", "required", element.getRequiredElement(), -1);
+      composeString(t, "Appointment", "required", element.getRequiredElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "Appointment", "status", element.getStatusElement(), -1);
+      composeString(t, "Appointment", "status", element.getStatusElement(), -1);
     if (element.hasPeriod())
       composePeriod(t, "Appointment", "period", element.getPeriod(), -1);
   }
@@ -1966,7 +1966,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasActor())
       composeReference(t, "AppointmentResponse", "actor", element.getActor(), -1);
     if (element.hasParticipantStatusElement())
-      composeEnum(t, "AppointmentResponse", "participantStatus", element.getParticipantStatusElement(), -1);
+      composeString(t, "AppointmentResponse", "participantStatus", element.getParticipantStatusElement(), -1);
     if (element.hasCommentElement())
       composeString(t, "AppointmentResponse", "comment", element.getCommentElement(), -1);
   }
@@ -2178,11 +2178,11 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "BiologicallyDerivedProduct", "identifier", element.getIdentifier().get(i), i);
     if (element.hasProductCategoryElement())
-      composeEnum(t, "BiologicallyDerivedProduct", "productCategory", element.getProductCategoryElement(), -1);
+      composeString(t, "BiologicallyDerivedProduct", "productCategory", element.getProductCategoryElement(), -1);
     if (element.hasProductCode())
       composeCodeableConcept(t, "BiologicallyDerivedProduct", "productCode", element.getProductCode(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "BiologicallyDerivedProduct", "status", element.getStatusElement(), -1);
+      composeString(t, "BiologicallyDerivedProduct", "status", element.getStatusElement(), -1);
     for (int i = 0; i < element.getRequest().size(); i++)
       composeReference(t, "BiologicallyDerivedProduct", "request", element.getRequest().get(i), i);
     if (element.hasQuantityElement())
@@ -2280,7 +2280,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasTemperatureElement())
       composeDecimal(t, "BiologicallyDerivedProduct", "temperature", element.getTemperatureElement(), -1);
     if (element.hasScaleElement())
-      composeEnum(t, "BiologicallyDerivedProduct", "scale", element.getScaleElement(), -1);
+      composeString(t, "BiologicallyDerivedProduct", "scale", element.getScaleElement(), -1);
     if (element.hasDuration())
       composePeriod(t, "BiologicallyDerivedProduct", "duration", element.getDuration(), -1);
   }
@@ -2835,9 +2835,9 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getPartOf().size(); i++)
       composeReference(t, "CarePlan", "partOf", element.getPartOf().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "CarePlan", "status", element.getStatusElement(), -1);
+      composeString(t, "CarePlan", "status", element.getStatusElement(), -1);
     if (element.hasIntentElement())
-      composeEnum(t, "CarePlan", "intent", element.getIntentElement(), -1);
+      composeString(t, "CarePlan", "intent", element.getIntentElement(), -1);
     for (int i = 0; i < element.getCategory().size(); i++)
       composeCodeableConcept(t, "CarePlan", "category", element.getCategory().get(i), i);
     if (element.hasTitleElement())
@@ -2905,7 +2905,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "detail", name, element, index);
     if (element.hasKindElement())
-      composeEnum(t, "CarePlan", "kind", element.getKindElement(), -1);
+      composeString(t, "CarePlan", "kind", element.getKindElement(), -1);
     for (int i = 0; i < element.getInstantiatesCanonical().size(); i++)
       composeCanonical(t, "CarePlan", "instantiatesCanonical", element.getInstantiatesCanonical().get(i), i);
     for (int i = 0; i < element.getInstantiatesUri().size(); i++)
@@ -2919,7 +2919,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getGoal().size(); i++)
       composeReference(t, "CarePlan", "goal", element.getGoal().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "CarePlan", "status", element.getStatusElement(), -1);
+      composeString(t, "CarePlan", "status", element.getStatusElement(), -1);
     if (element.hasStatusReason())
       composeCodeableConcept(t, "CarePlan", "statusReason", element.getStatusReason(), -1);
     if (element.hasDoNotPerformElement())
@@ -2953,7 +2953,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "CareTeam", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "CareTeam", "status", element.getStatusElement(), -1);
+      composeString(t, "CareTeam", "status", element.getStatusElement(), -1);
     for (int i = 0; i < element.getCategory().size(); i++)
       composeCodeableConcept(t, "CareTeam", "category", element.getCategory().get(i), i);
     if (element.hasNameElement())
@@ -3274,13 +3274,13 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "Claim", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "Claim", "status", element.getStatusElement(), -1);
+      composeString(t, "Claim", "status", element.getStatusElement(), -1);
     if (element.hasType())
       composeCodeableConcept(t, "Claim", "type", element.getType(), -1);
     if (element.hasSubType())
       composeCodeableConcept(t, "Claim", "subType", element.getSubType(), -1);
     if (element.hasUseElement())
-      composeEnum(t, "Claim", "use", element.getUseElement(), -1);
+      composeString(t, "Claim", "use", element.getUseElement(), -1);
     if (element.hasPatient())
       composeReference(t, "Claim", "patient", element.getPatient(), -1);
     if (element.hasBillablePeriod())
@@ -3644,13 +3644,13 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "ClaimResponse", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "ClaimResponse", "status", element.getStatusElement(), -1);
+      composeString(t, "ClaimResponse", "status", element.getStatusElement(), -1);
     if (element.hasType())
       composeCodeableConcept(t, "ClaimResponse", "type", element.getType(), -1);
     if (element.hasSubType())
       composeCodeableConcept(t, "ClaimResponse", "subType", element.getSubType(), -1);
     if (element.hasUseElement())
-      composeEnum(t, "ClaimResponse", "use", element.getUseElement(), -1);
+      composeString(t, "ClaimResponse", "use", element.getUseElement(), -1);
     if (element.hasPatient())
       composeReference(t, "ClaimResponse", "patient", element.getPatient(), -1);
     if (element.hasCreatedElement())
@@ -3662,7 +3662,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasRequest())
       composeReference(t, "ClaimResponse", "request", element.getRequest(), -1);
     if (element.hasOutcomeElement())
-      composeEnum(t, "ClaimResponse", "outcome", element.getOutcomeElement(), -1);
+      composeString(t, "ClaimResponse", "outcome", element.getOutcomeElement(), -1);
     if (element.hasDispositionElement())
       composeString(t, "ClaimResponse", "disposition", element.getDispositionElement(), -1);
     if (element.hasPreAuthRefElement())
@@ -3952,7 +3952,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasNumberElement())
       composePositiveInt(t, "ClaimResponse", "number", element.getNumberElement(), -1);
     if (element.hasTypeElement())
-      composeEnum(t, "ClaimResponse", "type", element.getTypeElement(), -1);
+      composeString(t, "ClaimResponse", "type", element.getTypeElement(), -1);
     if (element.hasTextElement())
       composeString(t, "ClaimResponse", "text", element.getTextElement(), -1);
     if (element.hasLanguage())
@@ -4287,13 +4287,13 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getInResponseTo().size(); i++)
       composeReference(t, "Communication", "inResponseTo", element.getInResponseTo().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "Communication", "status", element.getStatusElement(), -1);
+      composeString(t, "Communication", "status", element.getStatusElement(), -1);
     if (element.hasStatusReason())
       composeCodeableConcept(t, "Communication", "statusReason", element.getStatusReason(), -1);
     for (int i = 0; i < element.getCategory().size(); i++)
       composeCodeableConcept(t, "Communication", "category", element.getCategory().get(i), i);
     if (element.hasPriorityElement())
-      composeEnum(t, "Communication", "priority", element.getPriorityElement(), -1);
+      composeString(t, "Communication", "priority", element.getPriorityElement(), -1);
     for (int i = 0; i < element.getMedium().size(); i++)
       composeCodeableConcept(t, "Communication", "medium", element.getMedium().get(i), i);
     if (element.hasSubject())
@@ -4357,13 +4357,13 @@ public class RdfParser extends RdfParserBase {
     if (element.hasGroupIdentifier())
       composeIdentifier(t, "CommunicationRequest", "groupIdentifier", element.getGroupIdentifier(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "CommunicationRequest", "status", element.getStatusElement(), -1);
+      composeString(t, "CommunicationRequest", "status", element.getStatusElement(), -1);
     if (element.hasStatusReason())
       composeCodeableConcept(t, "CommunicationRequest", "statusReason", element.getStatusReason(), -1);
     for (int i = 0; i < element.getCategory().size(); i++)
       composeCodeableConcept(t, "CommunicationRequest", "category", element.getCategory().get(i), i);
     if (element.hasPriorityElement())
-      composeEnum(t, "CommunicationRequest", "priority", element.getPriorityElement(), -1);
+      composeString(t, "CommunicationRequest", "priority", element.getPriorityElement(), -1);
     if (element.hasDoNotPerformElement())
       composeBoolean(t, "CommunicationRequest", "doNotPerform", element.getDoNotPerformElement(), -1);
     for (int i = 0; i < element.getMedium().size(); i++)
@@ -5002,7 +5002,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasVersionElement())
       composeString(t, "Contract", "version", element.getVersionElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "Contract", "status", element.getStatusElement(), -1);
+      composeString(t, "Contract", "status", element.getStatusElement(), -1);
     if (element.hasLegalState())
       composeCodeableConcept(t, "Contract", "legalState", element.getLegalState(), -1);
     if (element.hasInstantiatesCanonical())
@@ -5083,7 +5083,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasPublicationDateElement())
       composeDateTime(t, "Contract", "publicationDate", element.getPublicationDateElement(), -1);
     if (element.hasPublicationStatusElement())
-      composeEnum(t, "Contract", "publicationStatus", element.getPublicationStatusElement(), -1);
+      composeString(t, "Contract", "publicationStatus", element.getPublicationStatusElement(), -1);
     if (element.hasCopyrightElement())
       composeMarkdown(t, "Contract", "copyright", element.getCopyrightElement(), -1);
   }
@@ -5463,7 +5463,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "Coverage", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "Coverage", "status", element.getStatusElement(), -1);
+      composeString(t, "Coverage", "status", element.getStatusElement(), -1);
     if (element.hasType())
       composeCodeableConcept(t, "Coverage", "type", element.getType(), -1);
     if (element.hasPolicyHolder())
@@ -5566,11 +5566,11 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "CoverageEligibilityRequest", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "CoverageEligibilityRequest", "status", element.getStatusElement(), -1);
+      composeString(t, "CoverageEligibilityRequest", "status", element.getStatusElement(), -1);
     if (element.hasPriority())
       composeCodeableConcept(t, "CoverageEligibilityRequest", "priority", element.getPriority(), -1);
     for (int i = 0; i < element.getPurpose().size(); i++)
-      composeEnum(t, "CoverageEligibilityRequest", "purpose", element.getPurpose().get(i), i);
+      composeString(t, "CoverageEligibilityRequest", "purpose", element.getPurpose().get(i), i);
     if (element.hasPatient())
       composeReference(t, "CoverageEligibilityRequest", "patient", element.getPatient(), -1);
     if (element.hasServiced())
@@ -5699,9 +5699,9 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "CoverageEligibilityResponse", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "CoverageEligibilityResponse", "status", element.getStatusElement(), -1);
+      composeString(t, "CoverageEligibilityResponse", "status", element.getStatusElement(), -1);
     for (int i = 0; i < element.getPurpose().size(); i++)
-      composeEnum(t, "CoverageEligibilityResponse", "purpose", element.getPurpose().get(i), i);
+      composeString(t, "CoverageEligibilityResponse", "purpose", element.getPurpose().get(i), i);
     if (element.hasPatient())
       composeReference(t, "CoverageEligibilityResponse", "patient", element.getPatient(), -1);
     if (element.hasServiced())
@@ -6548,7 +6548,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasStatusElement())
       composeEnum(t, "DocumentReference", "status", element.getStatusElement(), -1);
     if (element.hasDocStatusElement())
-      composeEnum(t, "DocumentReference", "docStatus", element.getDocStatusElement(), -1);
+      composeString(t, "DocumentReference", "docStatus", element.getDocStatusElement(), -1);
     if (element.hasType())
       composeCodeableConcept(t, "DocumentReference", "type", element.getType(), -1);
     for (int i = 0; i < element.getCategory().size(); i++)
@@ -6590,7 +6590,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "relatesTo", name, element, index);
     if (element.hasCodeElement())
-      composeEnum(t, "DocumentReference", "code", element.getCodeElement(), -1);
+      composeString(t, "DocumentReference", "code", element.getCodeElement(), -1);
     if (element.hasTarget())
       composeReference(t, "DocumentReference", "target", element.getTarget(), -1);
   }
@@ -10333,9 +10333,9 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "MeasureReport", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "MeasureReport", "status", element.getStatusElement(), -1);
+      composeString(t, "MeasureReport", "status", element.getStatusElement(), -1);
     if (element.hasTypeElement())
-      composeEnum(t, "MeasureReport", "type", element.getTypeElement(), -1);
+      composeString(t, "MeasureReport", "type", element.getTypeElement(), -1);
     if (element.hasMeasureElement())
       composeCanonical(t, "MeasureReport", "measure", element.getMeasureElement(), -1);
     if (element.hasSubject())
@@ -10489,7 +10489,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getPartOf().size(); i++)
       composeReference(t, "Media", "partOf", element.getPartOf().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "Media", "status", element.getStatusElement(), -1);
+      composeString(t, "Media", "status", element.getStatusElement(), -1);
     if (element.hasType())
       composeCodeableConcept(t, "Media", "type", element.getType(), -1);
     if (element.hasModality())
@@ -10543,7 +10543,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasCode())
       composeCodeableConcept(t, "Medication", "code", element.getCode(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "Medication", "status", element.getStatusElement(), -1);
+      composeString(t, "Medication", "status", element.getStatusElement(), -1);
     if (element.hasManufacturer())
       composeReference(t, "Medication", "manufacturer", element.getManufacturer(), -1);
     if (element.hasForm())
@@ -10610,7 +10610,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getPartOf().size(); i++)
       composeReference(t, "MedicationAdministration", "partOf", element.getPartOf().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "MedicationAdministration", "status", element.getStatusElement(), -1);
+      composeString(t, "MedicationAdministration", "status", element.getStatusElement(), -1);
     for (int i = 0; i < element.getStatusReason().size(); i++)
       composeCodeableConcept(t, "MedicationAdministration", "statusReason", element.getStatusReason().get(i), i);
     if (element.hasCategory())
@@ -10706,7 +10706,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getPartOf().size(); i++)
       composeReference(t, "MedicationDispense", "partOf", element.getPartOf().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "MedicationDispense", "status", element.getStatusElement(), -1);
+      composeString(t, "MedicationDispense", "status", element.getStatusElement(), -1);
     if (element.hasStatusReason())
       composeType(t, "MedicationDispense", "statusReason", element.getStatusReason(), -1);
     if (element.hasCategory())
@@ -10806,7 +10806,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasCode())
       composeCodeableConcept(t, "MedicationKnowledge", "code", element.getCode(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "MedicationKnowledge", "status", element.getStatusElement(), -1);
+      composeString(t, "MedicationKnowledge", "status", element.getStatusElement(), -1);
     if (element.hasManufacturer())
       composeReference(t, "MedicationKnowledge", "manufacturer", element.getManufacturer(), -1);
     if (element.hasDoseForm())
@@ -11173,15 +11173,15 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "MedicationRequest", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "MedicationRequest", "status", element.getStatusElement(), -1);
+      composeString(t, "MedicationRequest", "status", element.getStatusElement(), -1);
     if (element.hasStatusReason())
       composeCodeableConcept(t, "MedicationRequest", "statusReason", element.getStatusReason(), -1);
     if (element.hasIntentElement())
-      composeEnum(t, "MedicationRequest", "intent", element.getIntentElement(), -1);
+      composeString(t, "MedicationRequest", "intent", element.getIntentElement(), -1);
     for (int i = 0; i < element.getCategory().size(); i++)
       composeCodeableConcept(t, "MedicationRequest", "category", element.getCategory().get(i), i);
     if (element.hasPriorityElement())
-      composeEnum(t, "MedicationRequest", "priority", element.getPriorityElement(), -1);
+      composeString(t, "MedicationRequest", "priority", element.getPriorityElement(), -1);
     if (element.hasDoNotPerformElement())
       composeBoolean(t, "MedicationRequest", "doNotPerform", element.getDoNotPerformElement(), -1);
     if (element.hasReported())
@@ -11320,7 +11320,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getPartOf().size(); i++)
       composeReference(t, "MedicationStatement", "partOf", element.getPartOf().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "MedicationStatement", "status", element.getStatusElement(), -1);
+      composeString(t, "MedicationStatement", "status", element.getStatusElement(), -1);
     for (int i = 0; i < element.getStatusReason().size(); i++)
       composeCodeableConcept(t, "MedicationStatement", "statusReason", element.getStatusReason().get(i), i);
     if (element.hasCategory())
@@ -12211,7 +12211,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasEvent())
       composeType(t, "MessageDefinition", "event", element.getEvent(), -1);
     if (element.hasCategoryElement())
-      composeEnum(t, "MessageDefinition", "category", element.getCategoryElement(), -1);
+      composeString(t, "MessageDefinition", "category", element.getCategoryElement(), -1);
     for (int i = 0; i < element.getFocus().size(); i++)
       composeMessageDefinitionMessageDefinitionFocusComponent(t, "MessageDefinition", "focus",
           element.getFocus().get(i), i);
@@ -12704,9 +12704,9 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getInstantiates().size(); i++)
       composeUri(t, "NutritionOrder", "instantiates", element.getInstantiates().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "NutritionOrder", "status", element.getStatusElement(), -1);
+      composeString(t, "NutritionOrder", "status", element.getStatusElement(), -1);
     if (element.hasIntentElement())
-      composeEnum(t, "NutritionOrder", "intent", element.getIntentElement(), -1);
+      composeString(t, "NutritionOrder", "intent", element.getIntentElement(), -1);
     if (element.hasPatient())
       composeReference(t, "NutritionOrder", "patient", element.getPatient(), -1);
     if (element.hasEncounter())
@@ -12888,7 +12888,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getPartOf().size(); i++)
       composeReference(t, "Observation", "partOf", element.getPartOf().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "Observation", "status", element.getStatusElement(), -1);
+      composeString(t, "Observation", "status", element.getStatusElement(), -1);
     for (int i = 0; i < element.getCategory().size(); i++)
       composeCodeableConcept(t, "Observation", "category", element.getCategory().get(i), i);
     if (element.hasCode())
@@ -13467,7 +13467,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasOther())
       composeReference(t, "Patient", "other", element.getOther(), -1);
     if (element.hasTypeElement())
-      composeEnum(t, "Patient", "type", element.getTypeElement(), -1);
+      composeString(t, "Patient", "type", element.getTypeElement(), -1);
   }
 
   protected void composePaymentNotice(Complex parent, String parentType, String name, PaymentNotice element,
@@ -18581,7 +18581,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "VisionPrescription", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "VisionPrescription", "status", element.getStatusElement(), -1);
+      composeString(t, "VisionPrescription", "status", element.getStatusElement(), -1);
     if (element.hasCreatedElement())
       composeDateTime(t, "VisionPrescription", "created", element.getCreatedElement(), -1);
     if (element.hasPatient())
@@ -18612,7 +18612,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasProduct())
       composeCodeableConcept(t, "VisionPrescription", "product", element.getProduct(), -1);
     if (element.hasEyeElement())
-      composeEnum(t, "VisionPrescription", "eye", element.getEyeElement(), -1);
+      composeString(t, "VisionPrescription", "eye", element.getEyeElement(), -1);
     if (element.hasSphereElement())
       composeDecimal(t, "VisionPrescription", "sphere", element.getSphereElement(), -1);
     if (element.hasCylinderElement())
@@ -18653,7 +18653,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasAmountElement())
       composeDecimal(t, "VisionPrescription", "amount", element.getAmountElement(), -1);
     if (element.hasBaseElement())
-      composeEnum(t, "VisionPrescription", "base", element.getBaseElement(), -1);
+      composeString(t, "VisionPrescription", "base", element.getBaseElement(), -1);
   }
 
   @Override

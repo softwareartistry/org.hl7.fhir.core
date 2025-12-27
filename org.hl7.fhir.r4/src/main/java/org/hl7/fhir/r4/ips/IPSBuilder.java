@@ -134,7 +134,7 @@ public class IPSBuilder {
         }
         tr.td().tx(genCC(mdstmt.getCategory()));
         var td = tr.td();
-        td.tx(mdstmt.getStatus().getDisplay());
+        td.tx(mdstmt.getStatus().toString());
         if (mdstmt.hasStatusReason()) {
           td.tx(" (");
           td.tx(genCC(mdstmt.getStatusReason()));
