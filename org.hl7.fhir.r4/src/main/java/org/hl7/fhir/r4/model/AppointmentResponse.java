@@ -49,30 +49,30 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "AppointmentResponse", profile = "http://hl7.org/fhir/StructureDefinition/AppointmentResponse")
 public class AppointmentResponse extends DomainResource {
 
-  public enum ParticipantStatus {
-    /**
+/*  public enum ParticipantStatus {
+    *//**
      * The participant has accepted the appointment.
-     */
+     *//*
     ACCEPTED,
-    /**
+    *//**
      * The participant has declined the appointment and will not participate in the
      * appointment.
-     */
+     *//*
     DECLINED,
-    /**
+    *//**
      * The participant has tentatively accepted the appointment. This could be
      * automatically created by a system and requires further processing before it
      * can be accepted. There is no commitment that attendance will occur.
-     */
+     *//*
     TENTATIVE,
-    /**
+    *//**
      * The participant needs to indicate if they accept the appointment by changing
      * this status to one of the other statuses.
-     */
+     *//*
     NEEDSACTION,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static ParticipantStatus fromCode(String codeString) throws FHIRException {
@@ -213,7 +213,7 @@ public class AppointmentResponse extends DomainResource {
     public String toSystem(ParticipantStatus code) {
       return code.getSystem();
     }
-  }
+  }*/
 
   /**
    * This records identifiers associated with this appointment response concern
@@ -288,10 +288,10 @@ public class AppointmentResponse extends DomainResource {
    * confirmation of the time) or can be empty.
    */
   @Child(name = "participantStatus", type = {
-      CodeType.class }, order = 6, min = 1, max = 1, modifier = true, summary = true)
+      StringType.class }, order = 6, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "accepted | declined | tentative | needs-action", formalDefinition = "Participation status of the participant. When the status is declined or tentative if the start/end times are different to the appointment, then these times should be interpreted as a requested time change. When the status is accepted, the times can either be the time of the appointment (as a confirmation of the time) or can be empty.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/participationstatus")
-  protected Enumeration<ParticipantStatus> participantStatus;
+  protected StringType participantStatus;
 
   /**
    * Additional comments about the appointment.
@@ -312,7 +312,7 @@ public class AppointmentResponse extends DomainResource {
   /**
    * Constructor
    */
-  public AppointmentResponse(Reference appointment, Enumeration<ParticipantStatus> participantStatus) {
+  public AppointmentResponse(Reference appointment, StringType participantStatus) {
     super();
     this.appointment = appointment;
     this.participantStatus = participantStatus;
@@ -658,12 +658,12 @@ public class AppointmentResponse extends DomainResource {
    *         and extensions. The accessor "getParticipantStatus" gives direct
    *         access to the value
    */
-  public Enumeration<ParticipantStatus> getParticipantStatusElement() {
+  public StringType getParticipantStatusElement() {
     if (this.participantStatus == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create AppointmentResponse.participantStatus");
       else if (Configuration.doAutoCreate())
-        this.participantStatus = new Enumeration<ParticipantStatus>(new ParticipantStatusEnumFactory()); // bb
+        this.participantStatus = new StringType(); // bb
     return this.participantStatus;
   }
 
@@ -685,7 +685,7 @@ public class AppointmentResponse extends DomainResource {
    *              This is the underlying object with id, value and extensions. The
    *              accessor "getParticipantStatus" gives direct access to the value
    */
-  public AppointmentResponse setParticipantStatusElement(Enumeration<ParticipantStatus> value) {
+  public AppointmentResponse setParticipantStatusElement(StringType value) {
     this.participantStatus = value;
     return this;
   }
@@ -697,8 +697,8 @@ public class AppointmentResponse extends DomainResource {
    *         When the status is accepted, the times can either be the time of the
    *         appointment (as a confirmation of the time) or can be empty.
    */
-  public ParticipantStatus getParticipantStatus() {
-    return this.participantStatus == null ? null : this.participantStatus.getValue();
+  public StringType getParticipantStatus() {
+    return this.participantStatus == null ? null : this.participantStatus;
   }
 
   /**
@@ -709,10 +709,10 @@ public class AppointmentResponse extends DomainResource {
    *              can either be the time of the appointment (as a confirmation of
    *              the time) or can be empty.
    */
-  public AppointmentResponse setParticipantStatus(ParticipantStatus value) {
+  public AppointmentResponse setParticipantStatus(StringType value) {
     if (this.participantStatus == null)
-      this.participantStatus = new Enumeration<ParticipantStatus>(new ParticipantStatusEnumFactory());
-    this.participantStatus.setValue(value);
+      this.participantStatus = new StringType();
+    this.participantStatus =value;
     return this;
   }
 
@@ -879,8 +879,8 @@ public class AppointmentResponse extends DomainResource {
       this.actor = castToReference(value); // Reference
       return value;
     case 996096261: // participantStatus
-      value = new ParticipantStatusEnumFactory().fromType(castToCode(value));
-      this.participantStatus = (Enumeration) value; // Enumeration<ParticipantStatus>
+//      value = new ParticipantStatusEnumFactory().fromType(castToCode(value));
+      this.participantStatus = castToString(value); // Enumeration<ParticipantStatus>
       return value;
     case 950398559: // comment
       this.comment = castToString(value); // StringType
@@ -906,8 +906,8 @@ public class AppointmentResponse extends DomainResource {
     } else if (name.equals("actor")) {
       this.actor = castToReference(value); // Reference
     } else if (name.equals("participantStatus")) {
-      value = new ParticipantStatusEnumFactory().fromType(castToCode(value));
-      this.participantStatus = (Enumeration) value; // Enumeration<ParticipantStatus>
+//      value = new ParticipantStatusEnumFactory().fromType(castToCode(value));
+      this.participantStatus = castToString(value); // Enumeration<ParticipantStatus>
     } else if (name.equals("comment")) {
       this.comment = castToString(value); // StringType
     } else

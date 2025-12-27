@@ -51,24 +51,24 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "AllergyIntolerance", profile = "http://hl7.org/fhir/StructureDefinition/AllergyIntolerance")
 public class AllergyIntolerance extends DomainResource {
 
-  public enum AllergyIntoleranceType {
-    /**
+/*  public enum AllergyIntoleranceType {
+    *//**
      * A propensity for hypersensitive reaction(s) to a substance. These reactions
      * are most typically type I hypersensitivity, plus other "allergy-like"
      * reactions, including pseudoallergy.
-     */
+     *//*
     ALLERGY,
-    /**
+    *//**
      * A propensity for adverse reactions to a substance that is not judged to be
      * allergic or "allergy-like". These reactions are typically (but not
      * necessarily) non-immune. They are to some degree idiosyncratic and/or
      * patient-specific (i.e. are not a reaction that is expected to occur with most
      * or all patients given similar circumstances).
-     */
+     *//*
     INTOLERANCE,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static AllergyIntoleranceType fromCode(String codeString) throws FHIRException {
@@ -180,20 +180,20 @@ public class AllergyIntolerance extends DomainResource {
   }
 
   public enum AllergyIntoleranceCategory {
-    /**
+    *//**
      * Any substance consumed to provide nutritional support for the body.
-     */
+     *//*
     FOOD,
-    /**
+    *//**
      * Substances administered to achieve a physiological effect.
-     */
+     *//*
     MEDICATION,
-    /**
+    *//**
      * Any substances that are encountered in the environment, including any
      * substance not already classified as food, medication, or biologic.
-     */
+     *//*
     ENVIRONMENT,
-    /**
+    *//**
      * A preparation that is synthesized from living organisms or their products,
      * especially a human or animal protein, such as a hormone or antitoxin, that is
      * used as a diagnostic, preventive, or therapeutic agent. Examples of biologic
@@ -201,11 +201,11 @@ public class AllergyIntolerance extends DomainResource {
      * diagnosis and treatment (for example, allergy shots); gene therapies;
      * cellular therapies. There are other biologic products, such as tissues, which
      * are not typically associated with allergies.
-     */
+     *//*
     BIOLOGIC,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static AllergyIntoleranceCategory fromCode(String codeString) throws FHIRException {
@@ -349,23 +349,23 @@ public class AllergyIntolerance extends DomainResource {
   }
 
   public enum AllergyIntoleranceCriticality {
-    /**
+    *//**
      * Worst case result of a future exposure is not assessed to be life-threatening
      * or having high potential for organ system failure.
-     */
+     *//*
     LOW,
-    /**
+    *//**
      * Worst case result of a future exposure is assessed to be life-threatening or
      * having high potential for organ system failure.
-     */
+     *//*
     HIGH,
-    /**
+    *//**
      * Unable to assess the worst case result of a future exposure.
-     */
+     *//*
     UNABLETOASSESS,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static AllergyIntoleranceCriticality fromCode(String codeString) throws FHIRException {
@@ -493,21 +493,21 @@ public class AllergyIntolerance extends DomainResource {
   }
 
   public enum AllergyIntoleranceSeverity {
-    /**
+    *//**
      * Causes mild physiological effects.
-     */
+     *//*
     MILD,
-    /**
+    *//**
      * Causes moderate physiological effects.
-     */
+     *//*
     MODERATE,
-    /**
+    *//**
      * Causes severe physiological effects.
-     */
+     *//*
     SEVERE,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static AllergyIntoleranceSeverity fromCode(String codeString) throws FHIRException {
@@ -632,7 +632,7 @@ public class AllergyIntolerance extends DomainResource {
     public String toSystem(AllergyIntoleranceSeverity code) {
       return code.getSystem();
     }
-  }
+  }*/
 
   @Block()
   public static class AllergyIntoleranceReactionComponent extends BackboneElement implements IBaseBackboneElement {
@@ -686,10 +686,10 @@ public class AllergyIntolerance extends DomainResource {
      * Clinical assessment of the severity of the reaction event as a whole,
      * potentially considering multiple different manifestations.
      */
-    @Child(name = "severity", type = { CodeType.class }, order = 5, min = 0, max = 1, modifier = false, summary = false)
+    @Child(name = "severity", type = { StringType.class }, order = 5, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "mild | moderate | severe (of event as a whole)", formalDefinition = "Clinical assessment of the severity of the reaction event as a whole, potentially considering multiple different manifestations.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/reaction-event-severity")
-    protected Enumeration<AllergyIntoleranceSeverity> severity;
+    protected StringType severity;
 
     /**
      * Identification of the route by which the subject was exposed to the
@@ -939,12 +939,12 @@ public class AllergyIntolerance extends DomainResource {
      *         extensions. The accessor "getSeverity" gives direct access to the
      *         value
      */
-    public Enumeration<AllergyIntoleranceSeverity> getSeverityElement() {
+    public StringType getSeverityElement() {
       if (this.severity == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create AllergyIntoleranceReactionComponent.severity");
         else if (Configuration.doAutoCreate())
-          this.severity = new Enumeration<AllergyIntoleranceSeverity>(new AllergyIntoleranceSeverityEnumFactory()); // bb
+          this.severity = new StringType(); // bb
       return this.severity;
     }
 
@@ -963,7 +963,7 @@ public class AllergyIntolerance extends DomainResource {
      *              id, value and extensions. The accessor "getSeverity" gives
      *              direct access to the value
      */
-    public AllergyIntoleranceReactionComponent setSeverityElement(Enumeration<AllergyIntoleranceSeverity> value) {
+    public AllergyIntoleranceReactionComponent setSeverityElement(StringType value) {
       this.severity = value;
       return this;
     }
@@ -972,8 +972,8 @@ public class AllergyIntolerance extends DomainResource {
      * @return Clinical assessment of the severity of the reaction event as a whole,
      *         potentially considering multiple different manifestations.
      */
-    public AllergyIntoleranceSeverity getSeverity() {
-      return this.severity == null ? null : this.severity.getValue();
+    public StringType getSeverity() {
+      return this.severity == null ? null : this.severity;
     }
 
     /**
@@ -981,13 +981,13 @@ public class AllergyIntolerance extends DomainResource {
      *              whole, potentially considering multiple different
      *              manifestations.
      */
-    public AllergyIntoleranceReactionComponent setSeverity(AllergyIntoleranceSeverity value) {
+    public AllergyIntoleranceReactionComponent setSeverity(StringType value) {
       if (value == null)
         this.severity = null;
       else {
         if (this.severity == null)
-          this.severity = new Enumeration<AllergyIntoleranceSeverity>(new AllergyIntoleranceSeverityEnumFactory());
-        this.severity.setValue(value);
+          this.severity = new StringType();
+        this.severity=value;
       }
       return this;
     }
@@ -1171,8 +1171,8 @@ public class AllergyIntolerance extends DomainResource {
         this.onset = castToDateTime(value); // DateTimeType
         return value;
       case 1478300413: // severity
-        value = new AllergyIntoleranceSeverityEnumFactory().fromType(castToCode(value));
-        this.severity = (Enumeration) value; // Enumeration<AllergyIntoleranceSeverity>
+//        value = new AllergyIntoleranceSeverityEnumFactory().fromType(castToCode(value));
+        this.severity = castToString(value); // Enumeration<AllergyIntoleranceSeverity>
         return value;
       case 421286274: // exposureRoute
         this.exposureRoute = castToCodeableConcept(value); // CodeableConcept
@@ -1197,8 +1197,8 @@ public class AllergyIntolerance extends DomainResource {
       } else if (name.equals("onset")) {
         this.onset = castToDateTime(value); // DateTimeType
       } else if (name.equals("severity")) {
-        value = new AllergyIntoleranceSeverityEnumFactory().fromType(castToCode(value));
-        this.severity = (Enumeration) value; // Enumeration<AllergyIntoleranceSeverity>
+//        value = new AllergyIntoleranceSeverityEnumFactory().fromType(castToCode(value));
+        this.severity = castToString(value); // Enumeration<AllergyIntoleranceSeverity>
       } else if (name.equals("exposureRoute")) {
         this.exposureRoute = castToCodeableConcept(value); // CodeableConcept
       } else if (name.equals("note")) {
@@ -1393,28 +1393,28 @@ public class AllergyIntolerance extends DomainResource {
    * Identification of the underlying physiological mechanism for the reaction
    * risk.
    */
-  @Child(name = "type", type = { CodeType.class }, order = 3, min = 0, max = 1, modifier = false, summary = true)
+  @Child(name = "type", type = { StringType.class }, order = 3, min = 0, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "allergy | intolerance - Underlying mechanism (if known)", formalDefinition = "Identification of the underlying physiological mechanism for the reaction risk.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/allergy-intolerance-type")
-  protected Enumeration<AllergyIntoleranceType> type;
+  protected StringType type;
 
   /**
    * Category of the identified substance.
    */
   @Child(name = "category", type = {
-      CodeType.class }, order = 4, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
+      StringType.class }, order = 4, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
   @Description(shortDefinition = "food | medication | environment | biologic", formalDefinition = "Category of the identified substance.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/allergy-intolerance-category")
-  protected List<Enumeration<AllergyIntoleranceCategory>> category;
+  protected List<StringType> category;
 
   /**
    * Estimate of the potential clinical harm, or seriousness, of the reaction to
    * the identified substance.
    */
-  @Child(name = "criticality", type = { CodeType.class }, order = 5, min = 0, max = 1, modifier = false, summary = true)
+  @Child(name = "criticality", type = { StringType.class }, order = 5, min = 0, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "low | high | unable-to-assess", formalDefinition = "Estimate of the potential clinical harm, or seriousness, of the reaction to the identified substance.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality")
-  protected Enumeration<AllergyIntoleranceCriticality> criticality;
+  protected StringType criticality;
 
   /**
    * Code for an allergy or intolerance statement (either a positive or a
@@ -1671,12 +1671,12 @@ public class AllergyIntolerance extends DomainResource {
    *         id, value and extensions. The accessor "getType" gives direct access
    *         to the value
    */
-  public Enumeration<AllergyIntoleranceType> getTypeElement() {
+  public StringType getTypeElement() {
     if (this.type == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create AllergyIntolerance.type");
       else if (Configuration.doAutoCreate())
-        this.type = new Enumeration<AllergyIntoleranceType>(new AllergyIntoleranceTypeEnumFactory()); // bb
+        this.type = new StringType(); // bb
     return this.type;
   }
 
@@ -1694,7 +1694,7 @@ public class AllergyIntolerance extends DomainResource {
    *              with id, value and extensions. The accessor "getType" gives
    *              direct access to the value
    */
-  public AllergyIntolerance setTypeElement(Enumeration<AllergyIntoleranceType> value) {
+  public AllergyIntolerance setTypeElement(StringType value) {
     this.type = value;
     return this;
   }
@@ -1703,21 +1703,21 @@ public class AllergyIntolerance extends DomainResource {
    * @return Identification of the underlying physiological mechanism for the
    *         reaction risk.
    */
-  public AllergyIntoleranceType getType() {
-    return this.type == null ? null : this.type.getValue();
+  public StringType getType() {
+    return this.type == null ? null : this.type;
   }
 
   /**
    * @param value Identification of the underlying physiological mechanism for the
    *              reaction risk.
    */
-  public AllergyIntolerance setType(AllergyIntoleranceType value) {
+  public AllergyIntolerance setType(StringType value) {
     if (value == null)
       this.type = null;
     else {
       if (this.type == null)
-        this.type = new Enumeration<AllergyIntoleranceType>(new AllergyIntoleranceTypeEnumFactory());
-      this.type.setValue(value);
+        this.type = new StringType();
+      this.type= value;
     }
     return this;
   }
@@ -1725,16 +1725,16 @@ public class AllergyIntolerance extends DomainResource {
   /**
    * @return {@link #category} (Category of the identified substance.)
    */
-  public List<Enumeration<AllergyIntoleranceCategory>> getCategory() {
+  public List<StringType> getCategory() {
     if (this.category == null)
-      this.category = new ArrayList<Enumeration<AllergyIntoleranceCategory>>();
+      this.category = new ArrayList<StringType>();
     return this.category;
   }
 
   /**
    * @return Returns a reference to <code>this</code> for easy method chaining
    */
-  public AllergyIntolerance setCategory(List<Enumeration<AllergyIntoleranceCategory>> theCategory) {
+  public AllergyIntolerance setCategory(List<StringType> theCategory) {
     this.category = theCategory;
     return this;
   }
@@ -1742,7 +1742,7 @@ public class AllergyIntolerance extends DomainResource {
   public boolean hasCategory() {
     if (this.category == null)
       return false;
-    for (Enumeration<AllergyIntoleranceCategory> item : this.category)
+    for (StringType item : this.category)
       if (!item.isEmpty())
         return true;
     return false;
@@ -1751,35 +1751,35 @@ public class AllergyIntolerance extends DomainResource {
   /**
    * @return {@link #category} (Category of the identified substance.)
    */
-  public Enumeration<AllergyIntoleranceCategory> addCategoryElement() {// 2
-    Enumeration<AllergyIntoleranceCategory> t = new Enumeration<AllergyIntoleranceCategory>(
-        new AllergyIntoleranceCategoryEnumFactory());
-    if (this.category == null)
-      this.category = new ArrayList<Enumeration<AllergyIntoleranceCategory>>();
+  public StringType addCategoryElement() {
+    StringType t = new StringType();
+    if (this.category == null) {
+      this.category = new ArrayList<StringType>();
+    }
     this.category.add(t);
     return t;
   }
 
-  /**
-   * @param value {@link #category} (Category of the identified substance.)
-   */
-  public AllergyIntolerance addCategory(AllergyIntoleranceCategory value) { // 1
-    Enumeration<AllergyIntoleranceCategory> t = new Enumeration<AllergyIntoleranceCategory>(
-        new AllergyIntoleranceCategoryEnumFactory());
-    t.setValue(value);
-    if (this.category == null)
-      this.category = new ArrayList<Enumeration<AllergyIntoleranceCategory>>();
-    this.category.add(t);
-    return this;
-  }
 
   /**
    * @param value {@link #category} (Category of the identified substance.)
    */
-  public boolean hasCategory(AllergyIntoleranceCategory value) {
+  public AllergyIntolerance addCategory(StringType value) {
+    if (this.category == null) {
+      this.category = new ArrayList<StringType>();
+    }
+    this.category.add(value);
+    return this;
+  }
+
+
+  /**
+   * @param value {@link #category} (Category of the identified substance.)
+   */
+  public boolean hasCategory(StringType value) {
     if (this.category == null)
       return false;
-    for (Enumeration<AllergyIntoleranceCategory> v : this.category)
+    for (StringType v : this.category)
       if (v.getValue().equals(value)) // code
         return true;
     return false;
@@ -1791,15 +1791,15 @@ public class AllergyIntolerance extends DomainResource {
    *         the underlying object with id, value and extensions. The accessor
    *         "getCriticality" gives direct access to the value
    */
-  public Enumeration<AllergyIntoleranceCriticality> getCriticalityElement() {
+  public StringType getCriticalityElement() {
     if (this.criticality == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create AllergyIntolerance.criticality");
       else if (Configuration.doAutoCreate())
-        this.criticality = new Enumeration<AllergyIntoleranceCriticality>(
-            new AllergyIntoleranceCriticalityEnumFactory()); // bb
+        this.criticality = new StringType();
     return this.criticality;
   }
+
 
   public boolean hasCriticalityElement() {
     return this.criticality != null && !this.criticality.isEmpty();
@@ -1815,7 +1815,7 @@ public class AllergyIntolerance extends DomainResource {
    *              This is the underlying object with id, value and extensions. The
    *              accessor "getCriticality" gives direct access to the value
    */
-  public AllergyIntolerance setCriticalityElement(Enumeration<AllergyIntoleranceCriticality> value) {
+  public AllergyIntolerance setCriticalityElement(StringType value) {
     this.criticality = value;
     return this;
   }
@@ -1824,23 +1824,16 @@ public class AllergyIntolerance extends DomainResource {
    * @return Estimate of the potential clinical harm, or seriousness, of the
    *         reaction to the identified substance.
    */
-  public AllergyIntoleranceCriticality getCriticality() {
-    return this.criticality == null ? null : this.criticality.getValue();
+  public StringType getCriticality() {
+    return this.criticality == null ? null : this.criticality;
   }
 
   /**
    * @param value Estimate of the potential clinical harm, or seriousness, of the
    *              reaction to the identified substance.
    */
-  public AllergyIntolerance setCriticality(AllergyIntoleranceCriticality value) {
-    if (value == null)
-      this.criticality = null;
-    else {
-      if (this.criticality == null)
-        this.criticality = new Enumeration<AllergyIntoleranceCriticality>(
-            new AllergyIntoleranceCriticalityEnumFactory());
-      this.criticality.setValue(value);
-    }
+  public AllergyIntolerance setCriticality(StringType value) {
+    this.criticality = value;
     return this;
   }
 
@@ -2617,16 +2610,16 @@ public class AllergyIntolerance extends DomainResource {
       this.verificationStatus = castToCodeableConcept(value); // CodeableConcept
       return value;
     case 3575610: // type
-      value = new AllergyIntoleranceTypeEnumFactory().fromType(castToCode(value));
-      this.type = (Enumeration) value; // Enumeration<AllergyIntoleranceType>
+//      value = new AllergyIntoleranceTypeEnumFactory().fromType(castToCode(value));
+      this.type = castToString(value); // Enumeration<AllergyIntoleranceType>
       return value;
     case 50511102: // category
-      value = new AllergyIntoleranceCategoryEnumFactory().fromType(castToCode(value));
-      this.getCategory().add((Enumeration) value); // Enumeration<AllergyIntoleranceCategory>
+//      value = new AllergyIntoleranceCategoryEnumFactory().fromType(castToCode(value));
+      this.getCategory().add(castToString(value)); // Enumeration<AllergyIntoleranceCategory>
       return value;
     case -1608054609: // criticality
-      value = new AllergyIntoleranceCriticalityEnumFactory().fromType(castToCode(value));
-      this.criticality = (Enumeration) value; // Enumeration<AllergyIntoleranceCriticality>
+//      value = new AllergyIntoleranceCriticalityEnumFactory().fromType(castToCode(value));
+      this.criticality = castToString(value); // Enumeration<AllergyIntoleranceCriticality>
       return value;
     case 3059181: // code
       this.code = castToCodeableConcept(value); // CodeableConcept
@@ -2673,14 +2666,14 @@ public class AllergyIntolerance extends DomainResource {
     } else if (name.equals("verificationStatus")) {
       this.verificationStatus = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("type")) {
-      value = new AllergyIntoleranceTypeEnumFactory().fromType(castToCode(value));
-      this.type = (Enumeration) value; // Enumeration<AllergyIntoleranceType>
+//      value = new AllergyIntoleranceTypeEnumFactory().fromType(castToCode(value));
+      this.type = castToString(value); // Enumeration<AllergyIntoleranceType>
     } else if (name.equals("category")) {
-      value = new AllergyIntoleranceCategoryEnumFactory().fromType(castToCode(value));
-      this.getCategory().add((Enumeration) value);
+//      value = new AllergyIntoleranceCategoryEnumFactory().fromType(castToCode(value));
+      this.getCategory().add(castToString(value));
     } else if (name.equals("criticality")) {
-      value = new AllergyIntoleranceCriticalityEnumFactory().fromType(castToCode(value));
-      this.criticality = (Enumeration) value; // Enumeration<AllergyIntoleranceCriticality>
+//      value = new AllergyIntoleranceCriticalityEnumFactory().fromType(castToCode(value));
+      this.criticality = castToString(value); // Enumeration<AllergyIntoleranceCriticality>
     } else if (name.equals("code")) {
       this.code = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("patient")) {
@@ -2720,7 +2713,7 @@ public class AllergyIntolerance extends DomainResource {
       this.getCategory().remove((Enumeration) value);
     } else if (name.equals("criticality")) {
       value = null;
-      this.criticality = (Enumeration) value; // Enumeration<AllergyIntoleranceCriticality>
+      this.criticality = castToString(value); // Enumeration<AllergyIntoleranceCriticality>
     } else if (name.equals("code")) {
       this.code = null;
     } else if (name.equals("patient")) {
@@ -2911,8 +2904,8 @@ public class AllergyIntolerance extends DomainResource {
     dst.verificationStatus = verificationStatus == null ? null : verificationStatus.copy();
     dst.type = type == null ? null : type.copy();
     if (category != null) {
-      dst.category = new ArrayList<Enumeration<AllergyIntoleranceCategory>>();
-      for (Enumeration<AllergyIntoleranceCategory> i : category)
+      dst.category = new ArrayList<StringType>();
+      for (StringType i : category)
         dst.category.add(i.copy());
     }
     ;

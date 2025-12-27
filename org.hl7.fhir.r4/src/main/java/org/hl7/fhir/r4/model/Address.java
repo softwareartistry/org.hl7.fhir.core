@@ -51,32 +51,32 @@ import ca.uhn.fhir.model.api.annotation.Description;
 @DatatypeDef(name = "Address")
 public class Address extends Type implements ICompositeType {
 
-  public enum AddressUse {
-    /**
+/*  public enum AddressUse {
+    *//**
      * A communication address at a home.
-     */
+     *//*
     HOME,
-    /**
+    *//**
      * An office address. First choice for business related contacts during business
      * hours.
-     */
+     *//*
     WORK,
-    /**
+    *//**
      * A temporary address. The period can provide more detailed information.
-     */
+     *//*
     TEMP,
-    /**
+    *//**
      * This address is no longer in use (or was never correct but retained for
      * records).
-     */
+     *//*
     OLD,
-    /**
+    *//**
      * An address to be used to send bills, invoices, receipts etc.
-     */
+     *//*
     BILLING,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static AddressUse fromCode(String codeString) throws FHIRException {
@@ -236,21 +236,21 @@ public class Address extends Type implements ICompositeType {
   }
 
   public enum AddressType {
-    /**
+    *//**
      * Mailing addresses - PO Boxes and care-of addresses.
-     */
+     *//*
     POSTAL,
-    /**
+    *//**
      * A physical address that can be visited.
-     */
+     *//*
     PHYSICAL,
-    /**
+    *//**
      * An address that is both physical and postal.
-     */
+     *//*
     BOTH,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static AddressType fromCode(String codeString) throws FHIRException {
@@ -375,7 +375,7 @@ public class Address extends Type implements ICompositeType {
     public String toSystem(AddressType code) {
       return code.getSystem();
     }
-  }
+  }*/
 
   /**
    * The purpose of this address.
@@ -383,16 +383,16 @@ public class Address extends Type implements ICompositeType {
   @Child(name = "use", type = { CodeType.class }, order = 0, min = 0, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "home | work | temp | old | billing - purpose of this address", formalDefinition = "The purpose of this address.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/address-use")
-  protected Enumeration<AddressUse> use;
+  protected StringType use;
 
   /**
    * Distinguishes between physical addresses (those you can visit) and mailing
    * addresses (e.g. PO Boxes and care-of addresses). Most addresses are both.
    */
-  @Child(name = "type", type = { CodeType.class }, order = 1, min = 0, max = 1, modifier = false, summary = true)
+  @Child(name = "type", type = { StringType.class }, order = 1, min = 0, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "postal | physical | both", formalDefinition = "Distinguishes between physical addresses (those you can visit) and mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses are both.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/address-type")
-  protected Enumeration<AddressType> type;
+  protected StringType type;
 
   /**
    * Specifies the entire address as it should be displayed e.g. on a postal
@@ -472,12 +472,12 @@ public class Address extends Type implements ICompositeType {
    *         object with id, value and extensions. The accessor "getUse" gives
    *         direct access to the value
    */
-  public Enumeration<AddressUse> getUseElement() {
+  public StringType getUseElement() {
     if (this.use == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Address.use");
       else if (Configuration.doAutoCreate())
-        this.use = new Enumeration<AddressUse>(new AddressUseEnumFactory()); // bb
+        this.use = new StringType(); // bb
     return this.use;
   }
 
@@ -494,7 +494,7 @@ public class Address extends Type implements ICompositeType {
    *              underlying object with id, value and extensions. The accessor
    *              "getUse" gives direct access to the value
    */
-  public Address setUseElement(Enumeration<AddressUse> value) {
+  public Address setUseElement(StringType value) {
     this.use = value;
     return this;
   }
@@ -502,20 +502,20 @@ public class Address extends Type implements ICompositeType {
   /**
    * @return The purpose of this address.
    */
-  public AddressUse getUse() {
-    return this.use == null ? null : this.use.getValue();
+  public StringType getUse() {
+    return this.use == null ? null : this.use;
   }
 
   /**
    * @param value The purpose of this address.
    */
-  public Address setUse(AddressUse value) {
+  public Address setUse(StringType value) {
     if (value == null)
       this.use = null;
     else {
       if (this.use == null)
-        this.use = new Enumeration<AddressUse>(new AddressUseEnumFactory());
-      this.use.setValue(value);
+        this.use = new StringType();
+      this.use = value;
     }
     return this;
   }
@@ -527,12 +527,12 @@ public class Address extends Type implements ICompositeType {
    *         with id, value and extensions. The accessor "getType" gives direct
    *         access to the value
    */
-  public Enumeration<AddressType> getTypeElement() {
+  public StringType getTypeElement() {
     if (this.type == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Address.type");
       else if (Configuration.doAutoCreate())
-        this.type = new Enumeration<AddressType>(new AddressTypeEnumFactory()); // bb
+        this.type = new StringType(); // bb
     return this.type;
   }
 
@@ -551,7 +551,7 @@ public class Address extends Type implements ICompositeType {
    *              object with id, value and extensions. The accessor "getType"
    *              gives direct access to the value
    */
-  public Address setTypeElement(Enumeration<AddressType> value) {
+  public Address setTypeElement(StringType value) {
     this.type = value;
     return this;
   }
@@ -561,8 +561,8 @@ public class Address extends Type implements ICompositeType {
    *         mailing addresses (e.g. PO Boxes and care-of addresses). Most
    *         addresses are both.
    */
-  public AddressType getType() {
-    return this.type == null ? null : this.type.getValue();
+  public StringType getType() {
+    return this.type == null ? null : this.type;
   }
 
   /**
@@ -570,13 +570,13 @@ public class Address extends Type implements ICompositeType {
    *              and mailing addresses (e.g. PO Boxes and care-of addresses).
    *              Most addresses are both.
    */
-  public Address setType(AddressType value) {
+  public Address setType(StringType value) {
     if (value == null)
       this.type = null;
     else {
       if (this.type == null)
-        this.type = new Enumeration<AddressType>(new AddressTypeEnumFactory());
-      this.type.setValue(value);
+        this.type = new StringType();
+      this.type = value;
     }
     return this;
   }
@@ -1117,12 +1117,12 @@ public class Address extends Type implements ICompositeType {
   public Base setProperty(int hash, String name, Base value) throws FHIRException {
     switch (hash) {
     case 116103: // use
-      value = new AddressUseEnumFactory().fromType(castToCode(value));
-      this.use = (Enumeration) value; // Enumeration<AddressUse>
+//      value = new AddressUseEnumFactory().fromType(castToCode(value));
+      this.use = castToString(value); // Enumeration<AddressUse>
       return value;
     case 3575610: // type
-      value = new AddressTypeEnumFactory().fromType(castToCode(value));
-      this.type = (Enumeration) value; // Enumeration<AddressType>
+//      value = new AddressTypeEnumFactory().fromType(castToCode(value));
+      this.type = castToString(value); // Enumeration<AddressType>
       return value;
     case 3556653: // text
       this.text = castToString(value); // StringType
@@ -1157,11 +1157,11 @@ public class Address extends Type implements ICompositeType {
   @Override
   public Base setProperty(String name, Base value) throws FHIRException {
     if (name.equals("use")) {
-      value = new AddressUseEnumFactory().fromType(castToCode(value));
-      this.use = (Enumeration) value; // Enumeration<AddressUse>
+//      value = new AddressUseEnumFactory().fromType(castToCode(value));
+      this.use = castToString(value); // Enumeration<AddressUse>
     } else if (name.equals("type")) {
-      value = new AddressTypeEnumFactory().fromType(castToCode(value));
-      this.type = (Enumeration) value; // Enumeration<AddressType>
+//      value = new AddressTypeEnumFactory().fromType(castToCode(value));
+      this.type = castToString(value); // Enumeration<AddressType>
     } else if (name.equals("text")) {
       this.text = castToString(value); // StringType
     } else if (name.equals("line")) {

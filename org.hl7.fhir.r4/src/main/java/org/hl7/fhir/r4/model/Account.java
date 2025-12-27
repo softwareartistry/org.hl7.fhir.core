@@ -50,34 +50,34 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Account", profile = "http://hl7.org/fhir/StructureDefinition/Account")
 public class Account extends DomainResource {
 
-  public enum AccountStatus {
-    /**
+/*  public enum AccountStatus {
+    *//**
      * This account is active and may be used.
-     */
+     *//*
     ACTIVE,
-    /**
+    *//**
      * This account is inactive and should not be used to track financial
      * information.
-     */
+     *//*
     INACTIVE,
-    /**
+    *//**
      * This instance should not have been part of this patient's medical record.
-     */
+     *//*
     ENTEREDINERROR,
-    /**
+    *//**
      * This account is on hold.
-     */
+     *//*
     ONHOLD,
-    /**
+    *//**
      * The account status is unknown.
-     */
+     *//*
     UNKNOWN,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
-    NULL;
+     *//*
+    NULL;*/
 
-    public static AccountStatus fromCode(String codeString) throws FHIRException {
+/*    public static AccountStatus fromCode(String codeString) throws FHIRException {
       if (codeString == null || "".equals(codeString))
         return null;
       if ("active".equals(codeString))
@@ -231,7 +231,7 @@ public class Account extends DomainResource {
     public String toSystem(AccountStatus code) {
       return code.getSystem();
     }
-  }
+  }*/
 
   @Block()
   public static class CoverageComponent extends BackboneElement implements IBaseBackboneElement {
@@ -923,10 +923,10 @@ public class Account extends DomainResource {
   /**
    * Indicates whether the account is presently used/usable or not.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "active | inactive | entered-in-error | on-hold | unknown", formalDefinition = "Indicates whether the account is presently used/usable or not.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/account-status")
-  protected Enumeration<AccountStatus> status;
+  protected StringType status;
 
   /**
    * Categorizes the account for reporting and searching purposes.
@@ -1033,7 +1033,7 @@ public class Account extends DomainResource {
   /**
    * Constructor
    */
-  public Account(Enumeration<AccountStatus> status) {
+  public Account(StringType status) {
     super();
     this.status = status;
   }
@@ -1100,12 +1100,12 @@ public class Account extends DomainResource {
    *         and extensions. The accessor "getStatus" gives direct access to the
    *         value
    */
-  public Enumeration<AccountStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Account.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<AccountStatus>(new AccountStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -1123,7 +1123,7 @@ public class Account extends DomainResource {
    *              value and extensions. The accessor "getStatus" gives direct
    *              access to the value
    */
-  public Account setStatusElement(Enumeration<AccountStatus> value) {
+  public Account setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1131,17 +1131,15 @@ public class Account extends DomainResource {
   /**
    * @return Indicates whether the account is presently used/usable or not.
    */
-  public AccountStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value Indicates whether the account is presently used/usable or not.
    */
-  public Account setStatus(AccountStatus value) {
-    if (this.status == null)
-      this.status = new Enumeration<AccountStatus>(new AccountStatusEnumFactory());
-    this.status.setValue(value);
+  public Account setStatus(StringType value) {
+      this.status = value;
     return this;
   }
 
@@ -1700,8 +1698,8 @@ public class Account extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new AccountStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<AccountStatus>
+//      value = new AccountStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value) ; // Enumeration<AccountStatus>
       return value;
     case 3575610: // type
       this.type = castToCodeableConcept(value); // CodeableConcept
@@ -1741,8 +1739,8 @@ public class Account extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new AccountStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<AccountStatus>
+//      value = new AccountStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // Enumeration<AccountStatus>
     } else if (name.equals("type")) {
       this.type = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("name")) {

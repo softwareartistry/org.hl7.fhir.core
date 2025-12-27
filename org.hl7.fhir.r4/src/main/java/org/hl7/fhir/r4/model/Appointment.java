@@ -52,61 +52,61 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Appointment", profile = "http://hl7.org/fhir/StructureDefinition/Appointment")
 public class Appointment extends DomainResource {
 
-  public enum AppointmentStatus {
-    /**
+/*  public enum AppointmentStatus {
+    *//**
      * None of the participant(s) have finalized their acceptance of the appointment
      * request, and the start/end time might not be set yet.
-     */
+     *//*
     PROPOSED,
-    /**
+    *//**
      * Some or all of the participant(s) have not finalized their acceptance of the
      * appointment request.
-     */
+     *//*
     PENDING,
-    /**
+    *//**
      * All participant(s) have been considered and the appointment is confirmed to
      * go ahead at the date/times specified.
-     */
+     *//*
     BOOKED,
-    /**
+    *//**
      * The patient/patients has/have arrived and is/are waiting to be seen.
-     */
+     *//*
     ARRIVED,
-    /**
+    *//**
      * The planning stages of the appointment are now complete, the encounter
      * resource will exist and will track further status changes. Note that an
      * encounter may exist before the appointment status is fulfilled for many
      * reasons.
-     */
+     *//*
     FULFILLED,
-    /**
+    *//**
      * The appointment has been cancelled.
-     */
+     *//*
     CANCELLED,
-    /**
+    *//**
      * Some or all of the participant(s) have not/did not appear for the appointment
      * (usually the patient).
-     */
+     *//*
     NOSHOW,
-    /**
+    *//**
      * This instance should not have been part of this patient's medical record.
-     */
+     *//*
     ENTEREDINERROR,
-    /**
+    *//**
      * When checked in, all pre-encounter administrative work is complete, and the
      * encounter may begin. (where multiple patients are involved, they are all
      * present).
-     */
+     *//*
     CHECKEDIN,
-    /**
+    *//**
      * The appointment has been placed on a waitlist, to be scheduled/confirmed in
      * the future when a slot/service is available. A specific time might or might
      * not be pre-allocated.
-     */
+     *//*
     WAITLIST,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static AppointmentStatus fromCode(String codeString) throws FHIRException {
@@ -346,23 +346,23 @@ public class Appointment extends DomainResource {
   }
 
   public enum ParticipantRequired {
-    /**
+    *//**
      * The participant is required to attend the appointment.
-     */
+     *//*
     REQUIRED,
-    /**
+    *//**
      * The participant may optionally attend the appointment.
-     */
+     *//*
     OPTIONAL,
-    /**
+    *//**
      * The participant is excluded from the appointment, and might not be informed
      * of the appointment taking place. (Appointment is about them, not for them -
      * such as 2 doctors discussing results about a patient's test).
-     */
+     *//*
     INFORMATIONONLY,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static ParticipantRequired fromCode(String codeString) throws FHIRException {
@@ -490,29 +490,29 @@ public class Appointment extends DomainResource {
   }
 
   public enum ParticipationStatus {
-    /**
+    *//**
      * The participant has accepted the appointment.
-     */
+     *//*
     ACCEPTED,
-    /**
+    *//**
      * The participant has declined the appointment and will not participate in the
      * appointment.
-     */
+     *//*
     DECLINED,
-    /**
+    *//**
      * The participant has tentatively accepted the appointment. This could be
      * automatically created by a system and requires further processing before it
      * can be accepted. There is no commitment that attendance will occur.
-     */
+     *//*
     TENTATIVE,
-    /**
+    *//**
      * The participant needs to indicate if they accept the appointment by changing
      * this status to one of the other statuses.
-     */
+     *//*
     NEEDSACTION,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static ParticipationStatus fromCode(String codeString) throws FHIRException {
@@ -653,7 +653,7 @@ public class Appointment extends DomainResource {
     public String toSystem(ParticipationStatus code) {
       return code.getSystem();
     }
-  }
+  }*/
 
   @Block()
   public static class AppointmentParticipantComponent extends BackboneElement implements IBaseBackboneElement {
@@ -688,18 +688,18 @@ public class Appointment extends DomainResource {
      * covers a use-case where two doctors need to meet to discuss the results for a
      * specific patient, and the patient is not required to be present.
      */
-    @Child(name = "required", type = { CodeType.class }, order = 3, min = 0, max = 1, modifier = false, summary = true)
+    @Child(name = "required", type = { StringType.class }, order = 3, min = 0, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "required | optional | information-only", formalDefinition = "Whether this participant is required to be present at the meeting. This covers a use-case where two doctors need to meet to discuss the results for a specific patient, and the patient is not required to be present.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/participantrequired")
-    protected Enumeration<ParticipantRequired> required;
+    protected StringType required;
 
     /**
      * Participation status of the actor.
      */
-    @Child(name = "status", type = { CodeType.class }, order = 4, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "status", type = { StringType.class }, order = 4, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "accepted | declined | tentative | needs-action", formalDefinition = "Participation status of the actor.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/participationstatus")
-    protected Enumeration<ParticipationStatus> status;
+    protected StringType status;
 
     /**
      * Participation period of the actor.
@@ -720,7 +720,7 @@ public class Appointment extends DomainResource {
     /**
      * Constructor
      */
-    public AppointmentParticipantComponent(Enumeration<ParticipationStatus> status) {
+    public AppointmentParticipantComponent(StringType status) {
       super();
       this.status = status;
     }
@@ -836,12 +836,12 @@ public class Appointment extends DomainResource {
      *         value and extensions. The accessor "getRequired" gives direct access
      *         to the value
      */
-    public Enumeration<ParticipantRequired> getRequiredElement() {
+    public StringType getRequiredElement() {
       if (this.required == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create AppointmentParticipantComponent.required");
         else if (Configuration.doAutoCreate())
-          this.required = new Enumeration<ParticipantRequired>(new ParticipantRequiredEnumFactory()); // bb
+          this.required = new StringType(); // bb
       return this.required;
     }
 
@@ -861,7 +861,7 @@ public class Appointment extends DomainResource {
      *              underlying object with id, value and extensions. The accessor
      *              "getRequired" gives direct access to the value
      */
-    public AppointmentParticipantComponent setRequiredElement(Enumeration<ParticipantRequired> value) {
+    public AppointmentParticipantComponent setRequiredElement(StringType value) {
       this.required = value;
       return this;
     }
@@ -872,8 +872,8 @@ public class Appointment extends DomainResource {
      *         results for a specific patient, and the patient is not required to be
      *         present.
      */
-    public ParticipantRequired getRequired() {
-      return this.required == null ? null : this.required.getValue();
+    public StringType getRequired() {
+      return this.required == null ? null : this.required;
     }
 
     /**
@@ -882,13 +882,13 @@ public class Appointment extends DomainResource {
      *              to discuss the results for a specific patient, and the patient
      *              is not required to be present.
      */
-    public AppointmentParticipantComponent setRequired(ParticipantRequired value) {
+    public AppointmentParticipantComponent setRequired(StringType value) {
       if (value == null)
         this.required = null;
       else {
         if (this.required == null)
-          this.required = new Enumeration<ParticipantRequired>(new ParticipantRequiredEnumFactory());
-        this.required.setValue(value);
+          this.required = new StringType();
+        this.required=value;
       }
       return this;
     }
@@ -898,12 +898,12 @@ public class Appointment extends DomainResource {
      *         underlying object with id, value and extensions. The accessor
      *         "getStatus" gives direct access to the value
      */
-    public Enumeration<ParticipationStatus> getStatusElement() {
+    public StringType getStatusElement() {
       if (this.status == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create AppointmentParticipantComponent.status");
         else if (Configuration.doAutoCreate())
-          this.status = new Enumeration<ParticipationStatus>(new ParticipationStatusEnumFactory()); // bb
+          this.status = new StringType(); // bb
       return this.status;
     }
 
@@ -920,7 +920,7 @@ public class Appointment extends DomainResource {
      *              the underlying object with id, value and extensions. The
      *              accessor "getStatus" gives direct access to the value
      */
-    public AppointmentParticipantComponent setStatusElement(Enumeration<ParticipationStatus> value) {
+    public AppointmentParticipantComponent setStatusElement(StringType value) {
       this.status = value;
       return this;
     }
@@ -928,17 +928,17 @@ public class Appointment extends DomainResource {
     /**
      * @return Participation status of the actor.
      */
-    public ParticipationStatus getStatus() {
-      return this.status == null ? null : this.status.getValue();
+    public StringType getStatus() {
+      return this.status == null ? null : this.status;
     }
 
     /**
      * @param value Participation status of the actor.
      */
-    public AppointmentParticipantComponent setStatus(ParticipationStatus value) {
+    public AppointmentParticipantComponent setStatus(StringType value) {
       if (this.status == null)
-        this.status = new Enumeration<ParticipationStatus>(new ParticipationStatusEnumFactory());
-      this.status.setValue(value);
+        this.status = new StringType();
+      this.status =value;
       return this;
     }
 
@@ -1033,12 +1033,12 @@ public class Appointment extends DomainResource {
         this.actor = castToReference(value); // Reference
         return value;
       case -393139297: // required
-        value = new ParticipantRequiredEnumFactory().fromType(castToCode(value));
-        this.required = (Enumeration) value; // Enumeration<ParticipantRequired>
+//        value = new ParticipantRequiredEnumFactory().fromType(castToCode(value));
+        this.required = castToString(value); // Enumeration<ParticipantRequired>
         return value;
       case -892481550: // status
-        value = new ParticipationStatusEnumFactory().fromType(castToCode(value));
-        this.status = (Enumeration) value; // Enumeration<ParticipationStatus>
+//        value = new ParticipationStatusEnumFactory().fromType(castToCode(value));
+        this.status = castToString(value); // Enumeration<ParticipationStatus>
         return value;
       case -991726143: // period
         this.period = castToPeriod(value); // Period
@@ -1056,11 +1056,11 @@ public class Appointment extends DomainResource {
       } else if (name.equals("actor")) {
         this.actor = castToReference(value); // Reference
       } else if (name.equals("required")) {
-        value = new ParticipantRequiredEnumFactory().fromType(castToCode(value));
-        this.required = (Enumeration) value; // Enumeration<ParticipantRequired>
+//        value = new ParticipantRequiredEnumFactory().fromType(castToCode(value));
+        this.required = castToString(value); // Enumeration<ParticipantRequired>
       } else if (name.equals("status")) {
-        value = new ParticipationStatusEnumFactory().fromType(castToCode(value));
-        this.status = (Enumeration) value; // Enumeration<ParticipationStatus>
+//        value = new ParticipationStatusEnumFactory().fromType(castToCode(value));
+        this.status = castToString(value); // Enumeration<ParticipationStatus>
       } else if (name.equals("period")) {
         this.period = castToPeriod(value); // Period
       } else
@@ -1210,10 +1210,10 @@ public class Appointment extends DomainResource {
    * participation status which indicates their involvement in the process,
    * however this status indicates the shared status.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "proposed | pending | booked | arrived | fulfilled | cancelled | noshow | entered-in-error | checked-in | waitlist", formalDefinition = "The overall status of the Appointment. Each of the participants has their own participation status which indicates their involvement in the process, however this status indicates the shared status.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/appointmentstatus")
-  protected Enumeration<AppointmentStatus> status;
+  protected StringType status;
 
   /**
    * The coded reason for the appointment being cancelled. This is often used in
@@ -1448,7 +1448,7 @@ public class Appointment extends DomainResource {
   /**
    * Constructor
    */
-  public Appointment(Enumeration<AppointmentStatus> status) {
+  public Appointment(StringType status) {
     super();
     this.status = status;
   }
@@ -1518,12 +1518,12 @@ public class Appointment extends DomainResource {
    *         status.). This is the underlying object with id, value and
    *         extensions. The accessor "getStatus" gives direct access to the value
    */
-  public Enumeration<AppointmentStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Appointment.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<AppointmentStatus>(new AppointmentStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -1543,7 +1543,7 @@ public class Appointment extends DomainResource {
    *              with id, value and extensions. The accessor "getStatus" gives
    *              direct access to the value
    */
-  public Appointment setStatusElement(Enumeration<AppointmentStatus> value) {
+  public Appointment setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1553,8 +1553,8 @@ public class Appointment extends DomainResource {
    *         their own participation status which indicates their involvement in
    *         the process, however this status indicates the shared status.
    */
-  public AppointmentStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
@@ -1563,10 +1563,10 @@ public class Appointment extends DomainResource {
    *              involvement in the process, however this status indicates the
    *              shared status.
    */
-  public Appointment setStatus(AppointmentStatus value) {
+  public Appointment setStatus(StringType value) {
     if (this.status == null)
-      this.status = new Enumeration<AppointmentStatus>(new AppointmentStatusEnumFactory());
-    this.status.setValue(value);
+      this.status = new StringType();
+    this.status=value;
     return this;
   }
 
@@ -2907,8 +2907,8 @@ public class Appointment extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new AppointmentStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<AppointmentStatus>
+//      value = new AppointmentStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // Enumeration<AppointmentStatus>
       return value;
     case 987811551: // cancelationReason
       this.cancelationReason = castToCodeableConcept(value); // CodeableConcept
@@ -2981,8 +2981,8 @@ public class Appointment extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new AppointmentStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<AppointmentStatus>
+//      value = new AppointmentStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // Enumeration<AppointmentStatus>
     } else if (name.equals("cancelationReason")) {
       this.cancelationReason = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("serviceCategory")) {

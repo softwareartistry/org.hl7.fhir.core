@@ -52,48 +52,48 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "CarePlan", profile = "http://hl7.org/fhir/StructureDefinition/CarePlan")
 public class CarePlan extends DomainResource {
 
-  public enum CarePlanStatus {
-    /**
+/*  public enum CarePlanStatus {
+    *//**
      * The request has been created but is not yet complete or ready for action.
-     */
+     *//*
     DRAFT,
-    /**
+    *//**
      * The request is in force and ready to be acted upon.
-     */
+     *//*
     ACTIVE,
-    /**
+    *//**
      * The request (and any implicit authorization to act) has been temporarily
      * withdrawn but is expected to resume in the future.
-     */
+     *//*
     ONHOLD,
-    /**
+    *//**
      * The request (and any implicit authorization to act) has been terminated prior
      * to the known full completion of the intended actions. No further activity
      * should occur.
-     */
+     *//*
     REVOKED,
-    /**
+    *//**
      * The activity described by the request has been fully performed. No further
      * activity will occur.
-     */
+     *//*
     COMPLETED,
-    /**
+    *//**
      * This request should never have existed and should be considered 'void'. (It
      * is possible that real-world decisions were based on it. If real-world
      * activity has occurred, the status should be "revoked" rather than
      * "entered-in-error".).
-     */
+     *//*
     ENTEREDINERROR,
-    /**
+    *//**
      * The authoring/source system does not know which of the status values
      * currently applies for this request. Note: This concept is not to be used for
      * "other" - one of the listed statuses is presumed to apply, but the
      * authoring/source system does not know which.
-     */
+     *//*
     UNKNOWN,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static CarePlanStatus fromCode(String codeString) throws FHIRException {
@@ -285,25 +285,25 @@ public class CarePlan extends DomainResource {
   }
 
   public enum CarePlanIntent {
-    /**
+    *//**
      * null
-     */
+     *//*
     PROPOSAL,
-    /**
+    *//**
      * null
-     */
+     *//*
     PLAN,
-    /**
+    *//**
      * null
-     */
+     *//*
     ORDER,
-    /**
+    *//**
      * null
-     */
+     *//*
     OPTION,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static CarePlanIntent fromCode(String codeString) throws FHIRException {
@@ -447,41 +447,41 @@ public class CarePlan extends DomainResource {
   }
 
   public enum CarePlanActivityKind {
-    /**
+    *//**
      * null
-     */
+     *//*
     APPOINTMENT,
-    /**
+    *//**
      * null
-     */
+     *//*
     COMMUNICATIONREQUEST,
-    /**
+    *//**
      * null
-     */
+     *//*
     DEVICEREQUEST,
-    /**
+    *//**
      * null
-     */
+     *//*
     MEDICATIONREQUEST,
-    /**
+    *//**
      * null
-     */
+     *//*
     NUTRITIONORDER,
-    /**
+    *//**
      * null
-     */
+     *//*
     TASK,
-    /**
+    *//**
      * null
-     */
+     *//*
     SERVICEREQUEST,
-    /**
+    *//**
      * null
-     */
+     *//*
     VISIONPRESCRIPTION,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static CarePlanActivityKind fromCode(String codeString) throws FHIRException {
@@ -689,49 +689,49 @@ public class CarePlan extends DomainResource {
   }
 
   public enum CarePlanActivityStatus {
-    /**
+    *//**
      * Care plan activity is planned but no action has yet been taken.
-     */
+     *//*
     NOTSTARTED,
-    /**
+    *//**
      * Appointment or other booking has occurred but activity has not yet begun.
-     */
+     *//*
     SCHEDULED,
-    /**
+    *//**
      * Care plan activity has been started but is not yet complete.
-     */
+     *//*
     INPROGRESS,
-    /**
+    *//**
      * Care plan activity was started but has temporarily ceased with an expectation
      * of resumption at a future time.
-     */
+     *//*
     ONHOLD,
-    /**
+    *//**
      * Care plan activity has been completed (more or less) as planned.
-     */
+     *//*
     COMPLETED,
-    /**
+    *//**
      * The planned care plan activity has been withdrawn.
-     */
+     *//*
     CANCELLED,
-    /**
+    *//**
      * The planned care plan activity has been ended prior to completion after the
      * activity was started.
-     */
+     *//*
     STOPPED,
-    /**
+    *//**
      * The current state of the care plan activity is not known. Note: This concept
      * is not to be used for "other" - one of the listed statuses is presumed to
      * apply, but the authoring/source system does not know which one.
-     */
+     *//*
     UNKNOWN,
-    /**
+    *//**
      * Care plan activity was entered in error and voided.
-     */
+     *//*
     ENTEREDINERROR,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static CarePlanActivityStatus fromCode(String codeString) throws FHIRException {
@@ -952,7 +952,7 @@ public class CarePlan extends DomainResource {
     public String toSystem(CarePlanActivityStatus code) {
       return code.getSystem();
     }
-  }
+  }*/
 
   @Block()
   public static class CarePlanActivityComponent extends BackboneElement implements IBaseBackboneElement {
@@ -1530,10 +1530,10 @@ public class CarePlan extends DomainResource {
      * CarePlan.activity.reference. For example, a MedicationRequest, a
      * ServiceRequest, or a CommunicationRequest.
      */
-    @Child(name = "kind", type = { CodeType.class }, order = 1, min = 0, max = 1, modifier = false, summary = false)
+    @Child(name = "kind", type = { StringType.class }, order = 1, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "Appointment | CommunicationRequest | DeviceRequest | MedicationRequest | NutritionOrder | Task | ServiceRequest | VisionPrescription", formalDefinition = "A description of the kind of resource the in-line definition of a care plan activity is representing.  The CarePlan.activity.detail is an in-line definition when a resource is not referenced using CarePlan.activity.reference.  For example, a MedicationRequest, a ServiceRequest, or a CommunicationRequest.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/care-plan-activity-kind")
-    protected Enumeration<CarePlanActivityKind> kind;
+    protected StringType kind;
 
     /**
      * The URL pointing to a FHIR-defined protocol, guideline, questionnaire or
@@ -1610,10 +1610,10 @@ public class CarePlan extends DomainResource {
     /**
      * Identifies what progress is being made for the specific activity.
      */
-    @Child(name = "status", type = { CodeType.class }, order = 8, min = 1, max = 1, modifier = true, summary = false)
+    @Child(name = "status", type = { StringType.class }, order = 8, min = 1, max = 1, modifier = true, summary = false)
     @Description(shortDefinition = "not-started | scheduled | in-progress | on-hold | completed | cancelled | stopped | unknown | entered-in-error", formalDefinition = "Identifies what progress is being made for the specific activity.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/care-plan-activity-status")
-    protected Enumeration<CarePlanActivityStatus> status;
+    protected StringType status;
 
     /**
      * Provides reason why the activity isn't yet started, is on hold, was
@@ -1723,7 +1723,7 @@ public class CarePlan extends DomainResource {
     /**
      * Constructor
      */
-    public CarePlanActivityDetailComponent(Enumeration<CarePlanActivityStatus> status) {
+    public CarePlanActivityDetailComponent(StringType status) {
       super();
       this.status = status;
     }
@@ -1737,12 +1737,12 @@ public class CarePlan extends DomainResource {
      *         This is the underlying object with id, value and extensions. The
      *         accessor "getKind" gives direct access to the value
      */
-    public Enumeration<CarePlanActivityKind> getKindElement() {
+    public StringType getKindElement() {
       if (this.kind == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create CarePlanActivityDetailComponent.kind");
         else if (Configuration.doAutoCreate())
-          this.kind = new Enumeration<CarePlanActivityKind>(new CarePlanActivityKindEnumFactory()); // bb
+          this.kind = new StringType(); // bb
       return this.kind;
     }
 
@@ -1764,7 +1764,7 @@ public class CarePlan extends DomainResource {
      *              value and extensions. The accessor "getKind" gives direct access
      *              to the value
      */
-    public CarePlanActivityDetailComponent setKindElement(Enumeration<CarePlanActivityKind> value) {
+    public CarePlanActivityDetailComponent setKindElement(StringType value) {
       this.kind = value;
       return this;
     }
@@ -1776,8 +1776,8 @@ public class CarePlan extends DomainResource {
      *         CarePlan.activity.reference. For example, a MedicationRequest, a
      *         ServiceRequest, or a CommunicationRequest.
      */
-    public CarePlanActivityKind getKind() {
-      return this.kind == null ? null : this.kind.getValue();
+    public StringType getKind() {
+      return this.kind == null ? null : this.kind;
     }
 
     /**
@@ -1788,13 +1788,13 @@ public class CarePlan extends DomainResource {
      *              For example, a MedicationRequest, a ServiceRequest, or a
      *              CommunicationRequest.
      */
-    public CarePlanActivityDetailComponent setKind(CarePlanActivityKind value) {
+    public CarePlanActivityDetailComponent setKind(StringType value) {
       if (value == null)
         this.kind = null;
       else {
         if (this.kind == null)
-          this.kind = new Enumeration<CarePlanActivityKind>(new CarePlanActivityKindEnumFactory());
-        this.kind.setValue(value);
+          this.kind = new StringType();
+        this.kind =value;
       }
       return this;
     }
@@ -2140,12 +2140,12 @@ public class CarePlan extends DomainResource {
      *         specific activity.). This is the underlying object with id, value and
      *         extensions. The accessor "getStatus" gives direct access to the value
      */
-    public Enumeration<CarePlanActivityStatus> getStatusElement() {
+    public StringType getStatusElement() {
       if (this.status == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create CarePlanActivityDetailComponent.status");
         else if (Configuration.doAutoCreate())
-          this.status = new Enumeration<CarePlanActivityStatus>(new CarePlanActivityStatusEnumFactory()); // bb
+          this.status = new StringType(); // bb
       return this.status;
     }
 
@@ -2163,7 +2163,7 @@ public class CarePlan extends DomainResource {
      *              value and extensions. The accessor "getStatus" gives direct
      *              access to the value
      */
-    public CarePlanActivityDetailComponent setStatusElement(Enumeration<CarePlanActivityStatus> value) {
+    public CarePlanActivityDetailComponent setStatusElement(StringType value) {
       this.status = value;
       return this;
     }
@@ -2171,18 +2171,18 @@ public class CarePlan extends DomainResource {
     /**
      * @return Identifies what progress is being made for the specific activity.
      */
-    public CarePlanActivityStatus getStatus() {
-      return this.status == null ? null : this.status.getValue();
+    public StringType getStatus() {
+      return this.status == null ? null : this.status;
     }
 
     /**
      * @param value Identifies what progress is being made for the specific
      *              activity.
      */
-    public CarePlanActivityDetailComponent setStatus(CarePlanActivityStatus value) {
+    public CarePlanActivityDetailComponent setStatus(StringType value) {
       if (this.status == null)
-        this.status = new Enumeration<CarePlanActivityStatus>(new CarePlanActivityStatusEnumFactory());
-      this.status.setValue(value);
+        this.status = new StringType();
+      this.status=value;
       return this;
     }
 
@@ -2835,8 +2835,8 @@ public class CarePlan extends DomainResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3292052: // kind
-        value = new CarePlanActivityKindEnumFactory().fromType(castToCode(value));
-        this.kind = (Enumeration) value; // Enumeration<CarePlanActivityKind>
+//        value = new CarePlanActivityKindEnumFactory().fromType(castToCode(value));
+        this.kind = castToString(value); // Enumeration<CarePlanActivityKind>
         return value;
       case 8911915: // instantiatesCanonical
         this.getInstantiatesCanonical().add(castToCanonical(value)); // CanonicalType
@@ -2857,8 +2857,8 @@ public class CarePlan extends DomainResource {
         this.getGoal().add(castToReference(value)); // Reference
         return value;
       case -892481550: // status
-        value = new CarePlanActivityStatusEnumFactory().fromType(castToCode(value));
-        this.status = (Enumeration) value; // Enumeration<CarePlanActivityStatus>
+//        value = new CarePlanActivityStatusEnumFactory().fromType(castToCode(value));
+        this.status = castToString(value); // Enumeration<CarePlanActivityStatus>
         return value;
       case 2051346646: // statusReason
         this.statusReason = castToCodeableConcept(value); // CodeableConcept
@@ -2896,8 +2896,8 @@ public class CarePlan extends DomainResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("kind")) {
-        value = new CarePlanActivityKindEnumFactory().fromType(castToCode(value));
-        this.kind = (Enumeration) value; // Enumeration<CarePlanActivityKind>
+//        value = new CarePlanActivityKindEnumFactory().fromType(castToCode(value));
+        this.kind = castToString(value); // Enumeration<CarePlanActivityKind>
       } else if (name.equals("instantiatesCanonical")) {
         this.getInstantiatesCanonical().add(castToCanonical(value));
       } else if (name.equals("instantiatesUri")) {
@@ -2911,8 +2911,8 @@ public class CarePlan extends DomainResource {
       } else if (name.equals("goal")) {
         this.getGoal().add(castToReference(value));
       } else if (name.equals("status")) {
-        value = new CarePlanActivityStatusEnumFactory().fromType(castToCode(value));
-        this.status = (Enumeration) value; // Enumeration<CarePlanActivityStatus>
+//        value = new CarePlanActivityStatusEnumFactory().fromType(castToCode(value));
+        this.status = castToString(value); // Enumeration<CarePlanActivityStatus>
       } else if (name.equals("statusReason")) {
         this.statusReason = castToCodeableConcept(value); // CodeableConcept
       } else if (name.equals("doNotPerform")) {
@@ -3296,19 +3296,19 @@ public class CarePlan extends DomainResource {
    * Indicates whether the plan is currently being acted upon, represents future
    * intentions or is now a historical record.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 6, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 6, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "draft | active | on-hold | revoked | completed | entered-in-error | unknown", formalDefinition = "Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical record.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/request-status")
-  protected Enumeration<CarePlanStatus> status;
+  protected StringType status;
 
   /**
    * Indicates the level of authority/intentionality associated with the care plan
    * and where the care plan fits into the workflow chain.
    */
-  @Child(name = "intent", type = { CodeType.class }, order = 7, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "intent", type = { StringType.class }, order = 7, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "proposal | plan | order | option", formalDefinition = "Indicates the level of authority/intentionality associated with the care plan and where the care plan fits into the workflow chain.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/care-plan-intent")
-  protected Enumeration<CarePlanIntent> intent;
+  protected StringType intent;
 
   /**
    * Identifies what "kind" of plan this is to support differentiation between
@@ -3501,7 +3501,7 @@ public class CarePlan extends DomainResource {
   /**
    * Constructor
    */
-  public CarePlan(Enumeration<CarePlanStatus> status, Enumeration<CarePlanIntent> intent, Reference subject) {
+  public CarePlan(StringType status, StringType intent, Reference subject) {
     super();
     this.status = status;
     this.intent = intent;
@@ -3877,12 +3877,12 @@ public class CarePlan extends DomainResource {
    *         This is the underlying object with id, value and extensions. The
    *         accessor "getStatus" gives direct access to the value
    */
-  public Enumeration<CarePlanStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create CarePlan.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<CarePlanStatus>(new CarePlanStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -3901,7 +3901,7 @@ public class CarePlan extends DomainResource {
    *              extensions. The accessor "getStatus" gives direct access to the
    *              value
    */
-  public CarePlan setStatusElement(Enumeration<CarePlanStatus> value) {
+  public CarePlan setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -3910,18 +3910,18 @@ public class CarePlan extends DomainResource {
    * @return Indicates whether the plan is currently being acted upon, represents
    *         future intentions or is now a historical record.
    */
-  public CarePlanStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value Indicates whether the plan is currently being acted upon,
    *              represents future intentions or is now a historical record.
    */
-  public CarePlan setStatus(CarePlanStatus value) {
+  public CarePlan setStatus(StringType value) {
     if (this.status == null)
-      this.status = new Enumeration<CarePlanStatus>(new CarePlanStatusEnumFactory());
-    this.status.setValue(value);
+      this.status = new StringType();
+    this.status =value;
     return this;
   }
 
@@ -3931,12 +3931,12 @@ public class CarePlan extends DomainResource {
    *         workflow chain.). This is the underlying object with id, value and
    *         extensions. The accessor "getIntent" gives direct access to the value
    */
-  public Enumeration<CarePlanIntent> getIntentElement() {
+  public StringType getIntentElement() {
     if (this.intent == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create CarePlan.intent");
       else if (Configuration.doAutoCreate())
-        this.intent = new Enumeration<CarePlanIntent>(new CarePlanIntentEnumFactory()); // bb
+        this.intent = new StringType(); // bb
     return this.intent;
   }
 
@@ -3955,7 +3955,7 @@ public class CarePlan extends DomainResource {
    *              value and extensions. The accessor "getIntent" gives direct
    *              access to the value
    */
-  public CarePlan setIntentElement(Enumeration<CarePlanIntent> value) {
+  public CarePlan setIntentElement(StringType value) {
     this.intent = value;
     return this;
   }
@@ -3964,8 +3964,8 @@ public class CarePlan extends DomainResource {
    * @return Indicates the level of authority/intentionality associated with the
    *         care plan and where the care plan fits into the workflow chain.
    */
-  public CarePlanIntent getIntent() {
-    return this.intent == null ? null : this.intent.getValue();
+  public StringType getIntent() {
+    return this.intent == null ? null : this.intent;
   }
 
   /**
@@ -3973,10 +3973,10 @@ public class CarePlan extends DomainResource {
    *              the care plan and where the care plan fits into the workflow
    *              chain.
    */
-  public CarePlan setIntent(CarePlanIntent value) {
+  public CarePlan setIntent(StringType value) {
     if (this.intent == null)
-      this.intent = new Enumeration<CarePlanIntent>(new CarePlanIntentEnumFactory());
-    this.intent.setValue(value);
+      this.intent = new StringType();
+    this.intent=value;
     return this;
   }
 
@@ -5018,12 +5018,12 @@ public class CarePlan extends DomainResource {
       this.getPartOf().add(castToReference(value)); // Reference
       return value;
     case -892481550: // status
-      value = new CarePlanStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<CarePlanStatus>
+//      value = new CarePlanStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // Enumeration<CarePlanStatus>
       return value;
     case -1183762788: // intent
-      value = new CarePlanIntentEnumFactory().fromType(castToCode(value));
-      this.intent = (Enumeration) value; // Enumeration<CarePlanIntent>
+//      value = new CarePlanIntentEnumFactory().fromType(castToCode(value));
+      this.intent = castToString(value); // Enumeration<CarePlanIntent>
       return value;
     case 50511102: // category
       this.getCategory().add(castToCodeableConcept(value)); // CodeableConcept
@@ -5091,11 +5091,11 @@ public class CarePlan extends DomainResource {
     } else if (name.equals("partOf")) {
       this.getPartOf().add(castToReference(value));
     } else if (name.equals("status")) {
-      value = new CarePlanStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<CarePlanStatus>
+//      value = new CarePlanStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // Enumeration<CarePlanStatus>
     } else if (name.equals("intent")) {
-      value = new CarePlanIntentEnumFactory().fromType(castToCode(value));
-      this.intent = (Enumeration) value; // Enumeration<CarePlanIntent>
+//      value = new CarePlanIntentEnumFactory().fromType(castToCode(value));
+      this.intent = castToString(value); // Enumeration<CarePlanIntent>
     } else if (name.equals("category")) {
       this.getCategory().add(castToCodeableConcept(value));
     } else if (name.equals("title")) {
