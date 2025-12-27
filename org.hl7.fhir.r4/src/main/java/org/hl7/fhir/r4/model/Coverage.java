@@ -50,26 +50,26 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Coverage", profile = "http://hl7.org/fhir/StructureDefinition/Coverage")
 public class Coverage extends DomainResource {
 
-  public enum CoverageStatus {
-    /**
+/*  public enum CoverageStatus {
+    *//**
      * The instance is currently in-force.
-     */
+     *//*
     ACTIVE,
-    /**
+    *//**
      * The instance is withdrawn, rescinded or reversed.
-     */
+     *//*
     CANCELLED,
-    /**
+    *//**
      * A new instance the contents of which is not complete.
-     */
+     *//*
     DRAFT,
-    /**
+    *//**
      * The instance was entered in error.
-     */
+     *//*
     ENTEREDINERROR,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static CoverageStatus fromCode(String codeString) throws FHIRException {
@@ -210,7 +210,7 @@ public class Coverage extends DomainResource {
     public String toSystem(CoverageStatus code) {
       return code.getSystem();
     }
-  }
+  }*/
 
   @Block()
   public static class ClassComponent extends BackboneElement implements IBaseBackboneElement {
@@ -1195,10 +1195,10 @@ public class Coverage extends DomainResource {
   /**
    * The status of the resource instance.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "active | cancelled | draft | entered-in-error", formalDefinition = "The status of the resource instance.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/fm-status")
-  protected Enumeration<CoverageStatus> status;
+  protected StringType status;
 
   /**
    * The type of coverage: social program, medical plan, accident coverage
@@ -1375,7 +1375,7 @@ public class Coverage extends DomainResource {
   /**
    * Constructor
    */
-  public Coverage(Enumeration<CoverageStatus> status, Reference beneficiary) {
+  public Coverage(StringType status, Reference beneficiary) {
     super();
     this.status = status;
     this.beneficiary = beneficiary;
@@ -1440,12 +1440,12 @@ public class Coverage extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<CoverageStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Coverage.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<CoverageStatus>(new CoverageStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -1462,7 +1462,7 @@ public class Coverage extends DomainResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public Coverage setStatusElement(Enumeration<CoverageStatus> value) {
+  public Coverage setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1470,16 +1470,16 @@ public class Coverage extends DomainResource {
   /**
    * @return The status of the resource instance.
    */
-  public CoverageStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The status of the resource instance.
    */
-  public Coverage setStatus(CoverageStatus value) {
+  public Coverage setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<CoverageStatus>(new CoverageStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -2403,8 +2403,8 @@ public class Coverage extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new CoverageStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<CoverageStatus>
+//      value = new CoverageStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // Enumeration<CoverageStatus>
       return value;
     case 3575610: // type
       this.type = castToCodeableConcept(value); // CodeableConcept
@@ -2462,8 +2462,8 @@ public class Coverage extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new CoverageStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<CoverageStatus>
+//      value = new CoverageStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // Enumeration<CoverageStatus>
     } else if (name.equals("type")) {
       this.type = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("policyHolder")) {

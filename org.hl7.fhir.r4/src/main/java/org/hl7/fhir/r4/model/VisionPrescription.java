@@ -53,26 +53,26 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "VisionPrescription", profile = "http://hl7.org/fhir/StructureDefinition/VisionPrescription")
 public class VisionPrescription extends DomainResource {
 
-  public enum VisionStatus {
-    /**
+/*  public enum VisionStatus {
+    *//**
      * The instance is currently in-force.
-     */
+     *//*
     ACTIVE,
-    /**
+    *//**
      * The instance is withdrawn, rescinded or reversed.
-     */
+     *//*
     CANCELLED,
-    /**
+    *//**
      * A new instance the contents of which is not complete.
-     */
+     *//*
     DRAFT,
-    /**
+    *//**
      * The instance was entered in error.
-     */
+     *//*
     ENTEREDINERROR,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static VisionStatus fromCode(String codeString) throws FHIRException {
@@ -216,17 +216,17 @@ public class VisionPrescription extends DomainResource {
   }
 
   public enum VisionEyes {
-    /**
+    *//**
      * Right Eye.
-     */
+     *//*
     RIGHT,
-    /**
+    *//**
      * Left Eye.
-     */
+     *//*
     LEFT,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static VisionEyes fromCode(String codeString) throws FHIRException {
@@ -338,25 +338,25 @@ public class VisionPrescription extends DomainResource {
   }
 
   public enum VisionBase {
-    /**
+    *//**
      * top.
-     */
+     *//*
     UP,
-    /**
+    *//**
      * bottom.
-     */
+     *//*
     DOWN,
-    /**
+    *//**
      * inner edge.
-     */
+     *//*
     IN,
-    /**
+    *//**
      * outer edge.
-     */
+     *//*
     OUT,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static VisionBase fromCode(String codeString) throws FHIRException {
@@ -497,7 +497,7 @@ public class VisionPrescription extends DomainResource {
     public String toSystem(VisionBase code) {
       return code.getSystem();
     }
-  }
+  }*/
 
   @Block()
   public static class VisionPrescriptionLensSpecificationComponent extends BackboneElement
@@ -515,10 +515,10 @@ public class VisionPrescription extends DomainResource {
     /**
      * The eye for which the lens specification applies.
      */
-    @Child(name = "eye", type = { CodeType.class }, order = 2, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "eye", type = { StringType.class }, order = 2, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "right | left", formalDefinition = "The eye for which the lens specification applies.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/vision-eye-codes")
-    protected Enumeration<VisionEyes> eye;
+    protected StringType eye;
 
     /**
      * Lens power measured in dioptres (0.25 units).
@@ -622,7 +622,7 @@ public class VisionPrescription extends DomainResource {
     /**
      * Constructor
      */
-    public VisionPrescriptionLensSpecificationComponent(CodeableConcept product, Enumeration<VisionEyes> eye) {
+    public VisionPrescriptionLensSpecificationComponent(CodeableConcept product, StringType eye) {
       super();
       this.product = product;
       this.eye = eye;
@@ -659,12 +659,12 @@ public class VisionPrescription extends DomainResource {
      *         This is the underlying object with id, value and extensions. The
      *         accessor "getEye" gives direct access to the value
      */
-    public Enumeration<VisionEyes> getEyeElement() {
+    public StringType getEyeElement() {
       if (this.eye == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create VisionPrescriptionLensSpecificationComponent.eye");
         else if (Configuration.doAutoCreate())
-          this.eye = new Enumeration<VisionEyes>(new VisionEyesEnumFactory()); // bb
+          this.eye = new StringType(); // bb
       return this.eye;
     }
 
@@ -682,7 +682,7 @@ public class VisionPrescription extends DomainResource {
      *              extensions. The accessor "getEye" gives direct access to the
      *              value
      */
-    public VisionPrescriptionLensSpecificationComponent setEyeElement(Enumeration<VisionEyes> value) {
+    public VisionPrescriptionLensSpecificationComponent setEyeElement(StringType value) {
       this.eye = value;
       return this;
     }
@@ -690,17 +690,17 @@ public class VisionPrescription extends DomainResource {
     /**
      * @return The eye for which the lens specification applies.
      */
-    public VisionEyes getEye() {
-      return this.eye == null ? null : this.eye.getValue();
+    public StringType getEye() {
+      return this.eye == null ? null : this.eye;
     }
 
     /**
      * @param value The eye for which the lens specification applies.
      */
-    public VisionPrescriptionLensSpecificationComponent setEye(VisionEyes value) {
+    public VisionPrescriptionLensSpecificationComponent setEye(StringType value) {
       if (this.eye == null)
-        this.eye = new Enumeration<VisionEyes>(new VisionEyesEnumFactory());
-      this.eye.setValue(value);
+        this.eye = new StringType();
+      this.eye=value;
       return this;
     }
 
@@ -1553,8 +1553,8 @@ public class VisionPrescription extends DomainResource {
         this.product = castToCodeableConcept(value); // CodeableConcept
         return value;
       case 100913: // eye
-        value = new VisionEyesEnumFactory().fromType(castToCode(value));
-        this.eye = (Enumeration) value; // Enumeration<VisionEyes>
+//        value = new VisionEyesEnumFactory().fromType(castToCode(value));
+        this.eye = castToString(value) ; // Enumeration<VisionEyes>
         return value;
       case -895981619: // sphere
         this.sphere = castToDecimal(value); // DecimalType
@@ -1603,8 +1603,8 @@ public class VisionPrescription extends DomainResource {
       if (name.equals("product")) {
         this.product = castToCodeableConcept(value); // CodeableConcept
       } else if (name.equals("eye")) {
-        value = new VisionEyesEnumFactory().fromType(castToCode(value));
-        this.eye = (Enumeration) value; // Enumeration<VisionEyes>
+//        value = new VisionEyesEnumFactory().fromType(castToCode(value));
+        this.eye =  castToString(value) ; // Enumeration<VisionEyes>
       } else if (name.equals("sphere")) {
         this.sphere = castToDecimal(value); // DecimalType
       } else if (name.equals("cylinder")) {
@@ -1867,10 +1867,10 @@ public class VisionPrescription extends DomainResource {
     /**
      * The relative base, or reference lens edge, for the prism.
      */
-    @Child(name = "base", type = { CodeType.class }, order = 2, min = 1, max = 1, modifier = false, summary = false)
+    @Child(name = "base", type = { StringType.class }, order = 2, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "up | down | in | out", formalDefinition = "The relative base, or reference lens edge, for the prism.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/vision-base-codes")
-    protected Enumeration<VisionBase> base;
+    protected StringType base;
 
     private static final long serialVersionUID = 1677247628L;
 
@@ -1884,7 +1884,7 @@ public class VisionPrescription extends DomainResource {
     /**
      * Constructor
      */
-    public PrismComponent(DecimalType amount, Enumeration<VisionBase> base) {
+    public PrismComponent(DecimalType amount, StringType base) {
       super();
       this.amount = amount;
       this.base = base;
@@ -1966,12 +1966,12 @@ public class VisionPrescription extends DomainResource {
      *         prism.). This is the underlying object with id, value and extensions.
      *         The accessor "getBase" gives direct access to the value
      */
-    public Enumeration<VisionBase> getBaseElement() {
+    public StringType getBaseElement() {
       if (this.base == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create PrismComponent.base");
         else if (Configuration.doAutoCreate())
-          this.base = new Enumeration<VisionBase>(new VisionBaseEnumFactory()); // bb
+          this.base = new StringType(); // bb
       return this.base;
     }
 
@@ -1989,7 +1989,7 @@ public class VisionPrescription extends DomainResource {
      *              extensions. The accessor "getBase" gives direct access to the
      *              value
      */
-    public PrismComponent setBaseElement(Enumeration<VisionBase> value) {
+    public PrismComponent setBaseElement(StringType value) {
       this.base = value;
       return this;
     }
@@ -1997,17 +1997,17 @@ public class VisionPrescription extends DomainResource {
     /**
      * @return The relative base, or reference lens edge, for the prism.
      */
-    public VisionBase getBase() {
-      return this.base == null ? null : this.base.getValue();
+    public StringType getBase() {
+      return this.base == null ? null : this.base;
     }
 
     /**
      * @param value The relative base, or reference lens edge, for the prism.
      */
-    public PrismComponent setBase(VisionBase value) {
+    public PrismComponent setBase(StringType value) {
       if (this.base == null)
-        this.base = new Enumeration<VisionBase>(new VisionBaseEnumFactory());
-      this.base.setValue(value);
+        this.base = new StringType();
+      this.base=value;
       return this;
     }
 
@@ -2054,8 +2054,8 @@ public class VisionPrescription extends DomainResource {
         this.amount = castToDecimal(value); // DecimalType
         return value;
       case 3016401: // base
-        value = new VisionBaseEnumFactory().fromType(castToCode(value));
-        this.base = (Enumeration) value; // Enumeration<VisionBase>
+//        value = new VisionBaseEnumFactory().fromType(castToCode(value));
+        this.base =  castToString(value) ; // Enumeration<VisionBase>
         return value;
       default:
         return super.setProperty(hash, name, value);
@@ -2068,8 +2068,8 @@ public class VisionPrescription extends DomainResource {
       if (name.equals("amount")) {
         this.amount = castToDecimal(value); // DecimalType
       } else if (name.equals("base")) {
-        value = new VisionBaseEnumFactory().fromType(castToCode(value));
-        this.base = (Enumeration) value; // Enumeration<VisionBase>
+//        value = new VisionBaseEnumFactory().fromType(castToCode(value));
+        this.base =  castToString(value) ; // Enumeration<VisionBase>
       } else
         return super.setProperty(name, value);
       return value;
@@ -2176,10 +2176,10 @@ public class VisionPrescription extends DomainResource {
   /**
    * The status of the resource instance.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "active | cancelled | draft | entered-in-error", formalDefinition = "The status of the resource instance.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/fm-status")
-  protected Enumeration<VisionStatus> status;
+  protected StringType status;
 
   /**
    * The date this resource was created.
@@ -2259,7 +2259,7 @@ public class VisionPrescription extends DomainResource {
   /**
    * Constructor
    */
-  public VisionPrescription(Enumeration<VisionStatus> status, DateTimeType created, Reference patient,
+  public VisionPrescription(StringType status, DateTimeType created, Reference patient,
       DateTimeType dateWritten, Reference prescriber) {
     super();
     this.status = status;
@@ -2329,12 +2329,12 @@ public class VisionPrescription extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<VisionStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create VisionPrescription.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<VisionStatus>(new VisionStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -2351,7 +2351,7 @@ public class VisionPrescription extends DomainResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public VisionPrescription setStatusElement(Enumeration<VisionStatus> value) {
+  public VisionPrescription setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -2359,17 +2359,17 @@ public class VisionPrescription extends DomainResource {
   /**
    * @return The status of the resource instance.
    */
-  public VisionStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The status of the resource instance.
    */
-  public VisionPrescription setStatus(VisionStatus value) {
+  public VisionPrescription setStatus(StringType value) {
     if (this.status == null)
-      this.status = new Enumeration<VisionStatus>(new VisionStatusEnumFactory());
-    this.status.setValue(value);
+      this.status = new StringType();
+    this.status=value;
     return this;
   }
 
@@ -2775,8 +2775,8 @@ public class VisionPrescription extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new VisionStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<VisionStatus>
+//      value = new VisionStatusEnumFactory().fromType(castToCode(value));
+      this.status =  castToString(value) ; // Enumeration<VisionStatus>
       return value;
     case 1028554472: // created
       this.created = castToDateTime(value); // DateTimeType
@@ -2807,8 +2807,8 @@ public class VisionPrescription extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new VisionStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<VisionStatus>
+//      value = new VisionStatusEnumFactory().fromType(castToCode(value));
+      this.status =  castToString(value) ; // Enumeration<VisionStatus>
     } else if (name.equals("created")) {
       this.created = castToDateTime(value); // DateTimeType
     } else if (name.equals("patient")) {

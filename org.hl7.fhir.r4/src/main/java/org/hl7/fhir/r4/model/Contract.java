@@ -53,41 +53,41 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Contract", profile = "http://hl7.org/fhir/StructureDefinition/Contract")
 public class Contract extends DomainResource {
 
-  public enum ContractStatus {
-    /**
+/*  public enum ContractStatus {
+    *//**
      * Contract is augmented with additional information to correct errors in a
      * predecessor or to updated values in a predecessor. Usage: Contract altered
      * within effective time. Precedence Order = 9. Comparable FHIR and v.3 status
      * codes: revised; replaced.
-     */
+     *//*
     AMENDED,
-    /**
+    *//**
      * Contract is augmented with additional information that was missing from a
      * predecessor Contract. Usage: Contract altered within effective time.
      * Precedence Order = 9. Comparable FHIR and v.3 status codes: updated,
      * replaced.
-     */
+     *//*
     APPENDED,
-    /**
+    *//**
      * Contract is terminated due to failure of the Grantor and/or the Grantee to
      * fulfil one or more contract provisions. Usage: Abnormal contract termination.
      * Precedence Order = 10. Comparable FHIR and v.3 status codes: stopped; failed;
      * aborted.
-     */
+     *//*
     CANCELLED,
-    /**
+    *//**
      * Contract is pended to rectify failure of the Grantor or the Grantee to fulfil
      * contract provision(s). E.g., Grantee complaint about Grantor's failure to
      * comply with contract provisions. Usage: Contract pended. Precedence Order =
      * 7. Comparable FHIR and v.3 status codes: on hold; pended; suspended.
-     */
+     *//*
     DISPUTED,
-    /**
+    *//**
      * Contract was created in error. No Precedence Order. Status may be applied to
      * a Contract with any status.
-     */
+     *//*
     ENTEREDINERROR,
-    /**
+    *//**
      * Contract execution pending; may be executed when either the Grantor or the
      * Grantee accepts the contract provisions by signing. I.e., where either the
      * Grantor or the Grantee has signed, but not both. E.g., when an insurance
@@ -96,16 +96,16 @@ public class Contract extends DomainResource {
      * contracting activity moves directly to executed state. Precedence Order = 3.
      * Comparable FHIR and v.3 status codes: draft; preliminary; planned; intended;
      * active.
-     */
+     *//*
     EXECUTABLE,
-    /**
+    *//**
      * Contract is activated for period stipulated when both the Grantor and Grantee
      * have signed it. Usage: Required state for normal completion of contracting
      * activity. Precedence Order = 6. Comparable FHIR and v.3 status codes:
      * accepted; completed.
-     */
+     *//*
     EXECUTED,
-    /**
+    *//**
      * Contract execution is suspended while either or both the Grantor and Grantee
      * propose and consider new or revised contract provisions. I.e., where the
      * party which has not signed proposes changes to the terms. E .g., a life
@@ -115,63 +115,63 @@ public class Contract extends DomainResource {
      * higher premium based on the applicants actual age or smoking status. Usage:
      * Optional contract activity between executable and executed state. Precedence
      * Order = 4. Comparable FHIR and v.3 status codes: in progress; review; held.
-     */
+     *//*
     NEGOTIABLE,
-    /**
+    *//**
      * Contract is a proposal by either the Grantor or the Grantee. Aka - A Contract
      * hard copy or electronic 'template', 'form' or 'application'. E.g., health
      * insurance application; consent directive form. Usage: Beginning of contract
      * negotiation, which may have been completed as a precondition because used for
      * 0..* contracts. Precedence Order = 2. Comparable FHIR and v.3 status codes:
      * requested; new.
-     */
+     *//*
     OFFERED,
-    /**
+    *//**
      * Contract template is available as the basis for an application or offer by
      * the Grantor or Grantee. E.g., health insurance policy; consent directive
      * policy. Usage: Required initial contract activity, which may have been
      * completed as a precondition because used for 0..* contracts. Precedence Order
      * = 1. Comparable FHIR and v.3 status codes: proposed; intended.
-     */
+     *//*
     POLICY,
-    /**
+    *//**
      * Execution of the Contract is not completed because either or both the Grantor
      * and Grantee decline to accept some or all of the contract provisions. Usage:
      * Optional contract activity between executable and abnormal termination.
      * Precedence Order = 5. Comparable FHIR and v.3 status codes: stopped;
      * cancelled.
-     */
+     *//*
     REJECTED,
-    /**
+    *//**
      * Beginning of a successor Contract at the termination of predecessor Contract
      * lifecycle. Usage: Follows termination of a preceding Contract that has
      * reached its expiry date. Precedence Order = 13. Comparable FHIR and v.3
      * status codes: superseded.
-     */
+     *//*
     RENEWED,
-    /**
+    *//**
      * A Contract that is rescinded. May be required prior to replacing with an
      * updated Contract. Comparable FHIR and v.3 status codes: nullified.
-     */
+     *//*
     REVOKED,
-    /**
+    *//**
      * Contract is reactivated after being pended because of faulty execution.
      * *E.g., competency of the signer(s), or where the policy is substantially
      * different from and did not accompany the application/form so that the
      * applicant could not compare them. Aka - ''reactivated''. Usage: Optional
      * stage where a pended contract is reactivated. Precedence Order = 8.
      * Comparable FHIR and v.3 status codes: reactivated.
-     */
+     *//*
     RESOLVED,
-    /**
+    *//**
      * Contract reaches its expiry date. It might or might not be renewed or
      * renegotiated. Usage: Normal end of contract period. Precedence Order = 12.
      * Comparable FHIR and v.3 status codes: Obsoleted.
-     */
+     *//*
     TERMINATED,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static ContractStatus fromCode(String codeString) throws FHIRException {
@@ -491,40 +491,40 @@ public class Contract extends DomainResource {
   }
 
   public enum ContractPublicationStatus {
-    /**
+    *//**
      * Contract is augmented with additional information to correct errors in a
      * predecessor or to updated values in a predecessor. Usage: Contract altered
      * within effective time. Precedence Order = 9. Comparable FHIR and v.3 status
      * codes: revised; replaced.
-     */
+     *//*
     AMENDED,
-    /**
+    *//**
      * Contract is augmented with additional information that was missing from a
      * predecessor Contract. Usage: Contract altered within effective time.
      * Precedence Order = 9. Comparable FHIR and v.3 status codes: updated,
      * replaced.
-     */
+     *//*
     APPENDED,
-    /**
+    *//**
      * Contract is terminated due to failure of the Grantor and/or the Grantee to
      * fulfil one or more contract provisions. Usage: Abnormal contract termination.
      * Precedence Order = 10. Comparable FHIR and v.3 status codes: stopped; failed;
      * aborted.
-     */
+     *//*
     CANCELLED,
-    /**
+    *//**
      * Contract is pended to rectify failure of the Grantor or the Grantee to fulfil
      * contract provision(s). E.g., Grantee complaint about Grantor's failure to
      * comply with contract provisions. Usage: Contract pended. Precedence Order =
      * 7. Comparable FHIR and v.3 status codes: on hold; pended; suspended.
-     */
+     *//*
     DISPUTED,
-    /**
+    *//**
      * Contract was created in error. No Precedence Order. Status may be applied to
      * a Contract with any status.
-     */
+     *//*
     ENTEREDINERROR,
-    /**
+    *//**
      * Contract execution pending; may be executed when either the Grantor or the
      * Grantee accepts the contract provisions by signing. I.e., where either the
      * Grantor or the Grantee has signed, but not both. E.g., when an insurance
@@ -533,16 +533,16 @@ public class Contract extends DomainResource {
      * contracting activity moves directly to executed state. Precedence Order = 3.
      * Comparable FHIR and v.3 status codes: draft; preliminary; planned; intended;
      * active.
-     */
+     *//*
     EXECUTABLE,
-    /**
+    *//**
      * Contract is activated for period stipulated when both the Grantor and Grantee
      * have signed it. Usage: Required state for normal completion of contracting
      * activity. Precedence Order = 6. Comparable FHIR and v.3 status codes:
      * accepted; completed.
-     */
+     *//*
     EXECUTED,
-    /**
+    *//**
      * Contract execution is suspended while either or both the Grantor and Grantee
      * propose and consider new or revised contract provisions. I.e., where the
      * party which has not signed proposes changes to the terms. E .g., a life
@@ -552,63 +552,63 @@ public class Contract extends DomainResource {
      * higher premium based on the applicants actual age or smoking status. Usage:
      * Optional contract activity between executable and executed state. Precedence
      * Order = 4. Comparable FHIR and v.3 status codes: in progress; review; held.
-     */
+     *//*
     NEGOTIABLE,
-    /**
+    *//**
      * Contract is a proposal by either the Grantor or the Grantee. Aka - A Contract
      * hard copy or electronic 'template', 'form' or 'application'. E.g., health
      * insurance application; consent directive form. Usage: Beginning of contract
      * negotiation, which may have been completed as a precondition because used for
      * 0..* contracts. Precedence Order = 2. Comparable FHIR and v.3 status codes:
      * requested; new.
-     */
+     *//*
     OFFERED,
-    /**
+    *//**
      * Contract template is available as the basis for an application or offer by
      * the Grantor or Grantee. E.g., health insurance policy; consent directive
      * policy. Usage: Required initial contract activity, which may have been
      * completed as a precondition because used for 0..* contracts. Precedence Order
      * = 1. Comparable FHIR and v.3 status codes: proposed; intended.
-     */
+     *//*
     POLICY,
-    /**
+    *//**
      * Execution of the Contract is not completed because either or both the Grantor
      * and Grantee decline to accept some or all of the contract provisions. Usage:
      * Optional contract activity between executable and abnormal termination.
      * Precedence Order = 5. Comparable FHIR and v.3 status codes: stopped;
      * cancelled.
-     */
+     *//*
     REJECTED,
-    /**
+    *//**
      * Beginning of a successor Contract at the termination of predecessor Contract
      * lifecycle. Usage: Follows termination of a preceding Contract that has
      * reached its expiry date. Precedence Order = 13. Comparable FHIR and v.3
      * status codes: superseded.
-     */
+     *//*
     RENEWED,
-    /**
+    *//**
      * A Contract that is rescinded. May be required prior to replacing with an
      * updated Contract. Comparable FHIR and v.3 status codes: nullified.
-     */
+     *//*
     REVOKED,
-    /**
+    *//**
      * Contract is reactivated after being pended because of faulty execution.
      * *E.g., competency of the signer(s), or where the policy is substantially
      * different from and did not accompany the application/form so that the
      * applicant could not compare them. Aka - ''reactivated''. Usage: Optional
      * stage where a pended contract is reactivated. Precedence Order = 8.
      * Comparable FHIR and v.3 status codes: reactivated.
-     */
+     *//*
     RESOLVED,
-    /**
+    *//**
      * Contract reaches its expiry date. It might or might not be renewed or
      * renegotiated. Usage: Normal end of contract period. Precedence Order = 12.
      * Comparable FHIR and v.3 status codes: Obsoleted.
-     */
+     *//*
     TERMINATED,
-    /**
+    *//**
      * added to help the parsers with the generic types
-     */
+     *//*
     NULL;
 
     public static ContractPublicationStatus fromCode(String codeString) throws FHIRException {
@@ -925,7 +925,7 @@ public class Contract extends DomainResource {
     public String toSystem(ContractPublicationStatus code) {
       return code.getSystem();
     }
-  }
+  }*/
 
   @Block()
   public static class ContentDefinitionComponent extends BackboneElement implements IBaseBackboneElement {
@@ -980,10 +980,10 @@ public class Contract extends DomainResource {
      * resolved | terminated.
      */
     @Child(name = "publicationStatus", type = {
-        CodeType.class }, order = 5, min = 1, max = 1, modifier = false, summary = false)
+        StringType.class }, order = 5, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "amended | appended | cancelled | disputed | entered-in-error | executable | executed | negotiable | offered | policy | rejected | renewed | revoked | resolved | terminated", formalDefinition = "amended | appended | cancelled | disputed | entered-in-error | executable | executed | negotiable | offered | policy | rejected | renewed | revoked | resolved | terminated.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/contract-publicationstatus")
-    protected Enumeration<ContractPublicationStatus> publicationStatus;
+    protected StringType publicationStatus;
 
     /**
      * A copyright statement relating to Contract precursor content. Copyright
@@ -1007,7 +1007,7 @@ public class Contract extends DomainResource {
     /**
      * Constructor
      */
-    public ContentDefinitionComponent(CodeableConcept type, Enumeration<ContractPublicationStatus> publicationStatus) {
+    public ContentDefinitionComponent(CodeableConcept type, StringType publicationStatus) {
       super();
       this.type = type;
       this.publicationStatus = publicationStatus;
@@ -1188,13 +1188,12 @@ public class Contract extends DomainResource {
      *         is the underlying object with id, value and extensions. The accessor
      *         "getPublicationStatus" gives direct access to the value
      */
-    public Enumeration<ContractPublicationStatus> getPublicationStatusElement() {
+    public StringType getPublicationStatusElement() {
       if (this.publicationStatus == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create ContentDefinitionComponent.publicationStatus");
         else if (Configuration.doAutoCreate())
-          this.publicationStatus = new Enumeration<ContractPublicationStatus>(
-              new ContractPublicationStatusEnumFactory()); // bb
+          this.publicationStatus = new StringType(); // bb
       return this.publicationStatus;
     }
 
@@ -1214,7 +1213,7 @@ public class Contract extends DomainResource {
      *              extensions. The accessor "getPublicationStatus" gives direct
      *              access to the value
      */
-    public ContentDefinitionComponent setPublicationStatusElement(Enumeration<ContractPublicationStatus> value) {
+    public ContentDefinitionComponent setPublicationStatusElement(StringType value) {
       this.publicationStatus = value;
       return this;
     }
@@ -1224,8 +1223,8 @@ public class Contract extends DomainResource {
      *         executable | executed | negotiable | offered | policy | rejected |
      *         renewed | revoked | resolved | terminated.
      */
-    public ContractPublicationStatus getPublicationStatus() {
-      return this.publicationStatus == null ? null : this.publicationStatus.getValue();
+    public StringType getPublicationStatus() {
+      return this.publicationStatus == null ? null : this.publicationStatus;
     }
 
     /**
@@ -1233,10 +1232,10 @@ public class Contract extends DomainResource {
      *              executable | executed | negotiable | offered | policy | rejected
      *              | renewed | revoked | resolved | terminated.
      */
-    public ContentDefinitionComponent setPublicationStatus(ContractPublicationStatus value) {
+    public ContentDefinitionComponent setPublicationStatus(StringType value) {
       if (this.publicationStatus == null)
-        this.publicationStatus = new Enumeration<ContractPublicationStatus>(new ContractPublicationStatusEnumFactory());
-      this.publicationStatus.setValue(value);
+        this.publicationStatus = new StringType();
+      this.publicationStatus=value;
       return this;
     }
 
@@ -1391,8 +1390,8 @@ public class Contract extends DomainResource {
         this.publicationDate = castToDateTime(value); // DateTimeType
         return value;
       case 616500542: // publicationStatus
-        value = new ContractPublicationStatusEnumFactory().fromType(castToCode(value));
-        this.publicationStatus = (Enumeration) value; // Enumeration<ContractPublicationStatus>
+//        value = new ContractPublicationStatusEnumFactory().fromType(castToCode(value));
+        this.publicationStatus = castToString(value) ; // Enumeration<ContractPublicationStatus>
         return value;
       case 1522889671: // copyright
         this.copyright = castToMarkdown(value); // MarkdownType
@@ -1414,8 +1413,8 @@ public class Contract extends DomainResource {
       } else if (name.equals("publicationDate")) {
         this.publicationDate = castToDateTime(value); // DateTimeType
       } else if (name.equals("publicationStatus")) {
-        value = new ContractPublicationStatusEnumFactory().fromType(castToCode(value));
-        this.publicationStatus = (Enumeration) value; // Enumeration<ContractPublicationStatus>
+//        value = new ContractPublicationStatusEnumFactory().fromType(castToCode(value));
+        this.publicationStatus = castToString(value); // Enumeration<ContractPublicationStatus>
       } else if (name.equals("copyright")) {
         this.copyright = castToMarkdown(value); // MarkdownType
       } else
@@ -11449,10 +11448,10 @@ public class Contract extends DomainResource {
   /**
    * The status of the resource instance.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 3, min = 0, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 3, min = 0, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "amended | appended | cancelled | disputed | entered-in-error | executable | executed | negotiable | offered | policy | rejected | renewed | revoked | resolved | terminated", formalDefinition = "The status of the resource instance.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/contract-status")
-  protected Enumeration<ContractStatus> status;
+  protected StringType status;
 
   /**
    * Legal states of the formation of a legal instrument, which is a formally
@@ -11972,12 +11971,12 @@ public class Contract extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<ContractStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Contract.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<ContractStatus>(new ContractStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -11994,7 +11993,7 @@ public class Contract extends DomainResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public Contract setStatusElement(Enumeration<ContractStatus> value) {
+  public Contract setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -12002,20 +12001,20 @@ public class Contract extends DomainResource {
   /**
    * @return The status of the resource instance.
    */
-  public ContractStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The status of the resource instance.
    */
-  public Contract setStatus(ContractStatus value) {
+  public Contract setStatus(StringType value) {
     if (value == null)
       this.status = null;
     else {
       if (this.status == null)
-        this.status = new Enumeration<ContractStatus>(new ContractStatusEnumFactory());
-      this.status.setValue(value);
+        this.status = new StringType();
+      this.status=value;
     }
     return this;
   }
@@ -13855,8 +13854,8 @@ public class Contract extends DomainResource {
       this.version = castToString(value); // StringType
       return value;
     case -892481550: // status
-      value = new ContractStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ContractStatus>
+//      value = new ContractStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // Enumeration<ContractStatus>
       return value;
     case 568606040: // legalState
       this.legalState = castToCodeableConcept(value); // CodeableConcept
@@ -13960,8 +13959,8 @@ public class Contract extends DomainResource {
     } else if (name.equals("version")) {
       this.version = castToString(value); // StringType
     } else if (name.equals("status")) {
-      value = new ContractStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ContractStatus>
+//      value = new ContractStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // Enumeration<ContractStatus>
     } else if (name.equals("legalState")) {
       this.legalState = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("instantiatesCanonical")) {
