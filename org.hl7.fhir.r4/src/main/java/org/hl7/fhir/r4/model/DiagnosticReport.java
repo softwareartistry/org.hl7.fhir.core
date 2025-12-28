@@ -733,15 +733,21 @@ public class DiagnosticReport extends DomainResource {
   /**
    * @return The status of the diagnostic report.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
    * @param value The status of the diagnostic report.
    */
-  public DiagnosticReport setStatus(StringType value) {
-    this.status = value;
+  public DiagnosticReport setStatus(String value) {
+    if (value == null)
+      this.status = null;
+    else {
+      if (this.status == null)
+        this.status = new StringType();
+      this.status.setValue(value);
+    }
     return this;
   }
 
@@ -1777,7 +1783,7 @@ public class DiagnosticReport extends DomainResource {
       this.getBasedOn().add(castToReference(value)); // Reference
       return value;
     case -892481550: // status
-      this.status = castToString(value); // Enumeration<DiagnosticReportStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 50511102: // category
       this.getCategory().add(castToCodeableConcept(value)); // CodeableConcept
@@ -1837,7 +1843,7 @@ public class DiagnosticReport extends DomainResource {
     } else if (name.equals("basedOn")) {
       this.getBasedOn().add(castToReference(value));
     } else if (name.equals("status")) {
-      this.status = castToString(value); // Enumeration<DiagnosticReportStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("category")) {
       this.getCategory().add(castToCodeableConcept(value));
     } else if (name.equals("code")) {
