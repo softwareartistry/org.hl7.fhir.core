@@ -52,130 +52,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
  */
 @ResourceDef(name = "AdverseEvent", profile = "http://hl7.org/fhir/StructureDefinition/AdverseEvent")
 public class AdverseEvent extends DomainResource {
-
-/*  public enum AdverseEventActuality {
-    *//**
-     * The adverse event actually happened regardless of whether anyone was affected
-     * or harmed.
-     *//*
-    ACTUAL,
-    *//**
-     * A potential adverse event.
-     *//*
-    POTENTIAL,
-    *//**
-     * added to help the parsers with the generic types
-     *//*
-    NULL;
-
-    public static AdverseEventActuality fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("actual".equals(codeString))
-        return ACTUAL;
-      if ("potential".equals(codeString))
-        return POTENTIAL;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown AdverseEventActuality code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ACTUAL:
-        return "actual";
-      case POTENTIAL:
-        return "potential";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ACTUAL:
-        return "http://hl7.org/fhir/adverse-event-actuality";
-      case POTENTIAL:
-        return "http://hl7.org/fhir/adverse-event-actuality";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ACTUAL:
-        return "The adverse event actually happened regardless of whether anyone was affected or harmed.";
-      case POTENTIAL:
-        return "A potential adverse event.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ACTUAL:
-        return "Adverse Event";
-      case POTENTIAL:
-        return "Potential Adverse Event";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class AdverseEventActualityEnumFactory implements EnumFactory<AdverseEventActuality> {
-    public AdverseEventActuality fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("actual".equals(codeString))
-        return AdverseEventActuality.ACTUAL;
-      if ("potential".equals(codeString))
-        return AdverseEventActuality.POTENTIAL;
-      throw new IllegalArgumentException("Unknown AdverseEventActuality code '" + codeString + "'");
-    }
-
-    public Enumeration<AdverseEventActuality> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<AdverseEventActuality>(this, AdverseEventActuality.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<AdverseEventActuality>(this, AdverseEventActuality.NULL, code);
-      if ("actual".equals(codeString))
-        return new Enumeration<AdverseEventActuality>(this, AdverseEventActuality.ACTUAL, code);
-      if ("potential".equals(codeString))
-        return new Enumeration<AdverseEventActuality>(this, AdverseEventActuality.POTENTIAL, code);
-      throw new FHIRException("Unknown AdverseEventActuality code '" + codeString + "'");
-    }
-
-    public String toCode(AdverseEventActuality code) {
-       if (code == AdverseEventActuality.NULL)
-           return null;
-       if (code == AdverseEventActuality.ACTUAL)
-        return "actual";
-      if (code == AdverseEventActuality.POTENTIAL)
-        return "potential";
-      return "?";
-   }
-
-    public String toSystem(AdverseEventActuality code) {
-      return code.getSystem();
-    }
-  }*/
-
   @Block()
   public static class AdverseEventSuspectEntityComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -2097,7 +1973,7 @@ public class AdverseEvent extends DomainResource {
     children.add(new Property("identifier", "Identifier",
         "Business identifiers assigned to this adverse event by the performer or other systems which remain constant as the resource is updated and propagates from server to server.",
         0, 1, identifier));
-    children.add(new Property("actuality", "code",
+    children.add(new Property("actuality", "string",
         "Whether the event actually happened, or just had the potential to. Note that this is independent of whether anyone was affected or harmed or how severely.",
         0, 1, actuality));
     children.add(new Property("category", "CodeableConcept",
@@ -2154,7 +2030,7 @@ public class AdverseEvent extends DomainResource {
           "Business identifiers assigned to this adverse event by the performer or other systems which remain constant as the resource is updated and propagates from server to server.",
           0, 1, identifier);
     case 528866400:
-      /* actuality */ return new Property("actuality", "code",
+      /* actuality */ return new Property("actuality", "string",
           "Whether the event actually happened, or just had the potential to. Note that this is independent of whether anyone was affected or harmed or how severely.",
           0, 1, actuality);
     case 50511102:
@@ -2286,7 +2162,6 @@ public class AdverseEvent extends DomainResource {
       this.identifier = castToIdentifier(value); // Identifier
       return value;
     case 528866400: // actuality
-//      value = new AdverseEventActualityEnumFactory().fromType(castToCode(value));
       this.actuality = castToString(value); // Enumeration<AdverseEventActuality>
       return value;
     case 50511102: // category
@@ -2354,7 +2229,6 @@ public class AdverseEvent extends DomainResource {
     if (name.equals("identifier")) {
       this.identifier = castToIdentifier(value); // Identifier
     } else if (name.equals("actuality")) {
-//      value = new AdverseEventActualityEnumFactory().fromType(castToCode(value));
       this.actuality = castToString(value); // Enumeration<AdverseEventActuality>
     } else if (name.equals("category")) {
       this.getCategory().add(castToCodeableConcept(value));
@@ -2499,7 +2373,7 @@ public class AdverseEvent extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case 528866400:
-      /* actuality */ return new String[] { "code" };
+      /* actuality */ return new String[] { "string" };
     case 50511102:
       /* category */ return new String[] { "CodeableConcept" };
     case 96891546:

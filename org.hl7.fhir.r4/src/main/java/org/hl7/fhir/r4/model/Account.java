@@ -50,189 +50,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Account", profile = "http://hl7.org/fhir/StructureDefinition/Account")
 public class Account extends DomainResource {
 
-/*  public enum AccountStatus {
-    *//**
-     * This account is active and may be used.
-     *//*
-    ACTIVE,
-    *//**
-     * This account is inactive and should not be used to track financial
-     * information.
-     *//*
-    INACTIVE,
-    *//**
-     * This instance should not have been part of this patient's medical record.
-     *//*
-    ENTEREDINERROR,
-    *//**
-     * This account is on hold.
-     *//*
-    ONHOLD,
-    *//**
-     * The account status is unknown.
-     *//*
-    UNKNOWN,
-    *//**
-     * added to help the parsers with the generic types
-     *//*
-    NULL;*/
-
-/*    public static AccountStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("active".equals(codeString))
-        return ACTIVE;
-      if ("inactive".equals(codeString))
-        return INACTIVE;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if ("on-hold".equals(codeString))
-        return ONHOLD;
-      if ("unknown".equals(codeString))
-        return UNKNOWN;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown AccountStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ACTIVE:
-        return "active";
-      case INACTIVE:
-        return "inactive";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case ONHOLD:
-        return "on-hold";
-      case UNKNOWN:
-        return "unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ACTIVE:
-        return "http://hl7.org/fhir/account-status";
-      case INACTIVE:
-        return "http://hl7.org/fhir/account-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/account-status";
-      case ONHOLD:
-        return "http://hl7.org/fhir/account-status";
-      case UNKNOWN:
-        return "http://hl7.org/fhir/account-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ACTIVE:
-        return "This account is active and may be used.";
-      case INACTIVE:
-        return "This account is inactive and should not be used to track financial information.";
-      case ENTEREDINERROR:
-        return "This instance should not have been part of this patient's medical record.";
-      case ONHOLD:
-        return "This account is on hold.";
-      case UNKNOWN:
-        return "The account status is unknown.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ACTIVE:
-        return "Active";
-      case INACTIVE:
-        return "Inactive";
-      case ENTEREDINERROR:
-        return "Entered in error";
-      case ONHOLD:
-        return "On Hold";
-      case UNKNOWN:
-        return "Unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class AccountStatusEnumFactory implements EnumFactory<AccountStatus> {
-    public AccountStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("active".equals(codeString))
-        return AccountStatus.ACTIVE;
-      if ("inactive".equals(codeString))
-        return AccountStatus.INACTIVE;
-      if ("entered-in-error".equals(codeString))
-        return AccountStatus.ENTEREDINERROR;
-      if ("on-hold".equals(codeString))
-        return AccountStatus.ONHOLD;
-      if ("unknown".equals(codeString))
-        return AccountStatus.UNKNOWN;
-      throw new IllegalArgumentException("Unknown AccountStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<AccountStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<AccountStatus>(this, AccountStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<AccountStatus>(this, AccountStatus.NULL, code);
-      if ("active".equals(codeString))
-        return new Enumeration<AccountStatus>(this, AccountStatus.ACTIVE, code);
-      if ("inactive".equals(codeString))
-        return new Enumeration<AccountStatus>(this, AccountStatus.INACTIVE, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<AccountStatus>(this, AccountStatus.ENTEREDINERROR, code);
-      if ("on-hold".equals(codeString))
-        return new Enumeration<AccountStatus>(this, AccountStatus.ONHOLD, code);
-      if ("unknown".equals(codeString))
-        return new Enumeration<AccountStatus>(this, AccountStatus.UNKNOWN, code);
-      throw new FHIRException("Unknown AccountStatus code '" + codeString + "'");
-    }
-
-    public String toCode(AccountStatus code) {
-       if (code == AccountStatus.NULL)
-           return null;
-       if (code == AccountStatus.ACTIVE)
-        return "active";
-      if (code == AccountStatus.INACTIVE)
-        return "inactive";
-      if (code == AccountStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      if (code == AccountStatus.ONHOLD)
-        return "on-hold";
-      if (code == AccountStatus.UNKNOWN)
-        return "unknown";
-      return "?";
-   }
-
-    public String toSystem(AccountStatus code) {
-      return code.getSystem();
-    }
-  }*/
-
   @Block()
   public static class CoverageComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -1586,7 +1403,7 @@ public class Account extends DomainResource {
         "Unique identifier used to reference the account.  Might or might not be intended for human use (e.g. credit card number).",
         0, java.lang.Integer.MAX_VALUE, identifier));
     children.add(
-        new Property("status", "code", "Indicates whether the account is presently used/usable or not.", 0, 1, status));
+        new Property("status", "string", "Indicates whether the account is presently used/usable or not.", 0, 1, status));
     children.add(new Property("type", "CodeableConcept",
         "Categorizes the account for reporting and searching purposes.", 0, 1, type));
     children.add(new Property("name", "string",
@@ -1619,7 +1436,7 @@ public class Account extends DomainResource {
           "Unique identifier used to reference the account.  Might or might not be intended for human use (e.g. credit card number).",
           0, java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "Indicates whether the account is presently used/usable or not.", 0, 1, status);
     case 3575610:
       /* type */ return new Property("type", "CodeableConcept",
@@ -1698,7 +1515,6 @@ public class Account extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-//      value = new AccountStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value) ; // Enumeration<AccountStatus>
       return value;
     case 3575610: // type
@@ -1739,7 +1555,6 @@ public class Account extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-//      value = new AccountStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // Enumeration<AccountStatus>
     } else if (name.equals("type")) {
       this.type = castToCodeableConcept(value); // CodeableConcept
@@ -1830,7 +1645,7 @@ public class Account extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 3575610:
       /* type */ return new String[] { "CodeableConcept" };
     case 3373707:

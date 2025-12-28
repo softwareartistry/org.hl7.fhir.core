@@ -1086,7 +1086,7 @@ public class AllergyIntolerance extends DomainResource {
           description));
       children.add(new Property("onset", "dateTime", "Record of the date and/or time of the onset of the Reaction.", 0,
           1, onset));
-      children.add(new Property("severity", "code",
+      children.add(new Property("severity", "string",
           "Clinical assessment of the severity of the reaction event as a whole, potentially considering multiple different manifestations.",
           0, 1, severity));
       children.add(new Property("exposureRoute", "CodeableConcept",
@@ -1115,7 +1115,7 @@ public class AllergyIntolerance extends DomainResource {
         /* onset */ return new Property("onset", "dateTime",
             "Record of the date and/or time of the onset of the Reaction.", 0, 1, onset);
       case 1478300413:
-        /* severity */ return new Property("severity", "code",
+        /* severity */ return new Property("severity", "string",
             "Clinical assessment of the severity of the reaction event as a whole, potentially considering multiple different manifestations.",
             0, 1, severity);
       case 421286274:
@@ -1264,7 +1264,7 @@ public class AllergyIntolerance extends DomainResource {
       case 105901603:
         /* onset */ return new String[] { "dateTime" };
       case 1478300413:
-        /* severity */ return new String[] { "code" };
+        /* severity */ return new String[] { "string" };
       case 421286274:
         /* exposureRoute */ return new String[] { "CodeableConcept" };
       case 3387378:
@@ -2712,8 +2712,7 @@ public class AllergyIntolerance extends DomainResource {
     } else if (name.equals("category")) {
       this.getCategory().remove((Enumeration) value);
     } else if (name.equals("criticality")) {
-      value = null;
-      this.criticality = castToString(value); // Enumeration<AllergyIntoleranceCriticality>
+      this.criticality = null; // Enumeration<AllergyIntoleranceCriticality>
     } else if (name.equals("code")) {
       this.code = null;
     } else if (name.equals("patient")) {
