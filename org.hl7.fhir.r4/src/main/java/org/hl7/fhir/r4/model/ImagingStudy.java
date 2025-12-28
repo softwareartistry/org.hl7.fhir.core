@@ -2112,7 +2112,7 @@ public class ImagingStudy extends DomainResource {
   /**
    * Constructor
    */
-  public ImagingStudy(Enumeration<ImagingStudyStatus> status, Reference subject) {
+  public ImagingStudy(StringType status, Reference subject) {
     super();
     this.status = status;
     this.subject = subject;
