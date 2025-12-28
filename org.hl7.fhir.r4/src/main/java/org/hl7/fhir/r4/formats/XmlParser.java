@@ -9572,8 +9572,7 @@ public class XmlParser extends XmlParserBase {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("identifier")) {
       res.getIdentifier().add(parseIdentifier(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(
-          parseEnumeration(xpp, Encounter.EncounterStatus.NULL, new Encounter.EncounterStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("statusHistory")) {
       res.getStatusHistory().add(parseEncounterStatusHistoryComponent(xpp, res));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("class")) {
@@ -9640,8 +9639,7 @@ public class XmlParser extends XmlParserBase {
   protected boolean parseEncounterStatusHistoryComponentContent(int eventType, XmlPullParser xpp, Encounter owner,
       Encounter.StatusHistoryComponent res) throws XmlPullParserException, IOException, FHIRFormatError {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(
-          parseEnumeration(xpp, Encounter.EncounterStatus.NULL, new Encounter.EncounterStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("period")) {
       res.setPeriod(parsePeriod(xpp));
     } else if (!parseBackboneElementContent(eventType, xpp, res))
@@ -9798,8 +9796,7 @@ public class XmlParser extends XmlParserBase {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("location")) {
       res.setLocation(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, Encounter.EncounterLocationStatus.NULL,
-          new Encounter.EncounterLocationStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("physicalType")) {
       res.setPhysicalType(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("period")) {
@@ -36695,7 +36692,7 @@ public class XmlParser extends XmlParserBase {
         composeIdentifier("identifier", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new Encounter.EncounterStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasStatusHistory()) {
       for (Encounter.StatusHistoryComponent e : element.getStatusHistory())
         composeEncounterStatusHistoryComponent("statusHistory", e);
@@ -36788,7 +36785,7 @@ public class XmlParser extends XmlParserBase {
       throws IOException {
     composeBackboneElementElements(element);
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new Encounter.EncounterStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasPeriod()) {
       composePeriod("period", element.getPeriod());
     }
@@ -36930,7 +36927,7 @@ public class XmlParser extends XmlParserBase {
       composeReference("location", element.getLocation());
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new Encounter.EncounterLocationStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasPhysicalType()) {
       composeCodeableConcept("physicalType", element.getPhysicalType());
     }

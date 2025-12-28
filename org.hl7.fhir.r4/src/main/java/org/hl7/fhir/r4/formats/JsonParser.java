@@ -11780,8 +11780,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Encounter.EncounterStatus.NULL,
-        new Encounter.EncounterStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("statusHistory")) {
@@ -11899,8 +11898,7 @@ public class JsonParser extends JsonParserBase {
                                                                 Encounter.StatusHistoryComponent res) throws IOException, FHIRFormatError {
     parseBackboneElementProperties(json, res);
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Encounter.EncounterStatus.NULL,
-        new Encounter.EncounterStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("period"))
@@ -12024,8 +12022,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("location"))
       res.setLocation(parseReference(getJObject(json, "location")));
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Encounter.EncounterLocationStatus.NULL,
-        new Encounter.EncounterLocationStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("physicalType"))
@@ -44730,8 +44727,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new Encounter.EncounterStatusEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(), new Encounter.EncounterStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasStatusHistory()) {
       openArray("statusHistory");
@@ -44859,8 +44856,8 @@ public class JsonParser extends JsonParserBase {
     throws IOException {
     composeBackbone(element);
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new Encounter.EncounterStatusEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(), new Encounter.EncounterStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasPeriod()) {
       composePeriod("period", element.getPeriod());
@@ -45006,10 +45003,8 @@ public class JsonParser extends JsonParserBase {
       composeReference("location", element.getLocation());
     }
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new Encounter.EncounterLocationStatusEnumFactory(),
-        false);
-      composeEnumerationExtras("status", element.getStatusElement(), new Encounter.EncounterLocationStatusEnumFactory(),
-        false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasPhysicalType()) {
       composeCodeableConcept("physicalType", element.getPhysicalType());

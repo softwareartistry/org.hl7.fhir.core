@@ -50,451 +50,15 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Encounter", profile = "http://hl7.org/fhir/StructureDefinition/Encounter")
 public class Encounter extends DomainResource {
 
-  public enum EncounterStatus {
-    /**
-     * The Encounter has not yet started.
-     */
-    PLANNED,
-    /**
-     * The Patient is present for the encounter, however is not currently meeting
-     * with a practitioner.
-     */
-    ARRIVED,
-    /**
-     * The patient has been assessed for the priority of their treatment based on
-     * the severity of their condition.
-     */
-    TRIAGED,
-    /**
-     * The Encounter has begun and the patient is present / the practitioner and the
-     * patient are meeting.
-     */
-    INPROGRESS,
-    /**
-     * The Encounter has begun, but the patient is temporarily on leave.
-     */
-    ONLEAVE,
-    /**
-     * The Encounter has ended.
-     */
-    FINISHED,
-    /**
-     * The Encounter has ended before it has begun.
-     */
-    CANCELLED,
-    /**
-     * This instance should not have been part of this patient's medical record.
-     */
-    ENTEREDINERROR,
-    /**
-     * The encounter status is unknown. Note that "unknown" is a value of last
-     * resort and every attempt should be made to provide a meaningful value other
-     * than "unknown".
-     */
-    UNKNOWN,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static EncounterStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("planned".equals(codeString))
-        return PLANNED;
-      if ("arrived".equals(codeString))
-        return ARRIVED;
-      if ("triaged".equals(codeString))
-        return TRIAGED;
-      if ("in-progress".equals(codeString))
-        return INPROGRESS;
-      if ("onleave".equals(codeString))
-        return ONLEAVE;
-      if ("finished".equals(codeString))
-        return FINISHED;
-      if ("cancelled".equals(codeString))
-        return CANCELLED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return UNKNOWN;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown EncounterStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case PLANNED:
-        return "planned";
-      case ARRIVED:
-        return "arrived";
-      case TRIAGED:
-        return "triaged";
-      case INPROGRESS:
-        return "in-progress";
-      case ONLEAVE:
-        return "onleave";
-      case FINISHED:
-        return "finished";
-      case CANCELLED:
-        return "cancelled";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case UNKNOWN:
-        return "unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case PLANNED:
-        return "http://hl7.org/fhir/encounter-status";
-      case ARRIVED:
-        return "http://hl7.org/fhir/encounter-status";
-      case TRIAGED:
-        return "http://hl7.org/fhir/encounter-status";
-      case INPROGRESS:
-        return "http://hl7.org/fhir/encounter-status";
-      case ONLEAVE:
-        return "http://hl7.org/fhir/encounter-status";
-      case FINISHED:
-        return "http://hl7.org/fhir/encounter-status";
-      case CANCELLED:
-        return "http://hl7.org/fhir/encounter-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/encounter-status";
-      case UNKNOWN:
-        return "http://hl7.org/fhir/encounter-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case PLANNED:
-        return "The Encounter has not yet started.";
-      case ARRIVED:
-        return "The Patient is present for the encounter, however is not currently meeting with a practitioner.";
-      case TRIAGED:
-        return "The patient has been assessed for the priority of their treatment based on the severity of their condition.";
-      case INPROGRESS:
-        return "The Encounter has begun and the patient is present / the practitioner and the patient are meeting.";
-      case ONLEAVE:
-        return "The Encounter has begun, but the patient is temporarily on leave.";
-      case FINISHED:
-        return "The Encounter has ended.";
-      case CANCELLED:
-        return "The Encounter has ended before it has begun.";
-      case ENTEREDINERROR:
-        return "This instance should not have been part of this patient's medical record.";
-      case UNKNOWN:
-        return "The encounter status is unknown. Note that \"unknown\" is a value of last resort and every attempt should be made to provide a meaningful value other than \"unknown\".";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case PLANNED:
-        return "Planned";
-      case ARRIVED:
-        return "Arrived";
-      case TRIAGED:
-        return "Triaged";
-      case INPROGRESS:
-        return "In Progress";
-      case ONLEAVE:
-        return "On Leave";
-      case FINISHED:
-        return "Finished";
-      case CANCELLED:
-        return "Cancelled";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case UNKNOWN:
-        return "Unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class EncounterStatusEnumFactory implements EnumFactory<EncounterStatus> {
-    public EncounterStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("planned".equals(codeString))
-        return EncounterStatus.PLANNED;
-      if ("arrived".equals(codeString))
-        return EncounterStatus.ARRIVED;
-      if ("triaged".equals(codeString))
-        return EncounterStatus.TRIAGED;
-      if ("in-progress".equals(codeString))
-        return EncounterStatus.INPROGRESS;
-      if ("onleave".equals(codeString))
-        return EncounterStatus.ONLEAVE;
-      if ("finished".equals(codeString))
-        return EncounterStatus.FINISHED;
-      if ("cancelled".equals(codeString))
-        return EncounterStatus.CANCELLED;
-      if ("entered-in-error".equals(codeString))
-        return EncounterStatus.ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return EncounterStatus.UNKNOWN;
-      throw new IllegalArgumentException("Unknown EncounterStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<EncounterStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<EncounterStatus>(this, EncounterStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<EncounterStatus>(this, EncounterStatus.NULL, code);
-      if ("planned".equals(codeString))
-        return new Enumeration<EncounterStatus>(this, EncounterStatus.PLANNED, code);
-      if ("arrived".equals(codeString))
-        return new Enumeration<EncounterStatus>(this, EncounterStatus.ARRIVED, code);
-      if ("triaged".equals(codeString))
-        return new Enumeration<EncounterStatus>(this, EncounterStatus.TRIAGED, code);
-      if ("in-progress".equals(codeString))
-        return new Enumeration<EncounterStatus>(this, EncounterStatus.INPROGRESS, code);
-      if ("onleave".equals(codeString))
-        return new Enumeration<EncounterStatus>(this, EncounterStatus.ONLEAVE, code);
-      if ("finished".equals(codeString))
-        return new Enumeration<EncounterStatus>(this, EncounterStatus.FINISHED, code);
-      if ("cancelled".equals(codeString))
-        return new Enumeration<EncounterStatus>(this, EncounterStatus.CANCELLED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<EncounterStatus>(this, EncounterStatus.ENTEREDINERROR, code);
-      if ("unknown".equals(codeString))
-        return new Enumeration<EncounterStatus>(this, EncounterStatus.UNKNOWN, code);
-      throw new FHIRException("Unknown EncounterStatus code '" + codeString + "'");
-    }
-
-    public String toCode(EncounterStatus code) {
-       if (code == EncounterStatus.NULL)
-           return null;
-       if (code == EncounterStatus.PLANNED)
-        return "planned";
-      if (code == EncounterStatus.ARRIVED)
-        return "arrived";
-      if (code == EncounterStatus.TRIAGED)
-        return "triaged";
-      if (code == EncounterStatus.INPROGRESS)
-        return "in-progress";
-      if (code == EncounterStatus.ONLEAVE)
-        return "onleave";
-      if (code == EncounterStatus.FINISHED)
-        return "finished";
-      if (code == EncounterStatus.CANCELLED)
-        return "cancelled";
-      if (code == EncounterStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      if (code == EncounterStatus.UNKNOWN)
-        return "unknown";
-      return "?";
-   }
-
-    public String toSystem(EncounterStatus code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum EncounterLocationStatus {
-    /**
-     * The patient is planned to be moved to this location at some point in the
-     * future.
-     */
-    PLANNED,
-    /**
-     * The patient is currently at this location, or was between the period
-     * specified.
-     * 
-     * A system may update these records when the patient leaves the location to
-     * either reserved, or completed.
-     */
-    ACTIVE,
-    /**
-     * This location is held empty for this patient.
-     */
-    RESERVED,
-    /**
-     * The patient was at this location during the period specified.
-     * 
-     * Not to be used when the patient is currently at the location.
-     */
-    COMPLETED,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static EncounterLocationStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("planned".equals(codeString))
-        return PLANNED;
-      if ("active".equals(codeString))
-        return ACTIVE;
-      if ("reserved".equals(codeString))
-        return RESERVED;
-      if ("completed".equals(codeString))
-        return COMPLETED;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown EncounterLocationStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case PLANNED:
-        return "planned";
-      case ACTIVE:
-        return "active";
-      case RESERVED:
-        return "reserved";
-      case COMPLETED:
-        return "completed";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case PLANNED:
-        return "http://hl7.org/fhir/encounter-location-status";
-      case ACTIVE:
-        return "http://hl7.org/fhir/encounter-location-status";
-      case RESERVED:
-        return "http://hl7.org/fhir/encounter-location-status";
-      case COMPLETED:
-        return "http://hl7.org/fhir/encounter-location-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case PLANNED:
-        return "The patient is planned to be moved to this location at some point in the future.";
-      case ACTIVE:
-        return "The patient is currently at this location, or was between the period specified.\r\rA system may update these records when the patient leaves the location to either reserved, or completed.";
-      case RESERVED:
-        return "This location is held empty for this patient.";
-      case COMPLETED:
-        return "The patient was at this location during the period specified.\r\rNot to be used when the patient is currently at the location.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case PLANNED:
-        return "Planned";
-      case ACTIVE:
-        return "Active";
-      case RESERVED:
-        return "Reserved";
-      case COMPLETED:
-        return "Completed";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class EncounterLocationStatusEnumFactory implements EnumFactory<EncounterLocationStatus> {
-    public EncounterLocationStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("planned".equals(codeString))
-        return EncounterLocationStatus.PLANNED;
-      if ("active".equals(codeString))
-        return EncounterLocationStatus.ACTIVE;
-      if ("reserved".equals(codeString))
-        return EncounterLocationStatus.RESERVED;
-      if ("completed".equals(codeString))
-        return EncounterLocationStatus.COMPLETED;
-      throw new IllegalArgumentException("Unknown EncounterLocationStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<EncounterLocationStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<EncounterLocationStatus>(this, EncounterLocationStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<EncounterLocationStatus>(this, EncounterLocationStatus.NULL, code);
-      if ("planned".equals(codeString))
-        return new Enumeration<EncounterLocationStatus>(this, EncounterLocationStatus.PLANNED, code);
-      if ("active".equals(codeString))
-        return new Enumeration<EncounterLocationStatus>(this, EncounterLocationStatus.ACTIVE, code);
-      if ("reserved".equals(codeString))
-        return new Enumeration<EncounterLocationStatus>(this, EncounterLocationStatus.RESERVED, code);
-      if ("completed".equals(codeString))
-        return new Enumeration<EncounterLocationStatus>(this, EncounterLocationStatus.COMPLETED, code);
-      throw new FHIRException("Unknown EncounterLocationStatus code '" + codeString + "'");
-    }
-
-    public String toCode(EncounterLocationStatus code) {
-       if (code == EncounterLocationStatus.NULL)
-           return null;
-       if (code == EncounterLocationStatus.PLANNED)
-        return "planned";
-      if (code == EncounterLocationStatus.ACTIVE)
-        return "active";
-      if (code == EncounterLocationStatus.RESERVED)
-        return "reserved";
-      if (code == EncounterLocationStatus.COMPLETED)
-        return "completed";
-      return "?";
-   }
-
-    public String toSystem(EncounterLocationStatus code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class StatusHistoryComponent extends BackboneElement implements IBaseBackboneElement {
     /**
      * planned | arrived | triaged | in-progress | onleave | finished | cancelled +.
      */
-    @Child(name = "status", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
+    @Child(name = "status", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "planned | arrived | triaged | in-progress | onleave | finished | cancelled +", formalDefinition = "planned | arrived | triaged | in-progress | onleave | finished | cancelled +.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/encounter-status")
-    protected Enumeration<EncounterStatus> status;
+    protected StringType status;
 
     /**
      * The time that the episode was in the specified status.
@@ -515,7 +79,7 @@ public class Encounter extends DomainResource {
     /**
      * Constructor
      */
-    public StatusHistoryComponent(Enumeration<EncounterStatus> status, Period period) {
+    public StatusHistoryComponent(StringType status, Period period) {
       super();
       this.status = status;
       this.period = period;
@@ -527,12 +91,12 @@ public class Encounter extends DomainResource {
      *         value and extensions. The accessor "getStatus" gives direct access to
      *         the value
      */
-    public Enumeration<EncounterStatus> getStatusElement() {
+    public StringType getStatusElement() {
       if (this.status == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create StatusHistoryComponent.status");
         else if (Configuration.doAutoCreate())
-          this.status = new Enumeration<EncounterStatus>(new EncounterStatusEnumFactory()); // bb
+          this.status = new StringType(); // bb
       return this.status;
     }
 
@@ -550,7 +114,7 @@ public class Encounter extends DomainResource {
      *              object with id, value and extensions. The accessor "getStatus"
      *              gives direct access to the value
      */
-    public StatusHistoryComponent setStatusElement(Enumeration<EncounterStatus> value) {
+    public StatusHistoryComponent setStatusElement(StringType value) {
       this.status = value;
       return this;
     }
@@ -559,7 +123,7 @@ public class Encounter extends DomainResource {
      * @return planned | arrived | triaged | in-progress | onleave | finished |
      *         cancelled +.
      */
-    public EncounterStatus getStatus() {
+    public String getStatus() {
       return this.status == null ? null : this.status.getValue();
     }
 
@@ -567,10 +131,14 @@ public class Encounter extends DomainResource {
      * @param value planned | arrived | triaged | in-progress | onleave | finished |
      *              cancelled +.
      */
-    public StatusHistoryComponent setStatus(EncounterStatus value) {
-      if (this.status == null)
-        this.status = new Enumeration<EncounterStatus>(new EncounterStatusEnumFactory());
-      this.status.setValue(value);
+    public StatusHistoryComponent setStatus(String value) {
+      if (value == null)
+        this.status = null;
+      else {
+        if (this.status == null)
+          this.status = new StringType();
+        this.status.setValue(value);
+      }
       return this;
     }
 
@@ -602,7 +170,7 @@ public class Encounter extends DomainResource {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("status", "code",
+      children.add(new Property("status", "string",
           "planned | arrived | triaged | in-progress | onleave | finished | cancelled +.", 0, 1, status));
       children.add(
           new Property("period", "Period", "The time that the episode was in the specified status.", 0, 1, period));
@@ -612,7 +180,7 @@ public class Encounter extends DomainResource {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case -892481550:
-        /* status */ return new Property("status", "code",
+        /* status */ return new Property("status", "string",
             "planned | arrived | triaged | in-progress | onleave | finished | cancelled +.", 0, 1, status);
       case -991726143:
         /* period */ return new Property("period", "Period", "The time that the episode was in the specified status.",
@@ -627,7 +195,7 @@ public class Encounter extends DomainResource {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case -892481550:
-        /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<EncounterStatus>
+        /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
       case -991726143:
         /* period */ return this.period == null ? new Base[0] : new Base[] { this.period }; // Period
       default:
@@ -640,8 +208,7 @@ public class Encounter extends DomainResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case -892481550: // status
-        value = new EncounterStatusEnumFactory().fromType(castToCode(value));
-        this.status = (Enumeration) value; // Enumeration<EncounterStatus>
+        this.status = castToString(value); // StringType
         return value;
       case -991726143: // period
         this.period = castToPeriod(value); // Period
@@ -655,8 +222,7 @@ public class Encounter extends DomainResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("status")) {
-        value = new EncounterStatusEnumFactory().fromType(castToCode(value));
-        this.status = (Enumeration) value; // Enumeration<EncounterStatus>
+        this.status = castToString(value); // StringType
       } else if (name.equals("period")) {
         this.period = castToPeriod(value); // Period
       } else
@@ -692,7 +258,7 @@ public class Encounter extends DomainResource {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case -892481550:
-        /* status */ return new String[] { "code" };
+        /* status */ return new String[] { "string" };
       case -991726143:
         /* period */ return new String[] { "Period" };
       default:
@@ -2535,10 +2101,10 @@ public class Encounter extends DomainResource {
      * period specified. If the participant is no longer at the location, then the
      * period will have an end date/time.
      */
-    @Child(name = "status", type = { CodeType.class }, order = 2, min = 0, max = 1, modifier = false, summary = false)
+    @Child(name = "status", type = { StringType.class }, order = 2, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "planned | active | reserved | completed", formalDefinition = "The status of the participants' presence at the specified location during the period specified. If the participant is no longer at the location, then the period will have an end date/time.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/encounter-location-status")
-    protected Enumeration<EncounterLocationStatus> status;
+    protected StringType status;
 
     /**
      * This will be used to specify the required levels (bed/ward/room/etc.) desired
@@ -2632,12 +2198,12 @@ public class Encounter extends DomainResource {
      *         date/time.). This is the underlying object with id, value and
      *         extensions. The accessor "getStatus" gives direct access to the value
      */
-    public Enumeration<EncounterLocationStatus> getStatusElement() {
+    public StringType getStatusElement() {
       if (this.status == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create EncounterLocationComponent.status");
         else if (Configuration.doAutoCreate())
-          this.status = new Enumeration<EncounterLocationStatus>(new EncounterLocationStatusEnumFactory()); // bb
+          this.status = new StringType(); // bb
       return this.status;
     }
 
@@ -2657,7 +2223,7 @@ public class Encounter extends DomainResource {
      *              value and extensions. The accessor "getStatus" gives direct
      *              access to the value
      */
-    public EncounterLocationComponent setStatusElement(Enumeration<EncounterLocationStatus> value) {
+    public EncounterLocationComponent setStatusElement(StringType value) {
       this.status = value;
       return this;
     }
@@ -2667,7 +2233,7 @@ public class Encounter extends DomainResource {
      *         during the period specified. If the participant is no longer at the
      *         location, then the period will have an end date/time.
      */
-    public EncounterLocationStatus getStatus() {
+    public String getStatus() {
       return this.status == null ? null : this.status.getValue();
     }
 
@@ -2677,12 +2243,12 @@ public class Encounter extends DomainResource {
      *              longer at the location, then the period will have an end
      *              date/time.
      */
-    public EncounterLocationComponent setStatus(EncounterLocationStatus value) {
+    public EncounterLocationComponent setStatus(String value) {
       if (value == null)
         this.status = null;
       else {
         if (this.status == null)
-          this.status = new Enumeration<EncounterLocationStatus>(new EncounterLocationStatusEnumFactory());
+          this.status = new StringType();
         this.status.setValue(value);
       }
       return this;
@@ -2746,7 +2312,7 @@ public class Encounter extends DomainResource {
       super.listChildren(children);
       children.add(new Property("location", "Reference(Location)", "The location where the encounter takes place.", 0,
           1, location));
-      children.add(new Property("status", "code",
+      children.add(new Property("status", "string",
           "The status of the participants' presence at the specified location during the period specified. If the participant is no longer at the location, then the period will have an end date/time.",
           0, 1, status));
       children.add(new Property("physicalType", "CodeableConcept",
@@ -2763,7 +2329,7 @@ public class Encounter extends DomainResource {
         /* location */ return new Property("location", "Reference(Location)",
             "The location where the encounter takes place.", 0, 1, location);
       case -892481550:
-        /* status */ return new Property("status", "code",
+        /* status */ return new Property("status", "string",
             "The status of the participants' presence at the specified location during the period specified. If the participant is no longer at the location, then the period will have an end date/time.",
             0, 1, status);
       case -1474715471:
@@ -2785,7 +2351,7 @@ public class Encounter extends DomainResource {
       case 1901043637:
         /* location */ return this.location == null ? new Base[0] : new Base[] { this.location }; // Reference
       case -892481550:
-        /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<EncounterLocationStatus>
+        /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
       case -1474715471:
         /* physicalType */ return this.physicalType == null ? new Base[0] : new Base[] { this.physicalType }; // CodeableConcept
       case -991726143:
@@ -2803,8 +2369,7 @@ public class Encounter extends DomainResource {
         this.location = castToReference(value); // Reference
         return value;
       case -892481550: // status
-        value = new EncounterLocationStatusEnumFactory().fromType(castToCode(value));
-        this.status = (Enumeration) value; // Enumeration<EncounterLocationStatus>
+        this.status = castToString(value); // StringType
         return value;
       case -1474715471: // physicalType
         this.physicalType = castToCodeableConcept(value); // CodeableConcept
@@ -2823,8 +2388,7 @@ public class Encounter extends DomainResource {
       if (name.equals("location")) {
         this.location = castToReference(value); // Reference
       } else if (name.equals("status")) {
-        value = new EncounterLocationStatusEnumFactory().fromType(castToCode(value));
-        this.status = (Enumeration) value; // Enumeration<EncounterLocationStatus>
+        this.status = castToString(value); // StringType
       } else if (name.equals("physicalType")) {
         this.physicalType = castToCodeableConcept(value); // CodeableConcept
       } else if (name.equals("period")) {
@@ -2872,7 +2436,7 @@ public class Encounter extends DomainResource {
       case 1901043637:
         /* location */ return new String[] { "Reference" };
       case -892481550:
-        /* status */ return new String[] { "code" };
+        /* status */ return new String[] { "string" };
       case -1474715471:
         /* physicalType */ return new String[] { "CodeableConcept" };
       case -991726143:
@@ -2957,10 +2521,10 @@ public class Encounter extends DomainResource {
   /**
    * planned | arrived | triaged | in-progress | onleave | finished | cancelled +.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "planned | arrived | triaged | in-progress | onleave | finished | cancelled +", formalDefinition = "planned | arrived | triaged | in-progress | onleave | finished | cancelled +.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/encounter-status")
-  protected Enumeration<EncounterStatus> status;
+  protected StringType status;
 
   /**
    * The status history permits the encounter resource to contain the status
@@ -3220,7 +2784,7 @@ public class Encounter extends DomainResource {
   /**
    * Constructor
    */
-  public Encounter(Enumeration<EncounterStatus> status, Coding class_) {
+  public Encounter(StringType status, Coding class_) {
     super();
     this.status = status;
     this.class_ = class_;
@@ -3286,12 +2850,12 @@ public class Encounter extends DomainResource {
    *         value and extensions. The accessor "getStatus" gives direct access to
    *         the value
    */
-  public Enumeration<EncounterStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Encounter.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<EncounterStatus>(new EncounterStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -3309,7 +2873,7 @@ public class Encounter extends DomainResource {
    *              object with id, value and extensions. The accessor "getStatus"
    *              gives direct access to the value
    */
-  public Encounter setStatusElement(Enumeration<EncounterStatus> value) {
+  public Encounter setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -3318,7 +2882,7 @@ public class Encounter extends DomainResource {
    * @return planned | arrived | triaged | in-progress | onleave | finished |
    *         cancelled +.
    */
-  public EncounterStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
@@ -3326,10 +2890,14 @@ public class Encounter extends DomainResource {
    * @param value planned | arrived | triaged | in-progress | onleave | finished |
    *              cancelled +.
    */
-  public Encounter setStatus(EncounterStatus value) {
-    if (this.status == null)
-      this.status = new Enumeration<EncounterStatus>(new EncounterStatusEnumFactory());
-    this.status.setValue(value);
+  public Encounter setStatus(String value) {
+    if (value == null)
+      this.status = null;
+    else {
+      if (this.status == null)
+        this.status = new StringType();
+      this.status.setValue(value);
+    }
     return this;
   }
 
@@ -4339,7 +3907,7 @@ public class Encounter extends DomainResource {
     super.listChildren(children);
     children.add(new Property("identifier", "Identifier", "Identifier(s) by which this encounter is known.", 0,
         java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "planned | arrived | triaged | in-progress | onleave | finished | cancelled +.", 0, 1, status));
     children.add(new Property("statusHistory", "",
         "The status history permits the encounter resource to contain the status history without needing to read through the historical versions of the resource, or even have the server store them.",
@@ -4402,7 +3970,7 @@ public class Encounter extends DomainResource {
       /* identifier */ return new Property("identifier", "Identifier",
           "Identifier(s) by which this encounter is known.", 0, java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "planned | arrived | triaged | in-progress | onleave | finished | cancelled +.", 0, 1, status);
     case -986695614:
       /* statusHistory */ return new Property("statusHistory", "",
@@ -4491,7 +4059,7 @@ public class Encounter extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<EncounterStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -986695614:
       /* statusHistory */ return this.statusHistory == null ? new Base[0]
           : this.statusHistory.toArray(new Base[this.statusHistory.size()]); // StatusHistoryComponent
@@ -4555,8 +4123,7 @@ public class Encounter extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new EncounterStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<EncounterStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -986695614: // statusHistory
       this.getStatusHistory().add((StatusHistoryComponent) value); // StatusHistoryComponent
@@ -4632,8 +4199,7 @@ public class Encounter extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new EncounterStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<EncounterStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("statusHistory")) {
       this.getStatusHistory().add((StatusHistoryComponent) value);
     } else if (name.equals("class")) {
@@ -4795,7 +4361,7 @@ public class Encounter extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -986695614:
       /* statusHistory */ return new String[] {};
     case 94742904:

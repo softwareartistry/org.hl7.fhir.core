@@ -6868,7 +6868,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "Encounter", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "Encounter", "status", element.getStatusElement(), -1);
+      composeString(t, "Encounter", "status", element.getStatusElement(), -1);
     for (int i = 0; i < element.getStatusHistory().size(); i++)
       composeEncounterStatusHistoryComponent(t, "Encounter", "statusHistory", element.getStatusHistory().get(i), i);
     if (element.hasClass_())
@@ -6926,7 +6926,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "statusHistory", name, element, index);
     if (element.hasStatusElement())
-      composeEnum(t, "Encounter", "status", element.getStatusElement(), -1);
+      composeString(t, "Encounter", "status", element.getStatusElement(), -1);
     if (element.hasPeriod())
       composePeriod(t, "Encounter", "period", element.getPeriod(), -1);
   }
@@ -7031,7 +7031,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasLocation())
       composeReference(t, "Encounter", "location", element.getLocation(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "Encounter", "status", element.getStatusElement(), -1);
+      composeString(t, "Encounter", "status", element.getStatusElement(), -1);
     if (element.hasPhysicalType())
       composeCodeableConcept(t, "Encounter", "physicalType", element.getPhysicalType(), -1);
     if (element.hasPeriod())
