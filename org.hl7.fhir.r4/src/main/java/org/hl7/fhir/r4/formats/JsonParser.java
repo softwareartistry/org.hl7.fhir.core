@@ -26769,7 +26769,7 @@ public class JsonParser extends JsonParserBase {
       res.setSchedule(parseReference(getJObject(json, "schedule")));
     if (json.has("status"))
       res.setStatusElement(
-        parseEnumeration(json.get("status").getAsString(), Slot.SlotStatus.NULL, new Slot.SlotStatusEnumFactory()));
+        parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("start"))
@@ -59978,8 +59978,8 @@ public class JsonParser extends JsonParserBase {
       composeReference("schedule", element.getSchedule());
     }
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new Slot.SlotStatusEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(), new Slot.SlotStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasStartElement()) {
       composeInstantCore("start", element.getStartElement(), false);

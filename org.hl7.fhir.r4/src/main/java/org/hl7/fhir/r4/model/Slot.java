@@ -48,191 +48,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Slot", profile = "http://hl7.org/fhir/StructureDefinition/Slot")
 public class Slot extends DomainResource {
 
-  public enum SlotStatus {
-    /**
-     * Indicates that the time interval is busy because one or more events have been
-     * scheduled for that interval.
-     */
-    BUSY,
-    /**
-     * Indicates that the time interval is free for scheduling.
-     */
-    FREE,
-    /**
-     * Indicates that the time interval is busy and that the interval cannot be
-     * scheduled.
-     */
-    BUSYUNAVAILABLE,
-    /**
-     * Indicates that the time interval is busy because one or more events have been
-     * tentatively scheduled for that interval.
-     */
-    BUSYTENTATIVE,
-    /**
-     * This instance should not have been part of this patient's medical record.
-     */
-    ENTEREDINERROR,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static SlotStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("busy".equals(codeString))
-        return BUSY;
-      if ("free".equals(codeString))
-        return FREE;
-      if ("busy-unavailable".equals(codeString))
-        return BUSYUNAVAILABLE;
-      if ("busy-tentative".equals(codeString))
-        return BUSYTENTATIVE;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown SlotStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case BUSY:
-        return "busy";
-      case FREE:
-        return "free";
-      case BUSYUNAVAILABLE:
-        return "busy-unavailable";
-      case BUSYTENTATIVE:
-        return "busy-tentative";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case BUSY:
-        return "http://hl7.org/fhir/slotstatus";
-      case FREE:
-        return "http://hl7.org/fhir/slotstatus";
-      case BUSYUNAVAILABLE:
-        return "http://hl7.org/fhir/slotstatus";
-      case BUSYTENTATIVE:
-        return "http://hl7.org/fhir/slotstatus";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/slotstatus";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case BUSY:
-        return "Indicates that the time interval is busy because one  or more events have been scheduled for that interval.";
-      case FREE:
-        return "Indicates that the time interval is free for scheduling.";
-      case BUSYUNAVAILABLE:
-        return "Indicates that the time interval is busy and that the interval cannot be scheduled.";
-      case BUSYTENTATIVE:
-        return "Indicates that the time interval is busy because one or more events have been tentatively scheduled for that interval.";
-      case ENTEREDINERROR:
-        return "This instance should not have been part of this patient's medical record.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case BUSY:
-        return "Busy";
-      case FREE:
-        return "Free";
-      case BUSYUNAVAILABLE:
-        return "Busy (Unavailable)";
-      case BUSYTENTATIVE:
-        return "Busy (Tentative)";
-      case ENTEREDINERROR:
-        return "Entered in error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class SlotStatusEnumFactory implements EnumFactory<SlotStatus> {
-    public SlotStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("busy".equals(codeString))
-        return SlotStatus.BUSY;
-      if ("free".equals(codeString))
-        return SlotStatus.FREE;
-      if ("busy-unavailable".equals(codeString))
-        return SlotStatus.BUSYUNAVAILABLE;
-      if ("busy-tentative".equals(codeString))
-        return SlotStatus.BUSYTENTATIVE;
-      if ("entered-in-error".equals(codeString))
-        return SlotStatus.ENTEREDINERROR;
-      throw new IllegalArgumentException("Unknown SlotStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<SlotStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<SlotStatus>(this, SlotStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<SlotStatus>(this, SlotStatus.NULL, code);
-      if ("busy".equals(codeString))
-        return new Enumeration<SlotStatus>(this, SlotStatus.BUSY, code);
-      if ("free".equals(codeString))
-        return new Enumeration<SlotStatus>(this, SlotStatus.FREE, code);
-      if ("busy-unavailable".equals(codeString))
-        return new Enumeration<SlotStatus>(this, SlotStatus.BUSYUNAVAILABLE, code);
-      if ("busy-tentative".equals(codeString))
-        return new Enumeration<SlotStatus>(this, SlotStatus.BUSYTENTATIVE, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<SlotStatus>(this, SlotStatus.ENTEREDINERROR, code);
-      throw new FHIRException("Unknown SlotStatus code '" + codeString + "'");
-    }
-
-    public String toCode(SlotStatus code) {
-       if (code == SlotStatus.NULL)
-           return null;
-       if (code == SlotStatus.BUSY)
-        return "busy";
-      if (code == SlotStatus.FREE)
-        return "free";
-      if (code == SlotStatus.BUSYUNAVAILABLE)
-        return "busy-unavailable";
-      if (code == SlotStatus.BUSYTENTATIVE)
-        return "busy-tentative";
-      if (code == SlotStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      return "?";
-   }
-
-    public String toSystem(SlotStatus code) {
-      return code.getSystem();
-    }
-  }
-
   /**
    * External Ids for this item.
    */
@@ -300,10 +115,10 @@ public class Slot extends DomainResource {
   /**
    * busy | free | busy-unavailable | busy-tentative | entered-in-error.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 6, min = 1, max = 1, modifier = false, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 6, min = 1, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "busy | free | busy-unavailable | busy-tentative | entered-in-error", formalDefinition = "busy | free | busy-unavailable | busy-tentative | entered-in-error.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/slotstatus")
-  protected Enumeration<SlotStatus> status;
+  protected StringType status;
 
   /**
    * Date/Time that the slot is to begin.
@@ -348,7 +163,7 @@ public class Slot extends DomainResource {
   /**
    * Constructor
    */
-  public Slot(Reference schedule, Enumeration<SlotStatus> status, InstantType start, InstantType end) {
+  public Slot(Reference schedule, StringType status, InstantType start, InstantType end) {
     super();
     this.schedule = schedule;
     this.status = status;
@@ -661,12 +476,12 @@ public class Slot extends DomainResource {
    *         entered-in-error.). This is the underlying object with id, value and
    *         extensions. The accessor "getStatus" gives direct access to the value
    */
-  public Enumeration<SlotStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Slot.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<SlotStatus>(new SlotStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -684,7 +499,7 @@ public class Slot extends DomainResource {
    *              value and extensions. The accessor "getStatus" gives direct
    *              access to the value
    */
-  public Slot setStatusElement(Enumeration<SlotStatus> value) {
+  public Slot setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -692,17 +507,17 @@ public class Slot extends DomainResource {
   /**
    * @return busy | free | busy-unavailable | busy-tentative | entered-in-error.
    */
-  public SlotStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value busy | free | busy-unavailable | busy-tentative |
    *              entered-in-error.
    */
-  public Slot setStatus(SlotStatus value) {
+  public Slot setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<SlotStatus>(new SlotStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -933,7 +748,7 @@ public class Slot extends DomainResource {
         appointmentType));
     children.add(new Property("schedule", "Reference(Schedule)",
         "The schedule resource that this slot defines an interval of status information.", 0, 1, schedule));
-    children.add(new Property("status", "code", "busy | free | busy-unavailable | busy-tentative | entered-in-error.",
+    children.add(new Property("status", "string", "busy | free | busy-unavailable | busy-tentative | entered-in-error.",
         0, 1, status));
     children.add(new Property("start", "instant", "Date/Time that the slot is to begin.", 0, 1, start));
     children.add(new Property("end", "instant", "Date/Time that the slot is to conclude.", 0, 1, end));
@@ -971,7 +786,7 @@ public class Slot extends DomainResource {
       /* schedule */ return new Property("schedule", "Reference(Schedule)",
           "The schedule resource that this slot defines an interval of status information.", 0, 1, schedule);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "busy | free | busy-unavailable | busy-tentative | entered-in-error.", 0, 1, status);
     case 109757538:
       /* start */ return new Property("start", "instant", "Date/Time that the slot is to begin.", 0, 1, start);
@@ -1011,7 +826,7 @@ public class Slot extends DomainResource {
     case -697920873:
       /* schedule */ return this.schedule == null ? new Base[0] : new Base[] { this.schedule }; // Reference
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<SlotStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 109757538:
       /* start */ return this.start == null ? new Base[0] : new Base[] { this.start }; // InstantType
     case 100571:
@@ -1048,8 +863,7 @@ public class Slot extends DomainResource {
       this.schedule = castToReference(value); // Reference
       return value;
     case -892481550: // status
-      value = new SlotStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<SlotStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 109757538: // start
       this.start = castToInstant(value); // InstantType
@@ -1084,8 +898,7 @@ public class Slot extends DomainResource {
     } else if (name.equals("schedule")) {
       this.schedule = castToReference(value); // Reference
     } else if (name.equals("status")) {
-      value = new SlotStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<SlotStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("start")) {
       this.start = castToInstant(value); // InstantType
     } else if (name.equals("end")) {
@@ -1175,7 +988,7 @@ public class Slot extends DomainResource {
     case -697920873:
       /* schedule */ return new String[] { "Reference" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 109757538:
       /* start */ return new String[] { "instant" };
     case 100571:

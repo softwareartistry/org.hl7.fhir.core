@@ -15457,7 +15457,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasSchedule())
       composeReference(t, "Slot", "schedule", element.getSchedule(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "Slot", "status", element.getStatusElement(), -1);
+      composeString(t, "Slot", "status", element.getStatusElement(), -1);
     if (element.hasStartElement())
       composeInstant(t, "Slot", "start", element.getStartElement(), -1);
     if (element.hasEndElement())

@@ -21180,7 +21180,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("schedule")) {
       res.setSchedule(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, Slot.SlotStatus.NULL, new Slot.SlotStatusEnumFactory()));
+      res.setStatusElement(parseStatus(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("start")) {
       res.setStartElement(parseInstant(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("end")) {
@@ -48762,7 +48762,7 @@ public class XmlParser extends XmlParserBase {
       composeReference("schedule", element.getSchedule());
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new Slot.SlotStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasStartElement()) {
       composeInstant("start", element.getStartElement());
     }
