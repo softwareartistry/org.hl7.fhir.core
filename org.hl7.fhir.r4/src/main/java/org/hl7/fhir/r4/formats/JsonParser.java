@@ -14929,8 +14929,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_active"))
       parseElementProperties(getJObject(json, "_active"), res.getActiveElement());
     if (json.has("type"))
-      res.setTypeElement(
-        parseEnumeration(json.get("type").getAsString(), Group.GroupType.NULL, new Group.GroupTypeEnumFactory()));
+      res.setTypeElement(parseString(json.get("type").getAsString()));
     if (json.has("_type"))
       parseElementProperties(getJObject(json, "_type"), res.getTypeElement());
     if (json.has("actual"))
@@ -47896,8 +47895,8 @@ public class JsonParser extends JsonParserBase {
       composeBooleanExtras("active", element.getActiveElement(), false);
     }
     if (element.hasTypeElement()) {
-      composeEnumerationCore("type", element.getTypeElement(), new Group.GroupTypeEnumFactory(), false);
-      composeEnumerationExtras("type", element.getTypeElement(), new Group.GroupTypeEnumFactory(), false);
+      composeStringCore("type", element.getTypeElement(), false);
+      composeStringExtras("type", element.getTypeElement(), false);
     }
     if (element.hasActualElement()) {
       composeBooleanCore("actual", element.getActualElement(), false);

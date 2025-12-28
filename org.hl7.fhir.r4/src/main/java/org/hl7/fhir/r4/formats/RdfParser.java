@@ -8632,7 +8632,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasActiveElement())
       composeBoolean(t, "Group", "active", element.getActiveElement(), -1);
     if (element.hasTypeElement())
-      composeEnum(t, "Group", "type", element.getTypeElement(), -1);
+      composeString(t, "Group", "type", element.getTypeElement(), -1);
     if (element.hasActualElement())
       composeBoolean(t, "Group", "actual", element.getActualElement(), -1);
     if (element.hasCode())

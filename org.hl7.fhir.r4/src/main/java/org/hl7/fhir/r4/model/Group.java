@@ -52,209 +52,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Group", profile = "http://hl7.org/fhir/StructureDefinition/Group")
 public class Group extends DomainResource {
 
-  public enum GroupType {
-    /**
-     * Group contains "person" Patient resources.
-     */
-    PERSON,
-    /**
-     * Group contains "animal" Patient resources.
-     */
-    ANIMAL,
-    /**
-     * Group contains healthcare practitioner resources (Practitioner or
-     * PractitionerRole).
-     */
-    PRACTITIONER,
-    /**
-     * Group contains Device resources.
-     */
-    DEVICE,
-    /**
-     * Group contains Medication resources.
-     */
-    MEDICATION,
-    /**
-     * Group contains Substance resources.
-     */
-    SUBSTANCE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static GroupType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("person".equals(codeString))
-        return PERSON;
-      if ("animal".equals(codeString))
-        return ANIMAL;
-      if ("practitioner".equals(codeString))
-        return PRACTITIONER;
-      if ("device".equals(codeString))
-        return DEVICE;
-      if ("medication".equals(codeString))
-        return MEDICATION;
-      if ("substance".equals(codeString))
-        return SUBSTANCE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown GroupType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case PERSON:
-        return "person";
-      case ANIMAL:
-        return "animal";
-      case PRACTITIONER:
-        return "practitioner";
-      case DEVICE:
-        return "device";
-      case MEDICATION:
-        return "medication";
-      case SUBSTANCE:
-        return "substance";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case PERSON:
-        return "http://hl7.org/fhir/group-type";
-      case ANIMAL:
-        return "http://hl7.org/fhir/group-type";
-      case PRACTITIONER:
-        return "http://hl7.org/fhir/group-type";
-      case DEVICE:
-        return "http://hl7.org/fhir/group-type";
-      case MEDICATION:
-        return "http://hl7.org/fhir/group-type";
-      case SUBSTANCE:
-        return "http://hl7.org/fhir/group-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case PERSON:
-        return "Group contains \"person\" Patient resources.";
-      case ANIMAL:
-        return "Group contains \"animal\" Patient resources.";
-      case PRACTITIONER:
-        return "Group contains healthcare practitioner resources (Practitioner or PractitionerRole).";
-      case DEVICE:
-        return "Group contains Device resources.";
-      case MEDICATION:
-        return "Group contains Medication resources.";
-      case SUBSTANCE:
-        return "Group contains Substance resources.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case PERSON:
-        return "Person";
-      case ANIMAL:
-        return "Animal";
-      case PRACTITIONER:
-        return "Practitioner";
-      case DEVICE:
-        return "Device";
-      case MEDICATION:
-        return "Medication";
-      case SUBSTANCE:
-        return "Substance";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class GroupTypeEnumFactory implements EnumFactory<GroupType> {
-    public GroupType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("person".equals(codeString))
-        return GroupType.PERSON;
-      if ("animal".equals(codeString))
-        return GroupType.ANIMAL;
-      if ("practitioner".equals(codeString))
-        return GroupType.PRACTITIONER;
-      if ("device".equals(codeString))
-        return GroupType.DEVICE;
-      if ("medication".equals(codeString))
-        return GroupType.MEDICATION;
-      if ("substance".equals(codeString))
-        return GroupType.SUBSTANCE;
-      throw new IllegalArgumentException("Unknown GroupType code '" + codeString + "'");
-    }
-
-    public Enumeration<GroupType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<GroupType>(this, GroupType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<GroupType>(this, GroupType.NULL, code);
-      if ("person".equals(codeString))
-        return new Enumeration<GroupType>(this, GroupType.PERSON, code);
-      if ("animal".equals(codeString))
-        return new Enumeration<GroupType>(this, GroupType.ANIMAL, code);
-      if ("practitioner".equals(codeString))
-        return new Enumeration<GroupType>(this, GroupType.PRACTITIONER, code);
-      if ("device".equals(codeString))
-        return new Enumeration<GroupType>(this, GroupType.DEVICE, code);
-      if ("medication".equals(codeString))
-        return new Enumeration<GroupType>(this, GroupType.MEDICATION, code);
-      if ("substance".equals(codeString))
-        return new Enumeration<GroupType>(this, GroupType.SUBSTANCE, code);
-      throw new FHIRException("Unknown GroupType code '" + codeString + "'");
-    }
-
-    public String toCode(GroupType code) {
-       if (code == GroupType.NULL)
-           return null;
-       if (code == GroupType.PERSON)
-        return "person";
-      if (code == GroupType.ANIMAL)
-        return "animal";
-      if (code == GroupType.PRACTITIONER)
-        return "practitioner";
-      if (code == GroupType.DEVICE)
-        return "device";
-      if (code == GroupType.MEDICATION)
-        return "medication";
-      if (code == GroupType.SUBSTANCE)
-        return "substance";
-      return "?";
-   }
-
-    public String toSystem(GroupType code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class GroupCharacteristicComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -1152,10 +949,10 @@ public class Group extends DomainResource {
    * Identifies the broad classification of the kind of resources the group
    * includes.
    */
-  @Child(name = "type", type = { CodeType.class }, order = 2, min = 1, max = 1, modifier = false, summary = true)
+  @Child(name = "type", type = { StringType.class }, order = 2, min = 1, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "person | animal | practitioner | device | medication | substance", formalDefinition = "Identifies the broad classification of the kind of resources the group includes.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/group-type")
-  protected Enumeration<GroupType> type;
+  protected StringType type;
 
   /**
    * If true, indicates that the resource refers to a specific group of real
@@ -1229,7 +1026,7 @@ public class Group extends DomainResource {
   /**
    * Constructor
    */
-  public Group(Enumeration<GroupType> type, BooleanType actual) {
+  public Group(StringType type, BooleanType actual) {
     super();
     this.type = type;
     this.actual = actual;
@@ -1349,12 +1146,12 @@ public class Group extends DomainResource {
    *         id, value and extensions. The accessor "getType" gives direct access
    *         to the value
    */
-  public Enumeration<GroupType> getTypeElement() {
+  public StringType getTypeElement() {
     if (this.type == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Group.type");
       else if (Configuration.doAutoCreate())
-        this.type = new Enumeration<GroupType>(new GroupTypeEnumFactory()); // bb
+        this.type = new StringType(); // bb
     return this.type;
   }
 
@@ -1372,7 +1169,7 @@ public class Group extends DomainResource {
    *              with id, value and extensions. The accessor "getType" gives
    *              direct access to the value
    */
-  public Group setTypeElement(Enumeration<GroupType> value) {
+  public Group setTypeElement(StringType value) {
     this.type = value;
     return this;
   }
@@ -1381,17 +1178,17 @@ public class Group extends DomainResource {
    * @return Identifies the broad classification of the kind of resources the
    *         group includes.
    */
-  public GroupType getType() {
-    return this.type == null ? null : this.type.getValue();
+  public StringType getType() {
+    return this.type == null ? null : this.type;
   }
 
   /**
    * @param value Identifies the broad classification of the kind of resources the
    *              group includes.
    */
-  public Group setType(GroupType value) {
+  public Group setType(String value) {
     if (this.type == null)
-      this.type = new Enumeration<GroupType>(new GroupTypeEnumFactory());
+      this.type = new StringType();
     this.type.setValue(value);
     return this;
   }
@@ -1754,7 +1551,7 @@ public class Group extends DomainResource {
     children.add(new Property("active", "boolean",
         "Indicates whether the record for the group is available for use or is merely being retained for historical purposes.",
         0, 1, active));
-    children.add(new Property("type", "code",
+    children.add(new Property("type", "string",
         "Identifies the broad classification of the kind of resources the group includes.", 0, 1, type));
     children.add(new Property("actual", "boolean",
         "If true, indicates that the resource refers to a specific group of real individuals.  If false, the group defines a set of intended individuals.",
@@ -1786,7 +1583,7 @@ public class Group extends DomainResource {
           "Indicates whether the record for the group is available for use or is merely being retained for historical purposes.",
           0, 1, active);
     case 3575610:
-      /* type */ return new Property("type", "code",
+      /* type */ return new Property("type", "string",
           "Identifies the broad classification of the kind of resources the group includes.", 0, 1, type);
     case -1422939762:
       /* actual */ return new Property("actual", "boolean",
@@ -1828,7 +1625,7 @@ public class Group extends DomainResource {
     case -1422950650:
       /* active */ return this.active == null ? new Base[0] : new Base[] { this.active }; // BooleanType
     case 3575610:
-      /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<GroupType>
+      /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
     case -1422939762:
       /* actual */ return this.actual == null ? new Base[0] : new Base[] { this.actual }; // BooleanType
     case 3059181:
@@ -1860,8 +1657,7 @@ public class Group extends DomainResource {
       this.active = castToBoolean(value); // BooleanType
       return value;
     case 3575610: // type
-      value = new GroupTypeEnumFactory().fromType(castToCode(value));
-      this.type = (Enumeration) value; // Enumeration<GroupType>
+      this.type = castToString(value); // StringType
       return value;
     case -1422939762: // actual
       this.actual = castToBoolean(value); // BooleanType
@@ -1897,8 +1693,7 @@ public class Group extends DomainResource {
     } else if (name.equals("active")) {
       this.active = castToBoolean(value); // BooleanType
     } else if (name.equals("type")) {
-      value = new GroupTypeEnumFactory().fromType(castToCode(value));
-      this.type = (Enumeration) value; // Enumeration<GroupType>
+      this.type = castToString(value); // StringType
     } else if (name.equals("actual")) {
       this.actual = castToBoolean(value); // BooleanType
     } else if (name.equals("code")) {
@@ -1982,7 +1777,7 @@ public class Group extends DomainResource {
     case -1422950650:
       /* active */ return new String[] { "boolean" };
     case 3575610:
-      /* type */ return new String[] { "code" };
+      /* type */ return new String[] { "string" };
     case -1422939762:
       /* actual */ return new String[] { "boolean" };
     case 3059181:
