@@ -49,210 +49,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Endpoint", profile = "http://hl7.org/fhir/StructureDefinition/Endpoint")
 public class Endpoint extends DomainResource {
 
-  public enum EndpointStatus {
-    /**
-     * This endpoint is expected to be active and can be used.
-     */
-    ACTIVE,
-    /**
-     * This endpoint is temporarily unavailable.
-     */
-    SUSPENDED,
-    /**
-     * This endpoint has exceeded connectivity thresholds and is considered in an
-     * error state and should no longer be attempted to connect to until corrective
-     * action is taken.
-     */
-    ERROR,
-    /**
-     * This endpoint is no longer to be used.
-     */
-    OFF,
-    /**
-     * This instance should not have been part of this patient's medical record.
-     */
-    ENTEREDINERROR,
-    /**
-     * This endpoint is not intended for production usage.
-     */
-    TEST,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static EndpointStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("active".equals(codeString))
-        return ACTIVE;
-      if ("suspended".equals(codeString))
-        return SUSPENDED;
-      if ("error".equals(codeString))
-        return ERROR;
-      if ("off".equals(codeString))
-        return OFF;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if ("test".equals(codeString))
-        return TEST;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown EndpointStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ACTIVE:
-        return "active";
-      case SUSPENDED:
-        return "suspended";
-      case ERROR:
-        return "error";
-      case OFF:
-        return "off";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case TEST:
-        return "test";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ACTIVE:
-        return "http://hl7.org/fhir/endpoint-status";
-      case SUSPENDED:
-        return "http://hl7.org/fhir/endpoint-status";
-      case ERROR:
-        return "http://hl7.org/fhir/endpoint-status";
-      case OFF:
-        return "http://hl7.org/fhir/endpoint-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/endpoint-status";
-      case TEST:
-        return "http://hl7.org/fhir/endpoint-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ACTIVE:
-        return "This endpoint is expected to be active and can be used.";
-      case SUSPENDED:
-        return "This endpoint is temporarily unavailable.";
-      case ERROR:
-        return "This endpoint has exceeded connectivity thresholds and is considered in an error state and should no longer be attempted to connect to until corrective action is taken.";
-      case OFF:
-        return "This endpoint is no longer to be used.";
-      case ENTEREDINERROR:
-        return "This instance should not have been part of this patient's medical record.";
-      case TEST:
-        return "This endpoint is not intended for production usage.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ACTIVE:
-        return "Active";
-      case SUSPENDED:
-        return "Suspended";
-      case ERROR:
-        return "Error";
-      case OFF:
-        return "Off";
-      case ENTEREDINERROR:
-        return "Entered in error";
-      case TEST:
-        return "Test";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class EndpointStatusEnumFactory implements EnumFactory<EndpointStatus> {
-    public EndpointStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("active".equals(codeString))
-        return EndpointStatus.ACTIVE;
-      if ("suspended".equals(codeString))
-        return EndpointStatus.SUSPENDED;
-      if ("error".equals(codeString))
-        return EndpointStatus.ERROR;
-      if ("off".equals(codeString))
-        return EndpointStatus.OFF;
-      if ("entered-in-error".equals(codeString))
-        return EndpointStatus.ENTEREDINERROR;
-      if ("test".equals(codeString))
-        return EndpointStatus.TEST;
-      throw new IllegalArgumentException("Unknown EndpointStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<EndpointStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<EndpointStatus>(this, EndpointStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<EndpointStatus>(this, EndpointStatus.NULL, code);
-      if ("active".equals(codeString))
-        return new Enumeration<EndpointStatus>(this, EndpointStatus.ACTIVE, code);
-      if ("suspended".equals(codeString))
-        return new Enumeration<EndpointStatus>(this, EndpointStatus.SUSPENDED, code);
-      if ("error".equals(codeString))
-        return new Enumeration<EndpointStatus>(this, EndpointStatus.ERROR, code);
-      if ("off".equals(codeString))
-        return new Enumeration<EndpointStatus>(this, EndpointStatus.OFF, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<EndpointStatus>(this, EndpointStatus.ENTEREDINERROR, code);
-      if ("test".equals(codeString))
-        return new Enumeration<EndpointStatus>(this, EndpointStatus.TEST, code);
-      throw new FHIRException("Unknown EndpointStatus code '" + codeString + "'");
-    }
-
-    public String toCode(EndpointStatus code) {
-       if (code == EndpointStatus.NULL)
-           return null;
-       if (code == EndpointStatus.ACTIVE)
-        return "active";
-      if (code == EndpointStatus.SUSPENDED)
-        return "suspended";
-      if (code == EndpointStatus.ERROR)
-        return "error";
-      if (code == EndpointStatus.OFF)
-        return "off";
-      if (code == EndpointStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      if (code == EndpointStatus.TEST)
-        return "test";
-      return "?";
-   }
-
-    public String toSystem(EndpointStatus code) {
-      return code.getSystem();
-    }
-  }
-
   /**
    * Identifier for the organization that is used to identify the endpoint across
    * multiple disparate systems.
@@ -265,10 +61,10 @@ public class Endpoint extends DomainResource {
   /**
    * active | suspended | error | off | test.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "active | suspended | error | off | entered-in-error | test", formalDefinition = "active | suspended | error | off | test.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/endpoint-status")
-  protected Enumeration<EndpointStatus> status;
+  protected StringType status;
 
   /**
    * A coded value that represents the technical details of the usage of this
@@ -370,7 +166,7 @@ public class Endpoint extends DomainResource {
   /**
    * Constructor
    */
-  public Endpoint(Enumeration<EndpointStatus> status, Coding connectionType, UrlType address) {
+  public Endpoint(StringType status, Coding connectionType, UrlType address) {
     super();
     this.status = status;
     this.connectionType = connectionType;
@@ -437,12 +233,12 @@ public class Endpoint extends DomainResource {
    *         the underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<EndpointStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Endpoint.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<EndpointStatus>(new EndpointStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -459,7 +255,7 @@ public class Endpoint extends DomainResource {
    *              is the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public Endpoint setStatusElement(Enumeration<EndpointStatus> value) {
+  public Endpoint setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -467,16 +263,16 @@ public class Endpoint extends DomainResource {
   /**
    * @return active | suspended | error | off | test.
    */
-  public EndpointStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value active | suspended | error | off | test.
    */
-  public Endpoint setStatus(EndpointStatus value) {
+  public Endpoint setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<EndpointStatus>(new EndpointStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -953,7 +749,7 @@ public class Endpoint extends DomainResource {
     children.add(new Property("identifier", "Identifier",
         "Identifier for the organization that is used to identify the endpoint across multiple disparate systems.", 0,
         java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code", "active | suspended | error | off | test.", 0, 1, status));
+    children.add(new Property("status", "string", "active | suspended | error | off | test.", 0, 1, status));
     children.add(new Property("connectionType", "Coding",
         "A coded value that represents the technical details of the usage of this endpoint, such as what WSDLs should be used in what way. (e.g. XDS.b/DICOM/cds-hook).",
         0, 1, connectionType));
@@ -988,7 +784,7 @@ public class Endpoint extends DomainResource {
           "Identifier for the organization that is used to identify the endpoint across multiple disparate systems.", 0,
           java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "active | suspended | error | off | test.", 0, 1, status);
+      /* status */ return new Property("status", "string", "active | suspended | error | off | test.", 0, 1, status);
     case 1270211384:
       /* connectionType */ return new Property("connectionType", "Coding",
           "A coded value that represents the technical details of the usage of this endpoint, such as what WSDLs should be used in what way. (e.g. XDS.b/DICOM/cds-hook).",
@@ -1070,8 +866,7 @@ public class Endpoint extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new EndpointStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<EndpointStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 1270211384: // connectionType
       this.connectionType = castToCoding(value); // Coding
@@ -1111,8 +906,7 @@ public class Endpoint extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new EndpointStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<EndpointStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("connectionType")) {
       this.connectionType = castToCoding(value); // Coding
     } else if (name.equals("name")) {
@@ -1202,7 +996,7 @@ public class Endpoint extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 1270211384:
       /* connectionType */ return new String[] { "Coding" };
     case 3373707:

@@ -7051,7 +7051,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "Endpoint", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "Endpoint", "status", element.getStatusElement(), -1);
+      composeString(t, "Endpoint", "status", element.getStatusElement(), -1);
     if (element.hasConnectionType())
       composeCoding(t, "Endpoint", "connectionType", element.getConnectionType(), -1);
     if (element.hasNameElement())

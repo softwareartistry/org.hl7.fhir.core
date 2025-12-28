@@ -12032,8 +12032,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Endpoint.EndpointStatus.NULL,
-        new Endpoint.EndpointStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("connectionType"))
@@ -44985,8 +44984,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new Endpoint.EndpointStatusEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(), new Endpoint.EndpointStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasConnectionType()) {
       composeCoding("connectionType", element.getConnectionType());

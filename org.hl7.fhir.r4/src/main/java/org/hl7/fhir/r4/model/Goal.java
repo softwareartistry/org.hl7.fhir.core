@@ -1713,7 +1713,7 @@ public class Goal extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case 1165552636:
-      /* lifecycleStatus */ return this.lifecycleStatus == null ? new Base[0] : new Base[] { this.lifecycleStatus }; // Enumeration<GoalLifecycleStatus>
+      /* lifecycleStatus */ return this.lifecycleStatus == null ? new Base[0] : new Base[] { this.lifecycleStatus }; // StringType
     case 104524801:
       /* achievementStatus */ return this.achievementStatus == null ? new Base[0]
           : new Base[] { this.achievementStatus }; // CodeableConcept
@@ -1759,8 +1759,7 @@ public class Goal extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case 1165552636: // lifecycleStatus
-//      value = new GoalLifecycleStatusEnumFactory().fromType(castToCode(value));
-      this.lifecycleStatus = castToString(value); // Enumeration<GoalLifecycleStatus>
+      this.lifecycleStatus = castToString(value); // StringType
       return value;
     case 104524801: // achievementStatus
       this.achievementStatus = castToCodeableConcept(value); // CodeableConcept
@@ -1815,8 +1814,7 @@ public class Goal extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("lifecycleStatus")) {
-//      value = new GoalLifecycleStatusEnumFactory().fromType(castToCode(value));
-      this.lifecycleStatus = castToString(value); // Enumeration<GoalLifecycleStatus>
+      this.lifecycleStatus = castToString(value); // StringType
     } else if (name.equals("achievementStatus")) {
       this.achievementStatus = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("category")) {
