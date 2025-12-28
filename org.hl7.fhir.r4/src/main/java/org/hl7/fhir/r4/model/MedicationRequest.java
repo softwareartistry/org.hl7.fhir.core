@@ -3916,17 +3916,17 @@ public class MedicationRequest extends DomainResource {
     children.add(new Property("identifier", "Identifier",
         "Identifiers associated with this medication request that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate. They are business identifiers assigned to this resource by the performer or other systems and remain constant as the resource is updated and propagates from server to server.",
         0, java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "A code specifying the current state of the order.  Generally, this will be active or completed state.", 0, 1,
         status));
     children.add(new Property("statusReason", "CodeableConcept",
         "Captures the reason for the current state of the MedicationRequest.", 0, 1, statusReason));
     children.add(
-        new Property("intent", "code", "Whether the request is a proposal, plan, or an original order.", 0, 1, intent));
+        new Property("intent", "string", "Whether the request is a proposal, plan, or an original order.", 0, 1, intent));
     children.add(new Property("category", "CodeableConcept",
         "Indicates the type of medication request (for example, where the medication is expected to be consumed or administered (i.e. inpatient or outpatient)).",
         0, java.lang.Integer.MAX_VALUE, category));
-    children.add(new Property("priority", "code",
+    children.add(new Property("priority", "string",
         "Indicates how quickly the Medication Request should be addressed with respect to other requests.", 0, 1,
         priority));
     children.add(new Property("doNotPerform", "boolean",
@@ -4017,21 +4017,21 @@ public class MedicationRequest extends DomainResource {
           "Identifiers associated with this medication request that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate. They are business identifiers assigned to this resource by the performer or other systems and remain constant as the resource is updated and propagates from server to server.",
           0, java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "A code specifying the current state of the order.  Generally, this will be active or completed state.", 0, 1,
           status);
     case 2051346646:
       /* statusReason */ return new Property("statusReason", "CodeableConcept",
           "Captures the reason for the current state of the MedicationRequest.", 0, 1, statusReason);
     case -1183762788:
-      /* intent */ return new Property("intent", "code",
+      /* intent */ return new Property("intent", "string",
           "Whether the request is a proposal, plan, or an original order.", 0, 1, intent);
     case 50511102:
       /* category */ return new Property("category", "CodeableConcept",
           "Indicates the type of medication request (for example, where the medication is expected to be consumed or administered (i.e. inpatient or outpatient)).",
           0, java.lang.Integer.MAX_VALUE, category);
     case -1165461084:
-      /* priority */ return new Property("priority", "code",
+      /* priority */ return new Property("priority", "string",
           "Indicates how quickly the Medication Request should be addressed with respect to other requests.", 0, 1,
           priority);
     case -1788508167:
@@ -4592,15 +4592,15 @@ public class MedicationRequest extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 2051346646:
       /* statusReason */ return new String[] { "CodeableConcept" };
     case -1183762788:
-      /* intent */ return new String[] { "code" };
+      /* intent */ return new String[] { "string" };
     case 50511102:
       /* category */ return new String[] { "CodeableConcept" };
     case -1165461084:
-      /* priority */ return new String[] { "code" };
+      /* priority */ return new String[] { "string" };
     case -1788508167:
       /* doNotPerform */ return new String[] { "boolean" };
     case -427039533:

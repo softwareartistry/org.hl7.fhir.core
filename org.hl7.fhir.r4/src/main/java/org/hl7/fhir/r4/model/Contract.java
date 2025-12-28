@@ -1313,7 +1313,7 @@ public class Contract extends DomainResource {
       children.add(new Property("publicationDate", "dateTime",
           "The date (and optionally time) when the contract was published. The date must change when the business version changes and it must change if the status code changes. In addition, it should change when the substantive content of the contract changes.",
           0, 1, publicationDate));
-      children.add(new Property("publicationStatus", "code",
+      children.add(new Property("publicationStatus", "string",
           "amended | appended | cancelled | disputed | entered-in-error | executable | executed | negotiable | offered | policy | rejected | renewed | revoked | resolved | terminated.",
           0, 1, publicationStatus));
       children.add(new Property("copyright", "markdown",
@@ -1339,7 +1339,7 @@ public class Contract extends DomainResource {
             "The date (and optionally time) when the contract was published. The date must change when the business version changes and it must change if the status code changes. In addition, it should change when the substantive content of the contract changes.",
             0, 1, publicationDate);
       case 616500542:
-        /* publicationStatus */ return new Property("publicationStatus", "code",
+        /* publicationStatus */ return new Property("publicationStatus", "string",
             "amended | appended | cancelled | disputed | entered-in-error | executable | executed | negotiable | offered | policy | rejected | renewed | revoked | resolved | terminated.",
             0, 1, publicationStatus);
       case 1522889671:
@@ -1474,7 +1474,7 @@ public class Contract extends DomainResource {
       case 1470566394:
         /* publicationDate */ return new String[] { "dateTime" };
       case 616500542:
-        /* publicationStatus */ return new String[] { "code" };
+        /* publicationStatus */ return new String[] { "string" };
       case 1522889671:
         /* copyright */ return new String[] { "markdown" };
       default:
@@ -13512,7 +13512,7 @@ public class Contract extends DomainResource {
         "Canonical identifier for this contract, represented as a URI (globally unique).", 0, 1, url));
     children.add(new Property("version", "string",
         "An edition identifier used for business purposes to label business significant variants.", 0, 1, version));
-    children.add(new Property("status", "code", "The status of the resource instance.", 0, 1, status));
+    children.add(new Property("status", "string", "The status of the resource instance.", 0, 1, status));
     children.add(new Property("legalState", "CodeableConcept",
         "Legal states of the formation of a legal instrument, which is a formally executed written document that can be formally attributed to its author, records and formally expresses a legally enforceable act, process, or contractual duty, obligation, or right, and therefore evidences that act, process, or agreement.",
         0, 1, legalState));
@@ -13612,7 +13612,7 @@ public class Contract extends DomainResource {
       /* version */ return new Property("version", "string",
           "An edition identifier used for business purposes to label business significant variants.", 0, 1, version);
     case -892481550:
-      /* status */ return new Property("status", "code", "The status of the resource instance.", 0, 1, status);
+      /* status */ return new Property("status", "string", "The status of the resource instance.", 0, 1, status);
     case 568606040:
       /* legalState */ return new Property("legalState", "CodeableConcept",
           "Legal states of the formation of a legal instrument, which is a formally executed written document that can be formally attributed to its author, records and formally expresses a legally enforceable act, process, or contractual duty, obligation, or right, and therefore evidences that act, process, or agreement.",
@@ -14186,7 +14186,7 @@ public class Contract extends DomainResource {
     case 351608024:
       /* version */ return new String[] { "string" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 568606040:
       /* legalState */ return new String[] { "CodeableConcept" };
     case 8911915:

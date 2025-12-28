@@ -2438,7 +2438,7 @@ public class MedicationAdministration extends DomainResource {
     children.add(new Property("partOf", "Reference(MedicationAdministration|Procedure)",
         "A larger event of which this particular event is a component or step.", 0, java.lang.Integer.MAX_VALUE,
         partOf));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "Will generally be set to show that the administration has been completed.  For some long running administrations such as infusions, it is possible for an administration to be started but not completed or it may be paused while some other process is under way.",
         0, 1, status));
     children.add(new Property("statusReason", "CodeableConcept",
@@ -2498,7 +2498,7 @@ public class MedicationAdministration extends DomainResource {
           "A larger event of which this particular event is a component or step.", 0, java.lang.Integer.MAX_VALUE,
           partOf);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "Will generally be set to show that the administration has been completed.  For some long running administrations such as infusions, it is possible for an administration to be started but not completed or it may be paused while some other process is under way.",
           0, 1, status);
     case 2051346646:
@@ -2859,7 +2859,7 @@ public class MedicationAdministration extends DomainResource {
     case -995410646:
       /* partOf */ return new String[] { "Reference" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 2051346646:
       /* statusReason */ return new String[] { "CodeableConcept" };
     case 50511102:

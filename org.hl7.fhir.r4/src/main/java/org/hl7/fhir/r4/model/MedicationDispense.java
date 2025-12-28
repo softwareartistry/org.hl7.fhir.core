@@ -2554,7 +2554,7 @@ public class MedicationDispense extends DomainResource {
     children.add(new Property("partOf", "Reference(Procedure)", "The procedure that trigger the dispense.", 0,
         java.lang.Integer.MAX_VALUE, partOf));
     children.add(
-        new Property("status", "code", "A code specifying the state of the set of dispense events.", 0, 1, status));
+        new Property("status", "string", "A code specifying the state of the set of dispense events.", 0, 1, status));
     children.add(new Property("statusReason[x]", "CodeableConcept|Reference(DetectedIssue)",
         "Indicates the reason why a dispense was not performed.", 0, 1, statusReason));
     children.add(new Property("category", "CodeableConcept",
@@ -2623,7 +2623,7 @@ public class MedicationDispense extends DomainResource {
       /* partOf */ return new Property("partOf", "Reference(Procedure)", "The procedure that trigger the dispense.", 0,
           java.lang.Integer.MAX_VALUE, partOf);
     case -892481550:
-      /* status */ return new Property("status", "code", "A code specifying the state of the set of dispense events.",
+      /* status */ return new Property("status", "string", "A code specifying the state of the set of dispense events.",
           0, 1, status);
     case -1421632534:
       /* statusReason[x] */ return new Property("statusReason[x]", "CodeableConcept|Reference(DetectedIssue)",
@@ -3055,7 +3055,7 @@ public class MedicationDispense extends DomainResource {
     case -995410646:
       /* partOf */ return new String[] { "Reference" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 2051346646:
       /* statusReason */ return new String[] { "CodeableConcept", "Reference" };
     case 50511102:

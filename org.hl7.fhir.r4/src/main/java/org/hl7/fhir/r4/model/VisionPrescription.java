@@ -1437,7 +1437,7 @@ public class VisionPrescription extends DomainResource {
       super.listChildren(children);
       children.add(new Property("product", "CodeableConcept",
           "Identifies the type of vision correction product which is required for the patient.", 0, 1, product));
-      children.add(new Property("eye", "code", "The eye for which the lens specification applies.", 0, 1, eye));
+      children.add(new Property("eye", "string", "The eye for which the lens specification applies.", 0, 1, eye));
       children.add(new Property("sphere", "decimal", "Lens power measured in dioptres (0.25 units).", 0, 1, sphere));
       children.add(new Property("cylinder", "decimal",
           "Power adjustment for astigmatism measured in dioptres (0.25 units).", 0, 1, cylinder));
@@ -1467,7 +1467,7 @@ public class VisionPrescription extends DomainResource {
         /* product */ return new Property("product", "CodeableConcept",
             "Identifies the type of vision correction product which is required for the patient.", 0, 1, product);
       case 100913:
-        /* eye */ return new Property("eye", "code", "The eye for which the lens specification applies.", 0, 1, eye);
+        /* eye */ return new Property("eye", "string", "The eye for which the lens specification applies.", 0, 1, eye);
       case -895981619:
         /* sphere */ return new Property("sphere", "decimal", "Lens power measured in dioptres (0.25 units).", 0, 1,
             sphere);
@@ -1712,7 +1712,7 @@ public class VisionPrescription extends DomainResource {
       case -309474065:
         /* product */ return new String[] { "CodeableConcept" };
       case 100913:
-        /* eye */ return new String[] { "code" };
+        /* eye */ return new String[] { "string" };
       case -895981619:
         /* sphere */ return new String[] { "decimal" };
       case -349378602:
@@ -2016,7 +2016,7 @@ public class VisionPrescription extends DomainResource {
       children.add(new Property("amount", "decimal",
           "Amount of prism to compensate for eye alignment in fractional units.", 0, 1, amount));
       children
-          .add(new Property("base", "code", "The relative base, or reference lens edge, for the prism.", 0, 1, base));
+          .add(new Property("base", "string", "The relative base, or reference lens edge, for the prism.", 0, 1, base));
     }
 
     @Override
@@ -2026,7 +2026,7 @@ public class VisionPrescription extends DomainResource {
         /* amount */ return new Property("amount", "decimal",
             "Amount of prism to compensate for eye alignment in fractional units.", 0, 1, amount);
       case 3016401:
-        /* base */ return new Property("base", "code", "The relative base, or reference lens edge, for the prism.", 0,
+        /* base */ return new Property("base", "string", "The relative base, or reference lens edge, for the prism.", 0,
             1, base);
       default:
         return super.getNamedProperty(_hash, _name, _checkValid);
@@ -2105,7 +2105,7 @@ public class VisionPrescription extends DomainResource {
       case -1413853096:
         /* amount */ return new String[] { "decimal" };
       case 3016401:
-        /* base */ return new String[] { "code" };
+        /* base */ return new String[] { "string" };
       default:
         return super.getTypesForProperty(hash, name);
       }
@@ -2692,7 +2692,7 @@ public class VisionPrescription extends DomainResource {
     super.listChildren(children);
     children.add(new Property("identifier", "Identifier", "A unique identifier assigned to this vision prescription.",
         0, java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code", "The status of the resource instance.", 0, 1, status));
+    children.add(new Property("status", "string", "The status of the resource instance.", 0, 1, status));
     children.add(new Property("created", "dateTime", "The date this resource was created.", 0, 1, created));
     children.add(new Property("patient", "Reference(Patient)",
         "A resource reference to the person to whom the vision prescription applies.", 0, 1, patient));
@@ -2715,7 +2715,7 @@ public class VisionPrescription extends DomainResource {
       /* identifier */ return new Property("identifier", "Identifier",
           "A unique identifier assigned to this vision prescription.", 0, java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "The status of the resource instance.", 0, 1, status);
+      /* status */ return new Property("status", "string", "The status of the resource instance.", 0, 1, status);
     case 1028554472:
       /* created */ return new Property("created", "dateTime", "The date this resource was created.", 0, 1, created);
     case -791418107:
@@ -2880,7 +2880,7 @@ public class VisionPrescription extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 1028554472:
       /* created */ return new String[] { "dateTime" };
     case -791418107:

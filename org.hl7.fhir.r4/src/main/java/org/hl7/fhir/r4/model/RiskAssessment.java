@@ -2019,7 +2019,7 @@ public class RiskAssessment extends DomainResource {
         "A reference to the request that is fulfilled by this risk assessment.", 0, 1, basedOn));
     children.add(new Property("parent", "Reference(Any)",
         "A reference to a resource that this risk assessment is part of, such as a Procedure.", 0, 1, parent));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of the RiskAssessment, using the same statuses as an Observation.", 0, 1, status));
     children.add(new Property("method", "CodeableConcept",
         "The algorithm, process or mechanism used to evaluate the risk.", 0, 1, method));
@@ -2064,7 +2064,7 @@ public class RiskAssessment extends DomainResource {
       /* parent */ return new Property("parent", "Reference(Any)",
           "A reference to a resource that this risk assessment is part of, such as a Procedure.", 0, 1, parent);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of the RiskAssessment, using the same statuses as an Observation.", 0, 1, status);
     case -1077554975:
       /* method */ return new Property("method", "CodeableConcept",
@@ -2370,7 +2370,7 @@ public class RiskAssessment extends DomainResource {
     case -995424086:
       /* parent */ return new String[] { "Reference" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -1077554975:
       /* method */ return new String[] { "CodeableConcept" };
     case 3059181:

@@ -1308,7 +1308,7 @@ public class Patient extends DomainResource {
       super.listChildren(children);
       children.add(new Property("other", "Reference(Patient|RelatedPerson)",
           "The other patient resource that the link refers to.", 0, 1, other));
-      children.add(new Property("type", "code",
+      children.add(new Property("type", "string",
           "The type of link between this patient resource and another patient resource.", 0, 1, type));
     }
 
@@ -1319,7 +1319,7 @@ public class Patient extends DomainResource {
         /* other */ return new Property("other", "Reference(Patient|RelatedPerson)",
             "The other patient resource that the link refers to.", 0, 1, other);
       case 3575610:
-        /* type */ return new Property("type", "code",
+        /* type */ return new Property("type", "string",
             "The type of link between this patient resource and another patient resource.", 0, 1, type);
       default:
         return super.getNamedProperty(_hash, _name, _checkValid);
@@ -1398,7 +1398,7 @@ public class Patient extends DomainResource {
       case 106069776:
         /* other */ return new String[] { "Reference" };
       case 3575610:
-        /* type */ return new String[] { "code" };
+        /* type */ return new String[] { "string" };
       default:
         return super.getTypesForProperty(hash, name);
       }

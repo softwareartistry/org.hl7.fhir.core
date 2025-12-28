@@ -3441,7 +3441,7 @@ public class Observation extends DomainResource {
         "Reference(MedicationAdministration|MedicationDispense|MedicationStatement|Procedure|Immunization|ImagingStudy)",
         "A larger event of which this particular Observation is a component or step.  For example,  an observation as part of a procedure.",
         0, java.lang.Integer.MAX_VALUE, partOf));
-    children.add(new Property("status", "code", "The status of the result value.", 0, 1, status));
+    children.add(new Property("status", "string", "The status of the result value.", 0, 1, status));
     children.add(new Property("category", "CodeableConcept",
         "A code that classifies the general type of observation being made.", 0, java.lang.Integer.MAX_VALUE,
         category));
@@ -3519,7 +3519,7 @@ public class Observation extends DomainResource {
           "A larger event of which this particular Observation is a component or step.  For example,  an observation as part of a procedure.",
           0, java.lang.Integer.MAX_VALUE, partOf);
     case -892481550:
-      /* status */ return new Property("status", "code", "The status of the result value.", 0, 1, status);
+      /* status */ return new Property("status", "string", "The status of the result value.", 0, 1, status);
     case 50511102:
       /* category */ return new Property("category", "CodeableConcept",
           "A code that classifies the general type of observation being made.", 0, java.lang.Integer.MAX_VALUE,
@@ -4012,7 +4012,7 @@ public class Observation extends DomainResource {
     case -995410646:
       /* partOf */ return new String[] { "Reference" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 50511102:
       /* category */ return new String[] { "CodeableConcept" };
     case 3059181:

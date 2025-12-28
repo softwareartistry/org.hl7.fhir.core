@@ -1299,7 +1299,7 @@ public class Medication extends DomainResource {
         "A code (or set of codes) that specify this medication, or a textual description if no code is available. Usage note: This could be a standard medication code such as a code from RxNorm, SNOMED CT, IDMP etc. It could also be a national or local formulary code, optionally with translations to other code systems.",
         0, 1, code));
     children
-        .add(new Property("status", "code", "A code to indicate if the medication is in active use.", 0, 1, status));
+        .add(new Property("status", "string", "A code to indicate if the medication is in active use.", 0, 1, status));
     children.add(new Property("manufacturer", "Reference(Organization)",
         "Describes the details of the manufacturer of the medication product.  This is not intended to represent the distributor of a medication product.",
         0, 1, manufacturer));
@@ -1324,7 +1324,7 @@ public class Medication extends DomainResource {
           "A code (or set of codes) that specify this medication, or a textual description if no code is available. Usage note: This could be a standard medication code such as a code from RxNorm, SNOMED CT, IDMP etc. It could also be a national or local formulary code, optionally with translations to other code systems.",
           0, 1, code);
     case -892481550:
-      /* status */ return new Property("status", "code", "A code to indicate if the medication is in active use.", 0, 1,
+      /* status */ return new Property("status", "string", "A code to indicate if the medication is in active use.", 0, 1,
           status);
     case -1969347631:
       /* manufacturer */ return new Property("manufacturer", "Reference(Organization)",
@@ -1491,7 +1491,7 @@ public class Medication extends DomainResource {
     case 3059181:
       /* code */ return new String[] { "CodeableConcept" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -1969347631:
       /* manufacturer */ return new String[] { "Reference" };
     case 3148996:

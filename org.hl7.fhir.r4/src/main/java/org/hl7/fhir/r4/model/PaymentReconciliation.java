@@ -2199,7 +2199,7 @@ public class PaymentReconciliation extends DomainResource {
     super.listChildren(children);
     children.add(new Property("identifier", "Identifier",
         "A unique identifier assigned to this payment reconciliation.", 0, java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code", "The status of the resource instance.", 0, 1, status));
+    children.add(new Property("status", "string", "The status of the resource instance.", 0, 1, status));
     children.add(new Property("period", "Period",
         "The period of time for which payments have been gathered into this bulk payment for settlement.", 0, 1,
         period));
@@ -2234,7 +2234,7 @@ public class PaymentReconciliation extends DomainResource {
       /* identifier */ return new Property("identifier", "Identifier",
           "A unique identifier assigned to this payment reconciliation.", 0, java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "The status of the resource instance.", 0, 1, status);
+      /* status */ return new Property("status", "string", "The status of the resource instance.", 0, 1, status);
     case -991726143:
       /* period */ return new Property("period", "Period",
           "The period of time for which payments have been gathered into this bulk payment for settlement.", 0, 1,
@@ -2290,7 +2290,7 @@ public class PaymentReconciliation extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PaymentReconciliationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -991726143:
       /* period */ return this.period == null ? new Base[0] : new Base[] { this.period }; // Period
     case 1028554472:
@@ -2502,7 +2502,7 @@ public class PaymentReconciliation extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -991726143:
       /* period */ return new String[] { "Period" };
     case 1028554472:

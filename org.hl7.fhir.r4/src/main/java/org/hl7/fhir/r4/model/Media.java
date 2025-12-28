@@ -1618,7 +1618,7 @@ public class Media extends DomainResource {
     children.add(new Property("partOf", "Reference(Any)",
         "A larger event of which this particular event is a component or step.", 0, java.lang.Integer.MAX_VALUE,
         partOf));
-    children.add(new Property("status", "code", "The current state of the {{title}}.", 0, 1, status));
+    children.add(new Property("status", "string", "The current state of the {{title}}.", 0, 1, status));
     children.add(new Property("type", "CodeableConcept",
         "A code that classifies whether the media is an image, video or audio recording or some other media category.",
         0, 1, type));
@@ -1679,7 +1679,7 @@ public class Media extends DomainResource {
           "A larger event of which this particular event is a component or step.", 0, java.lang.Integer.MAX_VALUE,
           partOf);
     case -892481550:
-      /* status */ return new Property("status", "code", "The current state of the {{title}}.", 0, 1, status);
+      /* status */ return new Property("status", "string", "The current state of the {{title}}.", 0, 1, status);
     case 3575610:
       /* type */ return new Property("type", "CodeableConcept",
           "A code that classifies whether the media is an image, video or audio recording or some other media category.",
@@ -2057,7 +2057,7 @@ public class Media extends DomainResource {
     case -995410646:
       /* partOf */ return new String[] { "Reference" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 3575610:
       /* type */ return new String[] { "CodeableConcept" };
     case -622722335:

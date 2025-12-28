@@ -2108,7 +2108,7 @@ public class QuestionnaireResponse extends DomainResource {
     children.add(new Property("questionnaire", "canonical(Questionnaire)",
         "The Questionnaire that defines and organizes the questions for which answers are being provided.", 0, 1,
         questionnaire));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The position of the questionnaire response within its overall lifecycle.", 0, 1, status));
     children.add(new Property("subject", "Reference(Any)",
         "The subject of the questionnaire response.  This could be a patient, organization, practitioner, device, etc.  This is who/what the answers apply to, but is not necessarily the source of information.",
@@ -2149,7 +2149,7 @@ public class QuestionnaireResponse extends DomainResource {
           "The Questionnaire that defines and organizes the questions for which answers are being provided.", 0, 1,
           questionnaire);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The position of the questionnaire response within its overall lifecycle.", 0, 1, status);
     case -1867885268:
       /* subject */ return new Property("subject", "Reference(Any)",
@@ -2356,7 +2356,7 @@ public class QuestionnaireResponse extends DomainResource {
     case -1017049693:
       /* questionnaire */ return new String[] { "canonical" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -1867885268:
       /* subject */ return new String[] { "Reference" };
     case 1524132147:

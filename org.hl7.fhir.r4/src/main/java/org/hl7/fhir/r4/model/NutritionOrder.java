@@ -4543,8 +4543,8 @@ public class NutritionOrder extends DomainResource {
     children.add(new Property("instantiates", "uri",
         "The URL pointing to a protocol, guideline, orderset or other definition that is adhered to in whole or in part by this NutritionOrder.",
         0, java.lang.Integer.MAX_VALUE, instantiates));
-    children.add(new Property("status", "code", "The workflow status of the nutrition order/request.", 0, 1, status));
-    children.add(new Property("intent", "code",
+    children.add(new Property("status", "string", "The workflow status of the nutrition order/request.", 0, 1, status));
+    children.add(new Property("intent", "string",
         "Indicates the level of authority/intentionality associated with the NutrionOrder and where the request fits into the workflow chain.",
         0, 1, intent));
     children.add(new Property("patient", "Reference(Patient)",
@@ -4601,10 +4601,10 @@ public class NutritionOrder extends DomainResource {
           "The URL pointing to a protocol, guideline, orderset or other definition that is adhered to in whole or in part by this NutritionOrder.",
           0, java.lang.Integer.MAX_VALUE, instantiates);
     case -892481550:
-      /* status */ return new Property("status", "code", "The workflow status of the nutrition order/request.", 0, 1,
+      /* status */ return new Property("status", "string", "The workflow status of the nutrition order/request.", 0, 1,
           status);
     case -1183762788:
-      /* intent */ return new Property("intent", "code",
+      /* intent */ return new Property("intent", "string",
           "Indicates the level of authority/intentionality associated with the NutrionOrder and where the request fits into the workflow chain.",
           0, 1, intent);
     case -791418107:
@@ -4907,9 +4907,9 @@ public class NutritionOrder extends DomainResource {
     case -246883639:
       /* instantiates */ return new String[] { "uri" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -1183762788:
-      /* intent */ return new String[] { "code" };
+      /* intent */ return new String[] { "string" };
     case -791418107:
       /* patient */ return new String[] { "Reference" };
     case 1524132147:

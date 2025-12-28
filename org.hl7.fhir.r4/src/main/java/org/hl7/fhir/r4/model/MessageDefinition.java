@@ -2767,7 +2767,7 @@ public class MessageDefinition extends MetadataResource {
         "Identifies a protocol or workflow that this MessageDefinition represents a step in.", 0,
         java.lang.Integer.MAX_VALUE, parent));
     children.add(new Property("event[x]", "Coding|uri", "Event code or link to the EventDefinition.", 0, 1, event));
-    children.add(new Property("category", "code", "The impact of the content of the message.", 0, 1, category));
+    children.add(new Property("category", "string", "The impact of the content of the message.", 0, 1, category));
     children.add(new Property("focus", "",
         "Identifies the resource (or resources) that are being addressed by the event.  For example, the Encounter for an admit message or two Account records for a merge.",
         0, java.lang.Integer.MAX_VALUE, focus));
@@ -2865,7 +2865,7 @@ public class MessageDefinition extends MetadataResource {
       /* eventUri */ return new Property("event[x]", "Coding|uri", "Event code or link to the EventDefinition.", 0, 1,
           event);
     case 50511102:
-      /* category */ return new Property("category", "code", "The impact of the content of the message.", 0, 1,
+      /* category */ return new Property("category", "string", "The impact of the content of the message.", 0, 1,
           category);
     case 97604824:
       /* focus */ return new Property("focus", "",
@@ -3248,7 +3248,7 @@ public class MessageDefinition extends MetadataResource {
     case 96891546:
       /* event */ return new String[] { "Coding", "uri" };
     case 50511102:
-      /* category */ return new String[] { "code" };
+      /* category */ return new String[] { "string" };
     case 97604824:
       /* focus */ return new String[] {};
     case 791597824:

@@ -6455,7 +6455,7 @@ public class MedicationKnowledge extends DomainResource {
     children.add(new Property("code", "CodeableConcept",
         "A code that specifies this medication, or a textual description if no code is available. Usage note: This could be a standard medication code such as a code from RxNorm, SNOMED CT, IDMP etc. It could also be a national or local formulary code, optionally with translations to other code systems.",
         0, 1, code));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "A code to indicate if the medication is in active use.  The status refers to the validity about the information of the medication and not to its medicinal properties.",
         0, 1, status));
     children.add(new Property("manufacturer", "Reference(Organization)",
@@ -6516,7 +6516,7 @@ public class MedicationKnowledge extends DomainResource {
           "A code that specifies this medication, or a textual description if no code is available. Usage note: This could be a standard medication code such as a code from RxNorm, SNOMED CT, IDMP etc. It could also be a national or local formulary code, optionally with translations to other code systems.",
           0, 1, code);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "A code to indicate if the medication is in active use.  The status refers to the validity about the information of the medication and not to its medicinal properties.",
           0, 1, status);
     case -1969347631:
@@ -6900,7 +6900,7 @@ public class MedicationKnowledge extends DomainResource {
     case 3059181:
       /* code */ return new String[] { "CodeableConcept" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -1969347631:
       /* manufacturer */ return new String[] { "Reference" };
     case 1303858817:

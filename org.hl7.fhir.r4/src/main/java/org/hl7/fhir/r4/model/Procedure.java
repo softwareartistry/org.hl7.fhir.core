@@ -2798,7 +2798,7 @@ public class Procedure extends DomainResource {
     children.add(new Property("partOf", "Reference(Procedure|Observation|MedicationAdministration)",
         "A larger event of which this particular procedure is a component or step.", 0, java.lang.Integer.MAX_VALUE,
         partOf));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "A code specifying the state of the procedure. Generally, this will be the in-progress or completed state.", 0,
         1, status));
     children.add(new Property("statusReason", "CodeableConcept",
@@ -2886,7 +2886,7 @@ public class Procedure extends DomainResource {
           "A larger event of which this particular procedure is a component or step.", 0, java.lang.Integer.MAX_VALUE,
           partOf);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "A code specifying the state of the procedure. Generally, this will be the in-progress or completed state.",
           0, 1, status);
     case 2051346646:
@@ -3377,7 +3377,7 @@ public class Procedure extends DomainResource {
     case -995410646:
       /* partOf */ return new String[] { "Reference" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 2051346646:
       /* statusReason */ return new String[] { "CodeableConcept" };
     case 50511102:

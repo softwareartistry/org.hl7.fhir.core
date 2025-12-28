@@ -3134,10 +3134,10 @@ public class MeasureReport extends DomainResource {
     children.add(new Property("identifier", "Identifier",
         "A formal identifier that is used to identify this MeasureReport when it is represented in other formats or referenced in a specification, model, design or an instance.",
         0, java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The MeasureReport status. No data will be available until the MeasureReport status is complete.", 0, 1,
         status));
-    children.add(new Property("type", "code",
+    children.add(new Property("type", "string",
         "The type of measure report. This may be an individual report, which provides the score for the measure for an individual member of the population; a subject-listing, which returns the list of members that meet the various criteria in the measure; a summary report, which returns a population count for each of the criteria in the measure; or a data-collection, which enables the MeasureReport to be used to exchange the data-of-interest for a quality measure.",
         0, 1, type));
     children.add(new Property("measure", "canonical(Measure)",
@@ -3169,11 +3169,11 @@ public class MeasureReport extends DomainResource {
           "A formal identifier that is used to identify this MeasureReport when it is represented in other formats or referenced in a specification, model, design or an instance.",
           0, java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The MeasureReport status. No data will be available until the MeasureReport status is complete.", 0, 1,
           status);
     case 3575610:
-      /* type */ return new Property("type", "code",
+      /* type */ return new Property("type", "string",
           "The type of measure report. This may be an individual report, which provides the score for the measure for an individual member of the population; a subject-listing, which returns the list of members that meet the various criteria in the measure; a summary report, which returns a population count for each of the criteria in the measure; or a data-collection, which enables the MeasureReport to be used to exchange the data-of-interest for a quality measure.",
           0, 1, type);
     case 938321246:
@@ -3384,9 +3384,9 @@ public class MeasureReport extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 3575610:
-      /* type */ return new String[] { "code" };
+      /* type */ return new String[] { "string" };
     case 938321246:
       /* measure */ return new String[] { "canonical" };
     case -1867885268:

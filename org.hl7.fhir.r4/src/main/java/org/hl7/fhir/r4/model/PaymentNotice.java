@@ -916,7 +916,7 @@ public class PaymentNotice extends DomainResource {
     super.listChildren(children);
     children.add(new Property("identifier", "Identifier", "A unique identifier assigned to this payment notice.", 0,
         java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code", "The status of the resource instance.", 0, 1, status));
+    children.add(new Property("status", "string", "The status of the resource instance.", 0, 1, status));
     children.add(new Property("request", "Reference(Any)", "Reference of resource for which payment is being made.", 0,
         1, request));
     children.add(new Property("response", "Reference(Any)",
@@ -944,7 +944,7 @@ public class PaymentNotice extends DomainResource {
       /* identifier */ return new Property("identifier", "Identifier",
           "A unique identifier assigned to this payment notice.", 0, java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "The status of the resource instance.", 0, 1, status);
+      /* status */ return new Property("status", "string", "The status of the resource instance.", 0, 1, status);
     case 1095692943:
       /* request */ return new Property("request", "Reference(Any)",
           "Reference of resource for which payment is being made.", 0, 1, request);
@@ -1162,7 +1162,7 @@ public class PaymentNotice extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 1095692943:
       /* request */ return new String[] { "Reference" };
     case -340323263:

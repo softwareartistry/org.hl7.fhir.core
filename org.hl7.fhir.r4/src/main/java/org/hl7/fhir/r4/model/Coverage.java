@@ -2241,7 +2241,7 @@ public class Coverage extends DomainResource {
     super.listChildren(children);
     children.add(new Property("identifier", "Identifier", "A unique identifier assigned to this coverage.", 0,
         java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code", "The status of the resource instance.", 0, 1, status));
+    children.add(new Property("status", "string", "The status of the resource instance.", 0, 1, status));
     children.add(new Property("type", "CodeableConcept",
         "The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health or payment by an individual or organization.",
         0, 1, type));
@@ -2290,7 +2290,7 @@ public class Coverage extends DomainResource {
       /* identifier */ return new Property("identifier", "Identifier", "A unique identifier assigned to this coverage.",
           0, java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "The status of the resource instance.", 0, 1, status);
+      /* status */ return new Property("status", "string", "The status of the resource instance.", 0, 1, status);
     case 3575610:
       /* type */ return new Property("type", "CodeableConcept",
           "The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health or payment by an individual or organization.",
@@ -2589,7 +2589,7 @@ public class Coverage extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 3575610:
       /* type */ return new String[] { "CodeableConcept" };
     case 2046898558:

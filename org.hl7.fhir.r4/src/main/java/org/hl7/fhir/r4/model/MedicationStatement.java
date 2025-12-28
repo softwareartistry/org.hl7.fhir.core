@@ -1468,7 +1468,7 @@ public class MedicationStatement extends DomainResource {
         "Reference(MedicationAdministration|MedicationDispense|MedicationStatement|Procedure|Observation)",
         "A larger event of which this particular event is a component or step.", 0, java.lang.Integer.MAX_VALUE,
         partOf));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "A code representing the patient or other source's judgment about the state of the medication used that this statement is about.  Generally, this will be active or completed.",
         0, 1, status));
     children.add(new Property("statusReason", "CodeableConcept",
@@ -1525,7 +1525,7 @@ public class MedicationStatement extends DomainResource {
           "A larger event of which this particular event is a component or step.", 0, java.lang.Integer.MAX_VALUE,
           partOf);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "A code representing the patient or other source's judgment about the state of the medication used that this statement is about.  Generally, this will be active or completed.",
           0, 1, status);
     case 2051346646:
@@ -1856,7 +1856,7 @@ public class MedicationStatement extends DomainResource {
     case -995410646:
       /* partOf */ return new String[] { "Reference" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 2051346646:
       /* statusReason */ return new String[] { "CodeableConcept" };
     case 50511102:

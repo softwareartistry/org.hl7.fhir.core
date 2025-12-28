@@ -3250,10 +3250,10 @@ public class CoverageEligibilityRequest extends DomainResource {
     children.add(
         new Property("identifier", "Identifier", "A unique identifier assigned to this coverage eligiblity request.", 0,
             java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code", "The status of the resource instance.", 0, 1, status));
+    children.add(new Property("status", "string", "The status of the resource instance.", 0, 1, status));
     children.add(new Property("priority", "CodeableConcept",
         "When the requestor expects the processor to complete processing.", 0, 1, priority));
-    children.add(new Property("purpose", "code",
+    children.add(new Property("purpose", "string",
         "Code to specify whether requesting: prior authorization requirements for some service categories or billing codes; benefits for coverages specified or discovered; discovery and return of coverages for the patient; and/or validation that the specified coverage is in-force at the date/period specified or 'now' if not specified.",
         0, java.lang.Integer.MAX_VALUE, purpose));
     children.add(new Property("patient", "Reference(Patient)",
@@ -3289,12 +3289,12 @@ public class CoverageEligibilityRequest extends DomainResource {
           "A unique identifier assigned to this coverage eligiblity request.", 0, java.lang.Integer.MAX_VALUE,
           identifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "The status of the resource instance.", 0, 1, status);
+      /* status */ return new Property("status", "string", "The status of the resource instance.", 0, 1, status);
     case -1165461084:
       /* priority */ return new Property("priority", "CodeableConcept",
           "When the requestor expects the processor to complete processing.", 0, 1, priority);
     case -220463842:
-      /* purpose */ return new Property("purpose", "code",
+      /* purpose */ return new Property("purpose", "string",
           "Code to specify whether requesting: prior authorization requirements for some service categories or billing codes; benefits for coverages specified or discovered; discovery and return of coverages for the patient; and/or validation that the specified coverage is in-force at the date/period specified or 'now' if not specified.",
           0, java.lang.Integer.MAX_VALUE, purpose);
     case -791418107:
@@ -3556,11 +3556,11 @@ public class CoverageEligibilityRequest extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -1165461084:
       /* priority */ return new String[] { "CodeableConcept" };
     case -220463842:
-      /* purpose */ return new String[] { "code" };
+      /* purpose */ return new String[] { "string" };
     case -791418107:
       /* patient */ return new String[] { "Reference" };
     case 1379209295:
