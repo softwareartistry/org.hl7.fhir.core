@@ -4855,7 +4855,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "Consent", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "Consent", "status", element.getStatusElement(), -1);
+      composeString(t, "Consent", "status", element.getStatusElement(), -1);
     if (element.hasScope())
       composeCodeableConcept(t, "Consent", "scope", element.getScope(), -1);
     for (int i = 0; i < element.getCategory().size(); i++)
@@ -4928,7 +4928,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "provision", name, element, index);
     if (element.hasTypeElement())
-      composeEnum(t, "Consent", "type", element.getTypeElement(), -1);
+      composeString(t, "Consent", "type", element.getTypeElement(), -1);
     if (element.hasPeriod())
       composePeriod(t, "Consent", "period", element.getPeriod(), -1);
     for (int i = 0; i < element.getActor().size(); i++)
@@ -4980,7 +4980,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "data", name, element, index);
     if (element.hasMeaningElement())
-      composeEnum(t, "Consent", "meaning", element.getMeaningElement(), -1);
+      composeString(t, "Consent", "meaning", element.getMeaningElement(), -1);
     if (element.hasReference())
       composeReference(t, "Consent", "reference", element.getReference(), -1);
   }

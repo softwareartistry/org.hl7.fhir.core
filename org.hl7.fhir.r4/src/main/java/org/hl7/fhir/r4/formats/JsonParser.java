@@ -8264,8 +8264,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Consent.ConsentState.NULL,
-        new Consent.ConsentStateEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("scope"))
@@ -8373,8 +8372,7 @@ public class JsonParser extends JsonParserBase {
                                                           Consent.ProvisionComponent res) throws IOException, FHIRFormatError {
     parseBackboneElementProperties(json, res);
     if (json.has("type"))
-      res.setTypeElement(parseEnumeration(json.get("type").getAsString(), Consent.ConsentProvisionType.NULL,
-        new Consent.ConsentProvisionTypeEnumFactory()));
+      res.setTypeElement(parseString(json.get("type").getAsString()));
     if (json.has("_type"))
       parseElementProperties(getJObject(json, "_type"), res.getTypeElement());
     if (json.has("period"))
@@ -8466,8 +8464,7 @@ public class JsonParser extends JsonParserBase {
                                                               Consent.provisionDataComponent res) throws IOException, FHIRFormatError {
     parseBackboneElementProperties(json, res);
     if (json.has("meaning"))
-      res.setMeaningElement(parseEnumeration(json.get("meaning").getAsString(), Consent.ConsentDataMeaning.NULL,
-        new Consent.ConsentDataMeaningEnumFactory()));
+      res.setMeaningElement(parseString(json.get("meaning").getAsString()));
     if (json.has("_meaning"))
       parseElementProperties(getJObject(json, "_meaning"), res.getMeaningElement());
     if (json.has("reference"))
@@ -41128,8 +41125,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new Consent.ConsentStateEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(), new Consent.ConsentStateEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasScope()) {
       composeCodeableConcept("scope", element.getScope());
@@ -41244,8 +41241,8 @@ public class JsonParser extends JsonParserBase {
   protected void composeConsentprovisionComponentInner(Consent.ProvisionComponent element) throws IOException {
     composeBackbone(element);
     if (element.hasTypeElement()) {
-      composeEnumerationCore("type", element.getTypeElement(), new Consent.ConsentProvisionTypeEnumFactory(), false);
-      composeEnumerationExtras("type", element.getTypeElement(), new Consent.ConsentProvisionTypeEnumFactory(), false);
+      composeStringCore("type", element.getTypeElement(), false);
+      composeStringExtras("type", element.getTypeElement(), false);
     }
     if (element.hasPeriod()) {
       composePeriod("period", element.getPeriod());
@@ -41343,10 +41340,8 @@ public class JsonParser extends JsonParserBase {
   protected void composeConsentprovisionDataComponentInner(Consent.provisionDataComponent element) throws IOException {
     composeBackbone(element);
     if (element.hasMeaningElement()) {
-      composeEnumerationCore("meaning", element.getMeaningElement(), new Consent.ConsentDataMeaningEnumFactory(),
-        false);
-      composeEnumerationExtras("meaning", element.getMeaningElement(), new Consent.ConsentDataMeaningEnumFactory(),
-        false);
+      composeStringCore("meaning", element.getMeaningElement(), false);
+      composeStringExtras("meaning", element.getMeaningElement(), false);
     }
     if (element.hasReference()) {
       composeReference("reference", element.getReference());

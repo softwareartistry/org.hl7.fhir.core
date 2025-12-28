@@ -6817,7 +6817,7 @@ public class XmlParser extends XmlParserBase {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("identifier")) {
       res.getIdentifier().add(parseIdentifier(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, Consent.ConsentState.NULL, new Consent.ConsentStateEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("scope")) {
       res.setScope(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("category")) {
@@ -6920,8 +6920,7 @@ public class XmlParser extends XmlParserBase {
   protected boolean parseConsentprovisionComponentContent(int eventType, XmlPullParser xpp, Consent owner,
       Consent.ProvisionComponent res) throws XmlPullParserException, IOException, FHIRFormatError {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("type")) {
-      res.setTypeElement(
-          parseEnumeration(xpp, Consent.ConsentProvisionType.NULL, new Consent.ConsentProvisionTypeEnumFactory()));
+      res.setTypeElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("period")) {
       res.setPeriod(parsePeriod(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("actor")) {
@@ -6993,8 +6992,7 @@ public class XmlParser extends XmlParserBase {
   protected boolean parseConsentprovisionDataComponentContent(int eventType, XmlPullParser xpp, Consent owner,
       Consent.provisionDataComponent res) throws XmlPullParserException, IOException, FHIRFormatError {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("meaning")) {
-      res.setMeaningElement(
-          parseEnumeration(xpp, Consent.ConsentDataMeaning.NULL, new Consent.ConsentDataMeaningEnumFactory()));
+      res.setMeaningElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("reference")) {
       res.setReference(parseReference(xpp));
     } else if (!parseBackboneElementContent(eventType, xpp, res))
@@ -33837,7 +33835,7 @@ public class XmlParser extends XmlParserBase {
         composeIdentifier("identifier", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new Consent.ConsentStateEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasScope()) {
       composeCodeableConcept("scope", element.getScope());
     }
@@ -33938,7 +33936,7 @@ public class XmlParser extends XmlParserBase {
   protected void composeConsentprovisionComponentElements(Consent.ProvisionComponent element) throws IOException {
     composeBackboneElementElements(element);
     if (element.hasTypeElement())
-      composeEnumeration("type", element.getTypeElement(), new Consent.ConsentProvisionTypeEnumFactory());
+      composeString("type", element.getTypeElement());
     if (element.hasPeriod()) {
       composePeriod("period", element.getPeriod());
     }
@@ -34016,7 +34014,7 @@ public class XmlParser extends XmlParserBase {
       throws IOException {
     composeBackboneElementElements(element);
     if (element.hasMeaningElement())
-      composeEnumeration("meaning", element.getMeaningElement(), new Consent.ConsentDataMeaningEnumFactory());
+      composeString("meaning", element.getMeaningElement());
     if (element.hasReference()) {
       composeReference("reference", element.getReference());
     }
