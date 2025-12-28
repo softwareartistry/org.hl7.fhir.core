@@ -15370,8 +15370,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), ImagingStudy.ImagingStudyStatus.NULL,
-        new ImagingStudy.ImagingStudyStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("modality")) {
@@ -48396,10 +48395,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new ImagingStudy.ImagingStudyStatusEnumFactory(),
-        false);
-      composeEnumerationExtras("status", element.getStatusElement(), new ImagingStudy.ImagingStudyStatusEnumFactory(),
-        false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasModality()) {
       openArray("modality");

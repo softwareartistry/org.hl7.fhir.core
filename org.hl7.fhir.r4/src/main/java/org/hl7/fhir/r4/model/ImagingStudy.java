@@ -54,195 +54,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "ImagingStudy", profile = "http://hl7.org/fhir/StructureDefinition/ImagingStudy")
 public class ImagingStudy extends DomainResource {
 
-  public enum ImagingStudyStatus {
-    /**
-     * The existence of the imaging study is registered, but there is nothing yet
-     * available.
-     */
-    REGISTERED,
-    /**
-     * At least one instance has been associated with this imaging study.
-     */
-    AVAILABLE,
-    /**
-     * The imaging study is unavailable because the imaging study was not started or
-     * not completed (also sometimes called "aborted").
-     */
-    CANCELLED,
-    /**
-     * The imaging study has been withdrawn following a previous final release. This
-     * electronic record should never have existed, though it is possible that
-     * real-world decisions were based on it. (If real-world activity has occurred,
-     * the status should be "cancelled" rather than "entered-in-error".).
-     */
-    ENTEREDINERROR,
-    /**
-     * The system does not know which of the status values currently applies for
-     * this request. Note: This concept is not to be used for "other" - one of the
-     * listed statuses is presumed to apply, it's just not known which one.
-     */
-    UNKNOWN,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ImagingStudyStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("registered".equals(codeString))
-        return REGISTERED;
-      if ("available".equals(codeString))
-        return AVAILABLE;
-      if ("cancelled".equals(codeString))
-        return CANCELLED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return UNKNOWN;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ImagingStudyStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case REGISTERED:
-        return "registered";
-      case AVAILABLE:
-        return "available";
-      case CANCELLED:
-        return "cancelled";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case UNKNOWN:
-        return "unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case REGISTERED:
-        return "http://hl7.org/fhir/imagingstudy-status";
-      case AVAILABLE:
-        return "http://hl7.org/fhir/imagingstudy-status";
-      case CANCELLED:
-        return "http://hl7.org/fhir/imagingstudy-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/imagingstudy-status";
-      case UNKNOWN:
-        return "http://hl7.org/fhir/imagingstudy-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case REGISTERED:
-        return "The existence of the imaging study is registered, but there is nothing yet available.";
-      case AVAILABLE:
-        return "At least one instance has been associated with this imaging study.";
-      case CANCELLED:
-        return "The imaging study is unavailable because the imaging study was not started or not completed (also sometimes called \"aborted\").";
-      case ENTEREDINERROR:
-        return "The imaging study has been withdrawn following a previous final release.  This electronic record should never have existed, though it is possible that real-world decisions were based on it. (If real-world activity has occurred, the status should be \"cancelled\" rather than \"entered-in-error\".).";
-      case UNKNOWN:
-        return "The system does not know which of the status values currently applies for this request. Note: This concept is not to be used for \"other\" - one of the listed statuses is presumed to apply, it's just not known which one.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case REGISTERED:
-        return "Registered";
-      case AVAILABLE:
-        return "Available";
-      case CANCELLED:
-        return "Cancelled";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case UNKNOWN:
-        return "Unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ImagingStudyStatusEnumFactory implements EnumFactory<ImagingStudyStatus> {
-    public ImagingStudyStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("registered".equals(codeString))
-        return ImagingStudyStatus.REGISTERED;
-      if ("available".equals(codeString))
-        return ImagingStudyStatus.AVAILABLE;
-      if ("cancelled".equals(codeString))
-        return ImagingStudyStatus.CANCELLED;
-      if ("entered-in-error".equals(codeString))
-        return ImagingStudyStatus.ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return ImagingStudyStatus.UNKNOWN;
-      throw new IllegalArgumentException("Unknown ImagingStudyStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<ImagingStudyStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ImagingStudyStatus>(this, ImagingStudyStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ImagingStudyStatus>(this, ImagingStudyStatus.NULL, code);
-      if ("registered".equals(codeString))
-        return new Enumeration<ImagingStudyStatus>(this, ImagingStudyStatus.REGISTERED, code);
-      if ("available".equals(codeString))
-        return new Enumeration<ImagingStudyStatus>(this, ImagingStudyStatus.AVAILABLE, code);
-      if ("cancelled".equals(codeString))
-        return new Enumeration<ImagingStudyStatus>(this, ImagingStudyStatus.CANCELLED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<ImagingStudyStatus>(this, ImagingStudyStatus.ENTEREDINERROR, code);
-      if ("unknown".equals(codeString))
-        return new Enumeration<ImagingStudyStatus>(this, ImagingStudyStatus.UNKNOWN, code);
-      throw new FHIRException("Unknown ImagingStudyStatus code '" + codeString + "'");
-    }
-
-    public String toCode(ImagingStudyStatus code) {
-       if (code == ImagingStudyStatus.NULL)
-           return null;
-       if (code == ImagingStudyStatus.REGISTERED)
-        return "registered";
-      if (code == ImagingStudyStatus.AVAILABLE)
-        return "available";
-      if (code == ImagingStudyStatus.CANCELLED)
-        return "cancelled";
-      if (code == ImagingStudyStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      if (code == ImagingStudyStatus.UNKNOWN)
-        return "unknown";
-      return "?";
-   }
-
-    public String toSystem(ImagingStudyStatus code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class ImagingStudySeriesComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -2070,10 +1881,10 @@ public class ImagingStudy extends DomainResource {
   /**
    * The current state of the ImagingStudy.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "registered | available | cancelled | entered-in-error | unknown", formalDefinition = "The current state of the ImagingStudy.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/imagingstudy-status")
-  protected Enumeration<ImagingStudyStatus> status;
+  protected StringType status;
 
   /**
    * A list of all the series.modality values that are actual acquisition
@@ -2367,12 +2178,12 @@ public class ImagingStudy extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<ImagingStudyStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create ImagingStudy.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<ImagingStudyStatus>(new ImagingStudyStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -2389,7 +2200,7 @@ public class ImagingStudy extends DomainResource {
    *              is the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public ImagingStudy setStatusElement(Enumeration<ImagingStudyStatus> value) {
+  public ImagingStudy setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -2397,17 +2208,21 @@ public class ImagingStudy extends DomainResource {
   /**
    * @return The current state of the ImagingStudy.
    */
-  public ImagingStudyStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
   /**
    * @param value The current state of the ImagingStudy.
    */
-  public ImagingStudy setStatus(ImagingStudyStatus value) {
-    if (this.status == null)
-      this.status = new Enumeration<ImagingStudyStatus>(new ImagingStudyStatusEnumFactory());
-    this.status.setValue(value);
+  public ImagingStudy setStatus(String value) {
+    if (value == null)
+      this.status = null;
+    else {
+      if (this.status == null)
+        this.status = new StringType();
+      this.status.setValue(value);
+    }
     return this;
   }
 
@@ -3406,7 +3221,7 @@ public class ImagingStudy extends DomainResource {
     children.add(new Property("identifier", "Identifier",
         "Identifiers for the ImagingStudy such as DICOM Study Instance UID, and Accession Number.", 0,
         java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code", "The current state of the ImagingStudy.", 0, 1, status));
+    children.add(new Property("status", "string", "The current state of the ImagingStudy.", 0, 1, status));
     children.add(new Property("modality", "Coding",
         "A list of all the series.modality values that are actual acquisition modalities, i.e. those in the DICOM Context Group 29 (value set OID 1.2.840.10008.6.1.19).",
         0, java.lang.Integer.MAX_VALUE, modality));
@@ -3464,7 +3279,7 @@ public class ImagingStudy extends DomainResource {
           "Identifiers for the ImagingStudy such as DICOM Study Instance UID, and Accession Number.", 0,
           java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "The current state of the ImagingStudy.", 0, 1, status);
+      /* status */ return new Property("status", "status", "The current state of the ImagingStudy.", 0, 1, status);
     case -622722335:
       /* modality */ return new Property("modality", "Coding",
           "A list of all the series.modality values that are actual acquisition modalities, i.e. those in the DICOM Context Group 29 (value set OID 1.2.840.10008.6.1.19).",
@@ -3544,7 +3359,7 @@ public class ImagingStudy extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<ImagingStudyStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -622722335:
       /* modality */ return this.modality == null ? new Base[0] : this.modality.toArray(new Base[this.modality.size()]); // Coding
     case -1867885268:
@@ -3600,8 +3415,7 @@ public class ImagingStudy extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new ImagingStudyStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ImagingStudyStatus>
+      this.status = castToString(value); // Enumeration<ImagingStudyStatus>
       return value;
     case -622722335: // modality
       this.getModality().add(castToCoding(value)); // Coding
@@ -3668,8 +3482,7 @@ public class ImagingStudy extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new ImagingStudyStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ImagingStudyStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("modality")) {
       this.getModality().add(castToCoding(value));
     } else if (name.equals("subject")) {
@@ -3813,7 +3626,7 @@ public class ImagingStudy extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -622722335:
       /* modality */ return new String[] { "Coding" };
     case -1867885268:

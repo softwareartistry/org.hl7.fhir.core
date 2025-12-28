@@ -8865,7 +8865,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "ImagingStudy", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "ImagingStudy", "status", element.getStatusElement(), -1);
+      composeString(t, "ImagingStudy", "status", element.getStatusElement(), -1);
     for (int i = 0; i < element.getModality().size(); i++)
       composeCoding(t, "ImagingStudy", "modality", element.getModality().get(i), i);
     if (element.hasSubject())

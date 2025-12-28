@@ -12237,8 +12237,7 @@ public class XmlParser extends XmlParserBase {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("identifier")) {
       res.getIdentifier().add(parseIdentifier(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, ImagingStudy.ImagingStudyStatus.NULL,
-          new ImagingStudy.ImagingStudyStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("modality")) {
       res.getModality().add(parseCoding(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("subject")) {
@@ -39551,7 +39550,7 @@ public class XmlParser extends XmlParserBase {
         composeIdentifier("identifier", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new ImagingStudy.ImagingStudyStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasModality()) {
       for (Coding e : element.getModality())
         composeCoding("modality", e);
