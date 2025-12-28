@@ -55,167 +55,167 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "PaymentReconciliation", profile = "http://hl7.org/fhir/StructureDefinition/PaymentReconciliation")
 public class PaymentReconciliation extends DomainResource {
 
-  public enum PaymentReconciliationStatus {
-    /**
-     * The instance is currently in-force.
-     */
-    ACTIVE,
-    /**
-     * The instance is withdrawn, rescinded or reversed.
-     */
-    CANCELLED,
-    /**
-     * A new instance the contents of which is not complete.
-     */
-    DRAFT,
-    /**
-     * The instance was entered in error.
-     */
-    ENTEREDINERROR,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static PaymentReconciliationStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("active".equals(codeString))
-        return ACTIVE;
-      if ("cancelled".equals(codeString))
-        return CANCELLED;
-      if ("draft".equals(codeString))
-        return DRAFT;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown PaymentReconciliationStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ACTIVE:
-        return "active";
-      case CANCELLED:
-        return "cancelled";
-      case DRAFT:
-        return "draft";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ACTIVE:
-        return "http://hl7.org/fhir/fm-status";
-      case CANCELLED:
-        return "http://hl7.org/fhir/fm-status";
-      case DRAFT:
-        return "http://hl7.org/fhir/fm-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/fm-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ACTIVE:
-        return "The instance is currently in-force.";
-      case CANCELLED:
-        return "The instance is withdrawn, rescinded or reversed.";
-      case DRAFT:
-        return "A new instance the contents of which is not complete.";
-      case ENTEREDINERROR:
-        return "The instance was entered in error.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ACTIVE:
-        return "Active";
-      case CANCELLED:
-        return "Cancelled";
-      case DRAFT:
-        return "Draft";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class PaymentReconciliationStatusEnumFactory implements EnumFactory<PaymentReconciliationStatus> {
-    public PaymentReconciliationStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("active".equals(codeString))
-        return PaymentReconciliationStatus.ACTIVE;
-      if ("cancelled".equals(codeString))
-        return PaymentReconciliationStatus.CANCELLED;
-      if ("draft".equals(codeString))
-        return PaymentReconciliationStatus.DRAFT;
-      if ("entered-in-error".equals(codeString))
-        return PaymentReconciliationStatus.ENTEREDINERROR;
-      throw new IllegalArgumentException("Unknown PaymentReconciliationStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<PaymentReconciliationStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<PaymentReconciliationStatus>(this, PaymentReconciliationStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<PaymentReconciliationStatus>(this, PaymentReconciliationStatus.NULL, code);
-      if ("active".equals(codeString))
-        return new Enumeration<PaymentReconciliationStatus>(this, PaymentReconciliationStatus.ACTIVE, code);
-      if ("cancelled".equals(codeString))
-        return new Enumeration<PaymentReconciliationStatus>(this, PaymentReconciliationStatus.CANCELLED, code);
-      if ("draft".equals(codeString))
-        return new Enumeration<PaymentReconciliationStatus>(this, PaymentReconciliationStatus.DRAFT, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<PaymentReconciliationStatus>(this, PaymentReconciliationStatus.ENTEREDINERROR, code);
-      throw new FHIRException("Unknown PaymentReconciliationStatus code '" + codeString + "'");
-    }
-
-    public String toCode(PaymentReconciliationStatus code) {
-       if (code == PaymentReconciliationStatus.NULL)
-           return null;
-       if (code == PaymentReconciliationStatus.ACTIVE)
-        return "active";
-      if (code == PaymentReconciliationStatus.CANCELLED)
-        return "cancelled";
-      if (code == PaymentReconciliationStatus.DRAFT)
-        return "draft";
-      if (code == PaymentReconciliationStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      return "?";
-   }
-
-    public String toSystem(PaymentReconciliationStatus code) {
-      return code.getSystem();
-    }
-  }
+//  public enum PaymentReconciliationStatus {
+//    /**
+//     * The instance is currently in-force.
+//     */
+//    ACTIVE,
+//    /**
+//     * The instance is withdrawn, rescinded or reversed.
+//     */
+//    CANCELLED,
+//    /**
+//     * A new instance the contents of which is not complete.
+//     */
+//    DRAFT,
+//    /**
+//     * The instance was entered in error.
+//     */
+//    ENTEREDINERROR,
+//    /**
+//     * added to help the parsers with the generic types
+//     */
+//    NULL;
+//
+//    public static PaymentReconciliationStatus fromCode(String codeString) throws FHIRException {
+//      if (codeString == null || "".equals(codeString))
+//        return null;
+//      if ("active".equals(codeString))
+//        return ACTIVE;
+//      if ("cancelled".equals(codeString))
+//        return CANCELLED;
+//      if ("draft".equals(codeString))
+//        return DRAFT;
+//      if ("entered-in-error".equals(codeString))
+//        return ENTEREDINERROR;
+//      if (Configuration.isAcceptInvalidEnums())
+//        return null;
+//      else
+//        throw new FHIRException("Unknown PaymentReconciliationStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode() {
+//      switch (this) {
+//      case ACTIVE:
+//        return "active";
+//      case CANCELLED:
+//        return "cancelled";
+//      case DRAFT:
+//        return "draft";
+//      case ENTEREDINERROR:
+//        return "entered-in-error";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getSystem() {
+//      switch (this) {
+//      case ACTIVE:
+//        return "http://hl7.org/fhir/fm-status";
+//      case CANCELLED:
+//        return "http://hl7.org/fhir/fm-status";
+//      case DRAFT:
+//        return "http://hl7.org/fhir/fm-status";
+//      case ENTEREDINERROR:
+//        return "http://hl7.org/fhir/fm-status";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDefinition() {
+//      switch (this) {
+//      case ACTIVE:
+//        return "The instance is currently in-force.";
+//      case CANCELLED:
+//        return "The instance is withdrawn, rescinded or reversed.";
+//      case DRAFT:
+//        return "A new instance the contents of which is not complete.";
+//      case ENTEREDINERROR:
+//        return "The instance was entered in error.";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDisplay() {
+//      switch (this) {
+//      case ACTIVE:
+//        return "Active";
+//      case CANCELLED:
+//        return "Cancelled";
+//      case DRAFT:
+//        return "Draft";
+//      case ENTEREDINERROR:
+//        return "Entered in Error";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//  }
+//
+//  public static class PaymentReconciliationStatusEnumFactory implements EnumFactory<PaymentReconciliationStatus> {
+//    public PaymentReconciliationStatus fromCode(String codeString) throws IllegalArgumentException {
+//      if (codeString == null || "".equals(codeString))
+//        if (codeString == null || "".equals(codeString))
+//          return null;
+//      if ("active".equals(codeString))
+//        return PaymentReconciliationStatus.ACTIVE;
+//      if ("cancelled".equals(codeString))
+//        return PaymentReconciliationStatus.CANCELLED;
+//      if ("draft".equals(codeString))
+//        return PaymentReconciliationStatus.DRAFT;
+//      if ("entered-in-error".equals(codeString))
+//        return PaymentReconciliationStatus.ENTEREDINERROR;
+//      throw new IllegalArgumentException("Unknown PaymentReconciliationStatus code '" + codeString + "'");
+//    }
+//
+//    public Enumeration<PaymentReconciliationStatus> fromType(PrimitiveType<?> code) throws FHIRException {
+//      if (code == null)
+//        return null;
+//      if (code.isEmpty())
+//        return new Enumeration<PaymentReconciliationStatus>(this, PaymentReconciliationStatus.NULL, code);
+//      String codeString = code.asStringValue();
+//      if (codeString == null || "".equals(codeString))
+//        return new Enumeration<PaymentReconciliationStatus>(this, PaymentReconciliationStatus.NULL, code);
+//      if ("active".equals(codeString))
+//        return new Enumeration<PaymentReconciliationStatus>(this, PaymentReconciliationStatus.ACTIVE, code);
+//      if ("cancelled".equals(codeString))
+//        return new Enumeration<PaymentReconciliationStatus>(this, PaymentReconciliationStatus.CANCELLED, code);
+//      if ("draft".equals(codeString))
+//        return new Enumeration<PaymentReconciliationStatus>(this, PaymentReconciliationStatus.DRAFT, code);
+//      if ("entered-in-error".equals(codeString))
+//        return new Enumeration<PaymentReconciliationStatus>(this, PaymentReconciliationStatus.ENTEREDINERROR, code);
+//      throw new FHIRException("Unknown PaymentReconciliationStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode(PaymentReconciliationStatus code) {
+//       if (code == PaymentReconciliationStatus.NULL)
+//           return null;
+//       if (code == PaymentReconciliationStatus.ACTIVE)
+//        return "active";
+//      if (code == PaymentReconciliationStatus.CANCELLED)
+//        return "cancelled";
+//      if (code == PaymentReconciliationStatus.DRAFT)
+//        return "draft";
+//      if (code == PaymentReconciliationStatus.ENTEREDINERROR)
+//        return "entered-in-error";
+//      return "?";
+//   }
+//
+//    public String toSystem(PaymentReconciliationStatus code) {
+//      return code.getSystem();
+//    }
+//  }
 
   @Block()
   public static class DetailsComponent extends BackboneElement implements IBaseBackboneElement {
@@ -1375,10 +1375,10 @@ public class PaymentReconciliation extends DomainResource {
   /**
    * The status of the resource instance.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "active | cancelled | draft | entered-in-error", formalDefinition = "The status of the resource instance.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/fm-status")
-  protected Enumeration<PaymentReconciliationStatus> status;
+  protected StringType status;
 
   /**
    * The period of time for which payments have been gathered into this bulk
@@ -1510,7 +1510,7 @@ public class PaymentReconciliation extends DomainResource {
   /**
    * Constructor
    */
-  public PaymentReconciliation(Enumeration<PaymentReconciliationStatus> status, DateTimeType created,
+  public PaymentReconciliation(StringType status, DateTimeType created,
       DateType paymentDate, Money paymentAmount) {
     super();
     this.status = status;
@@ -1579,12 +1579,12 @@ public class PaymentReconciliation extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<PaymentReconciliationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create PaymentReconciliation.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PaymentReconciliationStatus>(new PaymentReconciliationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -1601,7 +1601,7 @@ public class PaymentReconciliation extends DomainResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public PaymentReconciliation setStatusElement(Enumeration<PaymentReconciliationStatus> value) {
+  public PaymentReconciliation setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1609,17 +1609,17 @@ public class PaymentReconciliation extends DomainResource {
   /**
    * @return The status of the resource instance.
    */
-  public PaymentReconciliationStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The status of the resource instance.
    */
-  public PaymentReconciliation setStatus(PaymentReconciliationStatus value) {
+  public PaymentReconciliation setStatus(StringType value) {
     if (this.status == null)
-      this.status = new Enumeration<PaymentReconciliationStatus>(new PaymentReconciliationStatusEnumFactory());
-    this.status.setValue(value);
+      this.status = new StringType();
+    this.status = value;
     return this;
   }
 
@@ -2332,8 +2332,8 @@ public class PaymentReconciliation extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new PaymentReconciliationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PaymentReconciliationStatus>
+//      value = new PaymentReconciliationStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // StringType
       return value;
     case -991726143: // period
       this.period = castToPeriod(value); // Period
@@ -2386,8 +2386,8 @@ public class PaymentReconciliation extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new PaymentReconciliationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PaymentReconciliationStatus>
+//      value = new PaymentReconciliationStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // Enumeration<PaymentReconciliationStatus>
     } else if (name.equals("period")) {
       this.period = castToPeriod(value); // Period
     } else if (name.equals("created")) {

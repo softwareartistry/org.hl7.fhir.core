@@ -52,192 +52,192 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "QuestionnaireResponse", profile = "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse")
 public class QuestionnaireResponse extends DomainResource {
 
-  public enum QuestionnaireResponseStatus {
-    /**
-     * This QuestionnaireResponse has been partially filled out with answers but
-     * changes or additions are still expected to be made to it.
-     */
-    INPROGRESS,
-    /**
-     * This QuestionnaireResponse has been filled out with answers and the current
-     * content is regarded as definitive.
-     */
-    COMPLETED,
-    /**
-     * This QuestionnaireResponse has been filled out with answers, then marked as
-     * complete, yet changes or additions have been made to it afterwards.
-     */
-    AMENDED,
-    /**
-     * This QuestionnaireResponse was entered in error and voided.
-     */
-    ENTEREDINERROR,
-    /**
-     * This QuestionnaireResponse has been partially filled out with answers but has
-     * been abandoned. It is unknown whether changes or additions are expected to be
-     * made to it.
-     */
-    STOPPED,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static QuestionnaireResponseStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("in-progress".equals(codeString))
-        return INPROGRESS;
-      if ("completed".equals(codeString))
-        return COMPLETED;
-      if ("amended".equals(codeString))
-        return AMENDED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if ("stopped".equals(codeString))
-        return STOPPED;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown QuestionnaireResponseStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case INPROGRESS:
-        return "in-progress";
-      case COMPLETED:
-        return "completed";
-      case AMENDED:
-        return "amended";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case STOPPED:
-        return "stopped";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case INPROGRESS:
-        return "http://hl7.org/fhir/questionnaire-answers-status";
-      case COMPLETED:
-        return "http://hl7.org/fhir/questionnaire-answers-status";
-      case AMENDED:
-        return "http://hl7.org/fhir/questionnaire-answers-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/questionnaire-answers-status";
-      case STOPPED:
-        return "http://hl7.org/fhir/questionnaire-answers-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case INPROGRESS:
-        return "This QuestionnaireResponse has been partially filled out with answers but changes or additions are still expected to be made to it.";
-      case COMPLETED:
-        return "This QuestionnaireResponse has been filled out with answers and the current content is regarded as definitive.";
-      case AMENDED:
-        return "This QuestionnaireResponse has been filled out with answers, then marked as complete, yet changes or additions have been made to it afterwards.";
-      case ENTEREDINERROR:
-        return "This QuestionnaireResponse was entered in error and voided.";
-      case STOPPED:
-        return "This QuestionnaireResponse has been partially filled out with answers but has been abandoned. It is unknown whether changes or additions are expected to be made to it.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case INPROGRESS:
-        return "In Progress";
-      case COMPLETED:
-        return "Completed";
-      case AMENDED:
-        return "Amended";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case STOPPED:
-        return "Stopped";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class QuestionnaireResponseStatusEnumFactory implements EnumFactory<QuestionnaireResponseStatus> {
-    public QuestionnaireResponseStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("in-progress".equals(codeString))
-        return QuestionnaireResponseStatus.INPROGRESS;
-      if ("completed".equals(codeString))
-        return QuestionnaireResponseStatus.COMPLETED;
-      if ("amended".equals(codeString))
-        return QuestionnaireResponseStatus.AMENDED;
-      if ("entered-in-error".equals(codeString))
-        return QuestionnaireResponseStatus.ENTEREDINERROR;
-      if ("stopped".equals(codeString))
-        return QuestionnaireResponseStatus.STOPPED;
-      throw new IllegalArgumentException("Unknown QuestionnaireResponseStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<QuestionnaireResponseStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<QuestionnaireResponseStatus>(this, QuestionnaireResponseStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<QuestionnaireResponseStatus>(this, QuestionnaireResponseStatus.NULL, code);
-      if ("in-progress".equals(codeString))
-        return new Enumeration<QuestionnaireResponseStatus>(this, QuestionnaireResponseStatus.INPROGRESS, code);
-      if ("completed".equals(codeString))
-        return new Enumeration<QuestionnaireResponseStatus>(this, QuestionnaireResponseStatus.COMPLETED, code);
-      if ("amended".equals(codeString))
-        return new Enumeration<QuestionnaireResponseStatus>(this, QuestionnaireResponseStatus.AMENDED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<QuestionnaireResponseStatus>(this, QuestionnaireResponseStatus.ENTEREDINERROR, code);
-      if ("stopped".equals(codeString))
-        return new Enumeration<QuestionnaireResponseStatus>(this, QuestionnaireResponseStatus.STOPPED, code);
-      throw new FHIRException("Unknown QuestionnaireResponseStatus code '" + codeString + "'");
-    }
-
-    public String toCode(QuestionnaireResponseStatus code) {
-       if (code == QuestionnaireResponseStatus.NULL)
-           return null;
-       if (code == QuestionnaireResponseStatus.INPROGRESS)
-        return "in-progress";
-      if (code == QuestionnaireResponseStatus.COMPLETED)
-        return "completed";
-      if (code == QuestionnaireResponseStatus.AMENDED)
-        return "amended";
-      if (code == QuestionnaireResponseStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      if (code == QuestionnaireResponseStatus.STOPPED)
-        return "stopped";
-      return "?";
-   }
-
-    public String toSystem(QuestionnaireResponseStatus code) {
-      return code.getSystem();
-    }
-  }
+//  public enum QuestionnaireResponseStatus {
+//    /**
+//     * This QuestionnaireResponse has been partially filled out with answers but
+//     * changes or additions are still expected to be made to it.
+//     */
+//    INPROGRESS,
+//    /**
+//     * This QuestionnaireResponse has been filled out with answers and the current
+//     * content is regarded as definitive.
+//     */
+//    COMPLETED,
+//    /**
+//     * This QuestionnaireResponse has been filled out with answers, then marked as
+//     * complete, yet changes or additions have been made to it afterwards.
+//     */
+//    AMENDED,
+//    /**
+//     * This QuestionnaireResponse was entered in error and voided.
+//     */
+//    ENTEREDINERROR,
+//    /**
+//     * This QuestionnaireResponse has been partially filled out with answers but has
+//     * been abandoned. It is unknown whether changes or additions are expected to be
+//     * made to it.
+//     */
+//    STOPPED,
+//    /**
+//     * added to help the parsers with the generic types
+//     */
+//    NULL;
+//
+//    public static QuestionnaireResponseStatus fromCode(String codeString) throws FHIRException {
+//      if (codeString == null || "".equals(codeString))
+//        return null;
+//      if ("in-progress".equals(codeString))
+//        return INPROGRESS;
+//      if ("completed".equals(codeString))
+//        return COMPLETED;
+//      if ("amended".equals(codeString))
+//        return AMENDED;
+//      if ("entered-in-error".equals(codeString))
+//        return ENTEREDINERROR;
+//      if ("stopped".equals(codeString))
+//        return STOPPED;
+//      if (Configuration.isAcceptInvalidEnums())
+//        return null;
+//      else
+//        throw new FHIRException("Unknown QuestionnaireResponseStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode() {
+//      switch (this) {
+//      case INPROGRESS:
+//        return "in-progress";
+//      case COMPLETED:
+//        return "completed";
+//      case AMENDED:
+//        return "amended";
+//      case ENTEREDINERROR:
+//        return "entered-in-error";
+//      case STOPPED:
+//        return "stopped";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getSystem() {
+//      switch (this) {
+//      case INPROGRESS:
+//        return "http://hl7.org/fhir/questionnaire-answers-status";
+//      case COMPLETED:
+//        return "http://hl7.org/fhir/questionnaire-answers-status";
+//      case AMENDED:
+//        return "http://hl7.org/fhir/questionnaire-answers-status";
+//      case ENTEREDINERROR:
+//        return "http://hl7.org/fhir/questionnaire-answers-status";
+//      case STOPPED:
+//        return "http://hl7.org/fhir/questionnaire-answers-status";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDefinition() {
+//      switch (this) {
+//      case INPROGRESS:
+//        return "This QuestionnaireResponse has been partially filled out with answers but changes or additions are still expected to be made to it.";
+//      case COMPLETED:
+//        return "This QuestionnaireResponse has been filled out with answers and the current content is regarded as definitive.";
+//      case AMENDED:
+//        return "This QuestionnaireResponse has been filled out with answers, then marked as complete, yet changes or additions have been made to it afterwards.";
+//      case ENTEREDINERROR:
+//        return "This QuestionnaireResponse was entered in error and voided.";
+//      case STOPPED:
+//        return "This QuestionnaireResponse has been partially filled out with answers but has been abandoned. It is unknown whether changes or additions are expected to be made to it.";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDisplay() {
+//      switch (this) {
+//      case INPROGRESS:
+//        return "In Progress";
+//      case COMPLETED:
+//        return "Completed";
+//      case AMENDED:
+//        return "Amended";
+//      case ENTEREDINERROR:
+//        return "Entered in Error";
+//      case STOPPED:
+//        return "Stopped";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//  }
+//
+//  public static class QuestionnaireResponseStatusEnumFactory implements EnumFactory<QuestionnaireResponseStatus> {
+//    public QuestionnaireResponseStatus fromCode(String codeString) throws IllegalArgumentException {
+//      if (codeString == null || "".equals(codeString))
+//        if (codeString == null || "".equals(codeString))
+//          return null;
+//      if ("in-progress".equals(codeString))
+//        return QuestionnaireResponseStatus.INPROGRESS;
+//      if ("completed".equals(codeString))
+//        return QuestionnaireResponseStatus.COMPLETED;
+//      if ("amended".equals(codeString))
+//        return QuestionnaireResponseStatus.AMENDED;
+//      if ("entered-in-error".equals(codeString))
+//        return QuestionnaireResponseStatus.ENTEREDINERROR;
+//      if ("stopped".equals(codeString))
+//        return QuestionnaireResponseStatus.STOPPED;
+//      throw new IllegalArgumentException("Unknown QuestionnaireResponseStatus code '" + codeString + "'");
+//    }
+//
+//    public Enumeration<QuestionnaireResponseStatus> fromType(PrimitiveType<?> code) throws FHIRException {
+//      if (code == null)
+//        return null;
+//      if (code.isEmpty())
+//        return new Enumeration<QuestionnaireResponseStatus>(this, QuestionnaireResponseStatus.NULL, code);
+//      String codeString = code.asStringValue();
+//      if (codeString == null || "".equals(codeString))
+//        return new Enumeration<QuestionnaireResponseStatus>(this, QuestionnaireResponseStatus.NULL, code);
+//      if ("in-progress".equals(codeString))
+//        return new Enumeration<QuestionnaireResponseStatus>(this, QuestionnaireResponseStatus.INPROGRESS, code);
+//      if ("completed".equals(codeString))
+//        return new Enumeration<QuestionnaireResponseStatus>(this, QuestionnaireResponseStatus.COMPLETED, code);
+//      if ("amended".equals(codeString))
+//        return new Enumeration<QuestionnaireResponseStatus>(this, QuestionnaireResponseStatus.AMENDED, code);
+//      if ("entered-in-error".equals(codeString))
+//        return new Enumeration<QuestionnaireResponseStatus>(this, QuestionnaireResponseStatus.ENTEREDINERROR, code);
+//      if ("stopped".equals(codeString))
+//        return new Enumeration<QuestionnaireResponseStatus>(this, QuestionnaireResponseStatus.STOPPED, code);
+//      throw new FHIRException("Unknown QuestionnaireResponseStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode(QuestionnaireResponseStatus code) {
+//       if (code == QuestionnaireResponseStatus.NULL)
+//           return null;
+//       if (code == QuestionnaireResponseStatus.INPROGRESS)
+//        return "in-progress";
+//      if (code == QuestionnaireResponseStatus.COMPLETED)
+//        return "completed";
+//      if (code == QuestionnaireResponseStatus.AMENDED)
+//        return "amended";
+//      if (code == QuestionnaireResponseStatus.ENTEREDINERROR)
+//        return "entered-in-error";
+//      if (code == QuestionnaireResponseStatus.STOPPED)
+//        return "stopped";
+//      return "?";
+//   }
+//
+//    public String toSystem(QuestionnaireResponseStatus code) {
+//      return code.getSystem();
+//    }
+//  }
 
   @Block()
   public static class QuestionnaireResponseItemComponent extends BackboneElement implements IBaseBackboneElement {
@@ -1426,10 +1426,10 @@ public class QuestionnaireResponse extends DomainResource {
   /**
    * The position of the questionnaire response within its overall lifecycle.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 4, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 4, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "in-progress | completed | amended | entered-in-error | stopped", formalDefinition = "The position of the questionnaire response within its overall lifecycle.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/questionnaire-answers-status")
-  protected Enumeration<QuestionnaireResponseStatus> status;
+  protected StringType status;
 
   /**
    * The subject of the questionnaire response. This could be a patient,
@@ -1521,7 +1521,7 @@ public class QuestionnaireResponse extends DomainResource {
   /**
    * Constructor
    */
-  public QuestionnaireResponse(Enumeration<QuestionnaireResponseStatus> status) {
+  public QuestionnaireResponse(StringType status) {
     super();
     this.status = status;
   }
@@ -1728,12 +1728,12 @@ public class QuestionnaireResponse extends DomainResource {
    *         and extensions. The accessor "getStatus" gives direct access to the
    *         value
    */
-  public Enumeration<QuestionnaireResponseStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create QuestionnaireResponse.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<QuestionnaireResponseStatus>(new QuestionnaireResponseStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -1751,7 +1751,7 @@ public class QuestionnaireResponse extends DomainResource {
    *              with id, value and extensions. The accessor "getStatus" gives
    *              direct access to the value
    */
-  public QuestionnaireResponse setStatusElement(Enumeration<QuestionnaireResponseStatus> value) {
+  public QuestionnaireResponse setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1760,18 +1760,18 @@ public class QuestionnaireResponse extends DomainResource {
    * @return The position of the questionnaire response within its overall
    *         lifecycle.
    */
-  public QuestionnaireResponseStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The position of the questionnaire response within its overall
    *              lifecycle.
    */
-  public QuestionnaireResponse setStatus(QuestionnaireResponseStatus value) {
+  public QuestionnaireResponse setStatus(StringType value) {
     if (this.status == null)
-      this.status = new Enumeration<QuestionnaireResponseStatus>(new QuestionnaireResponseStatusEnumFactory());
-    this.status.setValue(value);
+      this.status = new StringType();
+    this.status = value;
     return this;
   }
 
@@ -2227,8 +2227,8 @@ public class QuestionnaireResponse extends DomainResource {
       this.questionnaire = castToCanonical(value); // CanonicalType
       return value;
     case -892481550: // status
-      value = new QuestionnaireResponseStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<QuestionnaireResponseStatus>
+//      value = new QuestionnaireResponseStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // Enumeration<QuestionnaireResponseStatus>
       return value;
     case -1867885268: // subject
       this.subject = castToReference(value); // Reference
@@ -2265,8 +2265,8 @@ public class QuestionnaireResponse extends DomainResource {
     } else if (name.equals("questionnaire")) {
       this.questionnaire = castToCanonical(value); // CanonicalType
     } else if (name.equals("status")) {
-      value = new QuestionnaireResponseStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<QuestionnaireResponseStatus>
+//      value = new QuestionnaireResponseStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // Enumeration<QuestionnaireResponseStatus>
     } else if (name.equals("subject")) {
       this.subject = castToReference(value); // Reference
     } else if (name.equals("encounter")) {

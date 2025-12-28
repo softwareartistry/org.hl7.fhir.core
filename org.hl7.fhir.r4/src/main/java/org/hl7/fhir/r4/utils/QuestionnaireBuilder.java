@@ -33,7 +33,6 @@ import org.hl7.fhir.r4.model.Questionnaire.QuestionnaireItemComponent;
 import org.hl7.fhir.r4.model.Questionnaire.QuestionnaireItemType;
 import org.hl7.fhir.r4.model.QuestionnaireResponse;
 import org.hl7.fhir.r4.model.QuestionnaireResponse.QuestionnaireResponseItemAnswerComponent;
-import org.hl7.fhir.r4.model.QuestionnaireResponse.QuestionnaireResponseStatus;
 import org.hl7.fhir.r4.model.Reference;
 import org.hl7.fhir.r4.model.Resource;
 import org.hl7.fhir.r4.model.StringType;
@@ -232,7 +231,7 @@ public class QuestionnaireBuilder {
       // no identifier - this is transient
       response.setQuestionnaire("#" + questionnaire.getId());
       response.getContained().add(questionnaire);
-      response.setStatus(QuestionnaireResponseStatus.INPROGRESS);
+      response.setStatus((StringType) new StringType("INPROGRESS"));
       QuestionnaireResponse.QuestionnaireResponseItemComponent item = new QuestionnaireResponse.QuestionnaireResponseItemComponent();
       response.addItem(item);
       item.setUserData("object", resource);

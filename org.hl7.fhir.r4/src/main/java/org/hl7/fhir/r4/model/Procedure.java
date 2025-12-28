@@ -50,259 +50,259 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Procedure", profile = "http://hl7.org/fhir/StructureDefinition/Procedure")
 public class Procedure extends DomainResource {
 
-  public enum ProcedureStatus {
-    /**
-     * The core event has not started yet, but some staging activities have begun
-     * (e.g. surgical suite preparation). Preparation stages may be tracked for
-     * billing purposes.
-     */
-    PREPARATION,
-    /**
-     * The event is currently occurring.
-     */
-    INPROGRESS,
-    /**
-     * The event was terminated prior to any activity beyond preparation. I.e. The
-     * 'main' activity has not yet begun. The boundary between preparatory and the
-     * 'main' activity is context-specific.
-     */
-    NOTDONE,
-    /**
-     * The event has been temporarily stopped but is expected to resume in the
-     * future.
-     */
-    ONHOLD,
-    /**
-     * The event was terminated prior to the full completion of the intended
-     * activity but after at least some of the 'main' activity (beyond preparation)
-     * has occurred.
-     */
-    STOPPED,
-    /**
-     * The event has now concluded.
-     */
-    COMPLETED,
-    /**
-     * This electronic record should never have existed, though it is possible that
-     * real-world decisions were based on it. (If real-world activity has occurred,
-     * the status should be "stopped" rather than "entered-in-error".).
-     */
-    ENTEREDINERROR,
-    /**
-     * The authoring/source system does not know which of the status values
-     * currently applies for this event. Note: This concept is not to be used for
-     * "other" - one of the listed statuses is presumed to apply, but the
-     * authoring/source system does not know which.
-     */
-    UNKNOWN,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ProcedureStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("preparation".equals(codeString))
-        return PREPARATION;
-      if ("in-progress".equals(codeString))
-        return INPROGRESS;
-      if ("not-done".equals(codeString))
-        return NOTDONE;
-      if ("on-hold".equals(codeString))
-        return ONHOLD;
-      if ("stopped".equals(codeString))
-        return STOPPED;
-      if ("completed".equals(codeString))
-        return COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return UNKNOWN;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ProcedureStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case PREPARATION:
-        return "preparation";
-      case INPROGRESS:
-        return "in-progress";
-      case NOTDONE:
-        return "not-done";
-      case ONHOLD:
-        return "on-hold";
-      case STOPPED:
-        return "stopped";
-      case COMPLETED:
-        return "completed";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case UNKNOWN:
-        return "unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case PREPARATION:
-        return "http://hl7.org/fhir/event-status";
-      case INPROGRESS:
-        return "http://hl7.org/fhir/event-status";
-      case NOTDONE:
-        return "http://hl7.org/fhir/event-status";
-      case ONHOLD:
-        return "http://hl7.org/fhir/event-status";
-      case STOPPED:
-        return "http://hl7.org/fhir/event-status";
-      case COMPLETED:
-        return "http://hl7.org/fhir/event-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/event-status";
-      case UNKNOWN:
-        return "http://hl7.org/fhir/event-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case PREPARATION:
-        return "The core event has not started yet, but some staging activities have begun (e.g. surgical suite preparation).  Preparation stages may be tracked for billing purposes.";
-      case INPROGRESS:
-        return "The event is currently occurring.";
-      case NOTDONE:
-        return "The event was terminated prior to any activity beyond preparation.  I.e. The 'main' activity has not yet begun.  The boundary between preparatory and the 'main' activity is context-specific.";
-      case ONHOLD:
-        return "The event has been temporarily stopped but is expected to resume in the future.";
-      case STOPPED:
-        return "The event was terminated prior to the full completion of the intended activity but after at least some of the 'main' activity (beyond preparation) has occurred.";
-      case COMPLETED:
-        return "The event has now concluded.";
-      case ENTEREDINERROR:
-        return "This electronic record should never have existed, though it is possible that real-world decisions were based on it.  (If real-world activity has occurred, the status should be \"stopped\" rather than \"entered-in-error\".).";
-      case UNKNOWN:
-        return "The authoring/source system does not know which of the status values currently applies for this event.  Note: This concept is not to be used for \"other\" - one of the listed statuses is presumed to apply,  but the authoring/source system does not know which.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case PREPARATION:
-        return "Preparation";
-      case INPROGRESS:
-        return "In Progress";
-      case NOTDONE:
-        return "Not Done";
-      case ONHOLD:
-        return "On Hold";
-      case STOPPED:
-        return "Stopped";
-      case COMPLETED:
-        return "Completed";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case UNKNOWN:
-        return "Unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ProcedureStatusEnumFactory implements EnumFactory<ProcedureStatus> {
-    public ProcedureStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("preparation".equals(codeString))
-        return ProcedureStatus.PREPARATION;
-      if ("in-progress".equals(codeString))
-        return ProcedureStatus.INPROGRESS;
-      if ("not-done".equals(codeString))
-        return ProcedureStatus.NOTDONE;
-      if ("on-hold".equals(codeString))
-        return ProcedureStatus.ONHOLD;
-      if ("stopped".equals(codeString))
-        return ProcedureStatus.STOPPED;
-      if ("completed".equals(codeString))
-        return ProcedureStatus.COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return ProcedureStatus.ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return ProcedureStatus.UNKNOWN;
-      throw new IllegalArgumentException("Unknown ProcedureStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<ProcedureStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ProcedureStatus>(this, ProcedureStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ProcedureStatus>(this, ProcedureStatus.NULL, code);
-      if ("preparation".equals(codeString))
-        return new Enumeration<ProcedureStatus>(this, ProcedureStatus.PREPARATION, code);
-      if ("in-progress".equals(codeString))
-        return new Enumeration<ProcedureStatus>(this, ProcedureStatus.INPROGRESS, code);
-      if ("not-done".equals(codeString))
-        return new Enumeration<ProcedureStatus>(this, ProcedureStatus.NOTDONE, code);
-      if ("on-hold".equals(codeString))
-        return new Enumeration<ProcedureStatus>(this, ProcedureStatus.ONHOLD, code);
-      if ("stopped".equals(codeString))
-        return new Enumeration<ProcedureStatus>(this, ProcedureStatus.STOPPED, code);
-      if ("completed".equals(codeString))
-        return new Enumeration<ProcedureStatus>(this, ProcedureStatus.COMPLETED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<ProcedureStatus>(this, ProcedureStatus.ENTEREDINERROR, code);
-      if ("unknown".equals(codeString))
-        return new Enumeration<ProcedureStatus>(this, ProcedureStatus.UNKNOWN, code);
-      throw new FHIRException("Unknown ProcedureStatus code '" + codeString + "'");
-    }
-
-    public String toCode(ProcedureStatus code) {
-       if (code == ProcedureStatus.NULL)
-           return null;
-       if (code == ProcedureStatus.PREPARATION)
-        return "preparation";
-      if (code == ProcedureStatus.INPROGRESS)
-        return "in-progress";
-      if (code == ProcedureStatus.NOTDONE)
-        return "not-done";
-      if (code == ProcedureStatus.ONHOLD)
-        return "on-hold";
-      if (code == ProcedureStatus.STOPPED)
-        return "stopped";
-      if (code == ProcedureStatus.COMPLETED)
-        return "completed";
-      if (code == ProcedureStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      if (code == ProcedureStatus.UNKNOWN)
-        return "unknown";
-      return "?";
-   }
-
-    public String toSystem(ProcedureStatus code) {
-      return code.getSystem();
-    }
-  }
+//  public enum ProcedureStatus {
+//    /**
+//     * The core event has not started yet, but some staging activities have begun
+//     * (e.g. surgical suite preparation). Preparation stages may be tracked for
+//     * billing purposes.
+//     */
+//    PREPARATION,
+//    /**
+//     * The event is currently occurring.
+//     */
+//    INPROGRESS,
+//    /**
+//     * The event was terminated prior to any activity beyond preparation. I.e. The
+//     * 'main' activity has not yet begun. The boundary between preparatory and the
+//     * 'main' activity is context-specific.
+//     */
+//    NOTDONE,
+//    /**
+//     * The event has been temporarily stopped but is expected to resume in the
+//     * future.
+//     */
+//    ONHOLD,
+//    /**
+//     * The event was terminated prior to the full completion of the intended
+//     * activity but after at least some of the 'main' activity (beyond preparation)
+//     * has occurred.
+//     */
+//    STOPPED,
+//    /**
+//     * The event has now concluded.
+//     */
+//    COMPLETED,
+//    /**
+//     * This electronic record should never have existed, though it is possible that
+//     * real-world decisions were based on it. (If real-world activity has occurred,
+//     * the status should be "stopped" rather than "entered-in-error".).
+//     */
+//    ENTEREDINERROR,
+//    /**
+//     * The authoring/source system does not know which of the status values
+//     * currently applies for this event. Note: This concept is not to be used for
+//     * "other" - one of the listed statuses is presumed to apply, but the
+//     * authoring/source system does not know which.
+//     */
+//    UNKNOWN,
+//    /**
+//     * added to help the parsers with the generic types
+//     */
+//    NULL;
+//
+//    public static ProcedureStatus fromCode(String codeString) throws FHIRException {
+//      if (codeString == null || "".equals(codeString))
+//        return null;
+//      if ("preparation".equals(codeString))
+//        return PREPARATION;
+//      if ("in-progress".equals(codeString))
+//        return INPROGRESS;
+//      if ("not-done".equals(codeString))
+//        return NOTDONE;
+//      if ("on-hold".equals(codeString))
+//        return ONHOLD;
+//      if ("stopped".equals(codeString))
+//        return STOPPED;
+//      if ("completed".equals(codeString))
+//        return COMPLETED;
+//      if ("entered-in-error".equals(codeString))
+//        return ENTEREDINERROR;
+//      if ("unknown".equals(codeString))
+//        return UNKNOWN;
+//      if (Configuration.isAcceptInvalidEnums())
+//        return null;
+//      else
+//        throw new FHIRException("Unknown ProcedureStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode() {
+//      switch (this) {
+//      case PREPARATION:
+//        return "preparation";
+//      case INPROGRESS:
+//        return "in-progress";
+//      case NOTDONE:
+//        return "not-done";
+//      case ONHOLD:
+//        return "on-hold";
+//      case STOPPED:
+//        return "stopped";
+//      case COMPLETED:
+//        return "completed";
+//      case ENTEREDINERROR:
+//        return "entered-in-error";
+//      case UNKNOWN:
+//        return "unknown";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getSystem() {
+//      switch (this) {
+//      case PREPARATION:
+//        return "http://hl7.org/fhir/event-status";
+//      case INPROGRESS:
+//        return "http://hl7.org/fhir/event-status";
+//      case NOTDONE:
+//        return "http://hl7.org/fhir/event-status";
+//      case ONHOLD:
+//        return "http://hl7.org/fhir/event-status";
+//      case STOPPED:
+//        return "http://hl7.org/fhir/event-status";
+//      case COMPLETED:
+//        return "http://hl7.org/fhir/event-status";
+//      case ENTEREDINERROR:
+//        return "http://hl7.org/fhir/event-status";
+//      case UNKNOWN:
+//        return "http://hl7.org/fhir/event-status";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDefinition() {
+//      switch (this) {
+//      case PREPARATION:
+//        return "The core event has not started yet, but some staging activities have begun (e.g. surgical suite preparation).  Preparation stages may be tracked for billing purposes.";
+//      case INPROGRESS:
+//        return "The event is currently occurring.";
+//      case NOTDONE:
+//        return "The event was terminated prior to any activity beyond preparation.  I.e. The 'main' activity has not yet begun.  The boundary between preparatory and the 'main' activity is context-specific.";
+//      case ONHOLD:
+//        return "The event has been temporarily stopped but is expected to resume in the future.";
+//      case STOPPED:
+//        return "The event was terminated prior to the full completion of the intended activity but after at least some of the 'main' activity (beyond preparation) has occurred.";
+//      case COMPLETED:
+//        return "The event has now concluded.";
+//      case ENTEREDINERROR:
+//        return "This electronic record should never have existed, though it is possible that real-world decisions were based on it.  (If real-world activity has occurred, the status should be \"stopped\" rather than \"entered-in-error\".).";
+//      case UNKNOWN:
+//        return "The authoring/source system does not know which of the status values currently applies for this event.  Note: This concept is not to be used for \"other\" - one of the listed statuses is presumed to apply,  but the authoring/source system does not know which.";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDisplay() {
+//      switch (this) {
+//      case PREPARATION:
+//        return "Preparation";
+//      case INPROGRESS:
+//        return "In Progress";
+//      case NOTDONE:
+//        return "Not Done";
+//      case ONHOLD:
+//        return "On Hold";
+//      case STOPPED:
+//        return "Stopped";
+//      case COMPLETED:
+//        return "Completed";
+//      case ENTEREDINERROR:
+//        return "Entered in Error";
+//      case UNKNOWN:
+//        return "Unknown";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//  }
+//
+//  public static class ProcedureStatusEnumFactory implements EnumFactory<ProcedureStatus> {
+//    public ProcedureStatus fromCode(String codeString) throws IllegalArgumentException {
+//      if (codeString == null || "".equals(codeString))
+//        if (codeString == null || "".equals(codeString))
+//          return null;
+//      if ("preparation".equals(codeString))
+//        return ProcedureStatus.PREPARATION;
+//      if ("in-progress".equals(codeString))
+//        return ProcedureStatus.INPROGRESS;
+//      if ("not-done".equals(codeString))
+//        return ProcedureStatus.NOTDONE;
+//      if ("on-hold".equals(codeString))
+//        return ProcedureStatus.ONHOLD;
+//      if ("stopped".equals(codeString))
+//        return ProcedureStatus.STOPPED;
+//      if ("completed".equals(codeString))
+//        return ProcedureStatus.COMPLETED;
+//      if ("entered-in-error".equals(codeString))
+//        return ProcedureStatus.ENTEREDINERROR;
+//      if ("unknown".equals(codeString))
+//        return ProcedureStatus.UNKNOWN;
+//      throw new IllegalArgumentException("Unknown ProcedureStatus code '" + codeString + "'");
+//    }
+//
+//    public Enumeration<ProcedureStatus> fromType(PrimitiveType<?> code) throws FHIRException {
+//      if (code == null)
+//        return null;
+//      if (code.isEmpty())
+//        return new Enumeration<ProcedureStatus>(this, ProcedureStatus.NULL, code);
+//      String codeString = code.asStringValue();
+//      if (codeString == null || "".equals(codeString))
+//        return new Enumeration<ProcedureStatus>(this, ProcedureStatus.NULL, code);
+//      if ("preparation".equals(codeString))
+//        return new Enumeration<ProcedureStatus>(this, ProcedureStatus.PREPARATION, code);
+//      if ("in-progress".equals(codeString))
+//        return new Enumeration<ProcedureStatus>(this, ProcedureStatus.INPROGRESS, code);
+//      if ("not-done".equals(codeString))
+//        return new Enumeration<ProcedureStatus>(this, ProcedureStatus.NOTDONE, code);
+//      if ("on-hold".equals(codeString))
+//        return new Enumeration<ProcedureStatus>(this, ProcedureStatus.ONHOLD, code);
+//      if ("stopped".equals(codeString))
+//        return new Enumeration<ProcedureStatus>(this, ProcedureStatus.STOPPED, code);
+//      if ("completed".equals(codeString))
+//        return new Enumeration<ProcedureStatus>(this, ProcedureStatus.COMPLETED, code);
+//      if ("entered-in-error".equals(codeString))
+//        return new Enumeration<ProcedureStatus>(this, ProcedureStatus.ENTEREDINERROR, code);
+//      if ("unknown".equals(codeString))
+//        return new Enumeration<ProcedureStatus>(this, ProcedureStatus.UNKNOWN, code);
+//      throw new FHIRException("Unknown ProcedureStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode(ProcedureStatus code) {
+//       if (code == ProcedureStatus.NULL)
+//           return null;
+//       if (code == ProcedureStatus.PREPARATION)
+//        return "preparation";
+//      if (code == ProcedureStatus.INPROGRESS)
+//        return "in-progress";
+//      if (code == ProcedureStatus.NOTDONE)
+//        return "not-done";
+//      if (code == ProcedureStatus.ONHOLD)
+//        return "on-hold";
+//      if (code == ProcedureStatus.STOPPED)
+//        return "stopped";
+//      if (code == ProcedureStatus.COMPLETED)
+//        return "completed";
+//      if (code == ProcedureStatus.ENTEREDINERROR)
+//        return "entered-in-error";
+//      if (code == ProcedureStatus.UNKNOWN)
+//        return "unknown";
+//      return "?";
+//   }
+//
+//    public String toSystem(ProcedureStatus code) {
+//      return code.getSystem();
+//    }
+//  }
 
   @Block()
   public static class ProcedurePerformerComponent extends BackboneElement implements IBaseBackboneElement {
@@ -1001,10 +1001,10 @@ public class Procedure extends DomainResource {
    * A code specifying the state of the procedure. Generally, this will be the
    * in-progress or completed state.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 5, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 5, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "preparation | in-progress | not-done | on-hold | stopped | completed | entered-in-error | unknown", formalDefinition = "A code specifying the state of the procedure. Generally, this will be the in-progress or completed state.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/event-status")
-  protected Enumeration<ProcedureStatus> status;
+  protected StringType status;
 
   /**
    * Captures the reason for the current state of the procedure.
@@ -1269,7 +1269,7 @@ public class Procedure extends DomainResource {
   /**
    * Constructor
    */
-  public Procedure(Enumeration<ProcedureStatus> status, Reference subject) {
+  public Procedure(StringType status, Reference subject) {
     super();
     this.status = status;
     this.subject = subject;
@@ -1585,12 +1585,12 @@ public class Procedure extends DomainResource {
    *         the underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<ProcedureStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Procedure.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<ProcedureStatus>(new ProcedureStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -1608,7 +1608,7 @@ public class Procedure extends DomainResource {
    *              This is the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public Procedure setStatusElement(Enumeration<ProcedureStatus> value) {
+  public Procedure setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1617,18 +1617,18 @@ public class Procedure extends DomainResource {
    * @return A code specifying the state of the procedure. Generally, this will be
    *         the in-progress or completed state.
    */
-  public ProcedureStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value A code specifying the state of the procedure. Generally, this
    *              will be the in-progress or completed state.
    */
-  public Procedure setStatus(ProcedureStatus value) {
+  public Procedure setStatus(StringType value) {
     if (this.status == null)
-      this.status = new Enumeration<ProcedureStatus>(new ProcedureStatusEnumFactory());
-    this.status.setValue(value);
+      this.status = new StringType();
+    this.status = value;
     return this;
   }
 
@@ -3094,8 +3094,8 @@ public class Procedure extends DomainResource {
       this.getPartOf().add(castToReference(value)); // Reference
       return value;
     case -892481550: // status
-      value = new ProcedureStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ProcedureStatus>
+//      value = new ProcedureStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // StringType
       return value;
     case 2051346646: // statusReason
       this.statusReason = castToCodeableConcept(value); // CodeableConcept
@@ -3182,8 +3182,8 @@ public class Procedure extends DomainResource {
     } else if (name.equals("partOf")) {
       this.getPartOf().add(castToReference(value));
     } else if (name.equals("status")) {
-      value = new ProcedureStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ProcedureStatus>
+//      value = new ProcedureStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // StringType
     } else if (name.equals("statusReason")) {
       this.statusReason = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("category")) {

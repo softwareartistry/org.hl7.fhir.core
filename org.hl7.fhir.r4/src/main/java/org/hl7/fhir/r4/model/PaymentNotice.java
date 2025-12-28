@@ -48,167 +48,167 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "PaymentNotice", profile = "http://hl7.org/fhir/StructureDefinition/PaymentNotice")
 public class PaymentNotice extends DomainResource {
 
-  public enum PaymentNoticeStatus {
-    /**
-     * The instance is currently in-force.
-     */
-    ACTIVE,
-    /**
-     * The instance is withdrawn, rescinded or reversed.
-     */
-    CANCELLED,
-    /**
-     * A new instance the contents of which is not complete.
-     */
-    DRAFT,
-    /**
-     * The instance was entered in error.
-     */
-    ENTEREDINERROR,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static PaymentNoticeStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("active".equals(codeString))
-        return ACTIVE;
-      if ("cancelled".equals(codeString))
-        return CANCELLED;
-      if ("draft".equals(codeString))
-        return DRAFT;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown PaymentNoticeStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ACTIVE:
-        return "active";
-      case CANCELLED:
-        return "cancelled";
-      case DRAFT:
-        return "draft";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ACTIVE:
-        return "http://hl7.org/fhir/fm-status";
-      case CANCELLED:
-        return "http://hl7.org/fhir/fm-status";
-      case DRAFT:
-        return "http://hl7.org/fhir/fm-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/fm-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ACTIVE:
-        return "The instance is currently in-force.";
-      case CANCELLED:
-        return "The instance is withdrawn, rescinded or reversed.";
-      case DRAFT:
-        return "A new instance the contents of which is not complete.";
-      case ENTEREDINERROR:
-        return "The instance was entered in error.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ACTIVE:
-        return "Active";
-      case CANCELLED:
-        return "Cancelled";
-      case DRAFT:
-        return "Draft";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class PaymentNoticeStatusEnumFactory implements EnumFactory<PaymentNoticeStatus> {
-    public PaymentNoticeStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("active".equals(codeString))
-        return PaymentNoticeStatus.ACTIVE;
-      if ("cancelled".equals(codeString))
-        return PaymentNoticeStatus.CANCELLED;
-      if ("draft".equals(codeString))
-        return PaymentNoticeStatus.DRAFT;
-      if ("entered-in-error".equals(codeString))
-        return PaymentNoticeStatus.ENTEREDINERROR;
-      throw new IllegalArgumentException("Unknown PaymentNoticeStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<PaymentNoticeStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<PaymentNoticeStatus>(this, PaymentNoticeStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<PaymentNoticeStatus>(this, PaymentNoticeStatus.NULL, code);
-      if ("active".equals(codeString))
-        return new Enumeration<PaymentNoticeStatus>(this, PaymentNoticeStatus.ACTIVE, code);
-      if ("cancelled".equals(codeString))
-        return new Enumeration<PaymentNoticeStatus>(this, PaymentNoticeStatus.CANCELLED, code);
-      if ("draft".equals(codeString))
-        return new Enumeration<PaymentNoticeStatus>(this, PaymentNoticeStatus.DRAFT, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<PaymentNoticeStatus>(this, PaymentNoticeStatus.ENTEREDINERROR, code);
-      throw new FHIRException("Unknown PaymentNoticeStatus code '" + codeString + "'");
-    }
-
-    public String toCode(PaymentNoticeStatus code) {
-       if (code == PaymentNoticeStatus.NULL)
-           return null;
-       if (code == PaymentNoticeStatus.ACTIVE)
-        return "active";
-      if (code == PaymentNoticeStatus.CANCELLED)
-        return "cancelled";
-      if (code == PaymentNoticeStatus.DRAFT)
-        return "draft";
-      if (code == PaymentNoticeStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      return "?";
-   }
-
-    public String toSystem(PaymentNoticeStatus code) {
-      return code.getSystem();
-    }
-  }
+//  public enum PaymentNoticeStatus {
+//    /**
+//     * The instance is currently in-force.
+//     */
+//    ACTIVE,
+//    /**
+//     * The instance is withdrawn, rescinded or reversed.
+//     */
+//    CANCELLED,
+//    /**
+//     * A new instance the contents of which is not complete.
+//     */
+//    DRAFT,
+//    /**
+//     * The instance was entered in error.
+//     */
+//    ENTEREDINERROR,
+//    /**
+//     * added to help the parsers with the generic types
+//     */
+//    NULL;
+//
+//    public static PaymentNoticeStatus fromCode(String codeString) throws FHIRException {
+//      if (codeString == null || "".equals(codeString))
+//        return null;
+//      if ("active".equals(codeString))
+//        return ACTIVE;
+//      if ("cancelled".equals(codeString))
+//        return CANCELLED;
+//      if ("draft".equals(codeString))
+//        return DRAFT;
+//      if ("entered-in-error".equals(codeString))
+//        return ENTEREDINERROR;
+//      if (Configuration.isAcceptInvalidEnums())
+//        return null;
+//      else
+//        throw new FHIRException("Unknown PaymentNoticeStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode() {
+//      switch (this) {
+//      case ACTIVE:
+//        return "active";
+//      case CANCELLED:
+//        return "cancelled";
+//      case DRAFT:
+//        return "draft";
+//      case ENTEREDINERROR:
+//        return "entered-in-error";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getSystem() {
+//      switch (this) {
+//      case ACTIVE:
+//        return "http://hl7.org/fhir/fm-status";
+//      case CANCELLED:
+//        return "http://hl7.org/fhir/fm-status";
+//      case DRAFT:
+//        return "http://hl7.org/fhir/fm-status";
+//      case ENTEREDINERROR:
+//        return "http://hl7.org/fhir/fm-status";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDefinition() {
+//      switch (this) {
+//      case ACTIVE:
+//        return "The instance is currently in-force.";
+//      case CANCELLED:
+//        return "The instance is withdrawn, rescinded or reversed.";
+//      case DRAFT:
+//        return "A new instance the contents of which is not complete.";
+//      case ENTEREDINERROR:
+//        return "The instance was entered in error.";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDisplay() {
+//      switch (this) {
+//      case ACTIVE:
+//        return "Active";
+//      case CANCELLED:
+//        return "Cancelled";
+//      case DRAFT:
+//        return "Draft";
+//      case ENTEREDINERROR:
+//        return "Entered in Error";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//  }
+//
+//  public static class PaymentNoticeStatusEnumFactory implements EnumFactory<PaymentNoticeStatus> {
+//    public PaymentNoticeStatus fromCode(String codeString) throws IllegalArgumentException {
+//      if (codeString == null || "".equals(codeString))
+//        if (codeString == null || "".equals(codeString))
+//          return null;
+//      if ("active".equals(codeString))
+//        return PaymentNoticeStatus.ACTIVE;
+//      if ("cancelled".equals(codeString))
+//        return PaymentNoticeStatus.CANCELLED;
+//      if ("draft".equals(codeString))
+//        return PaymentNoticeStatus.DRAFT;
+//      if ("entered-in-error".equals(codeString))
+//        return PaymentNoticeStatus.ENTEREDINERROR;
+//      throw new IllegalArgumentException("Unknown PaymentNoticeStatus code '" + codeString + "'");
+//    }
+//
+//    public Enumeration<PaymentNoticeStatus> fromType(PrimitiveType<?> code) throws FHIRException {
+//      if (code == null)
+//        return null;
+//      if (code.isEmpty())
+//        return new Enumeration<PaymentNoticeStatus>(this, PaymentNoticeStatus.NULL, code);
+//      String codeString = code.asStringValue();
+//      if (codeString == null || "".equals(codeString))
+//        return new Enumeration<PaymentNoticeStatus>(this, PaymentNoticeStatus.NULL, code);
+//      if ("active".equals(codeString))
+//        return new Enumeration<PaymentNoticeStatus>(this, PaymentNoticeStatus.ACTIVE, code);
+//      if ("cancelled".equals(codeString))
+//        return new Enumeration<PaymentNoticeStatus>(this, PaymentNoticeStatus.CANCELLED, code);
+//      if ("draft".equals(codeString))
+//        return new Enumeration<PaymentNoticeStatus>(this, PaymentNoticeStatus.DRAFT, code);
+//      if ("entered-in-error".equals(codeString))
+//        return new Enumeration<PaymentNoticeStatus>(this, PaymentNoticeStatus.ENTEREDINERROR, code);
+//      throw new FHIRException("Unknown PaymentNoticeStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode(PaymentNoticeStatus code) {
+//       if (code == PaymentNoticeStatus.NULL)
+//           return null;
+//       if (code == PaymentNoticeStatus.ACTIVE)
+//        return "active";
+//      if (code == PaymentNoticeStatus.CANCELLED)
+//        return "cancelled";
+//      if (code == PaymentNoticeStatus.DRAFT)
+//        return "draft";
+//      if (code == PaymentNoticeStatus.ENTEREDINERROR)
+//        return "entered-in-error";
+//      return "?";
+//   }
+//
+//    public String toSystem(PaymentNoticeStatus code) {
+//      return code.getSystem();
+//    }
+//  }
 
   /**
    * A unique identifier assigned to this payment notice.
@@ -221,10 +221,10 @@ public class PaymentNotice extends DomainResource {
   /**
    * The status of the resource instance.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "active | cancelled | draft | entered-in-error", formalDefinition = "The status of the resource instance.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/fm-status")
-  protected Enumeration<PaymentNoticeStatus> status;
+  protected StringType status;
 
   /**
    * Reference of resource for which payment is being made.
@@ -352,7 +352,7 @@ public class PaymentNotice extends DomainResource {
   /**
    * Constructor
    */
-  public PaymentNotice(Enumeration<PaymentNoticeStatus> status, DateTimeType created, Reference payment,
+  public PaymentNotice(StringType status, DateTimeType created, Reference payment,
       Reference recipient, Money amount) {
     super();
     this.status = status;
@@ -422,12 +422,12 @@ public class PaymentNotice extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<PaymentNoticeStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create PaymentNotice.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PaymentNoticeStatus>(new PaymentNoticeStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -444,7 +444,7 @@ public class PaymentNotice extends DomainResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public PaymentNotice setStatusElement(Enumeration<PaymentNoticeStatus> value) {
+  public PaymentNotice setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -452,17 +452,17 @@ public class PaymentNotice extends DomainResource {
   /**
    * @return The status of the resource instance.
    */
-  public PaymentNoticeStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The status of the resource instance.
    */
-  public PaymentNotice setStatus(PaymentNoticeStatus value) {
+  public PaymentNotice setStatus(StringType value) {
     if (this.status == null)
-      this.status = new Enumeration<PaymentNoticeStatus>(new PaymentNoticeStatusEnumFactory());
-    this.status.setValue(value);
+      this.status = new StringType();
+    this.status = value;
     return this;
   }
 
@@ -1021,8 +1021,8 @@ public class PaymentNotice extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new PaymentNoticeStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PaymentNoticeStatus>
+//      value = new PaymentNoticeStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); //StringType
       return value;
     case 1095692943: // request
       this.request = castToReference(value); // Reference
@@ -1065,8 +1065,8 @@ public class PaymentNotice extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new PaymentNoticeStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PaymentNoticeStatus>
+//      value = new PaymentNoticeStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // Enumeration<PaymentNoticeStatus>
     } else if (name.equals("request")) {
       this.request = castToReference(value); // Reference
     } else if (name.equals("response")) {
