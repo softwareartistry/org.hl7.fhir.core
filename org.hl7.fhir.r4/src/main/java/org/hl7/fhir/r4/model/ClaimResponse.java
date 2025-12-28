@@ -6722,7 +6722,7 @@ public class ClaimResponse extends DomainResource {
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
       children.add(new Property("number", "positiveInt", "A number to uniquely identify a note entry.", 0, 1, number));
-      children.add(new Property("type", "code", "The business purpose of the note text.", 0, 1, type));
+      children.add(new Property("type", "string", "The business purpose of the note text.", 0, 1, type));
       children.add(
           new Property("text", "string", "The explanation or description associated with the processing.", 0, 1, text));
       children.add(new Property("language", "CodeableConcept",
@@ -6736,7 +6736,7 @@ public class ClaimResponse extends DomainResource {
         /* number */ return new Property("number", "positiveInt", "A number to uniquely identify a note entry.", 0, 1,
             number);
       case 3575610:
-        /* type */ return new Property("type", "code", "The business purpose of the note text.", 0, 1, type);
+        /* type */ return new Property("type", "string", "The business purpose of the note text.", 0, 1, type);
       case 3556653:
         /* text */ return new Property("text", "string",
             "The explanation or description associated with the processing.", 0, 1, text);
@@ -6773,7 +6773,6 @@ public class ClaimResponse extends DomainResource {
         this.number = castToPositiveInt(value); // PositiveIntType
         return value;
       case 3575610: // type
-//        value = new NoteTypeEnumFactory().fromType(castToCode(value));
         this.type = castToString(value); // Enumeration<NoteType>
         return value;
       case 3556653: // text
@@ -6793,7 +6792,6 @@ public class ClaimResponse extends DomainResource {
       if (name.equals("number")) {
         this.number = castToPositiveInt(value); // PositiveIntType
       } else if (name.equals("type")) {
-//        value = new NoteTypeEnumFactory().fromType(castToCode(value));
         this.type = castToString(value); // Enumeration<NoteType>
       } else if (name.equals("text")) {
         this.text = castToString(value); // StringType
@@ -6842,7 +6840,7 @@ public class ClaimResponse extends DomainResource {
       case -1034364087:
         /* number */ return new String[] { "positiveInt" };
       case 3575610:
-        /* type */ return new String[] { "code" };
+        /* type */ return new String[] { "string" };
       case 3556653:
         /* text */ return new String[] { "string" };
       case -1613589672:
@@ -9508,7 +9506,7 @@ public class ClaimResponse extends DomainResource {
     children.add(new Property("subType", "CodeableConcept",
         "A finer grained suite of claim type codes which may convey additional information such as Inpatient vs Outpatient and/or a specialty service.",
         0, 1, subType));
-    children.add(new Property("use", "code",
+    children.add(new Property("use", "string",
         "A code to indicate whether the nature of the request is: to request adjudication of products and services previously rendered; or requesting authorization and adjudication for provision in the future; or requesting the non-binding adjudication of the listed products and services which could be provided in the future.",
         0, 1, use));
     children.add(new Property("patient", "Reference(Patient)",
@@ -9520,7 +9518,7 @@ public class ClaimResponse extends DomainResource {
     children.add(new Property("requestor", "Reference(Practitioner|PractitionerRole|Organization)",
         "The provider which is responsible for the claim, predetermination or preauthorization.", 0, 1, requestor));
     children.add(new Property("request", "Reference(Claim)", "Original request resource reference.", 0, 1, request));
-    children.add(new Property("outcome", "code",
+    children.add(new Property("outcome", "string",
         "The outcome of the claim, predetermination, or preauthorization processing.", 0, 1, outcome));
     children.add(new Property("disposition", "string",
         "A human readable description of the status of the adjudication.", 0, 1, disposition));
@@ -9580,7 +9578,7 @@ public class ClaimResponse extends DomainResource {
           "A finer grained suite of claim type codes which may convey additional information such as Inpatient vs Outpatient and/or a specialty service.",
           0, 1, subType);
     case 116103:
-      /* use */ return new Property("use", "code",
+      /* use */ return new Property("use", "string",
           "A code to indicate whether the nature of the request is: to request adjudication of products and services previously rendered; or requesting authorization and adjudication for provision in the future; or requesting the non-binding adjudication of the listed products and services which could be provided in the future.",
           0, 1, use);
     case -791418107:
@@ -9599,7 +9597,7 @@ public class ClaimResponse extends DomainResource {
       /* request */ return new Property("request", "Reference(Claim)", "Original request resource reference.", 0, 1,
           request);
     case -1106507950:
-      /* outcome */ return new Property("outcome", "code",
+      /* outcome */ return new Property("outcome", "string",
           "The outcome of the claim, predetermination, or preauthorization processing.", 0, 1, outcome);
     case 583380919:
       /* disposition */ return new Property("disposition", "string",
@@ -9738,7 +9736,6 @@ public class ClaimResponse extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-//      value = new ClaimResponseStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // Enumeration<ClaimResponseStatus>
       return value;
     case 3575610: // type
@@ -9748,7 +9745,6 @@ public class ClaimResponse extends DomainResource {
       this.subType = castToCodeableConcept(value); // CodeableConcept
       return value;
     case 116103: // use
-//      value = new UseEnumFactory().fromType(castToCode(value));
       this.use = castToString(value); // Enumeration<Use>
       return value;
     case -791418107: // patient
@@ -9767,7 +9763,6 @@ public class ClaimResponse extends DomainResource {
       this.request = castToReference(value); // Reference
       return value;
     case -1106507950: // outcome
-//      value = new RemittanceOutcomeEnumFactory().fromType(castToCode(value));
       this.outcome = castToString(value); // Enumeration<RemittanceOutcome>
       return value;
     case 583380919: // disposition
@@ -9829,14 +9824,12 @@ public class ClaimResponse extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-//      value = new ClaimResponseStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // Enumeration<ClaimResponseStatus>
     } else if (name.equals("type")) {
       this.type = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("subType")) {
       this.subType = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("use")) {
-//      value = new UseEnumFactory().fromType(castToCode(value));
       this.use = castToString(value); // Enumeration<Use>
     } else if (name.equals("patient")) {
       this.patient = castToReference(value); // Reference
@@ -9849,7 +9842,6 @@ public class ClaimResponse extends DomainResource {
     } else if (name.equals("request")) {
       this.request = castToReference(value); // Reference
     } else if (name.equals("outcome")) {
-//      value = new RemittanceOutcomeEnumFactory().fromType(castToCode(value));
       this.outcome = castToString(value); // Enumeration<RemittanceOutcome>
     } else if (name.equals("disposition")) {
       this.disposition = castToString(value); // StringType
@@ -10024,7 +10016,7 @@ public class ClaimResponse extends DomainResource {
     case -1868521062:
       /* subType */ return new String[] { "CodeableConcept" };
     case 116103:
-      /* use */ return new String[] { "code" };
+      /* use */ return new String[] { "string" };
     case -791418107:
       /* patient */ return new String[] { "Reference" };
     case 1028554472:
@@ -10036,7 +10028,7 @@ public class ClaimResponse extends DomainResource {
     case 1095692943:
       /* request */ return new String[] { "Reference" };
     case -1106507950:
-      /* outcome */ return new String[] { "code" };
+      /* outcome */ return new String[] { "string" };
     case 583380919:
       /* disposition */ return new String[] { "string" };
     case 522246568:

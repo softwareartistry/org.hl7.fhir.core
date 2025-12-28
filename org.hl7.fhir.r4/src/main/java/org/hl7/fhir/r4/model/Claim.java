@@ -53,313 +53,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
  */
 @ResourceDef(name = "Claim", profile = "http://hl7.org/fhir/StructureDefinition/Claim")
 public class Claim extends DomainResource {
-
-/*  public enum ClaimStatus {
-    *//**
-     * The instance is currently in-force.
-     *//*
-    ACTIVE,
-    *//**
-     * The instance is withdrawn, rescinded or reversed.
-     *//*
-    CANCELLED,
-    *//**
-     * A new instance the contents of which is not complete.
-     *//*
-    DRAFT,
-    *//**
-     * The instance was entered in error.
-     *//*
-    ENTEREDINERROR,
-    *//**
-     * added to help the parsers with the generic types
-     *//*
-    NULL;
-
-    public static ClaimStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("active".equals(codeString))
-        return ACTIVE;
-      if ("cancelled".equals(codeString))
-        return CANCELLED;
-      if ("draft".equals(codeString))
-        return DRAFT;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ClaimStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ACTIVE:
-        return "active";
-      case CANCELLED:
-        return "cancelled";
-      case DRAFT:
-        return "draft";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ACTIVE:
-        return "http://hl7.org/fhir/fm-status";
-      case CANCELLED:
-        return "http://hl7.org/fhir/fm-status";
-      case DRAFT:
-        return "http://hl7.org/fhir/fm-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/fm-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ACTIVE:
-        return "The instance is currently in-force.";
-      case CANCELLED:
-        return "The instance is withdrawn, rescinded or reversed.";
-      case DRAFT:
-        return "A new instance the contents of which is not complete.";
-      case ENTEREDINERROR:
-        return "The instance was entered in error.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ACTIVE:
-        return "Active";
-      case CANCELLED:
-        return "Cancelled";
-      case DRAFT:
-        return "Draft";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ClaimStatusEnumFactory implements EnumFactory<ClaimStatus> {
-    public ClaimStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("active".equals(codeString))
-        return ClaimStatus.ACTIVE;
-      if ("cancelled".equals(codeString))
-        return ClaimStatus.CANCELLED;
-      if ("draft".equals(codeString))
-        return ClaimStatus.DRAFT;
-      if ("entered-in-error".equals(codeString))
-        return ClaimStatus.ENTEREDINERROR;
-      throw new IllegalArgumentException("Unknown ClaimStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<ClaimStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ClaimStatus>(this, ClaimStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ClaimStatus>(this, ClaimStatus.NULL, code);
-      if ("active".equals(codeString))
-        return new Enumeration<ClaimStatus>(this, ClaimStatus.ACTIVE, code);
-      if ("cancelled".equals(codeString))
-        return new Enumeration<ClaimStatus>(this, ClaimStatus.CANCELLED, code);
-      if ("draft".equals(codeString))
-        return new Enumeration<ClaimStatus>(this, ClaimStatus.DRAFT, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<ClaimStatus>(this, ClaimStatus.ENTEREDINERROR, code);
-      throw new FHIRException("Unknown ClaimStatus code '" + codeString + "'");
-    }
-
-    public String toCode(ClaimStatus code) {
-       if (code == ClaimStatus.NULL)
-           return null;
-       if (code == ClaimStatus.ACTIVE)
-        return "active";
-      if (code == ClaimStatus.CANCELLED)
-        return "cancelled";
-      if (code == ClaimStatus.DRAFT)
-        return "draft";
-      if (code == ClaimStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      return "?";
-   }
-
-    public String toSystem(ClaimStatus code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum Use {
-    *//**
-     * The treatment is complete and this represents a Claim for the services.
-     *//*
-    CLAIM,
-    *//**
-     * The treatment is proposed and this represents a Pre-authorization for the
-     * services.
-     *//*
-    PREAUTHORIZATION,
-    *//**
-     * The treatment is proposed and this represents a Pre-determination for the
-     * services.
-     *//*
-    PREDETERMINATION,
-    *//**
-     * added to help the parsers with the generic types
-     *//*
-    NULL;
-
-    public static Use fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("claim".equals(codeString))
-        return CLAIM;
-      if ("preauthorization".equals(codeString))
-        return PREAUTHORIZATION;
-      if ("predetermination".equals(codeString))
-        return PREDETERMINATION;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown Use code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case CLAIM:
-        return "claim";
-      case PREAUTHORIZATION:
-        return "preauthorization";
-      case PREDETERMINATION:
-        return "predetermination";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case CLAIM:
-        return "http://hl7.org/fhir/claim-use";
-      case PREAUTHORIZATION:
-        return "http://hl7.org/fhir/claim-use";
-      case PREDETERMINATION:
-        return "http://hl7.org/fhir/claim-use";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case CLAIM:
-        return "The treatment is complete and this represents a Claim for the services.";
-      case PREAUTHORIZATION:
-        return "The treatment is proposed and this represents a Pre-authorization for the services.";
-      case PREDETERMINATION:
-        return "The treatment is proposed and this represents a Pre-determination for the services.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case CLAIM:
-        return "Claim";
-      case PREAUTHORIZATION:
-        return "Preauthorization";
-      case PREDETERMINATION:
-        return "Predetermination";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class UseEnumFactory implements EnumFactory<Use> {
-    public Use fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("claim".equals(codeString))
-        return Use.CLAIM;
-      if ("preauthorization".equals(codeString))
-        return Use.PREAUTHORIZATION;
-      if ("predetermination".equals(codeString))
-        return Use.PREDETERMINATION;
-      throw new IllegalArgumentException("Unknown Use code '" + codeString + "'");
-    }
-
-    public Enumeration<Use> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<Use>(this, Use.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<Use>(this, Use.NULL, code);
-      if ("claim".equals(codeString))
-        return new Enumeration<Use>(this, Use.CLAIM, code);
-      if ("preauthorization".equals(codeString))
-        return new Enumeration<Use>(this, Use.PREAUTHORIZATION, code);
-      if ("predetermination".equals(codeString))
-        return new Enumeration<Use>(this, Use.PREDETERMINATION, code);
-      throw new FHIRException("Unknown Use code '" + codeString + "'");
-    }
-
-    public String toCode(Use code) {
-       if (code == Use.NULL)
-           return null;
-       if (code == Use.CLAIM)
-        return "claim";
-      if (code == Use.PREAUTHORIZATION)
-        return "preauthorization";
-      if (code == Use.PREDETERMINATION)
-        return "predetermination";
-      return "?";
-   }
-
-    public String toSystem(Use code) {
-      return code.getSystem();
-    }
-  }*/
-
   @Block()
   public static class RelatedClaimComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -9877,7 +9570,7 @@ public class Claim extends DomainResource {
     super.listChildren(children);
     children.add(new Property("identifier", "Identifier", "A unique identifier assigned to this claim.", 0,
         java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code", "The status of the resource instance.", 0, 1, status));
+    children.add(new Property("status", "string", "The status of the resource instance.", 0, 1, status));
     children.add(new Property("type", "CodeableConcept",
         "The category of claim, e.g. oral, pharmacy, vision, institutional, professional.", 0, 1, type));
     children.add(new Property("subType", "CodeableConcept",
@@ -9947,7 +9640,7 @@ public class Claim extends DomainResource {
       /* identifier */ return new Property("identifier", "Identifier", "A unique identifier assigned to this claim.", 0,
           java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "The status of the resource instance.", 0, 1, status);
+      /* status */ return new Property("status", "string", "The status of the resource instance.", 0, 1, status);
     case 3575610:
       /* type */ return new Property("type", "CodeableConcept",
           "The category of claim, e.g. oral, pharmacy, vision, institutional, professional.", 0, 1, type);
@@ -10118,7 +9811,6 @@ public class Claim extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-//      value = new ClaimStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // Enumeration<ClaimStatus>
       return value;
     case 3575610: // type
@@ -10128,7 +9820,6 @@ public class Claim extends DomainResource {
       this.subType = castToCodeableConcept(value); // CodeableConcept
       return value;
     case 116103: // use
-//      value = new UseEnumFactory().fromType(castToCode(value));
       this.use = castToString(value); // Enumeration<Use>
       return value;
     case -791418107: // patient
@@ -10208,14 +9899,12 @@ public class Claim extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-//      value = new ClaimStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // Enumeration<ClaimStatus>
     } else if (name.equals("type")) {
       this.type = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("subType")) {
       this.subType = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("use")) {
-//      value = new UseEnumFactory().fromType(castToCode(value));
       this.use = castToString(value); // Enumeration<Use>
     } else if (name.equals("patient")) {
       this.patient = castToReference(value); // Reference
@@ -10396,7 +10085,7 @@ public class Claim extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 3575610:
       /* type */ return new String[] { "CodeableConcept" };
     case -1868521062:

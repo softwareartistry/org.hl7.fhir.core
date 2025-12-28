@@ -51,401 +51,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "CommunicationRequest", profile = "http://hl7.org/fhir/StructureDefinition/CommunicationRequest")
 public class CommunicationRequest extends DomainResource {
 
-/*  public enum CommunicationRequestStatus {
-    *//**
-     * The request has been created but is not yet complete or ready for action.
-     *//*
-    DRAFT,
-    *//**
-     * The request is in force and ready to be acted upon.
-     *//*
-    ACTIVE,
-    *//**
-     * The request (and any implicit authorization to act) has been temporarily
-     * withdrawn but is expected to resume in the future.
-     *//*
-    ONHOLD,
-    *//**
-     * The request (and any implicit authorization to act) has been terminated prior
-     * to the known full completion of the intended actions. No further activity
-     * should occur.
-     *//*
-    REVOKED,
-    *//**
-     * The activity described by the request has been fully performed. No further
-     * activity will occur.
-     *//*
-    COMPLETED,
-    *//**
-     * This request should never have existed and should be considered 'void'. (It
-     * is possible that real-world decisions were based on it. If real-world
-     * activity has occurred, the status should be "revoked" rather than
-     * "entered-in-error".).
-     *//*
-    ENTEREDINERROR,
-    *//**
-     * The authoring/source system does not know which of the status values
-     * currently applies for this request. Note: This concept is not to be used for
-     * "other" - one of the listed statuses is presumed to apply, but the
-     * authoring/source system does not know which.
-     *//*
-    UNKNOWN,
-    *//**
-     * added to help the parsers with the generic types
-     *//*
-    NULL;
-
-    public static CommunicationRequestStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("draft".equals(codeString))
-        return DRAFT;
-      if ("active".equals(codeString))
-        return ACTIVE;
-      if ("on-hold".equals(codeString))
-        return ONHOLD;
-      if ("revoked".equals(codeString))
-        return REVOKED;
-      if ("completed".equals(codeString))
-        return COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return UNKNOWN;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown CommunicationRequestStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case DRAFT:
-        return "draft";
-      case ACTIVE:
-        return "active";
-      case ONHOLD:
-        return "on-hold";
-      case REVOKED:
-        return "revoked";
-      case COMPLETED:
-        return "completed";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case UNKNOWN:
-        return "unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case DRAFT:
-        return "http://hl7.org/fhir/request-status";
-      case ACTIVE:
-        return "http://hl7.org/fhir/request-status";
-      case ONHOLD:
-        return "http://hl7.org/fhir/request-status";
-      case REVOKED:
-        return "http://hl7.org/fhir/request-status";
-      case COMPLETED:
-        return "http://hl7.org/fhir/request-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/request-status";
-      case UNKNOWN:
-        return "http://hl7.org/fhir/request-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case DRAFT:
-        return "The request has been created but is not yet complete or ready for action.";
-      case ACTIVE:
-        return "The request is in force and ready to be acted upon.";
-      case ONHOLD:
-        return "The request (and any implicit authorization to act) has been temporarily withdrawn but is expected to resume in the future.";
-      case REVOKED:
-        return "The request (and any implicit authorization to act) has been terminated prior to the known full completion of the intended actions.  No further activity should occur.";
-      case COMPLETED:
-        return "The activity described by the request has been fully performed.  No further activity will occur.";
-      case ENTEREDINERROR:
-        return "This request should never have existed and should be considered 'void'.  (It is possible that real-world decisions were based on it.  If real-world activity has occurred, the status should be \"revoked\" rather than \"entered-in-error\".).";
-      case UNKNOWN:
-        return "The authoring/source system does not know which of the status values currently applies for this request.  Note: This concept is not to be used for \"other\" - one of the listed statuses is presumed to apply,  but the authoring/source system does not know which.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case DRAFT:
-        return "Draft";
-      case ACTIVE:
-        return "Active";
-      case ONHOLD:
-        return "On Hold";
-      case REVOKED:
-        return "Revoked";
-      case COMPLETED:
-        return "Completed";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case UNKNOWN:
-        return "Unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class CommunicationRequestStatusEnumFactory implements EnumFactory<CommunicationRequestStatus> {
-    public CommunicationRequestStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("draft".equals(codeString))
-        return CommunicationRequestStatus.DRAFT;
-      if ("active".equals(codeString))
-        return CommunicationRequestStatus.ACTIVE;
-      if ("on-hold".equals(codeString))
-        return CommunicationRequestStatus.ONHOLD;
-      if ("revoked".equals(codeString))
-        return CommunicationRequestStatus.REVOKED;
-      if ("completed".equals(codeString))
-        return CommunicationRequestStatus.COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return CommunicationRequestStatus.ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return CommunicationRequestStatus.UNKNOWN;
-      throw new IllegalArgumentException("Unknown CommunicationRequestStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<CommunicationRequestStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<CommunicationRequestStatus>(this, CommunicationRequestStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<CommunicationRequestStatus>(this, CommunicationRequestStatus.NULL, code);
-      if ("draft".equals(codeString))
-        return new Enumeration<CommunicationRequestStatus>(this, CommunicationRequestStatus.DRAFT, code);
-      if ("active".equals(codeString))
-        return new Enumeration<CommunicationRequestStatus>(this, CommunicationRequestStatus.ACTIVE, code);
-      if ("on-hold".equals(codeString))
-        return new Enumeration<CommunicationRequestStatus>(this, CommunicationRequestStatus.ONHOLD, code);
-      if ("revoked".equals(codeString))
-        return new Enumeration<CommunicationRequestStatus>(this, CommunicationRequestStatus.REVOKED, code);
-      if ("completed".equals(codeString))
-        return new Enumeration<CommunicationRequestStatus>(this, CommunicationRequestStatus.COMPLETED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<CommunicationRequestStatus>(this, CommunicationRequestStatus.ENTEREDINERROR, code);
-      if ("unknown".equals(codeString))
-        return new Enumeration<CommunicationRequestStatus>(this, CommunicationRequestStatus.UNKNOWN, code);
-      throw new FHIRException("Unknown CommunicationRequestStatus code '" + codeString + "'");
-    }
-
-    public String toCode(CommunicationRequestStatus code) {
-       if (code == CommunicationRequestStatus.NULL)
-           return null;
-       if (code == CommunicationRequestStatus.DRAFT)
-        return "draft";
-      if (code == CommunicationRequestStatus.ACTIVE)
-        return "active";
-      if (code == CommunicationRequestStatus.ONHOLD)
-        return "on-hold";
-      if (code == CommunicationRequestStatus.REVOKED)
-        return "revoked";
-      if (code == CommunicationRequestStatus.COMPLETED)
-        return "completed";
-      if (code == CommunicationRequestStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      if (code == CommunicationRequestStatus.UNKNOWN)
-        return "unknown";
-      return "?";
-   }
-
-    public String toSystem(CommunicationRequestStatus code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum CommunicationPriority {
-    *//**
-     * The request has normal priority.
-     *//*
-    ROUTINE,
-    *//**
-     * The request should be actioned promptly - higher priority than routine.
-     *//*
-    URGENT,
-    *//**
-     * The request should be actioned as soon as possible - higher priority than
-     * urgent.
-     *//*
-    ASAP,
-    *//**
-     * The request should be actioned immediately - highest possible priority. E.g.
-     * an emergency.
-     *//*
-    STAT,
-    *//**
-     * added to help the parsers with the generic types
-     *//*
-    NULL;
-
-    public static CommunicationPriority fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("routine".equals(codeString))
-        return ROUTINE;
-      if ("urgent".equals(codeString))
-        return URGENT;
-      if ("asap".equals(codeString))
-        return ASAP;
-      if ("stat".equals(codeString))
-        return STAT;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown CommunicationPriority code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ROUTINE:
-        return "routine";
-      case URGENT:
-        return "urgent";
-      case ASAP:
-        return "asap";
-      case STAT:
-        return "stat";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ROUTINE:
-        return "http://hl7.org/fhir/request-priority";
-      case URGENT:
-        return "http://hl7.org/fhir/request-priority";
-      case ASAP:
-        return "http://hl7.org/fhir/request-priority";
-      case STAT:
-        return "http://hl7.org/fhir/request-priority";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ROUTINE:
-        return "The request has normal priority.";
-      case URGENT:
-        return "The request should be actioned promptly - higher priority than routine.";
-      case ASAP:
-        return "The request should be actioned as soon as possible - higher priority than urgent.";
-      case STAT:
-        return "The request should be actioned immediately - highest possible priority.  E.g. an emergency.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ROUTINE:
-        return "Routine";
-      case URGENT:
-        return "Urgent";
-      case ASAP:
-        return "ASAP";
-      case STAT:
-        return "STAT";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class CommunicationPriorityEnumFactory implements EnumFactory<CommunicationPriority> {
-    public CommunicationPriority fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("routine".equals(codeString))
-        return CommunicationPriority.ROUTINE;
-      if ("urgent".equals(codeString))
-        return CommunicationPriority.URGENT;
-      if ("asap".equals(codeString))
-        return CommunicationPriority.ASAP;
-      if ("stat".equals(codeString))
-        return CommunicationPriority.STAT;
-      throw new IllegalArgumentException("Unknown CommunicationPriority code '" + codeString + "'");
-    }
-
-    public Enumeration<CommunicationPriority> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<CommunicationPriority>(this, CommunicationPriority.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<CommunicationPriority>(this, CommunicationPriority.NULL, code);
-      if ("routine".equals(codeString))
-        return new Enumeration<CommunicationPriority>(this, CommunicationPriority.ROUTINE, code);
-      if ("urgent".equals(codeString))
-        return new Enumeration<CommunicationPriority>(this, CommunicationPriority.URGENT, code);
-      if ("asap".equals(codeString))
-        return new Enumeration<CommunicationPriority>(this, CommunicationPriority.ASAP, code);
-      if ("stat".equals(codeString))
-        return new Enumeration<CommunicationPriority>(this, CommunicationPriority.STAT, code);
-      throw new FHIRException("Unknown CommunicationPriority code '" + codeString + "'");
-    }
-
-    public String toCode(CommunicationPriority code) {
-       if (code == CommunicationPriority.NULL)
-           return null;
-       if (code == CommunicationPriority.ROUTINE)
-        return "routine";
-      if (code == CommunicationPriority.URGENT)
-        return "urgent";
-      if (code == CommunicationPriority.ASAP)
-        return "asap";
-      if (code == CommunicationPriority.STAT)
-        return "stat";
-      return "?";
-   }
-
-    public String toSystem(CommunicationPriority code) {
-      return code.getSystem();
-    }
-  }*/
 
   @Block()
   public static class CommunicationRequestPayloadComponent extends BackboneElement implements IBaseBackboneElement {
@@ -2129,13 +1734,13 @@ public class CommunicationRequest extends DomainResource {
     children.add(new Property("groupIdentifier", "Identifier",
         "A shared identifier common to all requests that were authorized more or less simultaneously by a single author, representing the identifier of the requisition, prescription or similar form.",
         0, 1, groupIdentifier));
-    children.add(new Property("status", "code", "The status of the proposal or order.", 0, 1, status));
+    children.add(new Property("status", "string", "The status of the proposal or order.", 0, 1, status));
     children.add(new Property("statusReason", "CodeableConcept",
         "Captures the reason for the current state of the CommunicationRequest.", 0, 1, statusReason));
     children.add(new Property("category", "CodeableConcept",
         "The type of message to be sent such as alert, notification, reminder, instruction, etc.", 0,
         java.lang.Integer.MAX_VALUE, category));
-    children.add(new Property("priority", "code",
+    children.add(new Property("priority", "string",
         "Characterizes how quickly the proposed act must be initiated. Includes concepts such as stat, urgent, routine.",
         0, 1, priority));
     children.add(new Property("doNotPerform", "boolean",
@@ -2201,7 +1806,7 @@ public class CommunicationRequest extends DomainResource {
           "A shared identifier common to all requests that were authorized more or less simultaneously by a single author, representing the identifier of the requisition, prescription or similar form.",
           0, 1, groupIdentifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "The status of the proposal or order.", 0, 1, status);
+      /* status */ return new Property("status", "string", "The status of the proposal or order.", 0, 1, status);
     case 2051346646:
       /* statusReason */ return new Property("statusReason", "CodeableConcept",
           "Captures the reason for the current state of the CommunicationRequest.", 0, 1, statusReason);
@@ -2210,7 +1815,7 @@ public class CommunicationRequest extends DomainResource {
           "The type of message to be sent such as alert, notification, reminder, instruction, etc.", 0,
           java.lang.Integer.MAX_VALUE, category);
     case -1165461084:
-      /* priority */ return new Property("priority", "code",
+      /* priority */ return new Property("priority", "string",
           "Characterizes how quickly the proposed act must be initiated. Includes concepts such as stat, urgent, routine.",
           0, 1, priority);
     case -1788508167:
@@ -2358,7 +1963,6 @@ public class CommunicationRequest extends DomainResource {
       this.groupIdentifier = castToIdentifier(value); // Identifier
       return value;
     case -892481550: // status
-//      value = new CommunicationRequestStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // Enumeration<CommunicationRequestStatus>
       return value;
     case 2051346646: // statusReason
@@ -2368,7 +1972,6 @@ public class CommunicationRequest extends DomainResource {
       this.getCategory().add(castToCodeableConcept(value)); // CodeableConcept
       return value;
     case -1165461084: // priority
-//      value = new CommunicationPriorityEnumFactory().fromType(castToCode(value));
       this.priority = castToString(value); // Enumeration<CommunicationPriority>
       return value;
     case -1788508167: // doNotPerform
@@ -2430,14 +2033,12 @@ public class CommunicationRequest extends DomainResource {
     } else if (name.equals("groupIdentifier")) {
       this.groupIdentifier = castToIdentifier(value); // Identifier
     } else if (name.equals("status")) {
-//      value = new CommunicationRequestStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // Enumeration<CommunicationRequestStatus>
     } else if (name.equals("statusReason")) {
       this.statusReason = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("category")) {
       this.getCategory().add(castToCodeableConcept(value));
     } else if (name.equals("priority")) {
-//      value = new CommunicationPriorityEnumFactory().fromType(castToCode(value));
       this.priority = castToString(value); // Enumeration<CommunicationPriority>
     } else if (name.equals("doNotPerform")) {
       this.doNotPerform = castToBoolean(value); // BooleanType
@@ -2590,13 +2191,13 @@ public class CommunicationRequest extends DomainResource {
     case -445338488:
       /* groupIdentifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 2051346646:
       /* statusReason */ return new String[] { "CodeableConcept" };
     case 50511102:
       /* category */ return new String[] { "CodeableConcept" };
     case -1165461084:
-      /* priority */ return new String[] { "code" };
+      /* priority */ return new String[] { "string" };
     case -1788508167:
       /* doNotPerform */ return new String[] { "boolean" };
     case -1078030475:
