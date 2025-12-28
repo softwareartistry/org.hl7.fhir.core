@@ -48,210 +48,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "DeviceUseStatement", profile = "http://hl7.org/fhir/StructureDefinition/DeviceUseStatement")
 public class DeviceUseStatement extends DomainResource {
 
-  public enum DeviceUseStatementStatus {
-    /**
-     * The device is still being used.
-     */
-    ACTIVE,
-    /**
-     * The device is no longer being used.
-     */
-    COMPLETED,
-    /**
-     * The statement was recorded incorrectly.
-     */
-    ENTEREDINERROR,
-    /**
-     * The device may be used at some time in the future.
-     */
-    INTENDED,
-    /**
-     * Actions implied by the statement have been permanently halted, before all of
-     * them occurred.
-     */
-    STOPPED,
-    /**
-     * Actions implied by the statement have been temporarily halted, but are
-     * expected to continue later. May also be called "suspended".
-     */
-    ONHOLD,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static DeviceUseStatementStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("active".equals(codeString))
-        return ACTIVE;
-      if ("completed".equals(codeString))
-        return COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if ("intended".equals(codeString))
-        return INTENDED;
-      if ("stopped".equals(codeString))
-        return STOPPED;
-      if ("on-hold".equals(codeString))
-        return ONHOLD;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown DeviceUseStatementStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ACTIVE:
-        return "active";
-      case COMPLETED:
-        return "completed";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case INTENDED:
-        return "intended";
-      case STOPPED:
-        return "stopped";
-      case ONHOLD:
-        return "on-hold";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ACTIVE:
-        return "http://hl7.org/fhir/device-statement-status";
-      case COMPLETED:
-        return "http://hl7.org/fhir/device-statement-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/device-statement-status";
-      case INTENDED:
-        return "http://hl7.org/fhir/device-statement-status";
-      case STOPPED:
-        return "http://hl7.org/fhir/device-statement-status";
-      case ONHOLD:
-        return "http://hl7.org/fhir/device-statement-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ACTIVE:
-        return "The device is still being used.";
-      case COMPLETED:
-        return "The device is no longer being used.";
-      case ENTEREDINERROR:
-        return "The statement was recorded incorrectly.";
-      case INTENDED:
-        return "The device may be used at some time in the future.";
-      case STOPPED:
-        return "Actions implied by the statement have been permanently halted, before all of them occurred.";
-      case ONHOLD:
-        return "Actions implied by the statement have been temporarily halted, but are expected to continue later. May also be called \"suspended\".";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ACTIVE:
-        return "Active";
-      case COMPLETED:
-        return "Completed";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case INTENDED:
-        return "Intended";
-      case STOPPED:
-        return "Stopped";
-      case ONHOLD:
-        return "On Hold";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class DeviceUseStatementStatusEnumFactory implements EnumFactory<DeviceUseStatementStatus> {
-    public DeviceUseStatementStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("active".equals(codeString))
-        return DeviceUseStatementStatus.ACTIVE;
-      if ("completed".equals(codeString))
-        return DeviceUseStatementStatus.COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return DeviceUseStatementStatus.ENTEREDINERROR;
-      if ("intended".equals(codeString))
-        return DeviceUseStatementStatus.INTENDED;
-      if ("stopped".equals(codeString))
-        return DeviceUseStatementStatus.STOPPED;
-      if ("on-hold".equals(codeString))
-        return DeviceUseStatementStatus.ONHOLD;
-      throw new IllegalArgumentException("Unknown DeviceUseStatementStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<DeviceUseStatementStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<DeviceUseStatementStatus>(this, DeviceUseStatementStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<DeviceUseStatementStatus>(this, DeviceUseStatementStatus.NULL, code);
-      if ("active".equals(codeString))
-        return new Enumeration<DeviceUseStatementStatus>(this, DeviceUseStatementStatus.ACTIVE, code);
-      if ("completed".equals(codeString))
-        return new Enumeration<DeviceUseStatementStatus>(this, DeviceUseStatementStatus.COMPLETED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<DeviceUseStatementStatus>(this, DeviceUseStatementStatus.ENTEREDINERROR, code);
-      if ("intended".equals(codeString))
-        return new Enumeration<DeviceUseStatementStatus>(this, DeviceUseStatementStatus.INTENDED, code);
-      if ("stopped".equals(codeString))
-        return new Enumeration<DeviceUseStatementStatus>(this, DeviceUseStatementStatus.STOPPED, code);
-      if ("on-hold".equals(codeString))
-        return new Enumeration<DeviceUseStatementStatus>(this, DeviceUseStatementStatus.ONHOLD, code);
-      throw new FHIRException("Unknown DeviceUseStatementStatus code '" + codeString + "'");
-    }
-
-    public String toCode(DeviceUseStatementStatus code) {
-       if (code == DeviceUseStatementStatus.NULL)
-           return null;
-       if (code == DeviceUseStatementStatus.ACTIVE)
-        return "active";
-      if (code == DeviceUseStatementStatus.COMPLETED)
-        return "completed";
-      if (code == DeviceUseStatementStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      if (code == DeviceUseStatementStatus.INTENDED)
-        return "intended";
-      if (code == DeviceUseStatementStatus.STOPPED)
-        return "stopped";
-      if (code == DeviceUseStatementStatus.ONHOLD)
-        return "on-hold";
-      return "?";
-   }
-
-    public String toSystem(DeviceUseStatementStatus code) {
-      return code.getSystem();
-    }
-  }
-
   /**
    * An external identifier for this statement such as an IRI.
    */
@@ -279,10 +75,10 @@ public class DeviceUseStatement extends DomainResource {
    * the device used that this statement is about. Generally this will be active
    * or completed.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 2, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 2, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "active | completed | entered-in-error +", formalDefinition = "A code representing the patient or other source's judgment about the state of the device used that this statement is about.  Generally this will be active or completed.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/device-statement-status")
-  protected Enumeration<DeviceUseStatementStatus> status;
+  protected StringType status;
 
   /**
    * The patient who used the device.
@@ -412,7 +208,7 @@ public class DeviceUseStatement extends DomainResource {
   /**
    * Constructor
    */
-  public DeviceUseStatement(Enumeration<DeviceUseStatementStatus> status, Reference subject, Reference device) {
+  public DeviceUseStatement(StringType status, Reference subject, Reference device) {
     super();
     this.status = status;
     this.subject = subject;
@@ -536,12 +332,12 @@ public class DeviceUseStatement extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<DeviceUseStatementStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create DeviceUseStatement.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<DeviceUseStatementStatus>(new DeviceUseStatementStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -561,7 +357,7 @@ public class DeviceUseStatement extends DomainResource {
    *              extensions. The accessor "getStatus" gives direct access to the
    *              value
    */
-  public DeviceUseStatement setStatusElement(Enumeration<DeviceUseStatementStatus> value) {
+  public DeviceUseStatement setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -571,8 +367,8 @@ public class DeviceUseStatement extends DomainResource {
    *         state of the device used that this statement is about. Generally this
    *         will be active or completed.
    */
-  public DeviceUseStatementStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
@@ -580,9 +376,9 @@ public class DeviceUseStatement extends DomainResource {
    *              the state of the device used that this statement is about.
    *              Generally this will be active or completed.
    */
-  public DeviceUseStatement setStatus(DeviceUseStatementStatus value) {
+  public DeviceUseStatement setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<DeviceUseStatementStatus>(new DeviceUseStatementStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -1109,7 +905,7 @@ public class DeviceUseStatement extends DomainResource {
     children.add(new Property("basedOn", "Reference(ServiceRequest)",
         "A plan, proposal or order that is fulfilled in whole or in part by this DeviceUseStatement.", 0,
         java.lang.Integer.MAX_VALUE, basedOn));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "A code representing the patient or other source's judgment about the state of the device used that this statement is about.  Generally this will be active or completed.",
         0, 1, status));
     children
@@ -1149,7 +945,7 @@ public class DeviceUseStatement extends DomainResource {
           "A plan, proposal or order that is fulfilled in whole or in part by this DeviceUseStatement.", 0,
           java.lang.Integer.MAX_VALUE, basedOn);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "A code representing the patient or other source's judgment about the state of the device used that this statement is about.  Generally this will be active or completed.",
           0, 1, status);
     case -1867885268:
@@ -1254,8 +1050,7 @@ public class DeviceUseStatement extends DomainResource {
       this.getBasedOn().add(castToReference(value)); // Reference
       return value;
     case -892481550: // status
-      value = new DeviceUseStatementStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<DeviceUseStatementStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -1867885268: // subject
       this.subject = castToReference(value); // Reference
@@ -1300,8 +1095,7 @@ public class DeviceUseStatement extends DomainResource {
     } else if (name.equals("basedOn")) {
       this.getBasedOn().add(castToReference(value));
     } else if (name.equals("status")) {
-      value = new DeviceUseStatementStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<DeviceUseStatementStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("subject")) {
       this.subject = castToReference(value); // Reference
     } else if (name.equals("derivedFrom")) {
@@ -1405,7 +1199,7 @@ public class DeviceUseStatement extends DomainResource {
     case -332612366:
       /* basedOn */ return new String[] { "Reference" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -1867885268:
       /* subject */ return new String[] { "Reference" };
     case 1077922663:

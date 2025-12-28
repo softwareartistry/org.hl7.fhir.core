@@ -4017,7 +4017,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "ClinicalImpression", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "ClinicalImpression", "status", element.getStatusElement(), -1);
+      composeString(t, "ClinicalImpression", "status", element.getStatusElement(), -1);
     if (element.hasStatusReason())
       composeCodeableConcept(t, "ClinicalImpression", "statusReason", element.getStatusReason(), -1);
     if (element.hasCode())
@@ -6385,7 +6385,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getBasedOn().size(); i++)
       composeReference(t, "DeviceUseStatement", "basedOn", element.getBasedOn().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "DeviceUseStatement", "status", element.getStatusElement(), -1);
+      composeString(t, "DeviceUseStatement", "status", element.getStatusElement(), -1);
     if (element.hasSubject())
       composeReference(t, "DeviceUseStatement", "subject", element.getSubject(), -1);
     for (int i = 0; i < element.getDerivedFrom().size(); i++)
