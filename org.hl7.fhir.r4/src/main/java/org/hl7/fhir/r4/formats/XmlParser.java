@@ -21114,16 +21114,13 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("requisition")) {
       res.setRequisition(parseIdentifier(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, ServiceRequest.ServiceRequestStatus.NULL,
-          new ServiceRequest.ServiceRequestStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("intent")) {
-      res.setIntentElement(parseEnumeration(xpp, ServiceRequest.ServiceRequestIntent.NULL,
-          new ServiceRequest.ServiceRequestIntentEnumFactory()));
+      res.setIntentElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("category")) {
       res.getCategory().add(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("priority")) {
-      res.setPriorityElement(parseEnumeration(xpp, ServiceRequest.ServiceRequestPriority.NULL,
-          new ServiceRequest.ServiceRequestPriorityEnumFactory()));
+      res.setPriorityElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("doNotPerform")) {
       res.setDoNotPerformElement(parseBoolean(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("code")) {
@@ -48667,16 +48664,15 @@ public class XmlParser extends XmlParserBase {
       composeIdentifier("requisition", element.getRequisition());
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new ServiceRequest.ServiceRequestStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasIntentElement())
-      composeEnumeration("intent", element.getIntentElement(), new ServiceRequest.ServiceRequestIntentEnumFactory());
+      composeString("intent", element.getIntentElement());
     if (element.hasCategory()) {
       for (CodeableConcept e : element.getCategory())
         composeCodeableConcept("category", e);
     }
     if (element.hasPriorityElement())
-      composeEnumeration("priority", element.getPriorityElement(),
-          new ServiceRequest.ServiceRequestPriorityEnumFactory());
+      composeString("priority", element.getPriorityElement());
     if (element.hasDoNotPerformElement()) {
       composeBoolean("doNotPerform", element.getDoNotPerformElement());
     }

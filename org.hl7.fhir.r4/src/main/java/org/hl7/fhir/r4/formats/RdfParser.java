@@ -15379,13 +15379,13 @@ public class RdfParser extends RdfParserBase {
     if (element.hasRequisition())
       composeIdentifier(t, "ServiceRequest", "requisition", element.getRequisition(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "ServiceRequest", "status", element.getStatusElement(), -1);
+      composeString(t, "ServiceRequest", "status", element.getStatusElement(), -1);
     if (element.hasIntentElement())
-      composeEnum(t, "ServiceRequest", "intent", element.getIntentElement(), -1);
+      composeString(t, "ServiceRequest", "intent", element.getIntentElement(), -1);
     for (int i = 0; i < element.getCategory().size(); i++)
       composeCodeableConcept(t, "ServiceRequest", "category", element.getCategory().get(i), i);
     if (element.hasPriorityElement())
-      composeEnum(t, "ServiceRequest", "priority", element.getPriorityElement(), -1);
+      composeString(t, "ServiceRequest", "priority", element.getPriorityElement(), -1);
     if (element.hasDoNotPerformElement())
       composeBoolean(t, "ServiceRequest", "doNotPerform", element.getDoNotPerformElement(), -1);
     if (element.hasCode())

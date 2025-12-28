@@ -26620,13 +26620,11 @@ public class JsonParser extends JsonParserBase {
     if (json.has("requisition"))
       res.setRequisition(parseIdentifier(getJObject(json, "requisition")));
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), ServiceRequest.ServiceRequestStatus.NULL,
-        new ServiceRequest.ServiceRequestStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("intent"))
-      res.setIntentElement(parseEnumeration(json.get("intent").getAsString(), ServiceRequest.ServiceRequestIntent.NULL,
-        new ServiceRequest.ServiceRequestIntentEnumFactory()));
+      res.setIntentElement(parseString(json.get("intent").getAsString()));
     if (json.has("_intent"))
       parseElementProperties(getJObject(json, "_intent"), res.getIntentElement());
     if (json.has("category")) {
@@ -26637,8 +26635,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("priority"))
-      res.setPriorityElement(parseEnumeration(json.get("priority").getAsString(),
-        ServiceRequest.ServiceRequestPriority.NULL, new ServiceRequest.ServiceRequestPriorityEnumFactory()));
+      res.setPriorityElement(parseString(json.get("priority").getAsString()));
     if (json.has("_priority"))
       parseElementProperties(getJObject(json, "_priority"), res.getPriorityElement());
     if (json.has("doNotPerform"))
@@ -59863,16 +59860,12 @@ public class JsonParser extends JsonParserBase {
       composeIdentifier("requisition", element.getRequisition());
     }
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new ServiceRequest.ServiceRequestStatusEnumFactory(),
-        false);
-      composeEnumerationExtras("status", element.getStatusElement(),
-        new ServiceRequest.ServiceRequestStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasIntentElement()) {
-      composeEnumerationCore("intent", element.getIntentElement(), new ServiceRequest.ServiceRequestIntentEnumFactory(),
-        false);
-      composeEnumerationExtras("intent", element.getIntentElement(),
-        new ServiceRequest.ServiceRequestIntentEnumFactory(), false);
+      composeStringCore("intent", element.getIntentElement(), false);
+      composeStringExtras("intent", element.getIntentElement(), false);
     }
     if (element.hasCategory()) {
       openArray("category");
@@ -59882,10 +59875,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasPriorityElement()) {
-      composeEnumerationCore("priority", element.getPriorityElement(),
-        new ServiceRequest.ServiceRequestPriorityEnumFactory(), false);
-      composeEnumerationExtras("priority", element.getPriorityElement(),
-        new ServiceRequest.ServiceRequestPriorityEnumFactory(), false);
+      composeStringCore("priority", element.getPriorityElement(), false);
+      composeStringExtras("priority", element.getPriorityElement(), false);
     }
     if (element.hasDoNotPerformElement()) {
       composeBooleanCore("doNotPerform", element.getDoNotPerformElement(), false);
