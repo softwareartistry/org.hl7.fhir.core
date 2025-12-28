@@ -14499,8 +14499,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(),
-        FamilyMemberHistory.FamilyHistoryStatus.NULL, new FamilyMemberHistory.FamilyHistoryStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("dataAbsentReason"))
@@ -47489,10 +47488,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(),
-        new FamilyMemberHistory.FamilyHistoryStatusEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(),
-        new FamilyMemberHistory.FamilyHistoryStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasDataAbsentReason()) {
       composeCodeableConcept("dataAbsentReason", element.getDataAbsentReason());

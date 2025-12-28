@@ -51,170 +51,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "FamilyMemberHistory", profile = "http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory")
 public class FamilyMemberHistory extends DomainResource {
 
-  public enum FamilyHistoryStatus {
-    /**
-     * Some health information is known and captured, but not complete - see notes
-     * for details.
-     */
-    PARTIAL,
-    /**
-     * All available related health information is captured as of the date (and
-     * possibly time) when the family member history was taken.
-     */
-    COMPLETED,
-    /**
-     * This instance should not have been part of this patient's medical record.
-     */
-    ENTEREDINERROR,
-    /**
-     * Health information for this family member is unavailable/unknown.
-     */
-    HEALTHUNKNOWN,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static FamilyHistoryStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("partial".equals(codeString))
-        return PARTIAL;
-      if ("completed".equals(codeString))
-        return COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if ("health-unknown".equals(codeString))
-        return HEALTHUNKNOWN;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown FamilyHistoryStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case PARTIAL:
-        return "partial";
-      case COMPLETED:
-        return "completed";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case HEALTHUNKNOWN:
-        return "health-unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case PARTIAL:
-        return "http://hl7.org/fhir/history-status";
-      case COMPLETED:
-        return "http://hl7.org/fhir/history-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/history-status";
-      case HEALTHUNKNOWN:
-        return "http://hl7.org/fhir/history-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case PARTIAL:
-        return "Some health information is known and captured, but not complete - see notes for details.";
-      case COMPLETED:
-        return "All available related health information is captured as of the date (and possibly time) when the family member history was taken.";
-      case ENTEREDINERROR:
-        return "This instance should not have been part of this patient's medical record.";
-      case HEALTHUNKNOWN:
-        return "Health information for this family member is unavailable/unknown.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case PARTIAL:
-        return "Partial";
-      case COMPLETED:
-        return "Completed";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case HEALTHUNKNOWN:
-        return "Health Unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class FamilyHistoryStatusEnumFactory implements EnumFactory<FamilyHistoryStatus> {
-    public FamilyHistoryStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("partial".equals(codeString))
-        return FamilyHistoryStatus.PARTIAL;
-      if ("completed".equals(codeString))
-        return FamilyHistoryStatus.COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return FamilyHistoryStatus.ENTEREDINERROR;
-      if ("health-unknown".equals(codeString))
-        return FamilyHistoryStatus.HEALTHUNKNOWN;
-      throw new IllegalArgumentException("Unknown FamilyHistoryStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<FamilyHistoryStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<FamilyHistoryStatus>(this, FamilyHistoryStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<FamilyHistoryStatus>(this, FamilyHistoryStatus.NULL, code);
-      if ("partial".equals(codeString))
-        return new Enumeration<FamilyHistoryStatus>(this, FamilyHistoryStatus.PARTIAL, code);
-      if ("completed".equals(codeString))
-        return new Enumeration<FamilyHistoryStatus>(this, FamilyHistoryStatus.COMPLETED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<FamilyHistoryStatus>(this, FamilyHistoryStatus.ENTEREDINERROR, code);
-      if ("health-unknown".equals(codeString))
-        return new Enumeration<FamilyHistoryStatus>(this, FamilyHistoryStatus.HEALTHUNKNOWN, code);
-      throw new FHIRException("Unknown FamilyHistoryStatus code '" + codeString + "'");
-    }
-
-    public String toCode(FamilyHistoryStatus code) {
-       if (code == FamilyHistoryStatus.NULL)
-           return null;
-       if (code == FamilyHistoryStatus.PARTIAL)
-        return "partial";
-      if (code == FamilyHistoryStatus.COMPLETED)
-        return "completed";
-      if (code == FamilyHistoryStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      if (code == FamilyHistoryStatus.HEALTHUNKNOWN)
-        return "health-unknown";
-      return "?";
-   }
-
-    public String toSystem(FamilyHistoryStatus code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class FamilyMemberHistoryConditionComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -852,10 +688,10 @@ public class FamilyMemberHistory extends DomainResource {
    * A code specifying the status of the record of the family history of a
    * specific family member.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 3, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 3, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "partial | completed | entered-in-error | health-unknown", formalDefinition = "A code specifying the status of the record of the family history of a specific family member.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/history-status")
-  protected Enumeration<FamilyHistoryStatus> status;
+  protected StringType status;
 
   /**
    * Describes why the family member's history is not available.
@@ -1215,12 +1051,12 @@ public class FamilyMemberHistory extends DomainResource {
    *         object with id, value and extensions. The accessor "getStatus" gives
    *         direct access to the value
    */
-  public Enumeration<FamilyHistoryStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create FamilyMemberHistory.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<FamilyHistoryStatus>(new FamilyHistoryStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -1238,7 +1074,7 @@ public class FamilyMemberHistory extends DomainResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getStatus" gives direct access to the value
    */
-  public FamilyMemberHistory setStatusElement(Enumeration<FamilyHistoryStatus> value) {
+  public FamilyMemberHistory setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1247,7 +1083,7 @@ public class FamilyMemberHistory extends DomainResource {
    * @return A code specifying the status of the record of the family history of a
    *         specific family member.
    */
-  public FamilyHistoryStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
@@ -1255,10 +1091,14 @@ public class FamilyMemberHistory extends DomainResource {
    * @param value A code specifying the status of the record of the family history
    *              of a specific family member.
    */
-  public FamilyMemberHistory setStatus(FamilyHistoryStatus value) {
-    if (this.status == null)
-      this.status = new Enumeration<FamilyHistoryStatus>(new FamilyHistoryStatusEnumFactory());
-    this.status.setValue(value);
+  public FamilyMemberHistory setStatus(String value) {
+    if (value == null)
+      this.status = null;
+    else {
+      if (this.status == null)
+        this.status = new StringType();
+      this.status.setValue(value);
+    }
     return this;
   }
 
@@ -2055,7 +1895,7 @@ public class FamilyMemberHistory extends DomainResource {
     children.add(new Property("instantiatesUri", "uri",
         "The URL pointing to an externally maintained protocol, guideline, orderset or other definition that is adhered to in whole or in part by this FamilyMemberHistory.",
         0, java.lang.Integer.MAX_VALUE, instantiatesUri));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "A code specifying the status of the record of the family history of a specific family member.", 0, 1, status));
     children.add(new Property("dataAbsentReason", "CodeableConcept",
         "Describes why the family member's history is not available.", 0, 1, dataAbsentReason));
@@ -2109,7 +1949,7 @@ public class FamilyMemberHistory extends DomainResource {
           "The URL pointing to an externally maintained protocol, guideline, orderset or other definition that is adhered to in whole or in part by this FamilyMemberHistory.",
           0, java.lang.Integer.MAX_VALUE, instantiatesUri);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "A code specifying the status of the record of the family history of a specific family member.", 0, 1,
           status);
     case 1034315687:
@@ -2228,7 +2068,7 @@ public class FamilyMemberHistory extends DomainResource {
       /* instantiatesUri */ return this.instantiatesUri == null ? new Base[0]
           : this.instantiatesUri.toArray(new Base[this.instantiatesUri.size()]); // UriType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<FamilyHistoryStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 1034315687:
       /* dataAbsentReason */ return this.dataAbsentReason == null ? new Base[0] : new Base[] { this.dataAbsentReason }; // CodeableConcept
     case -791418107:
@@ -2279,8 +2119,7 @@ public class FamilyMemberHistory extends DomainResource {
       this.getInstantiatesUri().add(castToUri(value)); // UriType
       return value;
     case -892481550: // status
-      value = new FamilyHistoryStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<FamilyHistoryStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 1034315687: // dataAbsentReason
       this.dataAbsentReason = castToCodeableConcept(value); // CodeableConcept
@@ -2339,8 +2178,7 @@ public class FamilyMemberHistory extends DomainResource {
     } else if (name.equals("instantiatesUri")) {
       this.getInstantiatesUri().add(castToUri(value));
     } else if (name.equals("status")) {
-      value = new FamilyHistoryStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<FamilyHistoryStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("dataAbsentReason")) {
       this.dataAbsentReason = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("patient")) {
@@ -2478,7 +2316,7 @@ public class FamilyMemberHistory extends DomainResource {
     case -1926393373:
       /* instantiatesUri */ return new String[] { "uri" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 1034315687:
       /* dataAbsentReason */ return new String[] { "CodeableConcept" };
     case -791418107:

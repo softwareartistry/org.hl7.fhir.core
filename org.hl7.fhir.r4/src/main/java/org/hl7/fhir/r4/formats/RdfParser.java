@@ -8355,7 +8355,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getInstantiatesUri().size(); i++)
       composeUri(t, "FamilyMemberHistory", "instantiatesUri", element.getInstantiatesUri().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "FamilyMemberHistory", "status", element.getStatusElement(), -1);
+      composeString(t, "FamilyMemberHistory", "status", element.getStatusElement(), -1);
     if (element.hasDataAbsentReason())
       composeCodeableConcept(t, "FamilyMemberHistory", "dataAbsentReason", element.getDataAbsentReason(), -1);
     if (element.hasPatient())

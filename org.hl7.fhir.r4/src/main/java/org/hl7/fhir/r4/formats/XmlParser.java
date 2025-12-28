@@ -11548,8 +11548,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("instantiatesUri")) {
       res.getInstantiatesUri().add(parseUri(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, FamilyMemberHistory.FamilyHistoryStatus.NULL,
-          new FamilyMemberHistory.FamilyHistoryStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("dataAbsentReason")) {
       res.setDataAbsentReason(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("patient")) {
@@ -38826,8 +38825,7 @@ public class XmlParser extends XmlParserBase {
         composeUri("instantiatesUri", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(),
-          new FamilyMemberHistory.FamilyHistoryStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasDataAbsentReason()) {
       composeCodeableConcept("dataAbsentReason", element.getDataAbsentReason());
     }
