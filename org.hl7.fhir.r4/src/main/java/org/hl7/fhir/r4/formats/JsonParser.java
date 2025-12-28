@@ -10726,18 +10726,15 @@ public class JsonParser extends JsonParserBase {
       res.setParent(parseReference(getJObject(json, "parent")));
     if (json.has("operationalStatus"))
       res.setOperationalStatusElement(
-        parseEnumeration(json.get("operationalStatus").getAsString(), DeviceMetric.DeviceMetricOperationalStatus.NULL,
-          new DeviceMetric.DeviceMetricOperationalStatusEnumFactory()));
+        parseString(json.get("operationalStatus").getAsString()));
     if (json.has("_operationalStatus"))
       parseElementProperties(getJObject(json, "_operationalStatus"), res.getOperationalStatusElement());
     if (json.has("color"))
-      res.setColorElement(parseEnumeration(json.get("color").getAsString(), DeviceMetric.DeviceMetricColor.NULL,
-        new DeviceMetric.DeviceMetricColorEnumFactory()));
+      res.setColorElement(parseString(json.get("color").getAsString()));
     if (json.has("_color"))
       parseElementProperties(getJObject(json, "_color"), res.getColorElement());
     if (json.has("category"))
-      res.setCategoryElement(parseEnumeration(json.get("category").getAsString(),
-        DeviceMetric.DeviceMetricCategory.NULL, new DeviceMetric.DeviceMetricCategoryEnumFactory()));
+      res.setCategoryElement(parseString(json.get("category").getAsString()));
     if (json.has("_category"))
       parseElementProperties(getJObject(json, "_category"), res.getCategoryElement());
     if (json.has("measurementPeriod"))
@@ -10763,13 +10760,11 @@ public class JsonParser extends JsonParserBase {
                                                                              DeviceMetric.DeviceMetricCalibrationComponent res) throws IOException, FHIRFormatError {
     parseBackboneElementProperties(json, res);
     if (json.has("type"))
-      res.setTypeElement(parseEnumeration(json.get("type").getAsString(), DeviceMetric.DeviceMetricCalibrationType.NULL,
-        new DeviceMetric.DeviceMetricCalibrationTypeEnumFactory()));
+      res.setTypeElement(parseString(json.get("type").getAsString()));
     if (json.has("_type"))
       parseElementProperties(getJObject(json, "_type"), res.getTypeElement());
     if (json.has("state"))
-      res.setStateElement(parseEnumeration(json.get("state").getAsString(),
-        DeviceMetric.DeviceMetricCalibrationState.NULL, new DeviceMetric.DeviceMetricCalibrationStateEnumFactory()));
+      res.setStateElement(parseString(json.get("state").getAsString()));
     if (json.has("_state"))
       parseElementProperties(getJObject(json, "_state"), res.getStateElement());
     if (json.has("time"))
@@ -43612,22 +43607,16 @@ public class JsonParser extends JsonParserBase {
       composeReference("parent", element.getParent());
     }
     if (element.hasOperationalStatusElement()) {
-      composeEnumerationCore("operationalStatus", element.getOperationalStatusElement(),
-        new DeviceMetric.DeviceMetricOperationalStatusEnumFactory(), false);
-      composeEnumerationExtras("operationalStatus", element.getOperationalStatusElement(),
-        new DeviceMetric.DeviceMetricOperationalStatusEnumFactory(), false);
+      composeStringCore("operationalStatus", element.getOperationalStatusElement(), false);
+      composeStringExtras("operationalStatus", element.getOperationalStatusElement(), false);
     }
     if (element.hasColorElement()) {
-      composeEnumerationCore("color", element.getColorElement(), new DeviceMetric.DeviceMetricColorEnumFactory(),
-        false);
-      composeEnumerationExtras("color", element.getColorElement(), new DeviceMetric.DeviceMetricColorEnumFactory(),
-        false);
+      composeStringCore("color", element.getColorElement(), false);
+      composeStringExtras("color", element.getColorElement(), false);
     }
     if (element.hasCategoryElement()) {
-      composeEnumerationCore("category", element.getCategoryElement(),
-        new DeviceMetric.DeviceMetricCategoryEnumFactory(), false);
-      composeEnumerationExtras("category", element.getCategoryElement(),
-        new DeviceMetric.DeviceMetricCategoryEnumFactory(), false);
+      composeStringCore("category", element.getCategoryElement(), false);
+      composeStringExtras("category", element.getCategoryElement(), false);
     }
     if (element.hasMeasurementPeriod()) {
       composeTiming("measurementPeriod", element.getMeasurementPeriod());
@@ -43654,16 +43643,12 @@ public class JsonParser extends JsonParserBase {
     DeviceMetric.DeviceMetricCalibrationComponent element) throws IOException {
     composeBackbone(element);
     if (element.hasTypeElement()) {
-      composeEnumerationCore("type", element.getTypeElement(),
-        new DeviceMetric.DeviceMetricCalibrationTypeEnumFactory(), false);
-      composeEnumerationExtras("type", element.getTypeElement(),
-        new DeviceMetric.DeviceMetricCalibrationTypeEnumFactory(), false);
+      composeStringCore("type", element.getTypeElement(), false);
+      composeStringExtras("type", element.getTypeElement(), false);
     }
     if (element.hasStateElement()) {
-      composeEnumerationCore("state", element.getStateElement(),
-        new DeviceMetric.DeviceMetricCalibrationStateEnumFactory(), false);
-      composeEnumerationExtras("state", element.getStateElement(),
-        new DeviceMetric.DeviceMetricCalibrationStateEnumFactory(), false);
+      composeStringCore("state", element.getStateElement(), false);
+      composeStringExtras("state", element.getStateElement(), false);
     }
     if (element.hasTimeElement()) {
       composeInstantCore("time", element.getTimeElement(), false);

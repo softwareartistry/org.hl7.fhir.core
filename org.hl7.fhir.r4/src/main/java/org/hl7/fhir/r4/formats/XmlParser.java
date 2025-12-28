@@ -8744,14 +8744,11 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("parent")) {
       res.setParent(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("operationalStatus")) {
-      res.setOperationalStatusElement(parseEnumeration(xpp, DeviceMetric.DeviceMetricOperationalStatus.NULL,
-          new DeviceMetric.DeviceMetricOperationalStatusEnumFactory()));
+      res.setOperationalStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("color")) {
-      res.setColorElement(
-          parseEnumeration(xpp, DeviceMetric.DeviceMetricColor.NULL, new DeviceMetric.DeviceMetricColorEnumFactory()));
+      res.setColorElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("category")) {
-      res.setCategoryElement(parseEnumeration(xpp, DeviceMetric.DeviceMetricCategory.NULL,
-          new DeviceMetric.DeviceMetricCategoryEnumFactory()));
+      res.setCategoryElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("measurementPeriod")) {
       res.setMeasurementPeriod(parseTiming(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("calibration")) {
@@ -8781,11 +8778,9 @@ public class XmlParser extends XmlParserBase {
       DeviceMetric owner, DeviceMetric.DeviceMetricCalibrationComponent res)
       throws XmlPullParserException, IOException, FHIRFormatError {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("type")) {
-      res.setTypeElement(parseEnumeration(xpp, DeviceMetric.DeviceMetricCalibrationType.NULL,
-          new DeviceMetric.DeviceMetricCalibrationTypeEnumFactory()));
+      res.setTypeElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("state")) {
-      res.setStateElement(parseEnumeration(xpp, DeviceMetric.DeviceMetricCalibrationState.NULL,
-          new DeviceMetric.DeviceMetricCalibrationStateEnumFactory()));
+      res.setStateElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("time")) {
       res.setTimeElement(parseInstant(xpp));
     } else if (!parseBackboneElementContent(eventType, xpp, res))
@@ -35821,12 +35816,11 @@ public class XmlParser extends XmlParserBase {
       composeReference("parent", element.getParent());
     }
     if (element.hasOperationalStatusElement())
-      composeEnumeration("operationalStatus", element.getOperationalStatusElement(),
-          new DeviceMetric.DeviceMetricOperationalStatusEnumFactory());
+      composeString("operationalStatus", element.getOperationalStatusElement());
     if (element.hasColorElement())
-      composeEnumeration("color", element.getColorElement(), new DeviceMetric.DeviceMetricColorEnumFactory());
+      composeString("color", element.getColorElement());
     if (element.hasCategoryElement())
-      composeEnumeration("category", element.getCategoryElement(), new DeviceMetric.DeviceMetricCategoryEnumFactory());
+      composeString("category", element.getCategoryElement());
     if (element.hasMeasurementPeriod()) {
       composeTiming("measurementPeriod", element.getMeasurementPeriod());
     }
@@ -35851,10 +35845,9 @@ public class XmlParser extends XmlParserBase {
       DeviceMetric.DeviceMetricCalibrationComponent element) throws IOException {
     composeBackboneElementElements(element);
     if (element.hasTypeElement())
-      composeEnumeration("type", element.getTypeElement(), new DeviceMetric.DeviceMetricCalibrationTypeEnumFactory());
+      composeString("type", element.getTypeElement());
     if (element.hasStateElement())
-      composeEnumeration("state", element.getStateElement(),
-          new DeviceMetric.DeviceMetricCalibrationStateEnumFactory());
+      composeString("state", element.getStateElement());
     if (element.hasTimeElement()) {
       composeInstant("time", element.getTimeElement());
     }

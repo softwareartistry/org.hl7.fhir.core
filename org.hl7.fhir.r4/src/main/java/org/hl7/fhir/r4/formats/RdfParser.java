@@ -6259,11 +6259,11 @@ public class RdfParser extends RdfParserBase {
     if (element.hasParent())
       composeReference(t, "DeviceMetric", "parent", element.getParent(), -1);
     if (element.hasOperationalStatusElement())
-      composeEnum(t, "DeviceMetric", "operationalStatus", element.getOperationalStatusElement(), -1);
+      composeString(t, "DeviceMetric", "operationalStatus", element.getOperationalStatusElement(), -1);
     if (element.hasColorElement())
-      composeEnum(t, "DeviceMetric", "color", element.getColorElement(), -1);
+      composeString(t, "DeviceMetric", "color", element.getColorElement(), -1);
     if (element.hasCategoryElement())
-      composeEnum(t, "DeviceMetric", "category", element.getCategoryElement(), -1);
+      composeString(t, "DeviceMetric", "category", element.getCategoryElement(), -1);
     if (element.hasMeasurementPeriod())
       composeTiming(t, "DeviceMetric", "measurementPeriod", element.getMeasurementPeriod(), -1);
     for (int i = 0; i < element.getCalibration().size(); i++)
@@ -6283,9 +6283,9 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "calibration", name, element, index);
     if (element.hasTypeElement())
-      composeEnum(t, "DeviceMetric", "type", element.getTypeElement(), -1);
+      composeString(t, "DeviceMetric", "type", element.getTypeElement(), -1);
     if (element.hasStateElement())
-      composeEnum(t, "DeviceMetric", "state", element.getStateElement(), -1);
+      composeString(t, "DeviceMetric", "state", element.getStateElement(), -1);
     if (element.hasTimeElement())
       composeInstant(t, "DeviceMetric", "time", element.getTimeElement(), -1);
   }
