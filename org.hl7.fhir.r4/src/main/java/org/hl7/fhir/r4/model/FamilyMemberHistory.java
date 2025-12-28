@@ -839,7 +839,7 @@ public class FamilyMemberHistory extends DomainResource {
   /**
    * Constructor
    */
-  public FamilyMemberHistory(Enumeration<FamilyHistoryStatus> status, Reference patient, CodeableConcept relationship) {
+  public FamilyMemberHistory(StringType status, Reference patient, CodeableConcept relationship) {
     super();
     this.status = status;
     this.patient = patient;

@@ -5844,11 +5844,11 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "DetectedIssue", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "DetectedIssue", "status", element.getStatusElement(), -1);
+      composeString(t, "DetectedIssue", "status", element.getStatusElement(), -1);
     if (element.hasCode())
       composeCodeableConcept(t, "DetectedIssue", "code", element.getCode(), -1);
     if (element.hasSeverityElement())
-      composeEnum(t, "DetectedIssue", "severity", element.getSeverityElement(), -1);
+      composeString(t, "DetectedIssue", "severity", element.getSeverityElement(), -1);
     if (element.hasPatient())
       composeReference(t, "DetectedIssue", "patient", element.getPatient(), -1);
     if (element.hasIdentified())
@@ -8451,7 +8451,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "Goal", "identifier", element.getIdentifier().get(i), i);
     if (element.hasLifecycleStatusElement())
-      composeEnum(t, "Goal", "lifecycleStatus", element.getLifecycleStatusElement(), -1);
+      composeString(t, "Goal", "lifecycleStatus", element.getLifecycleStatusElement(), -1);
     if (element.hasAchievementStatus())
       composeCodeableConcept(t, "Goal", "achievementStatus", element.getAchievementStatus(), -1);
     for (int i = 0; i < element.getCategory().size(); i++)
@@ -13484,7 +13484,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "PaymentNotice", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "PaymentNotice", "status", element.getStatusElement(), -1);
+      composeString(t, "PaymentNotice", "status", element.getStatusElement(), -1);
     if (element.hasRequest())
       composeReference(t, "PaymentNotice", "request", element.getRequest(), -1);
     if (element.hasResponse())
@@ -13521,7 +13521,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "PaymentReconciliation", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "PaymentReconciliation", "status", element.getStatusElement(), -1);
+      composeString(t, "PaymentReconciliation", "status", element.getStatusElement(), -1);
     if (element.hasPeriod())
       composePeriod(t, "PaymentReconciliation", "period", element.getPeriod(), -1);
     if (element.hasCreatedElement())
@@ -14069,7 +14069,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getPartOf().size(); i++)
       composeReference(t, "Procedure", "partOf", element.getPartOf().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "Procedure", "status", element.getStatusElement(), -1);
+      composeString(t, "Procedure", "status", element.getStatusElement(), -1);
     if (element.hasStatusReason())
       composeCodeableConcept(t, "Procedure", "statusReason", element.getStatusReason(), -1);
     if (element.hasCategory())
@@ -14400,7 +14400,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasQuestionnaireElement())
       composeCanonical(t, "QuestionnaireResponse", "questionnaire", element.getQuestionnaireElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "QuestionnaireResponse", "status", element.getStatusElement(), -1);
+      composeString(t, "QuestionnaireResponse", "status", element.getStatusElement(), -1);
     if (element.hasSubject())
       composeReference(t, "QuestionnaireResponse", "subject", element.getSubject(), -1);
     if (element.hasEncounter())
@@ -15001,7 +15001,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasParent())
       composeReference(t, "RiskAssessment", "parent", element.getParent(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "RiskAssessment", "status", element.getStatusElement(), -1);
+      composeString(t, "RiskAssessment", "status", element.getStatusElement(), -1);
     if (element.hasMethod())
       composeCodeableConcept(t, "RiskAssessment", "method", element.getMethod(), -1);
     if (element.hasCode())

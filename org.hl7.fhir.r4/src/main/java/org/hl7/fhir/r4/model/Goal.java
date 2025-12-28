@@ -53,269 +53,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Goal", profile = "http://hl7.org/fhir/StructureDefinition/Goal")
 public class Goal extends DomainResource {
 
-  public enum GoalLifecycleStatus {
-    /**
-     * A goal is proposed for this patient.
-     */
-    PROPOSED,
-    /**
-     * A goal is planned for this patient.
-     */
-    PLANNED,
-    /**
-     * A proposed goal was accepted or acknowledged.
-     */
-    ACCEPTED,
-    /**
-     * The goal is being sought actively.
-     */
-    ACTIVE,
-    /**
-     * The goal remains a long term objective but is no longer being actively
-     * pursued for a temporary period of time.
-     */
-    ONHOLD,
-    /**
-     * The goal is no longer being sought.
-     */
-    COMPLETED,
-    /**
-     * The goal has been abandoned.
-     */
-    CANCELLED,
-    /**
-     * The goal was entered in error and voided.
-     */
-    ENTEREDINERROR,
-    /**
-     * A proposed goal was rejected.
-     */
-    REJECTED,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static GoalLifecycleStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("proposed".equals(codeString))
-        return PROPOSED;
-      if ("planned".equals(codeString))
-        return PLANNED;
-      if ("accepted".equals(codeString))
-        return ACCEPTED;
-      if ("active".equals(codeString))
-        return ACTIVE;
-      if ("on-hold".equals(codeString))
-        return ONHOLD;
-      if ("completed".equals(codeString))
-        return COMPLETED;
-      if ("cancelled".equals(codeString))
-        return CANCELLED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if ("rejected".equals(codeString))
-        return REJECTED;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown GoalLifecycleStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case PROPOSED:
-        return "proposed";
-      case PLANNED:
-        return "planned";
-      case ACCEPTED:
-        return "accepted";
-      case ACTIVE:
-        return "active";
-      case ONHOLD:
-        return "on-hold";
-      case COMPLETED:
-        return "completed";
-      case CANCELLED:
-        return "cancelled";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case REJECTED:
-        return "rejected";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case PROPOSED:
-        return "http://hl7.org/fhir/goal-status";
-      case PLANNED:
-        return "http://hl7.org/fhir/goal-status";
-      case ACCEPTED:
-        return "http://hl7.org/fhir/goal-status";
-      case ACTIVE:
-        return "http://hl7.org/fhir/goal-status";
-      case ONHOLD:
-        return "http://hl7.org/fhir/goal-status";
-      case COMPLETED:
-        return "http://hl7.org/fhir/goal-status";
-      case CANCELLED:
-        return "http://hl7.org/fhir/goal-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/goal-status";
-      case REJECTED:
-        return "http://hl7.org/fhir/goal-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case PROPOSED:
-        return "A goal is proposed for this patient.";
-      case PLANNED:
-        return "A goal is planned for this patient.";
-      case ACCEPTED:
-        return "A proposed goal was accepted or acknowledged.";
-      case ACTIVE:
-        return "The goal is being sought actively.";
-      case ONHOLD:
-        return "The goal remains a long term objective but is no longer being actively pursued for a temporary period of time.";
-      case COMPLETED:
-        return "The goal is no longer being sought.";
-      case CANCELLED:
-        return "The goal has been abandoned.";
-      case ENTEREDINERROR:
-        return "The goal was entered in error and voided.";
-      case REJECTED:
-        return "A proposed goal was rejected.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case PROPOSED:
-        return "Proposed";
-      case PLANNED:
-        return "Planned";
-      case ACCEPTED:
-        return "Accepted";
-      case ACTIVE:
-        return "Active";
-      case ONHOLD:
-        return "On Hold";
-      case COMPLETED:
-        return "Completed";
-      case CANCELLED:
-        return "Cancelled";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case REJECTED:
-        return "Rejected";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class GoalLifecycleStatusEnumFactory implements EnumFactory<GoalLifecycleStatus> {
-    public GoalLifecycleStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("proposed".equals(codeString))
-        return GoalLifecycleStatus.PROPOSED;
-      if ("planned".equals(codeString))
-        return GoalLifecycleStatus.PLANNED;
-      if ("accepted".equals(codeString))
-        return GoalLifecycleStatus.ACCEPTED;
-      if ("active".equals(codeString))
-        return GoalLifecycleStatus.ACTIVE;
-      if ("on-hold".equals(codeString))
-        return GoalLifecycleStatus.ONHOLD;
-      if ("completed".equals(codeString))
-        return GoalLifecycleStatus.COMPLETED;
-      if ("cancelled".equals(codeString))
-        return GoalLifecycleStatus.CANCELLED;
-      if ("entered-in-error".equals(codeString))
-        return GoalLifecycleStatus.ENTEREDINERROR;
-      if ("rejected".equals(codeString))
-        return GoalLifecycleStatus.REJECTED;
-      throw new IllegalArgumentException("Unknown GoalLifecycleStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<GoalLifecycleStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<GoalLifecycleStatus>(this, GoalLifecycleStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<GoalLifecycleStatus>(this, GoalLifecycleStatus.NULL, code);
-      if ("proposed".equals(codeString))
-        return new Enumeration<GoalLifecycleStatus>(this, GoalLifecycleStatus.PROPOSED, code);
-      if ("planned".equals(codeString))
-        return new Enumeration<GoalLifecycleStatus>(this, GoalLifecycleStatus.PLANNED, code);
-      if ("accepted".equals(codeString))
-        return new Enumeration<GoalLifecycleStatus>(this, GoalLifecycleStatus.ACCEPTED, code);
-      if ("active".equals(codeString))
-        return new Enumeration<GoalLifecycleStatus>(this, GoalLifecycleStatus.ACTIVE, code);
-      if ("on-hold".equals(codeString))
-        return new Enumeration<GoalLifecycleStatus>(this, GoalLifecycleStatus.ONHOLD, code);
-      if ("completed".equals(codeString))
-        return new Enumeration<GoalLifecycleStatus>(this, GoalLifecycleStatus.COMPLETED, code);
-      if ("cancelled".equals(codeString))
-        return new Enumeration<GoalLifecycleStatus>(this, GoalLifecycleStatus.CANCELLED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<GoalLifecycleStatus>(this, GoalLifecycleStatus.ENTEREDINERROR, code);
-      if ("rejected".equals(codeString))
-        return new Enumeration<GoalLifecycleStatus>(this, GoalLifecycleStatus.REJECTED, code);
-      throw new FHIRException("Unknown GoalLifecycleStatus code '" + codeString + "'");
-    }
-
-    public String toCode(GoalLifecycleStatus code) {
-       if (code == GoalLifecycleStatus.NULL)
-           return null;
-       if (code == GoalLifecycleStatus.PROPOSED)
-        return "proposed";
-      if (code == GoalLifecycleStatus.PLANNED)
-        return "planned";
-      if (code == GoalLifecycleStatus.ACCEPTED)
-        return "accepted";
-      if (code == GoalLifecycleStatus.ACTIVE)
-        return "active";
-      if (code == GoalLifecycleStatus.ONHOLD)
-        return "on-hold";
-      if (code == GoalLifecycleStatus.COMPLETED)
-        return "completed";
-      if (code == GoalLifecycleStatus.CANCELLED)
-        return "cancelled";
-      if (code == GoalLifecycleStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      if (code == GoalLifecycleStatus.REJECTED)
-        return "rejected";
-      return "?";
-   }
-
-    public String toSystem(GoalLifecycleStatus code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class GoalTargetComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -901,10 +638,10 @@ public class Goal extends DomainResource {
    * The state of the goal throughout its lifecycle.
    */
   @Child(name = "lifecycleStatus", type = {
-      CodeType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
+    StringType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "proposed | planned | accepted | active | on-hold | completed | cancelled | entered-in-error | rejected", formalDefinition = "The state of the goal throughout its lifecycle.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/goal-status")
-  protected Enumeration<GoalLifecycleStatus> lifecycleStatus;
+  protected StringType lifecycleStatus;
 
   /**
    * Describes the progression, or lack thereof, towards the goal against the
@@ -1066,7 +803,7 @@ public class Goal extends DomainResource {
   /**
    * Constructor
    */
-  public Goal(Enumeration<GoalLifecycleStatus> lifecycleStatus, CodeableConcept description, Reference subject) {
+  public Goal(StringType lifecycleStatus, CodeableConcept description, Reference subject) {
     super();
     this.lifecycleStatus = lifecycleStatus;
     this.description = description;
@@ -1135,12 +872,12 @@ public class Goal extends DomainResource {
    *         extensions. The accessor "getLifecycleStatus" gives direct access to
    *         the value
    */
-  public Enumeration<GoalLifecycleStatus> getLifecycleStatusElement() {
+  public StringType getLifecycleStatusElement() {
     if (this.lifecycleStatus == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Goal.lifecycleStatus");
       else if (Configuration.doAutoCreate())
-        this.lifecycleStatus = new Enumeration<GoalLifecycleStatus>(new GoalLifecycleStatusEnumFactory()); // bb
+        this.lifecycleStatus = new StringType(); // bb
     return this.lifecycleStatus;
   }
 
@@ -1158,7 +895,7 @@ public class Goal extends DomainResource {
    *              extensions. The accessor "getLifecycleStatus" gives direct
    *              access to the value
    */
-  public Goal setLifecycleStatusElement(Enumeration<GoalLifecycleStatus> value) {
+  public Goal setLifecycleStatusElement(StringType value) {
     this.lifecycleStatus = value;
     return this;
   }
@@ -1166,17 +903,17 @@ public class Goal extends DomainResource {
   /**
    * @return The state of the goal throughout its lifecycle.
    */
-  public GoalLifecycleStatus getLifecycleStatus() {
-    return this.lifecycleStatus == null ? null : this.lifecycleStatus.getValue();
+  public StringType getLifecycleStatus() {
+    return this.lifecycleStatus == null ? null : this.lifecycleStatus;
   }
 
   /**
    * @param value The state of the goal throughout its lifecycle.
    */
-  public Goal setLifecycleStatus(GoalLifecycleStatus value) {
+  public Goal setLifecycleStatus(StringType value) {
     if (this.lifecycleStatus == null)
-      this.lifecycleStatus = new Enumeration<GoalLifecycleStatus>(new GoalLifecycleStatusEnumFactory());
-    this.lifecycleStatus.setValue(value);
+      this.lifecycleStatus = new StringType();
+    this.lifecycleStatus = (value);
     return this;
   }
 
@@ -1857,7 +1594,7 @@ public class Goal extends DomainResource {
     children.add(new Property("identifier", "Identifier",
         "Business identifiers assigned to this goal by the performer or other systems which remain constant as the resource is updated and propagates from server to server.",
         0, java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("lifecycleStatus", "code", "The state of the goal throughout its lifecycle.", 0, 1,
+    children.add(new Property("lifecycleStatus", "string", "The state of the goal throughout its lifecycle.", 0, 1,
         lifecycleStatus));
     children.add(new Property("achievementStatus", "CodeableConcept",
         "Describes the progression, or lack thereof, towards the goal against the target.", 0, 1, achievementStatus));
@@ -1903,7 +1640,7 @@ public class Goal extends DomainResource {
           "Business identifiers assigned to this goal by the performer or other systems which remain constant as the resource is updated and propagates from server to server.",
           0, java.lang.Integer.MAX_VALUE, identifier);
     case 1165552636:
-      /* lifecycleStatus */ return new Property("lifecycleStatus", "code",
+      /* lifecycleStatus */ return new Property("lifecycleStatus", "string",
           "The state of the goal throughout its lifecycle.", 0, 1, lifecycleStatus);
     case 104524801:
       /* achievementStatus */ return new Property("achievementStatus", "CodeableConcept",
@@ -2022,8 +1759,8 @@ public class Goal extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case 1165552636: // lifecycleStatus
-      value = new GoalLifecycleStatusEnumFactory().fromType(castToCode(value));
-      this.lifecycleStatus = (Enumeration) value; // Enumeration<GoalLifecycleStatus>
+//      value = new GoalLifecycleStatusEnumFactory().fromType(castToCode(value));
+      this.lifecycleStatus = castToString(value); // Enumeration<GoalLifecycleStatus>
       return value;
     case 104524801: // achievementStatus
       this.achievementStatus = castToCodeableConcept(value); // CodeableConcept
@@ -2078,8 +1815,8 @@ public class Goal extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("lifecycleStatus")) {
-      value = new GoalLifecycleStatusEnumFactory().fromType(castToCode(value));
-      this.lifecycleStatus = (Enumeration) value; // Enumeration<GoalLifecycleStatus>
+//      value = new GoalLifecycleStatusEnumFactory().fromType(castToCode(value));
+      this.lifecycleStatus = castToString(value); // Enumeration<GoalLifecycleStatus>
     } else if (name.equals("achievementStatus")) {
       this.achievementStatus = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("category")) {
@@ -2201,7 +1938,7 @@ public class Goal extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case 1165552636:
-      /* lifecycleStatus */ return new String[] { "code" };
+      /* lifecycleStatus */ return new String[] { "string" };
     case 104524801:
       /* achievementStatus */ return new String[] { "CodeableConcept" };
     case 50511102:

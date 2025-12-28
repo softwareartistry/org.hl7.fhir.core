@@ -10064,15 +10064,13 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), DetectedIssue.DetectedIssueStatus.NULL,
-        new DetectedIssue.DetectedIssueStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("code"))
       res.setCode(parseCodeableConcept(getJObject(json, "code")));
     if (json.has("severity"))
-      res.setSeverityElement(parseEnumeration(json.get("severity").getAsString(),
-        DetectedIssue.DetectedIssueSeverity.NULL, new DetectedIssue.DetectedIssueSeverityEnumFactory()));
+      res.setSeverityElement(parseString(json.get("severity").getAsString()));
     if (json.has("_severity"))
       parseElementProperties(getJObject(json, "_severity"), res.getSeverityElement());
     if (json.has("patient"))
@@ -14642,8 +14640,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("lifecycleStatus"))
-      res.setLifecycleStatusElement(parseEnumeration(json.get("lifecycleStatus").getAsString(),
-        Goal.GoalLifecycleStatus.NULL, new Goal.GoalLifecycleStatusEnumFactory()));
+      res.setLifecycleStatusElement(parseString(json.get("lifecycleStatus").getAsString()));
     if (json.has("_lifecycleStatus"))
       parseElementProperties(getJObject(json, "_lifecycleStatus"), res.getLifecycleStatusElement());
     if (json.has("achievementStatus"))
@@ -22972,8 +22969,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), PaymentNotice.PaymentNoticeStatus.NULL,
-        new PaymentNotice.PaymentNoticeStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("request"))
@@ -23020,8 +23016,7 @@ public class JsonParser extends JsonParserBase {
     ;
     if (json.has("status"))
       res.setStatusElement(
-        parseEnumeration(json.get("status").getAsString(), PaymentReconciliation.PaymentReconciliationStatus.NULL,
-          new PaymentReconciliation.PaymentReconciliationStatusEnumFactory()));
+        parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("period"))
@@ -24038,8 +24033,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Procedure.ProcedureStatus.NULL,
-        new Procedure.ProcedureStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("statusReason"))
@@ -24646,8 +24640,7 @@ public class JsonParser extends JsonParserBase {
       parseElementProperties(getJObject(json, "_questionnaire"), res.getQuestionnaireElement());
     if (json.has("status"))
       res.setStatusElement(
-        parseEnumeration(json.get("status").getAsString(), QuestionnaireResponse.QuestionnaireResponseStatus.NULL,
-          new QuestionnaireResponse.QuestionnaireResponseStatusEnumFactory()));
+        parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("subject"))
@@ -25832,8 +25825,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("parent"))
       res.setParent(parseReference(getJObject(json, "parent")));
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), RiskAssessment.RiskAssessmentStatus.NULL,
-        new RiskAssessment.RiskAssessmentStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("method"))
@@ -42932,19 +42924,15 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new DetectedIssue.DetectedIssueStatusEnumFactory(),
-        false);
-      composeEnumerationExtras("status", element.getStatusElement(), new DetectedIssue.DetectedIssueStatusEnumFactory(),
-        false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasCode()) {
       composeCodeableConcept("code", element.getCode());
     }
     if (element.hasSeverityElement()) {
-      composeEnumerationCore("severity", element.getSeverityElement(),
-        new DetectedIssue.DetectedIssueSeverityEnumFactory(), false);
-      composeEnumerationExtras("severity", element.getSeverityElement(),
-        new DetectedIssue.DetectedIssueSeverityEnumFactory(), false);
+      composeStringCore("severity", element.getSeverityElement(), false);
+      composeStringExtras("severity", element.getSeverityElement(), false);
     }
     if (element.hasPatient()) {
       composeReference("patient", element.getPatient());
@@ -47632,10 +47620,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasLifecycleStatusElement()) {
-      composeEnumerationCore("lifecycleStatus", element.getLifecycleStatusElement(),
-        new Goal.GoalLifecycleStatusEnumFactory(), false);
-      composeEnumerationExtras("lifecycleStatus", element.getLifecycleStatusElement(),
-        new Goal.GoalLifecycleStatusEnumFactory(), false);
+      composeStringCore("lifecycleStatus", element.getLifecycleStatusElement(), false);
+      composeStringExtras("lifecycleStatus", element.getLifecycleStatusElement(), false);
     }
     if (element.hasAchievementStatus()) {
       composeCodeableConcept("achievementStatus", element.getAchievementStatus());
@@ -56181,10 +56167,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new PaymentNotice.PaymentNoticeStatusEnumFactory(),
-        false);
-      composeEnumerationExtras("status", element.getStatusElement(), new PaymentNotice.PaymentNoticeStatusEnumFactory(),
-        false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasRequest()) {
       composeReference("request", element.getRequest());
@@ -56237,10 +56221,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(),
-        new PaymentReconciliation.PaymentReconciliationStatusEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(),
-        new PaymentReconciliation.PaymentReconciliationStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasPeriod()) {
       composePeriod("period", element.getPeriod());
@@ -57278,8 +57260,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new Procedure.ProcedureStatusEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(), new Procedure.ProcedureStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasStatusReason()) {
       composeCodeableConcept("statusReason", element.getStatusReason());
@@ -57900,10 +57882,8 @@ public class JsonParser extends JsonParserBase {
       composeCanonicalExtras("questionnaire", element.getQuestionnaireElement(), false);
     }
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(),
-        new QuestionnaireResponse.QuestionnaireResponseStatusEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(),
-        new QuestionnaireResponse.QuestionnaireResponseStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasSubject()) {
       composeReference("subject", element.getSubject());
@@ -59097,10 +59077,8 @@ public class JsonParser extends JsonParserBase {
       composeReference("parent", element.getParent());
     }
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new RiskAssessment.RiskAssessmentStatusEnumFactory(),
-        false);
-      composeEnumerationExtras("status", element.getStatusElement(),
-        new RiskAssessment.RiskAssessmentStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasMethod()) {
       composeCodeableConcept("method", element.getMethod());
