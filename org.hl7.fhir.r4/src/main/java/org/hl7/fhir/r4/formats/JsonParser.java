@@ -15058,8 +15058,7 @@ public class JsonParser extends JsonParserBase {
     if (module != null)
       res.setModule(module);
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(),
-        GuidanceResponse.GuidanceResponseStatus.NULL, new GuidanceResponse.GuidanceResponseStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("subject"))
@@ -48077,10 +48076,8 @@ public class JsonParser extends JsonParserBase {
       composeType("module", element.getModule());
     }
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(),
-        new GuidanceResponse.GuidanceResponseStatusEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(),
-        new GuidanceResponse.GuidanceResponseStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasSubject()) {
       composeReference("subject", element.getSubject());

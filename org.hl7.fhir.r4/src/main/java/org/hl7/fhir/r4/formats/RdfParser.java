@@ -8707,7 +8707,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasModule())
       composeType(t, "GuidanceResponse", "module", element.getModule(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "GuidanceResponse", "status", element.getStatusElement(), -1);
+      composeString(t, "GuidanceResponse", "status", element.getStatusElement(), -1);
     if (element.hasSubject())
       composeReference(t, "GuidanceResponse", "subject", element.getSubject(), -1);
     if (element.hasEncounter())

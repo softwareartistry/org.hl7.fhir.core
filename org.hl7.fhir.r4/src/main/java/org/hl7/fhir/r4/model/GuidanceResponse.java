@@ -49,210 +49,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "GuidanceResponse", profile = "http://hl7.org/fhir/StructureDefinition/GuidanceResponse")
 public class GuidanceResponse extends DomainResource {
 
-  public enum GuidanceResponseStatus {
-    /**
-     * The request was processed successfully.
-     */
-    SUCCESS,
-    /**
-     * The request was processed successfully, but more data may result in a more
-     * complete evaluation.
-     */
-    DATAREQUESTED,
-    /**
-     * The request was processed, but more data is required to complete the
-     * evaluation.
-     */
-    DATAREQUIRED,
-    /**
-     * The request is currently being processed.
-     */
-    INPROGRESS,
-    /**
-     * The request was not processed successfully.
-     */
-    FAILURE,
-    /**
-     * The response was entered in error.
-     */
-    ENTEREDINERROR,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static GuidanceResponseStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("success".equals(codeString))
-        return SUCCESS;
-      if ("data-requested".equals(codeString))
-        return DATAREQUESTED;
-      if ("data-required".equals(codeString))
-        return DATAREQUIRED;
-      if ("in-progress".equals(codeString))
-        return INPROGRESS;
-      if ("failure".equals(codeString))
-        return FAILURE;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown GuidanceResponseStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case SUCCESS:
-        return "success";
-      case DATAREQUESTED:
-        return "data-requested";
-      case DATAREQUIRED:
-        return "data-required";
-      case INPROGRESS:
-        return "in-progress";
-      case FAILURE:
-        return "failure";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case SUCCESS:
-        return "http://hl7.org/fhir/guidance-response-status";
-      case DATAREQUESTED:
-        return "http://hl7.org/fhir/guidance-response-status";
-      case DATAREQUIRED:
-        return "http://hl7.org/fhir/guidance-response-status";
-      case INPROGRESS:
-        return "http://hl7.org/fhir/guidance-response-status";
-      case FAILURE:
-        return "http://hl7.org/fhir/guidance-response-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/guidance-response-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case SUCCESS:
-        return "The request was processed successfully.";
-      case DATAREQUESTED:
-        return "The request was processed successfully, but more data may result in a more complete evaluation.";
-      case DATAREQUIRED:
-        return "The request was processed, but more data is required to complete the evaluation.";
-      case INPROGRESS:
-        return "The request is currently being processed.";
-      case FAILURE:
-        return "The request was not processed successfully.";
-      case ENTEREDINERROR:
-        return "The response was entered in error.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case SUCCESS:
-        return "Success";
-      case DATAREQUESTED:
-        return "Data Requested";
-      case DATAREQUIRED:
-        return "Data Required";
-      case INPROGRESS:
-        return "In Progress";
-      case FAILURE:
-        return "Failure";
-      case ENTEREDINERROR:
-        return "Entered In Error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class GuidanceResponseStatusEnumFactory implements EnumFactory<GuidanceResponseStatus> {
-    public GuidanceResponseStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("success".equals(codeString))
-        return GuidanceResponseStatus.SUCCESS;
-      if ("data-requested".equals(codeString))
-        return GuidanceResponseStatus.DATAREQUESTED;
-      if ("data-required".equals(codeString))
-        return GuidanceResponseStatus.DATAREQUIRED;
-      if ("in-progress".equals(codeString))
-        return GuidanceResponseStatus.INPROGRESS;
-      if ("failure".equals(codeString))
-        return GuidanceResponseStatus.FAILURE;
-      if ("entered-in-error".equals(codeString))
-        return GuidanceResponseStatus.ENTEREDINERROR;
-      throw new IllegalArgumentException("Unknown GuidanceResponseStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<GuidanceResponseStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<GuidanceResponseStatus>(this, GuidanceResponseStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<GuidanceResponseStatus>(this, GuidanceResponseStatus.NULL, code);
-      if ("success".equals(codeString))
-        return new Enumeration<GuidanceResponseStatus>(this, GuidanceResponseStatus.SUCCESS, code);
-      if ("data-requested".equals(codeString))
-        return new Enumeration<GuidanceResponseStatus>(this, GuidanceResponseStatus.DATAREQUESTED, code);
-      if ("data-required".equals(codeString))
-        return new Enumeration<GuidanceResponseStatus>(this, GuidanceResponseStatus.DATAREQUIRED, code);
-      if ("in-progress".equals(codeString))
-        return new Enumeration<GuidanceResponseStatus>(this, GuidanceResponseStatus.INPROGRESS, code);
-      if ("failure".equals(codeString))
-        return new Enumeration<GuidanceResponseStatus>(this, GuidanceResponseStatus.FAILURE, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<GuidanceResponseStatus>(this, GuidanceResponseStatus.ENTEREDINERROR, code);
-      throw new FHIRException("Unknown GuidanceResponseStatus code '" + codeString + "'");
-    }
-
-    public String toCode(GuidanceResponseStatus code) {
-       if (code == GuidanceResponseStatus.NULL)
-           return null;
-       if (code == GuidanceResponseStatus.SUCCESS)
-        return "success";
-      if (code == GuidanceResponseStatus.DATAREQUESTED)
-        return "data-requested";
-      if (code == GuidanceResponseStatus.DATAREQUIRED)
-        return "data-required";
-      if (code == GuidanceResponseStatus.INPROGRESS)
-        return "in-progress";
-      if (code == GuidanceResponseStatus.FAILURE)
-        return "failure";
-      if (code == GuidanceResponseStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      return "?";
-   }
-
-    public String toSystem(GuidanceResponseStatus code) {
-      return code.getSystem();
-    }
-  }
-
   /**
    * The identifier of the request associated with this response. If an identifier
    * was given as part of the request, it will be reproduced here to enable the
@@ -290,10 +86,10 @@ public class GuidanceResponse extends DomainResource {
    * if more data was available, the status will be data-requested, and the
    * response will contain a description of the additional requested information.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 3, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 3, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "success | data-requested | data-required | in-progress | failure | entered-in-error", formalDefinition = "The status of the response. If the evaluation is completed successfully, the status will indicate success. However, in order to complete the evaluation, the engine may require more information. In this case, the status will be data-required, and the response will contain a description of the additional required information. If the evaluation completed successfully, but the engine determines that a potentially more accurate response could be provided if more data was available, the status will be data-requested, and the response will contain a description of the additional requested information.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/guidance-response-status")
-  protected Enumeration<GuidanceResponseStatus> status;
+  protected StringType status;
 
   /**
    * The patient for which the request was processed.
@@ -457,7 +253,7 @@ public class GuidanceResponse extends DomainResource {
   /**
    * Constructor
    */
-  public GuidanceResponse(Type module, Enumeration<GuidanceResponseStatus> status) {
+  public GuidanceResponse(Type module, StringType status) {
     super();
     this.module = module;
     this.status = status;
@@ -638,12 +434,12 @@ public class GuidanceResponse extends DomainResource {
    *         with id, value and extensions. The accessor "getStatus" gives direct
    *         access to the value
    */
-  public Enumeration<GuidanceResponseStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create GuidanceResponse.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<GuidanceResponseStatus>(new GuidanceResponseStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -669,7 +465,7 @@ public class GuidanceResponse extends DomainResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public GuidanceResponse setStatusElement(Enumeration<GuidanceResponseStatus> value) {
+  public GuidanceResponse setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -685,7 +481,7 @@ public class GuidanceResponse extends DomainResource {
    *         available, the status will be data-requested, and the response will
    *         contain a description of the additional requested information.
    */
-  public GuidanceResponseStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
@@ -701,10 +497,14 @@ public class GuidanceResponse extends DomainResource {
    *              status will be data-requested, and the response will contain a
    *              description of the additional requested information.
    */
-  public GuidanceResponse setStatus(GuidanceResponseStatus value) {
-    if (this.status == null)
-      this.status = new Enumeration<GuidanceResponseStatus>(new GuidanceResponseStatusEnumFactory());
-    this.status.setValue(value);
+  public GuidanceResponse setStatus(String value) {
+    if (value == null)
+      this.status = null;
+    else {
+      if (this.status == null)
+        this.status = new StringType();
+      this.status.setValue(value);
+    }
     return this;
   }
 
@@ -1328,7 +1128,7 @@ public class GuidanceResponse extends DomainResource {
         identifier));
     children.add(new Property("module[x]", "uri|canonical|CodeableConcept",
         "An identifier, CodeableConcept or canonical reference to the guidance that was requested.", 0, 1, module));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of the response. If the evaluation is completed successfully, the status will indicate success. However, in order to complete the evaluation, the engine may require more information. In this case, the status will be data-required, and the response will contain a description of the additional required information. If the evaluation completed successfully, but the engine determines that a potentially more accurate response could be provided if more data was available, the status will be data-requested, and the response will contain a description of the additional requested information.",
         0, 1, status));
     children.add(new Property("subject", "Reference(Patient|Group)", "The patient for which the request was processed.",
@@ -1389,7 +1189,7 @@ public class GuidanceResponse extends DomainResource {
       /* moduleCodeableConcept */ return new Property("module[x]", "uri|canonical|CodeableConcept",
           "An identifier, CodeableConcept or canonical reference to the guidance that was requested.", 0, 1, module);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of the response. If the evaluation is completed successfully, the status will indicate success. However, in order to complete the evaluation, the engine may require more information. In this case, the status will be data-required, and the response will contain a description of the additional required information. If the evaluation completed successfully, but the engine determines that a potentially more accurate response could be provided if more data was available, the status will be data-requested, and the response will contain a description of the additional requested information.",
           0, 1, status);
     case -1867885268:
@@ -1451,7 +1251,7 @@ public class GuidanceResponse extends DomainResource {
     case -1068784020:
       /* module */ return this.module == null ? new Base[0] : new Base[] { this.module }; // Type
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<GuidanceResponseStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -1867885268:
       /* subject */ return this.subject == null ? new Base[0] : new Base[] { this.subject }; // Reference
     case 1524132147:
@@ -1498,8 +1298,7 @@ public class GuidanceResponse extends DomainResource {
       this.module = castToType(value); // Type
       return value;
     case -892481550: // status
-      value = new GuidanceResponseStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<GuidanceResponseStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -1867885268: // subject
       this.subject = castToReference(value); // Reference
@@ -1549,8 +1348,7 @@ public class GuidanceResponse extends DomainResource {
     } else if (name.equals("module[x]")) {
       this.module = castToType(value); // Type
     } else if (name.equals("status")) {
-      value = new GuidanceResponseStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<GuidanceResponseStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("subject")) {
       this.subject = castToReference(value); // Reference
     } else if (name.equals("encounter")) {
@@ -1666,7 +1464,7 @@ public class GuidanceResponse extends DomainResource {
     case -1068784020:
       /* module */ return new String[] { "uri", "canonical", "CodeableConcept" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -1867885268:
       /* subject */ return new String[] { "Reference" };
     case 1524132147:

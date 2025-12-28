@@ -12026,8 +12026,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && nameIsTypeName(xpp, "module")) {
       res.setModule(parseType("module", xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, GuidanceResponse.GuidanceResponseStatus.NULL,
-          new GuidanceResponse.GuidanceResponseStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("subject")) {
       res.setSubject(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("encounter")) {
@@ -39312,8 +39311,7 @@ public class XmlParser extends XmlParserBase {
       composeType("module", element.getModule());
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(),
-          new GuidanceResponse.GuidanceResponseStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasSubject()) {
       composeReference("subject", element.getSubject());
     }
