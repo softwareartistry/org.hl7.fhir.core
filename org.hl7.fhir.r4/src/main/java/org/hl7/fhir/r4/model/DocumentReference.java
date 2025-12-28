@@ -56,337 +56,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "DocumentReference", profile = "http://hl7.org/fhir/StructureDefinition/DocumentReference")
 public class DocumentReference extends DomainResource {
 
-  public enum ReferredDocumentStatus {
-    /**
-     * This is a preliminary composition or document (also known as initial or
-     * interim). The content may be incomplete or unverified.
-     */
-    PRELIMINARY,
-    /**
-     * This version of the composition is complete and verified by an appropriate
-     * person and no further work is planned. Any subsequent updates would be on a
-     * new version of the composition.
-     */
-    FINAL,
-    /**
-     * The composition content or the referenced resources have been modified
-     * (edited or added to) subsequent to being released as "final" and the
-     * composition is complete and verified by an authorized person.
-     */
-    AMENDED,
-    /**
-     * The composition or document was originally created/issued in error, and this
-     * is an amendment that marks that the entire series should not be considered as
-     * valid.
-     */
-    ENTEREDINERROR,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ReferredDocumentStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("preliminary".equals(codeString))
-        return PRELIMINARY;
-      if ("final".equals(codeString))
-        return FINAL;
-      if ("amended".equals(codeString))
-        return AMENDED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ReferredDocumentStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case PRELIMINARY:
-        return "preliminary";
-      case FINAL:
-        return "final";
-      case AMENDED:
-        return "amended";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case PRELIMINARY:
-        return "http://hl7.org/fhir/composition-status";
-      case FINAL:
-        return "http://hl7.org/fhir/composition-status";
-      case AMENDED:
-        return "http://hl7.org/fhir/composition-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/composition-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case PRELIMINARY:
-        return "This is a preliminary composition or document (also known as initial or interim). The content may be incomplete or unverified.";
-      case FINAL:
-        return "This version of the composition is complete and verified by an appropriate person and no further work is planned. Any subsequent updates would be on a new version of the composition.";
-      case AMENDED:
-        return "The composition content or the referenced resources have been modified (edited or added to) subsequent to being released as \"final\" and the composition is complete and verified by an authorized person.";
-      case ENTEREDINERROR:
-        return "The composition or document was originally created/issued in error, and this is an amendment that marks that the entire series should not be considered as valid.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case PRELIMINARY:
-        return "Preliminary";
-      case FINAL:
-        return "Final";
-      case AMENDED:
-        return "Amended";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ReferredDocumentStatusEnumFactory implements EnumFactory<ReferredDocumentStatus> {
-    public ReferredDocumentStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-          return null;
-      if ("preliminary".equals(codeString))
-        return ReferredDocumentStatus.PRELIMINARY;
-      if ("final".equals(codeString))
-        return ReferredDocumentStatus.FINAL;
-      if ("amended".equals(codeString))
-        return ReferredDocumentStatus.AMENDED;
-      if ("entered-in-error".equals(codeString))
-        return ReferredDocumentStatus.ENTEREDINERROR;
-      throw new IllegalArgumentException("Unknown ReferredDocumentStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<ReferredDocumentStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ReferredDocumentStatus>(this, ReferredDocumentStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ReferredDocumentStatus>(this, ReferredDocumentStatus.NULL, code);
-      if ("preliminary".equals(codeString))
-        return new Enumeration<ReferredDocumentStatus>(this, ReferredDocumentStatus.PRELIMINARY, code);
-      if ("final".equals(codeString))
-        return new Enumeration<ReferredDocumentStatus>(this, ReferredDocumentStatus.FINAL, code);
-      if ("amended".equals(codeString))
-        return new Enumeration<ReferredDocumentStatus>(this, ReferredDocumentStatus.AMENDED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<ReferredDocumentStatus>(this, ReferredDocumentStatus.ENTEREDINERROR, code);
-      throw new FHIRException("Unknown ReferredDocumentStatus code '" + codeString + "'");
-    }
-
-    public String toCode(ReferredDocumentStatus code) {
-       if (code == ReferredDocumentStatus.NULL)
-           return null;
-       if (code == ReferredDocumentStatus.PRELIMINARY)
-        return "preliminary";
-      if (code == ReferredDocumentStatus.FINAL)
-        return "final";
-      if (code == ReferredDocumentStatus.AMENDED)
-        return "amended";
-      if (code == ReferredDocumentStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      return "?";
-   }
-
-    public String toSystem(ReferredDocumentStatus code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum DocumentRelationshipType {
-    /**
-     * This document logically replaces or supersedes the target document.
-     */
-    REPLACES,
-    /**
-     * This document was generated by transforming the target document (e.g. format
-     * or language conversion).
-     */
-    TRANSFORMS,
-    /**
-     * This document is a signature of the target document.
-     */
-    SIGNS,
-    /**
-     * This document adds additional information to the target document.
-     */
-    APPENDS,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static DocumentRelationshipType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("replaces".equals(codeString))
-        return REPLACES;
-      if ("transforms".equals(codeString))
-        return TRANSFORMS;
-      if ("signs".equals(codeString))
-        return SIGNS;
-      if ("appends".equals(codeString))
-        return APPENDS;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown DocumentRelationshipType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case REPLACES:
-        return "replaces";
-      case TRANSFORMS:
-        return "transforms";
-      case SIGNS:
-        return "signs";
-      case APPENDS:
-        return "appends";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case REPLACES:
-        return "http://hl7.org/fhir/document-relationship-type";
-      case TRANSFORMS:
-        return "http://hl7.org/fhir/document-relationship-type";
-      case SIGNS:
-        return "http://hl7.org/fhir/document-relationship-type";
-      case APPENDS:
-        return "http://hl7.org/fhir/document-relationship-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case REPLACES:
-        return "This document logically replaces or supersedes the target document.";
-      case TRANSFORMS:
-        return "This document was generated by transforming the target document (e.g. format or language conversion).";
-      case SIGNS:
-        return "This document is a signature of the target document.";
-      case APPENDS:
-        return "This document adds additional information to the target document.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case REPLACES:
-        return "Replaces";
-      case TRANSFORMS:
-        return "Transforms";
-      case SIGNS:
-        return "Signs";
-      case APPENDS:
-        return "Appends";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class DocumentRelationshipTypeEnumFactory implements EnumFactory<DocumentRelationshipType> {
-    public DocumentRelationshipType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("replaces".equals(codeString))
-        return DocumentRelationshipType.REPLACES;
-      if ("transforms".equals(codeString))
-        return DocumentRelationshipType.TRANSFORMS;
-      if ("signs".equals(codeString))
-        return DocumentRelationshipType.SIGNS;
-      if ("appends".equals(codeString))
-        return DocumentRelationshipType.APPENDS;
-      throw new IllegalArgumentException("Unknown DocumentRelationshipType code '" + codeString + "'");
-    }
-
-    public Enumeration<DocumentRelationshipType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<DocumentRelationshipType>(this, DocumentRelationshipType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<DocumentRelationshipType>(this, DocumentRelationshipType.NULL, code);
-      if ("replaces".equals(codeString))
-        return new Enumeration<DocumentRelationshipType>(this, DocumentRelationshipType.REPLACES, code);
-      if ("transforms".equals(codeString))
-        return new Enumeration<DocumentRelationshipType>(this, DocumentRelationshipType.TRANSFORMS, code);
-      if ("signs".equals(codeString))
-        return new Enumeration<DocumentRelationshipType>(this, DocumentRelationshipType.SIGNS, code);
-      if ("appends".equals(codeString))
-        return new Enumeration<DocumentRelationshipType>(this, DocumentRelationshipType.APPENDS, code);
-      throw new FHIRException("Unknown DocumentRelationshipType code '" + codeString + "'");
-    }
-
-    public String toCode(DocumentRelationshipType code) {
-       if (code == DocumentRelationshipType.NULL)
-           return null;
-       if (code == DocumentRelationshipType.REPLACES)
-        return "replaces";
-      if (code == DocumentRelationshipType.TRANSFORMS)
-        return "transforms";
-      if (code == DocumentRelationshipType.SIGNS)
-        return "signs";
-      if (code == DocumentRelationshipType.APPENDS)
-        return "appends";
-      return "?";
-   }
-
-    public String toSystem(DocumentRelationshipType code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class DocumentReferenceRelatesToComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -532,7 +201,7 @@ public class DocumentReference extends DomainResource {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("code", "code", "The type of relationship that this document has with anther document.",
+      children.add(new Property("code", "string", "The type of relationship that this document has with anther document.",
           0, 1, code));
       children.add(new Property("target", "Reference(DocumentReference)", "The target document of this relationship.",
           0, 1, target));
@@ -542,7 +211,7 @@ public class DocumentReference extends DomainResource {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 3059181:
-        /* code */ return new Property("code", "code",
+        /* code */ return new Property("code", "string",
             "The type of relationship that this document has with anther document.", 0, 1, code);
       case -880905839:
         /* target */ return new Property("target", "Reference(DocumentReference)",
@@ -622,7 +291,7 @@ public class DocumentReference extends DomainResource {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 3059181:
-        /* code */ return new String[] { "code" };
+        /* code */ return new String[] { "string" };
       case -880905839:
         /* target */ return new String[] { "Reference" };
       default:
@@ -1654,7 +1323,7 @@ public class DocumentReference extends DomainResource {
   /**
    * The status of the underlying document.
    */
-  @Child(name = "docStatus", type = { CodeType.class }, order = 3, min = 0, max = 1, modifier = false, summary = true)
+  @Child(name = "docStatus", type = { StringType.class }, order = 3, min = 0, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "preliminary | final | amended | entered-in-error", formalDefinition = "The status of the underlying document.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/composition-status")
   protected StringType docStatus;
@@ -2612,7 +2281,7 @@ public class DocumentReference extends DomainResource {
         "Other identifiers associated with the document, including version independent identifiers.", 0,
         java.lang.Integer.MAX_VALUE, identifier));
     children.add(new Property("status", "code", "The status of this document reference.", 0, 1, status));
-    children.add(new Property("docStatus", "code", "The status of the underlying document.", 0, 1, docStatus));
+    children.add(new Property("docStatus", "string", "The status of the underlying document.", 0, 1, docStatus));
     children.add(new Property("type", "CodeableConcept",
         "Specifies the particular kind of document referenced  (e.g. History and Physical, Discharge Summary, Progress Note). This usually equates to the purpose of making the document referenced.",
         0, 1, type));
@@ -2661,7 +2330,7 @@ public class DocumentReference extends DomainResource {
     case -892481550:
       /* status */ return new Property("status", "code", "The status of this document reference.", 0, 1, status);
     case -23496886:
-      /* docStatus */ return new Property("docStatus", "code", "The status of the underlying document.", 0, 1,
+      /* docStatus */ return new Property("docStatus", "string", "The status of the underlying document.", 0, 1,
           docStatus);
     case 3575610:
       /* type */ return new Property("type", "CodeableConcept",
@@ -2947,7 +2616,7 @@ public class DocumentReference extends DomainResource {
     case -892481550:
       /* status */ return new String[] { "code" };
     case -23496886:
-      /* docStatus */ return new String[] { "code" };
+      /* docStatus */ return new String[] { "string" };
     case 3575610:
       /* type */ return new String[] { "CodeableConcept" };
     case 50511102:
