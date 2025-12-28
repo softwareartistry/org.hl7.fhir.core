@@ -9146,7 +9146,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "ImmunizationEvaluation", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "ImmunizationEvaluation", "status", element.getStatusElement(), -1);
+      composeString(t, "ImmunizationEvaluation", "status", element.getStatusElement(), -1);
     if (element.hasPatient())
       composeReference(t, "ImmunizationEvaluation", "patient", element.getPatient(), -1);
     if (element.hasDateElement())

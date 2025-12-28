@@ -12586,8 +12586,7 @@ public class XmlParser extends XmlParserBase {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("identifier")) {
       res.getIdentifier().add(parseIdentifier(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, ImmunizationEvaluation.ImmunizationEvaluationStatus.NULL,
-          new ImmunizationEvaluation.ImmunizationEvaluationStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("patient")) {
       res.setPatient(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("date")) {
@@ -39910,8 +39909,7 @@ public class XmlParser extends XmlParserBase {
         composeIdentifier("identifier", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(),
-          new ImmunizationEvaluation.ImmunizationEvaluationStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasPatient()) {
       composeReference("patient", element.getPatient());
     }

@@ -15787,9 +15787,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(
-        parseEnumeration(json.get("status").getAsString(), ImmunizationEvaluation.ImmunizationEvaluationStatus.NULL,
-          new ImmunizationEvaluation.ImmunizationEvaluationStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("patient"))
@@ -48800,10 +48798,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(),
-        new ImmunizationEvaluation.ImmunizationEvaluationStatusEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(),
-        new ImmunizationEvaluation.ImmunizationEvaluationStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasPatient()) {
       composeReference("patient", element.getPatient());

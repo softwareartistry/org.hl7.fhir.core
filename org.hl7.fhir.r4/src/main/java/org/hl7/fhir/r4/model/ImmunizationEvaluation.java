@@ -50,128 +50,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "ImmunizationEvaluation", profile = "http://hl7.org/fhir/StructureDefinition/ImmunizationEvaluation")
 public class ImmunizationEvaluation extends DomainResource {
 
-  public enum ImmunizationEvaluationStatus {
-    /**
-     * null
-     */
-    COMPLETED,
-    /**
-     * null
-     */
-    ENTEREDINERROR,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ImmunizationEvaluationStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("completed".equals(codeString))
-        return COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ImmunizationEvaluationStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case COMPLETED:
-        return "completed";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case COMPLETED:
-        return "http://terminology.hl7.org/CodeSystem/medication-admin-status";
-      case ENTEREDINERROR:
-        return "http://terminology.hl7.org/CodeSystem/medication-admin-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case COMPLETED:
-        return "";
-      case ENTEREDINERROR:
-        return "";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case COMPLETED:
-        return "completed";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ImmunizationEvaluationStatusEnumFactory implements EnumFactory<ImmunizationEvaluationStatus> {
-    public ImmunizationEvaluationStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("completed".equals(codeString))
-        return ImmunizationEvaluationStatus.COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return ImmunizationEvaluationStatus.ENTEREDINERROR;
-      throw new IllegalArgumentException("Unknown ImmunizationEvaluationStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<ImmunizationEvaluationStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ImmunizationEvaluationStatus>(this, ImmunizationEvaluationStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ImmunizationEvaluationStatus>(this, ImmunizationEvaluationStatus.NULL, code);
-      if ("completed".equals(codeString))
-        return new Enumeration<ImmunizationEvaluationStatus>(this, ImmunizationEvaluationStatus.COMPLETED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<ImmunizationEvaluationStatus>(this, ImmunizationEvaluationStatus.ENTEREDINERROR, code);
-      throw new FHIRException("Unknown ImmunizationEvaluationStatus code '" + codeString + "'");
-    }
-
-    public String toCode(ImmunizationEvaluationStatus code) {
-       if (code == ImmunizationEvaluationStatus.NULL)
-           return null;
-       if (code == ImmunizationEvaluationStatus.COMPLETED)
-        return "completed";
-      if (code == ImmunizationEvaluationStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      return "?";
-   }
-
-    public String toSystem(ImmunizationEvaluationStatus code) {
-      return code.getSystem();
-    }
-  }
-
   /**
    * A unique identifier assigned to this immunization evaluation record.
    */
@@ -184,10 +62,10 @@ public class ImmunizationEvaluation extends DomainResource {
    * Indicates the current status of the evaluation of the vaccination
    * administration event.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "completed | entered-in-error", formalDefinition = "Indicates the current status of the evaluation of the vaccination administration event.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/immunization-evaluation-status")
-  protected Enumeration<ImmunizationEvaluationStatus> status;
+  protected StringType status;
 
   /**
    * The individual for whom the evaluation is being done.
@@ -310,7 +188,7 @@ public class ImmunizationEvaluation extends DomainResource {
   /**
    * Constructor
    */
-  public ImmunizationEvaluation(Enumeration<ImmunizationEvaluationStatus> status, Reference patient,
+  public ImmunizationEvaluation(StringType status, Reference patient,
       CodeableConcept targetDisease, Reference immunizationEvent, CodeableConcept doseStatus) {
     super();
     this.status = status;
@@ -381,12 +259,12 @@ public class ImmunizationEvaluation extends DomainResource {
    *         with id, value and extensions. The accessor "getStatus" gives direct
    *         access to the value
    */
-  public Enumeration<ImmunizationEvaluationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create ImmunizationEvaluation.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<ImmunizationEvaluationStatus>(new ImmunizationEvaluationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -404,7 +282,7 @@ public class ImmunizationEvaluation extends DomainResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getStatus" gives direct access to the value
    */
-  public ImmunizationEvaluation setStatusElement(Enumeration<ImmunizationEvaluationStatus> value) {
+  public ImmunizationEvaluation setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -413,17 +291,17 @@ public class ImmunizationEvaluation extends DomainResource {
    * @return Indicates the current status of the evaluation of the vaccination
    *         administration event.
    */
-  public ImmunizationEvaluationStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value Indicates the current status of the evaluation of the
    *              vaccination administration event.
    */
-  public ImmunizationEvaluation setStatus(ImmunizationEvaluationStatus value) {
+  public ImmunizationEvaluation setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<ImmunizationEvaluationStatus>(new ImmunizationEvaluationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -975,7 +853,7 @@ public class ImmunizationEvaluation extends DomainResource {
     children.add(
         new Property("identifier", "Identifier", "A unique identifier assigned to this immunization evaluation record.",
             0, java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "Indicates the current status of the evaluation of the vaccination administration event.", 0, 1, status));
     children.add(new Property("patient", "Reference(Patient)", "The individual for whom the evaluation is being done.",
         0, 1, patient));
@@ -1012,7 +890,7 @@ public class ImmunizationEvaluation extends DomainResource {
           "A unique identifier assigned to this immunization evaluation record.", 0, java.lang.Integer.MAX_VALUE,
           identifier);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "Indicates the current status of the evaluation of the vaccination administration event.", 0, 1, status);
     case -791418107:
       /* patient */ return new Property("patient", "Reference(Patient)",
@@ -1119,8 +997,7 @@ public class ImmunizationEvaluation extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new ImmunizationEvaluationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ImmunizationEvaluationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -791418107: // patient
       this.patient = castToReference(value); // Reference
@@ -1166,8 +1043,7 @@ public class ImmunizationEvaluation extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new ImmunizationEvaluationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ImmunizationEvaluationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("patient")) {
       this.patient = castToReference(value); // Reference
     } else if (name.equals("date")) {
@@ -1273,7 +1149,7 @@ public class ImmunizationEvaluation extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -791418107:
       /* patient */ return new String[] { "Reference" };
     case 3076014:
