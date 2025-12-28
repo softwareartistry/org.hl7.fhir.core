@@ -8423,7 +8423,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "Flag", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "Flag", "status", element.getStatusElement(), -1);
+      composeString(t, "Flag", "status", element.getStatusElement(), -1);
     for (int i = 0; i < element.getCategory().size(); i++)
       composeCodeableConcept(t, "Flag", "category", element.getCategory().get(i), i);
     if (element.hasCode())

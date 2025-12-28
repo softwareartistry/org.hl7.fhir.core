@@ -46,149 +46,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Flag", profile = "http://hl7.org/fhir/StructureDefinition/Flag")
 public class Flag extends DomainResource {
 
-  public enum FlagStatus {
-    /**
-     * A current flag that should be displayed to a user. A system may use the
-     * category to determine which user roles should view the flag.
-     */
-    ACTIVE,
-    /**
-     * The flag no longer needs to be displayed.
-     */
-    INACTIVE,
-    /**
-     * The flag was added in error and should no longer be displayed.
-     */
-    ENTEREDINERROR,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static FlagStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("active".equals(codeString))
-        return ACTIVE;
-      if ("inactive".equals(codeString))
-        return INACTIVE;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown FlagStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ACTIVE:
-        return "active";
-      case INACTIVE:
-        return "inactive";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ACTIVE:
-        return "http://hl7.org/fhir/flag-status";
-      case INACTIVE:
-        return "http://hl7.org/fhir/flag-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/flag-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ACTIVE:
-        return "A current flag that should be displayed to a user. A system may use the category to determine which user roles should view the flag.";
-      case INACTIVE:
-        return "The flag no longer needs to be displayed.";
-      case ENTEREDINERROR:
-        return "The flag was added in error and should no longer be displayed.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ACTIVE:
-        return "Active";
-      case INACTIVE:
-        return "Inactive";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class FlagStatusEnumFactory implements EnumFactory<FlagStatus> {
-    public FlagStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("active".equals(codeString))
-        return FlagStatus.ACTIVE;
-      if ("inactive".equals(codeString))
-        return FlagStatus.INACTIVE;
-      if ("entered-in-error".equals(codeString))
-        return FlagStatus.ENTEREDINERROR;
-      throw new IllegalArgumentException("Unknown FlagStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<FlagStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<FlagStatus>(this, FlagStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<FlagStatus>(this, FlagStatus.NULL, code);
-      if ("active".equals(codeString))
-        return new Enumeration<FlagStatus>(this, FlagStatus.ACTIVE, code);
-      if ("inactive".equals(codeString))
-        return new Enumeration<FlagStatus>(this, FlagStatus.INACTIVE, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<FlagStatus>(this, FlagStatus.ENTEREDINERROR, code);
-      throw new FHIRException("Unknown FlagStatus code '" + codeString + "'");
-    }
-
-    public String toCode(FlagStatus code) {
-       if (code == FlagStatus.NULL)
-           return null;
-       if (code == FlagStatus.ACTIVE)
-        return "active";
-      if (code == FlagStatus.INACTIVE)
-        return "inactive";
-      if (code == FlagStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      return "?";
-   }
-
-    public String toSystem(FlagStatus code) {
-      return code.getSystem();
-    }
-  }
-
   /**
    * Business identifiers assigned to this flag by the performer or other systems
    * which remain constant as the resource is updated and propagates from server
@@ -202,10 +59,10 @@ public class Flag extends DomainResource {
   /**
    * Supports basic workflow.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "active | inactive | entered-in-error", formalDefinition = "Supports basic workflow.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/flag-status")
-  protected Enumeration<FlagStatus> status;
+  protected StringType status;
 
   /**
    * Allows a flag to be divided into different categories like clinical,
@@ -290,7 +147,7 @@ public class Flag extends DomainResource {
   /**
    * Constructor
    */
-  public Flag(Enumeration<FlagStatus> status, CodeableConcept code, Reference subject) {
+  public Flag(StringType status, CodeableConcept code, Reference subject) {
     super();
     this.status = status;
     this.code = code;
@@ -358,12 +215,12 @@ public class Flag extends DomainResource {
    *         object with id, value and extensions. The accessor "getStatus" gives
    *         direct access to the value
    */
-  public Enumeration<FlagStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Flag.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<FlagStatus>(new FlagStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -380,7 +237,7 @@ public class Flag extends DomainResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getStatus" gives direct access to the value
    */
-  public Flag setStatusElement(Enumeration<FlagStatus> value) {
+  public Flag setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -388,16 +245,16 @@ public class Flag extends DomainResource {
   /**
    * @return Supports basic workflow.
    */
-  public FlagStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value Supports basic workflow.
    */
-  public Flag setStatus(FlagStatus value) {
+  public Flag setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<FlagStatus>(new FlagStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -667,7 +524,7 @@ public class Flag extends DomainResource {
     children.add(new Property("identifier", "Identifier",
         "Business identifiers assigned to this flag by the performer or other systems which remain constant as the resource is updated and propagates from server to server.",
         0, java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code", "Supports basic workflow.", 0, 1, status));
+    children.add(new Property("status", "string", "Supports basic workflow.", 0, 1, status));
     children.add(new Property("category", "CodeableConcept",
         "Allows a flag to be divided into different categories like clinical, administrative etc. Intended to be used as a means of filtering which flags are displayed to particular user or in a given context.",
         0, java.lang.Integer.MAX_VALUE, category));
@@ -694,7 +551,7 @@ public class Flag extends DomainResource {
           "Business identifiers assigned to this flag by the performer or other systems which remain constant as the resource is updated and propagates from server to server.",
           0, java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "Supports basic workflow.", 0, 1, status);
+      /* status */ return new Property("status", "string", "Supports basic workflow.", 0, 1, status);
     case 50511102:
       /* category */ return new Property("category", "CodeableConcept",
           "Allows a flag to be divided into different categories like clinical, administrative etc. Intended to be used as a means of filtering which flags are displayed to particular user or in a given context.",
@@ -756,8 +613,7 @@ public class Flag extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new FlagStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<FlagStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 50511102: // category
       this.getCategory().add(castToCodeableConcept(value)); // CodeableConcept
@@ -788,8 +644,7 @@ public class Flag extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new FlagStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<FlagStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("category")) {
       this.getCategory().add(castToCodeableConcept(value));
     } else if (name.equals("code")) {
@@ -861,7 +716,7 @@ public class Flag extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 50511102:
       /* category */ return new String[] { "CodeableConcept" };
     case 3059181:
