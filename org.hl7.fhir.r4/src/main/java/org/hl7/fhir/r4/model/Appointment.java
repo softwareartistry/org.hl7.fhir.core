@@ -2077,7 +2077,7 @@ public class Appointment extends DomainResource {
     children.add(new Property("identifier", "Identifier",
         "This records identifiers associated with this appointment concern that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation).",
         0, java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The overall status of the Appointment. Each of the participants has their own participation status which indicates their involvement in the process, however this status indicates the shared status.",
         0, 1, status));
     children.add(new Property("cancelationReason", "CodeableConcept",
@@ -2144,7 +2144,7 @@ public class Appointment extends DomainResource {
           "This records identifiers associated with this appointment concern that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation).",
           0, java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The overall status of the Appointment. Each of the participants has their own participation status which indicates their involvement in the process, however this status indicates the shared status.",
           0, 1, status);
     case 987811551:
@@ -2531,7 +2531,7 @@ public class Appointment extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 987811551:
       /* cancelationReason */ return new String[] { "CodeableConcept" };
     case 1281188563:

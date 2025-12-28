@@ -2242,10 +2242,10 @@ public class BiologicallyDerivedProduct extends DomainResource {
     children.add(new Property("identifier", "Identifier",
         "This records identifiers associated with this biologically derived product instance that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation).",
         0, java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("productCategory", "code", "Broad category of this product.", 0, 1, productCategory));
+    children.add(new Property("productCategory", "string", "Broad category of this product.", 0, 1, productCategory));
     children.add(new Property("productCode", "CodeableConcept",
         "A code that identifies the kind of this biologically derived product (SNOMED Ctcode).", 0, 1, productCode));
-    children.add(new Property("status", "code", "Whether the product is currently available.", 0, 1, status));
+    children.add(new Property("status", "string", "Whether the product is currently available.", 0, 1, status));
     children.add(new Property("request", "Reference(ServiceRequest)",
         "Procedure request to obtain this biologically derived product.", 0, java.lang.Integer.MAX_VALUE, request));
     children.add(new Property("quantity", "integer", "Number of discrete units within this product.", 0, 1, quantity));
@@ -2269,13 +2269,13 @@ public class BiologicallyDerivedProduct extends DomainResource {
           "This records identifiers associated with this biologically derived product instance that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation).",
           0, java.lang.Integer.MAX_VALUE, identifier);
     case 197299981:
-      /* productCategory */ return new Property("productCategory", "code", "Broad category of this product.", 0, 1,
+      /* productCategory */ return new Property("productCategory", "string", "Broad category of this product.", 0, 1,
           productCategory);
     case -1492131972:
       /* productCode */ return new Property("productCode", "CodeableConcept",
           "A code that identifies the kind of this biologically derived product (SNOMED Ctcode).", 0, 1, productCode);
     case -892481550:
-      /* status */ return new Property("status", "code", "Whether the product is currently available.", 0, 1, status);
+      /* status */ return new Property("status", "string", "Whether the product is currently available.", 0, 1, status);
     case 1095692943:
       /* request */ return new Property("request", "Reference(ServiceRequest)",
           "Procedure request to obtain this biologically derived product.", 0, java.lang.Integer.MAX_VALUE, request);
@@ -2477,11 +2477,11 @@ public class BiologicallyDerivedProduct extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case 197299981:
-      /* productCategory */ return new String[] { "code" };
+      /* productCategory */ return new String[] { "string" };
     case -1492131972:
       /* productCode */ return new String[] { "CodeableConcept" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 1095692943:
       /* request */ return new String[] { "Reference" };
     case -1285004149:

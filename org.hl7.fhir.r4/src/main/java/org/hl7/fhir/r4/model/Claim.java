@@ -9576,7 +9576,7 @@ public class Claim extends DomainResource {
     children.add(new Property("subType", "CodeableConcept",
         "A finer grained suite of claim type codes which may convey additional information such as Inpatient vs Outpatient and/or a specialty service.",
         0, 1, subType));
-    children.add(new Property("use", "code",
+    children.add(new Property("use", "string",
         "A code to indicate whether the nature of the request is: to request adjudication of products and services previously rendered; or requesting authorization and adjudication for provision in the future; or requesting the non-binding adjudication of the listed products and services which could be provided in the future.",
         0, 1, use));
     children.add(new Property("patient", "Reference(Patient)",
@@ -9649,7 +9649,7 @@ public class Claim extends DomainResource {
           "A finer grained suite of claim type codes which may convey additional information such as Inpatient vs Outpatient and/or a specialty service.",
           0, 1, subType);
     case 116103:
-      /* use */ return new Property("use", "code",
+      /* use */ return new Property("use", "string",
           "A code to indicate whether the nature of the request is: to request adjudication of products and services previously rendered; or requesting authorization and adjudication for provision in the future; or requesting the non-binding adjudication of the listed products and services which could be provided in the future.",
           0, 1, use);
     case -791418107:
@@ -10091,7 +10091,7 @@ public class Claim extends DomainResource {
     case -1868521062:
       /* subType */ return new String[] { "CodeableConcept" };
     case 116103:
-      /* use */ return new String[] { "code" };
+      /* use */ return new String[] { "string" };
     case -791418107:
       /* patient */ return new String[] { "Reference" };
     case -332066046:

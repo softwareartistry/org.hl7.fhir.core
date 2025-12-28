@@ -56,148 +56,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "ClinicalImpression", profile = "http://hl7.org/fhir/StructureDefinition/ClinicalImpression")
 public class ClinicalImpression extends DomainResource {
 
-  public enum ClinicalImpressionStatus {
-    /**
-     * null
-     */
-    INPROGRESS,
-    /**
-     * null
-     */
-    COMPLETED,
-    /**
-     * null
-     */
-    ENTEREDINERROR,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ClinicalImpressionStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("in-progress".equals(codeString))
-        return INPROGRESS;
-      if ("completed".equals(codeString))
-        return COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ClinicalImpressionStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case INPROGRESS:
-        return "in-progress";
-      case COMPLETED:
-        return "completed";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case INPROGRESS:
-        return "http://hl7.org/fhir/event-status";
-      case COMPLETED:
-        return "http://hl7.org/fhir/event-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/event-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case INPROGRESS:
-        return "";
-      case COMPLETED:
-        return "";
-      case ENTEREDINERROR:
-        return "";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case INPROGRESS:
-        return "in-progress";
-      case COMPLETED:
-        return "completed";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ClinicalImpressionStatusEnumFactory implements EnumFactory<ClinicalImpressionStatus> {
-    public ClinicalImpressionStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("in-progress".equals(codeString))
-        return ClinicalImpressionStatus.INPROGRESS;
-      if ("completed".equals(codeString))
-        return ClinicalImpressionStatus.COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return ClinicalImpressionStatus.ENTEREDINERROR;
-      throw new IllegalArgumentException("Unknown ClinicalImpressionStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<ClinicalImpressionStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ClinicalImpressionStatus>(this, ClinicalImpressionStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ClinicalImpressionStatus>(this, ClinicalImpressionStatus.NULL, code);
-      if ("in-progress".equals(codeString))
-        return new Enumeration<ClinicalImpressionStatus>(this, ClinicalImpressionStatus.INPROGRESS, code);
-      if ("completed".equals(codeString))
-        return new Enumeration<ClinicalImpressionStatus>(this, ClinicalImpressionStatus.COMPLETED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<ClinicalImpressionStatus>(this, ClinicalImpressionStatus.ENTEREDINERROR, code);
-      throw new FHIRException("Unknown ClinicalImpressionStatus code '" + codeString + "'");
-    }
-
-    public String toCode(ClinicalImpressionStatus code) {
-       if (code == ClinicalImpressionStatus.NULL)
-           return null;
-       if (code == ClinicalImpressionStatus.INPROGRESS)
-        return "in-progress";
-      if (code == ClinicalImpressionStatus.COMPLETED)
-        return "completed";
-      if (code == ClinicalImpressionStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      return "?";
-   }
-
-    public String toSystem(ClinicalImpressionStatus code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class ClinicalImpressionInvestigationComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -858,10 +716,10 @@ public class ClinicalImpression extends DomainResource {
   /**
    * Identifies the workflow status of the assessment.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "in-progress | completed | entered-in-error", formalDefinition = "Identifies the workflow status of the assessment.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/clinicalimpression-status")
-  protected Enumeration<ClinicalImpressionStatus> status;
+  protected StringType status;
 
   /**
    * Captures the reason for the current state of the ClinicalImpression.
@@ -1070,7 +928,7 @@ public class ClinicalImpression extends DomainResource {
   /**
    * Constructor
    */
-  public ClinicalImpression(Enumeration<ClinicalImpressionStatus> status, Reference subject) {
+  public ClinicalImpression(StringType status, Reference subject) {
     super();
     this.status = status;
     this.subject = subject;
@@ -1137,12 +995,12 @@ public class ClinicalImpression extends DomainResource {
    *         This is the underlying object with id, value and extensions. The
    *         accessor "getStatus" gives direct access to the value
    */
-  public Enumeration<ClinicalImpressionStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create ClinicalImpression.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<ClinicalImpressionStatus>(new ClinicalImpressionStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -1160,7 +1018,7 @@ public class ClinicalImpression extends DomainResource {
    *              extensions. The accessor "getStatus" gives direct access to the
    *              value
    */
-  public ClinicalImpression setStatusElement(Enumeration<ClinicalImpressionStatus> value) {
+  public ClinicalImpression setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1168,16 +1026,16 @@ public class ClinicalImpression extends DomainResource {
   /**
    * @return Identifies the workflow status of the assessment.
    */
-  public ClinicalImpressionStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value Identifies the workflow status of the assessment.
    */
-  public ClinicalImpression setStatus(ClinicalImpressionStatus value) {
+  public ClinicalImpression setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<ClinicalImpressionStatus>(new ClinicalImpressionStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -2136,7 +1994,7 @@ public class ClinicalImpression extends DomainResource {
     children.add(new Property("identifier", "Identifier",
         "Business identifiers assigned to this clinical impression by the performer or other systems which remain constant as the resource is updated and propagates from server to server.",
         0, java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code", "Identifies the workflow status of the assessment.", 0, 1, status));
+    children.add(new Property("status", "string", "Identifies the workflow status of the assessment.", 0, 1, status));
     children.add(new Property("statusReason", "CodeableConcept",
         "Captures the reason for the current state of the ClinicalImpression.", 0, 1, statusReason));
     children.add(
@@ -2190,7 +2048,7 @@ public class ClinicalImpression extends DomainResource {
           "Business identifiers assigned to this clinical impression by the performer or other systems which remain constant as the resource is updated and propagates from server to server.",
           0, java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "Identifies the workflow status of the assessment.", 0, 1,
+      /* status */ return new Property("status", "string", "Identifies the workflow status of the assessment.", 0, 1,
           status);
     case 2051346646:
       /* statusReason */ return new Property("statusReason", "CodeableConcept",
@@ -2275,7 +2133,7 @@ public class ClinicalImpression extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<ClinicalImpressionStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 2051346646:
       /* statusReason */ return this.statusReason == null ? new Base[0] : new Base[] { this.statusReason }; // CodeableConcept
     case 3059181:
@@ -2329,8 +2187,7 @@ public class ClinicalImpression extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new ClinicalImpressionStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ClinicalImpressionStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 2051346646: // statusReason
       this.statusReason = castToCodeableConcept(value); // CodeableConcept
@@ -2397,8 +2254,7 @@ public class ClinicalImpression extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new ClinicalImpressionStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ClinicalImpressionStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("statusReason")) {
       this.statusReason = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("code")) {
@@ -2544,7 +2400,7 @@ public class ClinicalImpression extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 2051346646:
       /* statusReason */ return new String[] { "CodeableConcept" };
     case 3059181:

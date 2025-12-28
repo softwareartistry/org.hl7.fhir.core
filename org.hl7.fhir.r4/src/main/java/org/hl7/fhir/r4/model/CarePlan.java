@@ -3885,10 +3885,10 @@ public class CarePlan extends DomainResource {
     children.add(new Property("partOf", "Reference(CarePlan)",
         "A larger care plan of which this particular care plan is a component or step.", 0, java.lang.Integer.MAX_VALUE,
         partOf));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical record.",
         0, 1, status));
-    children.add(new Property("intent", "code",
+    children.add(new Property("intent", "string",
         "Indicates the level of authority/intentionality associated with the care plan and where the care plan fits into the workflow chain.",
         0, 1, intent));
     children.add(new Property("category", "CodeableConcept",
@@ -3962,11 +3962,11 @@ public class CarePlan extends DomainResource {
           "A larger care plan of which this particular care plan is a component or step.", 0,
           java.lang.Integer.MAX_VALUE, partOf);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical record.",
           0, 1, status);
     case -1183762788:
-      /* intent */ return new Property("intent", "code",
+      /* intent */ return new Property("intent", "string",
           "Indicates the level of authority/intentionality associated with the care plan and where the care plan fits into the workflow chain.",
           0, 1, intent);
     case 50511102:
@@ -4350,9 +4350,9 @@ public class CarePlan extends DomainResource {
     case -995410646:
       /* partOf */ return new String[] { "Reference" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -1183762788:
-      /* intent */ return new String[] { "code" };
+      /* intent */ return new String[] { "string" };
     case 50511102:
       /* category */ return new String[] { "CodeableConcept" };
     case 110371416:

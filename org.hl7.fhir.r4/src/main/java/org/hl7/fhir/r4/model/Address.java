@@ -51,336 +51,10 @@ import ca.uhn.fhir.model.api.annotation.Description;
 @DatatypeDef(name = "Address")
 public class Address extends Type implements ICompositeType {
 
-/*  public enum AddressUse {
-    *//**
-     * A communication address at a home.
-     *//*
-    HOME,
-    *//**
-     * An office address. First choice for business related contacts during business
-     * hours.
-     *//*
-    WORK,
-    *//**
-     * A temporary address. The period can provide more detailed information.
-     *//*
-    TEMP,
-    *//**
-     * This address is no longer in use (or was never correct but retained for
-     * records).
-     *//*
-    OLD,
-    *//**
-     * An address to be used to send bills, invoices, receipts etc.
-     *//*
-    BILLING,
-    *//**
-     * added to help the parsers with the generic types
-     *//*
-    NULL;
-
-    public static AddressUse fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("home".equals(codeString))
-        return HOME;
-      if ("work".equals(codeString))
-        return WORK;
-      if ("temp".equals(codeString))
-        return TEMP;
-      if ("old".equals(codeString))
-        return OLD;
-      if ("billing".equals(codeString))
-        return BILLING;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown AddressUse code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case HOME:
-        return "home";
-      case WORK:
-        return "work";
-      case TEMP:
-        return "temp";
-      case OLD:
-        return "old";
-      case BILLING:
-        return "billing";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case HOME:
-        return "http://hl7.org/fhir/address-use";
-      case WORK:
-        return "http://hl7.org/fhir/address-use";
-      case TEMP:
-        return "http://hl7.org/fhir/address-use";
-      case OLD:
-        return "http://hl7.org/fhir/address-use";
-      case BILLING:
-        return "http://hl7.org/fhir/address-use";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case HOME:
-        return "A communication address at a home.";
-      case WORK:
-        return "An office address. First choice for business related contacts during business hours.";
-      case TEMP:
-        return "A temporary address. The period can provide more detailed information.";
-      case OLD:
-        return "This address is no longer in use (or was never correct but retained for records).";
-      case BILLING:
-        return "An address to be used to send bills, invoices, receipts etc.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case HOME:
-        return "Home";
-      case WORK:
-        return "Work";
-      case TEMP:
-        return "Temporary";
-      case OLD:
-        return "Old / Incorrect";
-      case BILLING:
-        return "Billing";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class AddressUseEnumFactory implements EnumFactory<AddressUse> {
-    public AddressUse fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("home".equals(codeString))
-        return AddressUse.HOME;
-      if ("work".equals(codeString))
-        return AddressUse.WORK;
-      if ("temp".equals(codeString))
-        return AddressUse.TEMP;
-      if ("old".equals(codeString))
-        return AddressUse.OLD;
-      if ("billing".equals(codeString))
-        return AddressUse.BILLING;
-      throw new IllegalArgumentException("Unknown AddressUse code '" + codeString + "'");
-    }
-
-    public Enumeration<AddressUse> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<AddressUse>(this, AddressUse.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<AddressUse>(this, AddressUse.NULL, code);
-      if ("home".equals(codeString))
-        return new Enumeration<AddressUse>(this, AddressUse.HOME, code);
-      if ("work".equals(codeString))
-        return new Enumeration<AddressUse>(this, AddressUse.WORK, code);
-      if ("temp".equals(codeString))
-        return new Enumeration<AddressUse>(this, AddressUse.TEMP, code);
-      if ("old".equals(codeString))
-        return new Enumeration<AddressUse>(this, AddressUse.OLD, code);
-      if ("billing".equals(codeString))
-        return new Enumeration<AddressUse>(this, AddressUse.BILLING, code);
-      throw new FHIRException("Unknown AddressUse code '" + codeString + "'");
-    }
-
-    public String toCode(AddressUse code) {
-       if (code == AddressUse.NULL)
-           return null;
-       if (code == AddressUse.HOME)
-        return "home";
-      if (code == AddressUse.WORK)
-        return "work";
-      if (code == AddressUse.TEMP)
-        return "temp";
-      if (code == AddressUse.OLD)
-        return "old";
-      if (code == AddressUse.BILLING)
-        return "billing";
-      return "?";
-   }
-
-    public String toSystem(AddressUse code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum AddressType {
-    *//**
-     * Mailing addresses - PO Boxes and care-of addresses.
-     *//*
-    POSTAL,
-    *//**
-     * A physical address that can be visited.
-     *//*
-    PHYSICAL,
-    *//**
-     * An address that is both physical and postal.
-     *//*
-    BOTH,
-    *//**
-     * added to help the parsers with the generic types
-     *//*
-    NULL;
-
-    public static AddressType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("postal".equals(codeString))
-        return POSTAL;
-      if ("physical".equals(codeString))
-        return PHYSICAL;
-      if ("both".equals(codeString))
-        return BOTH;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown AddressType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case POSTAL:
-        return "postal";
-      case PHYSICAL:
-        return "physical";
-      case BOTH:
-        return "both";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case POSTAL:
-        return "http://hl7.org/fhir/address-type";
-      case PHYSICAL:
-        return "http://hl7.org/fhir/address-type";
-      case BOTH:
-        return "http://hl7.org/fhir/address-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case POSTAL:
-        return "Mailing addresses - PO Boxes and care-of addresses.";
-      case PHYSICAL:
-        return "A physical address that can be visited.";
-      case BOTH:
-        return "An address that is both physical and postal.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case POSTAL:
-        return "Postal";
-      case PHYSICAL:
-        return "Physical";
-      case BOTH:
-        return "Postal & Physical";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class AddressTypeEnumFactory implements EnumFactory<AddressType> {
-    public AddressType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("postal".equals(codeString))
-        return AddressType.POSTAL;
-      if ("physical".equals(codeString))
-        return AddressType.PHYSICAL;
-      if ("both".equals(codeString))
-        return AddressType.BOTH;
-      throw new IllegalArgumentException("Unknown AddressType code '" + codeString + "'");
-    }
-
-    public Enumeration<AddressType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<AddressType>(this, AddressType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<AddressType>(this, AddressType.NULL, code);
-      if ("postal".equals(codeString))
-        return new Enumeration<AddressType>(this, AddressType.POSTAL, code);
-      if ("physical".equals(codeString))
-        return new Enumeration<AddressType>(this, AddressType.PHYSICAL, code);
-      if ("both".equals(codeString))
-        return new Enumeration<AddressType>(this, AddressType.BOTH, code);
-      throw new FHIRException("Unknown AddressType code '" + codeString + "'");
-    }
-
-    public String toCode(AddressType code) {
-       if (code == AddressType.NULL)
-           return null;
-       if (code == AddressType.POSTAL)
-        return "postal";
-      if (code == AddressType.PHYSICAL)
-        return "physical";
-      if (code == AddressType.BOTH)
-        return "both";
-      return "?";
-   }
-
-    public String toSystem(AddressType code) {
-      return code.getSystem();
-    }
-  }*/
-
   /**
    * The purpose of this address.
    */
-  @Child(name = "use", type = { CodeType.class }, order = 0, min = 0, max = 1, modifier = true, summary = true)
+  @Child(name = "use", type = { StringType.class }, order = 0, min = 0, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "home | work | temp | old | billing - purpose of this address", formalDefinition = "The purpose of this address.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/address-use")
   protected StringType use;
@@ -1020,8 +694,8 @@ public class Address extends Type implements ICompositeType {
 
   protected void listChildren(List<Property> children) {
     super.listChildren(children);
-    children.add(new Property("use", "code", "The purpose of this address.", 0, 1, use));
-    children.add(new Property("type", "code",
+    children.add(new Property("use", "string", "The purpose of this address.", 0, 1, use));
+    children.add(new Property("type", "string",
         "Distinguishes between physical addresses (those you can visit) and mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses are both.",
         0, 1, type));
     children.add(new Property("text", "string",
@@ -1047,9 +721,9 @@ public class Address extends Type implements ICompositeType {
   public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
     switch (_hash) {
     case 116103:
-      /* use */ return new Property("use", "code", "The purpose of this address.", 0, 1, use);
+      /* use */ return new Property("use", "string", "The purpose of this address.", 0, 1, use);
     case 3575610:
-      /* type */ return new Property("type", "code",
+      /* type */ return new Property("type", "string",
           "Distinguishes between physical addresses (those you can visit) and mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses are both.",
           0, 1, type);
     case 3556653:
@@ -1243,9 +917,9 @@ public class Address extends Type implements ICompositeType {
   public String[] getTypesForProperty(int hash, String name) throws FHIRException {
     switch (hash) {
     case 116103:
-      /* use */ return new String[] { "code" };
+      /* use */ return new String[] { "string" };
     case 3575610:
-      /* type */ return new String[] { "code" };
+      /* type */ return new String[] { "string" };
     case 3556653:
       /* text */ return new String[] { "string" };
     case 3321844:
