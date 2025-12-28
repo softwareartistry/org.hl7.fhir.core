@@ -35898,11 +35898,11 @@ public class XmlParser extends XmlParserBase {
       composeIdentifier("groupIdentifier", element.getGroupIdentifier());
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new DeviceRequest.DeviceRequestStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasIntentElement())
-      composeEnumeration("intent", element.getIntentElement(), new DeviceRequest.RequestIntentEnumFactory());
+      composeString("intent", element.getIntentElement());
     if (element.hasPriorityElement())
-      composeEnumeration("priority", element.getPriorityElement(), new DeviceRequest.RequestPriorityEnumFactory());
+      composeString("priority", element.getPriorityElement());
     if (element.hasCode()) {
       composeType("code", element.getCode());
     }
