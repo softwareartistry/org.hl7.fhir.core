@@ -13868,8 +13868,7 @@ public class XmlParser extends XmlParserBase {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("identifier")) {
       res.getIdentifier().add(parseIdentifier(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(
-          parseEnumeration(xpp, Location.LocationStatus.NULL, new Location.LocationStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("operationalStatus")) {
       res.setOperationalStatus(parseCoding(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("name")) {
@@ -13879,7 +13878,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("description")) {
       res.setDescriptionElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("mode")) {
-      res.setModeElement(parseEnumeration(xpp, Location.LocationMode.NULL, new Location.LocationModeEnumFactory()));
+      res.setModeElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("type")) {
       res.getType().add(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("telecom")) {
@@ -41174,7 +41173,7 @@ public class XmlParser extends XmlParserBase {
         composeIdentifier("identifier", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new Location.LocationStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasOperationalStatus()) {
       composeCoding("operationalStatus", element.getOperationalStatus());
     }
@@ -41189,7 +41188,7 @@ public class XmlParser extends XmlParserBase {
       composeString("description", element.getDescriptionElement());
     }
     if (element.hasModeElement())
-      composeEnumeration("mode", element.getModeElement(), new Location.LocationModeEnumFactory());
+      composeString("mode", element.getModeElement());
     if (element.hasType()) {
       for (CodeableConcept e : element.getType())
         composeCodeableConcept("type", e);

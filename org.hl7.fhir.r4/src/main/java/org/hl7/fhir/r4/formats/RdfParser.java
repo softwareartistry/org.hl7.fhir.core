@@ -10047,7 +10047,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "Location", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "Location", "status", element.getStatusElement(), -1);
+      composeString(t, "Location", "status", element.getStatusElement(), -1);
     if (element.hasOperationalStatus())
       composeCoding(t, "Location", "operationalStatus", element.getOperationalStatus(), -1);
     if (element.hasNameElement())
@@ -10057,7 +10057,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasDescriptionElement())
       composeString(t, "Location", "description", element.getDescriptionElement(), -1);
     if (element.hasModeElement())
-      composeEnum(t, "Location", "mode", element.getModeElement(), -1);
+      composeString(t, "Location", "mode", element.getModeElement(), -1);
     for (int i = 0; i < element.getType().size(); i++)
       composeCodeableConcept(t, "Location", "type", element.getType().get(i), i);
     for (int i = 0; i < element.getTelecom().size(); i++)

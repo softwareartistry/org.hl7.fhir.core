@@ -17284,8 +17284,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Location.LocationStatus.NULL,
-        new Location.LocationStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("operationalStatus"))
@@ -17320,8 +17319,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_description"))
       parseElementProperties(getJObject(json, "_description"), res.getDescriptionElement());
     if (json.has("mode"))
-      res.setModeElement(parseEnumeration(json.get("mode").getAsString(), Location.LocationMode.NULL,
-        new Location.LocationModeEnumFactory()));
+      res.setModeElement(parseString(json.get("mode").getAsString()));
     if (json.has("_mode"))
       parseElementProperties(getJObject(json, "_mode"), res.getModeElement());
     if (json.has("type")) {
@@ -50359,8 +50357,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new Location.LocationStatusEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(), new Location.LocationStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasOperationalStatus()) {
       composeCoding("operationalStatus", element.getOperationalStatus());
@@ -50387,8 +50385,8 @@ public class JsonParser extends JsonParserBase {
       composeStringExtras("description", element.getDescriptionElement(), false);
     }
     if (element.hasModeElement()) {
-      composeEnumerationCore("mode", element.getModeElement(), new Location.LocationModeEnumFactory(), false);
-      composeEnumerationExtras("mode", element.getModeElement(), new Location.LocationModeEnumFactory(), false);
+      composeStringCore("mode", element.getModeElement(), false);
+      composeStringExtras("mode", element.getModeElement(), false);
     }
     if (element.hasType()) {
       openArray("type");

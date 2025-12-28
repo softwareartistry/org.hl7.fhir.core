@@ -53,272 +53,272 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Location", profile = "http://hl7.org/fhir/StructureDefinition/Location")
 public class Location extends DomainResource {
 
-  public enum LocationStatus {
-    /**
-     * The location is operational.
-     */
-    ACTIVE,
-    /**
-     * The location is temporarily closed.
-     */
-    SUSPENDED,
-    /**
-     * The location is no longer used.
-     */
-    INACTIVE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static LocationStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("active".equals(codeString))
-        return ACTIVE;
-      if ("suspended".equals(codeString))
-        return SUSPENDED;
-      if ("inactive".equals(codeString))
-        return INACTIVE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown LocationStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ACTIVE:
-        return "active";
-      case SUSPENDED:
-        return "suspended";
-      case INACTIVE:
-        return "inactive";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ACTIVE:
-        return "http://hl7.org/fhir/location-status";
-      case SUSPENDED:
-        return "http://hl7.org/fhir/location-status";
-      case INACTIVE:
-        return "http://hl7.org/fhir/location-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ACTIVE:
-        return "The location is operational.";
-      case SUSPENDED:
-        return "The location is temporarily closed.";
-      case INACTIVE:
-        return "The location is no longer used.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ACTIVE:
-        return "Active";
-      case SUSPENDED:
-        return "Suspended";
-      case INACTIVE:
-        return "Inactive";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class LocationStatusEnumFactory implements EnumFactory<LocationStatus> {
-    public LocationStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("active".equals(codeString))
-        return LocationStatus.ACTIVE;
-      if ("suspended".equals(codeString))
-        return LocationStatus.SUSPENDED;
-      if ("inactive".equals(codeString))
-        return LocationStatus.INACTIVE;
-      throw new IllegalArgumentException("Unknown LocationStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<LocationStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<LocationStatus>(this, LocationStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<LocationStatus>(this, LocationStatus.NULL, code);
-      if ("active".equals(codeString))
-        return new Enumeration<LocationStatus>(this, LocationStatus.ACTIVE, code);
-      if ("suspended".equals(codeString))
-        return new Enumeration<LocationStatus>(this, LocationStatus.SUSPENDED, code);
-      if ("inactive".equals(codeString))
-        return new Enumeration<LocationStatus>(this, LocationStatus.INACTIVE, code);
-      throw new FHIRException("Unknown LocationStatus code '" + codeString + "'");
-    }
-
-    public String toCode(LocationStatus code) {
-       if (code == LocationStatus.NULL)
-           return null;
-       if (code == LocationStatus.ACTIVE)
-        return "active";
-      if (code == LocationStatus.SUSPENDED)
-        return "suspended";
-      if (code == LocationStatus.INACTIVE)
-        return "inactive";
-      return "?";
-   }
-
-    public String toSystem(LocationStatus code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum LocationMode {
-    /**
-     * The Location resource represents a specific instance of a location (e.g.
-     * Operating Theatre 1A).
-     */
-    INSTANCE,
-    /**
-     * The Location represents a class of locations (e.g. Any Operating Theatre)
-     * although this class of locations could be constrained within a specific
-     * boundary (such as organization, or parent location, address etc.).
-     */
-    KIND,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static LocationMode fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("instance".equals(codeString))
-        return INSTANCE;
-      if ("kind".equals(codeString))
-        return KIND;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown LocationMode code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case INSTANCE:
-        return "instance";
-      case KIND:
-        return "kind";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case INSTANCE:
-        return "http://hl7.org/fhir/location-mode";
-      case KIND:
-        return "http://hl7.org/fhir/location-mode";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case INSTANCE:
-        return "The Location resource represents a specific instance of a location (e.g. Operating Theatre 1A).";
-      case KIND:
-        return "The Location represents a class of locations (e.g. Any Operating Theatre) although this class of locations could be constrained within a specific boundary (such as organization, or parent location, address etc.).";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case INSTANCE:
-        return "Instance";
-      case KIND:
-        return "Kind";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class LocationModeEnumFactory implements EnumFactory<LocationMode> {
-    public LocationMode fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("instance".equals(codeString))
-        return LocationMode.INSTANCE;
-      if ("kind".equals(codeString))
-        return LocationMode.KIND;
-      throw new IllegalArgumentException("Unknown LocationMode code '" + codeString + "'");
-    }
-
-    public Enumeration<LocationMode> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<LocationMode>(this, LocationMode.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<LocationMode>(this, LocationMode.NULL, code);
-      if ("instance".equals(codeString))
-        return new Enumeration<LocationMode>(this, LocationMode.INSTANCE, code);
-      if ("kind".equals(codeString))
-        return new Enumeration<LocationMode>(this, LocationMode.KIND, code);
-      throw new FHIRException("Unknown LocationMode code '" + codeString + "'");
-    }
-
-    public String toCode(LocationMode code) {
-       if (code == LocationMode.NULL)
-           return null;
-       if (code == LocationMode.INSTANCE)
-        return "instance";
-      if (code == LocationMode.KIND)
-        return "kind";
-      return "?";
-   }
-
-    public String toSystem(LocationMode code) {
-      return code.getSystem();
-    }
-  }
+//  public enum LocationStatus {
+//    /**
+//     * The location is operational.
+//     */
+//    ACTIVE,
+//    /**
+//     * The location is temporarily closed.
+//     */
+//    SUSPENDED,
+//    /**
+//     * The location is no longer used.
+//     */
+//    INACTIVE,
+//    /**
+//     * added to help the parsers with the generic types
+//     */
+//    NULL;
+//
+//    public static LocationStatus fromCode(String codeString) throws FHIRException {
+//      if (codeString == null || "".equals(codeString))
+//        return null;
+//      if ("active".equals(codeString))
+//        return ACTIVE;
+//      if ("suspended".equals(codeString))
+//        return SUSPENDED;
+//      if ("inactive".equals(codeString))
+//        return INACTIVE;
+//      if (Configuration.isAcceptInvalidEnums())
+//        return null;
+//      else
+//        throw new FHIRException("Unknown LocationStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode() {
+//      switch (this) {
+//      case ACTIVE:
+//        return "active";
+//      case SUSPENDED:
+//        return "suspended";
+//      case INACTIVE:
+//        return "inactive";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getSystem() {
+//      switch (this) {
+//      case ACTIVE:
+//        return "http://hl7.org/fhir/location-status";
+//      case SUSPENDED:
+//        return "http://hl7.org/fhir/location-status";
+//      case INACTIVE:
+//        return "http://hl7.org/fhir/location-status";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDefinition() {
+//      switch (this) {
+//      case ACTIVE:
+//        return "The location is operational.";
+//      case SUSPENDED:
+//        return "The location is temporarily closed.";
+//      case INACTIVE:
+//        return "The location is no longer used.";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDisplay() {
+//      switch (this) {
+//      case ACTIVE:
+//        return "Active";
+//      case SUSPENDED:
+//        return "Suspended";
+//      case INACTIVE:
+//        return "Inactive";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//  }
+//
+//  public static class LocationStatusEnumFactory implements EnumFactory<LocationStatus> {
+//    public LocationStatus fromCode(String codeString) throws IllegalArgumentException {
+//      if (codeString == null || "".equals(codeString))
+//        if (codeString == null || "".equals(codeString))
+//          return null;
+//      if ("active".equals(codeString))
+//        return LocationStatus.ACTIVE;
+//      if ("suspended".equals(codeString))
+//        return LocationStatus.SUSPENDED;
+//      if ("inactive".equals(codeString))
+//        return LocationStatus.INACTIVE;
+//      throw new IllegalArgumentException("Unknown LocationStatus code '" + codeString + "'");
+//    }
+//
+//    public Enumeration<LocationStatus> fromType(PrimitiveType<?> code) throws FHIRException {
+//      if (code == null)
+//        return null;
+//      if (code.isEmpty())
+//        return new Enumeration<LocationStatus>(this, LocationStatus.NULL, code);
+//      String codeString = code.asStringValue();
+//      if (codeString == null || "".equals(codeString))
+//        return new Enumeration<LocationStatus>(this, LocationStatus.NULL, code);
+//      if ("active".equals(codeString))
+//        return new Enumeration<LocationStatus>(this, LocationStatus.ACTIVE, code);
+//      if ("suspended".equals(codeString))
+//        return new Enumeration<LocationStatus>(this, LocationStatus.SUSPENDED, code);
+//      if ("inactive".equals(codeString))
+//        return new Enumeration<LocationStatus>(this, LocationStatus.INACTIVE, code);
+//      throw new FHIRException("Unknown LocationStatus code '" + codeString + "'");
+//    }
+//
+//    public String toCode(LocationStatus code) {
+//       if (code == LocationStatus.NULL)
+//           return null;
+//       if (code == LocationStatus.ACTIVE)
+//        return "active";
+//      if (code == LocationStatus.SUSPENDED)
+//        return "suspended";
+//      if (code == LocationStatus.INACTIVE)
+//        return "inactive";
+//      return "?";
+//   }
+//
+//    public String toSystem(LocationStatus code) {
+//      return code.getSystem();
+//    }
+//  }
+//
+//  public enum LocationMode {
+//    /**
+//     * The Location resource represents a specific instance of a location (e.g.
+//     * Operating Theatre 1A).
+//     */
+//    INSTANCE,
+//    /**
+//     * The Location represents a class of locations (e.g. Any Operating Theatre)
+//     * although this class of locations could be constrained within a specific
+//     * boundary (such as organization, or parent location, address etc.).
+//     */
+//    KIND,
+//    /**
+//     * added to help the parsers with the generic types
+//     */
+//    NULL;
+//
+//    public static LocationMode fromCode(String codeString) throws FHIRException {
+//      if (codeString == null || "".equals(codeString))
+//        return null;
+//      if ("instance".equals(codeString))
+//        return INSTANCE;
+//      if ("kind".equals(codeString))
+//        return KIND;
+//      if (Configuration.isAcceptInvalidEnums())
+//        return null;
+//      else
+//        throw new FHIRException("Unknown LocationMode code '" + codeString + "'");
+//    }
+//
+//    public String toCode() {
+//      switch (this) {
+//      case INSTANCE:
+//        return "instance";
+//      case KIND:
+//        return "kind";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getSystem() {
+//      switch (this) {
+//      case INSTANCE:
+//        return "http://hl7.org/fhir/location-mode";
+//      case KIND:
+//        return "http://hl7.org/fhir/location-mode";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDefinition() {
+//      switch (this) {
+//      case INSTANCE:
+//        return "The Location resource represents a specific instance of a location (e.g. Operating Theatre 1A).";
+//      case KIND:
+//        return "The Location represents a class of locations (e.g. Any Operating Theatre) although this class of locations could be constrained within a specific boundary (such as organization, or parent location, address etc.).";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//
+//    public String getDisplay() {
+//      switch (this) {
+//      case INSTANCE:
+//        return "Instance";
+//      case KIND:
+//        return "Kind";
+//      case NULL:
+//        return null;
+//      default:
+//        return "?";
+//      }
+//    }
+//  }
+//
+//  public static class LocationModeEnumFactory implements EnumFactory<LocationMode> {
+//    public LocationMode fromCode(String codeString) throws IllegalArgumentException {
+//      if (codeString == null || "".equals(codeString))
+//        if (codeString == null || "".equals(codeString))
+//          return null;
+//      if ("instance".equals(codeString))
+//        return LocationMode.INSTANCE;
+//      if ("kind".equals(codeString))
+//        return LocationMode.KIND;
+//      throw new IllegalArgumentException("Unknown LocationMode code '" + codeString + "'");
+//    }
+//
+//    public Enumeration<LocationMode> fromType(PrimitiveType<?> code) throws FHIRException {
+//      if (code == null)
+//        return null;
+//      if (code.isEmpty())
+//        return new Enumeration<LocationMode>(this, LocationMode.NULL, code);
+//      String codeString = code.asStringValue();
+//      if (codeString == null || "".equals(codeString))
+//        return new Enumeration<LocationMode>(this, LocationMode.NULL, code);
+//      if ("instance".equals(codeString))
+//        return new Enumeration<LocationMode>(this, LocationMode.INSTANCE, code);
+//      if ("kind".equals(codeString))
+//        return new Enumeration<LocationMode>(this, LocationMode.KIND, code);
+//      throw new FHIRException("Unknown LocationMode code '" + codeString + "'");
+//    }
+//
+//    public String toCode(LocationMode code) {
+//       if (code == LocationMode.NULL)
+//           return null;
+//       if (code == LocationMode.INSTANCE)
+//        return "instance";
+//      if (code == LocationMode.KIND)
+//        return "kind";
+//      return "?";
+//   }
+//
+//    public String toSystem(LocationMode code) {
+//      return code.getSystem();
+//    }
+//  }
 
   public enum DaysOfWeek {
     /**
@@ -1488,10 +1488,10 @@ public class Location extends DomainResource {
    * current value which may be covered by the operationStatus, or by a
    * schedule/slots if they are configured for the location.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 0, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 0, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "active | suspended | inactive", formalDefinition = "The status property covers the general availability of the resource, not the current value which may be covered by the operationStatus, or by a schedule/slots if they are configured for the location.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/location-status")
-  protected Enumeration<LocationStatus> status;
+  protected StringType status;
 
   /**
    * The operational status covers operation values most relevant to beds (but can
@@ -1533,10 +1533,10 @@ public class Location extends DomainResource {
    * Indicates whether a resource instance represents a specific location or a
    * class of locations.
    */
-  @Child(name = "mode", type = { CodeType.class }, order = 6, min = 0, max = 1, modifier = false, summary = true)
+  @Child(name = "mode", type = { StringType.class }, order = 6, min = 0, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "instance | kind", formalDefinition = "Indicates whether a resource instance represents a specific location or a class of locations.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/location-mode")
-  protected Enumeration<LocationMode> mode;
+  protected StringType mode;
 
   /**
    * Indicates the type of function performed at the location.
@@ -1710,12 +1710,12 @@ public class Location extends DomainResource {
    *         the location.). This is the underlying object with id, value and
    *         extensions. The accessor "getStatus" gives direct access to the value
    */
-  public Enumeration<LocationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Location.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<LocationStatus>(new LocationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -1735,7 +1735,7 @@ public class Location extends DomainResource {
    *              with id, value and extensions. The accessor "getStatus" gives
    *              direct access to the value
    */
-  public Location setStatusElement(Enumeration<LocationStatus> value) {
+  public Location setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1745,8 +1745,8 @@ public class Location extends DomainResource {
    *         not the current value which may be covered by the operationStatus, or
    *         by a schedule/slots if they are configured for the location.
    */
-  public LocationStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
@@ -1755,12 +1755,12 @@ public class Location extends DomainResource {
    *              operationStatus, or by a schedule/slots if they are configured
    *              for the location.
    */
-  public Location setStatus(LocationStatus value) {
+  public Location setStatus(String value) {
     if (value == null)
       this.status = null;
     else {
       if (this.status == null)
-        this.status = new Enumeration<LocationStatus>(new LocationStatusEnumFactory());
+        this.status = new StringType();
       this.status.setValue(value);
     }
     return this;
@@ -1981,12 +1981,12 @@ public class Location extends DomainResource {
    *         object with id, value and extensions. The accessor "getMode" gives
    *         direct access to the value
    */
-  public Enumeration<LocationMode> getModeElement() {
+  public StringType getModeElement() {
     if (this.mode == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Location.mode");
       else if (Configuration.doAutoCreate())
-        this.mode = new Enumeration<LocationMode>(new LocationModeEnumFactory()); // bb
+        this.mode = new StringType(); // bb
     return this.mode;
   }
 
@@ -2004,7 +2004,7 @@ public class Location extends DomainResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getMode" gives direct access to the value
    */
-  public Location setModeElement(Enumeration<LocationMode> value) {
+  public Location setModeElement(StringType value) {
     this.mode = value;
     return this;
   }
@@ -2013,20 +2013,20 @@ public class Location extends DomainResource {
    * @return Indicates whether a resource instance represents a specific location
    *         or a class of locations.
    */
-  public LocationMode getMode() {
-    return this.mode == null ? null : this.mode.getValue();
+  public StringType getMode() {
+    return this.mode == null ? null : this.mode;
   }
 
   /**
    * @param value Indicates whether a resource instance represents a specific
    *              location or a class of locations.
    */
-  public Location setMode(LocationMode value) {
+  public Location setMode(String value) {
     if (value == null)
       this.mode = null;
     else {
       if (this.mode == null)
-        this.mode = new Enumeration<LocationMode>(new LocationModeEnumFactory());
+        this.mode = new StringType();
       this.mode.setValue(value);
     }
     return this;
@@ -2506,7 +2506,7 @@ public class Location extends DomainResource {
     super.listChildren(children);
     children.add(new Property("identifier", "Identifier",
         "Unique code or number identifying the location to its users.", 0, java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status property covers the general availability of the resource, not the current value which may be covered by the operationStatus, or by a schedule/slots if they are configured for the location.",
         0, 1, status));
     children.add(new Property("operationalStatus", "Coding",
@@ -2519,7 +2519,7 @@ public class Location extends DomainResource {
         java.lang.Integer.MAX_VALUE, alias));
     children.add(new Property("description", "string",
         "Description of the Location, which helps in finding or referencing the place.", 0, 1, description));
-    children.add(new Property("mode", "code",
+    children.add(new Property("mode", "string",
         "Indicates whether a resource instance represents a specific location or a class of locations.", 0, 1, mode));
     children.add(new Property("type", "CodeableConcept", "Indicates the type of function performed at the location.", 0,
         java.lang.Integer.MAX_VALUE, type));
@@ -2553,7 +2553,7 @@ public class Location extends DomainResource {
       /* identifier */ return new Property("identifier", "Identifier",
           "Unique code or number identifying the location to its users.", 0, java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status property covers the general availability of the resource, not the current value which may be covered by the operationStatus, or by a schedule/slots if they are configured for the location.",
           0, 1, status);
     case -2103166364:
@@ -2571,7 +2571,7 @@ public class Location extends DomainResource {
       /* description */ return new Property("description", "string",
           "Description of the Location, which helps in finding or referencing the place.", 0, 1, description);
     case 3357091:
-      /* mode */ return new Property("mode", "code",
+      /* mode */ return new Property("mode", "string",
           "Indicates whether a resource instance represents a specific location or a class of locations.", 0, 1, mode);
     case 3575610:
       /* type */ return new Property("type", "CodeableConcept",
@@ -2668,8 +2668,8 @@ public class Location extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new LocationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<LocationStatus>
+//      value = new LocationStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); // StringType
       return value;
     case -2103166364: // operationalStatus
       this.operationalStatus = castToCoding(value); // Coding
@@ -2684,8 +2684,8 @@ public class Location extends DomainResource {
       this.description = castToString(value); // StringType
       return value;
     case 3357091: // mode
-      value = new LocationModeEnumFactory().fromType(castToCode(value));
-      this.mode = (Enumeration) value; // Enumeration<LocationMode>
+//      value = new LocationModeEnumFactory().fromType(castToCode(value));
+      this.mode = castToString(value); // StringType
       return value;
     case 3575610: // type
       this.getType().add(castToCodeableConcept(value)); // CodeableConcept
@@ -2728,8 +2728,8 @@ public class Location extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new LocationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<LocationStatus>
+//      value = new LocationStatusEnumFactory().fromType(castToCode(value));
+      this.status = castToString(value); //StringType
     } else if (name.equals("operationalStatus")) {
       this.operationalStatus = castToCoding(value); // Coding
     } else if (name.equals("name")) {
@@ -2739,8 +2739,8 @@ public class Location extends DomainResource {
     } else if (name.equals("description")) {
       this.description = castToString(value); // StringType
     } else if (name.equals("mode")) {
-      value = new LocationModeEnumFactory().fromType(castToCode(value));
-      this.mode = (Enumeration) value; // Enumeration<LocationMode>
+//      value = new LocationModeEnumFactory().fromType(castToCode(value));
+      this.mode = castToString(value); // StringType
     } else if (name.equals("type")) {
       this.getType().add(castToCodeableConcept(value));
     } else if (name.equals("telecom")) {
@@ -2856,7 +2856,7 @@ public class Location extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -2103166364:
       /* operationalStatus */ return new String[] { "Coding" };
     case 3373707:
@@ -2866,7 +2866,7 @@ public class Location extends DomainResource {
     case -1724546052:
       /* description */ return new String[] { "string" };
     case 3357091:
-      /* mode */ return new String[] { "code" };
+      /* mode */ return new String[] { "string" };
     case 3575610:
       /* type */ return new String[] { "CodeableConcept" };
     case -1429363305:
