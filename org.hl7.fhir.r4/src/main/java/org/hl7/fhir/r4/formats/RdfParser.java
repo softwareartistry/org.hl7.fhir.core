@@ -6424,7 +6424,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getBasedOn().size(); i++)
       composeReference(t, "DiagnosticReport", "basedOn", element.getBasedOn().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "DiagnosticReport", "status", element.getStatusElement(), -1);
+      composeString(t, "DiagnosticReport", "status", element.getStatusElement(), -1);
     for (int i = 0; i < element.getCategory().size(); i++)
       composeCodeableConcept(t, "DiagnosticReport", "category", element.getCategory().get(i), i);
     if (element.hasCode())

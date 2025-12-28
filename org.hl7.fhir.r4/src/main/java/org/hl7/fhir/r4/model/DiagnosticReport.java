@@ -54,301 +54,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "DiagnosticReport", profile = "http://hl7.org/fhir/StructureDefinition/DiagnosticReport")
 public class DiagnosticReport extends DomainResource {
 
-  public enum DiagnosticReportStatus {
-    /**
-     * The existence of the report is registered, but there is nothing yet
-     * available.
-     */
-    REGISTERED,
-    /**
-     * This is a partial (e.g. initial, interim or preliminary) report: data in the
-     * report may be incomplete or unverified.
-     */
-    PARTIAL,
-    /**
-     * Verified early results are available, but not all results are final.
-     */
-    PRELIMINARY,
-    /**
-     * The report is complete and verified by an authorized person.
-     */
-    FINAL,
-    /**
-     * Subsequent to being final, the report has been modified. This includes any
-     * change in the results, diagnosis, narrative text, or other content of a
-     * report that has been issued.
-     */
-    AMENDED,
-    /**
-     * Subsequent to being final, the report has been modified to correct an error
-     * in the report or referenced results.
-     */
-    CORRECTED,
-    /**
-     * Subsequent to being final, the report has been modified by adding new
-     * content. The existing content is unchanged.
-     */
-    APPENDED,
-    /**
-     * The report is unavailable because the measurement was not started or not
-     * completed (also sometimes called "aborted").
-     */
-    CANCELLED,
-    /**
-     * The report has been withdrawn following a previous final release. This
-     * electronic record should never have existed, though it is possible that
-     * real-world decisions were based on it. (If real-world activity has occurred,
-     * the status should be "cancelled" rather than "entered-in-error".).
-     */
-    ENTEREDINERROR,
-    /**
-     * The authoring/source system does not know which of the status values
-     * currently applies for this observation. Note: This concept is not to be used
-     * for "other" - one of the listed statuses is presumed to apply, but the
-     * authoring/source system does not know which.
-     */
-    UNKNOWN,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static DiagnosticReportStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("registered".equals(codeString))
-        return REGISTERED;
-      if ("partial".equals(codeString))
-        return PARTIAL;
-      if ("preliminary".equals(codeString))
-        return PRELIMINARY;
-      if ("final".equals(codeString))
-        return FINAL;
-      if ("amended".equals(codeString))
-        return AMENDED;
-      if ("corrected".equals(codeString))
-        return CORRECTED;
-      if ("appended".equals(codeString))
-        return APPENDED;
-      if ("cancelled".equals(codeString))
-        return CANCELLED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return UNKNOWN;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown DiagnosticReportStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case REGISTERED:
-        return "registered";
-      case PARTIAL:
-        return "partial";
-      case PRELIMINARY:
-        return "preliminary";
-      case FINAL:
-        return "final";
-      case AMENDED:
-        return "amended";
-      case CORRECTED:
-        return "corrected";
-      case APPENDED:
-        return "appended";
-      case CANCELLED:
-        return "cancelled";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case UNKNOWN:
-        return "unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case REGISTERED:
-        return "http://hl7.org/fhir/diagnostic-report-status";
-      case PARTIAL:
-        return "http://hl7.org/fhir/diagnostic-report-status";
-      case PRELIMINARY:
-        return "http://hl7.org/fhir/diagnostic-report-status";
-      case FINAL:
-        return "http://hl7.org/fhir/diagnostic-report-status";
-      case AMENDED:
-        return "http://hl7.org/fhir/diagnostic-report-status";
-      case CORRECTED:
-        return "http://hl7.org/fhir/diagnostic-report-status";
-      case APPENDED:
-        return "http://hl7.org/fhir/diagnostic-report-status";
-      case CANCELLED:
-        return "http://hl7.org/fhir/diagnostic-report-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/diagnostic-report-status";
-      case UNKNOWN:
-        return "http://hl7.org/fhir/diagnostic-report-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case REGISTERED:
-        return "The existence of the report is registered, but there is nothing yet available.";
-      case PARTIAL:
-        return "This is a partial (e.g. initial, interim or preliminary) report: data in the report may be incomplete or unverified.";
-      case PRELIMINARY:
-        return "Verified early results are available, but not all  results are final.";
-      case FINAL:
-        return "The report is complete and verified by an authorized person.";
-      case AMENDED:
-        return "Subsequent to being final, the report has been modified.  This includes any change in the results, diagnosis, narrative text, or other content of a report that has been issued.";
-      case CORRECTED:
-        return "Subsequent to being final, the report has been modified  to correct an error in the report or referenced results.";
-      case APPENDED:
-        return "Subsequent to being final, the report has been modified by adding new content. The existing content is unchanged.";
-      case CANCELLED:
-        return "The report is unavailable because the measurement was not started or not completed (also sometimes called \"aborted\").";
-      case ENTEREDINERROR:
-        return "The report has been withdrawn following a previous final release.  This electronic record should never have existed, though it is possible that real-world decisions were based on it. (If real-world activity has occurred, the status should be \"cancelled\" rather than \"entered-in-error\".).";
-      case UNKNOWN:
-        return "The authoring/source system does not know which of the status values currently applies for this observation. Note: This concept is not to be used for \"other\" - one of the listed statuses is presumed to apply, but the authoring/source system does not know which.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case REGISTERED:
-        return "Registered";
-      case PARTIAL:
-        return "Partial";
-      case PRELIMINARY:
-        return "Preliminary";
-      case FINAL:
-        return "Final";
-      case AMENDED:
-        return "Amended";
-      case CORRECTED:
-        return "Corrected";
-      case APPENDED:
-        return "Appended";
-      case CANCELLED:
-        return "Cancelled";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case UNKNOWN:
-        return "Unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class DiagnosticReportStatusEnumFactory implements EnumFactory<DiagnosticReportStatus> {
-    public DiagnosticReportStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("registered".equals(codeString))
-        return DiagnosticReportStatus.REGISTERED;
-      if ("partial".equals(codeString))
-        return DiagnosticReportStatus.PARTIAL;
-      if ("preliminary".equals(codeString))
-        return DiagnosticReportStatus.PRELIMINARY;
-      if ("final".equals(codeString))
-        return DiagnosticReportStatus.FINAL;
-      if ("amended".equals(codeString))
-        return DiagnosticReportStatus.AMENDED;
-      if ("corrected".equals(codeString))
-        return DiagnosticReportStatus.CORRECTED;
-      if ("appended".equals(codeString))
-        return DiagnosticReportStatus.APPENDED;
-      if ("cancelled".equals(codeString))
-        return DiagnosticReportStatus.CANCELLED;
-      if ("entered-in-error".equals(codeString))
-        return DiagnosticReportStatus.ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return DiagnosticReportStatus.UNKNOWN;
-      throw new IllegalArgumentException("Unknown DiagnosticReportStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<DiagnosticReportStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<DiagnosticReportStatus>(this, DiagnosticReportStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<DiagnosticReportStatus>(this, DiagnosticReportStatus.NULL, code);
-      if ("registered".equals(codeString))
-        return new Enumeration<DiagnosticReportStatus>(this, DiagnosticReportStatus.REGISTERED, code);
-      if ("partial".equals(codeString))
-        return new Enumeration<DiagnosticReportStatus>(this, DiagnosticReportStatus.PARTIAL, code);
-      if ("preliminary".equals(codeString))
-        return new Enumeration<DiagnosticReportStatus>(this, DiagnosticReportStatus.PRELIMINARY, code);
-      if ("final".equals(codeString))
-        return new Enumeration<DiagnosticReportStatus>(this, DiagnosticReportStatus.FINAL, code);
-      if ("amended".equals(codeString))
-        return new Enumeration<DiagnosticReportStatus>(this, DiagnosticReportStatus.AMENDED, code);
-      if ("corrected".equals(codeString))
-        return new Enumeration<DiagnosticReportStatus>(this, DiagnosticReportStatus.CORRECTED, code);
-      if ("appended".equals(codeString))
-        return new Enumeration<DiagnosticReportStatus>(this, DiagnosticReportStatus.APPENDED, code);
-      if ("cancelled".equals(codeString))
-        return new Enumeration<DiagnosticReportStatus>(this, DiagnosticReportStatus.CANCELLED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<DiagnosticReportStatus>(this, DiagnosticReportStatus.ENTEREDINERROR, code);
-      if ("unknown".equals(codeString))
-        return new Enumeration<DiagnosticReportStatus>(this, DiagnosticReportStatus.UNKNOWN, code);
-      throw new FHIRException("Unknown DiagnosticReportStatus code '" + codeString + "'");
-    }
-
-    public String toCode(DiagnosticReportStatus code) {
-       if (code == DiagnosticReportStatus.NULL)
-           return null;
-       if (code == DiagnosticReportStatus.REGISTERED)
-        return "registered";
-      if (code == DiagnosticReportStatus.PARTIAL)
-        return "partial";
-      if (code == DiagnosticReportStatus.PRELIMINARY)
-        return "preliminary";
-      if (code == DiagnosticReportStatus.FINAL)
-        return "final";
-      if (code == DiagnosticReportStatus.AMENDED)
-        return "amended";
-      if (code == DiagnosticReportStatus.CORRECTED)
-        return "corrected";
-      if (code == DiagnosticReportStatus.APPENDED)
-        return "appended";
-      if (code == DiagnosticReportStatus.CANCELLED)
-        return "cancelled";
-      if (code == DiagnosticReportStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      if (code == DiagnosticReportStatus.UNKNOWN)
-        return "unknown";
-      return "?";
-   }
-
-    public String toSystem(DiagnosticReportStatus code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class DiagnosticReportMediaComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -679,10 +384,10 @@ public class DiagnosticReport extends DomainResource {
   /**
    * The status of the diagnostic report.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 2, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 2, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "registered | partial | preliminary | final +", formalDefinition = "The status of the diagnostic report.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/diagnostic-report-status")
-  protected Enumeration<DiagnosticReportStatus> status;
+  protected StringType status;
 
   /**
    * A code that classifies the clinical discipline, department or diagnostic
@@ -878,7 +583,7 @@ public class DiagnosticReport extends DomainResource {
   /**
    * Constructor
    */
-  public DiagnosticReport(Enumeration<DiagnosticReportStatus> status, CodeableConcept code) {
+  public DiagnosticReport(StringType status, CodeableConcept code) {
     super();
     this.status = status;
     this.code = code;
@@ -998,12 +703,12 @@ public class DiagnosticReport extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<DiagnosticReportStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create DiagnosticReport.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<DiagnosticReportStatus>(new DiagnosticReportStatusEnumFactory()); // bb
+        this.status = new StringType();
     return this.status;
   }
 
@@ -1020,7 +725,7 @@ public class DiagnosticReport extends DomainResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public DiagnosticReport setStatusElement(Enumeration<DiagnosticReportStatus> value) {
+  public DiagnosticReport setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1028,17 +733,15 @@ public class DiagnosticReport extends DomainResource {
   /**
    * @return The status of the diagnostic report.
    */
-  public DiagnosticReportStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The status of the diagnostic report.
    */
-  public DiagnosticReport setStatus(DiagnosticReportStatus value) {
-    if (this.status == null)
-      this.status = new Enumeration<DiagnosticReportStatus>(new DiagnosticReportStatusEnumFactory());
-    this.status.setValue(value);
+  public DiagnosticReport setStatus(StringType value) {
+    this.status = value;
     return this;
   }
 
@@ -1875,7 +1578,7 @@ public class DiagnosticReport extends DomainResource {
     children.add(new Property("basedOn",
         "Reference(CarePlan|ImmunizationRecommendation|MedicationRequest|NutritionOrder|ServiceRequest)",
         "Details concerning a service requested.", 0, java.lang.Integer.MAX_VALUE, basedOn));
-    children.add(new Property("status", "code", "The status of the diagnostic report.", 0, 1, status));
+    children.add(new Property("status", "string", "The status of the diagnostic report.", 0, 1, status));
     children.add(new Property("category", "CodeableConcept",
         "A code that classifies the clinical discipline, department or diagnostic service that created the report (e.g. cardiology, biochemistry, hematology, MRI). This is used for searching, sorting and display purposes.",
         0, java.lang.Integer.MAX_VALUE, category));
@@ -1934,7 +1637,7 @@ public class DiagnosticReport extends DomainResource {
           "Reference(CarePlan|ImmunizationRecommendation|MedicationRequest|NutritionOrder|ServiceRequest)",
           "Details concerning a service requested.", 0, java.lang.Integer.MAX_VALUE, basedOn);
     case -892481550:
-      /* status */ return new Property("status", "code", "The status of the diagnostic report.", 0, 1, status);
+      /* status */ return new Property("status", "string", "The status of the diagnostic report.", 0, 1, status);
     case 50511102:
       /* category */ return new Property("category", "CodeableConcept",
           "A code that classifies the clinical discipline, department or diagnostic service that created the report (e.g. cardiology, biochemistry, hematology, MRI). This is used for searching, sorting and display purposes.",
@@ -2074,8 +1777,7 @@ public class DiagnosticReport extends DomainResource {
       this.getBasedOn().add(castToReference(value)); // Reference
       return value;
     case -892481550: // status
-      value = new DiagnosticReportStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<DiagnosticReportStatus>
+      this.status = castToString(value); // Enumeration<DiagnosticReportStatus>
       return value;
     case 50511102: // category
       this.getCategory().add(castToCodeableConcept(value)); // CodeableConcept
@@ -2135,8 +1837,7 @@ public class DiagnosticReport extends DomainResource {
     } else if (name.equals("basedOn")) {
       this.getBasedOn().add(castToReference(value));
     } else if (name.equals("status")) {
-      value = new DiagnosticReportStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<DiagnosticReportStatus>
+      this.status = castToString(value); // Enumeration<DiagnosticReportStatus>
     } else if (name.equals("category")) {
       this.getCategory().add(castToCodeableConcept(value));
     } else if (name.equals("code")) {
@@ -2270,7 +1971,7 @@ public class DiagnosticReport extends DomainResource {
     case -332612366:
       /* basedOn */ return new String[] { "Reference" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 50511102:
       /* category */ return new String[] { "CodeableConcept" };
     case 3059181:
