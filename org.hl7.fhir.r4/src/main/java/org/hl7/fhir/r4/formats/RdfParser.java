@@ -5922,7 +5922,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getUdiCarrier().size(); i++)
       composeDeviceDeviceUdiCarrierComponent(t, "Device", "udiCarrier", element.getUdiCarrier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "Device", "status", element.getStatusElement(), -1);
+      composeString(t, "Device", "status", element.getStatusElement(), -1);
     for (int i = 0; i < element.getStatusReason().size(); i++)
       composeCodeableConcept(t, "Device", "statusReason", element.getStatusReason().get(i), i);
     if (element.hasDistinctIdentifierElement())
@@ -5991,7 +5991,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasCarrierHRFElement())
       composeString(t, "Device", "carrierHRF", element.getCarrierHRFElement(), -1);
     if (element.hasEntryTypeElement())
-      composeEnum(t, "Device", "entryType", element.getEntryTypeElement(), -1);
+      composeString(t, "Device", "entryType", element.getEntryTypeElement(), -1);
   }
 
   protected void composeDeviceDeviceDeviceNameComponent(Complex parent, String parentType, String name,
@@ -6008,7 +6008,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasNameElement())
       composeString(t, "Device", "name", element.getNameElement(), -1);
     if (element.hasTypeElement())
-      composeEnum(t, "Device", "type", element.getTypeElement(), -1);
+      composeString(t, "Device", "type", element.getTypeElement(), -1);
   }
 
   protected void composeDeviceDeviceSpecializationComponent(Complex parent, String parentType, String name,

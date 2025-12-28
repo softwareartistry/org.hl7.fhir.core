@@ -8276,8 +8276,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("udiCarrier")) {
       res.getUdiCarrier().add(parseDeviceDeviceUdiCarrierComponent(xpp, res));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(
-          parseEnumeration(xpp, Device.FHIRDeviceStatus.NULL, new Device.FHIRDeviceStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("statusReason")) {
       res.getStatusReason().add(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("distinctIdentifier")) {
@@ -8356,7 +8355,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("carrierHRF")) {
       res.setCarrierHRFElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("entryType")) {
-      res.setEntryTypeElement(parseEnumeration(xpp, Device.UDIEntryType.NULL, new Device.UDIEntryTypeEnumFactory()));
+      res.setEntryTypeElement(parseString(xpp));
     } else if (!parseBackboneElementContent(eventType, xpp, res))
       return false;
     return true;
@@ -8383,7 +8382,7 @@ public class XmlParser extends XmlParserBase {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("name")) {
       res.setNameElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("type")) {
-      res.setTypeElement(parseEnumeration(xpp, Device.DeviceNameType.NULL, new Device.DeviceNameTypeEnumFactory()));
+      res.setTypeElement(parseString(xpp));
     } else if (!parseBackboneElementContent(eventType, xpp, res))
       return false;
     return true;
@@ -35353,7 +35352,7 @@ public class XmlParser extends XmlParserBase {
         composeDeviceDeviceUdiCarrierComponent("udiCarrier", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new Device.FHIRDeviceStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasStatusReason()) {
       for (CodeableConcept e : element.getStatusReason())
         composeCodeableConcept("statusReason", e);
@@ -35460,7 +35459,7 @@ public class XmlParser extends XmlParserBase {
       composeString("carrierHRF", element.getCarrierHRFElement());
     }
     if (element.hasEntryTypeElement())
-      composeEnumeration("entryType", element.getEntryTypeElement(), new Device.UDIEntryTypeEnumFactory());
+      composeString("entryType", element.getEntryTypeElement());
   }
 
   protected void composeDeviceDeviceDeviceNameComponent(String name, Device.DeviceDeviceNameComponent element)
@@ -35481,7 +35480,7 @@ public class XmlParser extends XmlParserBase {
       composeString("name", element.getNameElement());
     }
     if (element.hasTypeElement())
-      composeEnumeration("type", element.getTypeElement(), new Device.DeviceNameTypeEnumFactory());
+      composeString("type", element.getTypeElement());
   }
 
   protected void composeDeviceDeviceSpecializationComponent(String name, Device.DeviceSpecializationComponent element)

@@ -52,578 +52,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Device", profile = "http://hl7.org/fhir/StructureDefinition/Device")
 public class Device extends DomainResource {
 
-  public enum UDIEntryType {
-    /**
-     * a barcodescanner captured the data from the device label.
-     */
-    BARCODE,
-    /**
-     * An RFID chip reader captured the data from the device label.
-     */
-    RFID,
-    /**
-     * The data was read from the label by a person and manually entered. (e.g. via
-     * a keyboard).
-     */
-    MANUAL,
-    /**
-     * The data originated from a patient's implant card and was read by an
-     * operator.
-     */
-    CARD,
-    /**
-     * The data originated from a patient source and was not directly scanned or
-     * read from a label or card.
-     */
-    SELFREPORTED,
-    /**
-     * The method of data capture has not been determined.
-     */
-    UNKNOWN,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static UDIEntryType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("barcode".equals(codeString))
-        return BARCODE;
-      if ("rfid".equals(codeString))
-        return RFID;
-      if ("manual".equals(codeString))
-        return MANUAL;
-      if ("card".equals(codeString))
-        return CARD;
-      if ("self-reported".equals(codeString))
-        return SELFREPORTED;
-      if ("unknown".equals(codeString))
-        return UNKNOWN;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown UDIEntryType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case BARCODE:
-        return "barcode";
-      case RFID:
-        return "rfid";
-      case MANUAL:
-        return "manual";
-      case CARD:
-        return "card";
-      case SELFREPORTED:
-        return "self-reported";
-      case UNKNOWN:
-        return "unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case BARCODE:
-        return "http://hl7.org/fhir/udi-entry-type";
-      case RFID:
-        return "http://hl7.org/fhir/udi-entry-type";
-      case MANUAL:
-        return "http://hl7.org/fhir/udi-entry-type";
-      case CARD:
-        return "http://hl7.org/fhir/udi-entry-type";
-      case SELFREPORTED:
-        return "http://hl7.org/fhir/udi-entry-type";
-      case UNKNOWN:
-        return "http://hl7.org/fhir/udi-entry-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case BARCODE:
-        return "a barcodescanner captured the data from the device label.";
-      case RFID:
-        return "An RFID chip reader captured the data from the device label.";
-      case MANUAL:
-        return "The data was read from the label by a person and manually entered. (e.g.  via a keyboard).";
-      case CARD:
-        return "The data originated from a patient's implant card and was read by an operator.";
-      case SELFREPORTED:
-        return "The data originated from a patient source and was not directly scanned or read from a label or card.";
-      case UNKNOWN:
-        return "The method of data capture has not been determined.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case BARCODE:
-        return "Barcode";
-      case RFID:
-        return "RFID";
-      case MANUAL:
-        return "Manual";
-      case CARD:
-        return "Card";
-      case SELFREPORTED:
-        return "Self Reported";
-      case UNKNOWN:
-        return "Unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class UDIEntryTypeEnumFactory implements EnumFactory<UDIEntryType> {
-    public UDIEntryType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("barcode".equals(codeString))
-        return UDIEntryType.BARCODE;
-      if ("rfid".equals(codeString))
-        return UDIEntryType.RFID;
-      if ("manual".equals(codeString))
-        return UDIEntryType.MANUAL;
-      if ("card".equals(codeString))
-        return UDIEntryType.CARD;
-      if ("self-reported".equals(codeString))
-        return UDIEntryType.SELFREPORTED;
-      if ("unknown".equals(codeString))
-        return UDIEntryType.UNKNOWN;
-      throw new IllegalArgumentException("Unknown UDIEntryType code '" + codeString + "'");
-    }
-
-    public Enumeration<UDIEntryType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<UDIEntryType>(this, UDIEntryType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<UDIEntryType>(this, UDIEntryType.NULL, code);
-      if ("barcode".equals(codeString))
-        return new Enumeration<UDIEntryType>(this, UDIEntryType.BARCODE, code);
-      if ("rfid".equals(codeString))
-        return new Enumeration<UDIEntryType>(this, UDIEntryType.RFID, code);
-      if ("manual".equals(codeString))
-        return new Enumeration<UDIEntryType>(this, UDIEntryType.MANUAL, code);
-      if ("card".equals(codeString))
-        return new Enumeration<UDIEntryType>(this, UDIEntryType.CARD, code);
-      if ("self-reported".equals(codeString))
-        return new Enumeration<UDIEntryType>(this, UDIEntryType.SELFREPORTED, code);
-      if ("unknown".equals(codeString))
-        return new Enumeration<UDIEntryType>(this, UDIEntryType.UNKNOWN, code);
-      throw new FHIRException("Unknown UDIEntryType code '" + codeString + "'");
-    }
-
-    public String toCode(UDIEntryType code) {
-       if (code == UDIEntryType.NULL)
-           return null;
-       if (code == UDIEntryType.BARCODE)
-        return "barcode";
-      if (code == UDIEntryType.RFID)
-        return "rfid";
-      if (code == UDIEntryType.MANUAL)
-        return "manual";
-      if (code == UDIEntryType.CARD)
-        return "card";
-      if (code == UDIEntryType.SELFREPORTED)
-        return "self-reported";
-      if (code == UDIEntryType.UNKNOWN)
-        return "unknown";
-      return "?";
-   }
-
-    public String toSystem(UDIEntryType code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum FHIRDeviceStatus {
-    /**
-     * The device is available for use. Note: For *implanted devices* this means
-     * that the device is implanted in the patient.
-     */
-    ACTIVE,
-    /**
-     * The device is no longer available for use (e.g. lost, expired, damaged).
-     * Note: For *implanted devices* this means that the device has been removed
-     * from the patient.
-     */
-    INACTIVE,
-    /**
-     * The device was entered in error and voided.
-     */
-    ENTEREDINERROR,
-    /**
-     * The status of the device has not been determined.
-     */
-    UNKNOWN,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static FHIRDeviceStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("active".equals(codeString))
-        return ACTIVE;
-      if ("inactive".equals(codeString))
-        return INACTIVE;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return UNKNOWN;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown FHIRDeviceStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ACTIVE:
-        return "active";
-      case INACTIVE:
-        return "inactive";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case UNKNOWN:
-        return "unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ACTIVE:
-        return "http://hl7.org/fhir/device-status";
-      case INACTIVE:
-        return "http://hl7.org/fhir/device-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/device-status";
-      case UNKNOWN:
-        return "http://hl7.org/fhir/device-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ACTIVE:
-        return "The device is available for use.  Note: For *implanted devices*  this means that the device is implanted in the patient.";
-      case INACTIVE:
-        return "The device is no longer available for use (e.g. lost, expired, damaged).  Note: For *implanted devices*  this means that the device has been removed from the patient.";
-      case ENTEREDINERROR:
-        return "The device was entered in error and voided.";
-      case UNKNOWN:
-        return "The status of the device has not been determined.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ACTIVE:
-        return "Active";
-      case INACTIVE:
-        return "Inactive";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case UNKNOWN:
-        return "Unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class FHIRDeviceStatusEnumFactory implements EnumFactory<FHIRDeviceStatus> {
-    public FHIRDeviceStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("active".equals(codeString))
-        return FHIRDeviceStatus.ACTIVE;
-      if ("inactive".equals(codeString))
-        return FHIRDeviceStatus.INACTIVE;
-      if ("entered-in-error".equals(codeString))
-        return FHIRDeviceStatus.ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return FHIRDeviceStatus.UNKNOWN;
-      throw new IllegalArgumentException("Unknown FHIRDeviceStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<FHIRDeviceStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<FHIRDeviceStatus>(this, FHIRDeviceStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<FHIRDeviceStatus>(this, FHIRDeviceStatus.NULL, code);
-      if ("active".equals(codeString))
-        return new Enumeration<FHIRDeviceStatus>(this, FHIRDeviceStatus.ACTIVE, code);
-      if ("inactive".equals(codeString))
-        return new Enumeration<FHIRDeviceStatus>(this, FHIRDeviceStatus.INACTIVE, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<FHIRDeviceStatus>(this, FHIRDeviceStatus.ENTEREDINERROR, code);
-      if ("unknown".equals(codeString))
-        return new Enumeration<FHIRDeviceStatus>(this, FHIRDeviceStatus.UNKNOWN, code);
-      throw new FHIRException("Unknown FHIRDeviceStatus code '" + codeString + "'");
-    }
-
-    public String toCode(FHIRDeviceStatus code) {
-       if (code == FHIRDeviceStatus.NULL)
-           return null;
-       if (code == FHIRDeviceStatus.ACTIVE)
-        return "active";
-      if (code == FHIRDeviceStatus.INACTIVE)
-        return "inactive";
-      if (code == FHIRDeviceStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      if (code == FHIRDeviceStatus.UNKNOWN)
-        return "unknown";
-      return "?";
-   }
-
-    public String toSystem(FHIRDeviceStatus code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum DeviceNameType {
-    /**
-     * UDI Label name.
-     */
-    UDILABELNAME,
-    /**
-     * User Friendly name.
-     */
-    USERFRIENDLYNAME,
-    /**
-     * Patient Reported name.
-     */
-    PATIENTREPORTEDNAME,
-    /**
-     * Manufacturer name.
-     */
-    MANUFACTURERNAME,
-    /**
-     * Model name.
-     */
-    MODELNAME,
-    /**
-     * other.
-     */
-    OTHER,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static DeviceNameType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("udi-label-name".equals(codeString))
-        return UDILABELNAME;
-      if ("user-friendly-name".equals(codeString))
-        return USERFRIENDLYNAME;
-      if ("patient-reported-name".equals(codeString))
-        return PATIENTREPORTEDNAME;
-      if ("manufacturer-name".equals(codeString))
-        return MANUFACTURERNAME;
-      if ("model-name".equals(codeString))
-        return MODELNAME;
-      if ("other".equals(codeString))
-        return OTHER;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown DeviceNameType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case UDILABELNAME:
-        return "udi-label-name";
-      case USERFRIENDLYNAME:
-        return "user-friendly-name";
-      case PATIENTREPORTEDNAME:
-        return "patient-reported-name";
-      case MANUFACTURERNAME:
-        return "manufacturer-name";
-      case MODELNAME:
-        return "model-name";
-      case OTHER:
-        return "other";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case UDILABELNAME:
-        return "http://hl7.org/fhir/device-nametype";
-      case USERFRIENDLYNAME:
-        return "http://hl7.org/fhir/device-nametype";
-      case PATIENTREPORTEDNAME:
-        return "http://hl7.org/fhir/device-nametype";
-      case MANUFACTURERNAME:
-        return "http://hl7.org/fhir/device-nametype";
-      case MODELNAME:
-        return "http://hl7.org/fhir/device-nametype";
-      case OTHER:
-        return "http://hl7.org/fhir/device-nametype";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case UDILABELNAME:
-        return "UDI Label name.";
-      case USERFRIENDLYNAME:
-        return "User Friendly name.";
-      case PATIENTREPORTEDNAME:
-        return "Patient Reported name.";
-      case MANUFACTURERNAME:
-        return "Manufacturer name.";
-      case MODELNAME:
-        return "Model name.";
-      case OTHER:
-        return "other.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case UDILABELNAME:
-        return "UDI Label name";
-      case USERFRIENDLYNAME:
-        return "User Friendly name";
-      case PATIENTREPORTEDNAME:
-        return "Patient Reported name";
-      case MANUFACTURERNAME:
-        return "Manufacturer name";
-      case MODELNAME:
-        return "Model name";
-      case OTHER:
-        return "other";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class DeviceNameTypeEnumFactory implements EnumFactory<DeviceNameType> {
-    public DeviceNameType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("udi-label-name".equals(codeString))
-        return DeviceNameType.UDILABELNAME;
-      if ("user-friendly-name".equals(codeString))
-        return DeviceNameType.USERFRIENDLYNAME;
-      if ("patient-reported-name".equals(codeString))
-        return DeviceNameType.PATIENTREPORTEDNAME;
-      if ("manufacturer-name".equals(codeString))
-        return DeviceNameType.MANUFACTURERNAME;
-      if ("model-name".equals(codeString))
-        return DeviceNameType.MODELNAME;
-      if ("other".equals(codeString))
-        return DeviceNameType.OTHER;
-      throw new IllegalArgumentException("Unknown DeviceNameType code '" + codeString + "'");
-    }
-
-    public Enumeration<DeviceNameType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<DeviceNameType>(this, DeviceNameType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<DeviceNameType>(this, DeviceNameType.NULL, code);
-      if ("udi-label-name".equals(codeString))
-        return new Enumeration<DeviceNameType>(this, DeviceNameType.UDILABELNAME, code);
-      if ("user-friendly-name".equals(codeString))
-        return new Enumeration<DeviceNameType>(this, DeviceNameType.USERFRIENDLYNAME, code);
-      if ("patient-reported-name".equals(codeString))
-        return new Enumeration<DeviceNameType>(this, DeviceNameType.PATIENTREPORTEDNAME, code);
-      if ("manufacturer-name".equals(codeString))
-        return new Enumeration<DeviceNameType>(this, DeviceNameType.MANUFACTURERNAME, code);
-      if ("model-name".equals(codeString))
-        return new Enumeration<DeviceNameType>(this, DeviceNameType.MODELNAME, code);
-      if ("other".equals(codeString))
-        return new Enumeration<DeviceNameType>(this, DeviceNameType.OTHER, code);
-      throw new FHIRException("Unknown DeviceNameType code '" + codeString + "'");
-    }
-
-    public String toCode(DeviceNameType code) {
-       if (code == DeviceNameType.NULL)
-           return null;
-       if (code == DeviceNameType.UDILABELNAME)
-        return "udi-label-name";
-      if (code == DeviceNameType.USERFRIENDLYNAME)
-        return "user-friendly-name";
-      if (code == DeviceNameType.PATIENTREPORTEDNAME)
-        return "patient-reported-name";
-      if (code == DeviceNameType.MANUFACTURERNAME)
-        return "manufacturer-name";
-      if (code == DeviceNameType.MODELNAME)
-        return "model-name";
-      if (code == DeviceNameType.OTHER)
-        return "other";
-      return "?";
-   }
-
-    public String toSystem(DeviceNameType code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class DeviceUdiCarrierComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -683,10 +111,10 @@ public class Device extends DomainResource {
      * A coded entry to indicate how the data was entered.
      */
     @Child(name = "entryType", type = {
-        CodeType.class }, order = 6, min = 0, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 6, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "barcode | rfid | manual +", formalDefinition = "A coded entry to indicate how the data was entered.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/udi-entry-type")
-    protected Enumeration<UDIEntryType> entryType;
+    protected StringType entryType;
 
     private static final long serialVersionUID = -191630425L;
 
@@ -1043,12 +471,12 @@ public class Device extends DomainResource {
      *         extensions. The accessor "getEntryType" gives direct access to the
      *         value
      */
-    public Enumeration<UDIEntryType> getEntryTypeElement() {
+    public StringType getEntryTypeElement() {
       if (this.entryType == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create DeviceUdiCarrierComponent.entryType");
         else if (Configuration.doAutoCreate())
-          this.entryType = new Enumeration<UDIEntryType>(new UDIEntryTypeEnumFactory()); // bb
+          this.entryType = new StringType(); // bb
       return this.entryType;
     }
 
@@ -1066,7 +494,7 @@ public class Device extends DomainResource {
      *              extensions. The accessor "getEntryType" gives direct access to
      *              the value
      */
-    public DeviceUdiCarrierComponent setEntryTypeElement(Enumeration<UDIEntryType> value) {
+    public DeviceUdiCarrierComponent setEntryTypeElement(StringType value) {
       this.entryType = value;
       return this;
     }
@@ -1074,19 +502,19 @@ public class Device extends DomainResource {
     /**
      * @return A coded entry to indicate how the data was entered.
      */
-    public UDIEntryType getEntryType() {
-      return this.entryType == null ? null : this.entryType.getValue();
+    public StringType getEntryType() {
+      return this.entryType == null ? null : this.entryType;
     }
 
     /**
      * @param value A coded entry to indicate how the data was entered.
      */
-    public DeviceUdiCarrierComponent setEntryType(UDIEntryType value) {
+    public DeviceUdiCarrierComponent setEntryType(String value) {
       if (value == null)
         this.entryType = null;
       else {
         if (this.entryType == null)
-          this.entryType = new Enumeration<UDIEntryType>(new UDIEntryTypeEnumFactory());
+          this.entryType = new StringType();
         this.entryType.setValue(value);
       }
       return this;
@@ -1110,7 +538,7 @@ public class Device extends DomainResource {
           "The full UDI carrier as the human readable form (HRF) representation of the barcode string as printed on the packaging of the device.",
           0, 1, carrierHRF));
       children.add(
-          new Property("entryType", "code", "A coded entry to indicate how the data was entered.", 0, 1, entryType));
+          new Property("entryType", "string", "A coded entry to indicate how the data was entered.", 0, 1, entryType));
     }
 
     @Override
@@ -1137,7 +565,7 @@ public class Device extends DomainResource {
             "The full UDI carrier as the human readable form (HRF) representation of the barcode string as printed on the packaging of the device.",
             0, 1, carrierHRF);
       case -479362356:
-        /* entryType */ return new Property("entryType", "code", "A coded entry to indicate how the data was entered.",
+        /* entryType */ return new Property("entryType", "string", "A coded entry to indicate how the data was entered.",
             0, 1, entryType);
       default:
         return super.getNamedProperty(_hash, _name, _checkValid);
@@ -1186,8 +614,7 @@ public class Device extends DomainResource {
         this.carrierHRF = castToString(value); // StringType
         return value;
       case -479362356: // entryType
-        value = new UDIEntryTypeEnumFactory().fromType(castToCode(value));
-        this.entryType = (Enumeration) value; // Enumeration<UDIEntryType>
+        this.entryType = castToString(value); // StringType
         return value;
       default:
         return super.setProperty(hash, name, value);
@@ -1208,8 +635,7 @@ public class Device extends DomainResource {
       } else if (name.equals("carrierHRF")) {
         this.carrierHRF = castToString(value); // StringType
       } else if (name.equals("entryType")) {
-        value = new UDIEntryTypeEnumFactory().fromType(castToCode(value));
-        this.entryType = (Enumeration) value; // Enumeration<UDIEntryType>
+        this.entryType = castToString(value); // StringType
       } else
         return super.setProperty(name, value);
       return value;
@@ -1269,7 +695,7 @@ public class Device extends DomainResource {
       case 806499972:
         /* carrierHRF */ return new String[] { "string" };
       case -479362356:
-        /* entryType */ return new String[] { "code" };
+        /* entryType */ return new String[] { "string" };
       default:
         return super.getTypesForProperty(hash, name);
       }
@@ -1359,10 +785,10 @@ public class Device extends DomainResource {
      * The type of deviceName. UDILabelName | UserFriendlyName | PatientReportedName
      * | ManufactureDeviceName | ModelName.
      */
-    @Child(name = "type", type = { CodeType.class }, order = 2, min = 1, max = 1, modifier = false, summary = false)
+    @Child(name = "type", type = { StringType.class }, order = 2, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "udi-label-name | user-friendly-name | patient-reported-name | manufacturer-name | model-name | other", formalDefinition = "The type of deviceName.\nUDILabelName | UserFriendlyName | PatientReportedName | ManufactureDeviceName | ModelName.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/device-nametype")
-    protected Enumeration<DeviceNameType> type;
+    protected StringType type;
 
     private static final long serialVersionUID = 918983440L;
 
@@ -1376,7 +802,7 @@ public class Device extends DomainResource {
     /**
      * Constructor
      */
-    public DeviceDeviceNameComponent(StringType name, Enumeration<DeviceNameType> type) {
+    public DeviceDeviceNameComponent(StringType name, StringType type) {
       super();
       this.name = name;
       this.type = type;
@@ -1437,12 +863,12 @@ public class Device extends DomainResource {
      *         ModelName.). This is the underlying object with id, value and
      *         extensions. The accessor "getType" gives direct access to the value
      */
-    public Enumeration<DeviceNameType> getTypeElement() {
+    public StringType getTypeElement() {
       if (this.type == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create DeviceDeviceNameComponent.type");
         else if (Configuration.doAutoCreate())
-          this.type = new Enumeration<DeviceNameType>(new DeviceNameTypeEnumFactory()); // bb
+          this.type = new StringType(); // bb
       return this.type;
     }
 
@@ -1461,7 +887,7 @@ public class Device extends DomainResource {
      *              extensions. The accessor "getType" gives direct access to the
      *              value
      */
-    public DeviceDeviceNameComponent setTypeElement(Enumeration<DeviceNameType> value) {
+    public DeviceDeviceNameComponent setTypeElement(StringType value) {
       this.type = value;
       return this;
     }
@@ -1470,17 +896,17 @@ public class Device extends DomainResource {
      * @return The type of deviceName. UDILabelName | UserFriendlyName |
      *         PatientReportedName | ManufactureDeviceName | ModelName.
      */
-    public DeviceNameType getType() {
-      return this.type == null ? null : this.type.getValue();
+    public StringType getType() {
+      return this.type == null ? null : this.type;
     }
 
     /**
      * @param value The type of deviceName. UDILabelName | UserFriendlyName |
      *              PatientReportedName | ManufactureDeviceName | ModelName.
      */
-    public DeviceDeviceNameComponent setType(DeviceNameType value) {
+    public DeviceDeviceNameComponent setType(String value) {
       if (this.type == null)
-        this.type = new Enumeration<DeviceNameType>(new DeviceNameTypeEnumFactory());
+        this.type = new StringType();
       this.type.setValue(value);
       return this;
     }
@@ -1488,7 +914,7 @@ public class Device extends DomainResource {
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
       children.add(new Property("name", "string", "The name of the device.", 0, 1, name));
-      children.add(new Property("type", "code",
+      children.add(new Property("type", "string",
           "The type of deviceName.\nUDILabelName | UserFriendlyName | PatientReportedName | ManufactureDeviceName | ModelName.",
           0, 1, type));
     }
@@ -1499,7 +925,7 @@ public class Device extends DomainResource {
       case 3373707:
         /* name */ return new Property("name", "string", "The name of the device.", 0, 1, name);
       case 3575610:
-        /* type */ return new Property("type", "code",
+        /* type */ return new Property("type", "string",
             "The type of deviceName.\nUDILabelName | UserFriendlyName | PatientReportedName | ManufactureDeviceName | ModelName.",
             0, 1, type);
       default:
@@ -1528,8 +954,7 @@ public class Device extends DomainResource {
         this.name = castToString(value); // StringType
         return value;
       case 3575610: // type
-        value = new DeviceNameTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<DeviceNameType>
+        this.type = castToString(value); // StringType
         return value;
       default:
         return super.setProperty(hash, name, value);
@@ -1542,8 +967,7 @@ public class Device extends DomainResource {
       if (name.equals("name")) {
         this.name = castToString(value); // StringType
       } else if (name.equals("type")) {
-        value = new DeviceNameTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<DeviceNameType>
+        this.type = castToString(value); // StringType
       } else
         return super.setProperty(name, value);
       return value;
@@ -1579,7 +1003,7 @@ public class Device extends DomainResource {
       case 3373707:
         /* name */ return new String[] { "string" };
       case 3575610:
-        /* type */ return new String[] { "code" };
+        /* type */ return new String[] { "string" };
       default:
         return super.getTypesForProperty(hash, name);
       }
@@ -2621,10 +2045,10 @@ public class Device extends DomainResource {
   /**
    * Status of the Device availability.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 3, min = 0, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 3, min = 0, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "active | inactive | entered-in-error | unknown", formalDefinition = "Status of the Device availability.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/device-status")
-  protected Enumeration<FHIRDeviceStatus> status;
+  protected StringType status;
 
   /**
    * Reason for the dtatus of the Device availability.
@@ -3008,12 +2432,12 @@ public class Device extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<FHIRDeviceStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Device.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<FHIRDeviceStatus>(new FHIRDeviceStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -3030,7 +2454,7 @@ public class Device extends DomainResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public Device setStatusElement(Enumeration<FHIRDeviceStatus> value) {
+  public Device setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -3038,19 +2462,19 @@ public class Device extends DomainResource {
   /**
    * @return Status of the Device availability.
    */
-  public FHIRDeviceStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value Status of the Device availability.
    */
-  public Device setStatus(FHIRDeviceStatus value) {
+  public Device setStatus(String value) {
     if (value == null)
       this.status = null;
     else {
       if (this.status == null)
-        this.status = new Enumeration<FHIRDeviceStatus>(new FHIRDeviceStatusEnumFactory());
+        this.status = new StringType();
       this.status.setValue(value);
     }
     return this;
@@ -4234,7 +3658,7 @@ public class Device extends DomainResource {
     children.add(new Property("udiCarrier", "",
         "Unique device identifier (UDI) assigned to device label or package.  Note that the Device may include multiple udiCarriers as it either may include just the udiCarrier for the jurisdiction it is sold, or for multiple jurisdictions it could have been sold.",
         0, java.lang.Integer.MAX_VALUE, udiCarrier));
-    children.add(new Property("status", "code", "Status of the Device availability.", 0, 1, status));
+    children.add(new Property("status", "string", "Status of the Device availability.", 0, 1, status));
     children.add(new Property("statusReason", "CodeableConcept", "Reason for the dtatus of the Device availability.", 0,
         java.lang.Integer.MAX_VALUE, statusReason));
     children.add(new Property("distinctIdentifier", "string",
@@ -4299,7 +3723,7 @@ public class Device extends DomainResource {
           "Unique device identifier (UDI) assigned to device label or package.  Note that the Device may include multiple udiCarriers as it either may include just the udiCarrier for the jurisdiction it is sold, or for multiple jurisdictions it could have been sold.",
           0, java.lang.Integer.MAX_VALUE, udiCarrier);
     case -892481550:
-      /* status */ return new Property("status", "code", "Status of the Device availability.", 0, 1, status);
+      /* status */ return new Property("status", "string", "Status of the Device availability.", 0, 1, status);
     case 2051346646:
       /* statusReason */ return new Property("statusReason", "CodeableConcept",
           "Reason for the dtatus of the Device availability.", 0, java.lang.Integer.MAX_VALUE, statusReason);
@@ -4458,8 +3882,7 @@ public class Device extends DomainResource {
       this.getUdiCarrier().add((DeviceUdiCarrierComponent) value); // DeviceUdiCarrierComponent
       return value;
     case -892481550: // status
-      value = new FHIRDeviceStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<FHIRDeviceStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 2051346646: // statusReason
       this.getStatusReason().add(castToCodeableConcept(value)); // CodeableConcept
@@ -4542,8 +3965,7 @@ public class Device extends DomainResource {
     } else if (name.equals("udiCarrier")) {
       this.getUdiCarrier().add((DeviceUdiCarrierComponent) value);
     } else if (name.equals("status")) {
-      value = new FHIRDeviceStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<FHIRDeviceStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("statusReason")) {
       this.getStatusReason().add(castToCodeableConcept(value));
     } else if (name.equals("distinctIdentifier")) {
@@ -4723,7 +4145,7 @@ public class Device extends DomainResource {
     case -1343558178:
       /* udiCarrier */ return new String[] {};
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 2051346646:
       /* statusReason */ return new String[] { "CodeableConcept" };
     case -1836176187:
