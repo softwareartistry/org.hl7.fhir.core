@@ -8994,7 +8994,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "Immunization", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "Immunization", "status", element.getStatusElement(), -1);
+      composeString(t, "Immunization", "status", element.getStatusElement(), -1);
     if (element.hasStatusReason())
       composeCodeableConcept(t, "Immunization", "statusReason", element.getStatusReason(), -1);
     if (element.hasVaccineCode())
