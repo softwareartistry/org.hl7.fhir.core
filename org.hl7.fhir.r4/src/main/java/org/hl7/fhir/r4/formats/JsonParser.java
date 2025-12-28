@@ -26842,8 +26842,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("accessionIdentifier"))
       res.setAccessionIdentifier(parseIdentifier(getJObject(json, "accessionIdentifier")));
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Specimen.SpecimenStatus.NULL,
-        new Specimen.SpecimenStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("type"))
@@ -60104,8 +60103,8 @@ public class JsonParser extends JsonParserBase {
       composeIdentifier("accessionIdentifier", element.getAccessionIdentifier());
     }
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new Specimen.SpecimenStatusEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(), new Specimen.SpecimenStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasType()) {
       composeCodeableConcept("type", element.getType());

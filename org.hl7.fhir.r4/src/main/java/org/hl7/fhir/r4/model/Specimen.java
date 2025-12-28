@@ -50,170 +50,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Specimen", profile = "http://hl7.org/fhir/StructureDefinition/Specimen")
 public class Specimen extends DomainResource {
 
-  public enum SpecimenStatus {
-    /**
-     * The physical specimen is present and in good condition.
-     */
-    AVAILABLE,
-    /**
-     * There is no physical specimen because it is either lost, destroyed or
-     * consumed.
-     */
-    UNAVAILABLE,
-    /**
-     * The specimen cannot be used because of a quality issue such as a broken
-     * container, contamination, or too old.
-     */
-    UNSATISFACTORY,
-    /**
-     * The specimen was entered in error and therefore nullified.
-     */
-    ENTEREDINERROR,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static SpecimenStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("available".equals(codeString))
-        return AVAILABLE;
-      if ("unavailable".equals(codeString))
-        return UNAVAILABLE;
-      if ("unsatisfactory".equals(codeString))
-        return UNSATISFACTORY;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown SpecimenStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case AVAILABLE:
-        return "available";
-      case UNAVAILABLE:
-        return "unavailable";
-      case UNSATISFACTORY:
-        return "unsatisfactory";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case AVAILABLE:
-        return "http://hl7.org/fhir/specimen-status";
-      case UNAVAILABLE:
-        return "http://hl7.org/fhir/specimen-status";
-      case UNSATISFACTORY:
-        return "http://hl7.org/fhir/specimen-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/specimen-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case AVAILABLE:
-        return "The physical specimen is present and in good condition.";
-      case UNAVAILABLE:
-        return "There is no physical specimen because it is either lost, destroyed or consumed.";
-      case UNSATISFACTORY:
-        return "The specimen cannot be used because of a quality issue such as a broken container, contamination, or too old.";
-      case ENTEREDINERROR:
-        return "The specimen was entered in error and therefore nullified.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case AVAILABLE:
-        return "Available";
-      case UNAVAILABLE:
-        return "Unavailable";
-      case UNSATISFACTORY:
-        return "Unsatisfactory";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class SpecimenStatusEnumFactory implements EnumFactory<SpecimenStatus> {
-    public SpecimenStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("available".equals(codeString))
-        return SpecimenStatus.AVAILABLE;
-      if ("unavailable".equals(codeString))
-        return SpecimenStatus.UNAVAILABLE;
-      if ("unsatisfactory".equals(codeString))
-        return SpecimenStatus.UNSATISFACTORY;
-      if ("entered-in-error".equals(codeString))
-        return SpecimenStatus.ENTEREDINERROR;
-      throw new IllegalArgumentException("Unknown SpecimenStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<SpecimenStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<SpecimenStatus>(this, SpecimenStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<SpecimenStatus>(this, SpecimenStatus.NULL, code);
-      if ("available".equals(codeString))
-        return new Enumeration<SpecimenStatus>(this, SpecimenStatus.AVAILABLE, code);
-      if ("unavailable".equals(codeString))
-        return new Enumeration<SpecimenStatus>(this, SpecimenStatus.UNAVAILABLE, code);
-      if ("unsatisfactory".equals(codeString))
-        return new Enumeration<SpecimenStatus>(this, SpecimenStatus.UNSATISFACTORY, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<SpecimenStatus>(this, SpecimenStatus.ENTEREDINERROR, code);
-      throw new FHIRException("Unknown SpecimenStatus code '" + codeString + "'");
-    }
-
-    public String toCode(SpecimenStatus code) {
-       if (code == SpecimenStatus.NULL)
-           return null;
-       if (code == SpecimenStatus.AVAILABLE)
-        return "available";
-      if (code == SpecimenStatus.UNAVAILABLE)
-        return "unavailable";
-      if (code == SpecimenStatus.UNSATISFACTORY)
-        return "unsatisfactory";
-      if (code == SpecimenStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      return "?";
-   }
-
-    public String toSystem(SpecimenStatus code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class SpecimenCollectionComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -1939,10 +1775,10 @@ public class Specimen extends DomainResource {
   /**
    * The availability of the specimen.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 2, min = 0, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 2, min = 0, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "available | unavailable | unsatisfactory | entered-in-error", formalDefinition = "The availability of the specimen.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/specimen-status")
-  protected Enumeration<SpecimenStatus> status;
+  protected StringType status;
 
   /**
    * The kind of material that forms the specimen.
@@ -2142,12 +1978,12 @@ public class Specimen extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<SpecimenStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Specimen.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<SpecimenStatus>(new SpecimenStatusEnumFactory()); // bb
+        this.status = new StringType();
     return this.status;
   }
 
@@ -2164,7 +2000,7 @@ public class Specimen extends DomainResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getStatus" gives direct access to the value
    */
-  public Specimen setStatusElement(Enumeration<SpecimenStatus> value) {
+  public Specimen setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -2172,19 +2008,19 @@ public class Specimen extends DomainResource {
   /**
    * @return The availability of the specimen.
    */
-  public SpecimenStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
   /**
    * @param value The availability of the specimen.
    */
-  public Specimen setStatus(SpecimenStatus value) {
+  public Specimen setStatus(String value) {
     if (value == null)
       this.status = null;
     else {
       if (this.status == null)
-        this.status = new Enumeration<SpecimenStatus>(new SpecimenStatusEnumFactory());
+        this.status = new StringType();
       this.status.setValue(value);
     }
     return this;
@@ -2688,7 +2524,7 @@ public class Specimen extends DomainResource {
     children.add(new Property("accessionIdentifier", "Identifier",
         "The identifier assigned by the lab when accessioning specimen(s). This is not necessarily the same as the specimen identifier, depending on local lab procedures.",
         0, 1, accessionIdentifier));
-    children.add(new Property("status", "code", "The availability of the specimen.", 0, 1, status));
+    children.add(new Property("status", "string", "The availability of the specimen.", 0, 1, status));
     children.add(new Property("type", "CodeableConcept", "The kind of material that forms the specimen.", 0, 1, type));
     children.add(new Property("subject", "Reference(Patient|Group|Device|Substance|Location)",
         "Where the specimen came from. This may be from patient(s), from a location (e.g., the source of an environmental sample), or a sampling of a substance or a device.",
@@ -2726,7 +2562,7 @@ public class Specimen extends DomainResource {
           "The identifier assigned by the lab when accessioning specimen(s). This is not necessarily the same as the specimen identifier, depending on local lab procedures.",
           0, 1, accessionIdentifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "The availability of the specimen.", 0, 1, status);
+      /* status */ return new Property("status", "string", "The availability of the specimen.", 0, 1, status);
     case 3575610:
       /* type */ return new Property("type", "CodeableConcept", "The kind of material that forms the specimen.", 0, 1,
           type);
@@ -2820,8 +2656,7 @@ public class Specimen extends DomainResource {
       this.accessionIdentifier = castToIdentifier(value); // Identifier
       return value;
     case -892481550: // status
-      value = new SpecimenStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<SpecimenStatus>
+      this.status = castToString(value);; // StringType
       return value;
     case 3575610: // type
       this.type = castToCodeableConcept(value); // CodeableConcept
@@ -2866,8 +2701,7 @@ public class Specimen extends DomainResource {
     } else if (name.equals("accessionIdentifier")) {
       this.accessionIdentifier = castToIdentifier(value); // Identifier
     } else if (name.equals("status")) {
-      value = new SpecimenStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<SpecimenStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("type")) {
       this.type = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("subject")) {
@@ -2969,7 +2803,7 @@ public class Specimen extends DomainResource {
     case 818734061:
       /* accessionIdentifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "status" };
     case 3575610:
       /* type */ return new String[] { "CodeableConcept" };
     case -1867885268:

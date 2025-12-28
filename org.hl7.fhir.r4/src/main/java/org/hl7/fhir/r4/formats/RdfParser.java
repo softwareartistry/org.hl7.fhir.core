@@ -15483,7 +15483,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasAccessionIdentifier())
       composeIdentifier(t, "Specimen", "accessionIdentifier", element.getAccessionIdentifier(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "Specimen", "status", element.getStatusElement(), -1);
+      composeString(t, "Specimen", "status", element.getStatusElement(), -1);
     if (element.hasType())
       composeCodeableConcept(t, "Specimen", "type", element.getType(), -1);
     if (element.hasSubject())
