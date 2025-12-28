@@ -10857,18 +10857,15 @@ public class JsonParser extends JsonParserBase {
     if (json.has("groupIdentifier"))
       res.setGroupIdentifier(parseIdentifier(getJObject(json, "groupIdentifier")));
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), DeviceRequest.DeviceRequestStatus.NULL,
-        new DeviceRequest.DeviceRequestStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("intent"))
-      res.setIntentElement(parseEnumeration(json.get("intent").getAsString(), DeviceRequest.RequestIntent.NULL,
-        new DeviceRequest.RequestIntentEnumFactory()));
+      res.setIntentElement(parseString(json.get("intent").getAsString()));
     if (json.has("_intent"))
       parseElementProperties(getJObject(json, "_intent"), res.getIntentElement());
     if (json.has("priority"))
-      res.setPriorityElement(parseEnumeration(json.get("priority").getAsString(), DeviceRequest.RequestPriority.NULL,
-        new DeviceRequest.RequestPriorityEnumFactory()));
+      res.setPriorityElement(parseString(json.get("priority").getAsString()));
     if (json.has("_priority"))
       parseElementProperties(getJObject(json, "_priority"), res.getPriorityElement());
     Type code = parseType("code", json);
@@ -43754,21 +43751,16 @@ public class JsonParser extends JsonParserBase {
       composeIdentifier("groupIdentifier", element.getGroupIdentifier());
     }
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new DeviceRequest.DeviceRequestStatusEnumFactory(),
-        false);
-      composeEnumerationExtras("status", element.getStatusElement(), new DeviceRequest.DeviceRequestStatusEnumFactory(),
-        false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasIntentElement()) {
-      composeEnumerationCore("intent", element.getIntentElement(), new DeviceRequest.RequestIntentEnumFactory(), false);
-      composeEnumerationExtras("intent", element.getIntentElement(), new DeviceRequest.RequestIntentEnumFactory(),
-        false);
+      composeStringCore("intent", element.getIntentElement(), false);
+      composeStringExtras("intent", element.getIntentElement(), false);
     }
     if (element.hasPriorityElement()) {
-      composeEnumerationCore("priority", element.getPriorityElement(), new DeviceRequest.RequestPriorityEnumFactory(),
-        false);
-      composeEnumerationExtras("priority", element.getPriorityElement(), new DeviceRequest.RequestPriorityEnumFactory(),
-        false);
+      composeStringCore("priority", element.getPriorityElement(), false);
+      composeStringExtras("priority", element.getPriorityElement(), false);
     }
     if (element.hasCode()) {
       composeType("code", element.getCode());

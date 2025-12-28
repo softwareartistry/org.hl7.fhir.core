@@ -8827,14 +8827,11 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("groupIdentifier")) {
       res.setGroupIdentifier(parseIdentifier(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, DeviceRequest.DeviceRequestStatus.NULL,
-          new DeviceRequest.DeviceRequestStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("intent")) {
-      res.setIntentElement(
-          parseEnumeration(xpp, DeviceRequest.RequestIntent.NULL, new DeviceRequest.RequestIntentEnumFactory()));
+      res.setIntentElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("priority")) {
-      res.setPriorityElement(
-          parseEnumeration(xpp, DeviceRequest.RequestPriority.NULL, new DeviceRequest.RequestPriorityEnumFactory()));
+      res.setPriorityElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && nameIsTypeName(xpp, "code")) {
       res.setCode(parseType("code", xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("parameter")) {

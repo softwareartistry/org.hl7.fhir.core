@@ -1972,7 +1972,7 @@ public class DeviceRequest extends DomainResource {
     children.add(new Property("status", "string", "The status of the request.", 0, 1, status));
     children.add(new Property("intent", "string",
         "Whether the request is a proposal, plan, an original order or a reflex order.", 0, 1, intent));
-    children.add(new Property("priority", "code",
+    children.add(new Property("priority", "string",
         "Indicates how quickly the {{title}} should be addressed with respect to other requests.", 0, 1, priority));
     children.add(new Property("code[x]", "Reference(Device)|CodeableConcept", "The details of the device to be used.",
         0, 1, code));
@@ -2044,7 +2044,7 @@ public class DeviceRequest extends DomainResource {
       /* intent */ return new Property("intent", "string",
           "Whether the request is a proposal, plan, an original order or a reflex order.", 0, 1, intent);
     case -1165461084:
-      /* priority */ return new Property("priority", "code",
+      /* priority */ return new Property("priority", "string",
           "Indicates how quickly the {{title}} should be addressed with respect to other requests.", 0, 1, priority);
     case 941839219:
       /* code[x] */ return new Property("code[x]", "Reference(Device)|CodeableConcept",
@@ -2153,7 +2153,7 @@ public class DeviceRequest extends DomainResource {
     case -1183762788:
       /* intent */ return this.intent == null ? new Base[0] : new Base[] { this.intent }; // StringType
     case -1165461084:
-      /* priority */ return this.priority == null ? new Base[0] : new Base[] { this.priority }; // Enumeration<RequestPriority>
+      /* priority */ return this.priority == null ? new Base[0] : new Base[] { this.priority }; // StringType
     case 3059181:
       /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // Type
     case 1954460585:
@@ -2224,8 +2224,7 @@ public class DeviceRequest extends DomainResource {
       this.intent = castToString(value); // StringType
       return value;
     case -1165461084: // priority
-      value = new RequestPriorityEnumFactory().fromType(castToCode(value));
-      this.priority = (Enumeration) value; // Enumeration<RequestPriority>
+      this.priority = castToString(value); // Enumeration<RequestPriority>
       return value;
     case 3059181: // code
       this.code = castToType(value); // Type
@@ -2297,8 +2296,7 @@ public class DeviceRequest extends DomainResource {
     } else if (name.equals("intent")) {
       this.intent = castToString(value); // StringType
     } else if (name.equals("priority")) {
-      value = new RequestPriorityEnumFactory().fromType(castToCode(value));
-      this.priority = (Enumeration) value; // Enumeration<RequestPriority>
+      this.priority = castToString(value); // Enumeration<RequestPriority>
     } else if (name.equals("code[x]")) {
       this.code = castToType(value); // Type
     } else if (name.equals("parameter")) {
@@ -2470,7 +2468,7 @@ public class DeviceRequest extends DomainResource {
     case -1183762788:
       /* intent */ return new String[] { "string" };
     case -1165461084:
-      /* priority */ return new String[] { "code" };
+      /* priority */ return new String[] { "string" };
     case 3059181:
       /* code */ return new String[] { "Reference", "CodeableConcept" };
     case 1954460585:
