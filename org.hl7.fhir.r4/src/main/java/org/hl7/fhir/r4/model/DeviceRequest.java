@@ -50,677 +50,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "DeviceRequest", profile = "http://hl7.org/fhir/StructureDefinition/DeviceRequest")
 public class DeviceRequest extends DomainResource {
 
-  public enum DeviceRequestStatus {
-    /**
-     * The request has been created but is not yet complete or ready for action.
-     */
-    DRAFT,
-    /**
-     * The request is in force and ready to be acted upon.
-     */
-    ACTIVE,
-    /**
-     * The request (and any implicit authorization to act) has been temporarily
-     * withdrawn but is expected to resume in the future.
-     */
-    ONHOLD,
-    /**
-     * The request (and any implicit authorization to act) has been terminated prior
-     * to the known full completion of the intended actions. No further activity
-     * should occur.
-     */
-    REVOKED,
-    /**
-     * The activity described by the request has been fully performed. No further
-     * activity will occur.
-     */
-    COMPLETED,
-    /**
-     * This request should never have existed and should be considered 'void'. (It
-     * is possible that real-world decisions were based on it. If real-world
-     * activity has occurred, the status should be "revoked" rather than
-     * "entered-in-error".).
-     */
-    ENTEREDINERROR,
-    /**
-     * The authoring/source system does not know which of the status values
-     * currently applies for this request. Note: This concept is not to be used for
-     * "other" - one of the listed statuses is presumed to apply, but the
-     * authoring/source system does not know which.
-     */
-    UNKNOWN,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static DeviceRequestStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("draft".equals(codeString))
-        return DRAFT;
-      if ("active".equals(codeString))
-        return ACTIVE;
-      if ("on-hold".equals(codeString))
-        return ONHOLD;
-      if ("revoked".equals(codeString))
-        return REVOKED;
-      if ("completed".equals(codeString))
-        return COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return UNKNOWN;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown DeviceRequestStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case DRAFT:
-        return "draft";
-      case ACTIVE:
-        return "active";
-      case ONHOLD:
-        return "on-hold";
-      case REVOKED:
-        return "revoked";
-      case COMPLETED:
-        return "completed";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case UNKNOWN:
-        return "unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case DRAFT:
-        return "http://hl7.org/fhir/request-status";
-      case ACTIVE:
-        return "http://hl7.org/fhir/request-status";
-      case ONHOLD:
-        return "http://hl7.org/fhir/request-status";
-      case REVOKED:
-        return "http://hl7.org/fhir/request-status";
-      case COMPLETED:
-        return "http://hl7.org/fhir/request-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/request-status";
-      case UNKNOWN:
-        return "http://hl7.org/fhir/request-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case DRAFT:
-        return "The request has been created but is not yet complete or ready for action.";
-      case ACTIVE:
-        return "The request is in force and ready to be acted upon.";
-      case ONHOLD:
-        return "The request (and any implicit authorization to act) has been temporarily withdrawn but is expected to resume in the future.";
-      case REVOKED:
-        return "The request (and any implicit authorization to act) has been terminated prior to the known full completion of the intended actions.  No further activity should occur.";
-      case COMPLETED:
-        return "The activity described by the request has been fully performed.  No further activity will occur.";
-      case ENTEREDINERROR:
-        return "This request should never have existed and should be considered 'void'.  (It is possible that real-world decisions were based on it.  If real-world activity has occurred, the status should be \"revoked\" rather than \"entered-in-error\".).";
-      case UNKNOWN:
-        return "The authoring/source system does not know which of the status values currently applies for this request.  Note: This concept is not to be used for \"other\" - one of the listed statuses is presumed to apply,  but the authoring/source system does not know which.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case DRAFT:
-        return "Draft";
-      case ACTIVE:
-        return "Active";
-      case ONHOLD:
-        return "On Hold";
-      case REVOKED:
-        return "Revoked";
-      case COMPLETED:
-        return "Completed";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case UNKNOWN:
-        return "Unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class DeviceRequestStatusEnumFactory implements EnumFactory<DeviceRequestStatus> {
-    public DeviceRequestStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("draft".equals(codeString))
-        return DeviceRequestStatus.DRAFT;
-      if ("active".equals(codeString))
-        return DeviceRequestStatus.ACTIVE;
-      if ("on-hold".equals(codeString))
-        return DeviceRequestStatus.ONHOLD;
-      if ("revoked".equals(codeString))
-        return DeviceRequestStatus.REVOKED;
-      if ("completed".equals(codeString))
-        return DeviceRequestStatus.COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return DeviceRequestStatus.ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return DeviceRequestStatus.UNKNOWN;
-      throw new IllegalArgumentException("Unknown DeviceRequestStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<DeviceRequestStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<DeviceRequestStatus>(this, DeviceRequestStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<DeviceRequestStatus>(this, DeviceRequestStatus.NULL, code);
-      if ("draft".equals(codeString))
-        return new Enumeration<DeviceRequestStatus>(this, DeviceRequestStatus.DRAFT, code);
-      if ("active".equals(codeString))
-        return new Enumeration<DeviceRequestStatus>(this, DeviceRequestStatus.ACTIVE, code);
-      if ("on-hold".equals(codeString))
-        return new Enumeration<DeviceRequestStatus>(this, DeviceRequestStatus.ONHOLD, code);
-      if ("revoked".equals(codeString))
-        return new Enumeration<DeviceRequestStatus>(this, DeviceRequestStatus.REVOKED, code);
-      if ("completed".equals(codeString))
-        return new Enumeration<DeviceRequestStatus>(this, DeviceRequestStatus.COMPLETED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<DeviceRequestStatus>(this, DeviceRequestStatus.ENTEREDINERROR, code);
-      if ("unknown".equals(codeString))
-        return new Enumeration<DeviceRequestStatus>(this, DeviceRequestStatus.UNKNOWN, code);
-      throw new FHIRException("Unknown DeviceRequestStatus code '" + codeString + "'");
-    }
-
-    public String toCode(DeviceRequestStatus code) {
-       if (code == DeviceRequestStatus.NULL)
-           return null;
-       if (code == DeviceRequestStatus.DRAFT)
-        return "draft";
-      if (code == DeviceRequestStatus.ACTIVE)
-        return "active";
-      if (code == DeviceRequestStatus.ONHOLD)
-        return "on-hold";
-      if (code == DeviceRequestStatus.REVOKED)
-        return "revoked";
-      if (code == DeviceRequestStatus.COMPLETED)
-        return "completed";
-      if (code == DeviceRequestStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      if (code == DeviceRequestStatus.UNKNOWN)
-        return "unknown";
-      return "?";
-   }
-
-    public String toSystem(DeviceRequestStatus code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum RequestIntent {
-    /**
-     * The request is a suggestion made by someone/something that does not have an
-     * intention to ensure it occurs and without providing an authorization to act.
-     */
-    PROPOSAL,
-    /**
-     * The request represents an intention to ensure something occurs without
-     * providing an authorization for others to act.
-     */
-    PLAN,
-    /**
-     * The request represents a legally binding instruction authored by a Patient or
-     * RelatedPerson.
-     */
-    DIRECTIVE,
-    /**
-     * The request represents a request/demand and authorization for action by a
-     * Practitioner.
-     */
-    ORDER,
-    /**
-     * The request represents an original authorization for action.
-     */
-    ORIGINALORDER,
-    /**
-     * The request represents an automatically generated supplemental authorization
-     * for action based on a parent authorization together with initial results of
-     * the action taken against that parent authorization.
-     */
-    REFLEXORDER,
-    /**
-     * The request represents the view of an authorization instantiated by a
-     * fulfilling system representing the details of the fulfiller's intention to
-     * act upon a submitted order.
-     */
-    FILLERORDER,
-    /**
-     * An order created in fulfillment of a broader order that represents the
-     * authorization for a single activity occurrence. E.g. The administration of a
-     * single dose of a drug.
-     */
-    INSTANCEORDER,
-    /**
-     * The request represents a component or option for a RequestGroup that
-     * establishes timing, conditionality and/or other constraints among a set of
-     * requests. Refer to [[[RequestGroup]]] for additional information on how this
-     * status is used.
-     */
-    OPTION,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static RequestIntent fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("proposal".equals(codeString))
-        return PROPOSAL;
-      if ("plan".equals(codeString))
-        return PLAN;
-      if ("directive".equals(codeString))
-        return DIRECTIVE;
-      if ("order".equals(codeString))
-        return ORDER;
-      if ("original-order".equals(codeString))
-        return ORIGINALORDER;
-      if ("reflex-order".equals(codeString))
-        return REFLEXORDER;
-      if ("filler-order".equals(codeString))
-        return FILLERORDER;
-      if ("instance-order".equals(codeString))
-        return INSTANCEORDER;
-      if ("option".equals(codeString))
-        return OPTION;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown RequestIntent code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case PROPOSAL:
-        return "proposal";
-      case PLAN:
-        return "plan";
-      case DIRECTIVE:
-        return "directive";
-      case ORDER:
-        return "order";
-      case ORIGINALORDER:
-        return "original-order";
-      case REFLEXORDER:
-        return "reflex-order";
-      case FILLERORDER:
-        return "filler-order";
-      case INSTANCEORDER:
-        return "instance-order";
-      case OPTION:
-        return "option";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case PROPOSAL:
-        return "http://hl7.org/fhir/request-intent";
-      case PLAN:
-        return "http://hl7.org/fhir/request-intent";
-      case DIRECTIVE:
-        return "http://hl7.org/fhir/request-intent";
-      case ORDER:
-        return "http://hl7.org/fhir/request-intent";
-      case ORIGINALORDER:
-        return "http://hl7.org/fhir/request-intent";
-      case REFLEXORDER:
-        return "http://hl7.org/fhir/request-intent";
-      case FILLERORDER:
-        return "http://hl7.org/fhir/request-intent";
-      case INSTANCEORDER:
-        return "http://hl7.org/fhir/request-intent";
-      case OPTION:
-        return "http://hl7.org/fhir/request-intent";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case PROPOSAL:
-        return "The request is a suggestion made by someone/something that does not have an intention to ensure it occurs and without providing an authorization to act.";
-      case PLAN:
-        return "The request represents an intention to ensure something occurs without providing an authorization for others to act.";
-      case DIRECTIVE:
-        return "The request represents a legally binding instruction authored by a Patient or RelatedPerson.";
-      case ORDER:
-        return "The request represents a request/demand and authorization for action by a Practitioner.";
-      case ORIGINALORDER:
-        return "The request represents an original authorization for action.";
-      case REFLEXORDER:
-        return "The request represents an automatically generated supplemental authorization for action based on a parent authorization together with initial results of the action taken against that parent authorization.";
-      case FILLERORDER:
-        return "The request represents the view of an authorization instantiated by a fulfilling system representing the details of the fulfiller's intention to act upon a submitted order.";
-      case INSTANCEORDER:
-        return "An order created in fulfillment of a broader order that represents the authorization for a single activity occurrence.  E.g. The administration of a single dose of a drug.";
-      case OPTION:
-        return "The request represents a component or option for a RequestGroup that establishes timing, conditionality and/or other constraints among a set of requests.  Refer to [[[RequestGroup]]] for additional information on how this status is used.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case PROPOSAL:
-        return "Proposal";
-      case PLAN:
-        return "Plan";
-      case DIRECTIVE:
-        return "Directive";
-      case ORDER:
-        return "Order";
-      case ORIGINALORDER:
-        return "Original Order";
-      case REFLEXORDER:
-        return "Reflex Order";
-      case FILLERORDER:
-        return "Filler Order";
-      case INSTANCEORDER:
-        return "Instance Order";
-      case OPTION:
-        return "Option";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class RequestIntentEnumFactory implements EnumFactory<RequestIntent> {
-    public RequestIntent fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("proposal".equals(codeString))
-        return RequestIntent.PROPOSAL;
-      if ("plan".equals(codeString))
-        return RequestIntent.PLAN;
-      if ("directive".equals(codeString))
-        return RequestIntent.DIRECTIVE;
-      if ("order".equals(codeString))
-        return RequestIntent.ORDER;
-      if ("original-order".equals(codeString))
-        return RequestIntent.ORIGINALORDER;
-      if ("reflex-order".equals(codeString))
-        return RequestIntent.REFLEXORDER;
-      if ("filler-order".equals(codeString))
-        return RequestIntent.FILLERORDER;
-      if ("instance-order".equals(codeString))
-        return RequestIntent.INSTANCEORDER;
-      if ("option".equals(codeString))
-        return RequestIntent.OPTION;
-      throw new IllegalArgumentException("Unknown RequestIntent code '" + codeString + "'");
-    }
-
-    public Enumeration<RequestIntent> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<RequestIntent>(this, RequestIntent.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<RequestIntent>(this, RequestIntent.NULL, code);
-      if ("proposal".equals(codeString))
-        return new Enumeration<RequestIntent>(this, RequestIntent.PROPOSAL, code);
-      if ("plan".equals(codeString))
-        return new Enumeration<RequestIntent>(this, RequestIntent.PLAN, code);
-      if ("directive".equals(codeString))
-        return new Enumeration<RequestIntent>(this, RequestIntent.DIRECTIVE, code);
-      if ("order".equals(codeString))
-        return new Enumeration<RequestIntent>(this, RequestIntent.ORDER, code);
-      if ("original-order".equals(codeString))
-        return new Enumeration<RequestIntent>(this, RequestIntent.ORIGINALORDER, code);
-      if ("reflex-order".equals(codeString))
-        return new Enumeration<RequestIntent>(this, RequestIntent.REFLEXORDER, code);
-      if ("filler-order".equals(codeString))
-        return new Enumeration<RequestIntent>(this, RequestIntent.FILLERORDER, code);
-      if ("instance-order".equals(codeString))
-        return new Enumeration<RequestIntent>(this, RequestIntent.INSTANCEORDER, code);
-      if ("option".equals(codeString))
-        return new Enumeration<RequestIntent>(this, RequestIntent.OPTION, code);
-      throw new FHIRException("Unknown RequestIntent code '" + codeString + "'");
-    }
-
-    public String toCode(RequestIntent code) {
-       if (code == RequestIntent.NULL)
-           return null;
-       if (code == RequestIntent.PROPOSAL)
-        return "proposal";
-      if (code == RequestIntent.PLAN)
-        return "plan";
-      if (code == RequestIntent.DIRECTIVE)
-        return "directive";
-      if (code == RequestIntent.ORDER)
-        return "order";
-      if (code == RequestIntent.ORIGINALORDER)
-        return "original-order";
-      if (code == RequestIntent.REFLEXORDER)
-        return "reflex-order";
-      if (code == RequestIntent.FILLERORDER)
-        return "filler-order";
-      if (code == RequestIntent.INSTANCEORDER)
-        return "instance-order";
-      if (code == RequestIntent.OPTION)
-        return "option";
-      return "?";
-   }
-
-    public String toSystem(RequestIntent code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum RequestPriority {
-    /**
-     * The request has normal priority.
-     */
-    ROUTINE,
-    /**
-     * The request should be actioned promptly - higher priority than routine.
-     */
-    URGENT,
-    /**
-     * The request should be actioned as soon as possible - higher priority than
-     * urgent.
-     */
-    ASAP,
-    /**
-     * The request should be actioned immediately - highest possible priority. E.g.
-     * an emergency.
-     */
-    STAT,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static RequestPriority fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("routine".equals(codeString))
-        return ROUTINE;
-      if ("urgent".equals(codeString))
-        return URGENT;
-      if ("asap".equals(codeString))
-        return ASAP;
-      if ("stat".equals(codeString))
-        return STAT;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown RequestPriority code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ROUTINE:
-        return "routine";
-      case URGENT:
-        return "urgent";
-      case ASAP:
-        return "asap";
-      case STAT:
-        return "stat";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ROUTINE:
-        return "http://hl7.org/fhir/request-priority";
-      case URGENT:
-        return "http://hl7.org/fhir/request-priority";
-      case ASAP:
-        return "http://hl7.org/fhir/request-priority";
-      case STAT:
-        return "http://hl7.org/fhir/request-priority";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ROUTINE:
-        return "The request has normal priority.";
-      case URGENT:
-        return "The request should be actioned promptly - higher priority than routine.";
-      case ASAP:
-        return "The request should be actioned as soon as possible - higher priority than urgent.";
-      case STAT:
-        return "The request should be actioned immediately - highest possible priority.  E.g. an emergency.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ROUTINE:
-        return "Routine";
-      case URGENT:
-        return "Urgent";
-      case ASAP:
-        return "ASAP";
-      case STAT:
-        return "STAT";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class RequestPriorityEnumFactory implements EnumFactory<RequestPriority> {
-    public RequestPriority fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("routine".equals(codeString))
-        return RequestPriority.ROUTINE;
-      if ("urgent".equals(codeString))
-        return RequestPriority.URGENT;
-      if ("asap".equals(codeString))
-        return RequestPriority.ASAP;
-      if ("stat".equals(codeString))
-        return RequestPriority.STAT;
-      throw new IllegalArgumentException("Unknown RequestPriority code '" + codeString + "'");
-    }
-
-    public Enumeration<RequestPriority> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<RequestPriority>(this, RequestPriority.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<RequestPriority>(this, RequestPriority.NULL, code);
-      if ("routine".equals(codeString))
-        return new Enumeration<RequestPriority>(this, RequestPriority.ROUTINE, code);
-      if ("urgent".equals(codeString))
-        return new Enumeration<RequestPriority>(this, RequestPriority.URGENT, code);
-      if ("asap".equals(codeString))
-        return new Enumeration<RequestPriority>(this, RequestPriority.ASAP, code);
-      if ("stat".equals(codeString))
-        return new Enumeration<RequestPriority>(this, RequestPriority.STAT, code);
-      throw new FHIRException("Unknown RequestPriority code '" + codeString + "'");
-    }
-
-    public String toCode(RequestPriority code) {
-       if (code == RequestPriority.NULL)
-           return null;
-       if (code == RequestPriority.ROUTINE)
-        return "routine";
-      if (code == RequestPriority.URGENT)
-        return "urgent";
-      if (code == RequestPriority.ASAP)
-        return "asap";
-      if (code == RequestPriority.STAT)
-        return "stat";
-      return "?";
-   }
-
-    public String toSystem(RequestPriority code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class DeviceRequestParameterComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -1105,27 +434,27 @@ public class DeviceRequest extends DomainResource {
   /**
    * The status of the request.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 6, min = 0, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 6, min = 0, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "draft | active | on-hold | revoked | completed | entered-in-error | unknown", formalDefinition = "The status of the request.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/request-status")
-  protected Enumeration<DeviceRequestStatus> status;
+  protected StringType status;
 
   /**
    * Whether the request is a proposal, plan, an original order or a reflex order.
    */
-  @Child(name = "intent", type = { CodeType.class }, order = 7, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "intent", type = { StringType.class }, order = 7, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "proposal | plan | directive | order | original-order | reflex-order | filler-order | instance-order | option", formalDefinition = "Whether the request is a proposal, plan, an original order or a reflex order.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/request-intent")
-  protected Enumeration<RequestIntent> intent;
+  protected StringType intent;
 
   /**
    * Indicates how quickly the {{title}} should be addressed with respect to other
    * requests.
    */
-  @Child(name = "priority", type = { CodeType.class }, order = 8, min = 0, max = 1, modifier = false, summary = true)
+  @Child(name = "priority", type = { StringType.class }, order = 8, min = 0, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "routine | urgent | asap | stat", formalDefinition = "Indicates how quickly the {{title}} should be addressed with respect to other requests.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/request-priority")
-  protected Enumeration<RequestPriority> priority;
+  protected StringType priority;
 
   /**
    * The details of the device to be used.
@@ -1318,7 +647,7 @@ public class DeviceRequest extends DomainResource {
   /**
    * Constructor
    */
-  public DeviceRequest(Enumeration<RequestIntent> intent, Type code, Reference subject) {
+  public DeviceRequest(StringType intent, Type code, Reference subject) {
     super();
     this.intent = intent;
     this.code = code;
@@ -1656,12 +985,12 @@ public class DeviceRequest extends DomainResource {
    *         object with id, value and extensions. The accessor "getStatus" gives
    *         direct access to the value
    */
-  public Enumeration<DeviceRequestStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create DeviceRequest.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<DeviceRequestStatus>(new DeviceRequestStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -1678,7 +1007,7 @@ public class DeviceRequest extends DomainResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getStatus" gives direct access to the value
    */
-  public DeviceRequest setStatusElement(Enumeration<DeviceRequestStatus> value) {
+  public DeviceRequest setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1686,19 +1015,19 @@ public class DeviceRequest extends DomainResource {
   /**
    * @return The status of the request.
    */
-  public DeviceRequestStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
   /**
    * @param value The status of the request.
    */
-  public DeviceRequest setStatus(DeviceRequestStatus value) {
+  public DeviceRequest setStatus(String value) {
     if (value == null)
       this.status = null;
     else {
       if (this.status == null)
-        this.status = new Enumeration<DeviceRequestStatus>(new DeviceRequestStatusEnumFactory());
+        this.status = new StringType();
       this.status.setValue(value);
     }
     return this;
@@ -1710,12 +1039,12 @@ public class DeviceRequest extends DomainResource {
    *         value and extensions. The accessor "getIntent" gives direct access to
    *         the value
    */
-  public Enumeration<RequestIntent> getIntentElement() {
+  public StringType getIntentElement() {
     if (this.intent == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create DeviceRequest.intent");
       else if (Configuration.doAutoCreate())
-        this.intent = new Enumeration<RequestIntent>(new RequestIntentEnumFactory()); // bb
+        this.intent = new StringType(); // bb
     return this.intent;
   }
 
@@ -1733,7 +1062,7 @@ public class DeviceRequest extends DomainResource {
    *              object with id, value and extensions. The accessor "getIntent"
    *              gives direct access to the value
    */
-  public DeviceRequest setIntentElement(Enumeration<RequestIntent> value) {
+  public DeviceRequest setIntentElement(StringType value) {
     this.intent = value;
     return this;
   }
@@ -1742,7 +1071,7 @@ public class DeviceRequest extends DomainResource {
    * @return Whether the request is a proposal, plan, an original order or a
    *         reflex order.
    */
-  public RequestIntent getIntent() {
+  public String getIntent() {
     return this.intent == null ? null : this.intent.getValue();
   }
 
@@ -1750,10 +1079,14 @@ public class DeviceRequest extends DomainResource {
    * @param value Whether the request is a proposal, plan, an original order or a
    *              reflex order.
    */
-  public DeviceRequest setIntent(RequestIntent value) {
-    if (this.intent == null)
-      this.intent = new Enumeration<RequestIntent>(new RequestIntentEnumFactory());
-    this.intent.setValue(value);
+  public DeviceRequest setIntent(String value) {
+    if (value == null)
+      this.intent = null;
+    else {
+      if (this.intent == null)
+        this.intent = new StringType();
+      this.intent.setValue(value);
+    }
     return this;
   }
 
@@ -1763,12 +1096,12 @@ public class DeviceRequest extends DomainResource {
    *         object with id, value and extensions. The accessor "getPriority"
    *         gives direct access to the value
    */
-  public Enumeration<RequestPriority> getPriorityElement() {
+  public StringType getPriorityElement() {
     if (this.priority == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create DeviceRequest.priority");
       else if (Configuration.doAutoCreate())
-        this.priority = new Enumeration<RequestPriority>(new RequestPriorityEnumFactory()); // bb
+        this.priority = new StringType(); // bb
     return this.priority;
   }
 
@@ -1786,7 +1119,7 @@ public class DeviceRequest extends DomainResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getPriority" gives direct access to the value
    */
-  public DeviceRequest setPriorityElement(Enumeration<RequestPriority> value) {
+  public DeviceRequest setPriorityElement(StringType value) {
     this.priority = value;
     return this;
   }
@@ -1795,7 +1128,7 @@ public class DeviceRequest extends DomainResource {
    * @return Indicates how quickly the {{title}} should be addressed with respect
    *         to other requests.
    */
-  public RequestPriority getPriority() {
+  public String getPriority() {
     return this.priority == null ? null : this.priority.getValue();
   }
 
@@ -1803,12 +1136,12 @@ public class DeviceRequest extends DomainResource {
    * @param value Indicates how quickly the {{title}} should be addressed with
    *              respect to other requests.
    */
-  public DeviceRequest setPriority(RequestPriority value) {
+  public DeviceRequest setPriority(String value) {
     if (value == null)
       this.priority = null;
     else {
       if (this.priority == null)
-        this.priority = new Enumeration<RequestPriority>(new RequestPriorityEnumFactory());
+        this.priority = new StringType();
       this.priority.setValue(value);
     }
     return this;
@@ -2636,8 +1969,8 @@ public class DeviceRequest extends DomainResource {
         java.lang.Integer.MAX_VALUE, priorRequest));
     children.add(
         new Property("groupIdentifier", "Identifier", "Composite request this is part of.", 0, 1, groupIdentifier));
-    children.add(new Property("status", "code", "The status of the request.", 0, 1, status));
-    children.add(new Property("intent", "code",
+    children.add(new Property("status", "string", "The status of the request.", 0, 1, status));
+    children.add(new Property("intent", "string",
         "Whether the request is a proposal, plan, an original order or a reflex order.", 0, 1, intent));
     children.add(new Property("priority", "code",
         "Indicates how quickly the {{title}} should be addressed with respect to other requests.", 0, 1, priority));
@@ -2706,9 +2039,9 @@ public class DeviceRequest extends DomainResource {
       /* groupIdentifier */ return new Property("groupIdentifier", "Identifier", "Composite request this is part of.",
           0, 1, groupIdentifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "The status of the request.", 0, 1, status);
+      /* status */ return new Property("status", "string", "The status of the request.", 0, 1, status);
     case -1183762788:
-      /* intent */ return new Property("intent", "code",
+      /* intent */ return new Property("intent", "string",
           "Whether the request is a proposal, plan, an original order or a reflex order.", 0, 1, intent);
     case -1165461084:
       /* priority */ return new Property("priority", "code",
@@ -2816,9 +2149,9 @@ public class DeviceRequest extends DomainResource {
     case -445338488:
       /* groupIdentifier */ return this.groupIdentifier == null ? new Base[0] : new Base[] { this.groupIdentifier }; // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<DeviceRequestStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -1183762788:
-      /* intent */ return this.intent == null ? new Base[0] : new Base[] { this.intent }; // Enumeration<RequestIntent>
+      /* intent */ return this.intent == null ? new Base[0] : new Base[] { this.intent }; // StringType
     case -1165461084:
       /* priority */ return this.priority == null ? new Base[0] : new Base[] { this.priority }; // Enumeration<RequestPriority>
     case 3059181:
@@ -2885,12 +2218,10 @@ public class DeviceRequest extends DomainResource {
       this.groupIdentifier = castToIdentifier(value); // Identifier
       return value;
     case -892481550: // status
-      value = new DeviceRequestStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<DeviceRequestStatus>
+      this.status = castToString(value); // Enumeration<DeviceRequestStatus>
       return value;
     case -1183762788: // intent
-      value = new RequestIntentEnumFactory().fromType(castToCode(value));
-      this.intent = (Enumeration) value; // Enumeration<RequestIntent>
+      this.intent = castToString(value); // StringType
       return value;
     case -1165461084: // priority
       value = new RequestPriorityEnumFactory().fromType(castToCode(value));
@@ -2962,11 +2293,9 @@ public class DeviceRequest extends DomainResource {
     } else if (name.equals("groupIdentifier")) {
       this.groupIdentifier = castToIdentifier(value); // Identifier
     } else if (name.equals("status")) {
-      value = new DeviceRequestStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<DeviceRequestStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("intent")) {
-      value = new RequestIntentEnumFactory().fromType(castToCode(value));
-      this.intent = (Enumeration) value; // Enumeration<RequestIntent>
+      this.intent = castToString(value); // StringType
     } else if (name.equals("priority")) {
       value = new RequestPriorityEnumFactory().fromType(castToCode(value));
       this.priority = (Enumeration) value; // Enumeration<RequestPriority>
@@ -3137,9 +2466,9 @@ public class DeviceRequest extends DomainResource {
     case -445338488:
       /* groupIdentifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -1183762788:
-      /* intent */ return new String[] { "code" };
+      /* intent */ return new String[] { "string" };
     case -1165461084:
       /* priority */ return new String[] { "code" };
     case 3059181:
