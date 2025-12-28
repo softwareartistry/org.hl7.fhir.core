@@ -29485,8 +29485,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(
-        parseEnumeration(json.get("status").getAsString(), Task.TaskStatus.NULL, new Task.TaskStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("statusReason"))
@@ -29494,13 +29493,11 @@ public class JsonParser extends JsonParserBase {
     if (json.has("businessStatus"))
       res.setBusinessStatus(parseCodeableConcept(getJObject(json, "businessStatus")));
     if (json.has("intent"))
-      res.setIntentElement(
-        parseEnumeration(json.get("intent").getAsString(), Task.TaskIntent.NULL, new Task.TaskIntentEnumFactory()));
+      res.setIntentElement(parseString(json.get("intent").getAsString()));
     if (json.has("_intent"))
       parseElementProperties(getJObject(json, "_intent"), res.getIntentElement());
     if (json.has("priority"))
-      res.setPriorityElement(parseEnumeration(json.get("priority").getAsString(), Task.TaskPriority.NULL,
-        new Task.TaskPriorityEnumFactory()));
+      res.setPriorityElement(parseString(json.get("priority").getAsString()));
     if (json.has("_priority"))
       parseElementProperties(getJObject(json, "_priority"), res.getPriorityElement());
     if (json.has("code"))
@@ -62808,8 +62805,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new Task.TaskStatusEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(), new Task.TaskStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasStatusReason()) {
       composeCodeableConcept("statusReason", element.getStatusReason());
@@ -62818,12 +62815,12 @@ public class JsonParser extends JsonParserBase {
       composeCodeableConcept("businessStatus", element.getBusinessStatus());
     }
     if (element.hasIntentElement()) {
-      composeEnumerationCore("intent", element.getIntentElement(), new Task.TaskIntentEnumFactory(), false);
-      composeEnumerationExtras("intent", element.getIntentElement(), new Task.TaskIntentEnumFactory(), false);
+      composeStringCore("intent", element.getIntentElement(), false);
+      composeStringExtras("intent", element.getIntentElement(), false);
     }
     if (element.hasPriorityElement()) {
-      composeEnumerationCore("priority", element.getPriorityElement(), new Task.TaskPriorityEnumFactory(), false);
-      composeEnumerationExtras("priority", element.getPriorityElement(), new Task.TaskPriorityEnumFactory(), false);
+      composeStringCore("priority", element.getPriorityElement(), false);
+      composeStringExtras("priority", element.getPriorityElement(), false);
     }
     if (element.hasCode()) {
       composeCodeableConcept("code", element.getCode());

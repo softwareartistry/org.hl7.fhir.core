@@ -17241,15 +17241,15 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getPartOf().size(); i++)
       composeReference(t, "Task", "partOf", element.getPartOf().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "Task", "status", element.getStatusElement(), -1);
+      composeString(t, "Task", "status", element.getStatusElement(), -1);
     if (element.hasStatusReason())
       composeCodeableConcept(t, "Task", "statusReason", element.getStatusReason(), -1);
     if (element.hasBusinessStatus())
       composeCodeableConcept(t, "Task", "businessStatus", element.getBusinessStatus(), -1);
     if (element.hasIntentElement())
-      composeEnum(t, "Task", "intent", element.getIntentElement(), -1);
+      composeString(t, "Task", "intent", element.getIntentElement(), -1);
     if (element.hasPriorityElement())
-      composeEnum(t, "Task", "priority", element.getPriorityElement(), -1);
+      composeString(t, "Task", "priority", element.getPriorityElement(), -1);
     if (element.hasCode())
       composeCodeableConcept(t, "Task", "code", element.getCode(), -1);
     if (element.hasDescriptionElement())

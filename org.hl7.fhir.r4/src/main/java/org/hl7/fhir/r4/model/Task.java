@@ -50,762 +50,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Task", profile = "http://hl7.org/fhir/StructureDefinition/Task")
 public class Task extends DomainResource {
 
-  public enum TaskStatus {
-    /**
-     * The task is not yet ready to be acted upon.
-     */
-    DRAFT,
-    /**
-     * The task is ready to be acted upon and action is sought.
-     */
-    REQUESTED,
-    /**
-     * A potential performer has claimed ownership of the task and is evaluating
-     * whether to perform it.
-     */
-    RECEIVED,
-    /**
-     * The potential performer has agreed to execute the task but has not yet
-     * started work.
-     */
-    ACCEPTED,
-    /**
-     * The potential performer who claimed ownership of the task has decided not to
-     * execute it prior to performing any action.
-     */
-    REJECTED,
-    /**
-     * The task is ready to be performed, but no action has yet been taken. Used in
-     * place of requested/received/accepted/rejected when request assignment and
-     * acceptance is a given.
-     */
-    READY,
-    /**
-     * The task was not completed.
-     */
-    CANCELLED,
-    /**
-     * The task has been started but is not yet complete.
-     */
-    INPROGRESS,
-    /**
-     * The task has been started but work has been paused.
-     */
-    ONHOLD,
-    /**
-     * The task was attempted but could not be completed due to some error.
-     */
-    FAILED,
-    /**
-     * The task has been completed.
-     */
-    COMPLETED,
-    /**
-     * The task should never have existed and is retained only because of the
-     * possibility it may have used.
-     */
-    ENTEREDINERROR,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static TaskStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("draft".equals(codeString))
-        return DRAFT;
-      if ("requested".equals(codeString))
-        return REQUESTED;
-      if ("received".equals(codeString))
-        return RECEIVED;
-      if ("accepted".equals(codeString))
-        return ACCEPTED;
-      if ("rejected".equals(codeString))
-        return REJECTED;
-      if ("ready".equals(codeString))
-        return READY;
-      if ("cancelled".equals(codeString))
-        return CANCELLED;
-      if ("in-progress".equals(codeString))
-        return INPROGRESS;
-      if ("on-hold".equals(codeString))
-        return ONHOLD;
-      if ("failed".equals(codeString))
-        return FAILED;
-      if ("completed".equals(codeString))
-        return COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown TaskStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case DRAFT:
-        return "draft";
-      case REQUESTED:
-        return "requested";
-      case RECEIVED:
-        return "received";
-      case ACCEPTED:
-        return "accepted";
-      case REJECTED:
-        return "rejected";
-      case READY:
-        return "ready";
-      case CANCELLED:
-        return "cancelled";
-      case INPROGRESS:
-        return "in-progress";
-      case ONHOLD:
-        return "on-hold";
-      case FAILED:
-        return "failed";
-      case COMPLETED:
-        return "completed";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case DRAFT:
-        return "http://hl7.org/fhir/task-status";
-      case REQUESTED:
-        return "http://hl7.org/fhir/task-status";
-      case RECEIVED:
-        return "http://hl7.org/fhir/task-status";
-      case ACCEPTED:
-        return "http://hl7.org/fhir/task-status";
-      case REJECTED:
-        return "http://hl7.org/fhir/task-status";
-      case READY:
-        return "http://hl7.org/fhir/task-status";
-      case CANCELLED:
-        return "http://hl7.org/fhir/task-status";
-      case INPROGRESS:
-        return "http://hl7.org/fhir/task-status";
-      case ONHOLD:
-        return "http://hl7.org/fhir/task-status";
-      case FAILED:
-        return "http://hl7.org/fhir/task-status";
-      case COMPLETED:
-        return "http://hl7.org/fhir/task-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/task-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case DRAFT:
-        return "The task is not yet ready to be acted upon.";
-      case REQUESTED:
-        return "The task is ready to be acted upon and action is sought.";
-      case RECEIVED:
-        return "A potential performer has claimed ownership of the task and is evaluating whether to perform it.";
-      case ACCEPTED:
-        return "The potential performer has agreed to execute the task but has not yet started work.";
-      case REJECTED:
-        return "The potential performer who claimed ownership of the task has decided not to execute it prior to performing any action.";
-      case READY:
-        return "The task is ready to be performed, but no action has yet been taken.  Used in place of requested/received/accepted/rejected when request assignment and acceptance is a given.";
-      case CANCELLED:
-        return "The task was not completed.";
-      case INPROGRESS:
-        return "The task has been started but is not yet complete.";
-      case ONHOLD:
-        return "The task has been started but work has been paused.";
-      case FAILED:
-        return "The task was attempted but could not be completed due to some error.";
-      case COMPLETED:
-        return "The task has been completed.";
-      case ENTEREDINERROR:
-        return "The task should never have existed and is retained only because of the possibility it may have used.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case DRAFT:
-        return "Draft";
-      case REQUESTED:
-        return "Requested";
-      case RECEIVED:
-        return "Received";
-      case ACCEPTED:
-        return "Accepted";
-      case REJECTED:
-        return "Rejected";
-      case READY:
-        return "Ready";
-      case CANCELLED:
-        return "Cancelled";
-      case INPROGRESS:
-        return "In Progress";
-      case ONHOLD:
-        return "On Hold";
-      case FAILED:
-        return "Failed";
-      case COMPLETED:
-        return "Completed";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class TaskStatusEnumFactory implements EnumFactory<TaskStatus> {
-    public TaskStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("draft".equals(codeString))
-        return TaskStatus.DRAFT;
-      if ("requested".equals(codeString))
-        return TaskStatus.REQUESTED;
-      if ("received".equals(codeString))
-        return TaskStatus.RECEIVED;
-      if ("accepted".equals(codeString))
-        return TaskStatus.ACCEPTED;
-      if ("rejected".equals(codeString))
-        return TaskStatus.REJECTED;
-      if ("ready".equals(codeString))
-        return TaskStatus.READY;
-      if ("cancelled".equals(codeString))
-        return TaskStatus.CANCELLED;
-      if ("in-progress".equals(codeString))
-        return TaskStatus.INPROGRESS;
-      if ("on-hold".equals(codeString))
-        return TaskStatus.ONHOLD;
-      if ("failed".equals(codeString))
-        return TaskStatus.FAILED;
-      if ("completed".equals(codeString))
-        return TaskStatus.COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return TaskStatus.ENTEREDINERROR;
-      throw new IllegalArgumentException("Unknown TaskStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<TaskStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<TaskStatus>(this, TaskStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<TaskStatus>(this, TaskStatus.NULL, code);
-      if ("draft".equals(codeString))
-        return new Enumeration<TaskStatus>(this, TaskStatus.DRAFT, code);
-      if ("requested".equals(codeString))
-        return new Enumeration<TaskStatus>(this, TaskStatus.REQUESTED, code);
-      if ("received".equals(codeString))
-        return new Enumeration<TaskStatus>(this, TaskStatus.RECEIVED, code);
-      if ("accepted".equals(codeString))
-        return new Enumeration<TaskStatus>(this, TaskStatus.ACCEPTED, code);
-      if ("rejected".equals(codeString))
-        return new Enumeration<TaskStatus>(this, TaskStatus.REJECTED, code);
-      if ("ready".equals(codeString))
-        return new Enumeration<TaskStatus>(this, TaskStatus.READY, code);
-      if ("cancelled".equals(codeString))
-        return new Enumeration<TaskStatus>(this, TaskStatus.CANCELLED, code);
-      if ("in-progress".equals(codeString))
-        return new Enumeration<TaskStatus>(this, TaskStatus.INPROGRESS, code);
-      if ("on-hold".equals(codeString))
-        return new Enumeration<TaskStatus>(this, TaskStatus.ONHOLD, code);
-      if ("failed".equals(codeString))
-        return new Enumeration<TaskStatus>(this, TaskStatus.FAILED, code);
-      if ("completed".equals(codeString))
-        return new Enumeration<TaskStatus>(this, TaskStatus.COMPLETED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<TaskStatus>(this, TaskStatus.ENTEREDINERROR, code);
-      throw new FHIRException("Unknown TaskStatus code '" + codeString + "'");
-    }
-
-    public String toCode(TaskStatus code) {
-       if (code == TaskStatus.NULL)
-           return null;
-       if (code == TaskStatus.DRAFT)
-        return "draft";
-      if (code == TaskStatus.REQUESTED)
-        return "requested";
-      if (code == TaskStatus.RECEIVED)
-        return "received";
-      if (code == TaskStatus.ACCEPTED)
-        return "accepted";
-      if (code == TaskStatus.REJECTED)
-        return "rejected";
-      if (code == TaskStatus.READY)
-        return "ready";
-      if (code == TaskStatus.CANCELLED)
-        return "cancelled";
-      if (code == TaskStatus.INPROGRESS)
-        return "in-progress";
-      if (code == TaskStatus.ONHOLD)
-        return "on-hold";
-      if (code == TaskStatus.FAILED)
-        return "failed";
-      if (code == TaskStatus.COMPLETED)
-        return "completed";
-      if (code == TaskStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      return "?";
-   }
-
-    public String toSystem(TaskStatus code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum TaskIntent {
-    /**
-     * The intent is not known. When dealing with Task, it's not always known (or
-     * relevant) how the task was initiated - i.e. whether it was proposed, planned,
-     * ordered or just done spontaneously.
-     */
-    UNKNOWN,
-    /**
-     * null
-     */
-    PROPOSAL,
-    /**
-     * null
-     */
-    PLAN,
-    /**
-     * null
-     */
-    ORDER,
-    /**
-     * null
-     */
-    ORIGINALORDER,
-    /**
-     * null
-     */
-    REFLEXORDER,
-    /**
-     * null
-     */
-    FILLERORDER,
-    /**
-     * null
-     */
-    INSTANCEORDER,
-    /**
-     * null
-     */
-    OPTION,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static TaskIntent fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("unknown".equals(codeString))
-        return UNKNOWN;
-      if ("proposal".equals(codeString))
-        return PROPOSAL;
-      if ("plan".equals(codeString))
-        return PLAN;
-      if ("order".equals(codeString))
-        return ORDER;
-      if ("original-order".equals(codeString))
-        return ORIGINALORDER;
-      if ("reflex-order".equals(codeString))
-        return REFLEXORDER;
-      if ("filler-order".equals(codeString))
-        return FILLERORDER;
-      if ("instance-order".equals(codeString))
-        return INSTANCEORDER;
-      if ("option".equals(codeString))
-        return OPTION;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown TaskIntent code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case UNKNOWN:
-        return "unknown";
-      case PROPOSAL:
-        return "proposal";
-      case PLAN:
-        return "plan";
-      case ORDER:
-        return "order";
-      case ORIGINALORDER:
-        return "original-order";
-      case REFLEXORDER:
-        return "reflex-order";
-      case FILLERORDER:
-        return "filler-order";
-      case INSTANCEORDER:
-        return "instance-order";
-      case OPTION:
-        return "option";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case UNKNOWN:
-        return "http://hl7.org/fhir/task-intent";
-      case PROPOSAL:
-        return "http://hl7.org/fhir/request-intent";
-      case PLAN:
-        return "http://hl7.org/fhir/request-intent";
-      case ORDER:
-        return "http://hl7.org/fhir/request-intent";
-      case ORIGINALORDER:
-        return "http://hl7.org/fhir/request-intent";
-      case REFLEXORDER:
-        return "http://hl7.org/fhir/request-intent";
-      case FILLERORDER:
-        return "http://hl7.org/fhir/request-intent";
-      case INSTANCEORDER:
-        return "http://hl7.org/fhir/request-intent";
-      case OPTION:
-        return "http://hl7.org/fhir/request-intent";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case UNKNOWN:
-        return "The intent is not known.  When dealing with Task, it's not always known (or relevant) how the task was initiated - i.e. whether it was proposed, planned, ordered or just done spontaneously.";
-      case PROPOSAL:
-        return "";
-      case PLAN:
-        return "";
-      case ORDER:
-        return "";
-      case ORIGINALORDER:
-        return "";
-      case REFLEXORDER:
-        return "";
-      case FILLERORDER:
-        return "";
-      case INSTANCEORDER:
-        return "";
-      case OPTION:
-        return "";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case UNKNOWN:
-        return "Unknown";
-      case PROPOSAL:
-        return "proposal";
-      case PLAN:
-        return "plan";
-      case ORDER:
-        return "order";
-      case ORIGINALORDER:
-        return "original-order";
-      case REFLEXORDER:
-        return "reflex-order";
-      case FILLERORDER:
-        return "filler-order";
-      case INSTANCEORDER:
-        return "instance-order";
-      case OPTION:
-        return "option";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class TaskIntentEnumFactory implements EnumFactory<TaskIntent> {
-    public TaskIntent fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("unknown".equals(codeString))
-        return TaskIntent.UNKNOWN;
-      if ("proposal".equals(codeString))
-        return TaskIntent.PROPOSAL;
-      if ("plan".equals(codeString))
-        return TaskIntent.PLAN;
-      if ("order".equals(codeString))
-        return TaskIntent.ORDER;
-      if ("original-order".equals(codeString))
-        return TaskIntent.ORIGINALORDER;
-      if ("reflex-order".equals(codeString))
-        return TaskIntent.REFLEXORDER;
-      if ("filler-order".equals(codeString))
-        return TaskIntent.FILLERORDER;
-      if ("instance-order".equals(codeString))
-        return TaskIntent.INSTANCEORDER;
-      if ("option".equals(codeString))
-        return TaskIntent.OPTION;
-      throw new IllegalArgumentException("Unknown TaskIntent code '" + codeString + "'");
-    }
-
-    public Enumeration<TaskIntent> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<TaskIntent>(this, TaskIntent.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<TaskIntent>(this, TaskIntent.NULL, code);
-      if ("unknown".equals(codeString))
-        return new Enumeration<TaskIntent>(this, TaskIntent.UNKNOWN, code);
-      if ("proposal".equals(codeString))
-        return new Enumeration<TaskIntent>(this, TaskIntent.PROPOSAL, code);
-      if ("plan".equals(codeString))
-        return new Enumeration<TaskIntent>(this, TaskIntent.PLAN, code);
-      if ("order".equals(codeString))
-        return new Enumeration<TaskIntent>(this, TaskIntent.ORDER, code);
-      if ("original-order".equals(codeString))
-        return new Enumeration<TaskIntent>(this, TaskIntent.ORIGINALORDER, code);
-      if ("reflex-order".equals(codeString))
-        return new Enumeration<TaskIntent>(this, TaskIntent.REFLEXORDER, code);
-      if ("filler-order".equals(codeString))
-        return new Enumeration<TaskIntent>(this, TaskIntent.FILLERORDER, code);
-      if ("instance-order".equals(codeString))
-        return new Enumeration<TaskIntent>(this, TaskIntent.INSTANCEORDER, code);
-      if ("option".equals(codeString))
-        return new Enumeration<TaskIntent>(this, TaskIntent.OPTION, code);
-      throw new FHIRException("Unknown TaskIntent code '" + codeString + "'");
-    }
-
-    public String toCode(TaskIntent code) {
-       if (code == TaskIntent.NULL)
-           return null;
-       if (code == TaskIntent.UNKNOWN)
-        return "unknown";
-      if (code == TaskIntent.PROPOSAL)
-        return "proposal";
-      if (code == TaskIntent.PLAN)
-        return "plan";
-      if (code == TaskIntent.ORDER)
-        return "order";
-      if (code == TaskIntent.ORIGINALORDER)
-        return "original-order";
-      if (code == TaskIntent.REFLEXORDER)
-        return "reflex-order";
-      if (code == TaskIntent.FILLERORDER)
-        return "filler-order";
-      if (code == TaskIntent.INSTANCEORDER)
-        return "instance-order";
-      if (code == TaskIntent.OPTION)
-        return "option";
-      return "?";
-   }
-
-    public String toSystem(TaskIntent code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum TaskPriority {
-    /**
-     * The request has normal priority.
-     */
-    ROUTINE,
-    /**
-     * The request should be actioned promptly - higher priority than routine.
-     */
-    URGENT,
-    /**
-     * The request should be actioned as soon as possible - higher priority than
-     * urgent.
-     */
-    ASAP,
-    /**
-     * The request should be actioned immediately - highest possible priority. E.g.
-     * an emergency.
-     */
-    STAT,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static TaskPriority fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("routine".equals(codeString))
-        return ROUTINE;
-      if ("urgent".equals(codeString))
-        return URGENT;
-      if ("asap".equals(codeString))
-        return ASAP;
-      if ("stat".equals(codeString))
-        return STAT;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown TaskPriority code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ROUTINE:
-        return "routine";
-      case URGENT:
-        return "urgent";
-      case ASAP:
-        return "asap";
-      case STAT:
-        return "stat";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ROUTINE:
-        return "http://hl7.org/fhir/request-priority";
-      case URGENT:
-        return "http://hl7.org/fhir/request-priority";
-      case ASAP:
-        return "http://hl7.org/fhir/request-priority";
-      case STAT:
-        return "http://hl7.org/fhir/request-priority";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ROUTINE:
-        return "The request has normal priority.";
-      case URGENT:
-        return "The request should be actioned promptly - higher priority than routine.";
-      case ASAP:
-        return "The request should be actioned as soon as possible - higher priority than urgent.";
-      case STAT:
-        return "The request should be actioned immediately - highest possible priority.  E.g. an emergency.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ROUTINE:
-        return "Routine";
-      case URGENT:
-        return "Urgent";
-      case ASAP:
-        return "ASAP";
-      case STAT:
-        return "STAT";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class TaskPriorityEnumFactory implements EnumFactory<TaskPriority> {
-    public TaskPriority fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("routine".equals(codeString))
-        return TaskPriority.ROUTINE;
-      if ("urgent".equals(codeString))
-        return TaskPriority.URGENT;
-      if ("asap".equals(codeString))
-        return TaskPriority.ASAP;
-      if ("stat".equals(codeString))
-        return TaskPriority.STAT;
-      throw new IllegalArgumentException("Unknown TaskPriority code '" + codeString + "'");
-    }
-
-    public Enumeration<TaskPriority> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<TaskPriority>(this, TaskPriority.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<TaskPriority>(this, TaskPriority.NULL, code);
-      if ("routine".equals(codeString))
-        return new Enumeration<TaskPriority>(this, TaskPriority.ROUTINE, code);
-      if ("urgent".equals(codeString))
-        return new Enumeration<TaskPriority>(this, TaskPriority.URGENT, code);
-      if ("asap".equals(codeString))
-        return new Enumeration<TaskPriority>(this, TaskPriority.ASAP, code);
-      if ("stat".equals(codeString))
-        return new Enumeration<TaskPriority>(this, TaskPriority.STAT, code);
-      throw new FHIRException("Unknown TaskPriority code '" + codeString + "'");
-    }
-
-    public String toCode(TaskPriority code) {
-       if (code == TaskPriority.NULL)
-           return null;
-       if (code == TaskPriority.ROUTINE)
-        return "routine";
-      if (code == TaskPriority.URGENT)
-        return "urgent";
-      if (code == TaskPriority.ASAP)
-        return "asap";
-      if (code == TaskPriority.STAT)
-        return "stat";
-      return "?";
-   }
-
-    public String toSystem(TaskPriority code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class TaskRestrictionComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -2225,10 +1469,10 @@ public class Task extends DomainResource {
   /**
    * The current status of the task.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 6, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 6, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "draft | requested | received | accepted | +", formalDefinition = "The current status of the task.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/task-status")
-  protected Enumeration<TaskStatus> status;
+  protected StringType status;
 
   /**
    * An explanation as to why this task is held, failed, was refused, etc.
@@ -2250,19 +1494,19 @@ public class Task extends DomainResource {
    * Indicates the "level" of actionability associated with the Task, i.e.
    * i+R[9]Cs this a proposed task, a planned task, an actionable task, etc.
    */
-  @Child(name = "intent", type = { CodeType.class }, order = 9, min = 1, max = 1, modifier = false, summary = true)
+  @Child(name = "intent", type = { StringType.class }, order = 9, min = 1, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "unknown | proposal | plan | order | original-order | reflex-order | filler-order | instance-order | option", formalDefinition = "Indicates the \"level\" of actionability associated with the Task, i.e. i+R[9]Cs this a proposed task, a planned task, an actionable task, etc.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/task-intent")
-  protected Enumeration<TaskIntent> intent;
+  protected StringType intent;
 
   /**
    * Indicates how quickly the Task should be addressed with respect to other
    * requests.
    */
-  @Child(name = "priority", type = { CodeType.class }, order = 10, min = 0, max = 1, modifier = false, summary = false)
+  @Child(name = "priority", type = { StringType.class }, order = 10, min = 0, max = 1, modifier = false, summary = false)
   @Description(shortDefinition = "routine | urgent | asap | stat", formalDefinition = "Indicates how quickly the Task should be addressed with respect to other requests.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/request-priority")
-  protected Enumeration<TaskPriority> priority;
+  protected StringType priority;
 
   /**
    * A name or code (or both) briefly describing what the task involves.
@@ -2498,7 +1742,7 @@ public class Task extends DomainResource {
   /**
    * Constructor
    */
-  public Task(Enumeration<TaskStatus> status, Enumeration<TaskIntent> intent) {
+  public Task(StringType status, StringType intent) {
     super();
     this.status = status;
     this.intent = intent;
@@ -2827,12 +2071,12 @@ public class Task extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<TaskStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Task.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<TaskStatus>(new TaskStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -2849,7 +2093,7 @@ public class Task extends DomainResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getStatus" gives direct access to the value
    */
-  public Task setStatusElement(Enumeration<TaskStatus> value) {
+  public Task setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -2857,16 +2101,16 @@ public class Task extends DomainResource {
   /**
    * @return The current status of the task.
    */
-  public TaskStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The current status of the task.
    */
-  public Task setStatus(TaskStatus value) {
+  public Task setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<TaskStatus>(new TaskStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -2930,12 +2174,12 @@ public class Task extends DomainResource {
    *         and extensions. The accessor "getIntent" gives direct access to the
    *         value
    */
-  public Enumeration<TaskIntent> getIntentElement() {
+  public StringType getIntentElement() {
     if (this.intent == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Task.intent");
       else if (Configuration.doAutoCreate())
-        this.intent = new Enumeration<TaskIntent>(new TaskIntentEnumFactory()); // bb
+        this.intent = new StringType(); // bb
     return this.intent;
   }
 
@@ -2954,7 +2198,7 @@ public class Task extends DomainResource {
    *              object with id, value and extensions. The accessor "getIntent"
    *              gives direct access to the value
    */
-  public Task setIntentElement(Enumeration<TaskIntent> value) {
+  public Task setIntentElement(StringType value) {
     this.intent = value;
     return this;
   }
@@ -2964,8 +2208,8 @@ public class Task extends DomainResource {
    *         i+R[9]Cs this a proposed task, a planned task, an actionable task,
    *         etc.
    */
-  public TaskIntent getIntent() {
-    return this.intent == null ? null : this.intent.getValue();
+  public StringType getIntent() {
+    return this.intent == null ? null : this.intent;
   }
 
   /**
@@ -2973,9 +2217,9 @@ public class Task extends DomainResource {
    *              i.e. i+R[9]Cs this a proposed task, a planned task, an
    *              actionable task, etc.
    */
-  public Task setIntent(TaskIntent value) {
+  public Task setIntent(String value) {
     if (this.intent == null)
-      this.intent = new Enumeration<TaskIntent>(new TaskIntentEnumFactory());
+      this.intent = new StringType();
     this.intent.setValue(value);
     return this;
   }
@@ -2986,12 +2230,12 @@ public class Task extends DomainResource {
    *         id, value and extensions. The accessor "getPriority" gives direct
    *         access to the value
    */
-  public Enumeration<TaskPriority> getPriorityElement() {
+  public StringType getPriorityElement() {
     if (this.priority == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Task.priority");
       else if (Configuration.doAutoCreate())
-        this.priority = new Enumeration<TaskPriority>(new TaskPriorityEnumFactory()); // bb
+        this.priority = new StringType(); // bb
     return this.priority;
   }
 
@@ -3009,7 +2253,7 @@ public class Task extends DomainResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getPriority" gives direct access to the value
    */
-  public Task setPriorityElement(Enumeration<TaskPriority> value) {
+  public Task setPriorityElement(StringType value) {
     this.priority = value;
     return this;
   }
@@ -3018,20 +2262,20 @@ public class Task extends DomainResource {
    * @return Indicates how quickly the Task should be addressed with respect to
    *         other requests.
    */
-  public TaskPriority getPriority() {
-    return this.priority == null ? null : this.priority.getValue();
+  public StringType getPriority() {
+    return this.priority == null ? null : this.priority;
   }
 
   /**
    * @param value Indicates how quickly the Task should be addressed with respect
    *              to other requests.
    */
-  public Task setPriority(TaskPriority value) {
+  public Task setPriority(String value) {
     if (value == null)
       this.priority = null;
     else {
       if (this.priority == null)
-        this.priority = new Enumeration<TaskPriority>(new TaskPriorityEnumFactory());
+        this.priority = new StringType();
       this.priority.setValue(value);
     }
     return this;
@@ -4002,15 +3246,15 @@ public class Task extends DomainResource {
         1, groupIdentifier));
     children.add(new Property("partOf", "Reference(Task)", "Task that this particular task is part of.", 0,
         java.lang.Integer.MAX_VALUE, partOf));
-    children.add(new Property("status", "code", "The current status of the task.", 0, 1, status));
+    children.add(new Property("status", "string", "The current status of the task.", 0, 1, status));
     children.add(new Property("statusReason", "CodeableConcept",
         "An explanation as to why this task is held, failed, was refused, etc.", 0, 1, statusReason));
     children.add(new Property("businessStatus", "CodeableConcept",
         "Contains business-specific nuances of the business state.", 0, 1, businessStatus));
-    children.add(new Property("intent", "code",
+    children.add(new Property("intent", "string",
         "Indicates the \"level\" of actionability associated with the Task, i.e. i+R[9]Cs this a proposed task, a planned task, an actionable task, etc.",
         0, 1, intent));
-    children.add(new Property("priority", "code",
+    children.add(new Property("priority", "string",
         "Indicates how quickly the Task should be addressed with respect to other requests.", 0, 1, priority));
     children.add(new Property("code", "CodeableConcept",
         "A name or code (or both) briefly describing what the task involves.", 0, 1, code));
@@ -4086,7 +3330,7 @@ public class Task extends DomainResource {
       /* partOf */ return new Property("partOf", "Reference(Task)", "Task that this particular task is part of.", 0,
           java.lang.Integer.MAX_VALUE, partOf);
     case -892481550:
-      /* status */ return new Property("status", "code", "The current status of the task.", 0, 1, status);
+      /* status */ return new Property("status", "string", "The current status of the task.", 0, 1, status);
     case 2051346646:
       /* statusReason */ return new Property("statusReason", "CodeableConcept",
           "An explanation as to why this task is held, failed, was refused, etc.", 0, 1, statusReason);
@@ -4094,11 +3338,11 @@ public class Task extends DomainResource {
       /* businessStatus */ return new Property("businessStatus", "CodeableConcept",
           "Contains business-specific nuances of the business state.", 0, 1, businessStatus);
     case -1183762788:
-      /* intent */ return new Property("intent", "code",
+      /* intent */ return new Property("intent", "string",
           "Indicates the \"level\" of actionability associated with the Task, i.e. i+R[9]Cs this a proposed task, a planned task, an actionable task, etc.",
           0, 1, intent);
     case -1165461084:
-      /* priority */ return new Property("priority", "code",
+      /* priority */ return new Property("priority", "string",
           "Indicates how quickly the Task should be addressed with respect to other requests.", 0, 1, priority);
     case 3059181:
       /* code */ return new Property("code", "CodeableConcept",
@@ -4193,15 +3437,15 @@ public class Task extends DomainResource {
     case -995410646:
       /* partOf */ return this.partOf == null ? new Base[0] : this.partOf.toArray(new Base[this.partOf.size()]); // Reference
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<TaskStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 2051346646:
       /* statusReason */ return this.statusReason == null ? new Base[0] : new Base[] { this.statusReason }; // CodeableConcept
     case 2008591314:
       /* businessStatus */ return this.businessStatus == null ? new Base[0] : new Base[] { this.businessStatus }; // CodeableConcept
     case -1183762788:
-      /* intent */ return this.intent == null ? new Base[0] : new Base[] { this.intent }; // Enumeration<TaskIntent>
+      /* intent */ return this.intent == null ? new Base[0] : new Base[] { this.intent }; // StringType
     case -1165461084:
-      /* priority */ return this.priority == null ? new Base[0] : new Base[] { this.priority }; // Enumeration<TaskPriority>
+      /* priority */ return this.priority == null ? new Base[0] : new Base[] { this.priority }; // StringType
     case 3059181:
       /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // CodeableConcept
     case -1724546052:
@@ -4273,8 +3517,7 @@ public class Task extends DomainResource {
       this.getPartOf().add(castToReference(value)); // Reference
       return value;
     case -892481550: // status
-      value = new TaskStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<TaskStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 2051346646: // statusReason
       this.statusReason = castToCodeableConcept(value); // CodeableConcept
@@ -4283,12 +3526,10 @@ public class Task extends DomainResource {
       this.businessStatus = castToCodeableConcept(value); // CodeableConcept
       return value;
     case -1183762788: // intent
-      value = new TaskIntentEnumFactory().fromType(castToCode(value));
-      this.intent = (Enumeration) value; // Enumeration<TaskIntent>
+      this.intent = castToString(value); // StringType
       return value;
     case -1165461084: // priority
-      value = new TaskPriorityEnumFactory().fromType(castToCode(value));
-      this.priority = (Enumeration) value; // Enumeration<TaskPriority>
+      this.priority = castToString(value); // StringType
       return value;
     case 3059181: // code
       this.code = castToCodeableConcept(value); // CodeableConcept
@@ -4371,18 +3612,15 @@ public class Task extends DomainResource {
     } else if (name.equals("partOf")) {
       this.getPartOf().add(castToReference(value));
     } else if (name.equals("status")) {
-      value = new TaskStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<TaskStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("statusReason")) {
       this.statusReason = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("businessStatus")) {
       this.businessStatus = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("intent")) {
-      value = new TaskIntentEnumFactory().fromType(castToCode(value));
-      this.intent = (Enumeration) value; // Enumeration<TaskIntent>
+      this.intent = castToString(value); // StringType
     } else if (name.equals("priority")) {
-      value = new TaskPriorityEnumFactory().fromType(castToCode(value));
-      this.priority = (Enumeration) value; // Enumeration<TaskPriority>
+      this.priority = castToString(value); // StringType
     } else if (name.equals("code")) {
       this.code = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("description")) {
@@ -4584,15 +3822,15 @@ public class Task extends DomainResource {
     case -995410646:
       /* partOf */ return new String[] { "Reference" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 2051346646:
       /* statusReason */ return new String[] { "CodeableConcept" };
     case 2008591314:
       /* businessStatus */ return new String[] { "CodeableConcept" };
     case -1183762788:
-      /* intent */ return new String[] { "code" };
+      /* intent */ return new String[] { "string" };
     case -1165461084:
-      /* priority */ return new String[] { "code" };
+      /* priority */ return new String[] { "string" };
     case 3059181:
       /* code */ return new String[] { "CodeableConcept" };
     case -1724546052:

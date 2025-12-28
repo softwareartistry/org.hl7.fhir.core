@@ -23707,15 +23707,15 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("partOf")) {
       res.getPartOf().add(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, Task.TaskStatus.NULL, new Task.TaskStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("statusReason")) {
       res.setStatusReason(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("businessStatus")) {
       res.setBusinessStatus(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("intent")) {
-      res.setIntentElement(parseEnumeration(xpp, Task.TaskIntent.NULL, new Task.TaskIntentEnumFactory()));
+      res.setIntentElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("priority")) {
-      res.setPriorityElement(parseEnumeration(xpp, Task.TaskPriority.NULL, new Task.TaskPriorityEnumFactory()));
+      res.setPriorityElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("code")) {
       res.setCode(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("description")) {
@@ -51173,7 +51173,7 @@ public class XmlParser extends XmlParserBase {
         composeReference("partOf", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new Task.TaskStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasStatusReason()) {
       composeCodeableConcept("statusReason", element.getStatusReason());
     }
@@ -51181,9 +51181,9 @@ public class XmlParser extends XmlParserBase {
       composeCodeableConcept("businessStatus", element.getBusinessStatus());
     }
     if (element.hasIntentElement())
-      composeEnumeration("intent", element.getIntentElement(), new Task.TaskIntentEnumFactory());
+      composeString("intent", element.getIntentElement());
     if (element.hasPriorityElement())
-      composeEnumeration("priority", element.getPriorityElement(), new Task.TaskPriorityEnumFactory());
+      composeString("priority", element.getPriorityElement());
     if (element.hasCode()) {
       composeCodeableConcept("code", element.getCode());
     }
