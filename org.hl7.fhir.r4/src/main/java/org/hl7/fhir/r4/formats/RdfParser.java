@@ -7683,13 +7683,13 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "ExplanationOfBenefit", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "ExplanationOfBenefit", "status", element.getStatusElement(), -1);
+      composeString(t, "ExplanationOfBenefit", "status", element.getStatusElement(), -1);
     if (element.hasType())
       composeCodeableConcept(t, "ExplanationOfBenefit", "type", element.getType(), -1);
     if (element.hasSubType())
       composeCodeableConcept(t, "ExplanationOfBenefit", "subType", element.getSubType(), -1);
     if (element.hasUseElement())
-      composeEnum(t, "ExplanationOfBenefit", "use", element.getUseElement(), -1);
+      composeString(t, "ExplanationOfBenefit", "use", element.getUseElement(), -1);
     if (element.hasPatient())
       composeReference(t, "ExplanationOfBenefit", "patient", element.getPatient(), -1);
     if (element.hasBillablePeriod())
@@ -7727,7 +7727,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasClaimResponse())
       composeReference(t, "ExplanationOfBenefit", "claimResponse", element.getClaimResponse(), -1);
     if (element.hasOutcomeElement())
-      composeEnum(t, "ExplanationOfBenefit", "outcome", element.getOutcomeElement(), -1);
+      composeString(t, "ExplanationOfBenefit", "outcome", element.getOutcomeElement(), -1);
     if (element.hasDispositionElement())
       composeString(t, "ExplanationOfBenefit", "disposition", element.getDispositionElement(), -1);
     for (int i = 0; i < element.getPreAuthRef().size(); i++)

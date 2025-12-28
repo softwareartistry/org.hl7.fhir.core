@@ -56,476 +56,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "ExplanationOfBenefit", profile = "http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit")
 public class ExplanationOfBenefit extends DomainResource {
 
-  public enum ExplanationOfBenefitStatus {
-    /**
-     * The resource instance is currently in-force.
-     */
-    ACTIVE,
-    /**
-     * The resource instance is withdrawn, rescinded or reversed.
-     */
-    CANCELLED,
-    /**
-     * A new resource instance the contents of which is not complete.
-     */
-    DRAFT,
-    /**
-     * The resource instance was entered in error.
-     */
-    ENTEREDINERROR,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ExplanationOfBenefitStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("active".equals(codeString))
-        return ACTIVE;
-      if ("cancelled".equals(codeString))
-        return CANCELLED;
-      if ("draft".equals(codeString))
-        return DRAFT;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ExplanationOfBenefitStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ACTIVE:
-        return "active";
-      case CANCELLED:
-        return "cancelled";
-      case DRAFT:
-        return "draft";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ACTIVE:
-        return "http://hl7.org/fhir/explanationofbenefit-status";
-      case CANCELLED:
-        return "http://hl7.org/fhir/explanationofbenefit-status";
-      case DRAFT:
-        return "http://hl7.org/fhir/explanationofbenefit-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/explanationofbenefit-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ACTIVE:
-        return "The resource instance is currently in-force.";
-      case CANCELLED:
-        return "The resource instance is withdrawn, rescinded or reversed.";
-      case DRAFT:
-        return "A new resource instance the contents of which is not complete.";
-      case ENTEREDINERROR:
-        return "The resource instance was entered in error.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ACTIVE:
-        return "Active";
-      case CANCELLED:
-        return "Cancelled";
-      case DRAFT:
-        return "Draft";
-      case ENTEREDINERROR:
-        return "Entered In Error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ExplanationOfBenefitStatusEnumFactory implements EnumFactory<ExplanationOfBenefitStatus> {
-    public ExplanationOfBenefitStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("active".equals(codeString))
-        return ExplanationOfBenefitStatus.ACTIVE;
-      if ("cancelled".equals(codeString))
-        return ExplanationOfBenefitStatus.CANCELLED;
-      if ("draft".equals(codeString))
-        return ExplanationOfBenefitStatus.DRAFT;
-      if ("entered-in-error".equals(codeString))
-        return ExplanationOfBenefitStatus.ENTEREDINERROR;
-      throw new IllegalArgumentException("Unknown ExplanationOfBenefitStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<ExplanationOfBenefitStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ExplanationOfBenefitStatus>(this, ExplanationOfBenefitStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ExplanationOfBenefitStatus>(this, ExplanationOfBenefitStatus.NULL, code);
-      if ("active".equals(codeString))
-        return new Enumeration<ExplanationOfBenefitStatus>(this, ExplanationOfBenefitStatus.ACTIVE, code);
-      if ("cancelled".equals(codeString))
-        return new Enumeration<ExplanationOfBenefitStatus>(this, ExplanationOfBenefitStatus.CANCELLED, code);
-      if ("draft".equals(codeString))
-        return new Enumeration<ExplanationOfBenefitStatus>(this, ExplanationOfBenefitStatus.DRAFT, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<ExplanationOfBenefitStatus>(this, ExplanationOfBenefitStatus.ENTEREDINERROR, code);
-      throw new FHIRException("Unknown ExplanationOfBenefitStatus code '" + codeString + "'");
-    }
-
-    public String toCode(ExplanationOfBenefitStatus code) {
-       if (code == ExplanationOfBenefitStatus.NULL)
-           return null;
-       if (code == ExplanationOfBenefitStatus.ACTIVE)
-        return "active";
-      if (code == ExplanationOfBenefitStatus.CANCELLED)
-        return "cancelled";
-      if (code == ExplanationOfBenefitStatus.DRAFT)
-        return "draft";
-      if (code == ExplanationOfBenefitStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      return "?";
-   }
-
-    public String toSystem(ExplanationOfBenefitStatus code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum Use {
-    /**
-     * The treatment is complete and this represents a Claim for the services.
-     */
-    CLAIM,
-    /**
-     * The treatment is proposed and this represents a Pre-authorization for the
-     * services.
-     */
-    PREAUTHORIZATION,
-    /**
-     * The treatment is proposed and this represents a Pre-determination for the
-     * services.
-     */
-    PREDETERMINATION,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static Use fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("claim".equals(codeString))
-        return CLAIM;
-      if ("preauthorization".equals(codeString))
-        return PREAUTHORIZATION;
-      if ("predetermination".equals(codeString))
-        return PREDETERMINATION;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown Use code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case CLAIM:
-        return "claim";
-      case PREAUTHORIZATION:
-        return "preauthorization";
-      case PREDETERMINATION:
-        return "predetermination";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case CLAIM:
-        return "http://hl7.org/fhir/claim-use";
-      case PREAUTHORIZATION:
-        return "http://hl7.org/fhir/claim-use";
-      case PREDETERMINATION:
-        return "http://hl7.org/fhir/claim-use";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case CLAIM:
-        return "The treatment is complete and this represents a Claim for the services.";
-      case PREAUTHORIZATION:
-        return "The treatment is proposed and this represents a Pre-authorization for the services.";
-      case PREDETERMINATION:
-        return "The treatment is proposed and this represents a Pre-determination for the services.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case CLAIM:
-        return "Claim";
-      case PREAUTHORIZATION:
-        return "Preauthorization";
-      case PREDETERMINATION:
-        return "Predetermination";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class UseEnumFactory implements EnumFactory<Use> {
-    public Use fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("claim".equals(codeString))
-        return Use.CLAIM;
-      if ("preauthorization".equals(codeString))
-        return Use.PREAUTHORIZATION;
-      if ("predetermination".equals(codeString))
-        return Use.PREDETERMINATION;
-      throw new IllegalArgumentException("Unknown Use code '" + codeString + "'");
-    }
-
-    public Enumeration<Use> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<Use>(this, Use.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<Use>(this, Use.NULL, code);
-      if ("claim".equals(codeString))
-        return new Enumeration<Use>(this, Use.CLAIM, code);
-      if ("preauthorization".equals(codeString))
-        return new Enumeration<Use>(this, Use.PREAUTHORIZATION, code);
-      if ("predetermination".equals(codeString))
-        return new Enumeration<Use>(this, Use.PREDETERMINATION, code);
-      throw new FHIRException("Unknown Use code '" + codeString + "'");
-    }
-
-    public String toCode(Use code) {
-       if (code == Use.NULL)
-           return null;
-       if (code == Use.CLAIM)
-        return "claim";
-      if (code == Use.PREAUTHORIZATION)
-        return "preauthorization";
-      if (code == Use.PREDETERMINATION)
-        return "predetermination";
-      return "?";
-   }
-
-    public String toSystem(Use code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum RemittanceOutcome {
-    /**
-     * The Claim/Pre-authorization/Pre-determination has been received but
-     * processing has not begun.
-     */
-    QUEUED,
-    /**
-     * The processing has completed without errors
-     */
-    COMPLETE,
-    /**
-     * One or more errors have been detected in the Claim
-     */
-    ERROR,
-    /**
-     * No errors have been detected in the Claim and some of the adjudication has
-     * been performed.
-     */
-    PARTIAL,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static RemittanceOutcome fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("queued".equals(codeString))
-        return QUEUED;
-      if ("complete".equals(codeString))
-        return COMPLETE;
-      if ("error".equals(codeString))
-        return ERROR;
-      if ("partial".equals(codeString))
-        return PARTIAL;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown RemittanceOutcome code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case QUEUED:
-        return "queued";
-      case COMPLETE:
-        return "complete";
-      case ERROR:
-        return "error";
-      case PARTIAL:
-        return "partial";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case QUEUED:
-        return "http://hl7.org/fhir/remittance-outcome";
-      case COMPLETE:
-        return "http://hl7.org/fhir/remittance-outcome";
-      case ERROR:
-        return "http://hl7.org/fhir/remittance-outcome";
-      case PARTIAL:
-        return "http://hl7.org/fhir/remittance-outcome";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case QUEUED:
-        return "The Claim/Pre-authorization/Pre-determination has been received but processing has not begun.";
-      case COMPLETE:
-        return "The processing has completed without errors";
-      case ERROR:
-        return "One or more errors have been detected in the Claim";
-      case PARTIAL:
-        return "No errors have been detected in the Claim and some of the adjudication has been performed.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case QUEUED:
-        return "Queued";
-      case COMPLETE:
-        return "Processing Complete";
-      case ERROR:
-        return "Error";
-      case PARTIAL:
-        return "Partial Processing";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class RemittanceOutcomeEnumFactory implements EnumFactory<RemittanceOutcome> {
-    public RemittanceOutcome fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("queued".equals(codeString))
-        return RemittanceOutcome.QUEUED;
-      if ("complete".equals(codeString))
-        return RemittanceOutcome.COMPLETE;
-      if ("error".equals(codeString))
-        return RemittanceOutcome.ERROR;
-      if ("partial".equals(codeString))
-        return RemittanceOutcome.PARTIAL;
-      throw new IllegalArgumentException("Unknown RemittanceOutcome code '" + codeString + "'");
-    }
-
-    public Enumeration<RemittanceOutcome> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<RemittanceOutcome>(this, RemittanceOutcome.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<RemittanceOutcome>(this, RemittanceOutcome.NULL, code);
-      if ("queued".equals(codeString))
-        return new Enumeration<RemittanceOutcome>(this, RemittanceOutcome.QUEUED, code);
-      if ("complete".equals(codeString))
-        return new Enumeration<RemittanceOutcome>(this, RemittanceOutcome.COMPLETE, code);
-      if ("error".equals(codeString))
-        return new Enumeration<RemittanceOutcome>(this, RemittanceOutcome.ERROR, code);
-      if ("partial".equals(codeString))
-        return new Enumeration<RemittanceOutcome>(this, RemittanceOutcome.PARTIAL, code);
-      throw new FHIRException("Unknown RemittanceOutcome code '" + codeString + "'");
-    }
-
-    public String toCode(RemittanceOutcome code) {
-       if (code == RemittanceOutcome.NULL)
-           return null;
-       if (code == RemittanceOutcome.QUEUED)
-        return "queued";
-      if (code == RemittanceOutcome.COMPLETE)
-        return "complete";
-      if (code == RemittanceOutcome.ERROR)
-        return "error";
-      if (code == RemittanceOutcome.PARTIAL)
-        return "partial";
-      return "?";
-   }
-
-    public String toSystem(RemittanceOutcome code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class RelatedClaimComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -14879,10 +14409,10 @@ public class ExplanationOfBenefit extends DomainResource {
   /**
    * The status of the resource instance.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "active | cancelled | draft | entered-in-error", formalDefinition = "The status of the resource instance.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/explanationofbenefit-status")
-  protected Enumeration<ExplanationOfBenefitStatus> status;
+  protected StringType status;
 
   /**
    * The category of claim, e.g. oral, pharmacy, vision, institutional,
@@ -14910,10 +14440,10 @@ public class ExplanationOfBenefit extends DomainResource {
    * non-binding adjudication of the listed products and services which could be
    * provided in the future.
    */
-  @Child(name = "use", type = { CodeType.class }, order = 4, min = 1, max = 1, modifier = false, summary = true)
+  @Child(name = "use", type = { StringType.class }, order = 4, min = 1, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "claim | preauthorization | predetermination", formalDefinition = "A code to indicate whether the nature of the request is: to request adjudication of products and services previously rendered; or requesting authorization and adjudication for provision in the future; or requesting the non-binding adjudication of the listed products and services which could be provided in the future.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/claim-use")
-  protected Enumeration<Use> use;
+  protected StringType use;
 
   /**
    * The party to whom the professional services and/or products have been
@@ -15125,10 +14655,10 @@ public class ExplanationOfBenefit extends DomainResource {
   /**
    * The outcome of the claim, predetermination, or preauthorization processing.
    */
-  @Child(name = "outcome", type = { CodeType.class }, order = 22, min = 1, max = 1, modifier = false, summary = true)
+  @Child(name = "outcome", type = { StringType.class }, order = 22, min = 1, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "queued | complete | error | partial", formalDefinition = "The outcome of the claim, predetermination, or preauthorization processing.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/remittance-outcome")
-  protected Enumeration<RemittanceOutcome> outcome;
+  protected StringType outcome;
 
   /**
    * A human readable description of the status of the adjudication.
@@ -15302,9 +14832,9 @@ public class ExplanationOfBenefit extends DomainResource {
   /**
    * Constructor
    */
-  public ExplanationOfBenefit(Enumeration<ExplanationOfBenefitStatus> status, CodeableConcept type,
-      Enumeration<Use> use, Reference patient, DateTimeType created, Reference insurer, Reference provider,
-      Enumeration<RemittanceOutcome> outcome) {
+  public ExplanationOfBenefit(StringType status, CodeableConcept type,
+                              StringType use, Reference patient, DateTimeType created, Reference insurer, Reference provider,
+                              StringType outcome) {
     super();
     this.status = status;
     this.type = type;
@@ -15376,12 +14906,12 @@ public class ExplanationOfBenefit extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<ExplanationOfBenefitStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create ExplanationOfBenefit.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<ExplanationOfBenefitStatus>(new ExplanationOfBenefitStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -15398,7 +14928,7 @@ public class ExplanationOfBenefit extends DomainResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public ExplanationOfBenefit setStatusElement(Enumeration<ExplanationOfBenefitStatus> value) {
+  public ExplanationOfBenefit setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -15406,16 +14936,16 @@ public class ExplanationOfBenefit extends DomainResource {
   /**
    * @return The status of the resource instance.
    */
-  public ExplanationOfBenefitStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The status of the resource instance.
    */
-  public ExplanationOfBenefit setStatus(ExplanationOfBenefitStatus value) {
+  public ExplanationOfBenefit setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<ExplanationOfBenefitStatus>(new ExplanationOfBenefitStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -15483,12 +15013,12 @@ public class ExplanationOfBenefit extends DomainResource {
    *         This is the underlying object with id, value and extensions. The
    *         accessor "getUse" gives direct access to the value
    */
-  public Enumeration<Use> getUseElement() {
+  public StringType getUseElement() {
     if (this.use == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create ExplanationOfBenefit.use");
       else if (Configuration.doAutoCreate())
-        this.use = new Enumeration<Use>(new UseEnumFactory()); // bb
+        this.use = new StringType(); // bb
     return this.use;
   }
 
@@ -15510,7 +15040,7 @@ public class ExplanationOfBenefit extends DomainResource {
    *              object with id, value and extensions. The accessor "getUse"
    *              gives direct access to the value
    */
-  public ExplanationOfBenefit setUseElement(Enumeration<Use> value) {
+  public ExplanationOfBenefit setUseElement(StringType value) {
     this.use = value;
     return this;
   }
@@ -15522,8 +15052,8 @@ public class ExplanationOfBenefit extends DomainResource {
    *         future; or requesting the non-binding adjudication of the listed
    *         products and services which could be provided in the future.
    */
-  public Use getUse() {
-    return this.use == null ? null : this.use.getValue();
+  public StringType getUse() {
+    return this.use == null ? null : this.use;
   }
 
   /**
@@ -15534,9 +15064,9 @@ public class ExplanationOfBenefit extends DomainResource {
    *              adjudication of the listed products and services which could be
    *              provided in the future.
    */
-  public ExplanationOfBenefit setUse(Use value) {
+  public ExplanationOfBenefit setUse(String value) {
     if (this.use == null)
-      this.use = new Enumeration<Use>(new UseEnumFactory());
+      this.use = new StringType();
     this.use.setValue(value);
     return this;
   }
@@ -16305,12 +15835,12 @@ public class ExplanationOfBenefit extends DomainResource {
    *         value and extensions. The accessor "getOutcome" gives direct access
    *         to the value
    */
-  public Enumeration<RemittanceOutcome> getOutcomeElement() {
+  public StringType getOutcomeElement() {
     if (this.outcome == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create ExplanationOfBenefit.outcome");
       else if (Configuration.doAutoCreate())
-        this.outcome = new Enumeration<RemittanceOutcome>(new RemittanceOutcomeEnumFactory()); // bb
+        this.outcome = new StringType(); // bb
     return this.outcome;
   }
 
@@ -16328,7 +15858,7 @@ public class ExplanationOfBenefit extends DomainResource {
    *              with id, value and extensions. The accessor "getOutcome" gives
    *              direct access to the value
    */
-  public ExplanationOfBenefit setOutcomeElement(Enumeration<RemittanceOutcome> value) {
+  public ExplanationOfBenefit setOutcomeElement(StringType value) {
     this.outcome = value;
     return this;
   }
@@ -16337,17 +15867,17 @@ public class ExplanationOfBenefit extends DomainResource {
    * @return The outcome of the claim, predetermination, or preauthorization
    *         processing.
    */
-  public RemittanceOutcome getOutcome() {
-    return this.outcome == null ? null : this.outcome.getValue();
+  public StringType getOutcovme() {
+    return this.outcome == null ? null : this.outcome;
   }
 
   /**
    * @param value The outcome of the claim, predetermination, or preauthorization
    *              processing.
    */
-  public ExplanationOfBenefit setOutcome(RemittanceOutcome value) {
+  public ExplanationOfBenefit setOutcome(String value) {
     if (this.outcome == null)
-      this.outcome = new Enumeration<RemittanceOutcome>(new RemittanceOutcomeEnumFactory());
+      this.outcome = new StringType();
     this.outcome.setValue(value);
     return this;
   }
@@ -17321,13 +16851,13 @@ public class ExplanationOfBenefit extends DomainResource {
     super.listChildren(children);
     children.add(new Property("identifier", "Identifier",
         "A unique identifier assigned to this explanation of benefit.", 0, java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code", "The status of the resource instance.", 0, 1, status));
+    children.add(new Property("status", "string", "The status of the resource instance.", 0, 1, status));
     children.add(new Property("type", "CodeableConcept",
         "The category of claim, e.g. oral, pharmacy, vision, institutional, professional.", 0, 1, type));
     children.add(new Property("subType", "CodeableConcept",
         "A finer grained suite of claim type codes which may convey additional information such as Inpatient vs Outpatient and/or a specialty service.",
         0, 1, subType));
-    children.add(new Property("use", "code",
+    children.add(new Property("use", "string",
         "A code to indicate whether the nature of the request is: to request adjudication of products and services previously rendered; or requesting authorization and adjudication for provision in the future; or requesting the non-binding adjudication of the listed products and services which could be provided in the future.",
         0, 1, use));
     children.add(new Property("patient", "Reference(Patient)",
@@ -17372,7 +16902,7 @@ public class ExplanationOfBenefit extends DomainResource {
     children.add(new Property("claimResponse", "Reference(ClaimResponse)",
         "The business identifier for the instance of the adjudication response: claim, predetermination or preauthorization response.",
         0, 1, claimResponse));
-    children.add(new Property("outcome", "code",
+    children.add(new Property("outcome", "string",
         "The outcome of the claim, predetermination, or preauthorization processing.", 0, 1, outcome));
     children.add(new Property("disposition", "string",
         "A human readable description of the status of the adjudication.", 0, 1, disposition));
@@ -17433,7 +16963,7 @@ public class ExplanationOfBenefit extends DomainResource {
       /* identifier */ return new Property("identifier", "Identifier",
           "A unique identifier assigned to this explanation of benefit.", 0, java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "The status of the resource instance.", 0, 1, status);
+      /* status */ return new Property("status", "string", "The status of the resource instance.", 0, 1, status);
     case 3575610:
       /* type */ return new Property("type", "CodeableConcept",
           "The category of claim, e.g. oral, pharmacy, vision, institutional, professional.", 0, 1, type);
@@ -17442,7 +16972,7 @@ public class ExplanationOfBenefit extends DomainResource {
           "A finer grained suite of claim type codes which may convey additional information such as Inpatient vs Outpatient and/or a specialty service.",
           0, 1, subType);
     case 116103:
-      /* use */ return new Property("use", "code",
+      /* use */ return new Property("use", "string",
           "A code to indicate whether the nature of the request is: to request adjudication of products and services previously rendered; or requesting authorization and adjudication for provision in the future; or requesting the non-binding adjudication of the listed products and services which could be provided in the future.",
           0, 1, use);
     case -791418107:
@@ -17505,7 +17035,7 @@ public class ExplanationOfBenefit extends DomainResource {
           "The business identifier for the instance of the adjudication response: claim, predetermination or preauthorization response.",
           0, 1, claimResponse);
     case -1106507950:
-      /* outcome */ return new Property("outcome", "code",
+      /* outcome */ return new Property("outcome", "string",
           "The outcome of the claim, predetermination, or preauthorization processing.", 0, 1, outcome);
     case 583380919:
       /* disposition */ return new Property("disposition", "string",
@@ -17591,13 +17121,13 @@ public class ExplanationOfBenefit extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<ExplanationOfBenefitStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 3575610:
       /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // CodeableConcept
     case -1868521062:
       /* subType */ return this.subType == null ? new Base[0] : new Base[] { this.subType }; // CodeableConcept
     case 116103:
-      /* use */ return this.use == null ? new Base[0] : new Base[] { this.use }; // Enumeration<Use>
+      /* use */ return this.use == null ? new Base[0] : new Base[] { this.use }; // StringType
     case -791418107:
       /* patient */ return this.patient == null ? new Base[0] : new Base[] { this.patient }; // Reference
     case -332066046:
@@ -17635,7 +17165,7 @@ public class ExplanationOfBenefit extends DomainResource {
     case 689513629:
       /* claimResponse */ return this.claimResponse == null ? new Base[0] : new Base[] { this.claimResponse }; // Reference
     case -1106507950:
-      /* outcome */ return this.outcome == null ? new Base[0] : new Base[] { this.outcome }; // Enumeration<RemittanceOutcome>
+      /* outcome */ return this.outcome == null ? new Base[0] : new Base[] { this.outcome }; // StringType
     case 583380919:
       /* disposition */ return this.disposition == null ? new Base[0] : new Base[] { this.disposition }; // StringType
     case 522246568:
@@ -17698,8 +17228,7 @@ public class ExplanationOfBenefit extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new ExplanationOfBenefitStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ExplanationOfBenefitStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 3575610: // type
       this.type = castToCodeableConcept(value); // CodeableConcept
@@ -17708,8 +17237,7 @@ public class ExplanationOfBenefit extends DomainResource {
       this.subType = castToCodeableConcept(value); // CodeableConcept
       return value;
     case 116103: // use
-      value = new UseEnumFactory().fromType(castToCode(value));
-      this.use = (Enumeration) value; // Enumeration<Use>
+      this.use = castToString(value); // StringType
       return value;
     case -791418107: // patient
       this.patient = castToReference(value); // Reference
@@ -17763,8 +17291,7 @@ public class ExplanationOfBenefit extends DomainResource {
       this.claimResponse = castToReference(value); // Reference
       return value;
     case -1106507950: // outcome
-      value = new RemittanceOutcomeEnumFactory().fromType(castToCode(value));
-      this.outcome = (Enumeration) value; // Enumeration<RemittanceOutcome>
+      this.outcome = castToString(value); // StringType
       return value;
     case 583380919: // disposition
       this.disposition = castToString(value); // StringType
@@ -17837,15 +17364,13 @@ public class ExplanationOfBenefit extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new ExplanationOfBenefitStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ExplanationOfBenefitStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("type")) {
       this.type = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("subType")) {
       this.subType = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("use")) {
-      value = new UseEnumFactory().fromType(castToCode(value));
-      this.use = (Enumeration) value; // Enumeration<Use>
+      this.use = castToString(value); // StringType
     } else if (name.equals("patient")) {
       this.patient = castToReference(value); // Reference
     } else if (name.equals("billablePeriod")) {
@@ -17881,8 +17406,7 @@ public class ExplanationOfBenefit extends DomainResource {
     } else if (name.equals("claimResponse")) {
       this.claimResponse = castToReference(value); // Reference
     } else if (name.equals("outcome")) {
-      value = new RemittanceOutcomeEnumFactory().fromType(castToCode(value));
-      this.outcome = (Enumeration) value; // Enumeration<RemittanceOutcome>
+      this.outcome = castToString(value); // StringType
     } else if (name.equals("disposition")) {
       this.disposition = castToString(value); // StringType
     } else if (name.equals("preAuthRef")) {
@@ -18122,13 +17646,13 @@ public class ExplanationOfBenefit extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 3575610:
       /* type */ return new String[] { "CodeableConcept" };
     case -1868521062:
       /* subType */ return new String[] { "CodeableConcept" };
     case 116103:
-      /* use */ return new String[] { "code" };
+      /* use */ return new String[] { "string" };
     case -791418107:
       /* patient */ return new String[] { "Reference" };
     case -332066046:
@@ -18164,7 +17688,7 @@ public class ExplanationOfBenefit extends DomainResource {
     case 689513629:
       /* claimResponse */ return new String[] { "Reference" };
     case -1106507950:
-      /* outcome */ return new String[] { "code" };
+      /* outcome */ return new String[] { "string" };
     case 583380919:
       /* disposition */ return new String[] { "string" };
     case 522246568:
