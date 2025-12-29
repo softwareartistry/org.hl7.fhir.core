@@ -12201,8 +12201,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), EpisodeOfCare.EpisodeOfCareStatus.NULL,
-        new EpisodeOfCare.EpisodeOfCareStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("statusHistory")) {
@@ -12269,8 +12268,7 @@ public class JsonParser extends JsonParserBase {
                                                                                  EpisodeOfCare.EpisodeOfCareStatusHistoryComponent res) throws IOException, FHIRFormatError {
     parseBackboneElementProperties(json, res);
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), EpisodeOfCare.EpisodeOfCareStatus.NULL,
-        new EpisodeOfCare.EpisodeOfCareStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("period"))
@@ -45124,10 +45122,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new EpisodeOfCare.EpisodeOfCareStatusEnumFactory(),
-        false);
-      composeEnumerationExtras("status", element.getStatusElement(), new EpisodeOfCare.EpisodeOfCareStatusEnumFactory(),
-        false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasStatusHistory()) {
       openArray("statusHistory");
@@ -45198,10 +45194,8 @@ public class JsonParser extends JsonParserBase {
     EpisodeOfCare.EpisodeOfCareStatusHistoryComponent element) throws IOException {
     composeBackbone(element);
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new EpisodeOfCare.EpisodeOfCareStatusEnumFactory(),
-        false);
-      composeEnumerationExtras("status", element.getStatusElement(), new EpisodeOfCare.EpisodeOfCareStatusEnumFactory(),
-        false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasPeriod()) {
       composePeriod("period", element.getPeriod());

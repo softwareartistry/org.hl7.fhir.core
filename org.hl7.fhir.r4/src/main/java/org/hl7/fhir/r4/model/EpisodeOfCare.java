@@ -50,248 +50,15 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "EpisodeOfCare", profile = "http://hl7.org/fhir/StructureDefinition/EpisodeOfCare")
 public class EpisodeOfCare extends DomainResource {
 
-  public enum EpisodeOfCareStatus {
-    /**
-     * This episode of care is planned to start at the date specified in the
-     * period.start. During this status, an organization may perform assessments to
-     * determine if the patient is eligible to receive services, or be organizing to
-     * make resources available to provide care services.
-     */
-    PLANNED,
-    /**
-     * This episode has been placed on a waitlist, pending the episode being made
-     * active (or cancelled).
-     */
-    WAITLIST,
-    /**
-     * This episode of care is current.
-     */
-    ACTIVE,
-    /**
-     * This episode of care is on hold; the organization has limited responsibility
-     * for the patient (such as while on respite).
-     */
-    ONHOLD,
-    /**
-     * This episode of care is finished and the organization is not expecting to be
-     * providing further care to the patient. Can also be known as "closed",
-     * "completed" or other similar terms.
-     */
-    FINISHED,
-    /**
-     * The episode of care was cancelled, or withdrawn from service, often selected
-     * during the planned stage as the patient may have gone elsewhere, or the
-     * circumstances have changed and the organization is unable to provide the
-     * care. It indicates that services terminated outside the planned/expected
-     * workflow.
-     */
-    CANCELLED,
-    /**
-     * This instance should not have been part of this patient's medical record.
-     */
-    ENTEREDINERROR,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static EpisodeOfCareStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("planned".equals(codeString))
-        return PLANNED;
-      if ("waitlist".equals(codeString))
-        return WAITLIST;
-      if ("active".equals(codeString))
-        return ACTIVE;
-      if ("onhold".equals(codeString))
-        return ONHOLD;
-      if ("finished".equals(codeString))
-        return FINISHED;
-      if ("cancelled".equals(codeString))
-        return CANCELLED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown EpisodeOfCareStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case PLANNED:
-        return "planned";
-      case WAITLIST:
-        return "waitlist";
-      case ACTIVE:
-        return "active";
-      case ONHOLD:
-        return "onhold";
-      case FINISHED:
-        return "finished";
-      case CANCELLED:
-        return "cancelled";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case PLANNED:
-        return "http://hl7.org/fhir/episode-of-care-status";
-      case WAITLIST:
-        return "http://hl7.org/fhir/episode-of-care-status";
-      case ACTIVE:
-        return "http://hl7.org/fhir/episode-of-care-status";
-      case ONHOLD:
-        return "http://hl7.org/fhir/episode-of-care-status";
-      case FINISHED:
-        return "http://hl7.org/fhir/episode-of-care-status";
-      case CANCELLED:
-        return "http://hl7.org/fhir/episode-of-care-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/episode-of-care-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case PLANNED:
-        return "This episode of care is planned to start at the date specified in the period.start. During this status, an organization may perform assessments to determine if the patient is eligible to receive services, or be organizing to make resources available to provide care services.";
-      case WAITLIST:
-        return "This episode has been placed on a waitlist, pending the episode being made active (or cancelled).";
-      case ACTIVE:
-        return "This episode of care is current.";
-      case ONHOLD:
-        return "This episode of care is on hold; the organization has limited responsibility for the patient (such as while on respite).";
-      case FINISHED:
-        return "This episode of care is finished and the organization is not expecting to be providing further care to the patient. Can also be known as \"closed\", \"completed\" or other similar terms.";
-      case CANCELLED:
-        return "The episode of care was cancelled, or withdrawn from service, often selected during the planned stage as the patient may have gone elsewhere, or the circumstances have changed and the organization is unable to provide the care. It indicates that services terminated outside the planned/expected workflow.";
-      case ENTEREDINERROR:
-        return "This instance should not have been part of this patient's medical record.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case PLANNED:
-        return "Planned";
-      case WAITLIST:
-        return "Waitlist";
-      case ACTIVE:
-        return "Active";
-      case ONHOLD:
-        return "On Hold";
-      case FINISHED:
-        return "Finished";
-      case CANCELLED:
-        return "Cancelled";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class EpisodeOfCareStatusEnumFactory implements EnumFactory<EpisodeOfCareStatus> {
-    public EpisodeOfCareStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("planned".equals(codeString))
-        return EpisodeOfCareStatus.PLANNED;
-      if ("waitlist".equals(codeString))
-        return EpisodeOfCareStatus.WAITLIST;
-      if ("active".equals(codeString))
-        return EpisodeOfCareStatus.ACTIVE;
-      if ("onhold".equals(codeString))
-        return EpisodeOfCareStatus.ONHOLD;
-      if ("finished".equals(codeString))
-        return EpisodeOfCareStatus.FINISHED;
-      if ("cancelled".equals(codeString))
-        return EpisodeOfCareStatus.CANCELLED;
-      if ("entered-in-error".equals(codeString))
-        return EpisodeOfCareStatus.ENTEREDINERROR;
-      throw new IllegalArgumentException("Unknown EpisodeOfCareStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<EpisodeOfCareStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<EpisodeOfCareStatus>(this, EpisodeOfCareStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<EpisodeOfCareStatus>(this, EpisodeOfCareStatus.NULL, code);
-      if ("planned".equals(codeString))
-        return new Enumeration<EpisodeOfCareStatus>(this, EpisodeOfCareStatus.PLANNED, code);
-      if ("waitlist".equals(codeString))
-        return new Enumeration<EpisodeOfCareStatus>(this, EpisodeOfCareStatus.WAITLIST, code);
-      if ("active".equals(codeString))
-        return new Enumeration<EpisodeOfCareStatus>(this, EpisodeOfCareStatus.ACTIVE, code);
-      if ("onhold".equals(codeString))
-        return new Enumeration<EpisodeOfCareStatus>(this, EpisodeOfCareStatus.ONHOLD, code);
-      if ("finished".equals(codeString))
-        return new Enumeration<EpisodeOfCareStatus>(this, EpisodeOfCareStatus.FINISHED, code);
-      if ("cancelled".equals(codeString))
-        return new Enumeration<EpisodeOfCareStatus>(this, EpisodeOfCareStatus.CANCELLED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<EpisodeOfCareStatus>(this, EpisodeOfCareStatus.ENTEREDINERROR, code);
-      throw new FHIRException("Unknown EpisodeOfCareStatus code '" + codeString + "'");
-    }
-
-    public String toCode(EpisodeOfCareStatus code) {
-       if (code == EpisodeOfCareStatus.NULL)
-           return null;
-       if (code == EpisodeOfCareStatus.PLANNED)
-        return "planned";
-      if (code == EpisodeOfCareStatus.WAITLIST)
-        return "waitlist";
-      if (code == EpisodeOfCareStatus.ACTIVE)
-        return "active";
-      if (code == EpisodeOfCareStatus.ONHOLD)
-        return "onhold";
-      if (code == EpisodeOfCareStatus.FINISHED)
-        return "finished";
-      if (code == EpisodeOfCareStatus.CANCELLED)
-        return "cancelled";
-      if (code == EpisodeOfCareStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      return "?";
-   }
-
-    public String toSystem(EpisodeOfCareStatus code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class EpisodeOfCareStatusHistoryComponent extends BackboneElement implements IBaseBackboneElement {
     /**
      * planned | waitlist | active | onhold | finished | cancelled.
      */
-    @Child(name = "status", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
+    @Child(name = "status", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "planned | waitlist | active | onhold | finished | cancelled | entered-in-error", formalDefinition = "planned | waitlist | active | onhold | finished | cancelled.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/episode-of-care-status")
-    protected Enumeration<EpisodeOfCareStatus> status;
+    protected StringType status;
 
     /**
      * The period during this EpisodeOfCare that the specific status applied.
@@ -312,7 +79,7 @@ public class EpisodeOfCare extends DomainResource {
     /**
      * Constructor
      */
-    public EpisodeOfCareStatusHistoryComponent(Enumeration<EpisodeOfCareStatus> status, Period period) {
+    public EpisodeOfCareStatusHistoryComponent(StringType status, Period period) {
       super();
       this.status = status;
       this.period = period;
@@ -323,12 +90,12 @@ public class EpisodeOfCare extends DomainResource {
      *         cancelled.). This is the underlying object with id, value and
      *         extensions. The accessor "getStatus" gives direct access to the value
      */
-    public Enumeration<EpisodeOfCareStatus> getStatusElement() {
+    public StringType getStatusElement() {
       if (this.status == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create EpisodeOfCareStatusHistoryComponent.status");
         else if (Configuration.doAutoCreate())
-          this.status = new Enumeration<EpisodeOfCareStatus>(new EpisodeOfCareStatusEnumFactory()); // bb
+          this.status = new StringType(); // bb
       return this.status;
     }
 
@@ -346,7 +113,7 @@ public class EpisodeOfCare extends DomainResource {
      *              extensions. The accessor "getStatus" gives direct access to the
      *              value
      */
-    public EpisodeOfCareStatusHistoryComponent setStatusElement(Enumeration<EpisodeOfCareStatus> value) {
+    public EpisodeOfCareStatusHistoryComponent setStatusElement(StringType value) {
       this.status = value;
       return this;
     }
@@ -354,16 +121,16 @@ public class EpisodeOfCare extends DomainResource {
     /**
      * @return planned | waitlist | active | onhold | finished | cancelled.
      */
-    public EpisodeOfCareStatus getStatus() {
-      return this.status == null ? null : this.status.getValue();
+    public StringType getStatus() {
+      return this.status == null ? null : this.status;
     }
 
     /**
      * @param value planned | waitlist | active | onhold | finished | cancelled.
      */
-    public EpisodeOfCareStatusHistoryComponent setStatus(EpisodeOfCareStatus value) {
+    public EpisodeOfCareStatusHistoryComponent setStatus(String value) {
       if (this.status == null)
-        this.status = new Enumeration<EpisodeOfCareStatus>(new EpisodeOfCareStatusEnumFactory());
+        this.status = new StringType();
       this.status.setValue(value);
       return this;
     }
@@ -397,7 +164,7 @@ public class EpisodeOfCare extends DomainResource {
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
       children.add(
-          new Property("status", "code", "planned | waitlist | active | onhold | finished | cancelled.", 0, 1, status));
+          new Property("status", "string", "planned | waitlist | active | onhold | finished | cancelled.", 0, 1, status));
       children.add(new Property("period", "Period",
           "The period during this EpisodeOfCare that the specific status applied.", 0, 1, period));
     }
@@ -406,7 +173,7 @@ public class EpisodeOfCare extends DomainResource {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case -892481550:
-        /* status */ return new Property("status", "code",
+        /* status */ return new Property("status", "string",
             "planned | waitlist | active | onhold | finished | cancelled.", 0, 1, status);
       case -991726143:
         /* period */ return new Property("period", "Period",
@@ -421,7 +188,7 @@ public class EpisodeOfCare extends DomainResource {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case -892481550:
-        /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<EpisodeOfCareStatus>
+        /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
       case -991726143:
         /* period */ return this.period == null ? new Base[0] : new Base[] { this.period }; // Period
       default:
@@ -434,8 +201,7 @@ public class EpisodeOfCare extends DomainResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case -892481550: // status
-        value = new EpisodeOfCareStatusEnumFactory().fromType(castToCode(value));
-        this.status = (Enumeration) value; // Enumeration<EpisodeOfCareStatus>
+        this.status = castToString(value); // StringType
         return value;
       case -991726143: // period
         this.period = castToPeriod(value); // Period
@@ -449,8 +215,7 @@ public class EpisodeOfCare extends DomainResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("status")) {
-        value = new EpisodeOfCareStatusEnumFactory().fromType(castToCode(value));
-        this.status = (Enumeration) value; // Enumeration<EpisodeOfCareStatus>
+        this.status = castToString(value); // StringType
       } else if (name.equals("period")) {
         this.period = castToPeriod(value); // Period
       } else
@@ -486,7 +251,7 @@ public class EpisodeOfCare extends DomainResource {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case -892481550:
-        /* status */ return new String[] { "code" };
+        /* status */ return new String[] { "string" };
       case -991726143:
         /* period */ return new String[] { "Period" };
       default:
@@ -923,10 +688,10 @@ public class EpisodeOfCare extends DomainResource {
   /**
    * planned | waitlist | active | onhold | finished | cancelled.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "planned | waitlist | active | onhold | finished | cancelled | entered-in-error", formalDefinition = "planned | waitlist | active | onhold | finished | cancelled.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/episode-of-care-status")
-  protected Enumeration<EpisodeOfCareStatus> status;
+  protected StringType status;
 
   /**
    * The history of statuses that the EpisodeOfCare has been through (without
@@ -1057,7 +822,7 @@ public class EpisodeOfCare extends DomainResource {
   /**
    * Constructor
    */
-  public EpisodeOfCare(Enumeration<EpisodeOfCareStatus> status, Reference patient) {
+  public EpisodeOfCare(StringType status, Reference patient) {
     super();
     this.status = status;
     this.patient = patient;
@@ -1124,12 +889,12 @@ public class EpisodeOfCare extends DomainResource {
    *         cancelled.). This is the underlying object with id, value and
    *         extensions. The accessor "getStatus" gives direct access to the value
    */
-  public Enumeration<EpisodeOfCareStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create EpisodeOfCare.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<EpisodeOfCareStatus>(new EpisodeOfCareStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -1147,7 +912,7 @@ public class EpisodeOfCare extends DomainResource {
    *              extensions. The accessor "getStatus" gives direct access to the
    *              value
    */
-  public EpisodeOfCare setStatusElement(Enumeration<EpisodeOfCareStatus> value) {
+  public EpisodeOfCare setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1155,16 +920,16 @@ public class EpisodeOfCare extends DomainResource {
   /**
    * @return planned | waitlist | active | onhold | finished | cancelled.
    */
-  public EpisodeOfCareStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value planned | waitlist | active | onhold | finished | cancelled.
    */
-  public EpisodeOfCare setStatus(EpisodeOfCareStatus value) {
+  public EpisodeOfCare setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<EpisodeOfCareStatus>(new EpisodeOfCareStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -1685,7 +1450,7 @@ public class EpisodeOfCare extends DomainResource {
         "The EpisodeOfCare may be known by different identifiers for different contexts of use, such as when an external agency is tracking the Episode for funding purposes.",
         0, java.lang.Integer.MAX_VALUE, identifier));
     children.add(
-        new Property("status", "code", "planned | waitlist | active | onhold | finished | cancelled.", 0, 1, status));
+        new Property("status", "string", "planned | waitlist | active | onhold | finished | cancelled.", 0, 1, status));
     children.add(new Property("statusHistory", "",
         "The history of statuses that the EpisodeOfCare has been through (without requiring processing the history of the resource).",
         0, java.lang.Integer.MAX_VALUE, statusHistory));
@@ -1722,7 +1487,7 @@ public class EpisodeOfCare extends DomainResource {
           "The EpisodeOfCare may be known by different identifiers for different contexts of use, such as when an external agency is tracking the Episode for funding purposes.",
           0, java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "planned | waitlist | active | onhold | finished | cancelled.",
+      /* status */ return new Property("status", "string", "planned | waitlist | active | onhold | finished | cancelled.",
           0, 1, status);
     case -986695614:
       /* statusHistory */ return new Property("statusHistory", "",
@@ -1773,7 +1538,7 @@ public class EpisodeOfCare extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<EpisodeOfCareStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -986695614:
       /* statusHistory */ return this.statusHistory == null ? new Base[0]
           : this.statusHistory.toArray(new Base[this.statusHistory.size()]); // EpisodeOfCareStatusHistoryComponent
@@ -1811,8 +1576,7 @@ public class EpisodeOfCare extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new EpisodeOfCareStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<EpisodeOfCareStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -986695614: // statusHistory
       this.getStatusHistory().add((EpisodeOfCareStatusHistoryComponent) value); // EpisodeOfCareStatusHistoryComponent
@@ -1855,8 +1619,7 @@ public class EpisodeOfCare extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new EpisodeOfCareStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<EpisodeOfCareStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("statusHistory")) {
       this.getStatusHistory().add((EpisodeOfCareStatusHistoryComponent) value);
     } else if (name.equals("type")) {
@@ -1952,7 +1715,7 @@ public class EpisodeOfCare extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -986695614:
       /* statusHistory */ return new String[] {};
     case 3575610:

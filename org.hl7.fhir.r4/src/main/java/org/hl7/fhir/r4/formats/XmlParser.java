@@ -9938,8 +9938,7 @@ public class XmlParser extends XmlParserBase {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("identifier")) {
       res.getIdentifier().add(parseIdentifier(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, EpisodeOfCare.EpisodeOfCareStatus.NULL,
-          new EpisodeOfCare.EpisodeOfCareStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("statusHistory")) {
       res.getStatusHistory().add(parseEpisodeOfCareEpisodeOfCareStatusHistoryComponent(xpp, res));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("type")) {
@@ -9985,8 +9984,7 @@ public class XmlParser extends XmlParserBase {
       EpisodeOfCare owner, EpisodeOfCare.EpisodeOfCareStatusHistoryComponent res)
       throws XmlPullParserException, IOException, FHIRFormatError {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, EpisodeOfCare.EpisodeOfCareStatus.NULL,
-          new EpisodeOfCare.EpisodeOfCareStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("period")) {
       res.setPeriod(parsePeriod(xpp));
     } else if (!parseBackboneElementContent(eventType, xpp, res))
@@ -37035,7 +37033,7 @@ public class XmlParser extends XmlParserBase {
         composeIdentifier("identifier", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new EpisodeOfCare.EpisodeOfCareStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasStatusHistory()) {
       for (EpisodeOfCare.EpisodeOfCareStatusHistoryComponent e : element.getStatusHistory())
         composeEpisodeOfCareEpisodeOfCareStatusHistoryComponent("statusHistory", e);
@@ -37089,7 +37087,7 @@ public class XmlParser extends XmlParserBase {
       EpisodeOfCare.EpisodeOfCareStatusHistoryComponent element) throws IOException {
     composeBackboneElementElements(element);
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new EpisodeOfCare.EpisodeOfCareStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasPeriod()) {
       composePeriod("period", element.getPeriod());
     }

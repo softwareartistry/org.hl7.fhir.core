@@ -7142,7 +7142,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "EpisodeOfCare", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "EpisodeOfCare", "status", element.getStatusElement(), -1);
+      composeString(t, "EpisodeOfCare", "status", element.getStatusElement(), -1);
     for (int i = 0; i < element.getStatusHistory().size(); i++)
       composeEpisodeOfCareEpisodeOfCareStatusHistoryComponent(t, "EpisodeOfCare", "statusHistory",
           element.getStatusHistory().get(i), i);
@@ -7178,7 +7178,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "statusHistory", name, element, index);
     if (element.hasStatusElement())
-      composeEnum(t, "EpisodeOfCare", "status", element.getStatusElement(), -1);
+      composeString(t, "EpisodeOfCare", "status", element.getStatusElement(), -1);
     if (element.hasPeriod())
       composePeriod(t, "EpisodeOfCare", "period", element.getPeriod(), -1);
   }
