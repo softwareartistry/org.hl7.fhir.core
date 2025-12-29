@@ -23597,13 +23597,11 @@ public class XmlParser extends XmlParserBase {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("identifier")) {
       res.getIdentifier().add(parseIdentifier(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, SupplyRequest.SupplyRequestStatus.NULL,
-          new SupplyRequest.SupplyRequestStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("category")) {
       res.setCategory(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("priority")) {
-      res.setPriorityElement(
-          parseEnumeration(xpp, SupplyRequest.RequestPriority.NULL, new SupplyRequest.RequestPriorityEnumFactory()));
+      res.setPriorityElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && nameIsTypeName(xpp, "item")) {
       res.setItem(parseType("item", xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("quantity")) {
@@ -51047,12 +51045,12 @@ public class XmlParser extends XmlParserBase {
         composeIdentifier("identifier", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new SupplyRequest.SupplyRequestStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasCategory()) {
       composeCodeableConcept("category", element.getCategory());
     }
     if (element.hasPriorityElement())
-      composeEnumeration("priority", element.getPriorityElement(), new SupplyRequest.RequestPriorityEnumFactory());
+      composeString("priority", element.getPriorityElement());
     if (element.hasItem()) {
       composeType("item", element.getItem());
     }

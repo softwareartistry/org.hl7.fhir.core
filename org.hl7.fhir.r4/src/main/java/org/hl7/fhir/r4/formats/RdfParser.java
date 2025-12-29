@@ -17171,11 +17171,11 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "SupplyRequest", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "SupplyRequest", "status", element.getStatusElement(), -1);
+      composeString(t, "SupplyRequest", "status", element.getStatusElement(), -1);
     if (element.hasCategory())
       composeCodeableConcept(t, "SupplyRequest", "category", element.getCategory(), -1);
     if (element.hasPriorityElement())
-      composeEnum(t, "SupplyRequest", "priority", element.getPriorityElement(), -1);
+      composeString(t, "SupplyRequest", "priority", element.getPriorityElement(), -1);
     if (element.hasItem())
       composeType(t, "SupplyRequest", "item", element.getItem(), -1);
     if (element.hasQuantity())

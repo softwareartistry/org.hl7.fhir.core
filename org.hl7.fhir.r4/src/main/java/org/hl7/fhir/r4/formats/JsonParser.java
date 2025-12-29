@@ -29344,15 +29344,13 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), SupplyRequest.SupplyRequestStatus.NULL,
-        new SupplyRequest.SupplyRequestStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("category"))
       res.setCategory(parseCodeableConcept(getJObject(json, "category")));
     if (json.has("priority"))
-      res.setPriorityElement(parseEnumeration(json.get("priority").getAsString(), SupplyRequest.RequestPriority.NULL,
-        new SupplyRequest.RequestPriorityEnumFactory()));
+      res.setPriorityElement(parseString(json.get("priority").getAsString()));
     if (json.has("_priority"))
       parseElementProperties(getJObject(json, "_priority"), res.getPriorityElement());
     Type item = parseType("item", json);
@@ -62627,19 +62625,15 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new SupplyRequest.SupplyRequestStatusEnumFactory(),
-        false);
-      composeEnumerationExtras("status", element.getStatusElement(), new SupplyRequest.SupplyRequestStatusEnumFactory(),
-        false);
+      composeStringCore("status", element.getStatusElement(),false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasCategory()) {
       composeCodeableConcept("category", element.getCategory());
     }
     if (element.hasPriorityElement()) {
-      composeEnumerationCore("priority", element.getPriorityElement(), new SupplyRequest.RequestPriorityEnumFactory(),
-        false);
-      composeEnumerationExtras("priority", element.getPriorityElement(), new SupplyRequest.RequestPriorityEnumFactory(),
-        false);
+      composeStringCore("priority", element.getPriorityElement(), false);
+      composeStringExtras("priority", element.getPriorityElement(), false);
     }
     if (element.hasItem()) {
       composeType("item", element.getItem());

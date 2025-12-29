@@ -50,400 +50,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "SupplyRequest", profile = "http://hl7.org/fhir/StructureDefinition/SupplyRequest")
 public class SupplyRequest extends DomainResource {
 
-  public enum SupplyRequestStatus {
-    /**
-     * The request has been created but is not yet complete or ready for action.
-     */
-    DRAFT,
-    /**
-     * The request is ready to be acted upon.
-     */
-    ACTIVE,
-    /**
-     * The authorization/request to act has been temporarily withdrawn but is
-     * expected to resume in the future.
-     */
-    SUSPENDED,
-    /**
-     * The authorization/request to act has been terminated prior to the full
-     * completion of the intended actions. No further activity should occur.
-     */
-    CANCELLED,
-    /**
-     * Activity against the request has been sufficiently completed to the
-     * satisfaction of the requester.
-     */
-    COMPLETED,
-    /**
-     * This electronic record should never have existed, though it is possible that
-     * real-world decisions were based on it. (If real-world activity has occurred,
-     * the status should be "cancelled" rather than "entered-in-error".).
-     */
-    ENTEREDINERROR,
-    /**
-     * The authoring/source system does not know which of the status values
-     * currently applies for this observation. Note: This concept is not to be used
-     * for "other" - one of the listed statuses is presumed to apply, but the
-     * authoring/source system does not know which.
-     */
-    UNKNOWN,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static SupplyRequestStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("draft".equals(codeString))
-        return DRAFT;
-      if ("active".equals(codeString))
-        return ACTIVE;
-      if ("suspended".equals(codeString))
-        return SUSPENDED;
-      if ("cancelled".equals(codeString))
-        return CANCELLED;
-      if ("completed".equals(codeString))
-        return COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return UNKNOWN;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown SupplyRequestStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case DRAFT:
-        return "draft";
-      case ACTIVE:
-        return "active";
-      case SUSPENDED:
-        return "suspended";
-      case CANCELLED:
-        return "cancelled";
-      case COMPLETED:
-        return "completed";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case UNKNOWN:
-        return "unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case DRAFT:
-        return "http://hl7.org/fhir/supplyrequest-status";
-      case ACTIVE:
-        return "http://hl7.org/fhir/supplyrequest-status";
-      case SUSPENDED:
-        return "http://hl7.org/fhir/supplyrequest-status";
-      case CANCELLED:
-        return "http://hl7.org/fhir/supplyrequest-status";
-      case COMPLETED:
-        return "http://hl7.org/fhir/supplyrequest-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/supplyrequest-status";
-      case UNKNOWN:
-        return "http://hl7.org/fhir/supplyrequest-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case DRAFT:
-        return "The request has been created but is not yet complete or ready for action.";
-      case ACTIVE:
-        return "The request is ready to be acted upon.";
-      case SUSPENDED:
-        return "The authorization/request to act has been temporarily withdrawn but is expected to resume in the future.";
-      case CANCELLED:
-        return "The authorization/request to act has been terminated prior to the full completion of the intended actions.  No further activity should occur.";
-      case COMPLETED:
-        return "Activity against the request has been sufficiently completed to the satisfaction of the requester.";
-      case ENTEREDINERROR:
-        return "This electronic record should never have existed, though it is possible that real-world decisions were based on it.  (If real-world activity has occurred, the status should be \"cancelled\" rather than \"entered-in-error\".).";
-      case UNKNOWN:
-        return "The authoring/source system does not know which of the status values currently applies for this observation. Note: This concept is not to be used for \"other\" - one of the listed statuses is presumed to apply, but the authoring/source system does not know which.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case DRAFT:
-        return "Draft";
-      case ACTIVE:
-        return "Active";
-      case SUSPENDED:
-        return "Suspended";
-      case CANCELLED:
-        return "Cancelled";
-      case COMPLETED:
-        return "Completed";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case UNKNOWN:
-        return "Unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class SupplyRequestStatusEnumFactory implements EnumFactory<SupplyRequestStatus> {
-    public SupplyRequestStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("draft".equals(codeString))
-        return SupplyRequestStatus.DRAFT;
-      if ("active".equals(codeString))
-        return SupplyRequestStatus.ACTIVE;
-      if ("suspended".equals(codeString))
-        return SupplyRequestStatus.SUSPENDED;
-      if ("cancelled".equals(codeString))
-        return SupplyRequestStatus.CANCELLED;
-      if ("completed".equals(codeString))
-        return SupplyRequestStatus.COMPLETED;
-      if ("entered-in-error".equals(codeString))
-        return SupplyRequestStatus.ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return SupplyRequestStatus.UNKNOWN;
-      throw new IllegalArgumentException("Unknown SupplyRequestStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<SupplyRequestStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<SupplyRequestStatus>(this, SupplyRequestStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<SupplyRequestStatus>(this, SupplyRequestStatus.NULL, code);
-      if ("draft".equals(codeString))
-        return new Enumeration<SupplyRequestStatus>(this, SupplyRequestStatus.DRAFT, code);
-      if ("active".equals(codeString))
-        return new Enumeration<SupplyRequestStatus>(this, SupplyRequestStatus.ACTIVE, code);
-      if ("suspended".equals(codeString))
-        return new Enumeration<SupplyRequestStatus>(this, SupplyRequestStatus.SUSPENDED, code);
-      if ("cancelled".equals(codeString))
-        return new Enumeration<SupplyRequestStatus>(this, SupplyRequestStatus.CANCELLED, code);
-      if ("completed".equals(codeString))
-        return new Enumeration<SupplyRequestStatus>(this, SupplyRequestStatus.COMPLETED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<SupplyRequestStatus>(this, SupplyRequestStatus.ENTEREDINERROR, code);
-      if ("unknown".equals(codeString))
-        return new Enumeration<SupplyRequestStatus>(this, SupplyRequestStatus.UNKNOWN, code);
-      throw new FHIRException("Unknown SupplyRequestStatus code '" + codeString + "'");
-    }
-
-    public String toCode(SupplyRequestStatus code) {
-       if (code == SupplyRequestStatus.NULL)
-           return null;
-       if (code == SupplyRequestStatus.DRAFT)
-        return "draft";
-      if (code == SupplyRequestStatus.ACTIVE)
-        return "active";
-      if (code == SupplyRequestStatus.SUSPENDED)
-        return "suspended";
-      if (code == SupplyRequestStatus.CANCELLED)
-        return "cancelled";
-      if (code == SupplyRequestStatus.COMPLETED)
-        return "completed";
-      if (code == SupplyRequestStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      if (code == SupplyRequestStatus.UNKNOWN)
-        return "unknown";
-      return "?";
-   }
-
-    public String toSystem(SupplyRequestStatus code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum RequestPriority {
-    /**
-     * The request has normal priority.
-     */
-    ROUTINE,
-    /**
-     * The request should be actioned promptly - higher priority than routine.
-     */
-    URGENT,
-    /**
-     * The request should be actioned as soon as possible - higher priority than
-     * urgent.
-     */
-    ASAP,
-    /**
-     * The request should be actioned immediately - highest possible priority. E.g.
-     * an emergency.
-     */
-    STAT,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static RequestPriority fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("routine".equals(codeString))
-        return ROUTINE;
-      if ("urgent".equals(codeString))
-        return URGENT;
-      if ("asap".equals(codeString))
-        return ASAP;
-      if ("stat".equals(codeString))
-        return STAT;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown RequestPriority code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ROUTINE:
-        return "routine";
-      case URGENT:
-        return "urgent";
-      case ASAP:
-        return "asap";
-      case STAT:
-        return "stat";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ROUTINE:
-        return "http://hl7.org/fhir/request-priority";
-      case URGENT:
-        return "http://hl7.org/fhir/request-priority";
-      case ASAP:
-        return "http://hl7.org/fhir/request-priority";
-      case STAT:
-        return "http://hl7.org/fhir/request-priority";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ROUTINE:
-        return "The request has normal priority.";
-      case URGENT:
-        return "The request should be actioned promptly - higher priority than routine.";
-      case ASAP:
-        return "The request should be actioned as soon as possible - higher priority than urgent.";
-      case STAT:
-        return "The request should be actioned immediately - highest possible priority.  E.g. an emergency.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ROUTINE:
-        return "Routine";
-      case URGENT:
-        return "Urgent";
-      case ASAP:
-        return "ASAP";
-      case STAT:
-        return "STAT";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class RequestPriorityEnumFactory implements EnumFactory<RequestPriority> {
-    public RequestPriority fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("routine".equals(codeString))
-        return RequestPriority.ROUTINE;
-      if ("urgent".equals(codeString))
-        return RequestPriority.URGENT;
-      if ("asap".equals(codeString))
-        return RequestPriority.ASAP;
-      if ("stat".equals(codeString))
-        return RequestPriority.STAT;
-      throw new IllegalArgumentException("Unknown RequestPriority code '" + codeString + "'");
-    }
-
-    public Enumeration<RequestPriority> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<RequestPriority>(this, RequestPriority.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<RequestPriority>(this, RequestPriority.NULL, code);
-      if ("routine".equals(codeString))
-        return new Enumeration<RequestPriority>(this, RequestPriority.ROUTINE, code);
-      if ("urgent".equals(codeString))
-        return new Enumeration<RequestPriority>(this, RequestPriority.URGENT, code);
-      if ("asap".equals(codeString))
-        return new Enumeration<RequestPriority>(this, RequestPriority.ASAP, code);
-      if ("stat".equals(codeString))
-        return new Enumeration<RequestPriority>(this, RequestPriority.STAT, code);
-      throw new FHIRException("Unknown RequestPriority code '" + codeString + "'");
-    }
-
-    public String toCode(RequestPriority code) {
-       if (code == RequestPriority.NULL)
-           return null;
-       if (code == RequestPriority.ROUTINE)
-        return "routine";
-      if (code == RequestPriority.URGENT)
-        return "urgent";
-      if (code == RequestPriority.ASAP)
-        return "asap";
-      if (code == RequestPriority.STAT)
-        return "stat";
-      return "?";
-   }
-
-    public String toSystem(RequestPriority code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class SupplyRequestParameterComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -776,10 +382,10 @@ public class SupplyRequest extends DomainResource {
   /**
    * Status of the supply request.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 0, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 0, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "draft | active | suspended +", formalDefinition = "Status of the supply request.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/supplyrequest-status")
-  protected Enumeration<SupplyRequestStatus> status;
+  protected StringType status;
 
   /**
    * Category of supply, e.g. central, non-stock, etc. This is used to support
@@ -795,10 +401,10 @@ public class SupplyRequest extends DomainResource {
    * Indicates how quickly this SupplyRequest should be addressed with respect to
    * other requests.
    */
-  @Child(name = "priority", type = { CodeType.class }, order = 3, min = 0, max = 1, modifier = false, summary = true)
+  @Child(name = "priority", type = { StringType.class }, order = 3, min = 0, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "routine | urgent | asap | stat", formalDefinition = "Indicates how quickly this SupplyRequest should be addressed with respect to other requests.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/request-priority")
-  protected Enumeration<RequestPriority> priority;
+  protected StringType priority;
 
   /**
    * The item that is requested to be supplied. This is either a link to a
@@ -999,12 +605,12 @@ public class SupplyRequest extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<SupplyRequestStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create SupplyRequest.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<SupplyRequestStatus>(new SupplyRequestStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -1021,7 +627,7 @@ public class SupplyRequest extends DomainResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getStatus" gives direct access to the value
    */
-  public SupplyRequest setStatusElement(Enumeration<SupplyRequestStatus> value) {
+  public SupplyRequest setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1029,19 +635,19 @@ public class SupplyRequest extends DomainResource {
   /**
    * @return Status of the supply request.
    */
-  public SupplyRequestStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value Status of the supply request.
    */
-  public SupplyRequest setStatus(SupplyRequestStatus value) {
+  public SupplyRequest setStatus(String value) {
     if (value == null)
       this.status = null;
     else {
       if (this.status == null)
-        this.status = new Enumeration<SupplyRequestStatus>(new SupplyRequestStatusEnumFactory());
+        this.status = new StringType();
       this.status.setValue(value);
     }
     return this;
@@ -1081,12 +687,12 @@ public class SupplyRequest extends DomainResource {
    *         object with id, value and extensions. The accessor "getPriority"
    *         gives direct access to the value
    */
-  public Enumeration<RequestPriority> getPriorityElement() {
+  public StringType getPriorityElement() {
     if (this.priority == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create SupplyRequest.priority");
       else if (Configuration.doAutoCreate())
-        this.priority = new Enumeration<RequestPriority>(new RequestPriorityEnumFactory()); // bb
+        this.priority = new StringType(); // bb
     return this.priority;
   }
 
@@ -1104,7 +710,7 @@ public class SupplyRequest extends DomainResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getPriority" gives direct access to the value
    */
-  public SupplyRequest setPriorityElement(Enumeration<RequestPriority> value) {
+  public SupplyRequest setPriorityElement(StringType value) {
     this.priority = value;
     return this;
   }
@@ -1113,20 +719,20 @@ public class SupplyRequest extends DomainResource {
    * @return Indicates how quickly this SupplyRequest should be addressed with
    *         respect to other requests.
    */
-  public RequestPriority getPriority() {
-    return this.priority == null ? null : this.priority.getValue();
+  public StringType getPriority() {
+    return this.priority == null ? null : this.priority;
   }
 
   /**
    * @param value Indicates how quickly this SupplyRequest should be addressed
    *              with respect to other requests.
    */
-  public SupplyRequest setPriority(RequestPriority value) {
+  public SupplyRequest setPriority(String value) {
     if (value == null)
       this.priority = null;
     else {
       if (this.priority == null)
-        this.priority = new Enumeration<RequestPriority>(new RequestPriorityEnumFactory());
+        this.priority = new StringType();
       this.priority.setValue(value);
     }
     return this;
@@ -1702,11 +1308,11 @@ public class SupplyRequest extends DomainResource {
     children.add(new Property("identifier", "Identifier",
         "Business identifiers assigned to this SupplyRequest by the author and/or other systems. These identifiers remain constant as the resource is updated and propagates from server to server.",
         0, java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code", "Status of the supply request.", 0, 1, status));
+    children.add(new Property("status", "string", "Status of the supply request.", 0, 1, status));
     children.add(new Property("category", "CodeableConcept",
         "Category of supply, e.g.  central, non-stock, etc. This is used to support work flows associated with the supply process.",
         0, 1, category));
-    children.add(new Property("priority", "code",
+    children.add(new Property("priority", "string",
         "Indicates how quickly this SupplyRequest should be addressed with respect to other requests.", 0, 1,
         priority));
     children.add(new Property("item[x]", "CodeableConcept|Reference(Medication|Substance|Device)",
@@ -1743,13 +1349,13 @@ public class SupplyRequest extends DomainResource {
           "Business identifiers assigned to this SupplyRequest by the author and/or other systems. These identifiers remain constant as the resource is updated and propagates from server to server.",
           0, java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "Status of the supply request.", 0, 1, status);
+      /* status */ return new Property("status", "string", "Status of the supply request.", 0, 1, status);
     case 50511102:
       /* category */ return new Property("category", "CodeableConcept",
           "Category of supply, e.g.  central, non-stock, etc. This is used to support work flows associated with the supply process.",
           0, 1, category);
     case -1165461084:
-      /* priority */ return new Property("priority", "code",
+      /* priority */ return new Property("priority", "string",
           "Indicates how quickly this SupplyRequest should be addressed with respect to other requests.", 0, 1,
           priority);
     case 2116201613:
@@ -1825,11 +1431,11 @@ public class SupplyRequest extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<SupplyRequestStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 50511102:
       /* category */ return this.category == null ? new Base[0] : new Base[] { this.category }; // CodeableConcept
     case -1165461084:
-      /* priority */ return this.priority == null ? new Base[0] : new Base[] { this.priority }; // Enumeration<RequestPriority>
+      /* priority */ return this.priority == null ? new Base[0] : new Base[] { this.priority }; // StringType
     case 3242771:
       /* item */ return this.item == null ? new Base[0] : new Base[] { this.item }; // Type
     case -1285004149:
@@ -1868,15 +1474,13 @@ public class SupplyRequest extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new SupplyRequestStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<SupplyRequestStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 50511102: // category
       this.category = castToCodeableConcept(value); // CodeableConcept
       return value;
     case -1165461084: // priority
-      value = new RequestPriorityEnumFactory().fromType(castToCode(value));
-      this.priority = (Enumeration) value; // Enumeration<RequestPriority>
+      this.priority = castToString(value); // StringType
       return value;
     case 3242771: // item
       this.item = castToType(value); // Type
@@ -1922,13 +1526,11 @@ public class SupplyRequest extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new SupplyRequestStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<SupplyRequestStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("category")) {
       this.category = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("priority")) {
-      value = new RequestPriorityEnumFactory().fromType(castToCode(value));
-      this.priority = (Enumeration) value; // Enumeration<RequestPriority>
+      this.priority = castToString(value); // StringType
     } else if (name.equals("item[x]")) {
       this.item = castToType(value); // Type
     } else if (name.equals("quantity")) {
@@ -2042,11 +1644,11 @@ public class SupplyRequest extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 50511102:
       /* category */ return new String[] { "CodeableConcept" };
     case -1165461084:
-      /* priority */ return new String[] { "code" };
+      /* priority */ return new String[] { "string" };
     case 3242771:
       /* item */ return new String[] { "CodeableConcept", "Reference" };
     case -1285004149:
