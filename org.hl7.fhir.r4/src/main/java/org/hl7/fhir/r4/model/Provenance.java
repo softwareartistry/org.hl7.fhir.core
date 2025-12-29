@@ -58,195 +58,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Provenance", profile = "http://hl7.org/fhir/StructureDefinition/Provenance")
 public class Provenance extends DomainResource {
 
-  public enum ProvenanceEntityRole {
-    /**
-     * A transformation of an entity into another, an update of an entity resulting
-     * in a new one, or the construction of a new entity based on a pre-existing
-     * entity.
-     */
-    DERIVATION,
-    /**
-     * A derivation for which the resulting entity is a revised version of some
-     * original.
-     */
-    REVISION,
-    /**
-     * The repeat of (some or all of) an entity, such as text or image, by someone
-     * who might or might not be its original author.
-     */
-    QUOTATION,
-    /**
-     * A primary source for a topic refers to something produced by some agent with
-     * direct experience and knowledge about the topic, at the time of the topic's
-     * study, without benefit from hindsight.
-     */
-    SOURCE,
-    /**
-     * A derivation for which the entity is removed from accessibility usually
-     * through the use of the Delete operation.
-     */
-    REMOVAL,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ProvenanceEntityRole fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("derivation".equals(codeString))
-        return DERIVATION;
-      if ("revision".equals(codeString))
-        return REVISION;
-      if ("quotation".equals(codeString))
-        return QUOTATION;
-      if ("source".equals(codeString))
-        return SOURCE;
-      if ("removal".equals(codeString))
-        return REMOVAL;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ProvenanceEntityRole code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case DERIVATION:
-        return "derivation";
-      case REVISION:
-        return "revision";
-      case QUOTATION:
-        return "quotation";
-      case SOURCE:
-        return "source";
-      case REMOVAL:
-        return "removal";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case DERIVATION:
-        return "http://hl7.org/fhir/provenance-entity-role";
-      case REVISION:
-        return "http://hl7.org/fhir/provenance-entity-role";
-      case QUOTATION:
-        return "http://hl7.org/fhir/provenance-entity-role";
-      case SOURCE:
-        return "http://hl7.org/fhir/provenance-entity-role";
-      case REMOVAL:
-        return "http://hl7.org/fhir/provenance-entity-role";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case DERIVATION:
-        return "A transformation of an entity into another, an update of an entity resulting in a new one, or the construction of a new entity based on a pre-existing entity.";
-      case REVISION:
-        return "A derivation for which the resulting entity is a revised version of some original.";
-      case QUOTATION:
-        return "The repeat of (some or all of) an entity, such as text or image, by someone who might or might not be its original author.";
-      case SOURCE:
-        return "A primary source for a topic refers to something produced by some agent with direct experience and knowledge about the topic, at the time of the topic's study, without benefit from hindsight.";
-      case REMOVAL:
-        return "A derivation for which the entity is removed from accessibility usually through the use of the Delete operation.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case DERIVATION:
-        return "Derivation";
-      case REVISION:
-        return "Revision";
-      case QUOTATION:
-        return "Quotation";
-      case SOURCE:
-        return "Source";
-      case REMOVAL:
-        return "Removal";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ProvenanceEntityRoleEnumFactory implements EnumFactory<ProvenanceEntityRole> {
-    public ProvenanceEntityRole fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("derivation".equals(codeString))
-        return ProvenanceEntityRole.DERIVATION;
-      if ("revision".equals(codeString))
-        return ProvenanceEntityRole.REVISION;
-      if ("quotation".equals(codeString))
-        return ProvenanceEntityRole.QUOTATION;
-      if ("source".equals(codeString))
-        return ProvenanceEntityRole.SOURCE;
-      if ("removal".equals(codeString))
-        return ProvenanceEntityRole.REMOVAL;
-      throw new IllegalArgumentException("Unknown ProvenanceEntityRole code '" + codeString + "'");
-    }
-
-    public Enumeration<ProvenanceEntityRole> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ProvenanceEntityRole>(this, ProvenanceEntityRole.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ProvenanceEntityRole>(this, ProvenanceEntityRole.NULL, code);
-      if ("derivation".equals(codeString))
-        return new Enumeration<ProvenanceEntityRole>(this, ProvenanceEntityRole.DERIVATION, code);
-      if ("revision".equals(codeString))
-        return new Enumeration<ProvenanceEntityRole>(this, ProvenanceEntityRole.REVISION, code);
-      if ("quotation".equals(codeString))
-        return new Enumeration<ProvenanceEntityRole>(this, ProvenanceEntityRole.QUOTATION, code);
-      if ("source".equals(codeString))
-        return new Enumeration<ProvenanceEntityRole>(this, ProvenanceEntityRole.SOURCE, code);
-      if ("removal".equals(codeString))
-        return new Enumeration<ProvenanceEntityRole>(this, ProvenanceEntityRole.REMOVAL, code);
-      throw new FHIRException("Unknown ProvenanceEntityRole code '" + codeString + "'");
-    }
-
-    public String toCode(ProvenanceEntityRole code) {
-       if (code == ProvenanceEntityRole.NULL)
-           return null;
-       if (code == ProvenanceEntityRole.DERIVATION)
-        return "derivation";
-      if (code == ProvenanceEntityRole.REVISION)
-        return "revision";
-      if (code == ProvenanceEntityRole.QUOTATION)
-        return "quotation";
-      if (code == ProvenanceEntityRole.SOURCE)
-        return "source";
-      if (code == ProvenanceEntityRole.REMOVAL)
-        return "removal";
-      return "?";
-   }
-
-    public String toSystem(ProvenanceEntityRole code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class ProvenanceAgentComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -703,10 +514,10 @@ public class Provenance extends DomainResource {
     /**
      * How the entity was used during the activity.
      */
-    @Child(name = "role", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "role", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "derivation | revision | quotation | source | removal", formalDefinition = "How the entity was used during the activity.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/provenance-entity-role")
-    protected Enumeration<ProvenanceEntityRole> role;
+    protected StringType role;
 
     /**
      * Identity of the Entity used. May be a logical or physical uri and maybe
@@ -745,7 +556,7 @@ public class Provenance extends DomainResource {
     /**
      * Constructor
      */
-    public ProvenanceEntityComponent(Enumeration<ProvenanceEntityRole> role, Reference what) {
+    public ProvenanceEntityComponent(StringType role, Reference what) {
       super();
       this.role = role;
       this.what = what;
@@ -756,12 +567,12 @@ public class Provenance extends DomainResource {
      *         the underlying object with id, value and extensions. The accessor
      *         "getRole" gives direct access to the value
      */
-    public Enumeration<ProvenanceEntityRole> getRoleElement() {
+    public StringType getRoleElement() {
       if (this.role == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create ProvenanceEntityComponent.role");
         else if (Configuration.doAutoCreate())
-          this.role = new Enumeration<ProvenanceEntityRole>(new ProvenanceEntityRoleEnumFactory()); // bb
+          this.role = new StringType(); // bb
       return this.role;
     }
 
@@ -778,7 +589,7 @@ public class Provenance extends DomainResource {
      *              This is the underlying object with id, value and extensions. The
      *              accessor "getRole" gives direct access to the value
      */
-    public ProvenanceEntityComponent setRoleElement(Enumeration<ProvenanceEntityRole> value) {
+    public ProvenanceEntityComponent setRoleElement(StringType value) {
       this.role = value;
       return this;
     }
@@ -786,16 +597,16 @@ public class Provenance extends DomainResource {
     /**
      * @return How the entity was used during the activity.
      */
-    public ProvenanceEntityRole getRole() {
-      return this.role == null ? null : this.role.getValue();
+    public StringType getRole() {
+      return this.role == null ? null : this.role;
     }
 
     /**
      * @param value How the entity was used during the activity.
      */
-    public ProvenanceEntityComponent setRole(ProvenanceEntityRole value) {
+    public ProvenanceEntityComponent setRole(String value) {
       if (this.role == null)
-        this.role = new Enumeration<ProvenanceEntityRole>(new ProvenanceEntityRoleEnumFactory());
+        this.role = new StringType();
       this.role.setValue(value);
       return this;
     }
@@ -908,7 +719,7 @@ public class Provenance extends DomainResource {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("role", "code", "How the entity was used during the activity.", 0, 1, role));
+      children.add(new Property("role", "string", "How the entity was used during the activity.", 0, 1, role));
       children.add(new Property("what", "Reference(Any)",
           "Identity of the  Entity used. May be a logical or physical uri and maybe absolute or relative.", 0, 1,
           what));
@@ -921,7 +732,7 @@ public class Provenance extends DomainResource {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 3506294:
-        /* role */ return new Property("role", "code", "How the entity was used during the activity.", 0, 1, role);
+        /* role */ return new Property("role", "string", "How the entity was used during the activity.", 0, 1, role);
       case 3648196:
         /* what */ return new Property("what", "Reference(Any)",
             "Identity of the  Entity used. May be a logical or physical uri and maybe absolute or relative.", 0, 1,
@@ -955,8 +766,7 @@ public class Provenance extends DomainResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3506294: // role
-        value = new ProvenanceEntityRoleEnumFactory().fromType(castToCode(value));
-        this.role = (Enumeration) value; // Enumeration<ProvenanceEntityRole>
+        this.role = castToString(value); // Enumeration<ProvenanceEntityRole>
         return value;
       case 3648196: // what
         this.what = castToReference(value); // Reference
@@ -973,8 +783,7 @@ public class Provenance extends DomainResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("role")) {
-        value = new ProvenanceEntityRoleEnumFactory().fromType(castToCode(value));
-        this.role = (Enumeration) value; // Enumeration<ProvenanceEntityRole>
+        this.role = castToString(value); // Enumeration<ProvenanceEntityRole>
       } else if (name.equals("what")) {
         this.what = castToReference(value); // Reference
       } else if (name.equals("agent")) {
@@ -1016,7 +825,7 @@ public class Provenance extends DomainResource {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 3506294:
-        /* role */ return new String[] { "code" };
+        /* role */ return new String[] { "string" };
       case 3648196:
         /* what */ return new String[] { "Reference" };
       case 92750597:
