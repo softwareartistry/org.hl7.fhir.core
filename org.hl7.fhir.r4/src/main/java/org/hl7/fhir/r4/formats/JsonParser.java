@@ -5016,8 +5016,7 @@ public class JsonParser extends JsonParserBase {
                                                                               CatalogEntry.CatalogEntryRelatedEntryComponent res) throws IOException, FHIRFormatError {
     parseBackboneElementProperties(json, res);
     if (json.has("relationtype"))
-      res.setRelationtypeElement(parseEnumeration(json.get("relationtype").getAsString(),
-        CatalogEntry.CatalogEntryRelationType.NULL, new CatalogEntry.CatalogEntryRelationTypeEnumFactory()));
+      res.setRelationtypeElement(parseString(json.get("relationtype").getAsString()));
     if (json.has("_relationtype"))
       parseElementProperties(getJObject(json, "_relationtype"), res.getRelationtypeElement());
     if (json.has("item"))
@@ -12124,8 +12123,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(),
-        EnrollmentRequest.EnrollmentRequestStatus.NULL, new EnrollmentRequest.EnrollmentRequestStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("created"))
@@ -12160,8 +12158,7 @@ public class JsonParser extends JsonParserBase {
     ;
     if (json.has("status"))
       res.setStatusElement(
-        parseEnumeration(json.get("status").getAsString(), EnrollmentResponse.EnrollmentResponseStatus.NULL,
-          new EnrollmentResponse.EnrollmentResponseStatusEnumFactory()));
+        parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("request"))
@@ -37810,10 +37807,8 @@ public class JsonParser extends JsonParserBase {
     CatalogEntry.CatalogEntryRelatedEntryComponent element) throws IOException {
     composeBackbone(element);
     if (element.hasRelationtypeElement()) {
-      composeEnumerationCore("relationtype", element.getRelationtypeElement(),
-        new CatalogEntry.CatalogEntryRelationTypeEnumFactory(), false);
-      composeEnumerationExtras("relationtype", element.getRelationtypeElement(),
-        new CatalogEntry.CatalogEntryRelationTypeEnumFactory(), false);
+      composeStringCore("relationtype", element.getRelationtypeElement(), false);
+      composeStringExtras("relationtype", element.getRelationtypeElement(), false);
     }
     if (element.hasItem()) {
       composeReference("item", element.getItem());
@@ -45034,10 +45029,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(),
-        new EnrollmentRequest.EnrollmentRequestStatusEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(),
-        new EnrollmentRequest.EnrollmentRequestStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasCreatedElement()) {
       composeDateTimeCore("created", element.getCreatedElement(), false);
@@ -45074,10 +45067,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(),
-        new EnrollmentResponse.EnrollmentResponseStatusEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(),
-        new EnrollmentResponse.EnrollmentResponseStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasRequest()) {
       composeReference("request", element.getRequest());

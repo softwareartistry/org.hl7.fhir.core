@@ -3052,7 +3052,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "relatedEntry", name, element, index);
     if (element.hasRelationtypeElement())
-      composeEnum(t, "CatalogEntry", "relationtype", element.getRelationtypeElement(), -1);
+      composeString(t, "CatalogEntry", "relationtype", element.getRelationtypeElement(), -1);
     if (element.hasItem())
       composeReference(t, "CatalogEntry", "item", element.getItem(), -1);
   }
@@ -7086,7 +7086,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "EnrollmentRequest", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "EnrollmentRequest", "status", element.getStatusElement(), -1);
+      composeString(t, "EnrollmentRequest", "status", element.getStatusElement(), -1);
     if (element.hasCreatedElement())
       composeDateTime(t, "EnrollmentRequest", "created", element.getCreatedElement(), -1);
     if (element.hasInsurer())
@@ -7113,7 +7113,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "EnrollmentResponse", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "EnrollmentResponse", "status", element.getStatusElement(), -1);
+      composeString(t, "EnrollmentResponse", "status", element.getStatusElement(), -1);
     if (element.hasRequest())
       composeReference(t, "EnrollmentResponse", "request", element.getRequest(), -1);
     if (element.hasOutcomeElement())

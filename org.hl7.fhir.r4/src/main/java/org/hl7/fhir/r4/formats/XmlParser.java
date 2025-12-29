@@ -4384,8 +4384,7 @@ public class XmlParser extends XmlParserBase {
       CatalogEntry owner, CatalogEntry.CatalogEntryRelatedEntryComponent res)
       throws XmlPullParserException, IOException, FHIRFormatError {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("relationtype")) {
-      res.setRelationtypeElement(parseEnumeration(xpp, CatalogEntry.CatalogEntryRelationType.NULL,
-          new CatalogEntry.CatalogEntryRelationTypeEnumFactory()));
+      res.setRelationtypeElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("item")) {
       res.setItem(parseReference(xpp));
     } else if (!parseBackboneElementContent(eventType, xpp, res))
@@ -9859,8 +9858,7 @@ public class XmlParser extends XmlParserBase {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("identifier")) {
       res.getIdentifier().add(parseIdentifier(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, EnrollmentRequest.EnrollmentRequestStatus.NULL,
-          new EnrollmentRequest.EnrollmentRequestStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("created")) {
       res.setCreatedElement(parseDateTime(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("insurer")) {
@@ -9897,8 +9895,7 @@ public class XmlParser extends XmlParserBase {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("identifier")) {
       res.getIdentifier().add(parseIdentifier(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, EnrollmentResponse.EnrollmentResponseStatus.NULL,
-          new EnrollmentResponse.EnrollmentResponseStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("request")) {
       res.setRequest(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("outcome")) {
@@ -31249,8 +31246,7 @@ public class XmlParser extends XmlParserBase {
       CatalogEntry.CatalogEntryRelatedEntryComponent element) throws IOException {
     composeBackboneElementElements(element);
     if (element.hasRelationtypeElement())
-      composeEnumeration("relationtype", element.getRelationtypeElement(),
-          new CatalogEntry.CatalogEntryRelationTypeEnumFactory());
+      composeString("relationtype", element.getRelationtypeElement());
     if (element.hasItem()) {
       composeReference("item", element.getItem());
     }
@@ -36959,8 +36955,7 @@ public class XmlParser extends XmlParserBase {
         composeIdentifier("identifier", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(),
-          new EnrollmentRequest.EnrollmentRequestStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasCreatedElement()) {
       composeDateTime("created", element.getCreatedElement());
     }
@@ -36995,8 +36990,7 @@ public class XmlParser extends XmlParserBase {
         composeIdentifier("identifier", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(),
-          new EnrollmentResponse.EnrollmentResponseStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasRequest()) {
       composeReference("request", element.getRequest());
     }

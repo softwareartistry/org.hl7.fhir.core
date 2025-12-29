@@ -48,168 +48,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "EnrollmentRequest", profile = "http://hl7.org/fhir/StructureDefinition/EnrollmentRequest")
 public class EnrollmentRequest extends DomainResource {
 
-  public enum EnrollmentRequestStatus {
-    /**
-     * The instance is currently in-force.
-     */
-    ACTIVE,
-    /**
-     * The instance is withdrawn, rescinded or reversed.
-     */
-    CANCELLED,
-    /**
-     * A new instance the contents of which is not complete.
-     */
-    DRAFT,
-    /**
-     * The instance was entered in error.
-     */
-    ENTEREDINERROR,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static EnrollmentRequestStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("active".equals(codeString))
-        return ACTIVE;
-      if ("cancelled".equals(codeString))
-        return CANCELLED;
-      if ("draft".equals(codeString))
-        return DRAFT;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown EnrollmentRequestStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ACTIVE:
-        return "active";
-      case CANCELLED:
-        return "cancelled";
-      case DRAFT:
-        return "draft";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ACTIVE:
-        return "http://hl7.org/fhir/fm-status";
-      case CANCELLED:
-        return "http://hl7.org/fhir/fm-status";
-      case DRAFT:
-        return "http://hl7.org/fhir/fm-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/fm-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ACTIVE:
-        return "The instance is currently in-force.";
-      case CANCELLED:
-        return "The instance is withdrawn, rescinded or reversed.";
-      case DRAFT:
-        return "A new instance the contents of which is not complete.";
-      case ENTEREDINERROR:
-        return "The instance was entered in error.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ACTIVE:
-        return "Active";
-      case CANCELLED:
-        return "Cancelled";
-      case DRAFT:
-        return "Draft";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class EnrollmentRequestStatusEnumFactory implements EnumFactory<EnrollmentRequestStatus> {
-    public EnrollmentRequestStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("active".equals(codeString))
-        return EnrollmentRequestStatus.ACTIVE;
-      if ("cancelled".equals(codeString))
-        return EnrollmentRequestStatus.CANCELLED;
-      if ("draft".equals(codeString))
-        return EnrollmentRequestStatus.DRAFT;
-      if ("entered-in-error".equals(codeString))
-        return EnrollmentRequestStatus.ENTEREDINERROR;
-      throw new IllegalArgumentException("Unknown EnrollmentRequestStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<EnrollmentRequestStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<EnrollmentRequestStatus>(this, EnrollmentRequestStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<EnrollmentRequestStatus>(this, EnrollmentRequestStatus.NULL, code);
-      if ("active".equals(codeString))
-        return new Enumeration<EnrollmentRequestStatus>(this, EnrollmentRequestStatus.ACTIVE, code);
-      if ("cancelled".equals(codeString))
-        return new Enumeration<EnrollmentRequestStatus>(this, EnrollmentRequestStatus.CANCELLED, code);
-      if ("draft".equals(codeString))
-        return new Enumeration<EnrollmentRequestStatus>(this, EnrollmentRequestStatus.DRAFT, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<EnrollmentRequestStatus>(this, EnrollmentRequestStatus.ENTEREDINERROR, code);
-      throw new FHIRException("Unknown EnrollmentRequestStatus code '" + codeString + "'");
-    }
-
-    public String toCode(EnrollmentRequestStatus code) {
-       if (code == EnrollmentRequestStatus.NULL)
-           return null;
-       if (code == EnrollmentRequestStatus.ACTIVE)
-        return "active";
-      if (code == EnrollmentRequestStatus.CANCELLED)
-        return "cancelled";
-      if (code == EnrollmentRequestStatus.DRAFT)
-        return "draft";
-      if (code == EnrollmentRequestStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      return "?";
-   }
-
-    public String toSystem(EnrollmentRequestStatus code) {
-      return code.getSystem();
-    }
-  }
-
   /**
    * The Response business identifier.
    */
@@ -221,10 +59,10 @@ public class EnrollmentRequest extends DomainResource {
   /**
    * The status of the resource instance.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 0, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 0, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "active | cancelled | draft | entered-in-error", formalDefinition = "The status of the resource instance.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/fm-status")
-  protected Enumeration<EnrollmentRequestStatus> status;
+  protected StringType status;
 
   /**
    * The date when this resource was created.
@@ -355,12 +193,12 @@ public class EnrollmentRequest extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<EnrollmentRequestStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create EnrollmentRequest.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<EnrollmentRequestStatus>(new EnrollmentRequestStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -377,7 +215,7 @@ public class EnrollmentRequest extends DomainResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public EnrollmentRequest setStatusElement(Enumeration<EnrollmentRequestStatus> value) {
+  public EnrollmentRequest setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -385,19 +223,19 @@ public class EnrollmentRequest extends DomainResource {
   /**
    * @return The status of the resource instance.
    */
-  public EnrollmentRequestStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The status of the resource instance.
    */
-  public EnrollmentRequest setStatus(EnrollmentRequestStatus value) {
+  public EnrollmentRequest setStatus(String value) {
     if (value == null)
       this.status = null;
     else {
       if (this.status == null)
-        this.status = new Enumeration<EnrollmentRequestStatus>(new EnrollmentRequestStatusEnumFactory());
+        this.status = new StringType();
       this.status.setValue(value);
     }
     return this;
@@ -658,7 +496,7 @@ public class EnrollmentRequest extends DomainResource {
     super.listChildren(children);
     children.add(new Property("identifier", "Identifier", "The Response business identifier.", 0,
         java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code", "The status of the resource instance.", 0, 1, status));
+    children.add(new Property("status", "string", "The status of the resource instance.", 0, 1, status));
     children.add(new Property("created", "dateTime", "The date when this resource was created.", 0, 1, created));
     children.add(new Property("insurer", "Reference(Organization)", "The Insurer who is target  of the request.", 0, 1,
         insurer));
@@ -676,7 +514,7 @@ public class EnrollmentRequest extends DomainResource {
       /* identifier */ return new Property("identifier", "Identifier", "The Response business identifier.", 0,
           java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "The status of the resource instance.", 0, 1, status);
+      /* status */ return new Property("status", "string", "The status of the resource instance.", 0, 1, status);
     case 1028554472:
       /* created */ return new Property("created", "dateTime", "The date when this resource was created.", 0, 1,
           created);
@@ -704,7 +542,7 @@ public class EnrollmentRequest extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<EnrollmentRequestStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 1028554472:
       /* created */ return this.created == null ? new Base[0] : new Base[] { this.created }; // DateTimeType
     case 1957615864:
@@ -728,8 +566,7 @@ public class EnrollmentRequest extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new EnrollmentRequestStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<EnrollmentRequestStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 1028554472: // created
       this.created = castToDateTime(value); // DateTimeType
@@ -757,8 +594,7 @@ public class EnrollmentRequest extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new EnrollmentRequestStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<EnrollmentRequestStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("created")) {
       this.created = castToDateTime(value); // DateTimeType
     } else if (name.equals("insurer")) {
@@ -824,7 +660,7 @@ public class EnrollmentRequest extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 1028554472:
       /* created */ return new String[] { "dateTime" };
     case 1957615864:
