@@ -27909,8 +27909,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Substance.FHIRSubstanceStatus.NULL,
-        new Substance.FHIRSubstanceStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("category")) {
@@ -61128,10 +61127,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new Substance.FHIRSubstanceStatusEnumFactory(),
-        false);
-      composeEnumerationExtras("status", element.getStatusElement(), new Substance.FHIRSubstanceStatusEnumFactory(),
-        false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasCategory()) {
       openArray("category");
