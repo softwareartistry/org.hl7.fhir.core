@@ -50,129 +50,6 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
 @ResourceDef(name = "CatalogEntry", profile = "http://hl7.org/fhir/StructureDefinition/CatalogEntry")
 public class CatalogEntry extends DomainResource {
 
-  public enum CatalogEntryRelationType {
-    /**
-     * the related entry represents an activity that may be triggered by the current
-     * item.
-     */
-    TRIGGERS,
-    /**
-     * the related entry represents an item that replaces the current retired item.
-     */
-    ISREPLACEDBY,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static CatalogEntryRelationType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("triggers".equals(codeString))
-        return TRIGGERS;
-      if ("is-replaced-by".equals(codeString))
-        return ISREPLACEDBY;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown CatalogEntryRelationType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case TRIGGERS:
-        return "triggers";
-      case ISREPLACEDBY:
-        return "is-replaced-by";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case TRIGGERS:
-        return "http://hl7.org/fhir/relation-type";
-      case ISREPLACEDBY:
-        return "http://hl7.org/fhir/relation-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case TRIGGERS:
-        return "the related entry represents an activity that may be triggered by the current item.";
-      case ISREPLACEDBY:
-        return "the related entry represents an item that replaces the current retired item.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case TRIGGERS:
-        return "Triggers";
-      case ISREPLACEDBY:
-        return "Replaced By";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class CatalogEntryRelationTypeEnumFactory implements EnumFactory<CatalogEntryRelationType> {
-    public CatalogEntryRelationType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("triggers".equals(codeString))
-        return CatalogEntryRelationType.TRIGGERS;
-      if ("is-replaced-by".equals(codeString))
-        return CatalogEntryRelationType.ISREPLACEDBY;
-      throw new IllegalArgumentException("Unknown CatalogEntryRelationType code '" + codeString + "'");
-    }
-
-    public Enumeration<CatalogEntryRelationType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<CatalogEntryRelationType>(this, CatalogEntryRelationType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<CatalogEntryRelationType>(this, CatalogEntryRelationType.NULL, code);
-      if ("triggers".equals(codeString))
-        return new Enumeration<CatalogEntryRelationType>(this, CatalogEntryRelationType.TRIGGERS, code);
-      if ("is-replaced-by".equals(codeString))
-        return new Enumeration<CatalogEntryRelationType>(this, CatalogEntryRelationType.ISREPLACEDBY, code);
-      throw new FHIRException("Unknown CatalogEntryRelationType code '" + codeString + "'");
-    }
-
-    public String toCode(CatalogEntryRelationType code) {
-       if (code == CatalogEntryRelationType.NULL)
-           return null;
-       if (code == CatalogEntryRelationType.TRIGGERS)
-        return "triggers";
-      if (code == CatalogEntryRelationType.ISREPLACEDBY)
-        return "is-replaced-by";
-      return "?";
-   }
-
-    public String toSystem(CatalogEntryRelationType code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class CatalogEntryRelatedEntryComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -180,10 +57,10 @@ public class CatalogEntry extends DomainResource {
      * containerPackage, usedIn, uses, requires, etc.
      */
     @Child(name = "relationtype", type = {
-        CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
+        StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "triggers | is-replaced-by", formalDefinition = "The type of relation to the related item: child, parent, packageContent, containerPackage, usedIn, uses, requires, etc.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/relation-type")
-    protected Enumeration<CatalogEntryRelationType> relationtype;
+    protected StringType relationtype;
 
     /**
      * The reference to the related item.
@@ -210,7 +87,7 @@ public class CatalogEntry extends DomainResource {
     /**
      * Constructor
      */
-    public CatalogEntryRelatedEntryComponent(Enumeration<CatalogEntryRelationType> relationtype, Reference item) {
+    public CatalogEntryRelatedEntryComponent(StringType relationtype, Reference item) {
       super();
       this.relationtype = relationtype;
       this.item = item;
@@ -223,12 +100,12 @@ public class CatalogEntry extends DomainResource {
      *         extensions. The accessor "getRelationtype" gives direct access to the
      *         value
      */
-    public Enumeration<CatalogEntryRelationType> getRelationtypeElement() {
+    public StringType getRelationtypeElement() {
       if (this.relationtype == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create CatalogEntryRelatedEntryComponent.relationtype");
         else if (Configuration.doAutoCreate())
-          this.relationtype = new Enumeration<CatalogEntryRelationType>(new CatalogEntryRelationTypeEnumFactory()); // bb
+          this.relationtype = new StringType(); // bb
       return this.relationtype;
     }
 
@@ -247,7 +124,7 @@ public class CatalogEntry extends DomainResource {
      *              and extensions. The accessor "getRelationtype" gives direct
      *              access to the value
      */
-    public CatalogEntryRelatedEntryComponent setRelationtypeElement(Enumeration<CatalogEntryRelationType> value) {
+    public CatalogEntryRelatedEntryComponent setRelationtypeElement(StringType value) {
       this.relationtype = value;
       return this;
     }
@@ -256,17 +133,17 @@ public class CatalogEntry extends DomainResource {
      * @return The type of relation to the related item: child, parent,
      *         packageContent, containerPackage, usedIn, uses, requires, etc.
      */
-    public CatalogEntryRelationType getRelationtype() {
-      return this.relationtype == null ? null : this.relationtype.getValue();
+    public StringType getRelationtype() {
+      return this.relationtype == null ? null : this.relationtype;
     }
 
     /**
      * @param value The type of relation to the related item: child, parent,
      *              packageContent, containerPackage, usedIn, uses, requires, etc.
      */
-    public CatalogEntryRelatedEntryComponent setRelationtype(CatalogEntryRelationType value) {
+    public CatalogEntryRelatedEntryComponent setRelationtype(String value) {
       if (this.relationtype == null)
-        this.relationtype = new Enumeration<CatalogEntryRelationType>(new CatalogEntryRelationTypeEnumFactory());
+        this.relationtype = new StringType();
       this.relationtype.setValue(value);
       return this;
     }
@@ -323,7 +200,7 @@ public class CatalogEntry extends DomainResource {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("relationtype", "code",
+      children.add(new Property("relationtype", "string",
           "The type of relation to the related item: child, parent, packageContent, containerPackage, usedIn, uses, requires, etc.",
           0, 1, relationtype));
       children.add(new Property("item", "Reference(CatalogEntry)", "The reference to the related item.", 0, 1, item));
@@ -333,7 +210,7 @@ public class CatalogEntry extends DomainResource {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case -261805258:
-        /* relationtype */ return new Property("relationtype", "code",
+        /* relationtype */ return new Property("relationtype", "string",
             "The type of relation to the related item: child, parent, packageContent, containerPackage, usedIn, uses, requires, etc.",
             0, 1, relationtype);
       case 3242771:
@@ -362,8 +239,7 @@ public class CatalogEntry extends DomainResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case -261805258: // relationtype
-        value = new CatalogEntryRelationTypeEnumFactory().fromType(castToCode(value));
-        this.relationtype = (Enumeration) value; // Enumeration<CatalogEntryRelationType>
+        this.relationtype = castToString(value); // Enumeration<CatalogEntryRelationType>
         return value;
       case 3242771: // item
         this.item = castToReference(value); // Reference
@@ -377,8 +253,7 @@ public class CatalogEntry extends DomainResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("relationtype")) {
-        value = new CatalogEntryRelationTypeEnumFactory().fromType(castToCode(value));
-        this.relationtype = (Enumeration) value; // Enumeration<CatalogEntryRelationType>
+        this.relationtype = castToString(value); // Enumeration<CatalogEntryRelationType>
       } else if (name.equals("item")) {
         this.item = castToReference(value); // Reference
       } else
@@ -414,7 +289,7 @@ public class CatalogEntry extends DomainResource {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case -261805258:
-        /* relationtype */ return new String[] { "code" };
+        /* relationtype */ return new String[] { "string" };
       case 3242771:
         /* item */ return new String[] { "Reference" };
       default:
