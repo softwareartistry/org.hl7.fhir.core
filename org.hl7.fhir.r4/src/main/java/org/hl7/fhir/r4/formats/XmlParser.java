@@ -23529,8 +23529,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("partOf")) {
       res.getPartOf().add(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, SupplyDelivery.SupplyDeliveryStatus.NULL,
-          new SupplyDelivery.SupplyDeliveryStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("patient")) {
       res.setPatient(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("type")) {
@@ -50985,7 +50984,7 @@ public class XmlParser extends XmlParserBase {
         composeReference("partOf", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new SupplyDelivery.SupplyDeliveryStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasPatient()) {
       composeReference("patient", element.getPatient());
     }

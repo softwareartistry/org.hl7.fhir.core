@@ -48,170 +48,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "SupplyDelivery", profile = "http://hl7.org/fhir/StructureDefinition/SupplyDelivery")
 public class SupplyDelivery extends DomainResource {
 
-  public enum SupplyDeliveryStatus {
-    /**
-     * Supply has been requested, but not delivered.
-     */
-    INPROGRESS,
-    /**
-     * Supply has been delivered ("completed").
-     */
-    COMPLETED,
-    /**
-     * Delivery was not completed.
-     */
-    ABANDONED,
-    /**
-     * This electronic record should never have existed, though it is possible that
-     * real-world decisions were based on it. (If real-world activity has occurred,
-     * the status should be "abandoned" rather than "entered-in-error".).
-     */
-    ENTEREDINERROR,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static SupplyDeliveryStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("in-progress".equals(codeString))
-        return INPROGRESS;
-      if ("completed".equals(codeString))
-        return COMPLETED;
-      if ("abandoned".equals(codeString))
-        return ABANDONED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown SupplyDeliveryStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case INPROGRESS:
-        return "in-progress";
-      case COMPLETED:
-        return "completed";
-      case ABANDONED:
-        return "abandoned";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case INPROGRESS:
-        return "http://hl7.org/fhir/supplydelivery-status";
-      case COMPLETED:
-        return "http://hl7.org/fhir/supplydelivery-status";
-      case ABANDONED:
-        return "http://hl7.org/fhir/supplydelivery-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/supplydelivery-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case INPROGRESS:
-        return "Supply has been requested, but not delivered.";
-      case COMPLETED:
-        return "Supply has been delivered (\"completed\").";
-      case ABANDONED:
-        return "Delivery was not completed.";
-      case ENTEREDINERROR:
-        return "This electronic record should never have existed, though it is possible that real-world decisions were based on it. (If real-world activity has occurred, the status should be \"abandoned\" rather than \"entered-in-error\".).";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case INPROGRESS:
-        return "In Progress";
-      case COMPLETED:
-        return "Delivered";
-      case ABANDONED:
-        return "Abandoned";
-      case ENTEREDINERROR:
-        return "Entered In Error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class SupplyDeliveryStatusEnumFactory implements EnumFactory<SupplyDeliveryStatus> {
-    public SupplyDeliveryStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("in-progress".equals(codeString))
-        return SupplyDeliveryStatus.INPROGRESS;
-      if ("completed".equals(codeString))
-        return SupplyDeliveryStatus.COMPLETED;
-      if ("abandoned".equals(codeString))
-        return SupplyDeliveryStatus.ABANDONED;
-      if ("entered-in-error".equals(codeString))
-        return SupplyDeliveryStatus.ENTEREDINERROR;
-      throw new IllegalArgumentException("Unknown SupplyDeliveryStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<SupplyDeliveryStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<SupplyDeliveryStatus>(this, SupplyDeliveryStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<SupplyDeliveryStatus>(this, SupplyDeliveryStatus.NULL, code);
-      if ("in-progress".equals(codeString))
-        return new Enumeration<SupplyDeliveryStatus>(this, SupplyDeliveryStatus.INPROGRESS, code);
-      if ("completed".equals(codeString))
-        return new Enumeration<SupplyDeliveryStatus>(this, SupplyDeliveryStatus.COMPLETED, code);
-      if ("abandoned".equals(codeString))
-        return new Enumeration<SupplyDeliveryStatus>(this, SupplyDeliveryStatus.ABANDONED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<SupplyDeliveryStatus>(this, SupplyDeliveryStatus.ENTEREDINERROR, code);
-      throw new FHIRException("Unknown SupplyDeliveryStatus code '" + codeString + "'");
-    }
-
-    public String toCode(SupplyDeliveryStatus code) {
-       if (code == SupplyDeliveryStatus.NULL)
-           return null;
-       if (code == SupplyDeliveryStatus.INPROGRESS)
-        return "in-progress";
-      if (code == SupplyDeliveryStatus.COMPLETED)
-        return "completed";
-      if (code == SupplyDeliveryStatus.ABANDONED)
-        return "abandoned";
-      if (code == SupplyDeliveryStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      return "?";
-   }
-
-    public String toSystem(SupplyDeliveryStatus code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class SupplyDeliverySuppliedItemComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -545,10 +381,10 @@ public class SupplyDelivery extends DomainResource {
   /**
    * A code specifying the state of the dispense event.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 3, min = 0, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 3, min = 0, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "in-progress | completed | abandoned | entered-in-error", formalDefinition = "A code specifying the state of the dispense event.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/supplydelivery-status")
-  protected Enumeration<SupplyDeliveryStatus> status;
+  protected StringType status;
 
   /**
    * A link to a resource representing the person whom the delivered item is for.
@@ -810,12 +646,12 @@ public class SupplyDelivery extends DomainResource {
    *         This is the underlying object with id, value and extensions. The
    *         accessor "getStatus" gives direct access to the value
    */
-  public Enumeration<SupplyDeliveryStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create SupplyDelivery.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<SupplyDeliveryStatus>(new SupplyDeliveryStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -833,7 +669,7 @@ public class SupplyDelivery extends DomainResource {
    *              extensions. The accessor "getStatus" gives direct access to the
    *              value
    */
-  public SupplyDelivery setStatusElement(Enumeration<SupplyDeliveryStatus> value) {
+  public SupplyDelivery setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -841,19 +677,19 @@ public class SupplyDelivery extends DomainResource {
   /**
    * @return A code specifying the state of the dispense event.
    */
-  public SupplyDeliveryStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value A code specifying the state of the dispense event.
    */
-  public SupplyDelivery setStatus(SupplyDeliveryStatus value) {
+  public SupplyDelivery setStatus(String value) {
     if (value == null)
       this.status = null;
     else {
       if (this.status == null)
-        this.status = new Enumeration<SupplyDeliveryStatus>(new SupplyDeliveryStatusEnumFactory());
+        this.status = new StringType();
       this.status.setValue(value);
     }
     return this;
@@ -1201,7 +1037,7 @@ public class SupplyDelivery extends DomainResource {
     children.add(new Property("partOf", "Reference(SupplyDelivery|Contract)",
         "A larger event of which this particular event is a component or step.", 0, java.lang.Integer.MAX_VALUE,
         partOf));
-    children.add(new Property("status", "code", "A code specifying the state of the dispense event.", 0, 1, status));
+    children.add(new Property("status", "string", "A code specifying the state of the dispense event.", 0, 1, status));
     children.add(new Property("patient", "Reference(Patient)",
         "A link to a resource representing the person whom the delivered item is for.", 0, 1, patient));
     children.add(new Property("type", "CodeableConcept",
@@ -1236,7 +1072,7 @@ public class SupplyDelivery extends DomainResource {
           "A larger event of which this particular event is a component or step.", 0, java.lang.Integer.MAX_VALUE,
           partOf);
     case -892481550:
-      /* status */ return new Property("status", "code", "A code specifying the state of the dispense event.", 0, 1,
+      /* status */ return new Property("status", "string", "A code specifying the state of the dispense event.", 0, 1,
           status);
     case -791418107:
       /* patient */ return new Property("patient", "Reference(Patient)",
@@ -1290,7 +1126,7 @@ public class SupplyDelivery extends DomainResource {
     case -995410646:
       /* partOf */ return this.partOf == null ? new Base[0] : this.partOf.toArray(new Base[this.partOf.size()]); // Reference
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<SupplyDeliveryStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -791418107:
       /* patient */ return this.patient == null ? new Base[0] : new Base[] { this.patient }; // Reference
     case 3575610:
@@ -1324,8 +1160,7 @@ public class SupplyDelivery extends DomainResource {
       this.getPartOf().add(castToReference(value)); // Reference
       return value;
     case -892481550: // status
-      value = new SupplyDeliveryStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<SupplyDeliveryStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -791418107: // patient
       this.patient = castToReference(value); // Reference
@@ -1363,8 +1198,7 @@ public class SupplyDelivery extends DomainResource {
     } else if (name.equals("partOf")) {
       this.getPartOf().add(castToReference(value));
     } else if (name.equals("status")) {
-      value = new SupplyDeliveryStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<SupplyDeliveryStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("patient")) {
       this.patient = castToReference(value); // Reference
     } else if (name.equals("type")) {
@@ -1456,7 +1290,7 @@ public class SupplyDelivery extends DomainResource {
     case -995410646:
       /* partOf */ return new String[] { "Reference" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -791418107:
       /* patient */ return new String[] { "Reference" };
     case 3575610:
