@@ -23170,8 +23170,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("target"))
       res.setTarget(parseReference(getJObject(json, "target")));
     if (json.has("assurance"))
-      res.setAssuranceElement(parseEnumeration(json.get("assurance").getAsString(), Person.IdentityAssuranceLevel.NULL,
-        new Person.IdentityAssuranceLevelEnumFactory()));
+      res.setAssuranceElement(parseString(json.get("assurance").getAsString()));
     if (json.has("_assurance"))
       parseElementProperties(getJObject(json, "_assurance"), res.getAssuranceElement());
   }
@@ -56375,10 +56374,8 @@ public class JsonParser extends JsonParserBase {
       composeReference("target", element.getTarget());
     }
     if (element.hasAssuranceElement()) {
-      composeEnumerationCore("assurance", element.getAssuranceElement(), new Person.IdentityAssuranceLevelEnumFactory(),
-        false);
-      composeEnumerationExtras("assurance", element.getAssuranceElement(),
-        new Person.IdentityAssuranceLevelEnumFactory(), false);
+      composeStringCore("assurance", element.getAssuranceElement(), false);
+      composeStringExtras("assurance", element.getAssuranceElement(), false);
     }
   }
 

@@ -13647,7 +13647,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasTarget())
       composeReference(t, "Person", "target", element.getTarget(), -1);
     if (element.hasAssuranceElement())
-      composeEnum(t, "Person", "assurance", element.getAssuranceElement(), -1);
+      composeString(t, "Person", "assurance", element.getAssuranceElement(), -1);
   }
 
   protected void composePlanDefinition(Complex parent, String parentType, String name, PlanDefinition element,

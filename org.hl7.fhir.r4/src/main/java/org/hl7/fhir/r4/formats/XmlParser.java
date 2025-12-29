@@ -18779,8 +18779,7 @@ public class XmlParser extends XmlParserBase {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("target")) {
       res.setTarget(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("assurance")) {
-      res.setAssuranceElement(
-          parseEnumeration(xpp, Person.IdentityAssuranceLevel.NULL, new Person.IdentityAssuranceLevelEnumFactory()));
+      res.setAssuranceElement(parseString(xpp));
     } else if (!parseBackboneElementContent(eventType, xpp, res))
       return false;
     return true;
@@ -46119,7 +46118,7 @@ public class XmlParser extends XmlParserBase {
       composeReference("target", element.getTarget());
     }
     if (element.hasAssuranceElement())
-      composeEnumeration("assurance", element.getAssuranceElement(), new Person.IdentityAssuranceLevelEnumFactory());
+      composeString("assurance", element.getAssuranceElement());
   }
 
   protected void composePlanDefinition(String name, PlanDefinition element) throws IOException {

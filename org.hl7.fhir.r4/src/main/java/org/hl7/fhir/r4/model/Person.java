@@ -52,168 +52,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Person", profile = "http://hl7.org/fhir/StructureDefinition/Person")
 public class Person extends DomainResource {
 
-  public enum IdentityAssuranceLevel {
-    /**
-     * Little or no confidence in the asserted identity's accuracy.
-     */
-    LEVEL1,
-    /**
-     * Some confidence in the asserted identity's accuracy.
-     */
-    LEVEL2,
-    /**
-     * High confidence in the asserted identity's accuracy.
-     */
-    LEVEL3,
-    /**
-     * Very high confidence in the asserted identity's accuracy.
-     */
-    LEVEL4,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static IdentityAssuranceLevel fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("level1".equals(codeString))
-        return LEVEL1;
-      if ("level2".equals(codeString))
-        return LEVEL2;
-      if ("level3".equals(codeString))
-        return LEVEL3;
-      if ("level4".equals(codeString))
-        return LEVEL4;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown IdentityAssuranceLevel code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case LEVEL1:
-        return "level1";
-      case LEVEL2:
-        return "level2";
-      case LEVEL3:
-        return "level3";
-      case LEVEL4:
-        return "level4";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case LEVEL1:
-        return "http://hl7.org/fhir/identity-assuranceLevel";
-      case LEVEL2:
-        return "http://hl7.org/fhir/identity-assuranceLevel";
-      case LEVEL3:
-        return "http://hl7.org/fhir/identity-assuranceLevel";
-      case LEVEL4:
-        return "http://hl7.org/fhir/identity-assuranceLevel";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case LEVEL1:
-        return "Little or no confidence in the asserted identity's accuracy.";
-      case LEVEL2:
-        return "Some confidence in the asserted identity's accuracy.";
-      case LEVEL3:
-        return "High confidence in the asserted identity's accuracy.";
-      case LEVEL4:
-        return "Very high confidence in the asserted identity's accuracy.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case LEVEL1:
-        return "Level 1";
-      case LEVEL2:
-        return "Level 2";
-      case LEVEL3:
-        return "Level 3";
-      case LEVEL4:
-        return "Level 4";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class IdentityAssuranceLevelEnumFactory implements EnumFactory<IdentityAssuranceLevel> {
-    public IdentityAssuranceLevel fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("level1".equals(codeString))
-        return IdentityAssuranceLevel.LEVEL1;
-      if ("level2".equals(codeString))
-        return IdentityAssuranceLevel.LEVEL2;
-      if ("level3".equals(codeString))
-        return IdentityAssuranceLevel.LEVEL3;
-      if ("level4".equals(codeString))
-        return IdentityAssuranceLevel.LEVEL4;
-      throw new IllegalArgumentException("Unknown IdentityAssuranceLevel code '" + codeString + "'");
-    }
-
-    public Enumeration<IdentityAssuranceLevel> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<IdentityAssuranceLevel>(this, IdentityAssuranceLevel.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<IdentityAssuranceLevel>(this, IdentityAssuranceLevel.NULL, code);
-      if ("level1".equals(codeString))
-        return new Enumeration<IdentityAssuranceLevel>(this, IdentityAssuranceLevel.LEVEL1, code);
-      if ("level2".equals(codeString))
-        return new Enumeration<IdentityAssuranceLevel>(this, IdentityAssuranceLevel.LEVEL2, code);
-      if ("level3".equals(codeString))
-        return new Enumeration<IdentityAssuranceLevel>(this, IdentityAssuranceLevel.LEVEL3, code);
-      if ("level4".equals(codeString))
-        return new Enumeration<IdentityAssuranceLevel>(this, IdentityAssuranceLevel.LEVEL4, code);
-      throw new FHIRException("Unknown IdentityAssuranceLevel code '" + codeString + "'");
-    }
-
-    public String toCode(IdentityAssuranceLevel code) {
-       if (code == IdentityAssuranceLevel.NULL)
-           return null;
-       if (code == IdentityAssuranceLevel.LEVEL1)
-        return "level1";
-      if (code == IdentityAssuranceLevel.LEVEL2)
-        return "level2";
-      if (code == IdentityAssuranceLevel.LEVEL3)
-        return "level3";
-      if (code == IdentityAssuranceLevel.LEVEL4)
-        return "level4";
-      return "?";
-   }
-
-    public String toSystem(IdentityAssuranceLevel code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class PersonLinkComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -234,10 +72,10 @@ public class Person extends DomainResource {
      * Level of assurance that this link is associated with the target resource.
      */
     @Child(name = "assurance", type = {
-        CodeType.class }, order = 2, min = 0, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 2, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "level1 | level2 | level3 | level4", formalDefinition = "Level of assurance that this link is associated with the target resource.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/identity-assuranceLevel")
-    protected Enumeration<IdentityAssuranceLevel> assurance;
+    protected StringType assurance;
 
     private static final long serialVersionUID = 508763647L;
 
@@ -309,12 +147,12 @@ public class Person extends DomainResource {
      *         value and extensions. The accessor "getAssurance" gives direct access
      *         to the value
      */
-    public Enumeration<IdentityAssuranceLevel> getAssuranceElement() {
+    public StringType getAssuranceElement() {
       if (this.assurance == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create PersonLinkComponent.assurance");
         else if (Configuration.doAutoCreate())
-          this.assurance = new Enumeration<IdentityAssuranceLevel>(new IdentityAssuranceLevelEnumFactory()); // bb
+          this.assurance = new StringType(); // bb
       return this.assurance;
     }
 
@@ -332,7 +170,7 @@ public class Person extends DomainResource {
      *              object with id, value and extensions. The accessor
      *              "getAssurance" gives direct access to the value
      */
-    public PersonLinkComponent setAssuranceElement(Enumeration<IdentityAssuranceLevel> value) {
+    public PersonLinkComponent setAssuranceElement(StringType value) {
       this.assurance = value;
       return this;
     }
@@ -341,20 +179,20 @@ public class Person extends DomainResource {
      * @return Level of assurance that this link is associated with the target
      *         resource.
      */
-    public IdentityAssuranceLevel getAssurance() {
-      return this.assurance == null ? null : this.assurance.getValue();
+    public StringType getAssurance() {
+      return this.assurance == null ? null : this.assurance;
     }
 
     /**
      * @param value Level of assurance that this link is associated with the target
      *              resource.
      */
-    public PersonLinkComponent setAssurance(IdentityAssuranceLevel value) {
+    public PersonLinkComponent setAssurance(String value) {
       if (value == null)
         this.assurance = null;
       else {
         if (this.assurance == null)
-          this.assurance = new Enumeration<IdentityAssuranceLevel>(new IdentityAssuranceLevelEnumFactory());
+          this.assurance = new StringType();
         this.assurance.setValue(value);
       }
       return this;
@@ -364,7 +202,7 @@ public class Person extends DomainResource {
       super.listChildren(children);
       children.add(new Property("target", "Reference(Patient|Practitioner|RelatedPerson|Person)",
           "The resource to which this actual person is associated.", 0, 1, target));
-      children.add(new Property("assurance", "code",
+      children.add(new Property("assurance", "string",
           "Level of assurance that this link is associated with the target resource.", 0, 1, assurance));
     }
 
@@ -375,7 +213,7 @@ public class Person extends DomainResource {
         /* target */ return new Property("target", "Reference(Patient|Practitioner|RelatedPerson|Person)",
             "The resource to which this actual person is associated.", 0, 1, target);
       case 1771900717:
-        /* assurance */ return new Property("assurance", "code",
+        /* assurance */ return new Property("assurance", "string",
             "Level of assurance that this link is associated with the target resource.", 0, 1, assurance);
       default:
         return super.getNamedProperty(_hash, _name, _checkValid);
@@ -389,7 +227,7 @@ public class Person extends DomainResource {
       case -880905839:
         /* target */ return this.target == null ? new Base[0] : new Base[] { this.target }; // Reference
       case 1771900717:
-        /* assurance */ return this.assurance == null ? new Base[0] : new Base[] { this.assurance }; // Enumeration<IdentityAssuranceLevel>
+        /* assurance */ return this.assurance == null ? new Base[0] : new Base[] { this.assurance }; // StringType
       default:
         return super.getProperty(hash, name, checkValid);
       }
@@ -403,8 +241,7 @@ public class Person extends DomainResource {
         this.target = castToReference(value); // Reference
         return value;
       case 1771900717: // assurance
-        value = new IdentityAssuranceLevelEnumFactory().fromType(castToCode(value));
-        this.assurance = (Enumeration) value; // Enumeration<IdentityAssuranceLevel>
+        this.assurance = castToString(value); // StringType
         return value;
       default:
         return super.setProperty(hash, name, value);
@@ -417,8 +254,7 @@ public class Person extends DomainResource {
       if (name.equals("target")) {
         this.target = castToReference(value); // Reference
       } else if (name.equals("assurance")) {
-        value = new IdentityAssuranceLevelEnumFactory().fromType(castToCode(value));
-        this.assurance = (Enumeration) value; // Enumeration<IdentityAssuranceLevel>
+        this.assurance = castToString(value); // StringType
       } else
         return super.setProperty(name, value);
       return value;
@@ -454,7 +290,7 @@ public class Person extends DomainResource {
       case -880905839:
         /* target */ return new String[] { "Reference" };
       case 1771900717:
-        /* assurance */ return new String[] { "code" };
+        /* assurance */ return new String[] { "string" };
       default:
         return super.getTypesForProperty(hash, name);
       }
