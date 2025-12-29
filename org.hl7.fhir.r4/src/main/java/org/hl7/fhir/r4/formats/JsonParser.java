@@ -15269,10 +15269,9 @@ public class JsonParser extends JsonParserBase {
       JsonArray array = json.getAsJsonArray("daysOfWeek");
       for (int i = 0; i < array.size(); i++) {
         if (array.get(i).isJsonNull()) {
-          res.getDaysOfWeek().add(new Enumeration<HealthcareService.DaysOfWeek>());
+          res.getDaysOfWeek().add(new StringType());
         } else {
-          res.getDaysOfWeek().add(parseEnumeration(array.get(i).getAsString(), HealthcareService.DaysOfWeek.NULL,
-            new HealthcareService.DaysOfWeekEnumFactory()));
+          res.getDaysOfWeek().add(parseString(array.get(i).getAsString()));
         }
       }
     }
@@ -15282,7 +15281,7 @@ public class JsonParser extends JsonParserBase {
       for (int i = 0; i < array.size(); i++) {
         if (i == res.getDaysOfWeek().size())
           res.getDaysOfWeek().add(
-            parseEnumeration(null, HealthcareService.DaysOfWeek.NULL, new HealthcareService.DaysOfWeekEnumFactory()));
+            parseString(null));
         if (array.get(i) instanceof JsonObject)
           parseElementProperties(array.get(i).getAsJsonObject(), res.getDaysOfWeek().get(i));
       }
@@ -48225,13 +48224,13 @@ public class JsonParser extends JsonParserBase {
     composeBackbone(element);
     if (element.hasDaysOfWeek()) {
       openArray("daysOfWeek");
-      for (Enumeration<HealthcareService.DaysOfWeek> e : element.getDaysOfWeek())
-        composeEnumerationCore(null, e, new HealthcareService.DaysOfWeekEnumFactory(), true);
+      for (StringType e : element.getDaysOfWeek())
+        composeStringCore(null, e, true);
       closeArray();
       if (anyHasExtras(element.getDaysOfWeek())) {
         openArray("_daysOfWeek");
-        for (Enumeration<HealthcareService.DaysOfWeek> e : element.getDaysOfWeek())
-          composeEnumerationExtras(null, e, new HealthcareService.DaysOfWeekEnumFactory(), true);
+        for (StringType e : element.getDaysOfWeek())
+          composeStringExtras(null, e, true);
         closeArray();
       }
     }

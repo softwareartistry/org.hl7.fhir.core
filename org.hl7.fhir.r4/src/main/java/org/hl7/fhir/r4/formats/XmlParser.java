@@ -12149,7 +12149,7 @@ public class XmlParser extends XmlParserBase {
       throws XmlPullParserException, IOException, FHIRFormatError {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("daysOfWeek")) {
       res.getDaysOfWeek()
-          .add(parseEnumeration(xpp, HealthcareService.DaysOfWeek.NULL, new HealthcareService.DaysOfWeekEnumFactory()));
+          .add(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("allDay")) {
       res.setAllDayElement(parseBoolean(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("availableStartTime")) {
@@ -39437,8 +39437,8 @@ public class XmlParser extends XmlParserBase {
       HealthcareService.HealthcareServiceAvailableTimeComponent element) throws IOException {
     composeBackboneElementElements(element);
     if (element.hasDaysOfWeek())
-      for (Enumeration<HealthcareService.DaysOfWeek> e : element.getDaysOfWeek())
-        composeEnumeration("daysOfWeek", e, new HealthcareService.DaysOfWeekEnumFactory());
+      for (StringType e : element.getDaysOfWeek())
+        composeString("daysOfWeek", e);
     if (element.hasAllDayElement()) {
       composeBoolean("allDay", element.getAllDayElement());
     }
