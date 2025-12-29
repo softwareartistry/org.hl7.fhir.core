@@ -85,7 +85,6 @@ import org.hl7.fhir.r4.model.MarkdownType;
 import org.hl7.fhir.r4.model.OperationOutcome.OperationOutcomeIssueComponent;
 import org.hl7.fhir.r4.model.PrimitiveType;
 import org.hl7.fhir.r4.model.Questionnaire.QuestionnaireItemComponent;
-import org.hl7.fhir.r4.model.Questionnaire.QuestionnaireItemType;
 import org.hl7.fhir.r4.model.StringType;
 import org.hl7.fhir.r4.model.Type;
 import org.hl7.fhir.r4.model.UriType;
@@ -446,7 +445,7 @@ public class ToolingExtensions {
   public static void addFlyOver(QuestionnaireItemComponent item, String text) {
     if (!StringUtils.isBlank(text)) {
       QuestionnaireItemComponent display = item.addItem();
-      display.setType(QuestionnaireItemType.DISPLAY);
+      display.setType("DISPLAY");
       display.setText(text);
       display.getExtension().add(Factory.newExtension(EXT_CONTROL,
           Factory.newCodeableConcept("flyover", "http://hl7.org/fhir/questionnaire-item-control", "Fly-over"), true));

@@ -24459,8 +24459,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_text"))
       parseElementProperties(getJObject(json, "_text"), res.getTextElement());
     if (json.has("type"))
-      res.setTypeElement(parseEnumeration(json.get("type").getAsString(), Questionnaire.QuestionnaireItemType.NULL,
-        new Questionnaire.QuestionnaireItemTypeEnumFactory()));
+      res.setTypeElement(parseString(json.get("type").getAsString()));
     if (json.has("_type"))
       parseElementProperties(getJObject(json, "_type"), res.getTypeElement());
     if (json.has("enableWhen")) {
@@ -24472,8 +24471,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("enableBehavior"))
-      res.setEnableBehaviorElement(parseEnumeration(json.get("enableBehavior").getAsString(),
-        Questionnaire.EnableWhenBehavior.NULL, new Questionnaire.EnableWhenBehaviorEnumFactory()));
+      res.setEnableBehaviorElement(parseString(json.get("enableBehavior").getAsString()));
     if (json.has("_enableBehavior"))
       parseElementProperties(getJObject(json, "_enableBehavior"), res.getEnableBehaviorElement());
     if (json.has("required"))
@@ -24536,8 +24534,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_question"))
       parseElementProperties(getJObject(json, "_question"), res.getQuestionElement());
     if (json.has("operator"))
-      res.setOperatorElement(parseEnumeration(json.get("operator").getAsString(),
-        Questionnaire.QuestionnaireItemOperator.NULL, new Questionnaire.QuestionnaireItemOperatorEnumFactory()));
+      res.setOperatorElement(parseString(json.get("operator").getAsString()));
     if (json.has("_operator"))
       parseElementProperties(getJObject(json, "_operator"), res.getOperatorElement());
     Type answer = parseType("answer", json);
@@ -57668,10 +57665,8 @@ public class JsonParser extends JsonParserBase {
       composeStringExtras("text", element.getTextElement(), false);
     }
     if (element.hasTypeElement()) {
-      composeEnumerationCore("type", element.getTypeElement(), new Questionnaire.QuestionnaireItemTypeEnumFactory(),
-        false);
-      composeEnumerationExtras("type", element.getTypeElement(), new Questionnaire.QuestionnaireItemTypeEnumFactory(),
-        false);
+      composeStringCore("type", element.getTypeElement(), false);
+      composeStringExtras("type", element.getTypeElement(), false);
     }
     if (element.hasEnableWhen()) {
       openArray("enableWhen");
@@ -57681,10 +57676,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasEnableBehaviorElement()) {
-      composeEnumerationCore("enableBehavior", element.getEnableBehaviorElement(),
-        new Questionnaire.EnableWhenBehaviorEnumFactory(), false);
-      composeEnumerationExtras("enableBehavior", element.getEnableBehaviorElement(),
-        new Questionnaire.EnableWhenBehaviorEnumFactory(), false);
+      composeStringCore("enableBehavior", element.getEnableBehaviorElement(), false);
+      composeStringExtras("enableBehavior", element.getEnableBehaviorElement(), false);
     }
     if (element.hasRequiredElement()) {
       composeBooleanCore("required", element.getRequiredElement(), false);
@@ -57746,10 +57739,8 @@ public class JsonParser extends JsonParserBase {
       composeStringExtras("question", element.getQuestionElement(), false);
     }
     if (element.hasOperatorElement()) {
-      composeEnumerationCore("operator", element.getOperatorElement(),
-        new Questionnaire.QuestionnaireItemOperatorEnumFactory(), false);
-      composeEnumerationExtras("operator", element.getOperatorElement(),
-        new Questionnaire.QuestionnaireItemOperatorEnumFactory(), false);
+      composeStringCore("operator", element.getOperatorElement(), false);
+      composeStringExtras("operator", element.getOperatorElement(), false);
     }
     if (element.hasAnswer()) {
       composeType("answer", element.getAnswer());

@@ -14303,12 +14303,12 @@ public class RdfParser extends RdfParserBase {
     if (element.hasTextElement())
       composeString(t, "Questionnaire", "text", element.getTextElement(), -1);
     if (element.hasTypeElement())
-      composeEnum(t, "Questionnaire", "type", element.getTypeElement(), -1);
+      composeString(t, "Questionnaire", "type", element.getTypeElement(), -1);
     for (int i = 0; i < element.getEnableWhen().size(); i++)
       composeQuestionnaireQuestionnaireItemEnableWhenComponent(t, "Questionnaire", "enableWhen",
           element.getEnableWhen().get(i), i);
     if (element.hasEnableBehaviorElement())
-      composeEnum(t, "Questionnaire", "enableBehavior", element.getEnableBehaviorElement(), -1);
+      composeString(t, "Questionnaire", "enableBehavior", element.getEnableBehaviorElement(), -1);
     if (element.hasRequiredElement())
       composeBoolean(t, "Questionnaire", "required", element.getRequiredElement(), -1);
     if (element.hasRepeatsElement())
@@ -14343,7 +14343,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasQuestionElement())
       composeString(t, "Questionnaire", "question", element.getQuestionElement(), -1);
     if (element.hasOperatorElement())
-      composeEnum(t, "Questionnaire", "operator", element.getOperatorElement(), -1);
+      composeString(t, "Questionnaire", "operator", element.getOperatorElement(), -1);
     if (element.hasAnswer())
       composeType(t, "Questionnaire", "answer", element.getAnswer(), -1);
   }
