@@ -19287,8 +19287,7 @@ public class XmlParser extends XmlParserBase {
       PractitionerRole owner, PractitionerRole.PractitionerRoleAvailableTimeComponent res)
       throws XmlPullParserException, IOException, FHIRFormatError {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("daysOfWeek")) {
-      res.getDaysOfWeek()
-          .add(parseEnumeration(xpp, PractitionerRole.DaysOfWeek.NULL, new PractitionerRole.DaysOfWeekEnumFactory()));
+      res.getDaysOfWeek().add(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("allDay")) {
       res.setAllDayElement(parseBoolean(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("availableStartTime")) {
@@ -46661,8 +46660,8 @@ public class XmlParser extends XmlParserBase {
       PractitionerRole.PractitionerRoleAvailableTimeComponent element) throws IOException {
     composeBackboneElementElements(element);
     if (element.hasDaysOfWeek())
-      for (Enumeration<PractitionerRole.DaysOfWeek> e : element.getDaysOfWeek())
-        composeEnumeration("daysOfWeek", e, new PractitionerRole.DaysOfWeekEnumFactory());
+      for (StringType e : element.getDaysOfWeek())
+        composeString("daysOfWeek", e);
     if (element.hasAllDayElement()) {
       composeBoolean("allDay", element.getAllDayElement());
     }

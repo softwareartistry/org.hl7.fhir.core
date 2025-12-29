@@ -23882,10 +23882,9 @@ public class JsonParser extends JsonParserBase {
       JsonArray array = json.getAsJsonArray("daysOfWeek");
       for (int i = 0; i < array.size(); i++) {
         if (array.get(i).isJsonNull()) {
-          res.getDaysOfWeek().add(new Enumeration<PractitionerRole.DaysOfWeek>());
+          res.getDaysOfWeek().add(new StringType());
         } else {
-          res.getDaysOfWeek().add(parseEnumeration(array.get(i).getAsString(), PractitionerRole.DaysOfWeek.NULL,
-            new PractitionerRole.DaysOfWeekEnumFactory()));
+          res.getDaysOfWeek().add(parseString(array.get(i).getAsString()));
         }
       }
     }
@@ -23894,8 +23893,7 @@ public class JsonParser extends JsonParserBase {
       JsonArray array = json.getAsJsonArray("_daysOfWeek");
       for (int i = 0; i < array.size(); i++) {
         if (i == res.getDaysOfWeek().size())
-          res.getDaysOfWeek().add(
-            parseEnumeration(null, PractitionerRole.DaysOfWeek.NULL, new PractitionerRole.DaysOfWeekEnumFactory()));
+          res.getDaysOfWeek().add(parseString(null));
         if (array.get(i) instanceof JsonObject)
           parseElementProperties(array.get(i).getAsJsonObject(), res.getDaysOfWeek().get(i));
       }
@@ -57103,13 +57101,13 @@ public class JsonParser extends JsonParserBase {
     composeBackbone(element);
     if (element.hasDaysOfWeek()) {
       openArray("daysOfWeek");
-      for (Enumeration<PractitionerRole.DaysOfWeek> e : element.getDaysOfWeek())
-        composeEnumerationCore(null, e, new PractitionerRole.DaysOfWeekEnumFactory(), true);
+      for (StringType e : element.getDaysOfWeek())
+        composeStringCore(null, e, true);
       closeArray();
       if (anyHasExtras(element.getDaysOfWeek())) {
         openArray("_daysOfWeek");
-        for (Enumeration<PractitionerRole.DaysOfWeek> e : element.getDaysOfWeek())
-          composeEnumerationExtras(null, e, new PractitionerRole.DaysOfWeekEnumFactory(), true);
+        for (StringType e : element.getDaysOfWeek())
+          composeStringExtras(null, e, true);
         closeArray();
       }
     }
