@@ -20919,8 +20919,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("type"))
-      res.setTypeElement(parseEnumeration(json.get("type").getAsString(), MolecularSequence.SequenceType.NULL,
-        new MolecularSequence.SequenceTypeEnumFactory()));
+      res.setTypeElement(parseString(json.get("type").getAsString()));
     if (json.has("_type"))
       parseElementProperties(getJObject(json, "_type"), res.getTypeElement());
     if (json.has("coordinateSystem"))
@@ -21007,8 +21006,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_genomeBuild"))
       parseElementProperties(getJObject(json, "_genomeBuild"), res.getGenomeBuildElement());
     if (json.has("orientation"))
-      res.setOrientationElement(parseEnumeration(json.get("orientation").getAsString(),
-        MolecularSequence.OrientationType.NULL, new MolecularSequence.OrientationTypeEnumFactory()));
+      res.setOrientationElement(parseString(json.get("orientation").getAsString()));
     if (json.has("_orientation"))
       parseElementProperties(getJObject(json, "_orientation"), res.getOrientationElement());
     if (json.has("referenceSeqId"))
@@ -21020,8 +21018,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_referenceSeqString"))
       parseElementProperties(getJObject(json, "_referenceSeqString"), res.getReferenceSeqStringElement());
     if (json.has("strand"))
-      res.setStrandElement(parseEnumeration(json.get("strand").getAsString(), MolecularSequence.StrandType.NULL,
-        new MolecularSequence.StrandTypeEnumFactory()));
+      res.setStrandElement(parseString(json.get("strand").getAsString()));
     if (json.has("_strand"))
       parseElementProperties(getJObject(json, "_strand"), res.getStrandElement());
     if (json.has("windowStart"))
@@ -21081,8 +21078,7 @@ public class JsonParser extends JsonParserBase {
     throws IOException, FHIRFormatError {
     parseBackboneElementProperties(json, res);
     if (json.has("type"))
-      res.setTypeElement(parseEnumeration(json.get("type").getAsString(), MolecularSequence.QualityType.NULL,
-        new MolecularSequence.QualityTypeEnumFactory()));
+      res.setTypeElement(parseString(json.get("type").getAsString()));
     if (json.has("_type"))
       parseElementProperties(getJObject(json, "_type"), res.getTypeElement());
     if (json.has("standardSequence"))
@@ -21307,8 +21303,7 @@ public class JsonParser extends JsonParserBase {
     throws IOException, FHIRFormatError {
     parseBackboneElementProperties(json, res);
     if (json.has("type"))
-      res.setTypeElement(parseEnumeration(json.get("type").getAsString(), MolecularSequence.RepositoryType.NULL,
-        new MolecularSequence.RepositoryTypeEnumFactory()));
+      res.setTypeElement(parseString(json.get("type").getAsString()));
     if (json.has("_type"))
       parseElementProperties(getJObject(json, "_type"), res.getTypeElement());
     if (json.has("url"))
@@ -54108,9 +54103,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasTypeElement()) {
-      composeEnumerationCore("type", element.getTypeElement(), new MolecularSequence.SequenceTypeEnumFactory(), false);
-      composeEnumerationExtras("type", element.getTypeElement(), new MolecularSequence.SequenceTypeEnumFactory(),
-        false);
+      composeStringCore("type", element.getTypeElement(), false);
+      composeStringExtras("type", element.getTypeElement(), false);
     }
     if (element.hasCoordinateSystemElement()) {
       composeIntegerCore("coordinateSystem", element.getCoordinateSystemElement(), false);
@@ -54199,10 +54193,8 @@ public class JsonParser extends JsonParserBase {
       composeStringExtras("genomeBuild", element.getGenomeBuildElement(), false);
     }
     if (element.hasOrientationElement()) {
-      composeEnumerationCore("orientation", element.getOrientationElement(),
-        new MolecularSequence.OrientationTypeEnumFactory(), false);
-      composeEnumerationExtras("orientation", element.getOrientationElement(),
-        new MolecularSequence.OrientationTypeEnumFactory(), false);
+      composeStringCore("orientation", element.getOrientationElement(), false);
+      composeStringExtras("orientation", element.getOrientationElement(), false);
     }
     if (element.hasReferenceSeqId()) {
       composeCodeableConcept("referenceSeqId", element.getReferenceSeqId());
@@ -54215,10 +54207,8 @@ public class JsonParser extends JsonParserBase {
       composeStringExtras("referenceSeqString", element.getReferenceSeqStringElement(), false);
     }
     if (element.hasStrandElement()) {
-      composeEnumerationCore("strand", element.getStrandElement(), new MolecularSequence.StrandTypeEnumFactory(),
-        false);
-      composeEnumerationExtras("strand", element.getStrandElement(), new MolecularSequence.StrandTypeEnumFactory(),
-        false);
+      composeStringCore("strand", element.getStrandElement(), false);
+      composeStringExtras("strand", element.getStrandElement(), false);
     }
     if (element.hasWindowStartElement()) {
       composeIntegerCore("windowStart", element.getWindowStartElement(), false);
@@ -54280,8 +54270,8 @@ public class JsonParser extends JsonParserBase {
     MolecularSequence.MolecularSequenceQualityComponent element) throws IOException {
     composeBackbone(element);
     if (element.hasTypeElement()) {
-      composeEnumerationCore("type", element.getTypeElement(), new MolecularSequence.QualityTypeEnumFactory(), false);
-      composeEnumerationExtras("type", element.getTypeElement(), new MolecularSequence.QualityTypeEnumFactory(), false);
+      composeStringCore("type", element.getTypeElement(), false);
+      composeStringExtras("type", element.getTypeElement(), false);
     }
     if (element.hasStandardSequence()) {
       composeCodeableConcept("standardSequence", element.getStandardSequence());
@@ -54455,10 +54445,8 @@ public class JsonParser extends JsonParserBase {
     MolecularSequence.MolecularSequenceRepositoryComponent element) throws IOException {
     composeBackbone(element);
     if (element.hasTypeElement()) {
-      composeEnumerationCore("type", element.getTypeElement(), new MolecularSequence.RepositoryTypeEnumFactory(),
-        false);
-      composeEnumerationExtras("type", element.getTypeElement(), new MolecularSequence.RepositoryTypeEnumFactory(),
-        false);
+      composeStringCore("type", element.getTypeElement(),false);
+      composeStringExtras("type", element.getTypeElement(), false);
     }
     if (element.hasUrlElement()) {
       composeUriCore("url", element.getUrlElement(), false);

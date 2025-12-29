@@ -51,720 +51,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "MolecularSequence", profile = "http://hl7.org/fhir/StructureDefinition/MolecularSequence")
 public class MolecularSequence extends DomainResource {
 
-  public enum SequenceType {
-    /**
-     * Amino acid sequence.
-     */
-    AA,
-    /**
-     * DNA Sequence.
-     */
-    DNA,
-    /**
-     * RNA Sequence.
-     */
-    RNA,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static SequenceType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("aa".equals(codeString))
-        return AA;
-      if ("dna".equals(codeString))
-        return DNA;
-      if ("rna".equals(codeString))
-        return RNA;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown SequenceType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case AA:
-        return "aa";
-      case DNA:
-        return "dna";
-      case RNA:
-        return "rna";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case AA:
-        return "http://hl7.org/fhir/sequence-type";
-      case DNA:
-        return "http://hl7.org/fhir/sequence-type";
-      case RNA:
-        return "http://hl7.org/fhir/sequence-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case AA:
-        return "Amino acid sequence.";
-      case DNA:
-        return "DNA Sequence.";
-      case RNA:
-        return "RNA Sequence.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case AA:
-        return "AA Sequence";
-      case DNA:
-        return "DNA Sequence";
-      case RNA:
-        return "RNA Sequence";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class SequenceTypeEnumFactory implements EnumFactory<SequenceType> {
-    public SequenceType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("aa".equals(codeString))
-        return SequenceType.AA;
-      if ("dna".equals(codeString))
-        return SequenceType.DNA;
-      if ("rna".equals(codeString))
-        return SequenceType.RNA;
-      throw new IllegalArgumentException("Unknown SequenceType code '" + codeString + "'");
-    }
-
-    public Enumeration<SequenceType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<SequenceType>(this, SequenceType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<SequenceType>(this, SequenceType.NULL, code);
-      if ("aa".equals(codeString))
-        return new Enumeration<SequenceType>(this, SequenceType.AA, code);
-      if ("dna".equals(codeString))
-        return new Enumeration<SequenceType>(this, SequenceType.DNA, code);
-      if ("rna".equals(codeString))
-        return new Enumeration<SequenceType>(this, SequenceType.RNA, code);
-      throw new FHIRException("Unknown SequenceType code '" + codeString + "'");
-    }
-
-    public String toCode(SequenceType code) {
-       if (code == SequenceType.NULL)
-           return null;
-       if (code == SequenceType.AA)
-        return "aa";
-      if (code == SequenceType.DNA)
-        return "dna";
-      if (code == SequenceType.RNA)
-        return "rna";
-      return "?";
-   }
-
-    public String toSystem(SequenceType code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum OrientationType {
-    /**
-     * Sense orientation of reference sequence.
-     */
-    SENSE,
-    /**
-     * Antisense orientation of reference sequence.
-     */
-    ANTISENSE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static OrientationType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("sense".equals(codeString))
-        return SENSE;
-      if ("antisense".equals(codeString))
-        return ANTISENSE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown OrientationType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case SENSE:
-        return "sense";
-      case ANTISENSE:
-        return "antisense";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case SENSE:
-        return "http://hl7.org/fhir/orientation-type";
-      case ANTISENSE:
-        return "http://hl7.org/fhir/orientation-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case SENSE:
-        return "Sense orientation of reference sequence.";
-      case ANTISENSE:
-        return "Antisense orientation of reference sequence.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case SENSE:
-        return "Sense orientation of referenceSeq";
-      case ANTISENSE:
-        return "Antisense orientation of referenceSeq";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class OrientationTypeEnumFactory implements EnumFactory<OrientationType> {
-    public OrientationType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("sense".equals(codeString))
-        return OrientationType.SENSE;
-      if ("antisense".equals(codeString))
-        return OrientationType.ANTISENSE;
-      throw new IllegalArgumentException("Unknown OrientationType code '" + codeString + "'");
-    }
-
-    public Enumeration<OrientationType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<OrientationType>(this, OrientationType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<OrientationType>(this, OrientationType.NULL, code);
-      if ("sense".equals(codeString))
-        return new Enumeration<OrientationType>(this, OrientationType.SENSE, code);
-      if ("antisense".equals(codeString))
-        return new Enumeration<OrientationType>(this, OrientationType.ANTISENSE, code);
-      throw new FHIRException("Unknown OrientationType code '" + codeString + "'");
-    }
-
-    public String toCode(OrientationType code) {
-       if (code == OrientationType.NULL)
-           return null;
-       if (code == OrientationType.SENSE)
-        return "sense";
-      if (code == OrientationType.ANTISENSE)
-        return "antisense";
-      return "?";
-   }
-
-    public String toSystem(OrientationType code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum StrandType {
-    /**
-     * Watson strand of reference sequence.
-     */
-    WATSON,
-    /**
-     * Crick strand of reference sequence.
-     */
-    CRICK,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static StrandType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("watson".equals(codeString))
-        return WATSON;
-      if ("crick".equals(codeString))
-        return CRICK;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown StrandType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case WATSON:
-        return "watson";
-      case CRICK:
-        return "crick";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case WATSON:
-        return "http://hl7.org/fhir/strand-type";
-      case CRICK:
-        return "http://hl7.org/fhir/strand-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case WATSON:
-        return "Watson strand of reference sequence.";
-      case CRICK:
-        return "Crick strand of reference sequence.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case WATSON:
-        return "Watson strand of referenceSeq";
-      case CRICK:
-        return "Crick strand of referenceSeq";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class StrandTypeEnumFactory implements EnumFactory<StrandType> {
-    public StrandType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("watson".equals(codeString))
-        return StrandType.WATSON;
-      if ("crick".equals(codeString))
-        return StrandType.CRICK;
-      throw new IllegalArgumentException("Unknown StrandType code '" + codeString + "'");
-    }
-
-    public Enumeration<StrandType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<StrandType>(this, StrandType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<StrandType>(this, StrandType.NULL, code);
-      if ("watson".equals(codeString))
-        return new Enumeration<StrandType>(this, StrandType.WATSON, code);
-      if ("crick".equals(codeString))
-        return new Enumeration<StrandType>(this, StrandType.CRICK, code);
-      throw new FHIRException("Unknown StrandType code '" + codeString + "'");
-    }
-
-    public String toCode(StrandType code) {
-       if (code == StrandType.NULL)
-           return null;
-       if (code == StrandType.WATSON)
-        return "watson";
-      if (code == StrandType.CRICK)
-        return "crick";
-      return "?";
-   }
-
-    public String toSystem(StrandType code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum QualityType {
-    /**
-     * INDEL Comparison.
-     */
-    INDEL,
-    /**
-     * SNP Comparison.
-     */
-    SNP,
-    /**
-     * UNKNOWN Comparison.
-     */
-    UNKNOWN,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static QualityType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("indel".equals(codeString))
-        return INDEL;
-      if ("snp".equals(codeString))
-        return SNP;
-      if ("unknown".equals(codeString))
-        return UNKNOWN;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown QualityType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case INDEL:
-        return "indel";
-      case SNP:
-        return "snp";
-      case UNKNOWN:
-        return "unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case INDEL:
-        return "http://hl7.org/fhir/quality-type";
-      case SNP:
-        return "http://hl7.org/fhir/quality-type";
-      case UNKNOWN:
-        return "http://hl7.org/fhir/quality-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case INDEL:
-        return "INDEL Comparison.";
-      case SNP:
-        return "SNP Comparison.";
-      case UNKNOWN:
-        return "UNKNOWN Comparison.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case INDEL:
-        return "INDEL Comparison";
-      case SNP:
-        return "SNP Comparison";
-      case UNKNOWN:
-        return "UNKNOWN Comparison";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class QualityTypeEnumFactory implements EnumFactory<QualityType> {
-    public QualityType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("indel".equals(codeString))
-        return QualityType.INDEL;
-      if ("snp".equals(codeString))
-        return QualityType.SNP;
-      if ("unknown".equals(codeString))
-        return QualityType.UNKNOWN;
-      throw new IllegalArgumentException("Unknown QualityType code '" + codeString + "'");
-    }
-
-    public Enumeration<QualityType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<QualityType>(this, QualityType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<QualityType>(this, QualityType.NULL, code);
-      if ("indel".equals(codeString))
-        return new Enumeration<QualityType>(this, QualityType.INDEL, code);
-      if ("snp".equals(codeString))
-        return new Enumeration<QualityType>(this, QualityType.SNP, code);
-      if ("unknown".equals(codeString))
-        return new Enumeration<QualityType>(this, QualityType.UNKNOWN, code);
-      throw new FHIRException("Unknown QualityType code '" + codeString + "'");
-    }
-
-    public String toCode(QualityType code) {
-       if (code == QualityType.NULL)
-           return null;
-       if (code == QualityType.INDEL)
-        return "indel";
-      if (code == QualityType.SNP)
-        return "snp";
-      if (code == QualityType.UNKNOWN)
-        return "unknown";
-      return "?";
-   }
-
-    public String toSystem(QualityType code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum RepositoryType {
-    /**
-     * When URL is clicked, the resource can be seen directly (by webpage or by
-     * download link format).
-     */
-    DIRECTLINK,
-    /**
-     * When the API method (e.g. [base_url]/[parameter]) related with the URL of the
-     * website is executed, the resource can be seen directly (usually in JSON or
-     * XML format).
-     */
-    OPENAPI,
-    /**
-     * When logged into the website, the resource can be seen.
-     */
-    LOGIN,
-    /**
-     * When logged in and follow the API in the website related with URL, the
-     * resource can be seen.
-     */
-    OAUTH,
-    /**
-     * Some other complicated or particular way to get resource from URL.
-     */
-    OTHER,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static RepositoryType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("directlink".equals(codeString))
-        return DIRECTLINK;
-      if ("openapi".equals(codeString))
-        return OPENAPI;
-      if ("login".equals(codeString))
-        return LOGIN;
-      if ("oauth".equals(codeString))
-        return OAUTH;
-      if ("other".equals(codeString))
-        return OTHER;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown RepositoryType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case DIRECTLINK:
-        return "directlink";
-      case OPENAPI:
-        return "openapi";
-      case LOGIN:
-        return "login";
-      case OAUTH:
-        return "oauth";
-      case OTHER:
-        return "other";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case DIRECTLINK:
-        return "http://hl7.org/fhir/repository-type";
-      case OPENAPI:
-        return "http://hl7.org/fhir/repository-type";
-      case LOGIN:
-        return "http://hl7.org/fhir/repository-type";
-      case OAUTH:
-        return "http://hl7.org/fhir/repository-type";
-      case OTHER:
-        return "http://hl7.org/fhir/repository-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case DIRECTLINK:
-        return "When URL is clicked, the resource can be seen directly (by webpage or by download link format).";
-      case OPENAPI:
-        return "When the API method (e.g. [base_url]/[parameter]) related with the URL of the website is executed, the resource can be seen directly (usually in JSON or XML format).";
-      case LOGIN:
-        return "When logged into the website, the resource can be seen.";
-      case OAUTH:
-        return "When logged in and  follow the API in the website related with URL, the resource can be seen.";
-      case OTHER:
-        return "Some other complicated or particular way to get resource from URL.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case DIRECTLINK:
-        return "Click and see";
-      case OPENAPI:
-        return "The URL is the RESTful or other kind of API that can access to the result.";
-      case LOGIN:
-        return "Result cannot be access unless an account is logged in";
-      case OAUTH:
-        return "Result need to be fetched with API and need LOGIN( or cookies are required when visiting the link of resource)";
-      case OTHER:
-        return "Some other complicated or particular way to get resource from URL.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class RepositoryTypeEnumFactory implements EnumFactory<RepositoryType> {
-    public RepositoryType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("directlink".equals(codeString))
-        return RepositoryType.DIRECTLINK;
-      if ("openapi".equals(codeString))
-        return RepositoryType.OPENAPI;
-      if ("login".equals(codeString))
-        return RepositoryType.LOGIN;
-      if ("oauth".equals(codeString))
-        return RepositoryType.OAUTH;
-      if ("other".equals(codeString))
-        return RepositoryType.OTHER;
-      throw new IllegalArgumentException("Unknown RepositoryType code '" + codeString + "'");
-    }
-
-    public Enumeration<RepositoryType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<RepositoryType>(this, RepositoryType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<RepositoryType>(this, RepositoryType.NULL, code);
-      if ("directlink".equals(codeString))
-        return new Enumeration<RepositoryType>(this, RepositoryType.DIRECTLINK, code);
-      if ("openapi".equals(codeString))
-        return new Enumeration<RepositoryType>(this, RepositoryType.OPENAPI, code);
-      if ("login".equals(codeString))
-        return new Enumeration<RepositoryType>(this, RepositoryType.LOGIN, code);
-      if ("oauth".equals(codeString))
-        return new Enumeration<RepositoryType>(this, RepositoryType.OAUTH, code);
-      if ("other".equals(codeString))
-        return new Enumeration<RepositoryType>(this, RepositoryType.OTHER, code);
-      throw new FHIRException("Unknown RepositoryType code '" + codeString + "'");
-    }
-
-    public String toCode(RepositoryType code) {
-       if (code == RepositoryType.NULL)
-           return null;
-       if (code == RepositoryType.DIRECTLINK)
-        return "directlink";
-      if (code == RepositoryType.OPENAPI)
-        return "openapi";
-      if (code == RepositoryType.LOGIN)
-        return "login";
-      if (code == RepositoryType.OAUTH)
-        return "oauth";
-      if (code == RepositoryType.OTHER)
-        return "other";
-      return "?";
-   }
-
-    public String toSystem(RepositoryType code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class MolecularSequenceReferenceSeqComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -795,10 +81,10 @@ public class MolecularSequence extends DomainResource {
      * the opposite complementary strand is the "antisense" strand.
      */
     @Child(name = "orientation", type = {
-        CodeType.class }, order = 3, min = 0, max = 1, modifier = false, summary = true)
+      StringType.class }, order = 3, min = 0, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "sense | antisense", formalDefinition = "A relative reference to a DNA strand based on gene orientation. The strand that contains the open reading frame of the gene is the \"sense\" strand, and the opposite complementary strand is the \"antisense\" strand.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/orientation-type")
-    protected Enumeration<OrientationType> orientation;
+    protected StringType orientation;
 
     /**
      * Reference identifier of reference sequence submitted to NCBI. It must match
@@ -839,10 +125,10 @@ public class MolecularSequence extends DomainResource {
      * 5'-end is on the short arm of the chromosome, and the Crick strand as the one
      * whose 5'-end is on the long arm.
      */
-    @Child(name = "strand", type = { CodeType.class }, order = 7, min = 0, max = 1, modifier = false, summary = true)
+    @Child(name = "strand", type = { StringType.class }, order = 7, min = 0, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "watson | crick", formalDefinition = "An absolute reference to a strand. The Watson strand is the strand whose 5'-end is on the short arm of the chromosome, and the Crick strand as the one whose 5'-end is on the long arm.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/strand-type")
-    protected Enumeration<StrandType> strand;
+    protected StringType strand;
 
     /**
      * Start position of the window on the reference sequence. If the coordinate
@@ -974,12 +260,12 @@ public class MolecularSequence extends DomainResource {
      *         value and extensions. The accessor "getOrientation" gives direct
      *         access to the value
      */
-    public Enumeration<OrientationType> getOrientationElement() {
+    public StringType getOrientationElement() {
       if (this.orientation == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create MolecularSequenceReferenceSeqComponent.orientation");
         else if (Configuration.doAutoCreate())
-          this.orientation = new Enumeration<OrientationType>(new OrientationTypeEnumFactory()); // bb
+          this.orientation = new StringType(); // bb
       return this.orientation;
     }
 
@@ -999,7 +285,7 @@ public class MolecularSequence extends DomainResource {
      *              underlying object with id, value and extensions. The accessor
      *              "getOrientation" gives direct access to the value
      */
-    public MolecularSequenceReferenceSeqComponent setOrientationElement(Enumeration<OrientationType> value) {
+    public MolecularSequenceReferenceSeqComponent setOrientationElement(StringType value) {
       this.orientation = value;
       return this;
     }
@@ -1010,8 +296,8 @@ public class MolecularSequence extends DomainResource {
      *         "sense" strand, and the opposite complementary strand is the
      *         "antisense" strand.
      */
-    public OrientationType getOrientation() {
-      return this.orientation == null ? null : this.orientation.getValue();
+    public StringType getOrientation() {
+      return this.orientation == null ? null : this.orientation;
     }
 
     /**
@@ -1020,12 +306,12 @@ public class MolecularSequence extends DomainResource {
      *              the "sense" strand, and the opposite complementary strand is the
      *              "antisense" strand.
      */
-    public MolecularSequenceReferenceSeqComponent setOrientation(OrientationType value) {
+    public MolecularSequenceReferenceSeqComponent setOrientation(String value) {
       if (value == null)
         this.orientation = null;
       else {
         if (this.orientation == null)
-          this.orientation = new Enumeration<OrientationType>(new OrientationTypeEnumFactory());
+          this.orientation = new StringType();
         this.orientation.setValue(value);
       }
       return this;
@@ -1176,12 +462,12 @@ public class MolecularSequence extends DomainResource {
      *         is the underlying object with id, value and extensions. The accessor
      *         "getStrand" gives direct access to the value
      */
-    public Enumeration<StrandType> getStrandElement() {
+    public StringType getStrandElement() {
       if (this.strand == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create MolecularSequenceReferenceSeqComponent.strand");
         else if (Configuration.doAutoCreate())
-          this.strand = new Enumeration<StrandType>(new StrandTypeEnumFactory()); // bb
+          this.strand = new StringType(); // bb
       return this.strand;
     }
 
@@ -1201,7 +487,7 @@ public class MolecularSequence extends DomainResource {
      *              extensions. The accessor "getStrand" gives direct access to the
      *              value
      */
-    public MolecularSequenceReferenceSeqComponent setStrandElement(Enumeration<StrandType> value) {
+    public MolecularSequenceReferenceSeqComponent setStrandElement(StringType value) {
       this.strand = value;
       return this;
     }
@@ -1211,8 +497,8 @@ public class MolecularSequence extends DomainResource {
      *         whose 5'-end is on the short arm of the chromosome, and the Crick
      *         strand as the one whose 5'-end is on the long arm.
      */
-    public StrandType getStrand() {
-      return this.strand == null ? null : this.strand.getValue();
+    public StringType getStrand() {
+      return this.strand == null ? null : this.strand;
     }
 
     /**
@@ -1220,12 +506,12 @@ public class MolecularSequence extends DomainResource {
      *              strand whose 5'-end is on the short arm of the chromosome, and
      *              the Crick strand as the one whose 5'-end is on the long arm.
      */
-    public MolecularSequenceReferenceSeqComponent setStrand(StrandType value) {
+    public MolecularSequenceReferenceSeqComponent setStrand(String value) {
       if (value == null)
         this.strand = null;
       else {
         if (this.strand == null)
-          this.strand = new Enumeration<StrandType>(new StrandTypeEnumFactory());
+          this.strand = new StringType();
         this.strand.setValue(value);
       }
       return this;
@@ -1358,7 +644,7 @@ public class MolecularSequence extends DomainResource {
       children.add(new Property("genomeBuild", "string",
           "The Genome Build used for reference, following GRCh build versions e.g. 'GRCh 37'.  Version number must be included if a versioned release of a primary build was used.",
           0, 1, genomeBuild));
-      children.add(new Property("orientation", "code",
+      children.add(new Property("orientation", "string",
           "A relative reference to a DNA strand based on gene orientation. The strand that contains the open reading frame of the gene is the \"sense\" strand, and the opposite complementary strand is the \"antisense\" strand.",
           0, 1, orientation));
       children.add(new Property("referenceSeqId", "CodeableConcept",
@@ -1367,7 +653,7 @@ public class MolecularSequence extends DomainResource {
       children.add(new Property("referenceSeqPointer", "Reference(MolecularSequence)",
           "A pointer to another MolecularSequence entity as reference sequence.", 0, 1, referenceSeqPointer));
       children.add(new Property("referenceSeqString", "string", "A string like \"ACGT\".", 0, 1, referenceSeqString));
-      children.add(new Property("strand", "code",
+      children.add(new Property("strand", "string",
           "An absolute reference to a strand. The Watson strand is the strand whose 5'-end is on the short arm of the chromosome, and the Crick strand as the one whose 5'-end is on the long arm.",
           0, 1, strand));
       children.add(new Property("windowStart", "integer",
@@ -1390,7 +676,7 @@ public class MolecularSequence extends DomainResource {
             "The Genome Build used for reference, following GRCh build versions e.g. 'GRCh 37'.  Version number must be included if a versioned release of a primary build was used.",
             0, 1, genomeBuild);
       case -1439500848:
-        /* orientation */ return new Property("orientation", "code",
+        /* orientation */ return new Property("orientation", "string",
             "A relative reference to a DNA strand based on gene orientation. The strand that contains the open reading frame of the gene is the \"sense\" strand, and the opposite complementary strand is the \"antisense\" strand.",
             0, 1, orientation);
       case -1911500465:
@@ -1404,7 +690,7 @@ public class MolecularSequence extends DomainResource {
         /* referenceSeqString */ return new Property("referenceSeqString", "string", "A string like \"ACGT\".", 0, 1,
             referenceSeqString);
       case -891993594:
-        /* strand */ return new Property("strand", "code",
+        /* strand */ return new Property("strand", "string",
             "An absolute reference to a strand. The Watson strand is the strand whose 5'-end is on the short arm of the chromosome, and the Crick strand as the one whose 5'-end is on the long arm.",
             0, 1, strand);
       case 1903685202:
@@ -1429,7 +715,7 @@ public class MolecularSequence extends DomainResource {
       case 1061239735:
         /* genomeBuild */ return this.genomeBuild == null ? new Base[0] : new Base[] { this.genomeBuild }; // StringType
       case -1439500848:
-        /* orientation */ return this.orientation == null ? new Base[0] : new Base[] { this.orientation }; // Enumeration<OrientationType>
+        /* orientation */ return this.orientation == null ? new Base[0] : new Base[] { this.orientation }; // StringType
       case -1911500465:
         /* referenceSeqId */ return this.referenceSeqId == null ? new Base[0] : new Base[] { this.referenceSeqId }; // CodeableConcept
       case 1923414665:
@@ -1439,7 +725,7 @@ public class MolecularSequence extends DomainResource {
         /* referenceSeqString */ return this.referenceSeqString == null ? new Base[0]
             : new Base[] { this.referenceSeqString }; // StringType
       case -891993594:
-        /* strand */ return this.strand == null ? new Base[0] : new Base[] { this.strand }; // Enumeration<StrandType>
+        /* strand */ return this.strand == null ? new Base[0] : new Base[] { this.strand }; // StringType
       case 1903685202:
         /* windowStart */ return this.windowStart == null ? new Base[0] : new Base[] { this.windowStart }; // IntegerType
       case -217026869:
@@ -1460,8 +746,7 @@ public class MolecularSequence extends DomainResource {
         this.genomeBuild = castToString(value); // StringType
         return value;
       case -1439500848: // orientation
-        value = new OrientationTypeEnumFactory().fromType(castToCode(value));
-        this.orientation = (Enumeration) value; // Enumeration<OrientationType>
+        this.orientation = castToString(value); // StringType
         return value;
       case -1911500465: // referenceSeqId
         this.referenceSeqId = castToCodeableConcept(value); // CodeableConcept
@@ -1473,8 +758,7 @@ public class MolecularSequence extends DomainResource {
         this.referenceSeqString = castToString(value); // StringType
         return value;
       case -891993594: // strand
-        value = new StrandTypeEnumFactory().fromType(castToCode(value));
-        this.strand = (Enumeration) value; // Enumeration<StrandType>
+        this.strand = castToString(value); // StringType
         return value;
       case 1903685202: // windowStart
         this.windowStart = castToInteger(value); // IntegerType
@@ -1495,8 +779,7 @@ public class MolecularSequence extends DomainResource {
       } else if (name.equals("genomeBuild")) {
         this.genomeBuild = castToString(value); // StringType
       } else if (name.equals("orientation")) {
-        value = new OrientationTypeEnumFactory().fromType(castToCode(value));
-        this.orientation = (Enumeration) value; // Enumeration<OrientationType>
+        this.orientation = castToString(value); // StringType
       } else if (name.equals("referenceSeqId")) {
         this.referenceSeqId = castToCodeableConcept(value); // CodeableConcept
       } else if (name.equals("referenceSeqPointer")) {
@@ -1504,8 +787,7 @@ public class MolecularSequence extends DomainResource {
       } else if (name.equals("referenceSeqString")) {
         this.referenceSeqString = castToString(value); // StringType
       } else if (name.equals("strand")) {
-        value = new StrandTypeEnumFactory().fromType(castToCode(value));
-        this.strand = (Enumeration) value; // Enumeration<StrandType>
+        this.strand = castToString(value); // StringType
       } else if (name.equals("windowStart")) {
         this.windowStart = castToInteger(value); // IntegerType
       } else if (name.equals("windowEnd")) {
@@ -1575,7 +857,7 @@ public class MolecularSequence extends DomainResource {
       case 1061239735:
         /* genomeBuild */ return new String[] { "string" };
       case -1439500848:
-        /* orientation */ return new String[] { "code" };
+        /* orientation */ return new String[] { "string" };
       case -1911500465:
         /* referenceSeqId */ return new String[] { "CodeableConcept" };
       case 1923414665:
@@ -1583,7 +865,7 @@ public class MolecularSequence extends DomainResource {
       case -1648301499:
         /* referenceSeqString */ return new String[] { "string" };
       case -891993594:
-        /* strand */ return new String[] { "code" };
+        /* strand */ return new String[] { "string" };
       case 1903685202:
         /* windowStart */ return new String[] { "integer" };
       case -217026869:
@@ -2406,10 +1688,10 @@ public class MolecularSequence extends DomainResource {
     /**
      * INDEL / SNP / Undefined variant.
      */
-    @Child(name = "type", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "type", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "indel | snp | unknown", formalDefinition = "INDEL / SNP / Undefined variant.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/quality-type")
-    protected Enumeration<QualityType> type;
+    protected StringType type;
 
     /**
      * Gold standard sequence used for comparing against.
@@ -2552,7 +1834,7 @@ public class MolecularSequence extends DomainResource {
     /**
      * Constructor
      */
-    public MolecularSequenceQualityComponent(Enumeration<QualityType> type) {
+    public MolecularSequenceQualityComponent(StringType type) {
       super();
       this.type = type;
     }
@@ -2562,12 +1844,12 @@ public class MolecularSequence extends DomainResource {
      *         underlying object with id, value and extensions. The accessor
      *         "getType" gives direct access to the value
      */
-    public Enumeration<QualityType> getTypeElement() {
+    public StringType getTypeElement() {
       if (this.type == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create MolecularSequenceQualityComponent.type");
         else if (Configuration.doAutoCreate())
-          this.type = new Enumeration<QualityType>(new QualityTypeEnumFactory()); // bb
+          this.type = new StringType(); // bb
       return this.type;
     }
 
@@ -2584,7 +1866,7 @@ public class MolecularSequence extends DomainResource {
      *              underlying object with id, value and extensions. The accessor
      *              "getType" gives direct access to the value
      */
-    public MolecularSequenceQualityComponent setTypeElement(Enumeration<QualityType> value) {
+    public MolecularSequenceQualityComponent setTypeElement(StringType value) {
       this.type = value;
       return this;
     }
@@ -2592,16 +1874,16 @@ public class MolecularSequence extends DomainResource {
     /**
      * @return INDEL / SNP / Undefined variant.
      */
-    public QualityType getType() {
-      return this.type == null ? null : this.type.getValue();
+    public StringType getType() {
+      return this.type == null ? null : this.type;
     }
 
     /**
      * @param value INDEL / SNP / Undefined variant.
      */
-    public MolecularSequenceQualityComponent setType(QualityType value) {
+    public MolecularSequenceQualityComponent setType(String value) {
       if (this.type == null)
-        this.type = new Enumeration<QualityType>(new QualityTypeEnumFactory());
+        this.type = new StringType();
       this.type.setValue(value);
       return this;
     }
@@ -3504,7 +2786,7 @@ public class MolecularSequence extends DomainResource {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("type", "code", "INDEL / SNP / Undefined variant.", 0, 1, type));
+      children.add(new Property("type", "string", "INDEL / SNP / Undefined variant.", 0, 1, type));
       children.add(new Property("standardSequence", "CodeableConcept",
           "Gold standard sequence used for comparing against.", 0, 1, standardSequence));
       children.add(new Property("start", "integer",
@@ -3546,7 +2828,7 @@ public class MolecularSequence extends DomainResource {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 3575610:
-        /* type */ return new Property("type", "code", "INDEL / SNP / Undefined variant.", 0, 1, type);
+        /* type */ return new Property("type", "string", "INDEL / SNP / Undefined variant.", 0, 1, type);
       case -1861227106:
         /* standardSequence */ return new Property("standardSequence", "CodeableConcept",
             "Gold standard sequence used for comparing against.", 0, 1, standardSequence);
@@ -3607,7 +2889,7 @@ public class MolecularSequence extends DomainResource {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 3575610:
-        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<QualityType>
+        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
       case -1861227106:
         /* standardSequence */ return this.standardSequence == null ? new Base[0]
             : new Base[] { this.standardSequence }; // CodeableConcept
@@ -3647,8 +2929,7 @@ public class MolecularSequence extends DomainResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3575610: // type
-        value = new QualityTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<QualityType>
+        this.type = castToString(value); // StringType
         return value;
       case -1861227106: // standardSequence
         this.standardSequence = castToCodeableConcept(value); // CodeableConcept
@@ -3701,8 +2982,7 @@ public class MolecularSequence extends DomainResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("type")) {
-        value = new QualityTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<QualityType>
+        this.type = castToString(value); // StringType
       } else if (name.equals("standardSequence")) {
         this.standardSequence = castToCodeableConcept(value); // CodeableConcept
       } else if (name.equals("start")) {
@@ -3816,7 +3096,7 @@ public class MolecularSequence extends DomainResource {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 3575610:
-        /* type */ return new String[] { "code" };
+        /* type */ return new String[] { "string" };
       case -1861227106:
         /* standardSequence */ return new String[] { "CodeableConcept" };
       case 109757538:
@@ -4806,10 +4086,10 @@ public class MolecularSequence extends DomainResource {
      * Click and see / RESTful API / Need login to see / RESTful API with
      * authentication / Other ways to see resource.
      */
-    @Child(name = "type", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "type", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "directlink | openapi | login | oauth | other", formalDefinition = "Click and see / RESTful API / Need login to see / RESTful API with authentication / Other ways to see resource.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/repository-type")
-    protected Enumeration<RepositoryType> type;
+    protected StringType type;
 
     /**
      * URI of an external repository which contains further details about the
@@ -4866,7 +4146,7 @@ public class MolecularSequence extends DomainResource {
     /**
      * Constructor
      */
-    public MolecularSequenceRepositoryComponent(Enumeration<RepositoryType> type) {
+    public MolecularSequenceRepositoryComponent(StringType type) {
       super();
       this.type = type;
     }
@@ -4877,12 +4157,12 @@ public class MolecularSequence extends DomainResource {
      *         is the underlying object with id, value and extensions. The accessor
      *         "getType" gives direct access to the value
      */
-    public Enumeration<RepositoryType> getTypeElement() {
+    public StringType getTypeElement() {
       if (this.type == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create MolecularSequenceRepositoryComponent.type");
         else if (Configuration.doAutoCreate())
-          this.type = new Enumeration<RepositoryType>(new RepositoryTypeEnumFactory()); // bb
+          this.type = new StringType(); // bb
       return this.type;
     }
 
@@ -4900,7 +4180,7 @@ public class MolecularSequence extends DomainResource {
      *              This is the underlying object with id, value and extensions. The
      *              accessor "getType" gives direct access to the value
      */
-    public MolecularSequenceRepositoryComponent setTypeElement(Enumeration<RepositoryType> value) {
+    public MolecularSequenceRepositoryComponent setTypeElement(StringType value) {
       this.type = value;
       return this;
     }
@@ -4909,17 +4189,17 @@ public class MolecularSequence extends DomainResource {
      * @return Click and see / RESTful API / Need login to see / RESTful API with
      *         authentication / Other ways to see resource.
      */
-    public RepositoryType getType() {
-      return this.type == null ? null : this.type.getValue();
+    public StringType getType() {
+      return this.type == null ? null : this.type;
     }
 
     /**
      * @param value Click and see / RESTful API / Need login to see / RESTful API
      *              with authentication / Other ways to see resource.
      */
-    public MolecularSequenceRepositoryComponent setType(RepositoryType value) {
+    public MolecularSequenceRepositoryComponent setType(String value) {
       if (this.type == null)
-        this.type = new Enumeration<RepositoryType>(new RepositoryTypeEnumFactory());
+        this.type = new StringType();
       this.type.setValue(value);
       return this;
     }
@@ -5216,7 +4496,7 @@ public class MolecularSequence extends DomainResource {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("type", "code",
+      children.add(new Property("type", "string",
           "Click and see / RESTful API / Need login to see / RESTful API with authentication / Other ways to see resource.",
           0, 1, type));
       children.add(new Property("url", "uri",
@@ -5236,7 +4516,7 @@ public class MolecularSequence extends DomainResource {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 3575610:
-        /* type */ return new Property("type", "code",
+        /* type */ return new Property("type", "string",
             "Click and see / RESTful API / Need login to see / RESTful API with authentication / Other ways to see resource.",
             0, 1, type);
       case 116079:
@@ -5266,7 +4546,7 @@ public class MolecularSequence extends DomainResource {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 3575610:
-        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<RepositoryType>
+        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
       case 116079:
         /* url */ return this.url == null ? new Base[0] : new Base[] { this.url }; // UriType
       case 3373707:
@@ -5287,8 +4567,7 @@ public class MolecularSequence extends DomainResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3575610: // type
-        value = new RepositoryTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<RepositoryType>
+        this.type = castToString(value); // StringType
         return value;
       case 116079: // url
         this.url = castToUri(value); // UriType
@@ -5314,8 +4593,7 @@ public class MolecularSequence extends DomainResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("type")) {
-        value = new RepositoryTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<RepositoryType>
+        this.type = castToString(value); // StringType
       } else if (name.equals("url")) {
         this.url = castToUri(value); // UriType
       } else if (name.equals("name")) {
@@ -5375,7 +4653,7 @@ public class MolecularSequence extends DomainResource {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 3575610:
-        /* type */ return new String[] { "code" };
+        /* type */ return new String[] { "string" };
       case 116079:
         /* url */ return new String[] { "uri" };
       case 3373707:
@@ -6513,10 +5791,10 @@ public class MolecularSequence extends DomainResource {
   /**
    * Amino Acid Sequence/ DNA Sequence / RNA Sequence.
    */
-  @Child(name = "type", type = { CodeType.class }, order = 1, min = 0, max = 1, modifier = false, summary = true)
+  @Child(name = "type", type = { StringType.class }, order = 1, min = 0, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "aa | dna | rna", formalDefinition = "Amino Acid Sequence/ DNA Sequence / RNA Sequence.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/sequence-type")
-  protected Enumeration<SequenceType> type;
+  protected StringType type;
 
   /**
    * Whether the sequence is numbered starting at 0 (0-based numbering or
@@ -6740,12 +6018,12 @@ public class MolecularSequence extends DomainResource {
    *         This is the underlying object with id, value and extensions. The
    *         accessor "getType" gives direct access to the value
    */
-  public Enumeration<SequenceType> getTypeElement() {
+  public StringType getTypeElement() {
     if (this.type == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create MolecularSequence.type");
       else if (Configuration.doAutoCreate())
-        this.type = new Enumeration<SequenceType>(new SequenceTypeEnumFactory()); // bb
+        this.type = new StringType(); // bb
     return this.type;
   }
 
@@ -6763,7 +6041,7 @@ public class MolecularSequence extends DomainResource {
    *              extensions. The accessor "getType" gives direct access to the
    *              value
    */
-  public MolecularSequence setTypeElement(Enumeration<SequenceType> value) {
+  public MolecularSequence setTypeElement(StringType value) {
     this.type = value;
     return this;
   }
@@ -6771,19 +6049,19 @@ public class MolecularSequence extends DomainResource {
   /**
    * @return Amino Acid Sequence/ DNA Sequence / RNA Sequence.
    */
-  public SequenceType getType() {
-    return this.type == null ? null : this.type.getValue();
+  public StringType getType() {
+    return this.type == null ? null : this.type;
   }
 
   /**
    * @param value Amino Acid Sequence/ DNA Sequence / RNA Sequence.
    */
-  public MolecularSequence setType(SequenceType value) {
+  public MolecularSequence setType(String value) {
     if (value == null)
       this.type = null;
     else {
       if (this.type == null)
-        this.type = new Enumeration<SequenceType>(new SequenceTypeEnumFactory());
+        this.type = new StringType();
       this.type.setValue(value);
     }
     return this;
@@ -7514,7 +6792,7 @@ public class MolecularSequence extends DomainResource {
     children.add(new Property("identifier", "Identifier",
         "A unique identifier for this particular sequence instance. This is a FHIR-defined id.", 0,
         java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("type", "code", "Amino Acid Sequence/ DNA Sequence / RNA Sequence.", 0, 1, type));
+    children.add(new Property("type", "string", "Amino Acid Sequence/ DNA Sequence / RNA Sequence.", 0, 1, type));
     children.add(new Property("coordinateSystem", "integer",
         "Whether the sequence is numbered starting at 0 (0-based numbering or coordinates, inclusive start, exclusive end) or starting at 1 (1-based numbering, inclusive start and inclusive end).",
         0, 1, coordinateSystem));
@@ -7560,7 +6838,7 @@ public class MolecularSequence extends DomainResource {
           "A unique identifier for this particular sequence instance. This is a FHIR-defined id.", 0,
           java.lang.Integer.MAX_VALUE, identifier);
     case 3575610:
-      /* type */ return new Property("type", "code", "Amino Acid Sequence/ DNA Sequence / RNA Sequence.", 0, 1, type);
+      /* type */ return new Property("type", "string", "Amino Acid Sequence/ DNA Sequence / RNA Sequence.", 0, 1, type);
     case 354212295:
       /* coordinateSystem */ return new Property("coordinateSystem", "integer",
           "Whether the sequence is numbered starting at 0 (0-based numbering or coordinates, inclusive start, exclusive end) or starting at 1 (1-based numbering, inclusive start and inclusive end).",
@@ -7624,7 +6902,7 @@ public class MolecularSequence extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case 3575610:
-      /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<SequenceType>
+      /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
     case 354212295:
       /* coordinateSystem */ return this.coordinateSystem == null ? new Base[0] : new Base[] { this.coordinateSystem }; // IntegerType
     case -791418107:
@@ -7668,8 +6946,7 @@ public class MolecularSequence extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case 3575610: // type
-      value = new SequenceTypeEnumFactory().fromType(castToCode(value));
-      this.type = (Enumeration) value; // Enumeration<SequenceType>
+      this.type = castToString(value); // StringType
       return value;
     case 354212295: // coordinateSystem
       this.coordinateSystem = castToInteger(value); // IntegerType
@@ -7724,8 +7001,7 @@ public class MolecularSequence extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("type")) {
-      value = new SequenceTypeEnumFactory().fromType(castToCode(value));
-      this.type = (Enumeration) value; // Enumeration<SequenceType>
+      this.type = castToString(value); // StringType
     } else if (name.equals("coordinateSystem")) {
       this.coordinateSystem = castToInteger(value); // IntegerType
     } else if (name.equals("patient")) {
@@ -7845,7 +7121,7 @@ public class MolecularSequence extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case 3575610:
-      /* type */ return new String[] { "code" };
+      /* type */ return new String[] { "string" };
     case 354212295:
       /* coordinateSystem */ return new String[] { "integer" };
     case -791418107:

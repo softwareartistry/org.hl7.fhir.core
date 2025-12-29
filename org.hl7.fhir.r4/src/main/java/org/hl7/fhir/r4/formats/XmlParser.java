@@ -17050,8 +17050,7 @@ public class XmlParser extends XmlParserBase {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("identifier")) {
       res.getIdentifier().add(parseIdentifier(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("type")) {
-      res.setTypeElement(
-          parseEnumeration(xpp, MolecularSequence.SequenceType.NULL, new MolecularSequence.SequenceTypeEnumFactory()));
+      res.setTypeElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("coordinateSystem")) {
       res.setCoordinateSystemElement(parseInteger(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("patient")) {
@@ -17109,8 +17108,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("genomeBuild")) {
       res.setGenomeBuildElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("orientation")) {
-      res.setOrientationElement(parseEnumeration(xpp, MolecularSequence.OrientationType.NULL,
-          new MolecularSequence.OrientationTypeEnumFactory()));
+      res.setOrientationElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("referenceSeqId")) {
       res.setReferenceSeqId(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("referenceSeqPointer")) {
@@ -17118,8 +17116,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("referenceSeqString")) {
       res.setReferenceSeqStringElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("strand")) {
-      res.setStrandElement(
-          parseEnumeration(xpp, MolecularSequence.StrandType.NULL, new MolecularSequence.StrandTypeEnumFactory()));
+      res.setStrandElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("windowStart")) {
       res.setWindowStartElement(parseInteger(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("windowEnd")) {
@@ -17185,8 +17182,7 @@ public class XmlParser extends XmlParserBase {
       MolecularSequence owner, MolecularSequence.MolecularSequenceQualityComponent res)
       throws XmlPullParserException, IOException, FHIRFormatError {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("type")) {
-      res.setTypeElement(
-          parseEnumeration(xpp, MolecularSequence.QualityType.NULL, new MolecularSequence.QualityTypeEnumFactory()));
+      res.setTypeElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("standardSequence")) {
       res.setStandardSequence(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("start")) {
@@ -17278,8 +17274,7 @@ public class XmlParser extends XmlParserBase {
       MolecularSequence owner, MolecularSequence.MolecularSequenceRepositoryComponent res)
       throws XmlPullParserException, IOException, FHIRFormatError {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("type")) {
-      res.setTypeElement(parseEnumeration(xpp, MolecularSequence.RepositoryType.NULL,
-          new MolecularSequence.RepositoryTypeEnumFactory()));
+      res.setTypeElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("url")) {
       res.setUrlElement(parseUri(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("name")) {
@@ -44349,7 +44344,7 @@ public class XmlParser extends XmlParserBase {
         composeIdentifier("identifier", e);
     }
     if (element.hasTypeElement())
-      composeEnumeration("type", element.getTypeElement(), new MolecularSequence.SequenceTypeEnumFactory());
+      composeString("type", element.getTypeElement());
     if (element.hasCoordinateSystemElement()) {
       composeInteger("coordinateSystem", element.getCoordinateSystemElement());
     }
@@ -44420,8 +44415,7 @@ public class XmlParser extends XmlParserBase {
       composeString("genomeBuild", element.getGenomeBuildElement());
     }
     if (element.hasOrientationElement())
-      composeEnumeration("orientation", element.getOrientationElement(),
-          new MolecularSequence.OrientationTypeEnumFactory());
+      composeString("orientation", element.getOrientationElement());
     if (element.hasReferenceSeqId()) {
       composeCodeableConcept("referenceSeqId", element.getReferenceSeqId());
     }
@@ -44432,7 +44426,7 @@ public class XmlParser extends XmlParserBase {
       composeString("referenceSeqString", element.getReferenceSeqStringElement());
     }
     if (element.hasStrandElement())
-      composeEnumeration("strand", element.getStrandElement(), new MolecularSequence.StrandTypeEnumFactory());
+      composeString("strand", element.getStrandElement());
     if (element.hasWindowStartElement()) {
       composeInteger("windowStart", element.getWindowStartElement());
     }
@@ -44490,7 +44484,7 @@ public class XmlParser extends XmlParserBase {
       MolecularSequence.MolecularSequenceQualityComponent element) throws IOException {
     composeBackboneElementElements(element);
     if (element.hasTypeElement())
-      composeEnumeration("type", element.getTypeElement(), new MolecularSequence.QualityTypeEnumFactory());
+      composeString("type", element.getTypeElement());
     if (element.hasStandardSequence()) {
       composeCodeableConcept("standardSequence", element.getStandardSequence());
     }
@@ -44594,7 +44588,7 @@ public class XmlParser extends XmlParserBase {
       MolecularSequence.MolecularSequenceRepositoryComponent element) throws IOException {
     composeBackboneElementElements(element);
     if (element.hasTypeElement())
-      composeEnumeration("type", element.getTypeElement(), new MolecularSequence.RepositoryTypeEnumFactory());
+      composeString("type", element.getTypeElement());
     if (element.hasUrlElement()) {
       composeUri("url", element.getUrlElement());
     }

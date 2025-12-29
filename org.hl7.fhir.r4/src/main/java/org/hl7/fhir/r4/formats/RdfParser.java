@@ -12375,7 +12375,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "MolecularSequence", "identifier", element.getIdentifier().get(i), i);
     if (element.hasTypeElement())
-      composeEnum(t, "MolecularSequence", "type", element.getTypeElement(), -1);
+      composeString(t, "MolecularSequence", "type", element.getTypeElement(), -1);
     if (element.hasCoordinateSystemElement())
       composeInteger(t, "MolecularSequence", "coordinateSystem", element.getCoordinateSystemElement(), -1);
     if (element.hasPatient())
@@ -12427,7 +12427,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasGenomeBuildElement())
       composeString(t, "MolecularSequence", "genomeBuild", element.getGenomeBuildElement(), -1);
     if (element.hasOrientationElement())
-      composeEnum(t, "MolecularSequence", "orientation", element.getOrientationElement(), -1);
+      composeString(t, "MolecularSequence", "orientation", element.getOrientationElement(), -1);
     if (element.hasReferenceSeqId())
       composeCodeableConcept(t, "MolecularSequence", "referenceSeqId", element.getReferenceSeqId(), -1);
     if (element.hasReferenceSeqPointer())
@@ -12435,7 +12435,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasReferenceSeqStringElement())
       composeString(t, "MolecularSequence", "referenceSeqString", element.getReferenceSeqStringElement(), -1);
     if (element.hasStrandElement())
-      composeEnum(t, "MolecularSequence", "strand", element.getStrandElement(), -1);
+      composeString(t, "MolecularSequence", "strand", element.getStrandElement(), -1);
     if (element.hasWindowStartElement())
       composeInteger(t, "MolecularSequence", "windowStart", element.getWindowStartElement(), -1);
     if (element.hasWindowEndElement())
@@ -12479,7 +12479,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "quality", name, element, index);
     if (element.hasTypeElement())
-      composeEnum(t, "MolecularSequence", "type", element.getTypeElement(), -1);
+      composeString(t, "MolecularSequence", "type", element.getTypeElement(), -1);
     if (element.hasStandardSequence())
       composeCodeableConcept(t, "MolecularSequence", "standardSequence", element.getStandardSequence(), -1);
     if (element.hasStartElement())
@@ -12549,7 +12549,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "repository", name, element, index);
     if (element.hasTypeElement())
-      composeEnum(t, "MolecularSequence", "type", element.getTypeElement(), -1);
+      composeString(t, "MolecularSequence", "type", element.getTypeElement(), -1);
     if (element.hasUrlElement())
       composeUri(t, "MolecularSequence", "url", element.getUrlElement(), -1);
     if (element.hasNameElement())
