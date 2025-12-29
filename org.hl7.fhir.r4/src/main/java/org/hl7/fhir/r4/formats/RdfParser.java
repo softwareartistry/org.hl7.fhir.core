@@ -10112,7 +10112,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "hoursOfOperation", name, element, index);
     for (int i = 0; i < element.getDaysOfWeek().size(); i++)
-      composeEnum(t, "Location", "daysOfWeek", element.getDaysOfWeek().get(i), i);
+      composeString(t, "Location", "daysOfWeek", element.getDaysOfWeek().get(i), i);
     if (element.hasAllDayElement())
       composeBoolean(t, "Location", "allDay", element.getAllDayElement(), -1);
     if (element.hasOpeningTimeElement())

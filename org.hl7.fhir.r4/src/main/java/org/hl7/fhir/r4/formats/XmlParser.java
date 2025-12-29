@@ -13937,7 +13937,7 @@ public class XmlParser extends XmlParserBase {
       Location owner, Location.LocationHoursOfOperationComponent res)
       throws XmlPullParserException, IOException, FHIRFormatError {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("daysOfWeek")) {
-      res.getDaysOfWeek().add(parseEnumeration(xpp, Location.DaysOfWeek.NULL, new Location.DaysOfWeekEnumFactory()));
+      res.getDaysOfWeek().add(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("allDay")) {
       res.setAllDayElement(parseBoolean(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("openingTime")) {
@@ -41242,8 +41242,8 @@ public class XmlParser extends XmlParserBase {
       Location.LocationHoursOfOperationComponent element) throws IOException {
     composeBackboneElementElements(element);
     if (element.hasDaysOfWeek())
-      for (Enumeration<Location.DaysOfWeek> e : element.getDaysOfWeek())
-        composeEnumeration("daysOfWeek", e, new Location.DaysOfWeekEnumFactory());
+      for (StringType e : element.getDaysOfWeek())
+        composeString("daysOfWeek", e);
     if (element.hasAllDayElement()) {
       composeBoolean("allDay", element.getAllDayElement());
     }
