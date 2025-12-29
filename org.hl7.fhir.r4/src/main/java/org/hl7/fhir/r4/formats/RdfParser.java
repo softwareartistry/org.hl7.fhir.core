@@ -14217,7 +14217,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "entity", name, element, index);
     if (element.hasRoleElement())
-      composeEnum(t, "Provenance", "role", element.getRoleElement(), -1);
+      composeString(t, "Provenance", "role", element.getRoleElement(), -1);
     if (element.hasWhat())
       composeReference(t, "Provenance", "what", element.getWhat(), -1);
     for (int i = 0; i < element.getAgent().size(); i++)

@@ -19555,8 +19555,7 @@ public class XmlParser extends XmlParserBase {
   protected boolean parseProvenanceProvenanceEntityComponentContent(int eventType, XmlPullParser xpp, Provenance owner,
       Provenance.ProvenanceEntityComponent res) throws XmlPullParserException, IOException, FHIRFormatError {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("role")) {
-      res.setRoleElement(parseEnumeration(xpp, Provenance.ProvenanceEntityRole.NULL,
-          new Provenance.ProvenanceEntityRoleEnumFactory()));
+      res.setRoleElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("what")) {
       res.setWhat(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("agent")) {
@@ -46945,7 +46944,7 @@ public class XmlParser extends XmlParserBase {
       throws IOException {
     composeBackboneElementElements(element);
     if (element.hasRoleElement())
-      composeEnumeration("role", element.getRoleElement(), new Provenance.ProvenanceEntityRoleEnumFactory());
+      composeString("role", element.getRoleElement());
     if (element.hasWhat()) {
       composeReference("what", element.getWhat());
     }

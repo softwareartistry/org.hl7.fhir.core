@@ -24261,8 +24261,7 @@ public class JsonParser extends JsonParserBase {
                                                                     Provenance.ProvenanceEntityComponent res) throws IOException, FHIRFormatError {
     parseBackboneElementProperties(json, res);
     if (json.has("role"))
-      res.setRoleElement(parseEnumeration(json.get("role").getAsString(), Provenance.ProvenanceEntityRole.NULL,
-        new Provenance.ProvenanceEntityRoleEnumFactory()));
+      res.setRoleElement(parseString(json.get("role").getAsString()));
     if (json.has("_role"))
       parseElementProperties(getJObject(json, "_role"), res.getRoleElement());
     if (json.has("what"))
@@ -57476,9 +57475,8 @@ public class JsonParser extends JsonParserBase {
     throws IOException {
     composeBackbone(element);
     if (element.hasRoleElement()) {
-      composeEnumerationCore("role", element.getRoleElement(), new Provenance.ProvenanceEntityRoleEnumFactory(), false);
-      composeEnumerationExtras("role", element.getRoleElement(), new Provenance.ProvenanceEntityRoleEnumFactory(),
-        false);
+      composeStringCore("role", element.getRoleElement(), false);
+      composeStringExtras("role", element.getRoleElement(), false);
     }
     if (element.hasWhat()) {
       composeReference("what", element.getWhat());
