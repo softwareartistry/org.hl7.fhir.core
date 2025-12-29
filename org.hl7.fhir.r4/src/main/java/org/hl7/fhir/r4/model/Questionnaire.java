@@ -59,793 +59,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
     "approvalDate", "lastReviewDate", "effectivePeriod", "code", "item" })
 public class Questionnaire extends MetadataResource {
 
-  public enum QuestionnaireItemType {
-    /**
-     * An item with no direct answer but should have at least one child item.
-     */
-    GROUP,
-    /**
-     * Text for display that will not capture an answer or have child items.
-     */
-    DISPLAY,
-    /**
-     * An item that defines a specific answer to be captured, and which may have
-     * child items. (the answer provided in the QuestionnaireResponse should be of
-     * the defined datatype).
-     */
-    QUESTION,
-    /**
-     * Question with a yes/no answer (valueBoolean).
-     */
-    BOOLEAN,
-    /**
-     * Question with is a real number answer (valueDecimal).
-     */
-    DECIMAL,
-    /**
-     * Question with an integer answer (valueInteger).
-     */
-    INTEGER,
-    /**
-     * Question with a date answer (valueDate).
-     */
-    DATE,
-    /**
-     * Question with a date and time answer (valueDateTime).
-     */
-    DATETIME,
-    /**
-     * Question with a time (hour:minute:second) answer independent of date.
-     * (valueTime).
-     */
-    TIME,
-    /**
-     * Question with a short (few words to short sentence) free-text entry answer
-     * (valueString).
-     */
-    STRING,
-    /**
-     * Question with a long (potentially multi-paragraph) free-text entry answer
-     * (valueString).
-     */
-    TEXT,
-    /**
-     * Question with a URL (website, FTP site, etc.) answer (valueUri).
-     */
-    URL,
-    /**
-     * Question with a Coding drawn from a list of possible answers (specified in
-     * either the answerOption property, or via the valueset referenced in the
-     * answerValueSet property) as an answer (valueCoding).
-     */
-    CHOICE,
-    /**
-     * Answer is a Coding drawn from a list of possible answers (as with the choice
-     * type) or a free-text entry in a string (valueCoding or valueString).
-     */
-    OPENCHOICE,
-    /**
-     * Question with binary content such as an image, PDF, etc. as an answer
-     * (valueAttachment).
-     */
-    ATTACHMENT,
-    /**
-     * Question with a reference to another resource (practitioner, organization,
-     * etc.) as an answer (valueReference).
-     */
-    REFERENCE,
-    /**
-     * Question with a combination of a numeric value and unit, potentially with a
-     * comparator (<, >, etc.) as an answer. (valueQuantity) There is an extension
-     * 'http://hl7.org/fhir/StructureDefinition/questionnaire-unit' that can be used
-     * to define what unit should be captured (or the unit that has a ucum
-     * conversion from the provided unit).
-     */
-    QUANTITY,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static QuestionnaireItemType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("group".equals(codeString))
-        return GROUP;
-      if ("display".equals(codeString))
-        return DISPLAY;
-      if ("question".equals(codeString))
-        return QUESTION;
-      if ("boolean".equals(codeString))
-        return BOOLEAN;
-      if ("decimal".equals(codeString))
-        return DECIMAL;
-      if ("integer".equals(codeString))
-        return INTEGER;
-      if ("date".equals(codeString))
-        return DATE;
-      if ("dateTime".equals(codeString))
-        return DATETIME;
-      if ("time".equals(codeString))
-        return TIME;
-      if ("string".equals(codeString))
-        return STRING;
-      if ("text".equals(codeString))
-        return TEXT;
-      if ("url".equals(codeString))
-        return URL;
-      if ("choice".equals(codeString))
-        return CHOICE;
-      if ("open-choice".equals(codeString))
-        return OPENCHOICE;
-      if ("attachment".equals(codeString))
-        return ATTACHMENT;
-      if ("reference".equals(codeString))
-        return REFERENCE;
-      if ("quantity".equals(codeString))
-        return QUANTITY;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown QuestionnaireItemType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case GROUP:
-        return "group";
-      case DISPLAY:
-        return "display";
-      case QUESTION:
-        return "question";
-      case BOOLEAN:
-        return "boolean";
-      case DECIMAL:
-        return "decimal";
-      case INTEGER:
-        return "integer";
-      case DATE:
-        return "date";
-      case DATETIME:
-        return "dateTime";
-      case TIME:
-        return "time";
-      case STRING:
-        return "string";
-      case TEXT:
-        return "text";
-      case URL:
-        return "url";
-      case CHOICE:
-        return "choice";
-      case OPENCHOICE:
-        return "open-choice";
-      case ATTACHMENT:
-        return "attachment";
-      case REFERENCE:
-        return "reference";
-      case QUANTITY:
-        return "quantity";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case GROUP:
-        return "http://hl7.org/fhir/item-type";
-      case DISPLAY:
-        return "http://hl7.org/fhir/item-type";
-      case QUESTION:
-        return "http://hl7.org/fhir/item-type";
-      case BOOLEAN:
-        return "http://hl7.org/fhir/item-type";
-      case DECIMAL:
-        return "http://hl7.org/fhir/item-type";
-      case INTEGER:
-        return "http://hl7.org/fhir/item-type";
-      case DATE:
-        return "http://hl7.org/fhir/item-type";
-      case DATETIME:
-        return "http://hl7.org/fhir/item-type";
-      case TIME:
-        return "http://hl7.org/fhir/item-type";
-      case STRING:
-        return "http://hl7.org/fhir/item-type";
-      case TEXT:
-        return "http://hl7.org/fhir/item-type";
-      case URL:
-        return "http://hl7.org/fhir/item-type";
-      case CHOICE:
-        return "http://hl7.org/fhir/item-type";
-      case OPENCHOICE:
-        return "http://hl7.org/fhir/item-type";
-      case ATTACHMENT:
-        return "http://hl7.org/fhir/item-type";
-      case REFERENCE:
-        return "http://hl7.org/fhir/item-type";
-      case QUANTITY:
-        return "http://hl7.org/fhir/item-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case GROUP:
-        return "An item with no direct answer but should have at least one child item.";
-      case DISPLAY:
-        return "Text for display that will not capture an answer or have child items.";
-      case QUESTION:
-        return "An item that defines a specific answer to be captured, and which may have child items. (the answer provided in the QuestionnaireResponse should be of the defined datatype).";
-      case BOOLEAN:
-        return "Question with a yes/no answer (valueBoolean).";
-      case DECIMAL:
-        return "Question with is a real number answer (valueDecimal).";
-      case INTEGER:
-        return "Question with an integer answer (valueInteger).";
-      case DATE:
-        return "Question with a date answer (valueDate).";
-      case DATETIME:
-        return "Question with a date and time answer (valueDateTime).";
-      case TIME:
-        return "Question with a time (hour:minute:second) answer independent of date. (valueTime).";
-      case STRING:
-        return "Question with a short (few words to short sentence) free-text entry answer (valueString).";
-      case TEXT:
-        return "Question with a long (potentially multi-paragraph) free-text entry answer (valueString).";
-      case URL:
-        return "Question with a URL (website, FTP site, etc.) answer (valueUri).";
-      case CHOICE:
-        return "Question with a Coding drawn from a list of possible answers (specified in either the answerOption property, or via the valueset referenced in the answerValueSet property) as an answer (valueCoding).";
-      case OPENCHOICE:
-        return "Answer is a Coding drawn from a list of possible answers (as with the choice type) or a free-text entry in a string (valueCoding or valueString).";
-      case ATTACHMENT:
-        return "Question with binary content such as an image, PDF, etc. as an answer (valueAttachment).";
-      case REFERENCE:
-        return "Question with a reference to another resource (practitioner, organization, etc.) as an answer (valueReference).";
-      case QUANTITY:
-        return "Question with a combination of a numeric value and unit, potentially with a comparator (<, >, etc.) as an answer. (valueQuantity) There is an extension 'http://hl7.org/fhir/StructureDefinition/questionnaire-unit' that can be used to define what unit should be captured (or the unit that has a ucum conversion from the provided unit).";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case GROUP:
-        return "Group";
-      case DISPLAY:
-        return "Display";
-      case QUESTION:
-        return "Question";
-      case BOOLEAN:
-        return "Boolean";
-      case DECIMAL:
-        return "Decimal";
-      case INTEGER:
-        return "Integer";
-      case DATE:
-        return "Date";
-      case DATETIME:
-        return "Date Time";
-      case TIME:
-        return "Time";
-      case STRING:
-        return "String";
-      case TEXT:
-        return "Text";
-      case URL:
-        return "Url";
-      case CHOICE:
-        return "Choice";
-      case OPENCHOICE:
-        return "Open Choice";
-      case ATTACHMENT:
-        return "Attachment";
-      case REFERENCE:
-        return "Reference";
-      case QUANTITY:
-        return "Quantity";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class QuestionnaireItemTypeEnumFactory implements EnumFactory<QuestionnaireItemType> {
-    public QuestionnaireItemType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("group".equals(codeString))
-        return QuestionnaireItemType.GROUP;
-      if ("display".equals(codeString))
-        return QuestionnaireItemType.DISPLAY;
-      if ("question".equals(codeString))
-        return QuestionnaireItemType.QUESTION;
-      if ("boolean".equals(codeString))
-        return QuestionnaireItemType.BOOLEAN;
-      if ("decimal".equals(codeString))
-        return QuestionnaireItemType.DECIMAL;
-      if ("integer".equals(codeString))
-        return QuestionnaireItemType.INTEGER;
-      if ("date".equals(codeString))
-        return QuestionnaireItemType.DATE;
-      if ("dateTime".equals(codeString))
-        return QuestionnaireItemType.DATETIME;
-      if ("time".equals(codeString))
-        return QuestionnaireItemType.TIME;
-      if ("string".equals(codeString))
-        return QuestionnaireItemType.STRING;
-      if ("text".equals(codeString))
-        return QuestionnaireItemType.TEXT;
-      if ("url".equals(codeString))
-        return QuestionnaireItemType.URL;
-      if ("choice".equals(codeString))
-        return QuestionnaireItemType.CHOICE;
-      if ("open-choice".equals(codeString))
-        return QuestionnaireItemType.OPENCHOICE;
-      if ("attachment".equals(codeString))
-        return QuestionnaireItemType.ATTACHMENT;
-      if ("reference".equals(codeString))
-        return QuestionnaireItemType.REFERENCE;
-      if ("quantity".equals(codeString))
-        return QuestionnaireItemType.QUANTITY;
-      throw new IllegalArgumentException("Unknown QuestionnaireItemType code '" + codeString + "'");
-    }
-
-    public Enumeration<QuestionnaireItemType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<QuestionnaireItemType>(this, QuestionnaireItemType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<QuestionnaireItemType>(this, QuestionnaireItemType.NULL, code);
-      if ("group".equals(codeString))
-        return new Enumeration<QuestionnaireItemType>(this, QuestionnaireItemType.GROUP, code);
-      if ("display".equals(codeString))
-        return new Enumeration<QuestionnaireItemType>(this, QuestionnaireItemType.DISPLAY, code);
-      if ("question".equals(codeString))
-        return new Enumeration<QuestionnaireItemType>(this, QuestionnaireItemType.QUESTION, code);
-      if ("boolean".equals(codeString))
-        return new Enumeration<QuestionnaireItemType>(this, QuestionnaireItemType.BOOLEAN, code);
-      if ("decimal".equals(codeString))
-        return new Enumeration<QuestionnaireItemType>(this, QuestionnaireItemType.DECIMAL, code);
-      if ("integer".equals(codeString))
-        return new Enumeration<QuestionnaireItemType>(this, QuestionnaireItemType.INTEGER, code);
-      if ("date".equals(codeString))
-        return new Enumeration<QuestionnaireItemType>(this, QuestionnaireItemType.DATE, code);
-      if ("dateTime".equals(codeString))
-        return new Enumeration<QuestionnaireItemType>(this, QuestionnaireItemType.DATETIME, code);
-      if ("time".equals(codeString))
-        return new Enumeration<QuestionnaireItemType>(this, QuestionnaireItemType.TIME, code);
-      if ("string".equals(codeString))
-        return new Enumeration<QuestionnaireItemType>(this, QuestionnaireItemType.STRING, code);
-      if ("text".equals(codeString))
-        return new Enumeration<QuestionnaireItemType>(this, QuestionnaireItemType.TEXT, code);
-      if ("url".equals(codeString))
-        return new Enumeration<QuestionnaireItemType>(this, QuestionnaireItemType.URL, code);
-      if ("choice".equals(codeString))
-        return new Enumeration<QuestionnaireItemType>(this, QuestionnaireItemType.CHOICE, code);
-      if ("open-choice".equals(codeString))
-        return new Enumeration<QuestionnaireItemType>(this, QuestionnaireItemType.OPENCHOICE, code);
-      if ("attachment".equals(codeString))
-        return new Enumeration<QuestionnaireItemType>(this, QuestionnaireItemType.ATTACHMENT, code);
-      if ("reference".equals(codeString))
-        return new Enumeration<QuestionnaireItemType>(this, QuestionnaireItemType.REFERENCE, code);
-      if ("quantity".equals(codeString))
-        return new Enumeration<QuestionnaireItemType>(this, QuestionnaireItemType.QUANTITY, code);
-      throw new FHIRException("Unknown QuestionnaireItemType code '" + codeString + "'");
-    }
-
-    public String toCode(QuestionnaireItemType code) {
-       if (code == QuestionnaireItemType.NULL)
-           return null;
-       if (code == QuestionnaireItemType.GROUP)
-        return "group";
-      if (code == QuestionnaireItemType.DISPLAY)
-        return "display";
-      if (code == QuestionnaireItemType.QUESTION)
-        return "question";
-      if (code == QuestionnaireItemType.BOOLEAN)
-        return "boolean";
-      if (code == QuestionnaireItemType.DECIMAL)
-        return "decimal";
-      if (code == QuestionnaireItemType.INTEGER)
-        return "integer";
-      if (code == QuestionnaireItemType.DATE)
-        return "date";
-      if (code == QuestionnaireItemType.DATETIME)
-        return "dateTime";
-      if (code == QuestionnaireItemType.TIME)
-        return "time";
-      if (code == QuestionnaireItemType.STRING)
-        return "string";
-      if (code == QuestionnaireItemType.TEXT)
-        return "text";
-      if (code == QuestionnaireItemType.URL)
-        return "url";
-      if (code == QuestionnaireItemType.CHOICE)
-        return "choice";
-      if (code == QuestionnaireItemType.OPENCHOICE)
-        return "open-choice";
-      if (code == QuestionnaireItemType.ATTACHMENT)
-        return "attachment";
-      if (code == QuestionnaireItemType.REFERENCE)
-        return "reference";
-      if (code == QuestionnaireItemType.QUANTITY)
-        return "quantity";
-      return "?";
-   }
-
-    public String toSystem(QuestionnaireItemType code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum QuestionnaireItemOperator {
-    /**
-     * True if whether an answer exists is equal to the enableWhen answer (which
-     * must be a boolean).
-     */
-    EXISTS,
-    /**
-     * True if whether at least one answer has a value that is equal to the
-     * enableWhen answer.
-     */
-    EQUAL,
-    /**
-     * True if whether at least no answer has a value that is equal to the
-     * enableWhen answer.
-     */
-    NOT_EQUAL,
-    /**
-     * True if whether at least no answer has a value that is greater than the
-     * enableWhen answer.
-     */
-    GREATER_THAN,
-    /**
-     * True if whether at least no answer has a value that is less than the
-     * enableWhen answer.
-     */
-    LESS_THAN,
-    /**
-     * True if whether at least no answer has a value that is greater or equal to
-     * the enableWhen answer.
-     */
-    GREATER_OR_EQUAL,
-    /**
-     * True if whether at least no answer has a value that is less or equal to the
-     * enableWhen answer.
-     */
-    LESS_OR_EQUAL,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static QuestionnaireItemOperator fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("exists".equals(codeString))
-        return EXISTS;
-      if ("=".equals(codeString))
-        return EQUAL;
-      if ("!=".equals(codeString))
-        return NOT_EQUAL;
-      if (">".equals(codeString))
-        return GREATER_THAN;
-      if ("<".equals(codeString))
-        return LESS_THAN;
-      if (">=".equals(codeString))
-        return GREATER_OR_EQUAL;
-      if ("<=".equals(codeString))
-        return LESS_OR_EQUAL;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown QuestionnaireItemOperator code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case EXISTS:
-        return "exists";
-      case EQUAL:
-        return "=";
-      case NOT_EQUAL:
-        return "!=";
-      case GREATER_THAN:
-        return ">";
-      case LESS_THAN:
-        return "<";
-      case GREATER_OR_EQUAL:
-        return ">=";
-      case LESS_OR_EQUAL:
-        return "<=";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case EXISTS:
-        return "http://hl7.org/fhir/questionnaire-enable-operator";
-      case EQUAL:
-        return "http://hl7.org/fhir/questionnaire-enable-operator";
-      case NOT_EQUAL:
-        return "http://hl7.org/fhir/questionnaire-enable-operator";
-      case GREATER_THAN:
-        return "http://hl7.org/fhir/questionnaire-enable-operator";
-      case LESS_THAN:
-        return "http://hl7.org/fhir/questionnaire-enable-operator";
-      case GREATER_OR_EQUAL:
-        return "http://hl7.org/fhir/questionnaire-enable-operator";
-      case LESS_OR_EQUAL:
-        return "http://hl7.org/fhir/questionnaire-enable-operator";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case EXISTS:
-        return "True if whether an answer exists is equal to the enableWhen answer (which must be a boolean).";
-      case EQUAL:
-        return "True if whether at least one answer has a value that is equal to the enableWhen answer.";
-      case NOT_EQUAL:
-        return "True if whether at least no answer has a value that is equal to the enableWhen answer.";
-      case GREATER_THAN:
-        return "True if whether at least no answer has a value that is greater than the enableWhen answer.";
-      case LESS_THAN:
-        return "True if whether at least no answer has a value that is less than the enableWhen answer.";
-      case GREATER_OR_EQUAL:
-        return "True if whether at least no answer has a value that is greater or equal to the enableWhen answer.";
-      case LESS_OR_EQUAL:
-        return "True if whether at least no answer has a value that is less or equal to the enableWhen answer.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case EXISTS:
-        return "Exists";
-      case EQUAL:
-        return "Equals";
-      case NOT_EQUAL:
-        return "Not Equals";
-      case GREATER_THAN:
-        return "Greater Than";
-      case LESS_THAN:
-        return "Less Than";
-      case GREATER_OR_EQUAL:
-        return "Greater or Equals";
-      case LESS_OR_EQUAL:
-        return "Less or Equals";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class QuestionnaireItemOperatorEnumFactory implements EnumFactory<QuestionnaireItemOperator> {
-    public QuestionnaireItemOperator fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("exists".equals(codeString))
-        return QuestionnaireItemOperator.EXISTS;
-      if ("=".equals(codeString))
-        return QuestionnaireItemOperator.EQUAL;
-      if ("!=".equals(codeString))
-        return QuestionnaireItemOperator.NOT_EQUAL;
-      if (">".equals(codeString))
-        return QuestionnaireItemOperator.GREATER_THAN;
-      if ("<".equals(codeString))
-        return QuestionnaireItemOperator.LESS_THAN;
-      if (">=".equals(codeString))
-        return QuestionnaireItemOperator.GREATER_OR_EQUAL;
-      if ("<=".equals(codeString))
-        return QuestionnaireItemOperator.LESS_OR_EQUAL;
-      throw new IllegalArgumentException("Unknown QuestionnaireItemOperator code '" + codeString + "'");
-    }
-
-    public Enumeration<QuestionnaireItemOperator> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<QuestionnaireItemOperator>(this, QuestionnaireItemOperator.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<QuestionnaireItemOperator>(this, QuestionnaireItemOperator.NULL, code);
-      if ("exists".equals(codeString))
-        return new Enumeration<QuestionnaireItemOperator>(this, QuestionnaireItemOperator.EXISTS, code);
-      if ("=".equals(codeString))
-        return new Enumeration<QuestionnaireItemOperator>(this, QuestionnaireItemOperator.EQUAL, code);
-      if ("!=".equals(codeString))
-        return new Enumeration<QuestionnaireItemOperator>(this, QuestionnaireItemOperator.NOT_EQUAL, code);
-      if (">".equals(codeString))
-        return new Enumeration<QuestionnaireItemOperator>(this, QuestionnaireItemOperator.GREATER_THAN, code);
-      if ("<".equals(codeString))
-        return new Enumeration<QuestionnaireItemOperator>(this, QuestionnaireItemOperator.LESS_THAN, code);
-      if (">=".equals(codeString))
-        return new Enumeration<QuestionnaireItemOperator>(this, QuestionnaireItemOperator.GREATER_OR_EQUAL, code);
-      if ("<=".equals(codeString))
-        return new Enumeration<QuestionnaireItemOperator>(this, QuestionnaireItemOperator.LESS_OR_EQUAL, code);
-      throw new FHIRException("Unknown QuestionnaireItemOperator code '" + codeString + "'");
-    }
-
-    public String toCode(QuestionnaireItemOperator code) {
-       if (code == QuestionnaireItemOperator.NULL)
-           return null;
-       if (code == QuestionnaireItemOperator.EXISTS)
-        return "exists";
-      if (code == QuestionnaireItemOperator.EQUAL)
-        return "=";
-      if (code == QuestionnaireItemOperator.NOT_EQUAL)
-        return "!=";
-      if (code == QuestionnaireItemOperator.GREATER_THAN)
-        return ">";
-      if (code == QuestionnaireItemOperator.LESS_THAN)
-        return "<";
-      if (code == QuestionnaireItemOperator.GREATER_OR_EQUAL)
-        return ">=";
-      if (code == QuestionnaireItemOperator.LESS_OR_EQUAL)
-        return "<=";
-      return "?";
-   }
-
-    public String toSystem(QuestionnaireItemOperator code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum EnableWhenBehavior {
-    /**
-     * Enable the question when all the enableWhen criteria are satisfied.
-     */
-    ALL,
-    /**
-     * Enable the question when any of the enableWhen criteria are satisfied.
-     */
-    ANY,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static EnableWhenBehavior fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("all".equals(codeString))
-        return ALL;
-      if ("any".equals(codeString))
-        return ANY;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown EnableWhenBehavior code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ALL:
-        return "all";
-      case ANY:
-        return "any";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ALL:
-        return "http://hl7.org/fhir/questionnaire-enable-behavior";
-      case ANY:
-        return "http://hl7.org/fhir/questionnaire-enable-behavior";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ALL:
-        return "Enable the question when all the enableWhen criteria are satisfied.";
-      case ANY:
-        return "Enable the question when any of the enableWhen criteria are satisfied.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ALL:
-        return "All";
-      case ANY:
-        return "Any";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class EnableWhenBehaviorEnumFactory implements EnumFactory<EnableWhenBehavior> {
-    public EnableWhenBehavior fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("all".equals(codeString))
-        return EnableWhenBehavior.ALL;
-      if ("any".equals(codeString))
-        return EnableWhenBehavior.ANY;
-      throw new IllegalArgumentException("Unknown EnableWhenBehavior code '" + codeString + "'");
-    }
-
-    public Enumeration<EnableWhenBehavior> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<EnableWhenBehavior>(this, EnableWhenBehavior.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<EnableWhenBehavior>(this, EnableWhenBehavior.NULL, code);
-      if ("all".equals(codeString))
-        return new Enumeration<EnableWhenBehavior>(this, EnableWhenBehavior.ALL, code);
-      if ("any".equals(codeString))
-        return new Enumeration<EnableWhenBehavior>(this, EnableWhenBehavior.ANY, code);
-      throw new FHIRException("Unknown EnableWhenBehavior code '" + codeString + "'");
-    }
-
-    public String toCode(EnableWhenBehavior code) {
-       if (code == EnableWhenBehavior.NULL)
-           return null;
-       if (code == EnableWhenBehavior.ALL)
-        return "all";
-      if (code == EnableWhenBehavior.ANY)
-        return "any";
-      return "?";
-   }
-
-    public String toSystem(EnableWhenBehavior code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class QuestionnaireItemComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -907,10 +120,10 @@ public class Questionnaire extends MetadataResource {
      * of other items or a particular type of data to be captured (string, integer,
      * coded choice, etc.).
      */
-    @Child(name = "type", type = { CodeType.class }, order = 6, min = 1, max = 1, modifier = false, summary = false)
+    @Child(name = "type", type = { StringType.class }, order = 6, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "group | display | boolean | decimal | integer | date | dateTime +", formalDefinition = "The type of questionnaire item this is - whether text for display, a grouping of other items or a particular type of data to be captured (string, integer, coded choice, etc.).")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/item-type")
-    protected Enumeration<QuestionnaireItemType> type;
+    protected StringType type;
 
     /**
      * A constraint indicating that this item should only be enabled
@@ -926,10 +139,10 @@ public class Questionnaire extends MetadataResource {
      * must be true.
      */
     @Child(name = "enableBehavior", type = {
-        CodeType.class }, order = 8, min = 0, max = 1, modifier = false, summary = false)
+        StringType.class }, order = 8, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "all | any", formalDefinition = "Controls how multiple enableWhen values are interpreted -  whether all or any must be true.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/questionnaire-enable-behavior")
-    protected Enumeration<EnableWhenBehavior> enableBehavior;
+    protected StringType enableBehavior;
 
     /**
      * An indication, if true, that the item must be present in a "completed"
@@ -1013,7 +226,7 @@ public class Questionnaire extends MetadataResource {
     /**
      * Constructor
      */
-    public QuestionnaireItemComponent(StringType linkId, Enumeration<QuestionnaireItemType> type) {
+    public QuestionnaireItemComponent(StringType linkId, StringType type) {
       super();
       this.linkId = linkId;
       this.type = type;
@@ -1359,12 +572,12 @@ public class Questionnaire extends MetadataResource {
      *         underlying object with id, value and extensions. The accessor
      *         "getType" gives direct access to the value
      */
-    public Enumeration<QuestionnaireItemType> getTypeElement() {
+    public StringType getTypeElement() {
       if (this.type == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create QuestionnaireItemComponent.type");
         else if (Configuration.doAutoCreate())
-          this.type = new Enumeration<QuestionnaireItemType>(new QuestionnaireItemTypeEnumFactory()); // bb
+          this.type = new StringType(); // bb
       return this.type;
     }
 
@@ -1383,7 +596,7 @@ public class Questionnaire extends MetadataResource {
      *              This is the underlying object with id, value and extensions. The
      *              accessor "getType" gives direct access to the value
      */
-    public QuestionnaireItemComponent setTypeElement(Enumeration<QuestionnaireItemType> value) {
+    public QuestionnaireItemComponent setTypeElement(StringType value) {
       this.type = value;
       return this;
     }
@@ -1393,8 +606,8 @@ public class Questionnaire extends MetadataResource {
      *         grouping of other items or a particular type of data to be captured
      *         (string, integer, coded choice, etc.).
      */
-    public QuestionnaireItemType getType() {
-      return this.type == null ? null : this.type.getValue();
+    public StringType getType() {
+      return this.type == null ? null : this.type;
     }
 
     /**
@@ -1402,9 +615,9 @@ public class Questionnaire extends MetadataResource {
      *              display, a grouping of other items or a particular type of data
      *              to be captured (string, integer, coded choice, etc.).
      */
-    public QuestionnaireItemComponent setType(QuestionnaireItemType value) {
+    public QuestionnaireItemComponent setType(String value) {
       if (this.type == null)
-        this.type = new Enumeration<QuestionnaireItemType>(new QuestionnaireItemTypeEnumFactory());
+        this.type = new StringType();
       this.type.setValue(value);
       return this;
     }
@@ -1471,12 +684,12 @@ public class Questionnaire extends MetadataResource {
      *         underlying object with id, value and extensions. The accessor
      *         "getEnableBehavior" gives direct access to the value
      */
-    public Enumeration<EnableWhenBehavior> getEnableBehaviorElement() {
+    public StringType getEnableBehaviorElement() {
       if (this.enableBehavior == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create QuestionnaireItemComponent.enableBehavior");
         else if (Configuration.doAutoCreate())
-          this.enableBehavior = new Enumeration<EnableWhenBehavior>(new EnableWhenBehaviorEnumFactory()); // bb
+          this.enableBehavior = new StringType(); // bb
       return this.enableBehavior;
     }
 
@@ -1494,7 +707,7 @@ public class Questionnaire extends MetadataResource {
      *              underlying object with id, value and extensions. The accessor
      *              "getEnableBehavior" gives direct access to the value
      */
-    public QuestionnaireItemComponent setEnableBehaviorElement(Enumeration<EnableWhenBehavior> value) {
+    public QuestionnaireItemComponent setEnableBehaviorElement(StringType value) {
       this.enableBehavior = value;
       return this;
     }
@@ -1503,20 +716,20 @@ public class Questionnaire extends MetadataResource {
      * @return Controls how multiple enableWhen values are interpreted - whether all
      *         or any must be true.
      */
-    public EnableWhenBehavior getEnableBehavior() {
-      return this.enableBehavior == null ? null : this.enableBehavior.getValue();
+    public StringType getEnableBehavior() {
+      return this.enableBehavior == null ? null : this.enableBehavior;
     }
 
     /**
      * @param value Controls how multiple enableWhen values are interpreted -
      *              whether all or any must be true.
      */
-    public QuestionnaireItemComponent setEnableBehavior(EnableWhenBehavior value) {
+    public QuestionnaireItemComponent setEnableBehavior(String value) {
       if (value == null)
         this.enableBehavior = null;
       else {
         if (this.enableBehavior == null)
-          this.enableBehavior = new Enumeration<EnableWhenBehavior>(new EnableWhenBehaviorEnumFactory());
+          this.enableBehavior = new StringType();
         this.enableBehavior.setValue(value);
       }
       return this;
@@ -1986,13 +1199,13 @@ public class Questionnaire extends MetadataResource {
           0, 1, prefix));
       children.add(new Property("text", "string",
           "The name of a section, the text of a question or text content for a display item.", 0, 1, text));
-      children.add(new Property("type", "code",
+      children.add(new Property("type", "string",
           "The type of questionnaire item this is - whether text for display, a grouping of other items or a particular type of data to be captured (string, integer, coded choice, etc.).",
           0, 1, type));
       children.add(new Property("enableWhen", "",
           "A constraint indicating that this item should only be enabled (displayed/allow answers to be captured) when the specified condition is true.",
           0, java.lang.Integer.MAX_VALUE, enableWhen));
-      children.add(new Property("enableBehavior", "code",
+      children.add(new Property("enableBehavior", "string",
           "Controls how multiple enableWhen values are interpreted -  whether all or any must be true.", 0, 1,
           enableBehavior));
       children.add(new Property("required", "boolean",
@@ -2044,7 +1257,7 @@ public class Questionnaire extends MetadataResource {
         /* text */ return new Property("text", "string",
             "The name of a section, the text of a question or text content for a display item.", 0, 1, text);
       case 3575610:
-        /* type */ return new Property("type", "code",
+        /* type */ return new Property("type", "string",
             "The type of questionnaire item this is - whether text for display, a grouping of other items or a particular type of data to be captured (string, integer, coded choice, etc.).",
             0, 1, type);
       case 1893321565:
@@ -2052,7 +1265,7 @@ public class Questionnaire extends MetadataResource {
             "A constraint indicating that this item should only be enabled (displayed/allow answers to be captured) when the specified condition is true.",
             0, java.lang.Integer.MAX_VALUE, enableWhen);
       case 1854802165:
-        /* enableBehavior */ return new Property("enableBehavior", "code",
+        /* enableBehavior */ return new Property("enableBehavior", "string",
             "Controls how multiple enableWhen values are interpreted -  whether all or any must be true.", 0, 1,
             enableBehavior);
       case -393139297:
@@ -2155,15 +1368,13 @@ public class Questionnaire extends MetadataResource {
         this.text = castToString(value); // StringType
         return value;
       case 3575610: // type
-        value = new QuestionnaireItemTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<QuestionnaireItemType>
+        this.type = castToString(value); // Enumeration<QuestionnaireItemType>
         return value;
       case 1893321565: // enableWhen
         this.getEnableWhen().add((QuestionnaireItemEnableWhenComponent) value); // QuestionnaireItemEnableWhenComponent
         return value;
       case 1854802165: // enableBehavior
-        value = new EnableWhenBehaviorEnumFactory().fromType(castToCode(value));
-        this.enableBehavior = (Enumeration) value; // Enumeration<EnableWhenBehavior>
+        this.enableBehavior = castToString(value); // Enumeration<EnableWhenBehavior>
         return value;
       case -393139297: // required
         this.required = castToBoolean(value); // BooleanType
@@ -2208,13 +1419,11 @@ public class Questionnaire extends MetadataResource {
       } else if (name.equals("text")) {
         this.text = castToString(value); // StringType
       } else if (name.equals("type")) {
-        value = new QuestionnaireItemTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<QuestionnaireItemType>
+        this.type = castToString(value); // Enumeration<QuestionnaireItemType>
       } else if (name.equals("enableWhen")) {
         this.getEnableWhen().add((QuestionnaireItemEnableWhenComponent) value);
       } else if (name.equals("enableBehavior")) {
-        value = new EnableWhenBehaviorEnumFactory().fromType(castToCode(value));
-        this.enableBehavior = (Enumeration) value; // Enumeration<EnableWhenBehavior>
+        this.enableBehavior = castToString(value); // Enumeration<EnableWhenBehavior>
       } else if (name.equals("required")) {
         this.required = castToBoolean(value); // BooleanType
       } else if (name.equals("repeats")) {
@@ -2330,11 +1539,11 @@ public class Questionnaire extends MetadataResource {
       case 3556653:
         /* text */ return new String[] { "string" };
       case 3575610:
-        /* type */ return new String[] { "code" };
+        /* type */ return new String[] { "string" };
       case 1893321565:
         /* enableWhen */ return new String[] {};
       case 1854802165:
-        /* enableBehavior */ return new String[] { "code" };
+        /* enableBehavior */ return new String[] { "string" };
       case -393139297:
         /* required */ return new String[] { "boolean" };
       case 1094288952:
@@ -2504,10 +1713,10 @@ public class Questionnaire extends MetadataResource {
     /**
      * Specifies the criteria by which the question is enabled.
      */
-    @Child(name = "operator", type = { CodeType.class }, order = 2, min = 1, max = 1, modifier = false, summary = false)
+    @Child(name = "operator", type = { StringType.class }, order = 2, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "exists | = | != | > | < | >= | <=", formalDefinition = "Specifies the criteria by which the question is enabled.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/questionnaire-enable-operator")
-    protected Enumeration<QuestionnaireItemOperator> operator;
+    protected StringType operator;
 
     /**
      * A value that the referenced question is tested using the specified operator
@@ -2532,7 +1741,7 @@ public class Questionnaire extends MetadataResource {
     /**
      * Constructor
      */
-    public QuestionnaireItemEnableWhenComponent(StringType question, Enumeration<QuestionnaireItemOperator> operator,
+    public QuestionnaireItemEnableWhenComponent(StringType question, StringType operator,
         Type answer) {
       super();
       this.question = question;
@@ -2599,12 +1808,12 @@ public class Questionnaire extends MetadataResource {
      *         extensions. The accessor "getOperator" gives direct access to the
      *         value
      */
-    public Enumeration<QuestionnaireItemOperator> getOperatorElement() {
+    public StringType getOperatorElement() {
       if (this.operator == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create QuestionnaireItemEnableWhenComponent.operator");
         else if (Configuration.doAutoCreate())
-          this.operator = new Enumeration<QuestionnaireItemOperator>(new QuestionnaireItemOperatorEnumFactory()); // bb
+          this.operator = new StringType(); // bb
       return this.operator;
     }
 
@@ -2622,7 +1831,7 @@ public class Questionnaire extends MetadataResource {
      *              extensions. The accessor "getOperator" gives direct access to
      *              the value
      */
-    public QuestionnaireItemEnableWhenComponent setOperatorElement(Enumeration<QuestionnaireItemOperator> value) {
+    public QuestionnaireItemEnableWhenComponent setOperatorElement(StringType value) {
       this.operator = value;
       return this;
     }
@@ -2630,16 +1839,16 @@ public class Questionnaire extends MetadataResource {
     /**
      * @return Specifies the criteria by which the question is enabled.
      */
-    public QuestionnaireItemOperator getOperator() {
-      return this.operator == null ? null : this.operator.getValue();
+    public StringType getOperator() {
+      return this.operator == null ? null : this.operator;
     }
 
     /**
      * @param value Specifies the criteria by which the question is enabled.
      */
-    public QuestionnaireItemEnableWhenComponent setOperator(QuestionnaireItemOperator value) {
+    public QuestionnaireItemEnableWhenComponent setOperator(String value) {
       if (this.operator == null)
-        this.operator = new Enumeration<QuestionnaireItemOperator>(new QuestionnaireItemOperatorEnumFactory());
+        this.operator = new StringType();
       this.operator.setValue(value);
       return this;
     }
@@ -2847,7 +2056,7 @@ public class Questionnaire extends MetadataResource {
           "The linkId for the question whose answer (or lack of answer) governs whether this item is enabled.", 0, 1,
           question));
       children.add(
-          new Property("operator", "code", "Specifies the criteria by which the question is enabled.", 0, 1, operator));
+          new Property("operator", "string", "Specifies the criteria by which the question is enabled.", 0, 1, operator));
       children.add(new Property("answer[x]",
           "boolean|decimal|integer|date|dateTime|time|string|Coding|Quantity|Reference(Any)",
           "A value that the referenced question is tested using the specified operator in order for the item to be enabled.",
@@ -2862,7 +2071,7 @@ public class Questionnaire extends MetadataResource {
             "The linkId for the question whose answer (or lack of answer) governs whether this item is enabled.", 0, 1,
             question);
       case -500553564:
-        /* operator */ return new Property("operator", "code",
+        /* operator */ return new Property("operator", "string",
             "Specifies the criteria by which the question is enabled.", 0, 1, operator);
       case 1693524994:
         /* answer[x] */ return new Property("answer[x]",
@@ -2952,8 +2161,7 @@ public class Questionnaire extends MetadataResource {
         this.question = castToString(value); // StringType
         return value;
       case -500553564: // operator
-        value = new QuestionnaireItemOperatorEnumFactory().fromType(castToCode(value));
-        this.operator = (Enumeration) value; // Enumeration<QuestionnaireItemOperator>
+        this.operator = castToString(value); // Enumeration<QuestionnaireItemOperator>
         return value;
       case -1412808770: // answer
         this.answer = castToType(value); // Type
@@ -2969,8 +2177,7 @@ public class Questionnaire extends MetadataResource {
       if (name.equals("question")) {
         this.question = castToString(value); // StringType
       } else if (name.equals("operator")) {
-        value = new QuestionnaireItemOperatorEnumFactory().fromType(castToCode(value));
-        this.operator = (Enumeration) value; // Enumeration<QuestionnaireItemOperator>
+        this.operator = castToString(value); // Enumeration<QuestionnaireItemOperator>
       } else if (name.equals("answer[x]")) {
         this.answer = castToType(value); // Type
       } else
@@ -3014,7 +2221,7 @@ public class Questionnaire extends MetadataResource {
       case -1165870106:
         /* question */ return new String[] { "string" };
       case -500553564:
-        /* operator */ return new String[] { "code" };
+        /* operator */ return new String[] { "string" };
       case -1412808770:
         /* answer */ return new String[] { "boolean", "decimal", "integer", "date", "dateTime", "time", "string",
             "Coding", "Quantity", "Reference" };
