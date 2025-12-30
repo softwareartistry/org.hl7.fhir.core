@@ -2300,7 +2300,7 @@ public class JsonParser extends JsonParserBase {
       }
     };
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Account.AccountStatus.NULL, new Account.AccountStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("billingStatus"))
@@ -5698,7 +5698,7 @@ public class JsonParser extends JsonParserBase {
       }
     };
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), ChargeItem.ChargeItemStatus.NULL, new ChargeItem.ChargeItemStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("partOf")) {
@@ -6706,7 +6706,7 @@ public class JsonParser extends JsonParserBase {
       }
     };
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Enumerations.FinancialResourceStatusCodes.NULL, new Enumerations.FinancialResourceStatusCodesEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("type"))
@@ -6714,7 +6714,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("subType"))
       res.setSubType(parseCodeableConcept(getJObject(json, "subType")));
     if (json.has("use"))
-      res.setUseElement(parseEnumeration(json.get("use").getAsString(), Enumerations.Use.NULL, new Enumerations.UseEnumFactory()));
+      res.setUseElement(parseString(json.get("use").getAsString()));
     if (json.has("_use"))
       parseElementProperties(getJObject(json, "_use"), res.getUseElement());
     if (json.has("patient"))
@@ -7363,7 +7363,7 @@ public class JsonParser extends JsonParserBase {
       }
     };
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Enumerations.FinancialResourceStatusCodes.NULL, new Enumerations.FinancialResourceStatusCodesEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("type"))
@@ -7371,7 +7371,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("subType"))
       res.setSubType(parseCodeableConcept(getJObject(json, "subType")));
     if (json.has("use"))
-      res.setUseElement(parseEnumeration(json.get("use").getAsString(), Enumerations.Use.NULL, new Enumerations.UseEnumFactory()));
+      res.setUseElement(parseString(json.get("use").getAsString()));
     if (json.has("_use"))
       parseElementProperties(getJObject(json, "_use"), res.getUseElement());
     if (json.has("patient"))
@@ -7387,7 +7387,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("request"))
       res.setRequest(parseReference(getJObject(json, "request")));
     if (json.has("outcome"))
-      res.setOutcomeElement(parseEnumeration(json.get("outcome").getAsString(), Enumerations.ClaimProcessingCodes.NULL, new Enumerations.ClaimProcessingCodesEnumFactory()));
+      res.setOutcomeElement(parseString(json.get("outcome").getAsString()));
     if (json.has("_outcome"))
       parseElementProperties(getJObject(json, "_outcome"), res.getOutcomeElement());
     if (json.has("decision"))
@@ -10396,7 +10396,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_version"))
       parseElementProperties(getJObject(json, "_version"), res.getVersionElement());
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Contract.ContractResourceStatusCodes.NULL, new Contract.ContractResourceStatusCodesEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("legalState"))
@@ -10555,7 +10555,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_publicationDate"))
       parseElementProperties(getJObject(json, "_publicationDate"), res.getPublicationDateElement());
     if (json.has("publicationStatus"))
-      res.setPublicationStatusElement(parseEnumeration(json.get("publicationStatus").getAsString(), Contract.ContractResourcePublicationStatusCodes.NULL, new Contract.ContractResourcePublicationStatusCodesEnumFactory()));
+      res.setPublicationStatusElement(parseString(json.get("publicationStatus").getAsString()));
     if (json.has("_publicationStatus"))
       parseElementProperties(getJObject(json, "_publicationStatus"), res.getPublicationStatusElement());
     if (json.has("copyright"))
@@ -11259,11 +11259,11 @@ public class JsonParser extends JsonParserBase {
       }
     };
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Enumerations.FinancialResourceStatusCodes.NULL, new Enumerations.FinancialResourceStatusCodesEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("kind"))
-      res.setKindElement(parseEnumeration(json.get("kind").getAsString(), Coverage.Kind.NULL, new Coverage.KindEnumFactory()));
+      res.setKindElement(parseString(json.get("kind").getAsString()));
     if (json.has("_kind"))
       parseElementProperties(getJObject(json, "_kind"), res.getKindElement());
     if (json.has("paymentBy")) {
@@ -38920,8 +38920,8 @@ public class JsonParser extends JsonParserBase {
         closeArray();
       };
       if (element.hasStatusElement()) {
-        composeEnumerationCore("status", element.getStatusElement(), new Account.AccountStatusEnumFactory(), false);
-        composeEnumerationExtras("status", element.getStatusElement(), new Account.AccountStatusEnumFactory(), false);
+        composeStringCore("status", element.getStatusElement(), false);
+        composeStringExtras("status", element.getStatusElement(), false);
       }
       if (element.hasBillingStatus()) {
         composeCodeableConcept("billingStatus", element.getBillingStatus());
@@ -42462,8 +42462,8 @@ public class JsonParser extends JsonParserBase {
         }
       };
       if (element.hasStatusElement()) {
-        composeEnumerationCore("status", element.getStatusElement(), new ChargeItem.ChargeItemStatusEnumFactory(), false);
-        composeEnumerationExtras("status", element.getStatusElement(), new ChargeItem.ChargeItemStatusEnumFactory(), false);
+        composeStringCore("status", element.getStatusElement(), false);
+        composeStringExtras("status", element.getStatusElement(), false);
       }
       if (element.hasPartOf()) {
         openArray("partOf");
@@ -43547,8 +43547,8 @@ public class JsonParser extends JsonParserBase {
         closeArray();
       };
       if (element.hasStatusElement()) {
-        composeEnumerationCore("status", element.getStatusElement(), new Enumerations.FinancialResourceStatusCodesEnumFactory(), false);
-        composeEnumerationExtras("status", element.getStatusElement(), new Enumerations.FinancialResourceStatusCodesEnumFactory(), false);
+        composeStringCore("status", element.getStatusElement(), false);
+        composeStringExtras("status", element.getStatusElement(), false);
       }
       if (element.hasType()) {
         composeCodeableConcept("type", element.getType());
@@ -43557,8 +43557,8 @@ public class JsonParser extends JsonParserBase {
         composeCodeableConcept("subType", element.getSubType());
       }
       if (element.hasUseElement()) {
-        composeEnumerationCore("use", element.getUseElement(), new Enumerations.UseEnumFactory(), false);
-        composeEnumerationExtras("use", element.getUseElement(), new Enumerations.UseEnumFactory(), false);
+        composeStringCore("use", element.getUseElement(), false);
+        composeStringExtras("use", element.getUseElement(), false);
       }
       if (element.hasPatient()) {
         composeReference("patient", element.getPatient());
@@ -44268,8 +44268,8 @@ public class JsonParser extends JsonParserBase {
         closeArray();
       };
       if (element.hasStatusElement()) {
-        composeEnumerationCore("status", element.getStatusElement(), new Enumerations.FinancialResourceStatusCodesEnumFactory(), false);
-        composeEnumerationExtras("status", element.getStatusElement(), new Enumerations.FinancialResourceStatusCodesEnumFactory(), false);
+        composeStringCore("status", element.getStatusElement(), false);
+        composeStringExtras("status", element.getStatusElement(), false);
       }
       if (element.hasType()) {
         composeCodeableConcept("type", element.getType());
@@ -44278,8 +44278,8 @@ public class JsonParser extends JsonParserBase {
         composeCodeableConcept("subType", element.getSubType());
       }
       if (element.hasUseElement()) {
-        composeEnumerationCore("use", element.getUseElement(), new Enumerations.UseEnumFactory(), false);
-        composeEnumerationExtras("use", element.getUseElement(), new Enumerations.UseEnumFactory(), false);
+        composeStringCore("use", element.getUseElement(), false);
+        composeStringExtras("use", element.getUseElement(), false);
       }
       if (element.hasPatient()) {
         composeReference("patient", element.getPatient());
@@ -44298,8 +44298,8 @@ public class JsonParser extends JsonParserBase {
         composeReference("request", element.getRequest());
       }
       if (element.hasOutcomeElement()) {
-        composeEnumerationCore("outcome", element.getOutcomeElement(), new Enumerations.ClaimProcessingCodesEnumFactory(), false);
-        composeEnumerationExtras("outcome", element.getOutcomeElement(), new Enumerations.ClaimProcessingCodesEnumFactory(), false);
+        composeStringCore("outcome", element.getOutcomeElement(), false);
+        composeStringExtras("outcome", element.getOutcomeElement(), false);
       }
       if (element.hasDecision()) {
         composeCodeableConcept("decision", element.getDecision());
@@ -47478,8 +47478,8 @@ public class JsonParser extends JsonParserBase {
         composeStringExtras("version", element.getVersionElement(), false);
       }
       if (element.hasStatusElement()) {
-        composeEnumerationCore("status", element.getStatusElement(), new Contract.ContractResourceStatusCodesEnumFactory(), false);
-        composeEnumerationExtras("status", element.getStatusElement(), new Contract.ContractResourceStatusCodesEnumFactory(), false);
+        composeStringCore("status", element.getStatusElement(), false);
+        composeStringExtras("status", element.getStatusElement(), false);
       }
       if (element.hasLegalState()) {
         composeCodeableConcept("legalState", element.getLegalState());
@@ -47646,8 +47646,8 @@ public class JsonParser extends JsonParserBase {
         composeDateTimeExtras("publicationDate", element.getPublicationDateElement(), false);
       }
       if (element.hasPublicationStatusElement()) {
-        composeEnumerationCore("publicationStatus", element.getPublicationStatusElement(), new Contract.ContractResourcePublicationStatusCodesEnumFactory(), false);
-        composeEnumerationExtras("publicationStatus", element.getPublicationStatusElement(), new Contract.ContractResourcePublicationStatusCodesEnumFactory(), false);
+        composeStringCore("publicationStatus", element.getPublicationStatusElement(), false);
+        composeStringExtras("publicationStatus", element.getPublicationStatusElement(), false);
       }
       if (element.hasCopyrightElement()) {
         composeMarkdownCore("copyright", element.getCopyrightElement(), false);
@@ -48342,12 +48342,12 @@ public class JsonParser extends JsonParserBase {
         closeArray();
       };
       if (element.hasStatusElement()) {
-        composeEnumerationCore("status", element.getStatusElement(), new Enumerations.FinancialResourceStatusCodesEnumFactory(), false);
-        composeEnumerationExtras("status", element.getStatusElement(), new Enumerations.FinancialResourceStatusCodesEnumFactory(), false);
+        composeStringCore("status", element.getStatusElement(), false);
+        composeStringExtras("status", element.getStatusElement(), false);
       }
       if (element.hasKindElement()) {
-        composeEnumerationCore("kind", element.getKindElement(), new Coverage.KindEnumFactory(), false);
-        composeEnumerationExtras("kind", element.getKindElement(), new Coverage.KindEnumFactory(), false);
+        composeStringCore("kind", element.getKindElement(), false);
+        composeStringExtras("kind", element.getKindElement(), false);
       }
       if (element.hasPaymentBy()) {
         openArray("paymentBy");

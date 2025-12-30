@@ -1986,7 +1986,7 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "Account", "identifier", element.getIdentifier().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "Account", "status", element.getStatusElement(), -1);
+      composeString(t, "Account", "status", element.getStatusElement(), -1);
     }
     if (element.hasBillingStatus()) {
       composeCodeableConcept(t, "Account", "billingStatus", element.getBillingStatus(), -1);
@@ -4569,7 +4569,7 @@ public class RdfParser extends RdfParserBase {
       composeCanonical(t, "ChargeItem", "definitionCanonical", element.getDefinitionCanonical().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "ChargeItem", "status", element.getStatusElement(), -1);
+      composeString(t, "ChargeItem", "status", element.getStatusElement(), -1);
     }
     for (int i = 0; i < element.getPartOf().size(); i++) {
       composeReference(t, "ChargeItem", "partOf", element.getPartOf().get(i), i);
@@ -5385,7 +5385,7 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "Claim", "traceNumber", element.getTraceNumber().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "Claim", "status", element.getStatusElement(), -1);
+      composeString(t, "Claim", "status", element.getStatusElement(), -1);
     }
     if (element.hasType()) {
       composeCodeableConcept(t, "Claim", "type", element.getType(), -1);
@@ -5394,7 +5394,7 @@ public class RdfParser extends RdfParserBase {
       composeCodeableConcept(t, "Claim", "subType", element.getSubType(), -1);
     }
     if (element.hasUseElement()) {
-      composeEnum(t, "Claim", "use", element.getUseElement(), -1);
+      composeString(t, "Claim", "use", element.getUseElement(), -1);
     }
     if (element.hasPatient()) {
       composeReference(t, "Claim", "patient", element.getPatient(), -1);
@@ -5934,7 +5934,7 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "ClaimResponse", "traceNumber", element.getTraceNumber().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "ClaimResponse", "status", element.getStatusElement(), -1);
+      composeString(t, "ClaimResponse", "status", element.getStatusElement(), -1);
     }
     if (element.hasType()) {
       composeCodeableConcept(t, "ClaimResponse", "type", element.getType(), -1);
@@ -5943,7 +5943,7 @@ public class RdfParser extends RdfParserBase {
       composeCodeableConcept(t, "ClaimResponse", "subType", element.getSubType(), -1);
     }
     if (element.hasUseElement()) {
-      composeEnum(t, "ClaimResponse", "use", element.getUseElement(), -1);
+      composeString(t, "ClaimResponse", "use", element.getUseElement(), -1);
     }
     if (element.hasPatient()) {
       composeReference(t, "ClaimResponse", "patient", element.getPatient(), -1);
@@ -5961,7 +5961,7 @@ public class RdfParser extends RdfParserBase {
       composeReference(t, "ClaimResponse", "request", element.getRequest(), -1);
     }
     if (element.hasOutcomeElement()) {
-      composeEnum(t, "ClaimResponse", "outcome", element.getOutcomeElement(), -1);
+      composeString(t, "ClaimResponse", "outcome", element.getOutcomeElement(), -1);
     }
     if (element.hasDecision()) {
       composeCodeableConcept(t, "ClaimResponse", "decision", element.getDecision(), -1);
@@ -8289,7 +8289,7 @@ public class RdfParser extends RdfParserBase {
       composeString(t, "Contract", "version", element.getVersionElement(), -1);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "Contract", "status", element.getStatusElement(), -1);
+      composeString(t, "Contract", "status", element.getStatusElement(), -1);
     }
     if (element.hasLegalState()) {
       composeCodeableConcept(t, "Contract", "legalState", element.getLegalState(), -1);
@@ -8403,7 +8403,7 @@ public class RdfParser extends RdfParserBase {
       composeDateTime(t, "ContentDefinitionComponent", "publicationDate", element.getPublicationDateElement(), -1);
     }
     if (element.hasPublicationStatusElement()) {
-      composeEnum(t, "ContentDefinitionComponent", "publicationStatus", element.getPublicationStatusElement(), -1);
+      composeString(t, "ContentDefinitionComponent", "publicationStatus", element.getPublicationStatusElement(), -1);
     }
     if (element.hasCopyrightElement()) {
       composeMarkdown(t, "ContentDefinitionComponent", "copyright", element.getCopyrightElement(), -1);
@@ -8856,10 +8856,10 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "Coverage", "identifier", element.getIdentifier().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "Coverage", "status", element.getStatusElement(), -1);
+      composeString(t, "Coverage", "status", element.getStatusElement(), -1);
     }
     if (element.hasKindElement()) {
-      composeEnum(t, "Coverage", "kind", element.getKindElement(), -1);
+      composeString(t, "Coverage", "kind", element.getKindElement(), -1);
     }
     for (int i = 0; i < element.getPaymentBy().size(); i++) {
       composeCoveragePaymentByComponent(t, "Coverage", "paymentBy", element.getPaymentBy().get(i), i);

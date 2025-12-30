@@ -35,7 +35,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hl7.fhir.utilities.Utilities;
-import org.hl7.fhir.r5.model.Enumerations.*;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.ICompositeType;
@@ -52,120 +51,6 @@ import ca.uhn.fhir.model.api.annotation.Block;
  */
 @ResourceDef(name="Coverage", profile="http://hl7.org/fhir/StructureDefinition/Coverage")
 public class Coverage extends DomainResource {
-
-    public enum Kind {
-        /**
-         * The Coverage provides the identifiers and card-level details of an insurance policy.
-         */
-        INSURANCE, 
-        /**
-         * One or more persons and/or organizations are paying for the services rendered.
-         */
-        SELFPAY, 
-        /**
-         * Some other organization is paying for the service.
-         */
-        OTHER, 
-        /**
-         * added to help the parsers with the generic types
-         */
-        NULL;
-        public static Kind fromCode(String codeString) throws FHIRException {
-            if (codeString == null || "".equals(codeString))
-                return null;
-        if ("insurance".equals(codeString))
-          return INSURANCE;
-        if ("self-pay".equals(codeString))
-          return SELFPAY;
-        if ("other".equals(codeString))
-          return OTHER;
-        if (Configuration.isAcceptInvalidEnums())
-          return null;
-        else
-          throw new FHIRException("Unknown Kind code '"+codeString+"'");
-        }
-        public String toCode() {
-          switch (this) {
-            case INSURANCE: return "insurance";
-            case SELFPAY: return "self-pay";
-            case OTHER: return "other";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-        public String getSystem() {
-          switch (this) {
-            case INSURANCE: return "http://hl7.org/fhir/coverage-kind";
-            case SELFPAY: return "http://hl7.org/fhir/coverage-kind";
-            case OTHER: return "http://hl7.org/fhir/coverage-kind";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-        public String getDefinition() {
-          switch (this) {
-            case INSURANCE: return "The Coverage provides the identifiers and card-level details of an insurance policy.";
-            case SELFPAY: return "One or more persons and/or organizations are paying for the services rendered.";
-            case OTHER: return "Some other organization is paying for the service.";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-        public String getDisplay() {
-          switch (this) {
-            case INSURANCE: return "Insurance";
-            case SELFPAY: return "Self-pay";
-            case OTHER: return "Other";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-    }
-
-  public static class KindEnumFactory implements EnumFactory<Kind> {
-    public Kind fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-            if (codeString == null || "".equals(codeString))
-                return null;
-        if ("insurance".equals(codeString))
-          return Kind.INSURANCE;
-        if ("self-pay".equals(codeString))
-          return Kind.SELFPAY;
-        if ("other".equals(codeString))
-          return Kind.OTHER;
-        throw new IllegalArgumentException("Unknown Kind code '"+codeString+"'");
-        }
-        public Enumeration<Kind> fromType(PrimitiveType<?> code) throws FHIRException {
-          if (code == null)
-            return null;
-          if (code.isEmpty())
-            return new Enumeration<Kind>(this, Kind.NULL, code);
-          String codeString = ((PrimitiveType) code).asStringValue();
-          if (codeString == null || "".equals(codeString))
-            return new Enumeration<Kind>(this, Kind.NULL, code);
-        if ("insurance".equals(codeString))
-          return new Enumeration<Kind>(this, Kind.INSURANCE, code);
-        if ("self-pay".equals(codeString))
-          return new Enumeration<Kind>(this, Kind.SELFPAY, code);
-        if ("other".equals(codeString))
-          return new Enumeration<Kind>(this, Kind.OTHER, code);
-        throw new FHIRException("Unknown Kind code '"+codeString+"'");
-        }
-    public String toCode(Kind code) {
-       if (code == Kind.NULL)
-           return null;
-       if (code == Kind.INSURANCE)
-        return "insurance";
-      if (code == Kind.SELFPAY)
-        return "self-pay";
-      if (code == Kind.OTHER)
-        return "other";
-      return "?";
-   }
-    public String toSystem(Kind code) {
-      return code.getSystem();
-      }
-    }
 
     @Block()
     public static class CoveragePaymentByComponent extends BackboneElement implements IBaseBackboneElement {
@@ -1465,18 +1350,18 @@ public class Coverage extends DomainResource {
     /**
      * The status of the resource instance.
      */
-    @Child(name = "status", type = {CodeType.class}, order=1, min=1, max=1, modifier=true, summary=true)
+    @Child(name = "status", type = {StringType.class}, order=1, min=1, max=1, modifier=true, summary=true)
     @Description(shortDefinition="active | cancelled | draft | entered-in-error", formalDefinition="The status of the resource instance." )
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet="http://hl7.org/fhir/ValueSet/fm-status")
-    protected Enumeration<FinancialResourceStatusCodes> status;
+    protected StringType status;
 
     /**
      * The nature of the coverage be it insurance, or cash payment such as self-pay.
      */
-    @Child(name = "kind", type = {CodeType.class}, order=2, min=1, max=1, modifier=false, summary=true)
+    @Child(name = "kind", type = {StringType.class}, order=2, min=1, max=1, modifier=false, summary=true)
     @Description(shortDefinition="insurance | self-pay | other", formalDefinition="The nature of the coverage be it insurance, or cash payment such as self-pay." )
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet="http://hl7.org/fhir/ValueSet/coverage-kind")
-    protected Enumeration<Kind> kind;
+    protected StringType kind;
 
     /**
      * Link to the paying party and optionally what specifically they will be responsible to pay.
@@ -1611,7 +1496,7 @@ public class Coverage extends DomainResource {
   /**
    * Constructor
    */
-    public Coverage(FinancialResourceStatusCodes status, Kind kind, Reference beneficiary) {
+    public Coverage(String status, String kind, Reference beneficiary) {
       super();
       this.setStatus(status);
       this.setKind(kind);
@@ -1674,12 +1559,12 @@ public class Coverage extends DomainResource {
     /**
      * @return {@link #status} (The status of the resource instance.). This is the underlying object with id, value and extensions. The accessor "getStatus" gives direct access to the value
      */
-    public Enumeration<FinancialResourceStatusCodes> getStatusElement() { 
+    public StringType getStatusElement() {
       if (this.status == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create Coverage.status");
         else if (Configuration.doAutoCreate())
-          this.status = new Enumeration<FinancialResourceStatusCodes>(new FinancialResourceStatusCodesEnumFactory()); // bb
+          this.status = new StringType(); // bb
       return this.status;
     }
 
@@ -1694,7 +1579,7 @@ public class Coverage extends DomainResource {
     /**
      * @param value {@link #status} (The status of the resource instance.). This is the underlying object with id, value and extensions. The accessor "getStatus" gives direct access to the value
      */
-    public Coverage setStatusElement(Enumeration<FinancialResourceStatusCodes> value) { 
+    public Coverage setStatusElement(StringType value) {
       this.status = value;
       return this;
     }
@@ -1702,16 +1587,16 @@ public class Coverage extends DomainResource {
     /**
      * @return The status of the resource instance.
      */
-    public FinancialResourceStatusCodes getStatus() { 
-      return this.status == null ? null : this.status.getValue();
+    public StringType getStatus() {
+      return this.status == null ? null : this.status;
     }
 
     /**
      * @param value The status of the resource instance.
      */
-    public Coverage setStatus(FinancialResourceStatusCodes value) { 
+    public Coverage setStatus(String value) {
         if (this.status == null)
-          this.status = new Enumeration<FinancialResourceStatusCodes>(new FinancialResourceStatusCodesEnumFactory());
+          this.status = new StringType();
         this.status.setValue(value);
       return this;
     }
@@ -1719,12 +1604,12 @@ public class Coverage extends DomainResource {
     /**
      * @return {@link #kind} (The nature of the coverage be it insurance, or cash payment such as self-pay.). This is the underlying object with id, value and extensions. The accessor "getKind" gives direct access to the value
      */
-    public Enumeration<Kind> getKindElement() { 
+    public StringType getKindElement() {
       if (this.kind == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create Coverage.kind");
         else if (Configuration.doAutoCreate())
-          this.kind = new Enumeration<Kind>(new KindEnumFactory()); // bb
+          this.kind = new StringType(); // bb
       return this.kind;
     }
 
@@ -1739,7 +1624,7 @@ public class Coverage extends DomainResource {
     /**
      * @param value {@link #kind} (The nature of the coverage be it insurance, or cash payment such as self-pay.). This is the underlying object with id, value and extensions. The accessor "getKind" gives direct access to the value
      */
-    public Coverage setKindElement(Enumeration<Kind> value) { 
+    public Coverage setKindElement(StringType value) {
       this.kind = value;
       return this;
     }
@@ -1747,16 +1632,16 @@ public class Coverage extends DomainResource {
     /**
      * @return The nature of the coverage be it insurance, or cash payment such as self-pay.
      */
-    public Kind getKind() { 
-      return this.kind == null ? null : this.kind.getValue();
+    public StringType getKind() {
+      return this.kind == null ? null : this.kind;
     }
 
     /**
      * @param value The nature of the coverage be it insurance, or cash payment such as self-pay.
      */
-    public Coverage setKind(Kind value) { 
+    public Coverage setKind(String value) {
         if (this.kind == null)
-          this.kind = new Enumeration<Kind>(new KindEnumFactory());
+          this.kind = new StringType();
         this.kind.setValue(value);
       return this;
     }
@@ -2409,8 +2294,8 @@ public class Coverage extends DomainResource {
       protected void listChildren(List<Property> children) {
         super.listChildren(children);
         children.add(new Property("identifier", "Identifier", "The identifier of the coverage as issued by the insurer.", 0, java.lang.Integer.MAX_VALUE, identifier));
-        children.add(new Property("status", "code", "The status of the resource instance.", 0, 1, status));
-        children.add(new Property("kind", "code", "The nature of the coverage be it insurance, or cash payment such as self-pay.", 0, 1, kind));
+        children.add(new Property("status", "string", "The status of the resource instance.", 0, 1, status));
+        children.add(new Property("kind", "string", "The nature of the coverage be it insurance, or cash payment such as self-pay.", 0, 1, kind));
         children.add(new Property("paymentBy", "", "Link to the paying party and optionally what specifically they will be responsible to pay.", 0, java.lang.Integer.MAX_VALUE, paymentBy));
         children.add(new Property("type", "CodeableConcept", "The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health or payment by an individual or organization.", 0, 1, type));
         children.add(new Property("policyHolder", "Reference(Patient|RelatedPerson|Organization)", "The party who 'owns' the insurance policy.", 0, 1, policyHolder));
@@ -2434,8 +2319,8 @@ public class Coverage extends DomainResource {
       public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
         switch (_hash) {
         case -1618432855: /*identifier*/  return new Property("identifier", "Identifier", "The identifier of the coverage as issued by the insurer.", 0, java.lang.Integer.MAX_VALUE, identifier);
-        case -892481550: /*status*/  return new Property("status", "code", "The status of the resource instance.", 0, 1, status);
-        case 3292052: /*kind*/  return new Property("kind", "code", "The nature of the coverage be it insurance, or cash payment such as self-pay.", 0, 1, kind);
+        case -892481550: /*status*/  return new Property("status", "string", "The status of the resource instance.", 0, 1, status);
+        case 3292052: /*kind*/  return new Property("kind", "string", "The nature of the coverage be it insurance, or cash payment such as self-pay.", 0, 1, kind);
         case -86519555: /*paymentBy*/  return new Property("paymentBy", "", "Link to the paying party and optionally what specifically they will be responsible to pay.", 0, java.lang.Integer.MAX_VALUE, paymentBy);
         case 3575610: /*type*/  return new Property("type", "CodeableConcept", "The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health or payment by an individual or organization.", 0, 1, type);
         case 2046898558: /*policyHolder*/  return new Property("policyHolder", "Reference(Patient|RelatedPerson|Organization)", "The party who 'owns' the insurance policy.", 0, 1, policyHolder);
@@ -2462,8 +2347,8 @@ public class Coverage extends DomainResource {
       public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
         switch (hash) {
         case -1618432855: /*identifier*/ return this.identifier == null ? new Base[0] : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
-        case -892481550: /*status*/ return this.status == null ? new Base[0] : new Base[] {this.status}; // Enumeration<FinancialResourceStatusCodes>
-        case 3292052: /*kind*/ return this.kind == null ? new Base[0] : new Base[] {this.kind}; // Enumeration<Kind>
+        case -892481550: /*status*/ return this.status == null ? new Base[0] : new Base[] {this.status}; // StringType
+        case 3292052: /*kind*/ return this.kind == null ? new Base[0] : new Base[] {this.kind}; // StringType
         case -86519555: /*paymentBy*/ return this.paymentBy == null ? new Base[0] : this.paymentBy.toArray(new Base[this.paymentBy.size()]); // CoveragePaymentByComponent
         case 3575610: /*type*/ return this.type == null ? new Base[0] : new Base[] {this.type}; // CodeableConcept
         case 2046898558: /*policyHolder*/ return this.policyHolder == null ? new Base[0] : new Base[] {this.policyHolder}; // Reference
@@ -2493,12 +2378,10 @@ public class Coverage extends DomainResource {
           this.getIdentifier().add(TypeConvertor.castToIdentifier(value)); // Identifier
           return value;
         case -892481550: // status
-          value = new FinancialResourceStatusCodesEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.status = (Enumeration) value; // Enumeration<FinancialResourceStatusCodes>
+          this.status = TypeConvertor.castToString(value); // StringType
           return value;
         case 3292052: // kind
-          value = new KindEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.kind = (Enumeration) value; // Enumeration<Kind>
+          this.kind = TypeConvertor.castToString(value); // StringType
           return value;
         case -86519555: // paymentBy
           this.getPaymentBy().add((CoveragePaymentByComponent) value); // CoveragePaymentByComponent
@@ -2561,11 +2444,9 @@ public class Coverage extends DomainResource {
         if (name.equals("identifier")) {
           this.getIdentifier().add(TypeConvertor.castToIdentifier(value));
         } else if (name.equals("status")) {
-          value = new FinancialResourceStatusCodesEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.status = (Enumeration) value; // Enumeration<FinancialResourceStatusCodes>
+          this.status = TypeConvertor.castToString(value); // StringType
         } else if (name.equals("kind")) {
-          value = new KindEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.kind = (Enumeration) value; // Enumeration<Kind>
+          this.kind = TypeConvertor.castToString(value); // StringType
         } else if (name.equals("paymentBy")) {
           this.getPaymentBy().add((CoveragePaymentByComponent) value);
         } else if (name.equals("type")) {
@@ -2610,11 +2491,9 @@ public class Coverage extends DomainResource {
         if (name.equals("identifier")) {
           this.getIdentifier().remove(value);
         } else if (name.equals("status")) {
-          value = new FinancialResourceStatusCodesEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.status = (Enumeration) value; // Enumeration<FinancialResourceStatusCodes>
+          this.status = null;
         } else if (name.equals("kind")) {
-          value = new KindEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.kind = (Enumeration) value; // Enumeration<Kind>
+          this.kind = null;
         } else if (name.equals("paymentBy")) {
           this.getPaymentBy().remove((CoveragePaymentByComponent) value);
         } else if (name.equals("type")) {
@@ -2686,8 +2565,8 @@ public class Coverage extends DomainResource {
       public String[] getTypesForProperty(int hash, String name) throws FHIRException {
         switch (hash) {
         case -1618432855: /*identifier*/ return new String[] {"Identifier"};
-        case -892481550: /*status*/ return new String[] {"code"};
-        case 3292052: /*kind*/ return new String[] {"code"};
+        case -892481550: /*status*/ return new String[] {"string"};
+        case 3292052: /*kind*/ return new String[] {"string"};
         case -86519555: /*paymentBy*/ return new String[] {};
         case 3575610: /*type*/ return new String[] {"CodeableConcept"};
         case 2046898558: /*policyHolder*/ return new String[] {"Reference"};

@@ -35,7 +35,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hl7.fhir.utilities.Utilities;
-import org.hl7.fhir.r5.model.Enumerations.*;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.ICompositeType;
@@ -52,152 +51,6 @@ import ca.uhn.fhir.model.api.annotation.Block;
  */
 @ResourceDef(name="Account", profile="http://hl7.org/fhir/StructureDefinition/Account")
 public class Account extends DomainResource {
-
-    public enum AccountStatus {
-        /**
-         * This account is active and may be used.
-         */
-        ACTIVE, 
-        /**
-         * This account is inactive and should not be used to track financial information.
-         */
-        INACTIVE, 
-        /**
-         * This instance should not have been part of this patient's medical record.
-         */
-        ENTEREDINERROR, 
-        /**
-         * This account is on hold.
-         */
-        ONHOLD, 
-        /**
-         * The account status is unknown.
-         */
-        UNKNOWN, 
-        /**
-         * added to help the parsers with the generic types
-         */
-        NULL;
-        public static AccountStatus fromCode(String codeString) throws FHIRException {
-            if (codeString == null || "".equals(codeString))
-                return null;
-        if ("active".equals(codeString))
-          return ACTIVE;
-        if ("inactive".equals(codeString))
-          return INACTIVE;
-        if ("entered-in-error".equals(codeString))
-          return ENTEREDINERROR;
-        if ("on-hold".equals(codeString))
-          return ONHOLD;
-        if ("unknown".equals(codeString))
-          return UNKNOWN;
-        if (Configuration.isAcceptInvalidEnums())
-          return null;
-        else
-          throw new FHIRException("Unknown AccountStatus code '"+codeString+"'");
-        }
-        public String toCode() {
-          switch (this) {
-            case ACTIVE: return "active";
-            case INACTIVE: return "inactive";
-            case ENTEREDINERROR: return "entered-in-error";
-            case ONHOLD: return "on-hold";
-            case UNKNOWN: return "unknown";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-        public String getSystem() {
-          switch (this) {
-            case ACTIVE: return "http://hl7.org/fhir/account-status";
-            case INACTIVE: return "http://hl7.org/fhir/account-status";
-            case ENTEREDINERROR: return "http://hl7.org/fhir/account-status";
-            case ONHOLD: return "http://hl7.org/fhir/account-status";
-            case UNKNOWN: return "http://hl7.org/fhir/account-status";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-        public String getDefinition() {
-          switch (this) {
-            case ACTIVE: return "This account is active and may be used.";
-            case INACTIVE: return "This account is inactive and should not be used to track financial information.";
-            case ENTEREDINERROR: return "This instance should not have been part of this patient's medical record.";
-            case ONHOLD: return "This account is on hold.";
-            case UNKNOWN: return "The account status is unknown.";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-        public String getDisplay() {
-          switch (this) {
-            case ACTIVE: return "Active";
-            case INACTIVE: return "Inactive";
-            case ENTEREDINERROR: return "Entered in error";
-            case ONHOLD: return "On Hold";
-            case UNKNOWN: return "Unknown";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-    }
-
-  public static class AccountStatusEnumFactory implements EnumFactory<AccountStatus> {
-    public AccountStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-            if (codeString == null || "".equals(codeString))
-                return null;
-        if ("active".equals(codeString))
-          return AccountStatus.ACTIVE;
-        if ("inactive".equals(codeString))
-          return AccountStatus.INACTIVE;
-        if ("entered-in-error".equals(codeString))
-          return AccountStatus.ENTEREDINERROR;
-        if ("on-hold".equals(codeString))
-          return AccountStatus.ONHOLD;
-        if ("unknown".equals(codeString))
-          return AccountStatus.UNKNOWN;
-        throw new IllegalArgumentException("Unknown AccountStatus code '"+codeString+"'");
-        }
-        public Enumeration<AccountStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-          if (code == null)
-            return null;
-          if (code.isEmpty())
-            return new Enumeration<AccountStatus>(this, AccountStatus.NULL, code);
-          String codeString = ((PrimitiveType) code).asStringValue();
-          if (codeString == null || "".equals(codeString))
-            return new Enumeration<AccountStatus>(this, AccountStatus.NULL, code);
-        if ("active".equals(codeString))
-          return new Enumeration<AccountStatus>(this, AccountStatus.ACTIVE, code);
-        if ("inactive".equals(codeString))
-          return new Enumeration<AccountStatus>(this, AccountStatus.INACTIVE, code);
-        if ("entered-in-error".equals(codeString))
-          return new Enumeration<AccountStatus>(this, AccountStatus.ENTEREDINERROR, code);
-        if ("on-hold".equals(codeString))
-          return new Enumeration<AccountStatus>(this, AccountStatus.ONHOLD, code);
-        if ("unknown".equals(codeString))
-          return new Enumeration<AccountStatus>(this, AccountStatus.UNKNOWN, code);
-        throw new FHIRException("Unknown AccountStatus code '"+codeString+"'");
-        }
-    public String toCode(AccountStatus code) {
-       if (code == AccountStatus.NULL)
-           return null;
-       if (code == AccountStatus.ACTIVE)
-        return "active";
-      if (code == AccountStatus.INACTIVE)
-        return "inactive";
-      if (code == AccountStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      if (code == AccountStatus.ONHOLD)
-        return "on-hold";
-      if (code == AccountStatus.UNKNOWN)
-        return "unknown";
-      return "?";
-   }
-    public String toSystem(AccountStatus code) {
-      return code.getSystem();
-      }
-    }
 
     @Block()
     public static class CoverageComponent extends BackboneElement implements IBaseBackboneElement {
@@ -2409,10 +2262,10 @@ A coverage may only be responsible for specific types of charges, and the sequen
     /**
      * Indicates whether the account is presently used/usable or not.
      */
-    @Child(name = "status", type = {CodeType.class}, order=1, min=1, max=1, modifier=true, summary=true)
+    @Child(name = "status", type = {StringType.class}, order=1, min=1, max=1, modifier=true, summary=true)
     @Description(shortDefinition="active | inactive | entered-in-error | on-hold | unknown", formalDefinition="Indicates whether the account is presently used/usable or not." )
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet="http://hl7.org/fhir/ValueSet/account-status")
-    protected Enumeration<AccountStatus> status;
+    protected StringType status;
 
     /**
      * The BillingStatus tracks the lifecycle of the account through the billing process. It indicates how transactions are treated when they are allocated to the account.
@@ -2536,7 +2389,7 @@ The balances with a `term` that is not current are usually generated/updated by 
   /**
    * Constructor
    */
-    public Account(AccountStatus status) {
+    public Account(String status) {
       super();
       this.setStatus(status);
     }
@@ -2597,12 +2450,12 @@ The balances with a `term` that is not current are usually generated/updated by 
     /**
      * @return {@link #status} (Indicates whether the account is presently used/usable or not.). This is the underlying object with id, value and extensions. The accessor "getStatus" gives direct access to the value
      */
-    public Enumeration<AccountStatus> getStatusElement() { 
+    public StringType getStatusElement() {
       if (this.status == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create Account.status");
         else if (Configuration.doAutoCreate())
-          this.status = new Enumeration<AccountStatus>(new AccountStatusEnumFactory()); // bb
+          this.status = new StringType(); // bb
       return this.status;
     }
 
@@ -2617,7 +2470,7 @@ The balances with a `term` that is not current are usually generated/updated by 
     /**
      * @param value {@link #status} (Indicates whether the account is presently used/usable or not.). This is the underlying object with id, value and extensions. The accessor "getStatus" gives direct access to the value
      */
-    public Account setStatusElement(Enumeration<AccountStatus> value) { 
+    public Account setStatusElement(StringType value) {
       this.status = value;
       return this;
     }
@@ -2625,16 +2478,16 @@ The balances with a `term` that is not current are usually generated/updated by 
     /**
      * @return Indicates whether the account is presently used/usable or not.
      */
-    public AccountStatus getStatus() { 
-      return this.status == null ? null : this.status.getValue();
+    public StringType getStatus() {
+      return this.status == null ? null : this.status;
     }
 
     /**
      * @param value Indicates whether the account is presently used/usable or not.
      */
-    public Account setStatus(AccountStatus value) { 
+    public Account setStatus(String value) {
         if (this.status == null)
-          this.status = new Enumeration<AccountStatus>(new AccountStatusEnumFactory());
+          this.status = new StringType();
         this.status.setValue(value);
       return this;
     }
@@ -3282,7 +3135,7 @@ The balances with a `term` that is not current are usually generated/updated by 
       protected void listChildren(List<Property> children) {
         super.listChildren(children);
         children.add(new Property("identifier", "Identifier", "Unique identifier used to reference the account.  Might or might not be intended for human use (e.g. credit card number).", 0, java.lang.Integer.MAX_VALUE, identifier));
-        children.add(new Property("status", "code", "Indicates whether the account is presently used/usable or not.", 0, 1, status));
+        children.add(new Property("status", "string", "Indicates whether the account is presently used/usable or not.", 0, 1, status));
         children.add(new Property("billingStatus", "CodeableConcept", "The BillingStatus tracks the lifecycle of the account through the billing process. It indicates how transactions are treated when they are allocated to the account.", 0, 1, billingStatus));
         children.add(new Property("type", "CodeableConcept", "Categorizes the account for reporting and searching purposes.", 0, 1, type));
         children.add(new Property("name", "string", "Name used for the account when displaying it to humans in reports, etc.", 0, 1, name));
@@ -3304,7 +3157,7 @@ The balances with a `term` that is not current are usually generated/updated by 
       public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
         switch (_hash) {
         case -1618432855: /*identifier*/  return new Property("identifier", "Identifier", "Unique identifier used to reference the account.  Might or might not be intended for human use (e.g. credit card number).", 0, java.lang.Integer.MAX_VALUE, identifier);
-        case -892481550: /*status*/  return new Property("status", "code", "Indicates whether the account is presently used/usable or not.", 0, 1, status);
+        case -892481550: /*status*/  return new Property("status", "string", "Indicates whether the account is presently used/usable or not.", 0, 1, status);
         case -1524378035: /*billingStatus*/  return new Property("billingStatus", "CodeableConcept", "The BillingStatus tracks the lifecycle of the account through the billing process. It indicates how transactions are treated when they are allocated to the account.", 0, 1, billingStatus);
         case 3575610: /*type*/  return new Property("type", "CodeableConcept", "Categorizes the account for reporting and searching purposes.", 0, 1, type);
         case 3373707: /*name*/  return new Property("name", "string", "Name used for the account when displaying it to humans in reports, etc.", 0, 1, name);
@@ -3329,7 +3182,7 @@ The balances with a `term` that is not current are usually generated/updated by 
       public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
         switch (hash) {
         case -1618432855: /*identifier*/ return this.identifier == null ? new Base[0] : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
-        case -892481550: /*status*/ return this.status == null ? new Base[0] : new Base[] {this.status}; // Enumeration<AccountStatus>
+        case -892481550: /*status*/ return this.status == null ? new Base[0] : new Base[] {this.status}; // StringType
         case -1524378035: /*billingStatus*/ return this.billingStatus == null ? new Base[0] : new Base[] {this.billingStatus}; // CodeableConcept
         case 3575610: /*type*/ return this.type == null ? new Base[0] : new Base[] {this.type}; // CodeableConcept
         case 3373707: /*name*/ return this.name == null ? new Base[0] : new Base[] {this.name}; // StringType
@@ -3357,8 +3210,7 @@ The balances with a `term` that is not current are usually generated/updated by 
           this.getIdentifier().add(TypeConvertor.castToIdentifier(value)); // Identifier
           return value;
         case -892481550: // status
-          value = new AccountStatusEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.status = (Enumeration) value; // Enumeration<AccountStatus>
+          this.status = TypeConvertor.castToString(value); // StringType
           return value;
         case -1524378035: // billingStatus
           this.billingStatus = TypeConvertor.castToCodeableConcept(value); // CodeableConcept
@@ -3415,8 +3267,7 @@ The balances with a `term` that is not current are usually generated/updated by 
         if (name.equals("identifier")) {
           this.getIdentifier().add(TypeConvertor.castToIdentifier(value));
         } else if (name.equals("status")) {
-          value = new AccountStatusEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.status = (Enumeration) value; // Enumeration<AccountStatus>
+          this.status = TypeConvertor.castToString(value); // StringType
         } else if (name.equals("billingStatus")) {
           this.billingStatus = TypeConvertor.castToCodeableConcept(value); // CodeableConcept
         } else if (name.equals("type")) {
@@ -3457,8 +3308,7 @@ The balances with a `term` that is not current are usually generated/updated by 
         if (name.equals("identifier")) {
           this.getIdentifier().remove(value);
         } else if (name.equals("status")) {
-          value = new AccountStatusEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.status = (Enumeration) value; // Enumeration<AccountStatus>
+          this.status = null;
         } else if (name.equals("billingStatus")) {
           this.billingStatus = null;
         } else if (name.equals("type")) {
@@ -3523,7 +3373,7 @@ The balances with a `term` that is not current are usually generated/updated by 
       public String[] getTypesForProperty(int hash, String name) throws FHIRException {
         switch (hash) {
         case -1618432855: /*identifier*/ return new String[] {"Identifier"};
-        case -892481550: /*status*/ return new String[] {"code"};
+        case -892481550: /*status*/ return new String[] {"string"};
         case -1524378035: /*billingStatus*/ return new String[] {"CodeableConcept"};
         case 3575610: /*type*/ return new String[] {"CodeableConcept"};
         case 3373707: /*name*/ return new String[] {"string"};

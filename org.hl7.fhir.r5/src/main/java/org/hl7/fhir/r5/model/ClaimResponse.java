@@ -36,7 +36,6 @@ import java.util.Date;
 import java.util.List;
 import java.math.*;
 import org.hl7.fhir.utilities.Utilities;
-import org.hl7.fhir.r5.model.Enumerations.*;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.ICompositeType;
@@ -8592,10 +8591,10 @@ public class ClaimResponse extends DomainResource {
     /**
      * The status of the resource instance.
      */
-    @Child(name = "status", type = {CodeType.class}, order=2, min=1, max=1, modifier=true, summary=true)
+    @Child(name = "status", type = {StringType.class}, order=2, min=1, max=1, modifier=true, summary=true)
     @Description(shortDefinition="active | cancelled | draft | entered-in-error", formalDefinition="The status of the resource instance." )
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet="http://hl7.org/fhir/ValueSet/fm-status")
-    protected Enumeration<FinancialResourceStatusCodes> status;
+    protected StringType status;
 
     /**
      * A finer grained suite of claim type codes which may convey additional information such as Inpatient vs Outpatient and/or a specialty service.
@@ -8616,10 +8615,10 @@ public class ClaimResponse extends DomainResource {
     /**
      * A code to indicate whether the nature of the request is: Claim - A request to an Insurer to adjudicate the supplied charges for health care goods and services under the identified policy and to pay the determined Benefit amount, if any; Preauthorization - A request to an Insurer to adjudicate the supplied proposed future charges for health care goods and services under the identified policy and to approve the services and provide the expected benefit amounts and potentially to reserve funds to pay the benefits when Claims for the indicated services are later submitted; or, Pre-determination - A request to an Insurer to adjudicate the supplied 'what if' charges for health care goods and services under the identified policy and report back what the Benefit payable would be had the services actually been provided.
      */
-    @Child(name = "use", type = {CodeType.class}, order=5, min=1, max=1, modifier=false, summary=true)
+    @Child(name = "use", type = {StringType.class}, order=5, min=1, max=1, modifier=false, summary=true)
     @Description(shortDefinition="claim | preauthorization | predetermination", formalDefinition="A code to indicate whether the nature of the request is: Claim - A request to an Insurer to adjudicate the supplied charges for health care goods and services under the identified policy and to pay the determined Benefit amount, if any; Preauthorization - A request to an Insurer to adjudicate the supplied proposed future charges for health care goods and services under the identified policy and to approve the services and provide the expected benefit amounts and potentially to reserve funds to pay the benefits when Claims for the indicated services are later submitted; or, Pre-determination - A request to an Insurer to adjudicate the supplied 'what if' charges for health care goods and services under the identified policy and report back what the Benefit payable would be had the services actually been provided." )
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet="http://hl7.org/fhir/ValueSet/claim-use")
-    protected Enumeration<Use> use;
+    protected StringType use;
 
     /**
      * The party to whom the professional services and/or products have been supplied or are being considered and for whom actual for facast reimbursement is sought.
@@ -8659,10 +8658,10 @@ public class ClaimResponse extends DomainResource {
     /**
      * The outcome of the claim, predetermination, or preauthorization processing.
      */
-    @Child(name = "outcome", type = {CodeType.class}, order=11, min=1, max=1, modifier=false, summary=true)
+    @Child(name = "outcome", type = {StringType.class}, order=11, min=1, max=1, modifier=false, summary=true)
     @Description(shortDefinition="queued | complete | error | partial", formalDefinition="The outcome of the claim, predetermination, or preauthorization processing." )
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet="http://hl7.org/fhir/ValueSet/claim-outcome")
-    protected Enumeration<ClaimProcessingCodes> outcome;
+    protected StringType outcome;
 
     /**
      * The result of the claim, predetermination, or preauthorization adjudication.
@@ -8821,7 +8820,7 @@ public class ClaimResponse extends DomainResource {
   /**
    * Constructor
    */
-    public ClaimResponse(FinancialResourceStatusCodes status, CodeableConcept type, Use use, Reference patient, Date created, ClaimProcessingCodes outcome) {
+    public ClaimResponse(String status, CodeableConcept type, String use, Reference patient, Date created, String outcome) {
       super();
       this.setStatus(status);
       this.setType(type);
@@ -8940,12 +8939,12 @@ public class ClaimResponse extends DomainResource {
     /**
      * @return {@link #status} (The status of the resource instance.). This is the underlying object with id, value and extensions. The accessor "getStatus" gives direct access to the value
      */
-    public Enumeration<FinancialResourceStatusCodes> getStatusElement() { 
+    public StringType getStatusElement() {
       if (this.status == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create ClaimResponse.status");
         else if (Configuration.doAutoCreate())
-          this.status = new Enumeration<FinancialResourceStatusCodes>(new FinancialResourceStatusCodesEnumFactory()); // bb
+          this.status = new StringType(); // bb
       return this.status;
     }
 
@@ -8960,7 +8959,7 @@ public class ClaimResponse extends DomainResource {
     /**
      * @param value {@link #status} (The status of the resource instance.). This is the underlying object with id, value and extensions. The accessor "getStatus" gives direct access to the value
      */
-    public ClaimResponse setStatusElement(Enumeration<FinancialResourceStatusCodes> value) { 
+    public ClaimResponse setStatusElement(StringType value) {
       this.status = value;
       return this;
     }
@@ -8968,16 +8967,16 @@ public class ClaimResponse extends DomainResource {
     /**
      * @return The status of the resource instance.
      */
-    public FinancialResourceStatusCodes getStatus() { 
-      return this.status == null ? null : this.status.getValue();
+    public StringType getStatus() {
+      return this.status == null ? null : this.status;
     }
 
     /**
      * @param value The status of the resource instance.
      */
-    public ClaimResponse setStatus(FinancialResourceStatusCodes value) { 
+    public ClaimResponse setStatus(String value) {
         if (this.status == null)
-          this.status = new Enumeration<FinancialResourceStatusCodes>(new FinancialResourceStatusCodesEnumFactory());
+          this.status = new StringType();
         this.status.setValue(value);
       return this;
     }
@@ -9033,12 +9032,12 @@ public class ClaimResponse extends DomainResource {
     /**
      * @return {@link #use} (A code to indicate whether the nature of the request is: Claim - A request to an Insurer to adjudicate the supplied charges for health care goods and services under the identified policy and to pay the determined Benefit amount, if any; Preauthorization - A request to an Insurer to adjudicate the supplied proposed future charges for health care goods and services under the identified policy and to approve the services and provide the expected benefit amounts and potentially to reserve funds to pay the benefits when Claims for the indicated services are later submitted; or, Pre-determination - A request to an Insurer to adjudicate the supplied 'what if' charges for health care goods and services under the identified policy and report back what the Benefit payable would be had the services actually been provided.). This is the underlying object with id, value and extensions. The accessor "getUse" gives direct access to the value
      */
-    public Enumeration<Use> getUseElement() { 
+    public StringType getUseElement() {
       if (this.use == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create ClaimResponse.use");
         else if (Configuration.doAutoCreate())
-          this.use = new Enumeration<Use>(new UseEnumFactory()); // bb
+          this.use = new StringType(); // bb
       return this.use;
     }
 
@@ -9053,7 +9052,7 @@ public class ClaimResponse extends DomainResource {
     /**
      * @param value {@link #use} (A code to indicate whether the nature of the request is: Claim - A request to an Insurer to adjudicate the supplied charges for health care goods and services under the identified policy and to pay the determined Benefit amount, if any; Preauthorization - A request to an Insurer to adjudicate the supplied proposed future charges for health care goods and services under the identified policy and to approve the services and provide the expected benefit amounts and potentially to reserve funds to pay the benefits when Claims for the indicated services are later submitted; or, Pre-determination - A request to an Insurer to adjudicate the supplied 'what if' charges for health care goods and services under the identified policy and report back what the Benefit payable would be had the services actually been provided.). This is the underlying object with id, value and extensions. The accessor "getUse" gives direct access to the value
      */
-    public ClaimResponse setUseElement(Enumeration<Use> value) { 
+    public ClaimResponse setUseElement(StringType value) {
       this.use = value;
       return this;
     }
@@ -9061,16 +9060,16 @@ public class ClaimResponse extends DomainResource {
     /**
      * @return A code to indicate whether the nature of the request is: Claim - A request to an Insurer to adjudicate the supplied charges for health care goods and services under the identified policy and to pay the determined Benefit amount, if any; Preauthorization - A request to an Insurer to adjudicate the supplied proposed future charges for health care goods and services under the identified policy and to approve the services and provide the expected benefit amounts and potentially to reserve funds to pay the benefits when Claims for the indicated services are later submitted; or, Pre-determination - A request to an Insurer to adjudicate the supplied 'what if' charges for health care goods and services under the identified policy and report back what the Benefit payable would be had the services actually been provided.
      */
-    public Use getUse() { 
-      return this.use == null ? null : this.use.getValue();
+    public StringType getUse() {
+      return this.use == null ? null : this.use;
     }
 
     /**
      * @param value A code to indicate whether the nature of the request is: Claim - A request to an Insurer to adjudicate the supplied charges for health care goods and services under the identified policy and to pay the determined Benefit amount, if any; Preauthorization - A request to an Insurer to adjudicate the supplied proposed future charges for health care goods and services under the identified policy and to approve the services and provide the expected benefit amounts and potentially to reserve funds to pay the benefits when Claims for the indicated services are later submitted; or, Pre-determination - A request to an Insurer to adjudicate the supplied 'what if' charges for health care goods and services under the identified policy and report back what the Benefit payable would be had the services actually been provided.
      */
-    public ClaimResponse setUse(Use value) { 
+    public ClaimResponse setUse(String value) {
         if (this.use == null)
-          this.use = new Enumeration<Use>(new UseEnumFactory());
+          this.use = new StringType();
         this.use.setValue(value);
       return this;
     }
@@ -9219,12 +9218,12 @@ public class ClaimResponse extends DomainResource {
     /**
      * @return {@link #outcome} (The outcome of the claim, predetermination, or preauthorization processing.). This is the underlying object with id, value and extensions. The accessor "getOutcome" gives direct access to the value
      */
-    public Enumeration<ClaimProcessingCodes> getOutcomeElement() { 
+    public StringType getOutcomeElement() {
       if (this.outcome == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create ClaimResponse.outcome");
         else if (Configuration.doAutoCreate())
-          this.outcome = new Enumeration<ClaimProcessingCodes>(new ClaimProcessingCodesEnumFactory()); // bb
+          this.outcome = new StringType(); // bb
       return this.outcome;
     }
 
@@ -9239,7 +9238,7 @@ public class ClaimResponse extends DomainResource {
     /**
      * @param value {@link #outcome} (The outcome of the claim, predetermination, or preauthorization processing.). This is the underlying object with id, value and extensions. The accessor "getOutcome" gives direct access to the value
      */
-    public ClaimResponse setOutcomeElement(Enumeration<ClaimProcessingCodes> value) { 
+    public ClaimResponse setOutcomeElement(StringType value) {
       this.outcome = value;
       return this;
     }
@@ -9247,16 +9246,16 @@ public class ClaimResponse extends DomainResource {
     /**
      * @return The outcome of the claim, predetermination, or preauthorization processing.
      */
-    public ClaimProcessingCodes getOutcome() { 
-      return this.outcome == null ? null : this.outcome.getValue();
+    public StringType getOutcome() {
+      return this.outcome == null ? null : this.outcome;
     }
 
     /**
      * @param value The outcome of the claim, predetermination, or preauthorization processing.
      */
-    public ClaimResponse setOutcome(ClaimProcessingCodes value) { 
+    public ClaimResponse setOutcome(String value) {
         if (this.outcome == null)
-          this.outcome = new Enumeration<ClaimProcessingCodes>(new ClaimProcessingCodesEnumFactory());
+          this.outcome = new StringType();
         this.outcome.setValue(value);
       return this;
     }
@@ -10085,16 +10084,16 @@ public class ClaimResponse extends DomainResource {
         super.listChildren(children);
         children.add(new Property("identifier", "Identifier", "A unique identifier assigned to this claim response.", 0, java.lang.Integer.MAX_VALUE, identifier));
         children.add(new Property("traceNumber", "Identifier", "Trace number for tracking purposes. May be defined at the jurisdiction level or between trading partners.", 0, java.lang.Integer.MAX_VALUE, traceNumber));
-        children.add(new Property("status", "code", "The status of the resource instance.", 0, 1, status));
+        children.add(new Property("status", "string", "The status of the resource instance.", 0, 1, status));
         children.add(new Property("type", "CodeableConcept", "A finer grained suite of claim type codes which may convey additional information such as Inpatient vs Outpatient and/or a specialty service.", 0, 1, type));
         children.add(new Property("subType", "CodeableConcept", "A finer grained suite of claim type codes which may convey additional information such as Inpatient vs Outpatient and/or a specialty service.", 0, 1, subType));
-        children.add(new Property("use", "code", "A code to indicate whether the nature of the request is: Claim - A request to an Insurer to adjudicate the supplied charges for health care goods and services under the identified policy and to pay the determined Benefit amount, if any; Preauthorization - A request to an Insurer to adjudicate the supplied proposed future charges for health care goods and services under the identified policy and to approve the services and provide the expected benefit amounts and potentially to reserve funds to pay the benefits when Claims for the indicated services are later submitted; or, Pre-determination - A request to an Insurer to adjudicate the supplied 'what if' charges for health care goods and services under the identified policy and report back what the Benefit payable would be had the services actually been provided.", 0, 1, use));
+        children.add(new Property("use", "string", "A code to indicate whether the nature of the request is: Claim - A request to an Insurer to adjudicate the supplied charges for health care goods and services under the identified policy and to pay the determined Benefit amount, if any; Preauthorization - A request to an Insurer to adjudicate the supplied proposed future charges for health care goods and services under the identified policy and to approve the services and provide the expected benefit amounts and potentially to reserve funds to pay the benefits when Claims for the indicated services are later submitted; or, Pre-determination - A request to an Insurer to adjudicate the supplied 'what if' charges for health care goods and services under the identified policy and report back what the Benefit payable would be had the services actually been provided.", 0, 1, use));
         children.add(new Property("patient", "Reference(Patient)", "The party to whom the professional services and/or products have been supplied or are being considered and for whom actual for facast reimbursement is sought.", 0, 1, patient));
         children.add(new Property("created", "dateTime", "The date this resource was created.", 0, 1, created));
         children.add(new Property("insurer", "Reference(Organization)", "The party responsible for authorization, adjudication and reimbursement.", 0, 1, insurer));
         children.add(new Property("requestor", "Reference(Practitioner|PractitionerRole|Organization)", "The provider which is responsible for the claim, predetermination or preauthorization.", 0, 1, requestor));
         children.add(new Property("request", "Reference(Claim)", "Original request resource reference.", 0, 1, request));
-        children.add(new Property("outcome", "code", "The outcome of the claim, predetermination, or preauthorization processing.", 0, 1, outcome));
+        children.add(new Property("outcome", "string", "The outcome of the claim, predetermination, or preauthorization processing.", 0, 1, outcome));
         children.add(new Property("decision", "CodeableConcept", "The result of the claim, predetermination, or preauthorization adjudication.", 0, 1, decision));
         children.add(new Property("disposition", "string", "A human readable description of the status of the adjudication.", 0, 1, disposition));
         children.add(new Property("preAuthRef", "string", "Reference from the Insurer which is used in later communications which refers to this adjudication.", 0, 1, preAuthRef));
@@ -10122,16 +10121,16 @@ public class ClaimResponse extends DomainResource {
         switch (_hash) {
         case -1618432855: /*identifier*/  return new Property("identifier", "Identifier", "A unique identifier assigned to this claim response.", 0, java.lang.Integer.MAX_VALUE, identifier);
         case 82505966: /*traceNumber*/  return new Property("traceNumber", "Identifier", "Trace number for tracking purposes. May be defined at the jurisdiction level or between trading partners.", 0, java.lang.Integer.MAX_VALUE, traceNumber);
-        case -892481550: /*status*/  return new Property("status", "code", "The status of the resource instance.", 0, 1, status);
+        case -892481550: /*status*/  return new Property("status", "string", "The status of the resource instance.", 0, 1, status);
         case 3575610: /*type*/  return new Property("type", "CodeableConcept", "A finer grained suite of claim type codes which may convey additional information such as Inpatient vs Outpatient and/or a specialty service.", 0, 1, type);
         case -1868521062: /*subType*/  return new Property("subType", "CodeableConcept", "A finer grained suite of claim type codes which may convey additional information such as Inpatient vs Outpatient and/or a specialty service.", 0, 1, subType);
-        case 116103: /*use*/  return new Property("use", "code", "A code to indicate whether the nature of the request is: Claim - A request to an Insurer to adjudicate the supplied charges for health care goods and services under the identified policy and to pay the determined Benefit amount, if any; Preauthorization - A request to an Insurer to adjudicate the supplied proposed future charges for health care goods and services under the identified policy and to approve the services and provide the expected benefit amounts and potentially to reserve funds to pay the benefits when Claims for the indicated services are later submitted; or, Pre-determination - A request to an Insurer to adjudicate the supplied 'what if' charges for health care goods and services under the identified policy and report back what the Benefit payable would be had the services actually been provided.", 0, 1, use);
+        case 116103: /*use*/  return new Property("use", "string", "A code to indicate whether the nature of the request is: Claim - A request to an Insurer to adjudicate the supplied charges for health care goods and services under the identified policy and to pay the determined Benefit amount, if any; Preauthorization - A request to an Insurer to adjudicate the supplied proposed future charges for health care goods and services under the identified policy and to approve the services and provide the expected benefit amounts and potentially to reserve funds to pay the benefits when Claims for the indicated services are later submitted; or, Pre-determination - A request to an Insurer to adjudicate the supplied 'what if' charges for health care goods and services under the identified policy and report back what the Benefit payable would be had the services actually been provided.", 0, 1, use);
         case -791418107: /*patient*/  return new Property("patient", "Reference(Patient)", "The party to whom the professional services and/or products have been supplied or are being considered and for whom actual for facast reimbursement is sought.", 0, 1, patient);
         case 1028554472: /*created*/  return new Property("created", "dateTime", "The date this resource was created.", 0, 1, created);
         case 1957615864: /*insurer*/  return new Property("insurer", "Reference(Organization)", "The party responsible for authorization, adjudication and reimbursement.", 0, 1, insurer);
         case 693934258: /*requestor*/  return new Property("requestor", "Reference(Practitioner|PractitionerRole|Organization)", "The provider which is responsible for the claim, predetermination or preauthorization.", 0, 1, requestor);
         case 1095692943: /*request*/  return new Property("request", "Reference(Claim)", "Original request resource reference.", 0, 1, request);
-        case -1106507950: /*outcome*/  return new Property("outcome", "code", "The outcome of the claim, predetermination, or preauthorization processing.", 0, 1, outcome);
+        case -1106507950: /*outcome*/  return new Property("outcome", "string", "The outcome of the claim, predetermination, or preauthorization processing.", 0, 1, outcome);
         case 565719004: /*decision*/  return new Property("decision", "CodeableConcept", "The result of the claim, predetermination, or preauthorization adjudication.", 0, 1, decision);
         case 583380919: /*disposition*/  return new Property("disposition", "string", "A human readable description of the status of the adjudication.", 0, 1, disposition);
         case 522246568: /*preAuthRef*/  return new Property("preAuthRef", "string", "Reference from the Insurer which is used in later communications which refers to this adjudication.", 0, 1, preAuthRef);
@@ -10162,16 +10161,16 @@ public class ClaimResponse extends DomainResource {
         switch (hash) {
         case -1618432855: /*identifier*/ return this.identifier == null ? new Base[0] : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
         case 82505966: /*traceNumber*/ return this.traceNumber == null ? new Base[0] : this.traceNumber.toArray(new Base[this.traceNumber.size()]); // Identifier
-        case -892481550: /*status*/ return this.status == null ? new Base[0] : new Base[] {this.status}; // Enumeration<FinancialResourceStatusCodes>
+        case -892481550: /*status*/ return this.status == null ? new Base[0] : new Base[] {this.status}; // StringType
         case 3575610: /*type*/ return this.type == null ? new Base[0] : new Base[] {this.type}; // CodeableConcept
         case -1868521062: /*subType*/ return this.subType == null ? new Base[0] : new Base[] {this.subType}; // CodeableConcept
-        case 116103: /*use*/ return this.use == null ? new Base[0] : new Base[] {this.use}; // Enumeration<Use>
+        case 116103: /*use*/ return this.use == null ? new Base[0] : new Base[] {this.use}; // StringType
         case -791418107: /*patient*/ return this.patient == null ? new Base[0] : new Base[] {this.patient}; // Reference
         case 1028554472: /*created*/ return this.created == null ? new Base[0] : new Base[] {this.created}; // DateTimeType
         case 1957615864: /*insurer*/ return this.insurer == null ? new Base[0] : new Base[] {this.insurer}; // Reference
         case 693934258: /*requestor*/ return this.requestor == null ? new Base[0] : new Base[] {this.requestor}; // Reference
         case 1095692943: /*request*/ return this.request == null ? new Base[0] : new Base[] {this.request}; // Reference
-        case -1106507950: /*outcome*/ return this.outcome == null ? new Base[0] : new Base[] {this.outcome}; // Enumeration<ClaimProcessingCodes>
+        case -1106507950: /*outcome*/ return this.outcome == null ? new Base[0] : new Base[] {this.outcome}; // StringType
         case 565719004: /*decision*/ return this.decision == null ? new Base[0] : new Base[] {this.decision}; // CodeableConcept
         case 583380919: /*disposition*/ return this.disposition == null ? new Base[0] : new Base[] {this.disposition}; // StringType
         case 522246568: /*preAuthRef*/ return this.preAuthRef == null ? new Base[0] : new Base[] {this.preAuthRef}; // StringType
@@ -10207,8 +10206,7 @@ public class ClaimResponse extends DomainResource {
           this.getTraceNumber().add(TypeConvertor.castToIdentifier(value)); // Identifier
           return value;
         case -892481550: // status
-          value = new FinancialResourceStatusCodesEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.status = (Enumeration) value; // Enumeration<FinancialResourceStatusCodes>
+          this.status = TypeConvertor.castToString(value); // StringType
           return value;
         case 3575610: // type
           this.type = TypeConvertor.castToCodeableConcept(value); // CodeableConcept
@@ -10217,8 +10215,7 @@ public class ClaimResponse extends DomainResource {
           this.subType = TypeConvertor.castToCodeableConcept(value); // CodeableConcept
           return value;
         case 116103: // use
-          value = new UseEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.use = (Enumeration) value; // Enumeration<Use>
+          this.use = TypeConvertor.castToString(value); // StringType
           return value;
         case -791418107: // patient
           this.patient = TypeConvertor.castToReference(value); // Reference
@@ -10236,8 +10233,7 @@ public class ClaimResponse extends DomainResource {
           this.request = TypeConvertor.castToReference(value); // Reference
           return value;
         case -1106507950: // outcome
-          value = new ClaimProcessingCodesEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.outcome = (Enumeration) value; // Enumeration<ClaimProcessingCodes>
+          this.outcome = TypeConvertor.castToString(value); // StringType
           return value;
         case 565719004: // decision
           this.decision = TypeConvertor.castToCodeableConcept(value); // CodeableConcept
@@ -10311,15 +10307,13 @@ public class ClaimResponse extends DomainResource {
         } else if (name.equals("traceNumber")) {
           this.getTraceNumber().add(TypeConvertor.castToIdentifier(value));
         } else if (name.equals("status")) {
-          value = new FinancialResourceStatusCodesEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.status = (Enumeration) value; // Enumeration<FinancialResourceStatusCodes>
+          this.status = TypeConvertor.castToString(value); // StringType
         } else if (name.equals("type")) {
           this.type = TypeConvertor.castToCodeableConcept(value); // CodeableConcept
         } else if (name.equals("subType")) {
           this.subType = TypeConvertor.castToCodeableConcept(value); // CodeableConcept
         } else if (name.equals("use")) {
-          value = new UseEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.use = (Enumeration) value; // Enumeration<Use>
+          this.use = TypeConvertor.castToString(value); // StringType
         } else if (name.equals("patient")) {
           this.patient = TypeConvertor.castToReference(value); // Reference
         } else if (name.equals("created")) {
@@ -10331,8 +10325,7 @@ public class ClaimResponse extends DomainResource {
         } else if (name.equals("request")) {
           this.request = TypeConvertor.castToReference(value); // Reference
         } else if (name.equals("outcome")) {
-          value = new ClaimProcessingCodesEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.outcome = (Enumeration) value; // Enumeration<ClaimProcessingCodes>
+          this.outcome = TypeConvertor.castToString(value); // StringType
         } else if (name.equals("decision")) {
           this.decision = TypeConvertor.castToCodeableConcept(value); // CodeableConcept
         } else if (name.equals("disposition")) {
@@ -10385,15 +10378,13 @@ public class ClaimResponse extends DomainResource {
         } else if (name.equals("traceNumber")) {
           this.getTraceNumber().remove(value);
         } else if (name.equals("status")) {
-          value = new FinancialResourceStatusCodesEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.status = (Enumeration) value; // Enumeration<FinancialResourceStatusCodes>
+          this.status = null; // StringType
         } else if (name.equals("type")) {
           this.type = null;
         } else if (name.equals("subType")) {
           this.subType = null;
         } else if (name.equals("use")) {
-          value = new UseEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.use = (Enumeration) value; // Enumeration<Use>
+          this.use = null; // StringType
         } else if (name.equals("patient")) {
           this.patient = null;
         } else if (name.equals("created")) {
@@ -10405,8 +10396,7 @@ public class ClaimResponse extends DomainResource {
         } else if (name.equals("request")) {
           this.request = null;
         } else if (name.equals("outcome")) {
-          value = new ClaimProcessingCodesEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.outcome = (Enumeration) value; // Enumeration<ClaimProcessingCodes>
+          this.outcome = null; // StringType
         } else if (name.equals("decision")) {
           this.decision = null;
         } else if (name.equals("disposition")) {
@@ -10497,16 +10487,16 @@ public class ClaimResponse extends DomainResource {
         switch (hash) {
         case -1618432855: /*identifier*/ return new String[] {"Identifier"};
         case 82505966: /*traceNumber*/ return new String[] {"Identifier"};
-        case -892481550: /*status*/ return new String[] {"code"};
+        case -892481550: /*status*/ return new String[] {"string"};
         case 3575610: /*type*/ return new String[] {"CodeableConcept"};
         case -1868521062: /*subType*/ return new String[] {"CodeableConcept"};
-        case 116103: /*use*/ return new String[] {"code"};
+        case 116103: /*use*/ return new String[] {"string"};
         case -791418107: /*patient*/ return new String[] {"Reference"};
         case 1028554472: /*created*/ return new String[] {"dateTime"};
         case 1957615864: /*insurer*/ return new String[] {"Reference"};
         case 693934258: /*requestor*/ return new String[] {"Reference"};
         case 1095692943: /*request*/ return new String[] {"Reference"};
-        case -1106507950: /*outcome*/ return new String[] {"code"};
+        case -1106507950: /*outcome*/ return new String[] {"string"};
         case 565719004: /*decision*/ return new String[] {"CodeableConcept"};
         case 583380919: /*disposition*/ return new String[] {"string"};
         case 522246568: /*preAuthRef*/ return new String[] {"string"};
