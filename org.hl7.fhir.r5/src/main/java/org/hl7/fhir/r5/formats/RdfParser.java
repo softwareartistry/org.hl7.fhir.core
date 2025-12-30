@@ -15480,7 +15480,7 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "InsurancePlan", "identifier", element.getIdentifier().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "InsurancePlan", "status", element.getStatusElement(), -1);
+      composeString(t, "InsurancePlan", "status", element.getStatusElement(), -1);
     }
     for (int i = 0; i < element.getType().size(); i++) {
       composeCodeableConcept(t, "InsurancePlan", "type", element.getType().get(i), i);
