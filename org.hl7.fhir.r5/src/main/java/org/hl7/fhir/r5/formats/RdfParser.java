@@ -11151,7 +11151,7 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "EnrollmentRequest", "identifier", element.getIdentifier().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "EnrollmentRequest", "status", element.getStatusElement(), -1);
+      composeString(t, "EnrollmentRequest", "status", element.getStatusElement(), -1);
     }
     if (element.hasCreatedElement()) {
       composeDateTime(t, "EnrollmentRequest", "created", element.getCreatedElement(), -1);
@@ -11184,13 +11184,13 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "EnrollmentResponse", "identifier", element.getIdentifier().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "EnrollmentResponse", "status", element.getStatusElement(), -1);
+      composeString(t, "EnrollmentResponse", "status", element.getStatusElement(), -1);
     }
     if (element.hasRequest()) {
       composeReference(t, "EnrollmentResponse", "request", element.getRequest(), -1);
     }
     if (element.hasOutcomeElement()) {
-      composeEnum(t, "EnrollmentResponse", "outcome", element.getOutcomeElement(), -1);
+      composeString(t, "EnrollmentResponse", "outcome", element.getOutcomeElement(), -1);
     }
     if (element.hasDispositionElement()) {
       composeString(t, "EnrollmentResponse", "disposition", element.getDispositionElement(), -1);

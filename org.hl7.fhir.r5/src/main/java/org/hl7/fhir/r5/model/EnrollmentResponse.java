@@ -35,7 +35,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hl7.fhir.utilities.Utilities;
-import org.hl7.fhir.r5.model.Enumerations.*;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.ICompositeType;
@@ -53,136 +52,6 @@ import ca.uhn.fhir.model.api.annotation.Block;
 @ResourceDef(name="EnrollmentResponse", profile="http://hl7.org/fhir/StructureDefinition/EnrollmentResponse")
 public class EnrollmentResponse extends DomainResource {
 
-    public enum EnrollmentOutcome {
-        /**
-         * The Claim/Pre-authorization/Pre-determination has been received but processing has not begun.
-         */
-        QUEUED, 
-        /**
-         * The processing has completed without errors
-         */
-        COMPLETE, 
-        /**
-         * One or more errors have been detected in the Claim
-         */
-        ERROR, 
-        /**
-         * No errors have been detected in the Claim and some of the adjudication has been performed.
-         */
-        PARTIAL, 
-        /**
-         * added to help the parsers with the generic types
-         */
-        NULL;
-        public static EnrollmentOutcome fromCode(String codeString) throws FHIRException {
-            if (codeString == null || "".equals(codeString))
-                return null;
-        if ("queued".equals(codeString))
-          return QUEUED;
-        if ("complete".equals(codeString))
-          return COMPLETE;
-        if ("error".equals(codeString))
-          return ERROR;
-        if ("partial".equals(codeString))
-          return PARTIAL;
-        if (Configuration.isAcceptInvalidEnums())
-          return null;
-        else
-          throw new FHIRException("Unknown EnrollmentOutcome code '"+codeString+"'");
-        }
-        public String toCode() {
-          switch (this) {
-            case QUEUED: return "queued";
-            case COMPLETE: return "complete";
-            case ERROR: return "error";
-            case PARTIAL: return "partial";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-        public String getSystem() {
-          switch (this) {
-            case QUEUED: return "http://hl7.org/fhir/enrollment-outcome";
-            case COMPLETE: return "http://hl7.org/fhir/enrollment-outcome";
-            case ERROR: return "http://hl7.org/fhir/enrollment-outcome";
-            case PARTIAL: return "http://hl7.org/fhir/enrollment-outcome";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-        public String getDefinition() {
-          switch (this) {
-            case QUEUED: return "The Claim/Pre-authorization/Pre-determination has been received but processing has not begun.";
-            case COMPLETE: return "The processing has completed without errors";
-            case ERROR: return "One or more errors have been detected in the Claim";
-            case PARTIAL: return "No errors have been detected in the Claim and some of the adjudication has been performed.";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-        public String getDisplay() {
-          switch (this) {
-            case QUEUED: return "Queued";
-            case COMPLETE: return "Processing Complete";
-            case ERROR: return "Error";
-            case PARTIAL: return "Partial Processing";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-    }
-
-  public static class EnrollmentOutcomeEnumFactory implements EnumFactory<EnrollmentOutcome> {
-    public EnrollmentOutcome fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-            if (codeString == null || "".equals(codeString))
-                return null;
-        if ("queued".equals(codeString))
-          return EnrollmentOutcome.QUEUED;
-        if ("complete".equals(codeString))
-          return EnrollmentOutcome.COMPLETE;
-        if ("error".equals(codeString))
-          return EnrollmentOutcome.ERROR;
-        if ("partial".equals(codeString))
-          return EnrollmentOutcome.PARTIAL;
-        throw new IllegalArgumentException("Unknown EnrollmentOutcome code '"+codeString+"'");
-        }
-        public Enumeration<EnrollmentOutcome> fromType(PrimitiveType<?> code) throws FHIRException {
-          if (code == null)
-            return null;
-          if (code.isEmpty())
-            return new Enumeration<EnrollmentOutcome>(this, EnrollmentOutcome.NULL, code);
-          String codeString = ((PrimitiveType) code).asStringValue();
-          if (codeString == null || "".equals(codeString))
-            return new Enumeration<EnrollmentOutcome>(this, EnrollmentOutcome.NULL, code);
-        if ("queued".equals(codeString))
-          return new Enumeration<EnrollmentOutcome>(this, EnrollmentOutcome.QUEUED, code);
-        if ("complete".equals(codeString))
-          return new Enumeration<EnrollmentOutcome>(this, EnrollmentOutcome.COMPLETE, code);
-        if ("error".equals(codeString))
-          return new Enumeration<EnrollmentOutcome>(this, EnrollmentOutcome.ERROR, code);
-        if ("partial".equals(codeString))
-          return new Enumeration<EnrollmentOutcome>(this, EnrollmentOutcome.PARTIAL, code);
-        throw new FHIRException("Unknown EnrollmentOutcome code '"+codeString+"'");
-        }
-    public String toCode(EnrollmentOutcome code) {
-       if (code == EnrollmentOutcome.NULL)
-           return null;
-       if (code == EnrollmentOutcome.QUEUED)
-        return "queued";
-      if (code == EnrollmentOutcome.COMPLETE)
-        return "complete";
-      if (code == EnrollmentOutcome.ERROR)
-        return "error";
-      if (code == EnrollmentOutcome.PARTIAL)
-        return "partial";
-      return "?";
-   }
-    public String toSystem(EnrollmentOutcome code) {
-      return code.getSystem();
-      }
-    }
-
     /**
      * The Response business identifier.
      */
@@ -193,10 +62,10 @@ public class EnrollmentResponse extends DomainResource {
     /**
      * The status of the resource instance.
      */
-    @Child(name = "status", type = {CodeType.class}, order=1, min=0, max=1, modifier=true, summary=true)
+    @Child(name = "status", type = {StringType.class}, order=1, min=0, max=1, modifier=true, summary=true)
     @Description(shortDefinition="active | cancelled | draft | entered-in-error", formalDefinition="The status of the resource instance." )
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet="http://hl7.org/fhir/ValueSet/fm-status")
-    protected Enumeration<FinancialResourceStatusCodes> status;
+    protected StringType status;
 
     /**
      * Original request resource reference.
@@ -208,10 +77,10 @@ public class EnrollmentResponse extends DomainResource {
     /**
      * Processing status: error, complete.
      */
-    @Child(name = "outcome", type = {CodeType.class}, order=3, min=0, max=1, modifier=false, summary=false)
+    @Child(name = "outcome", type = {StringType.class}, order=3, min=0, max=1, modifier=false, summary=false)
     @Description(shortDefinition="queued | complete | error | partial", formalDefinition="Processing status: error, complete." )
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet="http://hl7.org/fhir/ValueSet/enrollment-outcome")
-    protected Enumeration<EnrollmentOutcome> outcome;
+    protected StringType outcome;
 
     /**
      * A description of the status of the adjudication.
@@ -306,12 +175,12 @@ public class EnrollmentResponse extends DomainResource {
     /**
      * @return {@link #status} (The status of the resource instance.). This is the underlying object with id, value and extensions. The accessor "getStatus" gives direct access to the value
      */
-    public Enumeration<FinancialResourceStatusCodes> getStatusElement() { 
+    public StringType getStatusElement() {
       if (this.status == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create EnrollmentResponse.status");
         else if (Configuration.doAutoCreate())
-          this.status = new Enumeration<FinancialResourceStatusCodes>(new FinancialResourceStatusCodesEnumFactory()); // bb
+          this.status = new StringType(); // bb
       return this.status;
     }
 
@@ -326,7 +195,7 @@ public class EnrollmentResponse extends DomainResource {
     /**
      * @param value {@link #status} (The status of the resource instance.). This is the underlying object with id, value and extensions. The accessor "getStatus" gives direct access to the value
      */
-    public EnrollmentResponse setStatusElement(Enumeration<FinancialResourceStatusCodes> value) { 
+    public EnrollmentResponse setStatusElement(StringType value) {
       this.status = value;
       return this;
     }
@@ -334,19 +203,19 @@ public class EnrollmentResponse extends DomainResource {
     /**
      * @return The status of the resource instance.
      */
-    public FinancialResourceStatusCodes getStatus() { 
-      return this.status == null ? null : this.status.getValue();
+    public StringType getStatus() {
+      return this.status == null ? null : this.status;
     }
 
     /**
      * @param value The status of the resource instance.
      */
-    public EnrollmentResponse setStatus(FinancialResourceStatusCodes value) { 
+    public EnrollmentResponse setStatus(String value) {
       if (value == null)
         this.status = null;
       else {
         if (this.status == null)
-          this.status = new Enumeration<FinancialResourceStatusCodes>(new FinancialResourceStatusCodesEnumFactory());
+          this.status = new StringType();
         this.status.setValue(value);
       }
       return this;
@@ -379,12 +248,12 @@ public class EnrollmentResponse extends DomainResource {
     /**
      * @return {@link #outcome} (Processing status: error, complete.). This is the underlying object with id, value and extensions. The accessor "getOutcome" gives direct access to the value
      */
-    public Enumeration<EnrollmentOutcome> getOutcomeElement() { 
+    public StringType getOutcomeElement() {
       if (this.outcome == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create EnrollmentResponse.outcome");
         else if (Configuration.doAutoCreate())
-          this.outcome = new Enumeration<EnrollmentOutcome>(new EnrollmentOutcomeEnumFactory()); // bb
+          this.outcome = new StringType(); // bb
       return this.outcome;
     }
 
@@ -399,7 +268,7 @@ public class EnrollmentResponse extends DomainResource {
     /**
      * @param value {@link #outcome} (Processing status: error, complete.). This is the underlying object with id, value and extensions. The accessor "getOutcome" gives direct access to the value
      */
-    public EnrollmentResponse setOutcomeElement(Enumeration<EnrollmentOutcome> value) { 
+    public EnrollmentResponse setOutcomeElement(StringType value) {
       this.outcome = value;
       return this;
     }
@@ -407,19 +276,19 @@ public class EnrollmentResponse extends DomainResource {
     /**
      * @return Processing status: error, complete.
      */
-    public EnrollmentOutcome getOutcome() { 
-      return this.outcome == null ? null : this.outcome.getValue();
+    public StringType getOutcome() {
+      return this.outcome == null ? null : this.outcome;
     }
 
     /**
      * @param value Processing status: error, complete.
      */
-    public EnrollmentResponse setOutcome(EnrollmentOutcome value) { 
+    public EnrollmentResponse setOutcome(String value) {
       if (value == null)
         this.outcome = null;
       else {
         if (this.outcome == null)
-          this.outcome = new Enumeration<EnrollmentOutcome>(new EnrollmentOutcomeEnumFactory());
+          this.outcome = new StringType();
         this.outcome.setValue(value);
       }
       return this;
@@ -574,9 +443,9 @@ public class EnrollmentResponse extends DomainResource {
       protected void listChildren(List<Property> children) {
         super.listChildren(children);
         children.add(new Property("identifier", "Identifier", "The Response business identifier.", 0, java.lang.Integer.MAX_VALUE, identifier));
-        children.add(new Property("status", "code", "The status of the resource instance.", 0, 1, status));
+        children.add(new Property("status", "string", "The status of the resource instance.", 0, 1, status));
         children.add(new Property("request", "Reference(EnrollmentRequest)", "Original request resource reference.", 0, 1, request));
-        children.add(new Property("outcome", "code", "Processing status: error, complete.", 0, 1, outcome));
+        children.add(new Property("outcome", "string", "Processing status: error, complete.", 0, 1, outcome));
         children.add(new Property("disposition", "string", "A description of the status of the adjudication.", 0, 1, disposition));
         children.add(new Property("created", "dateTime", "The date when the enclosed suite of services were performed or completed.", 0, 1, created));
         children.add(new Property("organization", "Reference(Organization)", "The Insurer who produced this adjudicated response.", 0, 1, organization));
@@ -587,9 +456,9 @@ public class EnrollmentResponse extends DomainResource {
       public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
         switch (_hash) {
         case -1618432855: /*identifier*/  return new Property("identifier", "Identifier", "The Response business identifier.", 0, java.lang.Integer.MAX_VALUE, identifier);
-        case -892481550: /*status*/  return new Property("status", "code", "The status of the resource instance.", 0, 1, status);
+        case -892481550: /*status*/  return new Property("status", "string", "The status of the resource instance.", 0, 1, status);
         case 1095692943: /*request*/  return new Property("request", "Reference(EnrollmentRequest)", "Original request resource reference.", 0, 1, request);
-        case -1106507950: /*outcome*/  return new Property("outcome", "code", "Processing status: error, complete.", 0, 1, outcome);
+        case -1106507950: /*outcome*/  return new Property("outcome", "string", "Processing status: error, complete.", 0, 1, outcome);
         case 583380919: /*disposition*/  return new Property("disposition", "string", "A description of the status of the adjudication.", 0, 1, disposition);
         case 1028554472: /*created*/  return new Property("created", "dateTime", "The date when the enclosed suite of services were performed or completed.", 0, 1, created);
         case 1178922291: /*organization*/  return new Property("organization", "Reference(Organization)", "The Insurer who produced this adjudicated response.", 0, 1, organization);
@@ -603,9 +472,9 @@ public class EnrollmentResponse extends DomainResource {
       public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
         switch (hash) {
         case -1618432855: /*identifier*/ return this.identifier == null ? new Base[0] : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
-        case -892481550: /*status*/ return this.status == null ? new Base[0] : new Base[] {this.status}; // Enumeration<FinancialResourceStatusCodes>
+        case -892481550: /*status*/ return this.status == null ? new Base[0] : new Base[] {this.status}; // StringType
         case 1095692943: /*request*/ return this.request == null ? new Base[0] : new Base[] {this.request}; // Reference
-        case -1106507950: /*outcome*/ return this.outcome == null ? new Base[0] : new Base[] {this.outcome}; // Enumeration<EnrollmentOutcome>
+        case -1106507950: /*outcome*/ return this.outcome == null ? new Base[0] : new Base[] {this.outcome}; // StringType
         case 583380919: /*disposition*/ return this.disposition == null ? new Base[0] : new Base[] {this.disposition}; // StringType
         case 1028554472: /*created*/ return this.created == null ? new Base[0] : new Base[] {this.created}; // DateTimeType
         case 1178922291: /*organization*/ return this.organization == null ? new Base[0] : new Base[] {this.organization}; // Reference
@@ -622,15 +491,13 @@ public class EnrollmentResponse extends DomainResource {
           this.getIdentifier().add(TypeConvertor.castToIdentifier(value)); // Identifier
           return value;
         case -892481550: // status
-          value = new FinancialResourceStatusCodesEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.status = (Enumeration) value; // Enumeration<FinancialResourceStatusCodes>
+          this.status = TypeConvertor.castToString(value); // StringType
           return value;
         case 1095692943: // request
           this.request = TypeConvertor.castToReference(value); // Reference
           return value;
         case -1106507950: // outcome
-          value = new EnrollmentOutcomeEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.outcome = (Enumeration) value; // Enumeration<EnrollmentOutcome>
+          this.outcome = TypeConvertor.castToString(value); // StringType
           return value;
         case 583380919: // disposition
           this.disposition = TypeConvertor.castToString(value); // StringType
@@ -654,13 +521,11 @@ public class EnrollmentResponse extends DomainResource {
         if (name.equals("identifier")) {
           this.getIdentifier().add(TypeConvertor.castToIdentifier(value));
         } else if (name.equals("status")) {
-          value = new FinancialResourceStatusCodesEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.status = (Enumeration) value; // Enumeration<FinancialResourceStatusCodes>
+          this.status = TypeConvertor.castToString(value); // StringType
         } else if (name.equals("request")) {
           this.request = TypeConvertor.castToReference(value); // Reference
         } else if (name.equals("outcome")) {
-          value = new EnrollmentOutcomeEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.outcome = (Enumeration) value; // Enumeration<EnrollmentOutcome>
+          this.outcome = TypeConvertor.castToString(value); // StringType
         } else if (name.equals("disposition")) {
           this.disposition = TypeConvertor.castToString(value); // StringType
         } else if (name.equals("created")) {
@@ -679,13 +544,11 @@ public class EnrollmentResponse extends DomainResource {
         if (name.equals("identifier")) {
           this.getIdentifier().remove(value);
         } else if (name.equals("status")) {
-          value = new FinancialResourceStatusCodesEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.status = (Enumeration) value; // Enumeration<FinancialResourceStatusCodes>
+          this.status = null;
         } else if (name.equals("request")) {
           this.request = null;
         } else if (name.equals("outcome")) {
-          value = new EnrollmentOutcomeEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.outcome = (Enumeration) value; // Enumeration<EnrollmentOutcome>
+          this.outcome = null;
         } else if (name.equals("disposition")) {
           this.disposition = null;
         } else if (name.equals("created")) {
@@ -719,9 +582,9 @@ public class EnrollmentResponse extends DomainResource {
       public String[] getTypesForProperty(int hash, String name) throws FHIRException {
         switch (hash) {
         case -1618432855: /*identifier*/ return new String[] {"Identifier"};
-        case -892481550: /*status*/ return new String[] {"code"};
+        case -892481550: /*status*/ return new String[] {"string"};
         case 1095692943: /*request*/ return new String[] {"Reference"};
-        case -1106507950: /*outcome*/ return new String[] {"code"};
+        case -1106507950: /*outcome*/ return new String[] {"string"};
         case 583380919: /*disposition*/ return new String[] {"string"};
         case 1028554472: /*created*/ return new String[] {"dateTime"};
         case 1178922291: /*organization*/ return new String[] {"Reference"};
