@@ -35,7 +35,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hl7.fhir.utilities.Utilities;
-import org.hl7.fhir.r5.model.Enumerations.*;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.ICompositeType;
@@ -63,10 +62,10 @@ public class PaymentNotice extends DomainResource {
     /**
      * The status of the resource instance.
      */
-    @Child(name = "status", type = {CodeType.class}, order=1, min=1, max=1, modifier=true, summary=true)
+    @Child(name = "status", type = {StringType.class}, order=1, min=1, max=1, modifier=true, summary=true)
     @Description(shortDefinition="active | cancelled | draft | entered-in-error", formalDefinition="The status of the resource instance." )
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet="http://hl7.org/fhir/ValueSet/fm-status")
-    protected Enumeration<FinancialResourceStatusCodes> status;
+    protected StringType status;
 
     /**
      * Reference of resource for which payment is being made.
@@ -151,7 +150,7 @@ public class PaymentNotice extends DomainResource {
   /**
    * Constructor
    */
-    public PaymentNotice(FinancialResourceStatusCodes status, Date created, Reference recipient, Money amount) {
+    public PaymentNotice(String status, Date created, Reference recipient, Money amount) {
       super();
       this.setStatus(status);
       this.setCreated(created);
@@ -215,12 +214,12 @@ public class PaymentNotice extends DomainResource {
     /**
      * @return {@link #status} (The status of the resource instance.). This is the underlying object with id, value and extensions. The accessor "getStatus" gives direct access to the value
      */
-    public Enumeration<FinancialResourceStatusCodes> getStatusElement() { 
+    public StringType getStatusElement() {
       if (this.status == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create PaymentNotice.status");
         else if (Configuration.doAutoCreate())
-          this.status = new Enumeration<FinancialResourceStatusCodes>(new FinancialResourceStatusCodesEnumFactory()); // bb
+          this.status = new StringType(); // bb
       return this.status;
     }
 
@@ -235,7 +234,7 @@ public class PaymentNotice extends DomainResource {
     /**
      * @param value {@link #status} (The status of the resource instance.). This is the underlying object with id, value and extensions. The accessor "getStatus" gives direct access to the value
      */
-    public PaymentNotice setStatusElement(Enumeration<FinancialResourceStatusCodes> value) { 
+    public PaymentNotice setStatusElement(StringType value) {
       this.status = value;
       return this;
     }
@@ -243,16 +242,16 @@ public class PaymentNotice extends DomainResource {
     /**
      * @return The status of the resource instance.
      */
-    public FinancialResourceStatusCodes getStatus() { 
-      return this.status == null ? null : this.status.getValue();
+    public StringType getStatus() {
+      return this.status == null ? null : this.status;
     }
 
     /**
      * @param value The status of the resource instance.
      */
-    public PaymentNotice setStatus(FinancialResourceStatusCodes value) { 
+    public PaymentNotice setStatus(String value) {
         if (this.status == null)
-          this.status = new Enumeration<FinancialResourceStatusCodes>(new FinancialResourceStatusCodesEnumFactory());
+          this.status = new StringType();
         this.status.setValue(value);
       return this;
     }
@@ -546,7 +545,7 @@ public class PaymentNotice extends DomainResource {
       protected void listChildren(List<Property> children) {
         super.listChildren(children);
         children.add(new Property("identifier", "Identifier", "A unique identifier assigned to this payment notice.", 0, java.lang.Integer.MAX_VALUE, identifier));
-        children.add(new Property("status", "code", "The status of the resource instance.", 0, 1, status));
+        children.add(new Property("status", "string", "The status of the resource instance.", 0, 1, status));
         children.add(new Property("request", "Reference(Any)", "Reference of resource for which payment is being made.", 0, 1, request));
         children.add(new Property("response", "Reference(Any)", "Reference of response to resource for which payment is being made.", 0, 1, response));
         children.add(new Property("created", "dateTime", "The date when this resource was created.", 0, 1, created));
@@ -563,7 +562,7 @@ public class PaymentNotice extends DomainResource {
       public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
         switch (_hash) {
         case -1618432855: /*identifier*/  return new Property("identifier", "Identifier", "A unique identifier assigned to this payment notice.", 0, java.lang.Integer.MAX_VALUE, identifier);
-        case -892481550: /*status*/  return new Property("status", "code", "The status of the resource instance.", 0, 1, status);
+        case -892481550: /*status*/  return new Property("status", "string", "The status of the resource instance.", 0, 1, status);
         case 1095692943: /*request*/  return new Property("request", "Reference(Any)", "Reference of resource for which payment is being made.", 0, 1, request);
         case -340323263: /*response*/  return new Property("response", "Reference(Any)", "Reference of response to resource for which payment is being made.", 0, 1, response);
         case 1028554472: /*created*/  return new Property("created", "dateTime", "The date when this resource was created.", 0, 1, created);
@@ -583,7 +582,7 @@ public class PaymentNotice extends DomainResource {
       public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
         switch (hash) {
         case -1618432855: /*identifier*/ return this.identifier == null ? new Base[0] : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
-        case -892481550: /*status*/ return this.status == null ? new Base[0] : new Base[] {this.status}; // Enumeration<FinancialResourceStatusCodes>
+        case -892481550: /*status*/ return this.status == null ? new Base[0] : new Base[] {this.status}; // StringType
         case 1095692943: /*request*/ return this.request == null ? new Base[0] : new Base[] {this.request}; // Reference
         case -340323263: /*response*/ return this.response == null ? new Base[0] : new Base[] {this.response}; // Reference
         case 1028554472: /*created*/ return this.created == null ? new Base[0] : new Base[] {this.created}; // DateTimeType
@@ -606,8 +605,7 @@ public class PaymentNotice extends DomainResource {
           this.getIdentifier().add(TypeConvertor.castToIdentifier(value)); // Identifier
           return value;
         case -892481550: // status
-          value = new FinancialResourceStatusCodesEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.status = (Enumeration) value; // Enumeration<FinancialResourceStatusCodes>
+          this.status = TypeConvertor.castToString(value); // StringType
           return value;
         case 1095692943: // request
           this.request = TypeConvertor.castToReference(value); // Reference
@@ -649,8 +647,7 @@ public class PaymentNotice extends DomainResource {
         if (name.equals("identifier")) {
           this.getIdentifier().add(TypeConvertor.castToIdentifier(value));
         } else if (name.equals("status")) {
-          value = new FinancialResourceStatusCodesEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.status = (Enumeration) value; // Enumeration<FinancialResourceStatusCodes>
+          this.status = TypeConvertor.castToString(value); // StringType
         } else if (name.equals("request")) {
           this.request = TypeConvertor.castToReference(value); // Reference
         } else if (name.equals("response")) {
@@ -681,8 +678,7 @@ public class PaymentNotice extends DomainResource {
         if (name.equals("identifier")) {
           this.getIdentifier().remove(value);
         } else if (name.equals("status")) {
-          value = new FinancialResourceStatusCodesEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.status = (Enumeration) value; // Enumeration<FinancialResourceStatusCodes>
+          this.status = null;
         } else if (name.equals("request")) {
           this.request = null;
         } else if (name.equals("response")) {
@@ -732,7 +728,7 @@ public class PaymentNotice extends DomainResource {
       public String[] getTypesForProperty(int hash, String name) throws FHIRException {
         switch (hash) {
         case -1618432855: /*identifier*/ return new String[] {"Identifier"};
-        case -892481550: /*status*/ return new String[] {"code"};
+        case -892481550: /*status*/ return new String[] {"string"};
         case 1095692943: /*request*/ return new String[] {"Reference"};
         case -340323263: /*response*/ return new String[] {"Reference"};
         case 1028554472: /*created*/ return new String[] {"dateTime"};

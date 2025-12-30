@@ -20490,7 +20490,7 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "PaymentNotice", "identifier", element.getIdentifier().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "PaymentNotice", "status", element.getStatusElement(), -1);
+      composeString(t, "PaymentNotice", "status", element.getStatusElement(), -1);
     }
     if (element.hasRequest()) {
       composeReference(t, "PaymentNotice", "request", element.getRequest(), -1);
