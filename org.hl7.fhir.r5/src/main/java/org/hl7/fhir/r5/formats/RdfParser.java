@@ -12489,7 +12489,7 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "ExplanationOfBenefit", "traceNumber", element.getTraceNumber().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "ExplanationOfBenefit", "status", element.getStatusElement(), -1);
+      composeString(t, "ExplanationOfBenefit", "status", element.getStatusElement(), -1);
     }
     if (element.hasType()) {
       composeCodeableConcept(t, "ExplanationOfBenefit", "type", element.getType(), -1);
@@ -12498,7 +12498,7 @@ public class RdfParser extends RdfParserBase {
       composeCodeableConcept(t, "ExplanationOfBenefit", "subType", element.getSubType(), -1);
     }
     if (element.hasUseElement()) {
-      composeEnum(t, "ExplanationOfBenefit", "use", element.getUseElement(), -1);
+      composeString(t, "ExplanationOfBenefit", "use", element.getUseElement(), -1);
     }
     if (element.hasPatient()) {
       composeReference(t, "ExplanationOfBenefit", "patient", element.getPatient(), -1);
@@ -12558,7 +12558,7 @@ public class RdfParser extends RdfParserBase {
       composeReference(t, "ExplanationOfBenefit", "claimResponse", element.getClaimResponse(), -1);
     }
     if (element.hasOutcomeElement()) {
-      composeEnum(t, "ExplanationOfBenefit", "outcome", element.getOutcomeElement(), -1);
+      composeString(t, "ExplanationOfBenefit", "outcome", element.getOutcomeElement(), -1);
     }
     if (element.hasDecision()) {
       composeCodeableConcept(t, "ExplanationOfBenefit", "decision", element.getDecision(), -1);

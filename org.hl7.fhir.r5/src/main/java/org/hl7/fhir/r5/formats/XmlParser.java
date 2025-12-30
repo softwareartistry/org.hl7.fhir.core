@@ -13621,13 +13621,13 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("traceNumber")) {
       res.getTraceNumber().add(parseIdentifier(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, ExplanationOfBenefit.ExplanationOfBenefitStatus.NULL, new ExplanationOfBenefit.ExplanationOfBenefitStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("type")) {
       res.setType(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("subType")) {
       res.setSubType(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("use")) {
-      res.setUseElement(parseEnumeration(xpp, Enumerations.Use.NULL, new Enumerations.UseEnumFactory()));
+      res.setUseElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("patient")) {
       res.setPatient(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("billablePeriod")) {
@@ -13667,7 +13667,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("claimResponse")) {
       res.setClaimResponse(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("outcome")) {
-      res.setOutcomeElement(parseEnumeration(xpp, Enumerations.ClaimProcessingCodes.NULL, new Enumerations.ClaimProcessingCodesEnumFactory()));
+      res.setOutcomeElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("decision")) {
       res.setDecision(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("disposition")) {
@@ -45889,7 +45889,7 @@ public class XmlParser extends XmlParserBase {
           composeIdentifier("traceNumber", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new ExplanationOfBenefit.ExplanationOfBenefitStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasType()) {
       composeCodeableConcept("type", element.getType());
     }
@@ -45897,7 +45897,7 @@ public class XmlParser extends XmlParserBase {
       composeCodeableConcept("subType", element.getSubType());
     }
     if (element.hasUseElement())
-      composeEnumeration("use", element.getUseElement(), new Enumerations.UseEnumFactory());
+      composeString("use", element.getUseElement());
     if (element.hasPatient()) {
       composeReference("patient", element.getPatient());
     }
@@ -45959,7 +45959,7 @@ public class XmlParser extends XmlParserBase {
       composeReference("claimResponse", element.getClaimResponse());
     }
     if (element.hasOutcomeElement())
-      composeEnumeration("outcome", element.getOutcomeElement(), new Enumerations.ClaimProcessingCodesEnumFactory());
+      composeString("outcome", element.getOutcomeElement());
     if (element.hasDecision()) {
       composeCodeableConcept("decision", element.getDecision());
     }
