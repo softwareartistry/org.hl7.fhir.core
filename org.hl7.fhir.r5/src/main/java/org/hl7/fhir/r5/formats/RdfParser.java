@@ -15972,7 +15972,7 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "Invoice", "identifier", element.getIdentifier().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "Invoice", "status", element.getStatusElement(), -1);
+      composeString(t, "Invoice", "status", element.getStatusElement(), -1);
     }
     if (element.hasCancelledReasonElement()) {
       composeString(t, "Invoice", "cancelledReason", element.getCancelledReasonElement(), -1);

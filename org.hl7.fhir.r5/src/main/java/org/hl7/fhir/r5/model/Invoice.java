@@ -35,7 +35,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hl7.fhir.utilities.Utilities;
-import org.hl7.fhir.r5.model.Enumerations.*;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.ICompositeType;
@@ -52,152 +51,6 @@ import ca.uhn.fhir.model.api.annotation.Block;
  */
 @ResourceDef(name="Invoice", profile="http://hl7.org/fhir/StructureDefinition/Invoice")
 public class Invoice extends DomainResource {
-
-    public enum InvoiceStatus {
-        /**
-         * the invoice has been prepared but not yet finalized.
-         */
-        DRAFT, 
-        /**
-         * the invoice has been finalized and sent to the recipient.
-         */
-        ISSUED, 
-        /**
-         * the invoice has been balaced / completely paid.
-         */
-        BALANCED, 
-        /**
-         * the invoice was cancelled.
-         */
-        CANCELLED, 
-        /**
-         * the invoice was determined as entered in error before it was issued.
-         */
-        ENTEREDINERROR, 
-        /**
-         * added to help the parsers with the generic types
-         */
-        NULL;
-        public static InvoiceStatus fromCode(String codeString) throws FHIRException {
-            if (codeString == null || "".equals(codeString))
-                return null;
-        if ("draft".equals(codeString))
-          return DRAFT;
-        if ("issued".equals(codeString))
-          return ISSUED;
-        if ("balanced".equals(codeString))
-          return BALANCED;
-        if ("cancelled".equals(codeString))
-          return CANCELLED;
-        if ("entered-in-error".equals(codeString))
-          return ENTEREDINERROR;
-        if (Configuration.isAcceptInvalidEnums())
-          return null;
-        else
-          throw new FHIRException("Unknown InvoiceStatus code '"+codeString+"'");
-        }
-        public String toCode() {
-          switch (this) {
-            case DRAFT: return "draft";
-            case ISSUED: return "issued";
-            case BALANCED: return "balanced";
-            case CANCELLED: return "cancelled";
-            case ENTEREDINERROR: return "entered-in-error";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-        public String getSystem() {
-          switch (this) {
-            case DRAFT: return "http://hl7.org/fhir/invoice-status";
-            case ISSUED: return "http://hl7.org/fhir/invoice-status";
-            case BALANCED: return "http://hl7.org/fhir/invoice-status";
-            case CANCELLED: return "http://hl7.org/fhir/invoice-status";
-            case ENTEREDINERROR: return "http://hl7.org/fhir/invoice-status";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-        public String getDefinition() {
-          switch (this) {
-            case DRAFT: return "the invoice has been prepared but not yet finalized.";
-            case ISSUED: return "the invoice has been finalized and sent to the recipient.";
-            case BALANCED: return "the invoice has been balaced / completely paid.";
-            case CANCELLED: return "the invoice was cancelled.";
-            case ENTEREDINERROR: return "the invoice was determined as entered in error before it was issued.";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-        public String getDisplay() {
-          switch (this) {
-            case DRAFT: return "draft";
-            case ISSUED: return "issued";
-            case BALANCED: return "balanced";
-            case CANCELLED: return "cancelled";
-            case ENTEREDINERROR: return "entered in error";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-    }
-
-  public static class InvoiceStatusEnumFactory implements EnumFactory<InvoiceStatus> {
-    public InvoiceStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-            if (codeString == null || "".equals(codeString))
-                return null;
-        if ("draft".equals(codeString))
-          return InvoiceStatus.DRAFT;
-        if ("issued".equals(codeString))
-          return InvoiceStatus.ISSUED;
-        if ("balanced".equals(codeString))
-          return InvoiceStatus.BALANCED;
-        if ("cancelled".equals(codeString))
-          return InvoiceStatus.CANCELLED;
-        if ("entered-in-error".equals(codeString))
-          return InvoiceStatus.ENTEREDINERROR;
-        throw new IllegalArgumentException("Unknown InvoiceStatus code '"+codeString+"'");
-        }
-        public Enumeration<InvoiceStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-          if (code == null)
-            return null;
-          if (code.isEmpty())
-            return new Enumeration<InvoiceStatus>(this, InvoiceStatus.NULL, code);
-          String codeString = ((PrimitiveType) code).asStringValue();
-          if (codeString == null || "".equals(codeString))
-            return new Enumeration<InvoiceStatus>(this, InvoiceStatus.NULL, code);
-        if ("draft".equals(codeString))
-          return new Enumeration<InvoiceStatus>(this, InvoiceStatus.DRAFT, code);
-        if ("issued".equals(codeString))
-          return new Enumeration<InvoiceStatus>(this, InvoiceStatus.ISSUED, code);
-        if ("balanced".equals(codeString))
-          return new Enumeration<InvoiceStatus>(this, InvoiceStatus.BALANCED, code);
-        if ("cancelled".equals(codeString))
-          return new Enumeration<InvoiceStatus>(this, InvoiceStatus.CANCELLED, code);
-        if ("entered-in-error".equals(codeString))
-          return new Enumeration<InvoiceStatus>(this, InvoiceStatus.ENTEREDINERROR, code);
-        throw new FHIRException("Unknown InvoiceStatus code '"+codeString+"'");
-        }
-    public String toCode(InvoiceStatus code) {
-       if (code == InvoiceStatus.NULL)
-           return null;
-       if (code == InvoiceStatus.DRAFT)
-        return "draft";
-      if (code == InvoiceStatus.ISSUED)
-        return "issued";
-      if (code == InvoiceStatus.BALANCED)
-        return "balanced";
-      if (code == InvoiceStatus.CANCELLED)
-        return "cancelled";
-      if (code == InvoiceStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      return "?";
-   }
-    public String toSystem(InvoiceStatus code) {
-      return code.getSystem();
-      }
-    }
 
     @Block()
     public static class InvoiceParticipantComponent extends BackboneElement implements IBaseBackboneElement {
@@ -869,10 +722,10 @@ public class Invoice extends DomainResource {
     /**
      * The current state of the Invoice.
      */
-    @Child(name = "status", type = {CodeType.class}, order=1, min=1, max=1, modifier=true, summary=true)
+    @Child(name = "status", type = {StringType.class}, order=1, min=1, max=1, modifier=true, summary=true)
     @Description(shortDefinition="draft | issued | balanced | cancelled | entered-in-error", formalDefinition="The current state of the Invoice." )
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet="http://hl7.org/fhir/ValueSet/invoice-status")
-    protected Enumeration<InvoiceStatus> status;
+    protected StringType status;
 
     /**
      * In case of Invoice cancellation a reason must be given (entered in error, superseded by corrected invoice etc.).
@@ -998,7 +851,7 @@ public class Invoice extends DomainResource {
   /**
    * Constructor
    */
-    public Invoice(InvoiceStatus status) {
+    public Invoice(String status) {
       super();
       this.setStatus(status);
     }
@@ -1059,12 +912,12 @@ public class Invoice extends DomainResource {
     /**
      * @return {@link #status} (The current state of the Invoice.). This is the underlying object with id, value and extensions. The accessor "getStatus" gives direct access to the value
      */
-    public Enumeration<InvoiceStatus> getStatusElement() { 
+    public StringType getStatusElement() {
       if (this.status == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create Invoice.status");
         else if (Configuration.doAutoCreate())
-          this.status = new Enumeration<InvoiceStatus>(new InvoiceStatusEnumFactory()); // bb
+          this.status = new StringType(); // bb
       return this.status;
     }
 
@@ -1079,7 +932,7 @@ public class Invoice extends DomainResource {
     /**
      * @param value {@link #status} (The current state of the Invoice.). This is the underlying object with id, value and extensions. The accessor "getStatus" gives direct access to the value
      */
-    public Invoice setStatusElement(Enumeration<InvoiceStatus> value) { 
+    public Invoice setStatusElement(StringType value) {
       this.status = value;
       return this;
     }
@@ -1087,16 +940,16 @@ public class Invoice extends DomainResource {
     /**
      * @return The current state of the Invoice.
      */
-    public InvoiceStatus getStatus() { 
-      return this.status == null ? null : this.status.getValue();
+    public StringType getStatus() {
+      return this.status == null ? null : this.status;
     }
 
     /**
      * @param value The current state of the Invoice.
      */
-    public Invoice setStatus(InvoiceStatus value) { 
+    public Invoice setStatus(String value) {
         if (this.status == null)
-          this.status = new Enumeration<InvoiceStatus>(new InvoiceStatusEnumFactory());
+          this.status = new StringType();
         this.status.setValue(value);
       return this;
     }
@@ -1731,7 +1584,7 @@ public class Invoice extends DomainResource {
       protected void listChildren(List<Property> children) {
         super.listChildren(children);
         children.add(new Property("identifier", "Identifier", "Identifier of this Invoice, often used for reference in correspondence about this invoice or for tracking of payments.", 0, java.lang.Integer.MAX_VALUE, identifier));
-        children.add(new Property("status", "code", "The current state of the Invoice.", 0, 1, status));
+        children.add(new Property("status", "string", "The current state of the Invoice.", 0, 1, status));
         children.add(new Property("cancelledReason", "string", "In case of Invoice cancellation a reason must be given (entered in error, superseded by corrected invoice etc.).", 0, 1, cancelledReason));
         children.add(new Property("type", "CodeableConcept", "Type of Invoice depending on domain, realm an usage (e.g. internal/external, dental, preliminary).", 0, 1, type));
         children.add(new Property("subject", "Reference(Patient|Group)", "The individual or set of individuals receiving the goods and services billed in this invoice.", 0, 1, subject));
@@ -1754,7 +1607,7 @@ public class Invoice extends DomainResource {
       public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
         switch (_hash) {
         case -1618432855: /*identifier*/  return new Property("identifier", "Identifier", "Identifier of this Invoice, often used for reference in correspondence about this invoice or for tracking of payments.", 0, java.lang.Integer.MAX_VALUE, identifier);
-        case -892481550: /*status*/  return new Property("status", "code", "The current state of the Invoice.", 0, 1, status);
+        case -892481550: /*status*/  return new Property("status", "string", "The current state of the Invoice.", 0, 1, status);
         case 1550362357: /*cancelledReason*/  return new Property("cancelledReason", "string", "In case of Invoice cancellation a reason must be given (entered in error, superseded by corrected invoice etc.).", 0, 1, cancelledReason);
         case 3575610: /*type*/  return new Property("type", "CodeableConcept", "Type of Invoice depending on domain, realm an usage (e.g. internal/external, dental, preliminary).", 0, 1, type);
         case -1867885268: /*subject*/  return new Property("subject", "Reference(Patient|Group)", "The individual or set of individuals receiving the goods and services billed in this invoice.", 0, 1, subject);
@@ -1783,7 +1636,7 @@ public class Invoice extends DomainResource {
       public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
         switch (hash) {
         case -1618432855: /*identifier*/ return this.identifier == null ? new Base[0] : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
-        case -892481550: /*status*/ return this.status == null ? new Base[0] : new Base[] {this.status}; // Enumeration<InvoiceStatus>
+        case -892481550: /*status*/ return this.status == null ? new Base[0] : new Base[] {this.status}; // StringType
         case 1550362357: /*cancelledReason*/ return this.cancelledReason == null ? new Base[0] : new Base[] {this.cancelledReason}; // StringType
         case 3575610: /*type*/ return this.type == null ? new Base[0] : new Base[] {this.type}; // CodeableConcept
         case -1867885268: /*subject*/ return this.subject == null ? new Base[0] : new Base[] {this.subject}; // Reference
@@ -1812,8 +1665,7 @@ public class Invoice extends DomainResource {
           this.getIdentifier().add(TypeConvertor.castToIdentifier(value)); // Identifier
           return value;
         case -892481550: // status
-          value = new InvoiceStatusEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.status = (Enumeration) value; // Enumeration<InvoiceStatus>
+          this.status = TypeConvertor.castToString(value); // StringType
           return value;
         case 1550362357: // cancelledReason
           this.cancelledReason = TypeConvertor.castToString(value); // StringType
@@ -1873,8 +1725,7 @@ public class Invoice extends DomainResource {
         if (name.equals("identifier")) {
           this.getIdentifier().add(TypeConvertor.castToIdentifier(value));
         } else if (name.equals("status")) {
-          value = new InvoiceStatusEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.status = (Enumeration) value; // Enumeration<InvoiceStatus>
+          this.status = TypeConvertor.castToString(value); // StringType
         } else if (name.equals("cancelledReason")) {
           this.cancelledReason = TypeConvertor.castToString(value); // StringType
         } else if (name.equals("type")) {
@@ -1917,8 +1768,7 @@ public class Invoice extends DomainResource {
         if (name.equals("identifier")) {
           this.getIdentifier().remove(value);
         } else if (name.equals("status")) {
-          value = new InvoiceStatusEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.status = (Enumeration) value; // Enumeration<InvoiceStatus>
+          this.status = null;
         } else if (name.equals("cancelledReason")) {
           this.cancelledReason = null;
         } else if (name.equals("type")) {
@@ -1987,7 +1837,7 @@ public class Invoice extends DomainResource {
       public String[] getTypesForProperty(int hash, String name) throws FHIRException {
         switch (hash) {
         case -1618432855: /*identifier*/ return new String[] {"Identifier"};
-        case -892481550: /*status*/ return new String[] {"code"};
+        case -892481550: /*status*/ return new String[] {"string"};
         case 1550362357: /*cancelledReason*/ return new String[] {"string"};
         case 3575610: /*type*/ return new String[] {"CodeableConcept"};
         case -1867885268: /*subject*/ return new String[] {"Reference"};

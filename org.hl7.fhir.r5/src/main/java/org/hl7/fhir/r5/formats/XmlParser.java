@@ -17385,7 +17385,7 @@ public class XmlParser extends XmlParserBase {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("identifier")) {
       res.getIdentifier().add(parseIdentifier(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, Invoice.InvoiceStatus.NULL, new Invoice.InvoiceStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("cancelledReason")) {
       res.setCancelledReasonElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("type")) {
@@ -49764,7 +49764,7 @@ public class XmlParser extends XmlParserBase {
           composeIdentifier("identifier", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new Invoice.InvoiceStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasCancelledReasonElement()) {
       composeString("cancelledReason", element.getCancelledReasonElement());
     }
