@@ -9192,10 +9192,10 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "CoverageEligibilityResponse", "identifier", element.getIdentifier().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "CoverageEligibilityResponse", "status", element.getStatusElement(), -1);
+      composeString(t, "CoverageEligibilityResponse", "status", element.getStatusElement(), -1);
     }
     for (int i = 0; i < element.getPurpose().size(); i++) {
-      composeEnum(t, "CoverageEligibilityResponse", "purpose", element.getPurpose().get(i), i);
+      composeString(t, "CoverageEligibilityResponse", "purpose", element.getPurpose().get(i), i);
     }
     if (element.hasPatient()) {
       composeReference(t, "CoverageEligibilityResponse", "patient", element.getPatient(), -1);
@@ -9216,7 +9216,7 @@ public class RdfParser extends RdfParserBase {
       composeReference(t, "CoverageEligibilityResponse", "request", element.getRequest(), -1);
     }
     if (element.hasOutcomeElement()) {
-      composeEnum(t, "CoverageEligibilityResponse", "outcome", element.getOutcomeElement(), -1);
+      composeString(t, "CoverageEligibilityResponse", "outcome", element.getOutcomeElement(), -1);
     }
     if (element.hasDispositionElement()) {
       composeString(t, "CoverageEligibilityResponse", "disposition", element.getDispositionElement(), -1);

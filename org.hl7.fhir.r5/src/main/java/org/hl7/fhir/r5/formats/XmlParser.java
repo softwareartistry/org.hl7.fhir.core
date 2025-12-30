@@ -10079,9 +10079,9 @@ public class XmlParser extends XmlParserBase {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("identifier")) {
       res.getIdentifier().add(parseIdentifier(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, Enumerations.FinancialResourceStatusCodes.NULL, new Enumerations.FinancialResourceStatusCodesEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("purpose")) {
-      res.getPurpose().add(parseEnumeration(xpp, CoverageEligibilityResponse.EligibilityResponsePurpose.NULL, new CoverageEligibilityResponse.EligibilityResponsePurposeEnumFactory()));
+      res.getPurpose().add(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("patient")) {
       res.setPatient(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("event")) {
@@ -10095,7 +10095,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("request")) {
       res.setRequest(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("outcome")) {
-      res.setOutcomeElement(parseEnumeration(xpp, CoverageEligibilityResponse.EligibilityOutcome.NULL, new CoverageEligibilityResponse.EligibilityOutcomeEnumFactory()));
+      res.setOutcomeElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("disposition")) {
       res.setDispositionElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("insurer")) {
@@ -42214,10 +42214,10 @@ public class XmlParser extends XmlParserBase {
           composeIdentifier("identifier", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new Enumerations.FinancialResourceStatusCodesEnumFactory());
+      composeString("status", element.getStatusElement());
       if (element.hasPurpose()) 
-        for (Enumeration<CoverageEligibilityResponse.EligibilityResponsePurpose> e : element.getPurpose()) 
-          composeEnumeration("purpose", e, new CoverageEligibilityResponse.EligibilityResponsePurposeEnumFactory());
+        for (StringType e : element.getPurpose())
+          composeString("purpose", e);
     if (element.hasPatient()) {
       composeReference("patient", element.getPatient());
     }
@@ -42237,7 +42237,7 @@ public class XmlParser extends XmlParserBase {
       composeReference("request", element.getRequest());
     }
     if (element.hasOutcomeElement())
-      composeEnumeration("outcome", element.getOutcomeElement(), new CoverageEligibilityResponse.EligibilityOutcomeEnumFactory());
+      composeString("outcome", element.getOutcomeElement());
     if (element.hasDispositionElement()) {
       composeString("disposition", element.getDispositionElement());
     }

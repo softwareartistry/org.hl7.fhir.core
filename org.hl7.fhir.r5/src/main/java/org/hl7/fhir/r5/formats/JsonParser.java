@@ -11631,16 +11631,16 @@ public class JsonParser extends JsonParserBase {
       }
     };
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Enumerations.FinancialResourceStatusCodes.NULL, new Enumerations.FinancialResourceStatusCodesEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("purpose")) {
       JsonArray array = getJArray(json, "purpose");
       for (int i = 0; i < array.size(); i++) {
         if (array.get(i).isJsonNull()) {
-          res.getPurpose().add(new Enumeration<CoverageEligibilityResponse.EligibilityResponsePurpose>(new CoverageEligibilityResponse.EligibilityResponsePurposeEnumFactory(), CoverageEligibilityResponse.EligibilityResponsePurpose.NULL));
+          res.getPurpose().add(new StringType());
         } else {;
-          res.getPurpose().add(parseEnumeration(array.get(i).getAsString(), CoverageEligibilityResponse.EligibilityResponsePurpose.NULL, new CoverageEligibilityResponse.EligibilityResponsePurposeEnumFactory()));
+          res.getPurpose().add(parseString(array.get(i).getAsString()));
         }
       }
     };
@@ -11648,7 +11648,7 @@ public class JsonParser extends JsonParserBase {
       JsonArray array = getJArray(json, "_purpose");
       for (int i = 0; i < array.size(); i++) {
         if (i == res.getPurpose().size())
-          res.getPurpose().add(parseEnumeration(null, CoverageEligibilityResponse.EligibilityResponsePurpose.NULL, new CoverageEligibilityResponse.EligibilityResponsePurposeEnumFactory()));
+          res.getPurpose().add(parseString(null));
         if (array.get(i) instanceof JsonObject) 
           parseElementProperties(getJsonObjectFromArray(array, i), res.getPurpose().get(i));
       }
@@ -11673,7 +11673,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("request"))
       res.setRequest(parseReference(getJObject(json, "request")));
     if (json.has("outcome"))
-      res.setOutcomeElement(parseEnumeration(json.get("outcome").getAsString(), CoverageEligibilityResponse.EligibilityOutcome.NULL, new CoverageEligibilityResponse.EligibilityOutcomeEnumFactory()));
+      res.setOutcomeElement(parseString(json.get("outcome").getAsString()));
     if (json.has("_outcome"))
       parseElementProperties(getJObject(json, "_outcome"), res.getOutcomeElement());
     if (json.has("disposition"))
@@ -48755,18 +48755,18 @@ public class JsonParser extends JsonParserBase {
         closeArray();
       };
       if (element.hasStatusElement()) {
-        composeEnumerationCore("status", element.getStatusElement(), new Enumerations.FinancialResourceStatusCodesEnumFactory(), false);
-        composeEnumerationExtras("status", element.getStatusElement(), new Enumerations.FinancialResourceStatusCodesEnumFactory(), false);
+        composeStringCore("status", element.getStatusElement(), false);
+        composeStringExtras("status", element.getStatusElement(), false);
       }
       if (element.hasPurpose()) {
         openArray("purpose");
-        for (Enumeration<CoverageEligibilityResponse.EligibilityResponsePurpose> e : element.getPurpose()) 
-          composeEnumerationCore(null, e, new CoverageEligibilityResponse.EligibilityResponsePurposeEnumFactory(), true);
+        for (StringType e : element.getPurpose())
+          composeStringCore(null, e, e != element.getPurpose().get(element.getPurpose().size()-1));
         closeArray();
         if (anyHasExtras(element.getPurpose())) {
           openArray("_purpose");
-          for (Enumeration<CoverageEligibilityResponse.EligibilityResponsePurpose> e : element.getPurpose()) 
-            composeEnumerationExtras(null, e, new CoverageEligibilityResponse.EligibilityResponsePurposeEnumFactory(), true);
+          for (StringType e : element.getPurpose())
+            composeStringExtras(null, e, true);
           closeArray();
         }
       };
@@ -48793,8 +48793,8 @@ public class JsonParser extends JsonParserBase {
         composeReference("request", element.getRequest());
       }
       if (element.hasOutcomeElement()) {
-        composeEnumerationCore("outcome", element.getOutcomeElement(), new CoverageEligibilityResponse.EligibilityOutcomeEnumFactory(), false);
-        composeEnumerationExtras("outcome", element.getOutcomeElement(), new CoverageEligibilityResponse.EligibilityOutcomeEnumFactory(), false);
+        composeStringCore("outcome", element.getOutcomeElement(), false);
+        composeStringExtras("outcome", element.getOutcomeElement(), false);
       }
       if (element.hasDispositionElement()) {
         composeStringCore("disposition", element.getDispositionElement(), false);
