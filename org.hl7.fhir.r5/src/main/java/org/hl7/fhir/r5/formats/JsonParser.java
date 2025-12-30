@@ -25599,7 +25599,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("type"))
       res.setType(parseCodeableConcept(getJObject(json, "type")));
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Enumerations.FinancialResourceStatusCodes.NULL, new Enumerations.FinancialResourceStatusCodesEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("kind"))
@@ -25621,7 +25621,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("requestor"))
       res.setRequestor(parseReference(getJObject(json, "requestor")));
     if (json.has("outcome"))
-      res.setOutcomeElement(parseEnumeration(json.get("outcome").getAsString(), PaymentReconciliation.PaymentOutcome.NULL, new PaymentReconciliation.PaymentOutcomeEnumFactory()));
+      res.setOutcomeElement(parseString(json.get("outcome").getAsString()));
     if (json.has("_outcome"))
       parseElementProperties(getJObject(json, "_outcome"), res.getOutcomeElement());
     if (json.has("disposition"))
@@ -25732,7 +25732,7 @@ public class JsonParser extends JsonParserBase {
   protected void parsePaymentReconciliationNotesComponentProperties(JsonObject json, PaymentReconciliation.NotesComponent res) throws IOException, FHIRFormatError {
     parseBackboneElementProperties(json, res);
     if (json.has("type"))
-      res.setTypeElement(parseEnumeration(json.get("type").getAsString(), PaymentReconciliation.NoteType.NULL, new PaymentReconciliation.NoteTypeEnumFactory()));
+      res.setTypeElement(parseString(json.get("type").getAsString()));
     if (json.has("_type"))
       parseElementProperties(getJObject(json, "_type"), res.getTypeElement());
     if (json.has("text"))
@@ -63775,8 +63775,8 @@ public class JsonParser extends JsonParserBase {
         composeCodeableConcept("type", element.getType());
       }
       if (element.hasStatusElement()) {
-        composeEnumerationCore("status", element.getStatusElement(), new Enumerations.FinancialResourceStatusCodesEnumFactory(), false);
-        composeEnumerationExtras("status", element.getStatusElement(), new Enumerations.FinancialResourceStatusCodesEnumFactory(), false);
+        composeStringCore("status", element.getStatusElement(), false);
+        composeStringExtras("status", element.getStatusElement(), false);
       }
       if (element.hasKind()) {
         composeCodeableConcept("kind", element.getKind());
@@ -63804,8 +63804,8 @@ public class JsonParser extends JsonParserBase {
         composeReference("requestor", element.getRequestor());
       }
       if (element.hasOutcomeElement()) {
-        composeEnumerationCore("outcome", element.getOutcomeElement(), new PaymentReconciliation.PaymentOutcomeEnumFactory(), false);
-        composeEnumerationExtras("outcome", element.getOutcomeElement(), new PaymentReconciliation.PaymentOutcomeEnumFactory(), false);
+        composeStringCore("outcome", element.getOutcomeElement(), false);
+        composeStringExtras("outcome", element.getOutcomeElement(), false);
       }
       if (element.hasDispositionElement()) {
         composeStringCore("disposition", element.getDispositionElement(), false);
@@ -63937,8 +63937,8 @@ public class JsonParser extends JsonParserBase {
   protected void composeNotesComponentProperties(PaymentReconciliation.NotesComponent element) throws IOException {
     composeBackboneElementProperties(element);
       if (element.hasTypeElement()) {
-        composeEnumerationCore("type", element.getTypeElement(), new PaymentReconciliation.NoteTypeEnumFactory(), false);
-        composeEnumerationExtras("type", element.getTypeElement(), new PaymentReconciliation.NoteTypeEnumFactory(), false);
+        composeStringCore("type", element.getTypeElement(), false);
+        composeStringExtras("type", element.getTypeElement(), false);
       }
       if (element.hasTextElement()) {
         composeStringCore("text", element.getTextElement(), false);

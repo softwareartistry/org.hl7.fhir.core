@@ -20541,7 +20541,7 @@ public class RdfParser extends RdfParserBase {
       composeCodeableConcept(t, "PaymentReconciliation", "type", element.getType(), -1);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "PaymentReconciliation", "status", element.getStatusElement(), -1);
+      composeString(t, "PaymentReconciliation", "status", element.getStatusElement(), -1);
     }
     if (element.hasKind()) {
       composeCodeableConcept(t, "PaymentReconciliation", "kind", element.getKind(), -1);
@@ -20568,7 +20568,7 @@ public class RdfParser extends RdfParserBase {
       composeReference(t, "PaymentReconciliation", "requestor", element.getRequestor(), -1);
     }
     if (element.hasOutcomeElement()) {
-      composeEnum(t, "PaymentReconciliation", "outcome", element.getOutcomeElement(), -1);
+      composeString(t, "PaymentReconciliation", "outcome", element.getOutcomeElement(), -1);
     }
     if (element.hasDispositionElement()) {
       composeString(t, "PaymentReconciliation", "disposition", element.getDispositionElement(), -1);
@@ -20685,7 +20685,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "processNote", name, element, index);
     if (element.hasTypeElement()) {
-      composeEnum(t, "NotesComponent", "type", element.getTypeElement(), -1);
+      composeString(t, "NotesComponent", "type", element.getTypeElement(), -1);
     }
     if (element.hasTextElement()) {
       composeString(t, "NotesComponent", "text", element.getTextElement(), -1);

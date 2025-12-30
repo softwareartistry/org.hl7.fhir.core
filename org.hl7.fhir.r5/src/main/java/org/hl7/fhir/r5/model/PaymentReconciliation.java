@@ -35,7 +35,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hl7.fhir.utilities.Utilities;
-import org.hl7.fhir.r5.model.Enumerations.*;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.ICompositeType;
@@ -52,250 +51,6 @@ import ca.uhn.fhir.model.api.annotation.Block;
  */
 @ResourceDef(name="PaymentReconciliation", profile="http://hl7.org/fhir/StructureDefinition/PaymentReconciliation")
 public class PaymentReconciliation extends DomainResource {
-
-    public enum NoteType {
-        /**
-         * Display the note.
-         */
-        DISPLAY, 
-        /**
-         * Print the note on the form.
-         */
-        PRINT, 
-        /**
-         * Print the note for the operator.
-         */
-        PRINTOPER, 
-        /**
-         * added to help the parsers with the generic types
-         */
-        NULL;
-        public static NoteType fromCode(String codeString) throws FHIRException {
-            if (codeString == null || "".equals(codeString))
-                return null;
-        if ("display".equals(codeString))
-          return DISPLAY;
-        if ("print".equals(codeString))
-          return PRINT;
-        if ("printoper".equals(codeString))
-          return PRINTOPER;
-        if (Configuration.isAcceptInvalidEnums())
-          return null;
-        else
-          throw new FHIRException("Unknown NoteType code '"+codeString+"'");
-        }
-        public String toCode() {
-          switch (this) {
-            case DISPLAY: return "display";
-            case PRINT: return "print";
-            case PRINTOPER: return "printoper";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-        public String getSystem() {
-          switch (this) {
-            case DISPLAY: return "http://hl7.org/fhir/note-type";
-            case PRINT: return "http://hl7.org/fhir/note-type";
-            case PRINTOPER: return "http://hl7.org/fhir/note-type";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-        public String getDefinition() {
-          switch (this) {
-            case DISPLAY: return "Display the note.";
-            case PRINT: return "Print the note on the form.";
-            case PRINTOPER: return "Print the note for the operator.";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-        public String getDisplay() {
-          switch (this) {
-            case DISPLAY: return "Display";
-            case PRINT: return "Print (Form)";
-            case PRINTOPER: return "Print (Operator)";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-    }
-
-  public static class NoteTypeEnumFactory implements EnumFactory<NoteType> {
-    public NoteType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-            if (codeString == null || "".equals(codeString))
-                return null;
-        if ("display".equals(codeString))
-          return NoteType.DISPLAY;
-        if ("print".equals(codeString))
-          return NoteType.PRINT;
-        if ("printoper".equals(codeString))
-          return NoteType.PRINTOPER;
-        throw new IllegalArgumentException("Unknown NoteType code '"+codeString+"'");
-        }
-        public Enumeration<NoteType> fromType(PrimitiveType<?> code) throws FHIRException {
-          if (code == null)
-            return null;
-          if (code.isEmpty())
-            return new Enumeration<NoteType>(this, NoteType.NULL, code);
-          String codeString = ((PrimitiveType) code).asStringValue();
-          if (codeString == null || "".equals(codeString))
-            return new Enumeration<NoteType>(this, NoteType.NULL, code);
-        if ("display".equals(codeString))
-          return new Enumeration<NoteType>(this, NoteType.DISPLAY, code);
-        if ("print".equals(codeString))
-          return new Enumeration<NoteType>(this, NoteType.PRINT, code);
-        if ("printoper".equals(codeString))
-          return new Enumeration<NoteType>(this, NoteType.PRINTOPER, code);
-        throw new FHIRException("Unknown NoteType code '"+codeString+"'");
-        }
-    public String toCode(NoteType code) {
-       if (code == NoteType.NULL)
-           return null;
-       if (code == NoteType.DISPLAY)
-        return "display";
-      if (code == NoteType.PRINT)
-        return "print";
-      if (code == NoteType.PRINTOPER)
-        return "printoper";
-      return "?";
-   }
-    public String toSystem(NoteType code) {
-      return code.getSystem();
-      }
-    }
-
-    public enum PaymentOutcome {
-        /**
-         * The Claim/Pre-authorization/Pre-determination has been received but processing has not begun.
-         */
-        QUEUED, 
-        /**
-         * The processing has completed without errors
-         */
-        COMPLETE, 
-        /**
-         * One or more errors have been detected in the Claim
-         */
-        ERROR, 
-        /**
-         * No errors have been detected in the Claim and some of the adjudication has been performed.
-         */
-        PARTIAL, 
-        /**
-         * added to help the parsers with the generic types
-         */
-        NULL;
-        public static PaymentOutcome fromCode(String codeString) throws FHIRException {
-            if (codeString == null || "".equals(codeString))
-                return null;
-        if ("queued".equals(codeString))
-          return QUEUED;
-        if ("complete".equals(codeString))
-          return COMPLETE;
-        if ("error".equals(codeString))
-          return ERROR;
-        if ("partial".equals(codeString))
-          return PARTIAL;
-        if (Configuration.isAcceptInvalidEnums())
-          return null;
-        else
-          throw new FHIRException("Unknown PaymentOutcome code '"+codeString+"'");
-        }
-        public String toCode() {
-          switch (this) {
-            case QUEUED: return "queued";
-            case COMPLETE: return "complete";
-            case ERROR: return "error";
-            case PARTIAL: return "partial";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-        public String getSystem() {
-          switch (this) {
-            case QUEUED: return "http://hl7.org/fhir/payment-outcome";
-            case COMPLETE: return "http://hl7.org/fhir/payment-outcome";
-            case ERROR: return "http://hl7.org/fhir/payment-outcome";
-            case PARTIAL: return "http://hl7.org/fhir/payment-outcome";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-        public String getDefinition() {
-          switch (this) {
-            case QUEUED: return "The Claim/Pre-authorization/Pre-determination has been received but processing has not begun.";
-            case COMPLETE: return "The processing has completed without errors";
-            case ERROR: return "One or more errors have been detected in the Claim";
-            case PARTIAL: return "No errors have been detected in the Claim and some of the adjudication has been performed.";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-        public String getDisplay() {
-          switch (this) {
-            case QUEUED: return "Queued";
-            case COMPLETE: return "Processing Complete";
-            case ERROR: return "Error";
-            case PARTIAL: return "Partial Processing";
-            case NULL: return null;
-            default: return "?";
-          }
-        }
-    }
-
-  public static class PaymentOutcomeEnumFactory implements EnumFactory<PaymentOutcome> {
-    public PaymentOutcome fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-            if (codeString == null || "".equals(codeString))
-                return null;
-        if ("queued".equals(codeString))
-          return PaymentOutcome.QUEUED;
-        if ("complete".equals(codeString))
-          return PaymentOutcome.COMPLETE;
-        if ("error".equals(codeString))
-          return PaymentOutcome.ERROR;
-        if ("partial".equals(codeString))
-          return PaymentOutcome.PARTIAL;
-        throw new IllegalArgumentException("Unknown PaymentOutcome code '"+codeString+"'");
-        }
-        public Enumeration<PaymentOutcome> fromType(PrimitiveType<?> code) throws FHIRException {
-          if (code == null)
-            return null;
-          if (code.isEmpty())
-            return new Enumeration<PaymentOutcome>(this, PaymentOutcome.NULL, code);
-          String codeString = ((PrimitiveType) code).asStringValue();
-          if (codeString == null || "".equals(codeString))
-            return new Enumeration<PaymentOutcome>(this, PaymentOutcome.NULL, code);
-        if ("queued".equals(codeString))
-          return new Enumeration<PaymentOutcome>(this, PaymentOutcome.QUEUED, code);
-        if ("complete".equals(codeString))
-          return new Enumeration<PaymentOutcome>(this, PaymentOutcome.COMPLETE, code);
-        if ("error".equals(codeString))
-          return new Enumeration<PaymentOutcome>(this, PaymentOutcome.ERROR, code);
-        if ("partial".equals(codeString))
-          return new Enumeration<PaymentOutcome>(this, PaymentOutcome.PARTIAL, code);
-        throw new FHIRException("Unknown PaymentOutcome code '"+codeString+"'");
-        }
-    public String toCode(PaymentOutcome code) {
-       if (code == PaymentOutcome.NULL)
-           return null;
-       if (code == PaymentOutcome.QUEUED)
-        return "queued";
-      if (code == PaymentOutcome.COMPLETE)
-        return "complete";
-      if (code == PaymentOutcome.ERROR)
-        return "error";
-      if (code == PaymentOutcome.PARTIAL)
-        return "partial";
-      return "?";
-   }
-    public String toSystem(PaymentOutcome code) {
-      return code.getSystem();
-      }
-    }
 
     @Block()
     public static class PaymentReconciliationAllocationComponent extends BackboneElement implements IBaseBackboneElement {
@@ -1128,10 +883,10 @@ public class PaymentReconciliation extends DomainResource {
         /**
          * The business purpose of the note text.
          */
-        @Child(name = "type", type = {CodeType.class}, order=1, min=0, max=1, modifier=false, summary=false)
+        @Child(name = "type", type = {StringType.class}, order=1, min=0, max=1, modifier=false, summary=false)
         @Description(shortDefinition="display | print | printoper", formalDefinition="The business purpose of the note text." )
         @ca.uhn.fhir.model.api.annotation.Binding(valueSet="http://hl7.org/fhir/ValueSet/note-type")
-        protected Enumeration<NoteType> type;
+        protected StringType type;
 
         /**
          * The explanation or description associated with the processing.
@@ -1152,12 +907,12 @@ public class PaymentReconciliation extends DomainResource {
         /**
          * @return {@link #type} (The business purpose of the note text.). This is the underlying object with id, value and extensions. The accessor "getType" gives direct access to the value
          */
-        public Enumeration<NoteType> getTypeElement() { 
+        public StringType getTypeElement() {
           if (this.type == null)
             if (Configuration.errorOnAutoCreate())
               throw new Error("Attempt to auto-create NotesComponent.type");
             else if (Configuration.doAutoCreate())
-              this.type = new Enumeration<NoteType>(new NoteTypeEnumFactory()); // bb
+              this.type = new StringType(); // bb
           return this.type;
         }
 
@@ -1172,7 +927,7 @@ public class PaymentReconciliation extends DomainResource {
         /**
          * @param value {@link #type} (The business purpose of the note text.). This is the underlying object with id, value and extensions. The accessor "getType" gives direct access to the value
          */
-        public NotesComponent setTypeElement(Enumeration<NoteType> value) { 
+        public NotesComponent setTypeElement(StringType value) {
           this.type = value;
           return this;
         }
@@ -1180,19 +935,19 @@ public class PaymentReconciliation extends DomainResource {
         /**
          * @return The business purpose of the note text.
          */
-        public NoteType getType() { 
-          return this.type == null ? null : this.type.getValue();
+        public StringType getType() {
+          return this.type == null ? null : this.type;
         }
 
         /**
          * @param value The business purpose of the note text.
          */
-        public NotesComponent setType(NoteType value) { 
+        public NotesComponent setType(String value) {
           if (value == null)
             this.type = null;
           else {
             if (this.type == null)
-              this.type = new Enumeration<NoteType>(new NoteTypeEnumFactory());
+              this.type = new StringType();
             this.type.setValue(value);
           }
           return this;
@@ -1249,14 +1004,14 @@ public class PaymentReconciliation extends DomainResource {
 
         protected void listChildren(List<Property> children) {
           super.listChildren(children);
-          children.add(new Property("type", "code", "The business purpose of the note text.", 0, 1, type));
+          children.add(new Property("type", "string", "The business purpose of the note text.", 0, 1, type));
           children.add(new Property("text", "string", "The explanation or description associated with the processing.", 0, 1, text));
         }
 
         @Override
         public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
           switch (_hash) {
-          case 3575610: /*type*/  return new Property("type", "code", "The business purpose of the note text.", 0, 1, type);
+          case 3575610: /*type*/  return new Property("type", "string", "The business purpose of the note text.", 0, 1, type);
           case 3556653: /*text*/  return new Property("text", "string", "The explanation or description associated with the processing.", 0, 1, text);
           default: return super.getNamedProperty(_hash, _name, _checkValid);
           }
@@ -1266,7 +1021,7 @@ public class PaymentReconciliation extends DomainResource {
       @Override
       public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
         switch (hash) {
-        case 3575610: /*type*/ return this.type == null ? new Base[0] : new Base[] {this.type}; // Enumeration<NoteType>
+        case 3575610: /*type*/ return this.type == null ? new Base[0] : new Base[] {this.type}; // StringType
         case 3556653: /*text*/ return this.text == null ? new Base[0] : new Base[] {this.text}; // StringType
         default: return super.getProperty(hash, name, checkValid);
         }
@@ -1277,8 +1032,7 @@ public class PaymentReconciliation extends DomainResource {
       public Base setProperty(int hash, String name, Base value) throws FHIRException {
         switch (hash) {
         case 3575610: // type
-          value = new NoteTypeEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.type = (Enumeration) value; // Enumeration<NoteType>
+          this.type = TypeConvertor.castToString(value); // StringType
           return value;
         case 3556653: // text
           this.text = TypeConvertor.castToString(value); // StringType
@@ -1291,8 +1045,7 @@ public class PaymentReconciliation extends DomainResource {
       @Override
       public Base setProperty(String name, Base value) throws FHIRException {
         if (name.equals("type")) {
-          value = new NoteTypeEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.type = (Enumeration) value; // Enumeration<NoteType>
+          this.type = TypeConvertor.castToString(value); // StringType
         } else if (name.equals("text")) {
           this.text = TypeConvertor.castToString(value); // StringType
         } else
@@ -1303,8 +1056,7 @@ public class PaymentReconciliation extends DomainResource {
   @Override
   public void removeChild(String name, Base value) throws FHIRException {
         if (name.equals("type")) {
-          value = new NoteTypeEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.type = (Enumeration) value; // Enumeration<NoteType>
+          this.type = null;
         } else if (name.equals("text")) {
           this.text = null;
         } else
@@ -1325,7 +1077,7 @@ public class PaymentReconciliation extends DomainResource {
       @Override
       public String[] getTypesForProperty(int hash, String name) throws FHIRException {
         switch (hash) {
-        case 3575610: /*type*/ return new String[] {"code"};
+        case 3575610: /*type*/ return new String[] {"string"};
         case 3556653: /*text*/ return new String[] {"string"};
         default: return super.getTypesForProperty(hash, name);
         }
@@ -1405,10 +1157,10 @@ public class PaymentReconciliation extends DomainResource {
     /**
      * The status of the resource instance.
      */
-    @Child(name = "status", type = {CodeType.class}, order=2, min=1, max=1, modifier=true, summary=true)
+    @Child(name = "status", type = {StringType.class}, order=2, min=1, max=1, modifier=true, summary=true)
     @Description(shortDefinition="active | cancelled | draft | entered-in-error", formalDefinition="The status of the resource instance." )
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet="http://hl7.org/fhir/ValueSet/fm-status")
-    protected Enumeration<FinancialResourceStatusCodes> status;
+    protected StringType status;
 
     /**
      * The workflow or activity which gave rise to or during which the payment ocurred such as a kiosk, deposit on account, periodic payment etc.
@@ -1471,10 +1223,10 @@ public class PaymentReconciliation extends DomainResource {
     /**
      * The outcome of a request for a reconciliation.
      */
-    @Child(name = "outcome", type = {CodeType.class}, order=11, min=0, max=1, modifier=false, summary=false)
+    @Child(name = "outcome", type = {StringType.class}, order=11, min=0, max=1, modifier=false, summary=false)
     @Description(shortDefinition="queued | complete | error | partial", formalDefinition="The outcome of a request for a reconciliation." )
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet="http://hl7.org/fhir/ValueSet/payment-outcome")
-    protected Enumeration<PaymentOutcome> outcome;
+    protected StringType outcome;
 
     /**
      * A human readable description of the status of the request for the reconciliation.
@@ -1609,7 +1361,7 @@ public class PaymentReconciliation extends DomainResource {
   /**
    * Constructor
    */
-    public PaymentReconciliation(CodeableConcept type, FinancialResourceStatusCodes status, Date created, Date date, Money amount) {
+    public PaymentReconciliation(CodeableConcept type, String status, Date created, Date date, Money amount) {
       super();
       this.setType(type);
       this.setStatus(status);
@@ -1698,12 +1450,12 @@ public class PaymentReconciliation extends DomainResource {
     /**
      * @return {@link #status} (The status of the resource instance.). This is the underlying object with id, value and extensions. The accessor "getStatus" gives direct access to the value
      */
-    public Enumeration<FinancialResourceStatusCodes> getStatusElement() { 
+    public StringType getStatusElement() {
       if (this.status == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create PaymentReconciliation.status");
         else if (Configuration.doAutoCreate())
-          this.status = new Enumeration<FinancialResourceStatusCodes>(new FinancialResourceStatusCodesEnumFactory()); // bb
+          this.status = new StringType(); // bb
       return this.status;
     }
 
@@ -1718,7 +1470,7 @@ public class PaymentReconciliation extends DomainResource {
     /**
      * @param value {@link #status} (The status of the resource instance.). This is the underlying object with id, value and extensions. The accessor "getStatus" gives direct access to the value
      */
-    public PaymentReconciliation setStatusElement(Enumeration<FinancialResourceStatusCodes> value) { 
+    public PaymentReconciliation setStatusElement(StringType value) {
       this.status = value;
       return this;
     }
@@ -1726,16 +1478,16 @@ public class PaymentReconciliation extends DomainResource {
     /**
      * @return The status of the resource instance.
      */
-    public FinancialResourceStatusCodes getStatus() { 
-      return this.status == null ? null : this.status.getValue();
+    public StringType getStatus() {
+      return this.status == null ? null : this.status;
     }
 
     /**
      * @param value The status of the resource instance.
      */
-    public PaymentReconciliation setStatus(FinancialResourceStatusCodes value) { 
+    public PaymentReconciliation setStatus(String value) {
         if (this.status == null)
-          this.status = new Enumeration<FinancialResourceStatusCodes>(new FinancialResourceStatusCodesEnumFactory());
+          this.status = new StringType();
         this.status.setValue(value);
       return this;
     }
@@ -1956,12 +1708,12 @@ public class PaymentReconciliation extends DomainResource {
     /**
      * @return {@link #outcome} (The outcome of a request for a reconciliation.). This is the underlying object with id, value and extensions. The accessor "getOutcome" gives direct access to the value
      */
-    public Enumeration<PaymentOutcome> getOutcomeElement() { 
+    public StringType getOutcomeElement() {
       if (this.outcome == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create PaymentReconciliation.outcome");
         else if (Configuration.doAutoCreate())
-          this.outcome = new Enumeration<PaymentOutcome>(new PaymentOutcomeEnumFactory()); // bb
+          this.outcome = new StringType(); // bb
       return this.outcome;
     }
 
@@ -1976,7 +1728,7 @@ public class PaymentReconciliation extends DomainResource {
     /**
      * @param value {@link #outcome} (The outcome of a request for a reconciliation.). This is the underlying object with id, value and extensions. The accessor "getOutcome" gives direct access to the value
      */
-    public PaymentReconciliation setOutcomeElement(Enumeration<PaymentOutcome> value) { 
+    public PaymentReconciliation setOutcomeElement(StringType value) {
       this.outcome = value;
       return this;
     }
@@ -1984,19 +1736,19 @@ public class PaymentReconciliation extends DomainResource {
     /**
      * @return The outcome of a request for a reconciliation.
      */
-    public PaymentOutcome getOutcome() { 
-      return this.outcome == null ? null : this.outcome.getValue();
+    public StringType getOutcome() {
+      return this.outcome == null ? null : this.outcome;
     }
 
     /**
      * @param value The outcome of a request for a reconciliation.
      */
-    public PaymentReconciliation setOutcome(PaymentOutcome value) { 
+    public PaymentReconciliation setOutcome(String value) {
       if (value == null)
         this.outcome = null;
       else {
         if (this.outcome == null)
-          this.outcome = new Enumeration<PaymentOutcome>(new PaymentOutcomeEnumFactory());
+          this.outcome = new StringType();
         this.outcome.setValue(value);
       }
       return this;
@@ -2668,7 +2420,7 @@ public class PaymentReconciliation extends DomainResource {
         super.listChildren(children);
         children.add(new Property("identifier", "Identifier", "A unique identifier assigned to this payment reconciliation.", 0, java.lang.Integer.MAX_VALUE, identifier));
         children.add(new Property("type", "CodeableConcept", "Code to indicate the nature of the payment such as payment, adjustment.", 0, 1, type));
-        children.add(new Property("status", "code", "The status of the resource instance.", 0, 1, status));
+        children.add(new Property("status", "string", "The status of the resource instance.", 0, 1, status));
         children.add(new Property("kind", "CodeableConcept", "The workflow or activity which gave rise to or during which the payment ocurred such as a kiosk, deposit on account, periodic payment etc.", 0, 1, kind));
         children.add(new Property("period", "Period", "The period of time for which payments have been gathered into this bulk payment for settlement.", 0, 1, period));
         children.add(new Property("created", "dateTime", "The date when the resource was created.", 0, 1, created));
@@ -2677,7 +2429,7 @@ public class PaymentReconciliation extends DomainResource {
         children.add(new Property("paymentIssuer", "Reference(Organization|Patient|RelatedPerson)", "The party who generated the payment.", 0, 1, paymentIssuer));
         children.add(new Property("request", "Reference(Task)", "Original request resource reference.", 0, 1, request));
         children.add(new Property("requestor", "Reference(Practitioner|PractitionerRole|Organization)", "The practitioner who is responsible for the services rendered to the patient.", 0, 1, requestor));
-        children.add(new Property("outcome", "code", "The outcome of a request for a reconciliation.", 0, 1, outcome));
+        children.add(new Property("outcome", "string", "The outcome of a request for a reconciliation.", 0, 1, outcome));
         children.add(new Property("disposition", "string", "A human readable description of the status of the request for the reconciliation.", 0, 1, disposition));
         children.add(new Property("date", "date", "The date of payment as indicated on the financial instrument.", 0, 1, date));
         children.add(new Property("location", "Reference(Location)", "The location of the site or device for electronic transfers or physical location for cash payments.", 0, 1, location));
@@ -2781,8 +2533,7 @@ public class PaymentReconciliation extends DomainResource {
           this.type = TypeConvertor.castToCodeableConcept(value); // CodeableConcept
           return value;
         case -892481550: // status
-          value = new FinancialResourceStatusCodesEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.status = (Enumeration) value; // Enumeration<FinancialResourceStatusCodes>
+          this.status = TypeConvertor.castToString(value); // StringType
           return value;
         case 3292052: // kind
           this.kind = TypeConvertor.castToCodeableConcept(value); // CodeableConcept
@@ -2809,8 +2560,7 @@ public class PaymentReconciliation extends DomainResource {
           this.requestor = TypeConvertor.castToReference(value); // Reference
           return value;
         case -1106507950: // outcome
-          value = new PaymentOutcomeEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.outcome = (Enumeration) value; // Enumeration<PaymentOutcome>
+          this.outcome = TypeConvertor.castToString(value); // StringType
           return value;
         case 583380919: // disposition
           this.disposition = TypeConvertor.castToString(value); // StringType
@@ -2875,8 +2625,7 @@ public class PaymentReconciliation extends DomainResource {
         } else if (name.equals("type")) {
           this.type = TypeConvertor.castToCodeableConcept(value); // CodeableConcept
         } else if (name.equals("status")) {
-          value = new FinancialResourceStatusCodesEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.status = (Enumeration) value; // Enumeration<FinancialResourceStatusCodes>
+          this.status = TypeConvertor.castToString(value); // StringType
         } else if (name.equals("kind")) {
           this.kind = TypeConvertor.castToCodeableConcept(value); // CodeableConcept
         } else if (name.equals("period")) {
@@ -2894,8 +2643,7 @@ public class PaymentReconciliation extends DomainResource {
         } else if (name.equals("requestor")) {
           this.requestor = TypeConvertor.castToReference(value); // Reference
         } else if (name.equals("outcome")) {
-          value = new PaymentOutcomeEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.outcome = (Enumeration) value; // Enumeration<PaymentOutcome>
+          this.outcome = TypeConvertor.castToString(value); // StringType
         } else if (name.equals("disposition")) {
           this.disposition = TypeConvertor.castToString(value); // StringType
         } else if (name.equals("date")) {
@@ -2942,8 +2690,7 @@ public class PaymentReconciliation extends DomainResource {
         } else if (name.equals("type")) {
           this.type = null;
         } else if (name.equals("status")) {
-          value = new FinancialResourceStatusCodesEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.status = (Enumeration) value; // Enumeration<FinancialResourceStatusCodes>
+          this.status = null;
         } else if (name.equals("kind")) {
           this.kind = null;
         } else if (name.equals("period")) {
@@ -2961,8 +2708,7 @@ public class PaymentReconciliation extends DomainResource {
         } else if (name.equals("requestor")) {
           this.requestor = null;
         } else if (name.equals("outcome")) {
-          value = new PaymentOutcomeEnumFactory().fromType(TypeConvertor.castToCode(value));
-          this.outcome = (Enumeration) value; // Enumeration<PaymentOutcome>
+          this.outcome = null;
         } else if (name.equals("disposition")) {
           this.disposition = null;
         } else if (name.equals("date")) {
@@ -3044,7 +2790,7 @@ public class PaymentReconciliation extends DomainResource {
         switch (hash) {
         case -1618432855: /*identifier*/ return new String[] {"Identifier"};
         case 3575610: /*type*/ return new String[] {"CodeableConcept"};
-        case -892481550: /*status*/ return new String[] {"code"};
+        case -892481550: /*status*/ return new String[] {"string"};
         case 3292052: /*kind*/ return new String[] {"CodeableConcept"};
         case -991726143: /*period*/ return new String[] {"Period"};
         case 1028554472: /*created*/ return new String[] {"dateTime"};
@@ -3053,7 +2799,7 @@ public class PaymentReconciliation extends DomainResource {
         case 1144026207: /*paymentIssuer*/ return new String[] {"Reference"};
         case 1095692943: /*request*/ return new String[] {"Reference"};
         case 693934258: /*requestor*/ return new String[] {"Reference"};
-        case -1106507950: /*outcome*/ return new String[] {"code"};
+        case -1106507950: /*outcome*/ return new String[] {"string"};
         case 583380919: /*disposition*/ return new String[] {"string"};
         case 3076014: /*date*/ return new String[] {"date"};
         case 1901043637: /*location*/ return new String[] {"Reference"};
