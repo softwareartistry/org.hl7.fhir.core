@@ -9879,11 +9879,11 @@ public class XmlParser extends XmlParserBase {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("identifier")) {
       res.getIdentifier().add(parseIdentifier(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, Enumerations.FinancialResourceStatusCodes.NULL, new Enumerations.FinancialResourceStatusCodesEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("priority")) {
       res.setPriority(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("purpose")) {
-      res.getPurpose().add(parseEnumeration(xpp, CoverageEligibilityRequest.EligibilityRequestPurpose.NULL, new CoverageEligibilityRequest.EligibilityRequestPurposeEnumFactory()));
+      res.getPurpose().add(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("patient")) {
       res.setPatient(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("event")) {
@@ -42023,13 +42023,13 @@ public class XmlParser extends XmlParserBase {
           composeIdentifier("identifier", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new Enumerations.FinancialResourceStatusCodesEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasPriority()) {
       composeCodeableConcept("priority", element.getPriority());
     }
       if (element.hasPurpose()) 
-        for (Enumeration<CoverageEligibilityRequest.EligibilityRequestPurpose> e : element.getPurpose()) 
-          composeEnumeration("purpose", e, new CoverageEligibilityRequest.EligibilityRequestPurposeEnumFactory());
+        for (StringType e : element.getPurpose())
+          composeString("purpose", e);
     if (element.hasPatient()) {
       composeReference("patient", element.getPatient());
     }

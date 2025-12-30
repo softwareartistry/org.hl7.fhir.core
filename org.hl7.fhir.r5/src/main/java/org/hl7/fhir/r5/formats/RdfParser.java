@@ -9018,13 +9018,13 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "CoverageEligibilityRequest", "identifier", element.getIdentifier().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "CoverageEligibilityRequest", "status", element.getStatusElement(), -1);
+      composeString(t, "CoverageEligibilityRequest", "status", element.getStatusElement(), -1);
     }
     if (element.hasPriority()) {
       composeCodeableConcept(t, "CoverageEligibilityRequest", "priority", element.getPriority(), -1);
     }
     for (int i = 0; i < element.getPurpose().size(); i++) {
-      composeEnum(t, "CoverageEligibilityRequest", "purpose", element.getPurpose().get(i), i);
+      composeString(t, "CoverageEligibilityRequest", "purpose", element.getPurpose().get(i), i);
     }
     if (element.hasPatient()) {
       composeReference(t, "CoverageEligibilityRequest", "patient", element.getPatient(), -1);
