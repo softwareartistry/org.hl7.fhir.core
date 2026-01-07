@@ -4964,8 +4964,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Enumerations.PublicationStatus.NULL,
-        new Enumerations.PublicationStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("validityPeriod"))
@@ -11244,8 +11243,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Enumerations.DocumentReferenceStatus.NULL,
-        new Enumerations.DocumentReferenceStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("docStatus"))
@@ -12161,8 +12159,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("request"))
       res.setRequest(parseReference(getJObject(json, "request")));
     if (json.has("outcome"))
-      res.setOutcomeElement(parseEnumeration(json.get("outcome").getAsString(), Enumerations.RemittanceOutcome.NULL,
-        new Enumerations.RemittanceOutcomeEnumFactory()));
+      res.setOutcomeElement(parseString(json.get("outcome").getAsString()));
     if (json.has("_outcome"))
       parseElementProperties(getJObject(json, "_outcome"), res.getOutcomeElement());
     if (json.has("disposition"))
@@ -22776,8 +22773,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("gender"))
-      res.setGenderElement(parseEnumeration(json.get("gender").getAsString(), Enumerations.AdministrativeGender.NULL,
-        new Enumerations.AdministrativeGenderEnumFactory()));
+      res.setGenderElement(parseString(json.get("gender").getAsString()));
     if (json.has("_gender"))
       parseElementProperties(getJObject(json, "_gender"), res.getGenderElement());
     if (json.has("birthDate"))
@@ -22867,8 +22863,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("address"))
       res.setAddress(parseAddress(getJObject(json, "address")));
     if (json.has("gender"))
-      res.setGenderElement(parseEnumeration(json.get("gender").getAsString(), Enumerations.AdministrativeGender.NULL,
-        new Enumerations.AdministrativeGenderEnumFactory()));
+      res.setGenderElement(parseString(json.get("gender").getAsString()));
     if (json.has("_gender"))
       parseElementProperties(getJObject(json, "_gender"), res.getGenderElement());
     if (json.has("organization"))
@@ -23111,8 +23106,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("gender"))
-      res.setGenderElement(parseEnumeration(json.get("gender").getAsString(), Enumerations.AdministrativeGender.NULL,
-        new Enumerations.AdministrativeGenderEnumFactory()));
+      res.setGenderElement(parseString(json.get("gender").getAsString()));
     if (json.has("_gender"))
       parseElementProperties(getJObject(json, "_gender"), res.getGenderElement());
     if (json.has("birthDate"))
@@ -23706,8 +23700,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("gender"))
-      res.setGenderElement(parseEnumeration(json.get("gender").getAsString(), Enumerations.AdministrativeGender.NULL,
-        new Enumerations.AdministrativeGenderEnumFactory()));
+      res.setGenderElement(parseString(json.get("gender").getAsString()));
     if (json.has("_gender"))
       parseElementProperties(getJObject(json, "_gender"), res.getGenderElement());
     if (json.has("birthDate"))
@@ -37750,10 +37743,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new Enumerations.PublicationStatusEnumFactory(),
-        false);
-      composeEnumerationExtras("status", element.getStatusElement(), new Enumerations.PublicationStatusEnumFactory(),
-        false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasValidityPeriod()) {
       composePeriod("validityPeriod", element.getValidityPeriod());
@@ -44093,10 +44084,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(),
-        new Enumerations.DocumentReferenceStatusEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(),
-        new Enumerations.DocumentReferenceStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasDocStatusElement()) {
       composeStringCore("docStatus", element.getDocStatusElement(), false);
@@ -45069,10 +45058,8 @@ public class JsonParser extends JsonParserBase {
       composeReference("request", element.getRequest());
     }
     if (element.hasOutcomeElement()) {
-      composeEnumerationCore("outcome", element.getOutcomeElement(), new Enumerations.RemittanceOutcomeEnumFactory(),
-        false);
-      composeEnumerationExtras("outcome", element.getOutcomeElement(), new Enumerations.RemittanceOutcomeEnumFactory(),
-        false);
+      composeStringCore("outcome", element.getOutcomeElement(), false);
+      composeStringExtras("outcome", element.getOutcomeElement(), false);
     }
     if (element.hasDispositionElement()) {
       composeStringCore("disposition", element.getDispositionElement(), false);
@@ -55905,10 +55892,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasGenderElement()) {
-      composeEnumerationCore("gender", element.getGenderElement(), new Enumerations.AdministrativeGenderEnumFactory(),
-        false);
-      composeEnumerationExtras("gender", element.getGenderElement(), new Enumerations.AdministrativeGenderEnumFactory(),
-        false);
+      composeStringCore("gender", element.getGenderElement(), false);
+      composeStringExtras("gender", element.getGenderElement(), false);
     }
     if (element.hasBirthDateElement()) {
       composeDateCore("birthDate", element.getBirthDateElement(), false);
@@ -56001,10 +55986,8 @@ public class JsonParser extends JsonParserBase {
       composeAddress("address", element.getAddress());
     }
     if (element.hasGenderElement()) {
-      composeEnumerationCore("gender", element.getGenderElement(), new Enumerations.AdministrativeGenderEnumFactory(),
-        false);
-      composeEnumerationExtras("gender", element.getGenderElement(), new Enumerations.AdministrativeGenderEnumFactory(),
-        false);
+      composeStringCore("gender", element.getGenderElement(), false);
+      composeStringExtras("gender", element.getGenderElement(), false);
     }
     if (element.hasOrganization()) {
       composeReference("organization", element.getOrganization());
@@ -56282,10 +56265,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasGenderElement()) {
-      composeEnumerationCore("gender", element.getGenderElement(), new Enumerations.AdministrativeGenderEnumFactory(),
-        false);
-      composeEnumerationExtras("gender", element.getGenderElement(), new Enumerations.AdministrativeGenderEnumFactory(),
-        false);
+      composeStringCore("gender", element.getGenderElement(), false);
+      composeStringExtras("gender", element.getGenderElement(), false);
     }
     if (element.hasBirthDateElement()) {
       composeDateCore("birthDate", element.getBirthDateElement(), false);
@@ -56893,10 +56874,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasGenderElement()) {
-      composeEnumerationCore("gender", element.getGenderElement(), new Enumerations.AdministrativeGenderEnumFactory(),
-        false);
-      composeEnumerationExtras("gender", element.getGenderElement(), new Enumerations.AdministrativeGenderEnumFactory(),
-        false);
+      composeStringCore("gender", element.getGenderElement(), false);
+      composeStringExtras("gender", element.getGenderElement(), false);
     }
     if (element.hasBirthDateElement()) {
       composeDateCore("birthDate", element.getBirthDateElement(), false);

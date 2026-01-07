@@ -2218,13 +2218,13 @@ public class DeviceRequest extends DomainResource {
       this.groupIdentifier = castToIdentifier(value); // Identifier
       return value;
     case -892481550: // status
-      this.status = castToString(value); // Enumeration<DeviceRequestStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -1183762788: // intent
       this.intent = castToString(value); // StringType
       return value;
     case -1165461084: // priority
-      this.priority = castToString(value); // Enumeration<RequestPriority>
+      this.priority = castToString(value); // StringType
       return value;
     case 3059181: // code
       this.code = castToType(value); // Type
@@ -2296,7 +2296,7 @@ public class DeviceRequest extends DomainResource {
     } else if (name.equals("intent")) {
       this.intent = castToString(value); // StringType
     } else if (name.equals("priority")) {
-      this.priority = castToString(value); // Enumeration<RequestPriority>
+      this.priority = castToString(value); // StringType
     } else if (name.equals("code[x]")) {
       this.code = castToType(value); // Type
     } else if (name.equals("parameter")) {

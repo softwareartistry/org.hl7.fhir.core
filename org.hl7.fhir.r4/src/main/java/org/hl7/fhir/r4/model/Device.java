@@ -588,7 +588,7 @@ public class Device extends DomainResource {
       case 806499972:
         /* carrierHRF */ return this.carrierHRF == null ? new Base[0] : new Base[] { this.carrierHRF }; // StringType
       case -479362356:
-        /* entryType */ return this.entryType == null ? new Base[0] : new Base[] { this.entryType }; // Enumeration<UDIEntryType>
+        /* entryType */ return this.entryType == null ? new Base[0] : new Base[] { this.entryType }; // StringType
       default:
         return super.getProperty(hash, name, checkValid);
       }
@@ -940,7 +940,7 @@ public class Device extends DomainResource {
       case 3373707:
         /* name */ return this.name == null ? new Base[0] : new Base[] { this.name }; // StringType
       case 3575610:
-        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<DeviceNameType>
+        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
       default:
         return super.getProperty(hash, name, checkValid);
       }
@@ -3814,7 +3814,7 @@ public class Device extends DomainResource {
       /* udiCarrier */ return this.udiCarrier == null ? new Base[0]
           : this.udiCarrier.toArray(new Base[this.udiCarrier.size()]); // DeviceUdiCarrierComponent
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<FHIRDeviceStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 2051346646:
       /* statusReason */ return this.statusReason == null ? new Base[0]
           : this.statusReason.toArray(new Base[this.statusReason.size()]); // CodeableConcept

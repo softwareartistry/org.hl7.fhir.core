@@ -4164,9 +4164,9 @@ public class NutritionOrder extends DomainResource {
       /* instantiates */ return this.instantiates == null ? new Base[0]
           : this.instantiates.toArray(new Base[this.instantiates.size()]); // UriType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<NutritionOrderStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -1183762788:
-      /* intent */ return this.intent == null ? new Base[0] : new Base[] { this.intent }; // Enumeration<NutritiionOrderIntent>
+      /* intent */ return this.intent == null ? new Base[0] : new Base[] { this.intent }; // StringType
     case -791418107:
       /* patient */ return this.patient == null ? new Base[0] : new Base[] { this.patient }; // Reference
     case 1524132147:
@@ -4215,11 +4215,9 @@ public class NutritionOrder extends DomainResource {
       this.getInstantiates().add(castToUri(value)); // UriType
       return value;
     case -892481550: // status
-//      value = new NutritionOrderStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // StringType
       return value;
     case -1183762788: // intent
-//      value = new NutritiionOrderIntentEnumFactory().fromType(castToCode(value));
       this.intent = castToString(value); // StringType
       return value;
     case -791418107: // patient
@@ -4272,10 +4270,8 @@ public class NutritionOrder extends DomainResource {
     } else if (name.equals("instantiates")) {
       this.getInstantiates().add(castToUri(value));
     } else if (name.equals("status")) {
-//      value = new NutritionOrderStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // StringType
     } else if (name.equals("intent")) {
-//      value = new NutritiionOrderIntentEnumFactory().fromType(castToCode(value));
       this.intent = castToString(value); // StringType
     } else if (name.equals("patient")) {
       this.patient = castToReference(value); // Reference

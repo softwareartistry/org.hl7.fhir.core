@@ -36,8 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.AdministrativeGender;
-import org.hl7.fhir.r4.model.Enumerations.AdministrativeGenderEnumFactory;
 
 import ca.uhn.fhir.model.api.annotation.Block;
 import ca.uhn.fhir.model.api.annotation.Child;
@@ -515,10 +513,10 @@ public class Practitioner extends DomainResource {
    * Administrative Gender - the gender that the person is considered to have for
    * administration and record keeping purposes.
    */
-  @Child(name = "gender", type = { CodeType.class }, order = 5, min = 0, max = 1, modifier = false, summary = true)
+  @Child(name = "gender", type = { StringType.class }, order = 5, min = 0, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "male | female | other | unknown", formalDefinition = "Administrative Gender - the gender that the person is considered to have for administration and record keeping purposes.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/administrative-gender")
-  protected Enumeration<AdministrativeGender> gender;
+  protected StringType gender;
 
   /**
    * The date of birth for the practitioner.
@@ -839,12 +837,12 @@ public class Practitioner extends DomainResource {
    *         purposes.). This is the underlying object with id, value and
    *         extensions. The accessor "getGender" gives direct access to the value
    */
-  public Enumeration<AdministrativeGender> getGenderElement() {
+  public StringType getGenderElement() {
     if (this.gender == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Practitioner.gender");
       else if (Configuration.doAutoCreate())
-        this.gender = new Enumeration<AdministrativeGender>(new AdministrativeGenderEnumFactory()); // bb
+        this.gender = new StringType(); // bb
     return this.gender;
   }
 
@@ -863,7 +861,7 @@ public class Practitioner extends DomainResource {
    *              and extensions. The accessor "getGender" gives direct access to
    *              the value
    */
-  public Practitioner setGenderElement(Enumeration<AdministrativeGender> value) {
+  public Practitioner setGenderElement(StringType value) {
     this.gender = value;
     return this;
   }
@@ -872,20 +870,20 @@ public class Practitioner extends DomainResource {
    * @return Administrative Gender - the gender that the person is considered to
    *         have for administration and record keeping purposes.
    */
-  public AdministrativeGender getGender() {
-    return this.gender == null ? null : this.gender.getValue();
+  public StringType getGender() {
+    return this.gender == null ? null : this.gender;
   }
 
   /**
    * @param value Administrative Gender - the gender that the person is considered
    *              to have for administration and record keeping purposes.
    */
-  public Practitioner setGender(AdministrativeGender value) {
+  public Practitioner setGender(String value) {
     if (value == null)
       this.gender = null;
     else {
       if (this.gender == null)
-        this.gender = new Enumeration<AdministrativeGender>(new AdministrativeGenderEnumFactory());
+        this.gender = new StringType();
       this.gender.setValue(value);
     }
     return this;
@@ -1125,7 +1123,7 @@ public class Practitioner extends DomainResource {
     children.add(new Property("address", "Address",
         "Address(es) of the practitioner that are not role specific (typically home address). \rWork addresses are not typically entered in this property as they are usually role dependent.",
         0, java.lang.Integer.MAX_VALUE, address));
-    children.add(new Property("gender", "code",
+    children.add(new Property("gender", "string",
         "Administrative Gender - the gender that the person is considered to have for administration and record keeping purposes.",
         0, 1, gender));
     children.add(new Property("birthDate", "date", "The date of birth for the practitioner.", 0, 1, birthDate));
@@ -1159,7 +1157,7 @@ public class Practitioner extends DomainResource {
           "Address(es) of the practitioner that are not role specific (typically home address). \rWork addresses are not typically entered in this property as they are usually role dependent.",
           0, java.lang.Integer.MAX_VALUE, address);
     case -1249512767:
-      /* gender */ return new Property("gender", "code",
+      /* gender */ return new Property("gender", "string",
           "Administrative Gender - the gender that the person is considered to have for administration and record keeping purposes.",
           0, 1, gender);
     case -1210031859:
@@ -1197,7 +1195,7 @@ public class Practitioner extends DomainResource {
     case -1147692044:
       /* address */ return this.address == null ? new Base[0] : this.address.toArray(new Base[this.address.size()]); // Address
     case -1249512767:
-      /* gender */ return this.gender == null ? new Base[0] : new Base[] { this.gender }; // Enumeration<AdministrativeGender>
+      /* gender */ return this.gender == null ? new Base[0] : new Base[] { this.gender }; // StringType
     case -1210031859:
       /* birthDate */ return this.birthDate == null ? new Base[0] : new Base[] { this.birthDate }; // DateType
     case 106642994:
@@ -1233,8 +1231,7 @@ public class Practitioner extends DomainResource {
       this.getAddress().add(castToAddress(value)); // Address
       return value;
     case -1249512767: // gender
-      value = new AdministrativeGenderEnumFactory().fromType(castToCode(value));
-      this.gender = (Enumeration) value; // Enumeration<AdministrativeGender>
+      this.gender = castToString(value); // StringType
       return value;
     case -1210031859: // birthDate
       this.birthDate = castToDate(value); // DateType
@@ -1267,8 +1264,7 @@ public class Practitioner extends DomainResource {
     } else if (name.equals("address")) {
       this.getAddress().add(castToAddress(value));
     } else if (name.equals("gender")) {
-      value = new AdministrativeGenderEnumFactory().fromType(castToCode(value));
-      this.gender = (Enumeration) value; // Enumeration<AdministrativeGender>
+      this.gender = castToString(value); // StringType
     } else if (name.equals("birthDate")) {
       this.birthDate = castToDate(value); // DateType
     } else if (name.equals("photo")) {
@@ -1352,7 +1348,7 @@ public class Practitioner extends DomainResource {
     case -1147692044:
       /* address */ return new String[] { "Address" };
     case -1249512767:
-      /* gender */ return new String[] { "code" };
+      /* gender */ return new String[] { "string" };
     case -1210031859:
       /* birthDate */ return new String[] { "date" };
     case 106642994:

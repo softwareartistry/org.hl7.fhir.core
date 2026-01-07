@@ -2107,7 +2107,7 @@ public class AdverseEvent extends DomainResource {
     case -1618432855:
       /* identifier */ return this.identifier == null ? new Base[0] : new Base[] { this.identifier }; // Identifier
     case 528866400:
-      /* actuality */ return this.actuality == null ? new Base[0] : new Base[] { this.actuality }; // Enumeration<AdverseEventActuality>
+      /* actuality */ return this.actuality == null ? new Base[0] : new Base[] { this.actuality }; // StringType
     case 50511102:
       /* category */ return this.category == null ? new Base[0] : this.category.toArray(new Base[this.category.size()]); // CodeableConcept
     case 96891546:
@@ -2162,7 +2162,7 @@ public class AdverseEvent extends DomainResource {
       this.identifier = castToIdentifier(value); // Identifier
       return value;
     case 528866400: // actuality
-      this.actuality = castToString(value); // Enumeration<AdverseEventActuality>
+      this.actuality = castToString(value); // StringType
       return value;
     case 50511102: // category
       this.getCategory().add(castToCodeableConcept(value)); // CodeableConcept
@@ -2229,7 +2229,7 @@ public class AdverseEvent extends DomainResource {
     if (name.equals("identifier")) {
       this.identifier = castToIdentifier(value); // Identifier
     } else if (name.equals("actuality")) {
-      this.actuality = castToString(value); // Enumeration<AdverseEventActuality>
+      this.actuality = castToString(value); // StringType
     } else if (name.equals("category")) {
       this.getCategory().add(castToCodeableConcept(value));
     } else if (name.equals("event")) {

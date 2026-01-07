@@ -36,8 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.DocumentReferenceStatus;
-import org.hl7.fhir.r4.model.Enumerations.DocumentReferenceStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -226,7 +224,7 @@ public class DocumentReference extends DomainResource {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 3059181:
-        /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // Enumeration<DocumentRelationshipType>
+        /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // StringType
       case -880905839:
         /* target */ return this.target == null ? new Base[0] : new Base[] { this.target }; // Reference
       default:
@@ -239,8 +237,7 @@ public class DocumentReference extends DomainResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3059181: // code
-//        value = new DocumentRelationshipTypeEnumFactory().fromType(castToCode(value));
-        this.code = castToString(value); // Enumeration<DocumentRelationshipType>
+        this.code = castToString(value); // StringType
         return value;
       case -880905839: // target
         this.target = castToReference(value); // Reference
@@ -254,8 +251,7 @@ public class DocumentReference extends DomainResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("code")) {
-//        value = new DocumentRelationshipTypeEnumFactory().fromType(castToCode(value));
-        this.code =  castToString(value); // Enumeration<DocumentRelationshipType>
+        this.code =  castToString(value); // StringType
       } else if (name.equals("target")) {
         this.target = castToReference(value); // Reference
       } else
@@ -1315,10 +1311,10 @@ public class DocumentReference extends DomainResource {
   /**
    * The status of this document reference.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 2, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 2, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "current | superseded | entered-in-error", formalDefinition = "The status of this document reference.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/document-reference-status")
-  protected Enumeration<DocumentReferenceStatus> status;
+  protected StringType status;
 
   /**
    * The status of the underlying document.
@@ -1476,7 +1472,7 @@ public class DocumentReference extends DomainResource {
   /**
    * Constructor
    */
-  public DocumentReference(Enumeration<DocumentReferenceStatus> status) {
+  public DocumentReference(StringType status) {
     super();
     this.status = status;
   }
@@ -1571,12 +1567,12 @@ public class DocumentReference extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<DocumentReferenceStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create DocumentReference.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<DocumentReferenceStatus>(new DocumentReferenceStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -1593,7 +1589,7 @@ public class DocumentReference extends DomainResource {
    *              is the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public DocumentReference setStatusElement(Enumeration<DocumentReferenceStatus> value) {
+  public DocumentReference setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1601,16 +1597,16 @@ public class DocumentReference extends DomainResource {
   /**
    * @return The status of this document reference.
    */
-  public DocumentReferenceStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The status of this document reference.
    */
-  public DocumentReference setStatus(DocumentReferenceStatus value) {
+  public DocumentReference setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<DocumentReferenceStatus>(new DocumentReferenceStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -2280,7 +2276,7 @@ public class DocumentReference extends DomainResource {
     children.add(new Property("identifier", "Identifier",
         "Other identifiers associated with the document, including version independent identifiers.", 0,
         java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code", "The status of this document reference.", 0, 1, status));
+    children.add(new Property("status", "string", "The status of this document reference.", 0, 1, status));
     children.add(new Property("docStatus", "string", "The status of the underlying document.", 0, 1, docStatus));
     children.add(new Property("type", "CodeableConcept",
         "Specifies the particular kind of document referenced  (e.g. History and Physical, Discharge Summary, Progress Note). This usually equates to the purpose of making the document referenced.",
@@ -2328,7 +2324,7 @@ public class DocumentReference extends DomainResource {
           "Other identifiers associated with the document, including version independent identifiers.", 0,
           java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "The status of this document reference.", 0, 1, status);
+      /* status */ return new Property("status", "string", "The status of this document reference.", 0, 1, status);
     case -23496886:
       /* docStatus */ return new Property("docStatus", "string", "The status of the underlying document.", 0, 1,
           docStatus);
@@ -2391,9 +2387,9 @@ public class DocumentReference extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<DocumentReferenceStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -23496886:
-      /* docStatus */ return this.docStatus == null ? new Base[0] : new Base[] { this.docStatus }; // Enumeration<ReferredDocumentStatus>
+      /* docStatus */ return this.docStatus == null ? new Base[0] : new Base[] { this.docStatus }; // StringType
     case 3575610:
       /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // CodeableConcept
     case 50511102:
@@ -2436,12 +2432,10 @@ public class DocumentReference extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new DocumentReferenceStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<DocumentReferenceStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -23496886: // docStatus
-//      value = new ReferredDocumentStatusEnumFactory().fromType(castToCode(value));
-      this.docStatus = castToString(value); // Enumeration<ReferredDocumentStatus>
+      this.docStatus = castToString(value); // StringType
       return value;
     case 3575610: // type
       this.type = castToCodeableConcept(value); // CodeableConcept
@@ -2492,11 +2486,9 @@ public class DocumentReference extends DomainResource {
     } else if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new DocumentReferenceStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<DocumentReferenceStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("docStatus")) {
-//      value = new ReferredDocumentStatusEnumFactory().fromType(castToCode(value));
-      this.docStatus =  castToString(value); // Enumeration<ReferredDocumentStatus>
+      this.docStatus = castToString(value); // StringType
     } else if (name.equals("type")) {
       this.type = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("category")) {
@@ -2614,7 +2606,7 @@ public class DocumentReference extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -23496886:
       /* docStatus */ return new String[] { "string" };
     case 3575610:

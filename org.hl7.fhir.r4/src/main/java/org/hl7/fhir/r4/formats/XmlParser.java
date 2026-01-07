@@ -4343,8 +4343,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("classification")) {
       res.getClassification().add(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(
-          parseEnumeration(xpp, Enumerations.PublicationStatus.NULL, new Enumerations.PublicationStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("validityPeriod")) {
       res.setValidityPeriod(parsePeriod(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("validTo")) {
@@ -9116,8 +9115,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("identifier")) {
       res.getIdentifier().add(parseIdentifier(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, Enumerations.DocumentReferenceStatus.NULL,
-          new Enumerations.DocumentReferenceStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("docStatus")) {
       res.setDocStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("type")) {
@@ -9897,8 +9895,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("request")) {
       res.setRequest(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("outcome")) {
-      res.setOutcomeElement(
-          parseEnumeration(xpp, Enumerations.RemittanceOutcome.NULL, new Enumerations.RemittanceOutcomeEnumFactory()));
+      res.setOutcomeElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("disposition")) {
       res.setDispositionElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("created")) {
@@ -18409,8 +18406,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("telecom")) {
       res.getTelecom().add(parseContactPoint(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("gender")) {
-      res.setGenderElement(parseEnumeration(xpp, Enumerations.AdministrativeGender.NULL,
-          new Enumerations.AdministrativeGenderEnumFactory()));
+      res.setGenderElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("birthDate")) {
       res.setBirthDateElement(parseDate(xpp));
     } else if (eventType == XmlPullParser.START_TAG && nameIsTypeName(xpp, "deceased")) {
@@ -18465,8 +18461,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("address")) {
       res.setAddress(parseAddress(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("gender")) {
-      res.setGenderElement(parseEnumeration(xpp, Enumerations.AdministrativeGender.NULL,
-          new Enumerations.AdministrativeGenderEnumFactory()));
+      res.setGenderElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("organization")) {
       res.setOrganization(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("period")) {
@@ -18727,8 +18722,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("telecom")) {
       res.getTelecom().add(parseContactPoint(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("gender")) {
-      res.setGenderElement(parseEnumeration(xpp, Enumerations.AdministrativeGender.NULL,
-          new Enumerations.AdministrativeGenderEnumFactory()));
+      res.setGenderElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("birthDate")) {
       res.setBirthDateElement(parseDate(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("address")) {
@@ -19157,8 +19151,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("address")) {
       res.getAddress().add(parseAddress(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("gender")) {
-      res.setGenderElement(parseEnumeration(xpp, Enumerations.AdministrativeGender.NULL,
-          new Enumerations.AdministrativeGenderEnumFactory()));
+      res.setGenderElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("birthDate")) {
       res.setBirthDateElement(parseDate(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("photo")) {
@@ -31205,7 +31198,7 @@ public class XmlParser extends XmlParserBase {
         composeCodeableConcept("classification", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new Enumerations.PublicationStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasValidityPeriod()) {
       composePeriod("validityPeriod", element.getValidityPeriod());
     }
@@ -36190,7 +36183,7 @@ public class XmlParser extends XmlParserBase {
         composeIdentifier("identifier", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new Enumerations.DocumentReferenceStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasDocStatusElement())
       composeString("docStatus", element.getDocStatusElement());
     if (element.hasType()) {
@@ -36993,7 +36986,7 @@ public class XmlParser extends XmlParserBase {
       composeReference("request", element.getRequest());
     }
     if (element.hasOutcomeElement())
-      composeEnumeration("outcome", element.getOutcomeElement(), new Enumerations.RemittanceOutcomeEnumFactory());
+      composeString("outcome", element.getOutcomeElement());
     if (element.hasDispositionElement()) {
       composeString("disposition", element.getDispositionElement());
     }
@@ -45732,7 +45725,7 @@ public class XmlParser extends XmlParserBase {
         composeContactPoint("telecom", e);
     }
     if (element.hasGenderElement())
-      composeEnumeration("gender", element.getGenderElement(), new Enumerations.AdministrativeGenderEnumFactory());
+      composeString("gender", element.getGenderElement());
     if (element.hasBirthDateElement()) {
       composeDate("birthDate", element.getBirthDateElement());
     }
@@ -45801,7 +45794,7 @@ public class XmlParser extends XmlParserBase {
       composeAddress("address", element.getAddress());
     }
     if (element.hasGenderElement())
-      composeEnumeration("gender", element.getGenderElement(), new Enumerations.AdministrativeGenderEnumFactory());
+      composeString("gender", element.getGenderElement());
     if (element.hasOrganization()) {
       composeReference("organization", element.getOrganization());
     }
@@ -46054,7 +46047,7 @@ public class XmlParser extends XmlParserBase {
         composeContactPoint("telecom", e);
     }
     if (element.hasGenderElement())
-      composeEnumeration("gender", element.getGenderElement(), new Enumerations.AdministrativeGenderEnumFactory());
+      composeString("gender", element.getGenderElement());
     if (element.hasBirthDateElement()) {
       composeDate("birthDate", element.getBirthDateElement());
     }
@@ -46509,7 +46502,7 @@ public class XmlParser extends XmlParserBase {
         composeAddress("address", e);
     }
     if (element.hasGenderElement())
-      composeEnumeration("gender", element.getGenderElement(), new Enumerations.AdministrativeGenderEnumFactory());
+      composeString("gender", element.getGenderElement());
     if (element.hasBirthDateElement()) {
       composeDate("birthDate", element.getBirthDateElement());
     }

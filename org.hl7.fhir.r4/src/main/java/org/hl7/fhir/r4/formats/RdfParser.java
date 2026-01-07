@@ -3022,7 +3022,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getClassification().size(); i++)
       composeCodeableConcept(t, "CatalogEntry", "classification", element.getClassification().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "CatalogEntry", "status", element.getStatusElement(), -1);
+      composeString(t, "CatalogEntry", "status", element.getStatusElement(), -1);
     if (element.hasValidityPeriod())
       composePeriod(t, "CatalogEntry", "validityPeriod", element.getValidityPeriod(), -1);
     if (element.hasValidToElement())
@@ -6546,7 +6546,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "DocumentReference", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "DocumentReference", "status", element.getStatusElement(), -1);
+      composeString(t, "DocumentReference", "status", element.getStatusElement(), -1);
     if (element.hasDocStatusElement())
       composeString(t, "DocumentReference", "docStatus", element.getDocStatusElement(), -1);
     if (element.hasType())
@@ -7117,7 +7117,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasRequest())
       composeReference(t, "EnrollmentResponse", "request", element.getRequest(), -1);
     if (element.hasOutcomeElement())
-      composeEnum(t, "EnrollmentResponse", "outcome", element.getOutcomeElement(), -1);
+      composeString(t, "EnrollmentResponse", "outcome", element.getOutcomeElement(), -1);
     if (element.hasDispositionElement())
       composeString(t, "EnrollmentResponse", "disposition", element.getDispositionElement(), -1);
     if (element.hasCreatedElement())
@@ -13384,7 +13384,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getTelecom().size(); i++)
       composeContactPoint(t, "Patient", "telecom", element.getTelecom().get(i), i);
     if (element.hasGenderElement())
-      composeEnum(t, "Patient", "gender", element.getGenderElement(), -1);
+      composeString(t, "Patient", "gender", element.getGenderElement(), -1);
     if (element.hasBirthDateElement())
       composeDate(t, "Patient", "birthDate", element.getBirthDateElement(), -1);
     if (element.hasDeceased())
@@ -13429,7 +13429,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasAddress())
       composeAddress(t, "Patient", "address", element.getAddress(), -1);
     if (element.hasGenderElement())
-      composeEnum(t, "Patient", "gender", element.getGenderElement(), -1);
+      composeString(t, "Patient", "gender", element.getGenderElement(), -1);
     if (element.hasOrganization())
       composeReference(t, "Patient", "organization", element.getOrganization(), -1);
     if (element.hasPeriod())
@@ -13618,7 +13618,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getTelecom().size(); i++)
       composeContactPoint(t, "Person", "telecom", element.getTelecom().get(i), i);
     if (element.hasGenderElement())
-      composeEnum(t, "Person", "gender", element.getGenderElement(), -1);
+      composeString(t, "Person", "gender", element.getGenderElement(), -1);
     if (element.hasBirthDateElement())
       composeDate(t, "Person", "birthDate", element.getBirthDateElement(), -1);
     for (int i = 0; i < element.getAddress().size(); i++)
@@ -13934,7 +13934,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getAddress().size(); i++)
       composeAddress(t, "Practitioner", "address", element.getAddress().get(i), i);
     if (element.hasGenderElement())
-      composeEnum(t, "Practitioner", "gender", element.getGenderElement(), -1);
+      composeString(t, "Practitioner", "gender", element.getGenderElement(), -1);
     if (element.hasBirthDateElement())
       composeDate(t, "Practitioner", "birthDate", element.getBirthDateElement(), -1);
     for (int i = 0; i < element.getPhoto().size(); i++)

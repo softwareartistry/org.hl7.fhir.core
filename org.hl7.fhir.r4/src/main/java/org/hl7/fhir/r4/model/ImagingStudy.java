@@ -3415,7 +3415,7 @@ public class ImagingStudy extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      this.status = castToString(value); // Enumeration<ImagingStudyStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -622722335: // modality
       this.getModality().add(castToCoding(value)); // Coding

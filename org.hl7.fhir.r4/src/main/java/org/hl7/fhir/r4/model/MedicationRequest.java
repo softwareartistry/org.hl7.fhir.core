@@ -3509,15 +3509,15 @@ public class MedicationRequest extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<MedicationRequestStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 2051346646:
       /* statusReason */ return this.statusReason == null ? new Base[0] : new Base[] { this.statusReason }; // CodeableConcept
     case -1183762788:
-      /* intent */ return this.intent == null ? new Base[0] : new Base[] { this.intent }; // Enumeration<MedicationRequestIntent>
+      /* intent */ return this.intent == null ? new Base[0] : new Base[] { this.intent }; // StringType
     case 50511102:
       /* category */ return this.category == null ? new Base[0] : this.category.toArray(new Base[this.category.size()]); // CodeableConcept
     case -1165461084:
-      /* priority */ return this.priority == null ? new Base[0] : new Base[] { this.priority }; // Enumeration<MedicationRequestPriority>
+      /* priority */ return this.priority == null ? new Base[0] : new Base[] { this.priority }; // StringType
     case -1788508167:
       /* doNotPerform */ return this.doNotPerform == null ? new Base[0] : new Base[] { this.doNotPerform }; // BooleanType
     case -427039533:
@@ -3594,21 +3594,18 @@ public class MedicationRequest extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-//      value = new MedicationRequestStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // StringType
       return value;
     case 2051346646: // statusReason
       this.statusReason = castToCodeableConcept(value); // CodeableConcept
       return value;
     case -1183762788: // intent
-//      value = new MedicationRequestIntentEnumFactory().fromType(castToCode(value));
       this.intent = castToString(value); // StringType
       return value;
     case 50511102: // category
       this.getCategory().add(castToCodeableConcept(value)); // CodeableConcept
       return value;
     case -1165461084: // priority
-//      value = new MedicationRequestPriorityEnumFactory().fromType(castToCode(value));
       this.priority = castToString(value); // StringType
       return value;
     case -1788508167: // doNotPerform
@@ -3700,17 +3697,14 @@ public class MedicationRequest extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-//      value = new MedicationRequestStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // StringType
     } else if (name.equals("statusReason")) {
       this.statusReason = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("intent")) {
-//      value = new MedicationRequestIntentEnumFactory().fromType(castToCode(value));
       this.intent = castToString(value); // StringType
     } else if (name.equals("category")) {
       this.getCategory().add(castToCodeableConcept(value));
     } else if (name.equals("priority")) {
-//      value = new MedicationRequestPriorityEnumFactory().fromType(castToCode(value));
       this.priority = castToString(value); // StringType
     } else if (name.equals("doNotPerform")) {
       this.doNotPerform = castToBoolean(value); // BooleanType

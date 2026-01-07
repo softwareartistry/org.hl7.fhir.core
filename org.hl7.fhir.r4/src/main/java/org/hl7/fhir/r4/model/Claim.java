@@ -9742,13 +9742,13 @@ public class Claim extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<ClaimStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 3575610:
       /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // CodeableConcept
     case -1868521062:
       /* subType */ return this.subType == null ? new Base[0] : new Base[] { this.subType }; // CodeableConcept
     case 116103:
-      /* use */ return this.use == null ? new Base[0] : new Base[] { this.use }; // Enumeration<Use>
+      /* use */ return this.use == null ? new Base[0] : new Base[] { this.use }; // StringType
     case -791418107:
       /* patient */ return this.patient == null ? new Base[0] : new Base[] { this.patient }; // Reference
     case -332066046:
@@ -9811,7 +9811,7 @@ public class Claim extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      this.status = castToString(value); // Enumeration<ClaimStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 3575610: // type
       this.type = castToCodeableConcept(value); // CodeableConcept
@@ -9820,7 +9820,7 @@ public class Claim extends DomainResource {
       this.subType = castToCodeableConcept(value); // CodeableConcept
       return value;
     case 116103: // use
-      this.use = castToString(value); // Enumeration<Use>
+      this.use = castToString(value); // StringType
       return value;
     case -791418107: // patient
       this.patient = castToReference(value); // Reference
@@ -9899,13 +9899,13 @@ public class Claim extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      this.status = castToString(value); // Enumeration<ClaimStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("type")) {
       this.type = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("subType")) {
       this.subType = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("use")) {
-      this.use = castToString(value); // Enumeration<Use>
+      this.use = castToString(value); // StringType
     } else if (name.equals("patient")) {
       this.patient = castToReference(value); // Reference
     } else if (name.equals("billablePeriod")) {

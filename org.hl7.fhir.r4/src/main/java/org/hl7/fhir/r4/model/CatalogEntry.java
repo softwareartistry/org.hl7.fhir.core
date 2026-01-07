@@ -36,8 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 
 import ca.uhn.fhir.model.api.annotation.Block;
 import ca.uhn.fhir.model.api.annotation.Child;
@@ -226,7 +224,7 @@ public class CatalogEntry extends DomainResource {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case -261805258:
-        /* relationtype */ return this.relationtype == null ? new Base[0] : new Base[] { this.relationtype }; // Enumeration<CatalogEntryRelationType>
+        /* relationtype */ return this.relationtype == null ? new Base[0] : new Base[] { this.relationtype }; // StringType
       case 3242771:
         /* item */ return this.item == null ? new Base[0] : new Base[] { this.item }; // Reference
       default:
@@ -239,7 +237,7 @@ public class CatalogEntry extends DomainResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case -261805258: // relationtype
-        this.relationtype = castToString(value); // Enumeration<CatalogEntryRelationType>
+        this.relationtype = castToString(value); // StringType
         return value;
       case 3242771: // item
         this.item = castToReference(value); // Reference
@@ -253,7 +251,7 @@ public class CatalogEntry extends DomainResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("relationtype")) {
-        this.relationtype = castToString(value); // Enumeration<CatalogEntryRelationType>
+        this.relationtype = castToString(value); // StringType
       } else if (name.equals("item")) {
         this.item = castToReference(value); // Reference
       } else
@@ -413,10 +411,10 @@ public class CatalogEntry extends DomainResource {
    * Used to support catalog exchange even for unsupported products, e.g. getting
    * list of medications even if not prescribable.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 6, min = 0, max = 1, modifier = false, summary = false)
+  @Child(name = "status", type = { StringType.class }, order = 6, min = 0, max = 1, modifier = false, summary = false)
   @Description(shortDefinition = "draft | active | retired | unknown", formalDefinition = "Used to support catalog exchange even for unsupported products, e.g. getting list of medications even if not prescribable.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/publication-status")
-  protected Enumeration<PublicationStatus> status;
+  protected StringType status;
 
   /**
    * The time period in which this catalog entry is expected to be active.
@@ -777,12 +775,12 @@ public class CatalogEntry extends DomainResource {
    *         prescribable.). This is the underlying object with id, value and
    *         extensions. The accessor "getStatus" gives direct access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create CatalogEntry.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -801,7 +799,7 @@ public class CatalogEntry extends DomainResource {
    *              and extensions. The accessor "getStatus" gives direct access to
    *              the value
    */
-  public CatalogEntry setStatusElement(Enumeration<PublicationStatus> value) {
+  public CatalogEntry setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -810,20 +808,20 @@ public class CatalogEntry extends DomainResource {
    * @return Used to support catalog exchange even for unsupported products, e.g.
    *         getting list of medications even if not prescribable.
    */
-  public PublicationStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value Used to support catalog exchange even for unsupported products,
    *              e.g. getting list of medications even if not prescribable.
    */
-  public CatalogEntry setStatus(PublicationStatus value) {
+  public CatalogEntry setStatus(String value) {
     if (value == null)
       this.status = null;
     else {
       if (this.status == null)
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+        this.status = new  StringType();
       this.status.setValue(value);
     }
     return this;
@@ -1154,7 +1152,7 @@ public class CatalogEntry extends DomainResource {
             0, java.lang.Integer.MAX_VALUE, additionalIdentifier));
     children.add(new Property("classification", "CodeableConcept", "Classes of devices, or ATC for medication.", 0,
         java.lang.Integer.MAX_VALUE, classification));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "Used to support catalog exchange even for unsupported products, e.g. getting list of medications even if not prescribable.",
         0, 1, status));
     children.add(new Property("validityPeriod", "Period",
@@ -1199,7 +1197,7 @@ public class CatalogEntry extends DomainResource {
       /* classification */ return new Property("classification", "CodeableConcept",
           "Classes of devices, or ATC for medication.", 0, java.lang.Integer.MAX_VALUE, classification);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "Used to support catalog exchange even for unsupported products, e.g. getting list of medications even if not prescribable.",
           0, 1, status);
     case -1434195053:
@@ -1248,7 +1246,7 @@ public class CatalogEntry extends DomainResource {
       /* classification */ return this.classification == null ? new Base[0]
           : this.classification.toArray(new Base[this.classification.size()]); // CodeableConcept
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -1434195053:
       /* validityPeriod */ return this.validityPeriod == null ? new Base[0] : new Base[] { this.validityPeriod }; // Period
     case 231246743:
@@ -1292,8 +1290,7 @@ public class CatalogEntry extends DomainResource {
       this.getClassification().add(castToCodeableConcept(value)); // CodeableConcept
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -1434195053: // validityPeriod
       this.validityPeriod = castToPeriod(value); // Period
@@ -1334,8 +1331,7 @@ public class CatalogEntry extends DomainResource {
     } else if (name.equals("classification")) {
       this.getClassification().add(castToCodeableConcept(value));
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("validityPeriod")) {
       this.validityPeriod = castToPeriod(value); // Period
     } else if (name.equals("validTo")) {
@@ -1437,7 +1433,7 @@ public class CatalogEntry extends DomainResource {
     case 382350310:
       /* classification */ return new String[] { "CodeableConcept" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -1434195053:
       /* validityPeriod */ return new String[] { "Period" };
     case 231246743:

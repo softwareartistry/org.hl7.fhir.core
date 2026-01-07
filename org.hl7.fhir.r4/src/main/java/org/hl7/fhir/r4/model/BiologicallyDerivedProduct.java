@@ -1455,7 +1455,7 @@ public class BiologicallyDerivedProduct extends DomainResource {
       case 321701236:
         /* temperature */ return this.temperature == null ? new Base[0] : new Base[] { this.temperature }; // DecimalType
       case 109250890:
-        /* scale */ return this.scale == null ? new Base[0] : new Base[] { this.scale }; // Enumeration<BiologicallyDerivedProductStorageScale>
+        /* scale */ return this.scale == null ? new Base[0] : new Base[] { this.scale }; // StringType
       case -1992012396:
         /* duration */ return this.duration == null ? new Base[0] : new Base[] { this.duration }; // Period
       default:
@@ -1474,7 +1474,7 @@ public class BiologicallyDerivedProduct extends DomainResource {
         this.temperature = castToDecimal(value); // DecimalType
         return value;
       case 109250890: // scale
-        this.scale = castToString(value); // Enumeration<BiologicallyDerivedProductStorageScale>
+        this.scale = castToString(value); // StringType
         return value;
       case -1992012396: // duration
         this.duration = castToPeriod(value); // Period
@@ -1492,7 +1492,7 @@ public class BiologicallyDerivedProduct extends DomainResource {
       } else if (name.equals("temperature")) {
         this.temperature = castToDecimal(value); // DecimalType
       } else if (name.equals("scale")) {
-        this.scale = castToString(value); // Enumeration<BiologicallyDerivedProductStorageScale>
+        this.scale = castToString(value); // StringType
       } else if (name.equals("duration")) {
         this.duration = castToPeriod(value); // Period
       } else
@@ -2310,11 +2310,11 @@ public class BiologicallyDerivedProduct extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case 197299981:
-      /* productCategory */ return this.productCategory == null ? new Base[0] : new Base[] { this.productCategory }; // Enumeration<BiologicallyDerivedProductCategory>
+      /* productCategory */ return this.productCategory == null ? new Base[0] : new Base[] { this.productCategory }; // StringType
     case -1492131972:
       /* productCode */ return this.productCode == null ? new Base[0] : new Base[] { this.productCode }; // CodeableConcept
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<BiologicallyDerivedProductStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 1095692943:
       /* request */ return this.request == null ? new Base[0] : this.request.toArray(new Base[this.request.size()]); // Reference
     case -1285004149:
@@ -2343,15 +2343,13 @@ public class BiologicallyDerivedProduct extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case 197299981: // productCategory
-//      value = new BiologicallyDerivedProductCategoryEnumFactory().fromType(castToCode(value));
-      this.productCategory = castToString(value); // Enumeration<BiologicallyDerivedProductCategory>
+      this.productCategory = castToString(value); // StringType
       return value;
     case -1492131972: // productCode
       this.productCode = castToCodeableConcept(value); // CodeableConcept
       return value;
     case -892481550: // status
-//      value = new BiologicallyDerivedProductStatusEnumFactory().fromType(castToCode(value));
-      this.status = castToString(value); // Enumeration<BiologicallyDerivedProductStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 1095692943: // request
       this.getRequest().add(castToReference(value)); // Reference
@@ -2385,13 +2383,11 @@ public class BiologicallyDerivedProduct extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("productCategory")) {
-//      value = new BiologicallyDerivedProductCategoryEnumFactory().fromType(castToCode(value));
-      this.productCategory = castToString(value); // Enumeration<BiologicallyDerivedProductCategory>
+      this.productCategory = castToString(value); // StringType
     } else if (name.equals("productCode")) {
       this.productCode = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("status")) {
-//      value = new BiologicallyDerivedProductStatusEnumFactory().fromType(castToCode(value));
-      this.status = castToString(value); // Enumeration<BiologicallyDerivedProductStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("request")) {
       this.getRequest().add(castToReference(value));
     } else if (name.equals("quantity")) {

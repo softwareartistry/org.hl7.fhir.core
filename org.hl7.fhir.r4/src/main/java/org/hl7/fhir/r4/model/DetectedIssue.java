@@ -1588,11 +1588,11 @@ public class DetectedIssue extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<DetectedIssueStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 3059181:
       /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // CodeableConcept
     case 1478300413:
-      /* severity */ return this.severity == null ? new Base[0] : new Base[] { this.severity }; // Enumeration<DetectedIssueSeverity>
+      /* severity */ return this.severity == null ? new Base[0] : new Base[] { this.severity }; // StringType
     case -791418107:
       /* patient */ return this.patient == null ? new Base[0] : new Base[] { this.patient }; // Reference
     case -1618432869:
@@ -1624,15 +1624,13 @@ public class DetectedIssue extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-//      value = new DetectedIssueStatusEnumFactory().fromType(castToCode(value));
-      this.status = castToString(value); // Enumeration<DetectedIssueStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 3059181: // code
       this.code = castToCodeableConcept(value); // CodeableConcept
       return value;
     case 1478300413: // severity
-//      value = new DetectedIssueSeverityEnumFactory().fromType(castToCode(value));
-      this.severity = castToString(value); // Enumeration<DetectedIssueSeverity>
+      this.severity = castToString(value); // StringType
       return value;
     case -791418107: // patient
       this.patient = castToReference(value); // Reference
@@ -1669,13 +1667,11 @@ public class DetectedIssue extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-//      value = new DetectedIssueStatusEnumFactory().fromType(castToCode(value));
-      this.status = castToString(value); // Enumeration<DetectedIssueStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("code")) {
       this.code = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("severity")) {
-//      value = new DetectedIssueSeverityEnumFactory().fromType(castToCode(value));
-      this.severity = castToString(value); // Enumeration<DetectedIssueSeverity>
+      this.severity = castToString(value); // StringType
     } else if (name.equals("patient")) {
       this.patient = castToReference(value); // Reference
     } else if (name.equals("identified[x]")) {

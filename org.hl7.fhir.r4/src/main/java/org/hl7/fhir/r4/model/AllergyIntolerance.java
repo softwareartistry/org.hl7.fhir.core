@@ -561,7 +561,7 @@ public class AllergyIntolerance extends DomainResource {
       case 105901603:
         /* onset */ return this.onset == null ? new Base[0] : new Base[] { this.onset }; // DateTimeType
       case 1478300413:
-        /* severity */ return this.severity == null ? new Base[0] : new Base[] { this.severity }; // Enumeration<AllergyIntoleranceSeverity>
+        /* severity */ return this.severity == null ? new Base[0] : new Base[] { this.severity }; // StringType
       case 421286274:
         /* exposureRoute */ return this.exposureRoute == null ? new Base[0] : new Base[] { this.exposureRoute }; // CodeableConcept
       case 3387378:
@@ -588,8 +588,7 @@ public class AllergyIntolerance extends DomainResource {
         this.onset = castToDateTime(value); // DateTimeType
         return value;
       case 1478300413: // severity
-//        value = new AllergyIntoleranceSeverityEnumFactory().fromType(castToCode(value));
-        this.severity = castToString(value); // Enumeration<AllergyIntoleranceSeverity>
+        this.severity = castToString(value); // StringType
         return value;
       case 421286274: // exposureRoute
         this.exposureRoute = castToCodeableConcept(value); // CodeableConcept
@@ -614,8 +613,7 @@ public class AllergyIntolerance extends DomainResource {
       } else if (name.equals("onset")) {
         this.onset = castToDateTime(value); // DateTimeType
       } else if (name.equals("severity")) {
-//        value = new AllergyIntoleranceSeverityEnumFactory().fromType(castToCode(value));
-        this.severity = castToString(value); // Enumeration<AllergyIntoleranceSeverity>
+        this.severity = castToString(value); // StringType
       } else if (name.equals("exposureRoute")) {
         this.exposureRoute = castToCodeableConcept(value); // CodeableConcept
       } else if (name.equals("note")) {
@@ -1983,11 +1981,11 @@ public class AllergyIntolerance extends DomainResource {
       /* verificationStatus */ return this.verificationStatus == null ? new Base[0]
           : new Base[] { this.verificationStatus }; // CodeableConcept
     case 3575610:
-      /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<AllergyIntoleranceType>
+      /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
     case 50511102:
-      /* category */ return this.category == null ? new Base[0] : this.category.toArray(new Base[this.category.size()]); // Enumeration<AllergyIntoleranceCategory>
+      /* category */ return this.category == null ? new Base[0] : this.category.toArray(new Base[this.category.size()]); // StringType
     case -1608054609:
-      /* criticality */ return this.criticality == null ? new Base[0] : new Base[] { this.criticality }; // Enumeration<AllergyIntoleranceCriticality>
+      /* criticality */ return this.criticality == null ? new Base[0] : new Base[] { this.criticality }; // StringType
     case 3059181:
       /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // CodeableConcept
     case -791418107:
@@ -2027,16 +2025,13 @@ public class AllergyIntolerance extends DomainResource {
       this.verificationStatus = castToCodeableConcept(value); // CodeableConcept
       return value;
     case 3575610: // type
-//      value = new AllergyIntoleranceTypeEnumFactory().fromType(castToCode(value));
-      this.type = castToString(value); // Enumeration<AllergyIntoleranceType>
+      this.type = castToString(value); // StringType
       return value;
     case 50511102: // category
-//      value = new AllergyIntoleranceCategoryEnumFactory().fromType(castToCode(value));
-      this.getCategory().add(castToString(value)); // Enumeration<AllergyIntoleranceCategory>
+      this.getCategory().add(castToString(value)); // StringType
       return value;
     case -1608054609: // criticality
-//      value = new AllergyIntoleranceCriticalityEnumFactory().fromType(castToCode(value));
-      this.criticality = castToString(value); // Enumeration<AllergyIntoleranceCriticality>
+      this.criticality = castToString(value); // StringType
       return value;
     case 3059181: // code
       this.code = castToCodeableConcept(value); // CodeableConcept
@@ -2083,14 +2078,11 @@ public class AllergyIntolerance extends DomainResource {
     } else if (name.equals("verificationStatus")) {
       this.verificationStatus = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("type")) {
-//      value = new AllergyIntoleranceTypeEnumFactory().fromType(castToCode(value));
-      this.type = castToString(value); // Enumeration<AllergyIntoleranceType>
+      this.type = castToString(value); // StringType
     } else if (name.equals("category")) {
-//      value = new AllergyIntoleranceCategoryEnumFactory().fromType(castToCode(value));
       this.getCategory().add(castToString(value));
     } else if (name.equals("criticality")) {
-//      value = new AllergyIntoleranceCriticalityEnumFactory().fromType(castToCode(value));
-      this.criticality = castToString(value); // Enumeration<AllergyIntoleranceCriticality>
+      this.criticality = castToString(value); // StringType
     } else if (name.equals("code")) {
       this.code = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("patient")) {
@@ -2127,9 +2119,9 @@ public class AllergyIntolerance extends DomainResource {
     } else if (name.equals("type")) {
       this.type = null;
     } else if (name.equals("category")) {
-      this.getCategory().remove((Enumeration) value);
+      this.getCategory().remove(castToString(value));
     } else if (name.equals("criticality")) {
-      this.criticality = null; // Enumeration<AllergyIntoleranceCriticality>
+      this.criticality = null; // StringType
     } else if (name.equals("code")) {
       this.code = null;
     } else if (name.equals("patient")) {
