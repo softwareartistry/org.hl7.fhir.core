@@ -544,7 +544,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeElement(t, "HumanName", name, element, index);
     if (element.hasUseElement())
-      composeEnum(t, "HumanName", "use", element.getUseElement(), -1);
+      composeString(t, "HumanName", "use", element.getUseElement(), -1);
     if (element.hasTextElement())
       composeString(t, "HumanName", "text", element.getTextElement(), -1);
     if (element.hasFamilyElement())
@@ -570,11 +570,11 @@ public class RdfParser extends RdfParserBase {
     }
     composeElement(t, "ContactPoint", name, element, index);
     if (element.hasSystemElement())
-      composeEnum(t, "ContactPoint", "system", element.getSystemElement(), -1);
+      composeString(t, "ContactPoint", "system", element.getSystemElement(), -1);
     if (element.hasValueElement())
       composeString(t, "ContactPoint", "value", element.getValueElement(), -1);
     if (element.hasUseElement())
-      composeEnum(t, "ContactPoint", "use", element.getUseElement(), -1);
+      composeString(t, "ContactPoint", "use", element.getUseElement(), -1);
     if (element.hasRankElement())
       composePositiveInt(t, "ContactPoint", "rank", element.getRankElement(), -1);
     if (element.hasPeriod())

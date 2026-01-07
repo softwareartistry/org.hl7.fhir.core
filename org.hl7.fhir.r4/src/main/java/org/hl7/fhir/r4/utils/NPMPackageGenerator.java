@@ -34,25 +34,16 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.TimeZone;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveOutputStream;
 import org.apache.commons.compress.compressors.gzip.GzipCompressorOutputStream;
 import org.hl7.fhir.exceptions.FHIRException;
-import org.hl7.fhir.r4.model.ContactDetail;
-import org.hl7.fhir.r4.model.ContactPoint;
-import org.hl7.fhir.r4.model.ContactPoint.ContactPointSystem;
+import org.hl7.fhir.r4.model.*;
 import org.hl7.fhir.r4.model.Enumeration;
 import org.hl7.fhir.r4.model.Enumerations.FHIRVersion;
-import org.hl7.fhir.r4.model.ImplementationGuide;
 import org.hl7.fhir.r4.model.ImplementationGuide.ImplementationGuideDependsOnComponent;
 import org.hl7.fhir.utilities.CommaSeparatedStringBuilder;
 import org.hl7.fhir.utilities.FileUtilities;
@@ -240,7 +231,7 @@ public class NPMPackageGenerator {
 
   private String url(List<ContactPoint> telecom) {
     for (ContactPoint cp : telecom) {
-      if (cp.getSystem() == ContactPointSystem.URL)
+      if (Objects.equals(cp.getSystem(), new StringType("URL")))
         return cp.getValue();
     }
     return null;
@@ -248,7 +239,7 @@ public class NPMPackageGenerator {
 
   private String email(List<ContactPoint> telecom) {
     for (ContactPoint cp : telecom) {
-      if (cp.getSystem() == ContactPointSystem.EMAIL)
+      if (Objects.equals(cp.getSystem(), new StringType("EMAIL")))
         return cp.getValue();
     }
     return null;

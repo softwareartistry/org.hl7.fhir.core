@@ -125,7 +125,7 @@ public class Comparison {
       throw new NotImplementedException("Not Implemented Yet");
 
     // in the absence of a profile, we insist on system
-    return matches(c1.getSystemElement(), c2.getSystemElement(), null) && matches(c1.getValue(), c2.getValue(), null);
+    return matches(c1.getSystemElement().toString(), c2.getSystemElement().toString(), null) && matches(c1.getValue(), c2.getValue(), null);
   }
 
   public static void merge(ContactPoint dst, ContactPoint src) {

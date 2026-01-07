@@ -98,7 +98,6 @@ import org.hl7.fhir.r4.model.ConceptMap.SourceElementComponent;
 import org.hl7.fhir.r4.model.ConceptMap.TargetElementComponent;
 import org.hl7.fhir.r4.model.ContactDetail;
 import org.hl7.fhir.r4.model.ContactPoint;
-import org.hl7.fhir.r4.model.ContactPoint.ContactPointSystem;
 import org.hl7.fhir.r4.model.DateTimeType;
 import org.hl7.fhir.r4.model.DiagnosticReport;
 import org.hl7.fhir.r4.model.DomainResource;
@@ -109,7 +108,6 @@ import org.hl7.fhir.r4.model.Enumerations.ConceptMapEquivalence;
 import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.ExtensionHelper;
 import org.hl7.fhir.r4.model.HumanName;
-import org.hl7.fhir.r4.model.HumanName.NameUse;
 import org.hl7.fhir.r4.model.IdType;
 import org.hl7.fhir.r4.model.Identifier;
 import org.hl7.fhir.r4.model.ImplementationGuide;
@@ -2240,7 +2238,7 @@ public class NarrativeGenerator implements INarrativeGenerator {
         s.append(" ");
       }
     }
-    if (name.hasUse() && name.getUse() != NameUse.USUAL)
+    if (name.hasUse() && name.getUse() != new StringType("USUAL"))
       s.append("(" + name.getUse().toString() + ")");
     return s.toString();
   }
@@ -2290,17 +2288,15 @@ public class NarrativeGenerator implements INarrativeGenerator {
     return s.toString();
   }
 
-  private static String describeSystem(ContactPointSystem system) {
+  private static String describeSystem(StringType system) {
     if (system == null)
       return "";
-    switch (system) {
-    case PHONE:
+    if (system.equals(new StringType("PHONE"))) {
       return "ph: ";
-    case FAX:
+    } else if (system.equals(new StringType("FAX"))) {
       return "fax: ";
-    default:
-      return "";
     }
+    return "";
   }
 
   private String displayIdentifier(Identifier ii) {
@@ -2712,13 +2708,13 @@ public class NarrativeGenerator implements INarrativeGenerator {
   }
 
   private void addTelecom(XhtmlNode p, ContactPoint c) {
-    if (c.getSystem() == ContactPointSystem.PHONE) {
+    if (c.getSystem() == new StringType("PHONE")) {
       p.tx("Phone: " + c.getValue());
-    } else if (c.getSystem() == ContactPointSystem.FAX) {
+    } else if (c.getSystem() == new StringType("FAX")) {
       p.tx("Fax: " + c.getValue());
-    } else if (c.getSystem() == ContactPointSystem.EMAIL) {
+    } else if (c.getSystem() == new StringType("EMAIL")) {
       p.ah("mailto:" + c.getValue()).addText(c.getValue());
-    } else if (c.getSystem() == ContactPointSystem.URL) {
+    } else if (c.getSystem() == new StringType("URL")) {
       if (c.getValue().length() > 30)
         p.ah(c.getValue()).addText(c.getValue().substring(0, 30) + "...");
       else

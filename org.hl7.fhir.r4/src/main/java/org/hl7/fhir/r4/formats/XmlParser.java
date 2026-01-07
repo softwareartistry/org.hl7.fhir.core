@@ -861,7 +861,7 @@ public class XmlParser extends XmlParserBase {
   protected boolean parseHumanNameContent(int eventType, XmlPullParser xpp, HumanName res)
       throws XmlPullParserException, IOException, FHIRFormatError {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("use")) {
-      res.setUseElement(parseEnumeration(xpp, HumanName.NameUse.NULL, new HumanName.NameUseEnumFactory()));
+      res.setUseElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("text")) {
       res.setTextElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("family")) {
@@ -898,13 +898,11 @@ public class XmlParser extends XmlParserBase {
   protected boolean parseContactPointContent(int eventType, XmlPullParser xpp, ContactPoint res)
       throws XmlPullParserException, IOException, FHIRFormatError {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("system")) {
-      res.setSystemElement(parseEnumeration(xpp, ContactPoint.ContactPointSystem.NULL,
-          new ContactPoint.ContactPointSystemEnumFactory()));
+      res.setSystemElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("value")) {
       res.setValueElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("use")) {
-      res.setUseElement(
-          parseEnumeration(xpp, ContactPoint.ContactPointUse.NULL, new ContactPoint.ContactPointUseEnumFactory()));
+      res.setUseElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("rank")) {
       res.setRankElement(parsePositiveInt(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("period")) {
@@ -28120,7 +28118,7 @@ public class XmlParser extends XmlParserBase {
   protected void composeHumanNameElements(HumanName element) throws IOException {
     composeElementElements(element);
     if (element.hasUseElement())
-      composeEnumeration("use", element.getUseElement(), new HumanName.NameUseEnumFactory());
+      composeString("use", element.getUseElement());
     if (element.hasTextElement()) {
       composeString("text", element.getTextElement());
     }
@@ -28157,12 +28155,12 @@ public class XmlParser extends XmlParserBase {
   protected void composeContactPointElements(ContactPoint element) throws IOException {
     composeElementElements(element);
     if (element.hasSystemElement())
-      composeEnumeration("system", element.getSystemElement(), new ContactPoint.ContactPointSystemEnumFactory());
+      composeString("system", element.getSystemElement());
     if (element.hasValueElement()) {
       composeString("value", element.getValueElement());
     }
     if (element.hasUseElement())
-      composeEnumeration("use", element.getUseElement(), new ContactPoint.ContactPointUseEnumFactory());
+      composeString("use", element.getUseElement());
     if (element.hasRankElement()) {
       composePositiveInt("rank", element.getRankElement());
     }

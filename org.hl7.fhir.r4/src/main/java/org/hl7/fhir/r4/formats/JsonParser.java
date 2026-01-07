@@ -700,8 +700,7 @@ public class JsonParser extends JsonParserBase {
   protected void parseHumanNameProperties(JsonObject json, HumanName res) throws IOException, FHIRFormatError {
     parseTypeProperties(json, res);
     if (json.has("use"))
-      res.setUseElement(
-        parseEnumeration(json.get("use").getAsString(), HumanName.NameUse.NULL, new HumanName.NameUseEnumFactory()));
+      res.setUseElement(parseString(json.get("use").getAsString()));
     if (json.has("_use"))
       parseElementProperties(getJObject(json, "_use"), res.getUseElement());
     if (json.has("text"))
@@ -788,8 +787,7 @@ public class JsonParser extends JsonParserBase {
   protected void parseContactPointProperties(JsonObject json, ContactPoint res) throws IOException, FHIRFormatError {
     parseTypeProperties(json, res);
     if (json.has("system"))
-      res.setSystemElement(parseEnumeration(json.get("system").getAsString(), ContactPoint.ContactPointSystem.NULL,
-        new ContactPoint.ContactPointSystemEnumFactory()));
+      res.setSystemElement(parseString(json.get("system").getAsString()));
     if (json.has("_system"))
       parseElementProperties(getJObject(json, "_system"), res.getSystemElement());
     if (json.has("value"))
@@ -797,8 +795,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_value"))
       parseElementProperties(getJObject(json, "_value"), res.getValueElement());
     if (json.has("use"))
-      res.setUseElement(parseEnumeration(json.get("use").getAsString(), ContactPoint.ContactPointUse.NULL,
-        new ContactPoint.ContactPointUseEnumFactory()));
+      res.setUseElement(parseString(json.get("use").getAsString()));
     if (json.has("_use"))
       parseElementProperties(getJObject(json, "_use"), res.getUseElement());
     if (json.has("rank"))
@@ -33859,8 +33856,8 @@ public class JsonParser extends JsonParserBase {
   protected void composeHumanNameInner(HumanName element) throws IOException {
     composeElement(element);
     if (element.hasUseElement()) {
-      composeEnumerationCore("use", element.getUseElement(), new HumanName.NameUseEnumFactory(), false);
-      composeEnumerationExtras("use", element.getUseElement(), new HumanName.NameUseEnumFactory(), false);
+      composeStringCore("use", element.getUseElement(), false);
+      composeStringExtras("use", element.getUseElement(), false);
     }
     if (element.hasTextElement()) {
       composeStringCore("text", element.getTextElement(), false);
@@ -33925,18 +33922,16 @@ public class JsonParser extends JsonParserBase {
   protected void composeContactPointInner(ContactPoint element) throws IOException {
     composeElement(element);
     if (element.hasSystemElement()) {
-      composeEnumerationCore("system", element.getSystemElement(), new ContactPoint.ContactPointSystemEnumFactory(),
-        false);
-      composeEnumerationExtras("system", element.getSystemElement(), new ContactPoint.ContactPointSystemEnumFactory(),
-        false);
+      composeStringCore("system", element.getSystemElement(), false);
+      composeStringExtras("system", element.getSystemElement(), false);
     }
     if (element.hasValueElement()) {
       composeStringCore("value", element.getValueElement(), false);
       composeStringExtras("value", element.getValueElement(), false);
     }
     if (element.hasUseElement()) {
-      composeEnumerationCore("use", element.getUseElement(), new ContactPoint.ContactPointUseEnumFactory(), false);
-      composeEnumerationExtras("use", element.getUseElement(), new ContactPoint.ContactPointUseEnumFactory(), false);
+      composeStringCore("use", element.getUseElement(), false);
+      composeStringExtras("use", element.getUseElement(), false);
     }
     if (element.hasRankElement()) {
       composePositiveIntCore("rank", element.getRankElement(), false);

@@ -30,24 +30,15 @@ package org.hl7.fhir.r4.utils;
  */
 
 import java.util.List;
+import java.util.Objects;
 
-import org.hl7.fhir.r4.model.Bundle;
+import org.hl7.fhir.r4.model.*;
 import org.hl7.fhir.r4.model.Bundle.BundleEntryComponent;
 import org.hl7.fhir.r4.model.Bundle.BundleLinkComponent;
-import org.hl7.fhir.r4.model.CodeableConcept;
-import org.hl7.fhir.r4.model.Coding;
-import org.hl7.fhir.r4.model.ContactPoint;
-import org.hl7.fhir.r4.model.ContactPoint.ContactPointSystem;
 import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionBindingComponent;
 import org.hl7.fhir.r4.model.ElementDefinition.TypeRefComponent;
-import org.hl7.fhir.r4.model.Meta;
-import org.hl7.fhir.r4.model.OperationOutcome;
 import org.hl7.fhir.r4.model.OperationOutcome.IssueSeverity;
 import org.hl7.fhir.r4.model.OperationOutcome.OperationOutcomeIssueComponent;
-import org.hl7.fhir.r4.model.Reference;
-import org.hl7.fhir.r4.model.Resource;
-import org.hl7.fhir.r4.model.ResourceType;
-import org.hl7.fhir.r4.model.Type;
 import org.hl7.fhir.utilities.CommaSeparatedStringBuilder;
 import org.hl7.fhir.utilities.Utilities;
 import org.hl7.fhir.utilities.xhtml.XhtmlComposer;
@@ -399,11 +390,11 @@ public class ResourceUtilities {
 
   public static void renderContactPoint(StringBuilder b, ContactPoint cp) {
     if (cp != null && !cp.isEmpty()) {
-      if (cp.getSystem() == ContactPointSystem.EMAIL)
+      if (Objects.equals(cp.getSystem(), new StringType("EMAIL")))
         b.append("<a href=\"mailto:" + cp.getValue() + "\">" + cp.getValue() + "</a>");
-      else if (cp.getSystem() == ContactPointSystem.FAX)
+      else if (Objects.equals(cp.getSystem(), new StringType("FAX")))
         b.append("Fax: " + cp.getValue());
-      else if (cp.getSystem() == ContactPointSystem.OTHER)
+      else if (Objects.equals(cp.getSystem(), new StringType("OTHER")))
         b.append("<a href=\"" + cp.getValue() + "\">" + cp.getValue() + "</a>");
       else
         b.append(cp.getValue());

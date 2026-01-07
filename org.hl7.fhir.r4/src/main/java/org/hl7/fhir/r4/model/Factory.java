@@ -35,7 +35,6 @@ import java.text.ParseException;
 import java.util.UUID;
 
 import org.hl7.fhir.exceptions.FHIRException;
-import org.hl7.fhir.r4.model.ContactPoint.ContactPointSystem;
 import org.hl7.fhir.r4.model.Narrative.NarrativeStatus;
 import org.hl7.fhir.utilities.Utilities;
 import org.hl7.fhir.utilities.xhtml.XhtmlParser;
@@ -151,7 +150,7 @@ public class Factory {
     return res;
   }
 
-  public static ContactPoint newContactPoint(ContactPointSystem system, String value) {
+  public static ContactPoint newContactPoint(String system, String value) {
     ContactPoint res = new ContactPoint();
     res.setSystem(system);
     res.setValue(value);
