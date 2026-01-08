@@ -1877,7 +1877,7 @@ public class RiskAssessment extends DomainResource {
     case -995424086:
       /* parent */ return this.parent == null ? new Base[0] : new Base[] { this.parent }; // Reference
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<RiskAssessmentStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -1077554975:
       /* method */ return this.method == null ? new Base[0] : new Base[] { this.method }; // CodeableConcept
     case 3059181:
@@ -1926,7 +1926,6 @@ public class RiskAssessment extends DomainResource {
       this.parent = castToReference(value); // Reference
       return value;
     case -892481550: // status
-//      value = new RiskAssessmentStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // StringType
       return value;
     case -1077554975: // method
@@ -1983,7 +1982,6 @@ public class RiskAssessment extends DomainResource {
     } else if (name.equals("parent")) {
       this.parent = castToReference(value); // Reference
     } else if (name.equals("status")) {
-//      value = new RiskAssessmentStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // StringType
     } else if (name.equals("method")) {
       this.method = castToCodeableConcept(value); // CodeableConcept

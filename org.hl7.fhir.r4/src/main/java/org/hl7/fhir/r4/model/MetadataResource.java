@@ -35,8 +35,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Child;
@@ -92,10 +90,10 @@ public abstract class MetadataResource extends DomainResource {
    * The status of this metadata resource. Enables tracking the life-cycle of the
    * content.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 4, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 4, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "draft | active | retired | unknown", formalDefinition = "The status of this metadata resource. Enables tracking the life-cycle of the content.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/publication-status")
-  protected Enumeration<PublicationStatus> status;
+  protected StringType status;
 
   /**
    * A Boolean value to indicate that this metadata resource is authored for
@@ -177,7 +175,7 @@ public abstract class MetadataResource extends DomainResource {
   /**
    * Constructor
    */
-  public MetadataResource(Enumeration<PublicationStatus> status) {
+  public MetadataResource(StringType status) {
     super();
     this.status = status;
   }
@@ -462,12 +460,12 @@ public abstract class MetadataResource extends DomainResource {
    *         object with id, value and extensions. The accessor "getStatus" gives
    *         direct access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create MetadataResource.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -485,7 +483,7 @@ public abstract class MetadataResource extends DomainResource {
    *              object with id, value and extensions. The accessor "getStatus"
    *              gives direct access to the value
    */
-  public MetadataResource setStatusElement(Enumeration<PublicationStatus> value) {
+  public MetadataResource setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -494,17 +492,17 @@ public abstract class MetadataResource extends DomainResource {
    * @return The status of this metadata resource. Enables tracking the life-cycle
    *         of the content.
    */
-  public PublicationStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The status of this metadata resource. Enables tracking the
    *              life-cycle of the content.
    */
-  public MetadataResource setStatus(PublicationStatus value) {
+  public MetadataResource setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -937,7 +935,7 @@ public abstract class MetadataResource extends DomainResource {
     case 110371416:
       /* title */ return this.title == null ? new Base[0] : new Base[] { this.title }; // StringType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -404562712:
       /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
     case 3076014:
@@ -976,8 +974,7 @@ public abstract class MetadataResource extends DomainResource {
       this.title = castToString(value); // StringType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -404562712: // experimental
       this.experimental = castToBoolean(value); // BooleanType
@@ -1017,8 +1014,7 @@ public abstract class MetadataResource extends DomainResource {
     } else if (name.equals("title")) {
       this.title = castToString(value); // StringType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("date")) {
@@ -1114,7 +1110,7 @@ public abstract class MetadataResource extends DomainResource {
     case 110371416:
       /* title */ return new String[] { "string" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -404562712:
       /* experimental */ return new String[] { "boolean" };
     case 3076014:

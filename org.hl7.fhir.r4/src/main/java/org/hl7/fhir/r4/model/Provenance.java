@@ -751,7 +751,7 @@ public class Provenance extends DomainResource {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 3506294:
-        /* role */ return this.role == null ? new Base[0] : new Base[] { this.role }; // Enumeration<ProvenanceEntityRole>
+        /* role */ return this.role == null ? new Base[0] : new Base[] { this.role }; // StringType
       case 3648196:
         /* what */ return this.what == null ? new Base[0] : new Base[] { this.what }; // Reference
       case 92750597:
@@ -766,7 +766,7 @@ public class Provenance extends DomainResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3506294: // role
-        this.role = castToString(value); // Enumeration<ProvenanceEntityRole>
+        this.role = castToString(value); // StringType
         return value;
       case 3648196: // what
         this.what = castToReference(value); // Reference
@@ -783,7 +783,7 @@ public class Provenance extends DomainResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("role")) {
-        this.role = castToString(value); // Enumeration<ProvenanceEntityRole>
+        this.role = castToString(value); // StringType
       } else if (name.equals("what")) {
         this.what = castToReference(value); // Reference
       } else if (name.equals("agent")) {

@@ -2004,7 +2004,7 @@ public class QuestionnaireResponse extends DomainResource {
     case -1017049693:
       /* questionnaire */ return this.questionnaire == null ? new Base[0] : new Base[] { this.questionnaire }; // CanonicalType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<QuestionnaireResponseStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -1867885268:
       /* subject */ return this.subject == null ? new Base[0] : new Base[] { this.subject }; // Reference
     case 1524132147:
@@ -2039,8 +2039,7 @@ public class QuestionnaireResponse extends DomainResource {
       this.questionnaire = castToCanonical(value); // CanonicalType
       return value;
     case -892481550: // status
-//      value = new QuestionnaireResponseStatusEnumFactory().fromType(castToCode(value));
-      this.status = castToString(value); // Enumeration<QuestionnaireResponseStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -1867885268: // subject
       this.subject = castToReference(value); // Reference
@@ -2077,8 +2076,7 @@ public class QuestionnaireResponse extends DomainResource {
     } else if (name.equals("questionnaire")) {
       this.questionnaire = castToCanonical(value); // CanonicalType
     } else if (name.equals("status")) {
-//      value = new QuestionnaireResponseStatusEnumFactory().fromType(castToCode(value));
-      this.status = castToString(value); // Enumeration<QuestionnaireResponseStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("subject")) {
       this.subject = castToReference(value); // Reference
     } else if (name.equals("encounter")) {
