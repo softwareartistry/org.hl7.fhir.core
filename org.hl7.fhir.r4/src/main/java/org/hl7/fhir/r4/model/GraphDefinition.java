@@ -36,8 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -56,474 +54,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ChildOrder(names = { "url", "version", "name", "status", "experimental", "date", "publisher", "contact", "description",
     "useContext", "jurisdiction", "purpose", "start", "profile", "link" })
 public class GraphDefinition extends MetadataResource {
-
-  public enum GraphCompartmentUse {
-    /**
-     * This compartment rule is a condition for whether the rule applies.
-     */
-    CONDITION,
-    /**
-     * This compartment rule is enforced on any relationships that meet the
-     * conditions.
-     */
-    REQUIREMENT,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static GraphCompartmentUse fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("condition".equals(codeString))
-        return CONDITION;
-      if ("requirement".equals(codeString))
-        return REQUIREMENT;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown GraphCompartmentUse code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case CONDITION:
-        return "condition";
-      case REQUIREMENT:
-        return "requirement";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case CONDITION:
-        return "http://hl7.org/fhir/graph-compartment-use";
-      case REQUIREMENT:
-        return "http://hl7.org/fhir/graph-compartment-use";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case CONDITION:
-        return "This compartment rule is a condition for whether the rule applies.";
-      case REQUIREMENT:
-        return "This compartment rule is enforced on any relationships that meet the conditions.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case CONDITION:
-        return "Condition";
-      case REQUIREMENT:
-        return "Requirement";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class GraphCompartmentUseEnumFactory implements EnumFactory<GraphCompartmentUse> {
-    public GraphCompartmentUse fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("condition".equals(codeString))
-        return GraphCompartmentUse.CONDITION;
-      if ("requirement".equals(codeString))
-        return GraphCompartmentUse.REQUIREMENT;
-      throw new IllegalArgumentException("Unknown GraphCompartmentUse code '" + codeString + "'");
-    }
-
-    public Enumeration<GraphCompartmentUse> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<GraphCompartmentUse>(this, GraphCompartmentUse.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<GraphCompartmentUse>(this, GraphCompartmentUse.NULL, code);
-      if ("condition".equals(codeString))
-        return new Enumeration<GraphCompartmentUse>(this, GraphCompartmentUse.CONDITION, code);
-      if ("requirement".equals(codeString))
-        return new Enumeration<GraphCompartmentUse>(this, GraphCompartmentUse.REQUIREMENT, code);
-      throw new FHIRException("Unknown GraphCompartmentUse code '" + codeString + "'");
-    }
-
-    public String toCode(GraphCompartmentUse code) {
-       if (code == GraphCompartmentUse.NULL)
-           return null;
-       if (code == GraphCompartmentUse.CONDITION)
-        return "condition";
-      if (code == GraphCompartmentUse.REQUIREMENT)
-        return "requirement";
-      return "?";
-   }
-
-    public String toSystem(GraphCompartmentUse code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum CompartmentCode {
-    /**
-     * The compartment definition is for the patient compartment.
-     */
-    PATIENT,
-    /**
-     * The compartment definition is for the encounter compartment.
-     */
-    ENCOUNTER,
-    /**
-     * The compartment definition is for the related-person compartment.
-     */
-    RELATEDPERSON,
-    /**
-     * The compartment definition is for the practitioner compartment.
-     */
-    PRACTITIONER,
-    /**
-     * The compartment definition is for the device compartment.
-     */
-    DEVICE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static CompartmentCode fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("Patient".equals(codeString))
-        return PATIENT;
-      if ("Encounter".equals(codeString))
-        return ENCOUNTER;
-      if ("RelatedPerson".equals(codeString))
-        return RELATEDPERSON;
-      if ("Practitioner".equals(codeString))
-        return PRACTITIONER;
-      if ("Device".equals(codeString))
-        return DEVICE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown CompartmentCode code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case PATIENT:
-        return "Patient";
-      case ENCOUNTER:
-        return "Encounter";
-      case RELATEDPERSON:
-        return "RelatedPerson";
-      case PRACTITIONER:
-        return "Practitioner";
-      case DEVICE:
-        return "Device";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case PATIENT:
-        return "http://hl7.org/fhir/compartment-type";
-      case ENCOUNTER:
-        return "http://hl7.org/fhir/compartment-type";
-      case RELATEDPERSON:
-        return "http://hl7.org/fhir/compartment-type";
-      case PRACTITIONER:
-        return "http://hl7.org/fhir/compartment-type";
-      case DEVICE:
-        return "http://hl7.org/fhir/compartment-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case PATIENT:
-        return "The compartment definition is for the patient compartment.";
-      case ENCOUNTER:
-        return "The compartment definition is for the encounter compartment.";
-      case RELATEDPERSON:
-        return "The compartment definition is for the related-person compartment.";
-      case PRACTITIONER:
-        return "The compartment definition is for the practitioner compartment.";
-      case DEVICE:
-        return "The compartment definition is for the device compartment.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case PATIENT:
-        return "Patient";
-      case ENCOUNTER:
-        return "Encounter";
-      case RELATEDPERSON:
-        return "RelatedPerson";
-      case PRACTITIONER:
-        return "Practitioner";
-      case DEVICE:
-        return "Device";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class CompartmentCodeEnumFactory implements EnumFactory<CompartmentCode> {
-    public CompartmentCode fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("Patient".equals(codeString))
-        return CompartmentCode.PATIENT;
-      if ("Encounter".equals(codeString))
-        return CompartmentCode.ENCOUNTER;
-      if ("RelatedPerson".equals(codeString))
-        return CompartmentCode.RELATEDPERSON;
-      if ("Practitioner".equals(codeString))
-        return CompartmentCode.PRACTITIONER;
-      if ("Device".equals(codeString))
-        return CompartmentCode.DEVICE;
-      throw new IllegalArgumentException("Unknown CompartmentCode code '" + codeString + "'");
-    }
-
-    public Enumeration<CompartmentCode> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<CompartmentCode>(this, CompartmentCode.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<CompartmentCode>(this, CompartmentCode.NULL, code);
-      if ("Patient".equals(codeString))
-        return new Enumeration<CompartmentCode>(this, CompartmentCode.PATIENT, code);
-      if ("Encounter".equals(codeString))
-        return new Enumeration<CompartmentCode>(this, CompartmentCode.ENCOUNTER, code);
-      if ("RelatedPerson".equals(codeString))
-        return new Enumeration<CompartmentCode>(this, CompartmentCode.RELATEDPERSON, code);
-      if ("Practitioner".equals(codeString))
-        return new Enumeration<CompartmentCode>(this, CompartmentCode.PRACTITIONER, code);
-      if ("Device".equals(codeString))
-        return new Enumeration<CompartmentCode>(this, CompartmentCode.DEVICE, code);
-      throw new FHIRException("Unknown CompartmentCode code '" + codeString + "'");
-    }
-
-    public String toCode(CompartmentCode code) {
-       if (code == CompartmentCode.NULL)
-           return null;
-       if (code == CompartmentCode.PATIENT)
-        return "Patient";
-      if (code == CompartmentCode.ENCOUNTER)
-        return "Encounter";
-      if (code == CompartmentCode.RELATEDPERSON)
-        return "RelatedPerson";
-      if (code == CompartmentCode.PRACTITIONER)
-        return "Practitioner";
-      if (code == CompartmentCode.DEVICE)
-        return "Device";
-      return "?";
-   }
-
-    public String toSystem(CompartmentCode code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum GraphCompartmentRule {
-    /**
-     * The compartment must be identical (the same literal reference).
-     */
-    IDENTICAL,
-    /**
-     * The compartment must be the same - the record must be about the same patient,
-     * but the reference may be different.
-     */
-    MATCHING,
-    /**
-     * The compartment must be different.
-     */
-    DIFFERENT,
-    /**
-     * The compartment rule is defined in the accompanying FHIRPath expression.
-     */
-    CUSTOM,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static GraphCompartmentRule fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("identical".equals(codeString))
-        return IDENTICAL;
-      if ("matching".equals(codeString))
-        return MATCHING;
-      if ("different".equals(codeString))
-        return DIFFERENT;
-      if ("custom".equals(codeString))
-        return CUSTOM;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown GraphCompartmentRule code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case IDENTICAL:
-        return "identical";
-      case MATCHING:
-        return "matching";
-      case DIFFERENT:
-        return "different";
-      case CUSTOM:
-        return "custom";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case IDENTICAL:
-        return "http://hl7.org/fhir/graph-compartment-rule";
-      case MATCHING:
-        return "http://hl7.org/fhir/graph-compartment-rule";
-      case DIFFERENT:
-        return "http://hl7.org/fhir/graph-compartment-rule";
-      case CUSTOM:
-        return "http://hl7.org/fhir/graph-compartment-rule";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case IDENTICAL:
-        return "The compartment must be identical (the same literal reference).";
-      case MATCHING:
-        return "The compartment must be the same - the record must be about the same patient, but the reference may be different.";
-      case DIFFERENT:
-        return "The compartment must be different.";
-      case CUSTOM:
-        return "The compartment rule is defined in the accompanying FHIRPath expression.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case IDENTICAL:
-        return "Identical";
-      case MATCHING:
-        return "Matching";
-      case DIFFERENT:
-        return "Different";
-      case CUSTOM:
-        return "Custom";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class GraphCompartmentRuleEnumFactory implements EnumFactory<GraphCompartmentRule> {
-    public GraphCompartmentRule fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("identical".equals(codeString))
-        return GraphCompartmentRule.IDENTICAL;
-      if ("matching".equals(codeString))
-        return GraphCompartmentRule.MATCHING;
-      if ("different".equals(codeString))
-        return GraphCompartmentRule.DIFFERENT;
-      if ("custom".equals(codeString))
-        return GraphCompartmentRule.CUSTOM;
-      throw new IllegalArgumentException("Unknown GraphCompartmentRule code '" + codeString + "'");
-    }
-
-    public Enumeration<GraphCompartmentRule> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<GraphCompartmentRule>(this, GraphCompartmentRule.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<GraphCompartmentRule>(this, GraphCompartmentRule.NULL, code);
-      if ("identical".equals(codeString))
-        return new Enumeration<GraphCompartmentRule>(this, GraphCompartmentRule.IDENTICAL, code);
-      if ("matching".equals(codeString))
-        return new Enumeration<GraphCompartmentRule>(this, GraphCompartmentRule.MATCHING, code);
-      if ("different".equals(codeString))
-        return new Enumeration<GraphCompartmentRule>(this, GraphCompartmentRule.DIFFERENT, code);
-      if ("custom".equals(codeString))
-        return new Enumeration<GraphCompartmentRule>(this, GraphCompartmentRule.CUSTOM, code);
-      throw new FHIRException("Unknown GraphCompartmentRule code '" + codeString + "'");
-    }
-
-    public String toCode(GraphCompartmentRule code) {
-       if (code == GraphCompartmentRule.NULL)
-           return null;
-       if (code == GraphCompartmentRule.IDENTICAL)
-        return "identical";
-      if (code == GraphCompartmentRule.MATCHING)
-        return "matching";
-      if (code == GraphCompartmentRule.DIFFERENT)
-        return "different";
-      if (code == GraphCompartmentRule.CUSTOM)
-        return "custom";
-      return "?";
-   }
-
-    public String toSystem(GraphCompartmentRule code) {
-      return code.getSystem();
-    }
-  }
 
   @Block()
   public static class GraphDefinitionLinkComponent extends BackboneElement implements IBaseBackboneElement {
@@ -1695,26 +1225,26 @@ public class GraphDefinition extends MetadataResource {
      * whether resources are subject to the rule, or whether it is a rule that must
      * be followed.
      */
-    @Child(name = "use", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
+    @Child(name = "use", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "condition | requirement", formalDefinition = "Defines how the compartment rule is used - whether it it is used to test whether resources are subject to the rule, or whether it is a rule that must be followed.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/graph-compartment-use")
-    protected Enumeration<GraphCompartmentUse> use;
+    protected StringType use;
 
     /**
      * Identifies the compartment.
      */
-    @Child(name = "code", type = { CodeType.class }, order = 2, min = 1, max = 1, modifier = false, summary = false)
+    @Child(name = "code", type = { StringType.class }, order = 2, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "Patient | Encounter | RelatedPerson | Practitioner | Device", formalDefinition = "Identifies the compartment.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/compartment-type")
-    protected Enumeration<CompartmentCode> code;
+    protected StringType code;
 
     /**
      * identical | matching | different | no-rule | custom.
      */
-    @Child(name = "rule", type = { CodeType.class }, order = 3, min = 1, max = 1, modifier = false, summary = false)
+    @Child(name = "rule", type = { StringType.class }, order = 3, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "identical | matching | different | custom", formalDefinition = "identical | matching | different | no-rule | custom.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/graph-compartment-rule")
-    protected Enumeration<GraphCompartmentRule> rule;
+    protected StringType rule;
 
     /**
      * Custom rule, as a FHIRPath expression.
@@ -1744,8 +1274,8 @@ public class GraphDefinition extends MetadataResource {
     /**
      * Constructor
      */
-    public GraphDefinitionLinkTargetCompartmentComponent(Enumeration<GraphCompartmentUse> use,
-        Enumeration<CompartmentCode> code, Enumeration<GraphCompartmentRule> rule) {
+    public GraphDefinitionLinkTargetCompartmentComponent(StringType use,
+                                                         StringType code, StringType rule) {
       super();
       this.use = use;
       this.code = code;
@@ -1759,12 +1289,12 @@ public class GraphDefinition extends MetadataResource {
      *         object with id, value and extensions. The accessor "getUse" gives
      *         direct access to the value
      */
-    public Enumeration<GraphCompartmentUse> getUseElement() {
+    public StringType getUseElement() {
       if (this.use == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create GraphDefinitionLinkTargetCompartmentComponent.use");
         else if (Configuration.doAutoCreate())
-          this.use = new Enumeration<GraphCompartmentUse>(new GraphCompartmentUseEnumFactory()); // bb
+          this.use = new StringType(); // bb
       return this.use;
     }
 
@@ -1783,7 +1313,7 @@ public class GraphDefinition extends MetadataResource {
      *              underlying object with id, value and extensions. The accessor
      *              "getUse" gives direct access to the value
      */
-    public GraphDefinitionLinkTargetCompartmentComponent setUseElement(Enumeration<GraphCompartmentUse> value) {
+    public GraphDefinitionLinkTargetCompartmentComponent setUseElement(StringType value) {
       this.use = value;
       return this;
     }
@@ -1793,8 +1323,8 @@ public class GraphDefinition extends MetadataResource {
      *         test whether resources are subject to the rule, or whether it is a
      *         rule that must be followed.
      */
-    public GraphCompartmentUse getUse() {
-      return this.use == null ? null : this.use.getValue();
+    public StringType getUse() {
+      return this.use == null ? null : this.use;
     }
 
     /**
@@ -1802,9 +1332,9 @@ public class GraphDefinition extends MetadataResource {
      *              to test whether resources are subject to the rule, or whether it
      *              is a rule that must be followed.
      */
-    public GraphDefinitionLinkTargetCompartmentComponent setUse(GraphCompartmentUse value) {
+    public GraphDefinitionLinkTargetCompartmentComponent setUse(String value) {
       if (this.use == null)
-        this.use = new Enumeration<GraphCompartmentUse>(new GraphCompartmentUseEnumFactory());
+        this.use = new StringType();
       this.use.setValue(value);
       return this;
     }
@@ -1814,12 +1344,12 @@ public class GraphDefinition extends MetadataResource {
      *         object with id, value and extensions. The accessor "getCode" gives
      *         direct access to the value
      */
-    public Enumeration<CompartmentCode> getCodeElement() {
+    public StringType getCodeElement() {
       if (this.code == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create GraphDefinitionLinkTargetCompartmentComponent.code");
         else if (Configuration.doAutoCreate())
-          this.code = new Enumeration<CompartmentCode>(new CompartmentCodeEnumFactory()); // bb
+          this.code = new StringType(); // bb
       return this.code;
     }
 
@@ -1836,7 +1366,7 @@ public class GraphDefinition extends MetadataResource {
      *              underlying object with id, value and extensions. The accessor
      *              "getCode" gives direct access to the value
      */
-    public GraphDefinitionLinkTargetCompartmentComponent setCodeElement(Enumeration<CompartmentCode> value) {
+    public GraphDefinitionLinkTargetCompartmentComponent setCodeElement(StringType value) {
       this.code = value;
       return this;
     }
@@ -1844,16 +1374,16 @@ public class GraphDefinition extends MetadataResource {
     /**
      * @return Identifies the compartment.
      */
-    public CompartmentCode getCode() {
-      return this.code == null ? null : this.code.getValue();
+    public StringType getCode() {
+      return this.code == null ? null : this.code;
     }
 
     /**
      * @param value Identifies the compartment.
      */
-    public GraphDefinitionLinkTargetCompartmentComponent setCode(CompartmentCode value) {
+    public GraphDefinitionLinkTargetCompartmentComponent setCode(String value) {
       if (this.code == null)
-        this.code = new Enumeration<CompartmentCode>(new CompartmentCodeEnumFactory());
+        this.code = new StringType();
       this.code.setValue(value);
       return this;
     }
@@ -1863,12 +1393,12 @@ public class GraphDefinition extends MetadataResource {
      *         This is the underlying object with id, value and extensions. The
      *         accessor "getRule" gives direct access to the value
      */
-    public Enumeration<GraphCompartmentRule> getRuleElement() {
+    public StringType getRuleElement() {
       if (this.rule == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create GraphDefinitionLinkTargetCompartmentComponent.rule");
         else if (Configuration.doAutoCreate())
-          this.rule = new Enumeration<GraphCompartmentRule>(new GraphCompartmentRuleEnumFactory()); // bb
+          this.rule = new StringType(); // bb
       return this.rule;
     }
 
@@ -1886,7 +1416,7 @@ public class GraphDefinition extends MetadataResource {
      *              extensions. The accessor "getRule" gives direct access to the
      *              value
      */
-    public GraphDefinitionLinkTargetCompartmentComponent setRuleElement(Enumeration<GraphCompartmentRule> value) {
+    public GraphDefinitionLinkTargetCompartmentComponent setRuleElement(StringType value) {
       this.rule = value;
       return this;
     }
@@ -1894,16 +1424,16 @@ public class GraphDefinition extends MetadataResource {
     /**
      * @return identical | matching | different | no-rule | custom.
      */
-    public GraphCompartmentRule getRule() {
-      return this.rule == null ? null : this.rule.getValue();
+    public StringType getRule() {
+      return this.rule == null ? null : this.rule;
     }
 
     /**
      * @param value identical | matching | different | no-rule | custom.
      */
-    public GraphDefinitionLinkTargetCompartmentComponent setRule(GraphCompartmentRule value) {
+    public GraphDefinitionLinkTargetCompartmentComponent setRule(String value) {
       if (this.rule == null)
-        this.rule = new Enumeration<GraphCompartmentRule>(new GraphCompartmentRuleEnumFactory());
+        this.rule = new StringType();
       this.rule.setValue(value);
       return this;
     }
@@ -2016,11 +1546,11 @@ public class GraphDefinition extends MetadataResource {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("use", "code",
+      children.add(new Property("use", "string",
           "Defines how the compartment rule is used - whether it it is used to test whether resources are subject to the rule, or whether it is a rule that must be followed.",
           0, 1, use));
-      children.add(new Property("code", "code", "Identifies the compartment.", 0, 1, code));
-      children.add(new Property("rule", "code", "identical | matching | different | no-rule | custom.", 0, 1, rule));
+      children.add(new Property("code", "string", "Identifies the compartment.", 0, 1, code));
+      children.add(new Property("rule", "string", "identical | matching | different | no-rule | custom.", 0, 1, rule));
       children.add(new Property("expression", "string", "Custom rule, as a FHIRPath expression.", 0, 1, expression));
       children.add(new Property("description", "string", "Documentation for FHIRPath expression.", 0, 1, description));
     }
@@ -2029,13 +1559,13 @@ public class GraphDefinition extends MetadataResource {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 116103:
-        /* use */ return new Property("use", "code",
+        /* use */ return new Property("use", "string",
             "Defines how the compartment rule is used - whether it it is used to test whether resources are subject to the rule, or whether it is a rule that must be followed.",
             0, 1, use);
       case 3059181:
-        /* code */ return new Property("code", "code", "Identifies the compartment.", 0, 1, code);
+        /* code */ return new Property("code", "string", "Identifies the compartment.", 0, 1, code);
       case 3512060:
-        /* rule */ return new Property("rule", "code", "identical | matching | different | no-rule | custom.", 0, 1,
+        /* rule */ return new Property("rule", "string", "identical | matching | different | no-rule | custom.", 0, 1,
             rule);
       case -1795452264:
         /* expression */ return new Property("expression", "string", "Custom rule, as a FHIRPath expression.", 0, 1,
@@ -2053,11 +1583,11 @@ public class GraphDefinition extends MetadataResource {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 116103:
-        /* use */ return this.use == null ? new Base[0] : new Base[] { this.use }; // Enumeration<GraphCompartmentUse>
+        /* use */ return this.use == null ? new Base[0] : new Base[] { this.use }; // StringType
       case 3059181:
-        /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // Enumeration<CompartmentCode>
+        /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // StringType
       case 3512060:
-        /* rule */ return this.rule == null ? new Base[0] : new Base[] { this.rule }; // Enumeration<GraphCompartmentRule>
+        /* rule */ return this.rule == null ? new Base[0] : new Base[] { this.rule }; // StringType
       case -1795452264:
         /* expression */ return this.expression == null ? new Base[0] : new Base[] { this.expression }; // StringType
       case -1724546052:
@@ -2072,16 +1602,13 @@ public class GraphDefinition extends MetadataResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 116103: // use
-        value = new GraphCompartmentUseEnumFactory().fromType(castToCode(value));
-        this.use = (Enumeration) value; // Enumeration<GraphCompartmentUse>
+        this.use = castToString(value); // StringType
         return value;
       case 3059181: // code
-        value = new CompartmentCodeEnumFactory().fromType(castToCode(value));
-        this.code = (Enumeration) value; // Enumeration<CompartmentCode>
+        this.code = castToString(value); // StringType
         return value;
       case 3512060: // rule
-        value = new GraphCompartmentRuleEnumFactory().fromType(castToCode(value));
-        this.rule = (Enumeration) value; // Enumeration<GraphCompartmentRule>
+        this.rule = castToString(value); // StringType
         return value;
       case -1795452264: // expression
         this.expression = castToString(value); // StringType
@@ -2098,14 +1625,11 @@ public class GraphDefinition extends MetadataResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("use")) {
-        value = new GraphCompartmentUseEnumFactory().fromType(castToCode(value));
-        this.use = (Enumeration) value; // Enumeration<GraphCompartmentUse>
+        this.use = castToString(value); // StringType
       } else if (name.equals("code")) {
-        value = new CompartmentCodeEnumFactory().fromType(castToCode(value));
-        this.code = (Enumeration) value; // Enumeration<CompartmentCode>
+        this.code = castToString(value); // StringType
       } else if (name.equals("rule")) {
-        value = new GraphCompartmentRuleEnumFactory().fromType(castToCode(value));
-        this.rule = (Enumeration) value; // Enumeration<GraphCompartmentRule>
+        this.rule = castToString(value); // StringType
       } else if (name.equals("expression")) {
         this.expression = castToString(value); // StringType
       } else if (name.equals("description")) {
@@ -2155,11 +1679,11 @@ public class GraphDefinition extends MetadataResource {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 116103:
-        /* use */ return new String[] { "code" };
+        /* use */ return new String[] { "string" };
       case 3059181:
-        /* code */ return new String[] { "code" };
+        /* code */ return new String[] { "string" };
       case 3512060:
-        /* rule */ return new String[] { "code" };
+        /* rule */ return new String[] { "string" };
       case -1795452264:
         /* expression */ return new String[] { "string" };
       case -1724546052:
@@ -2278,7 +1802,7 @@ public class GraphDefinition extends MetadataResource {
   /**
    * Constructor
    */
-  public GraphDefinition(StringType name, Enumeration<PublicationStatus> status, CodeType start) {
+  public GraphDefinition(StringType name, StringType status, CodeType start) {
     super();
     this.name = name;
     this.status = status;
@@ -2506,12 +2030,12 @@ public class GraphDefinition extends MetadataResource {
    *         object with id, value and extensions. The accessor "getStatus" gives
    *         direct access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create GraphDefinition.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -2529,7 +2053,7 @@ public class GraphDefinition extends MetadataResource {
    *              object with id, value and extensions. The accessor "getStatus"
    *              gives direct access to the value
    */
-  public GraphDefinition setStatusElement(Enumeration<PublicationStatus> value) {
+  public GraphDefinition setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -2538,17 +2062,17 @@ public class GraphDefinition extends MetadataResource {
    * @return The status of this graph definition. Enables tracking the life-cycle
    *         of the content.
    */
-  public PublicationStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The status of this graph definition. Enables tracking the
    *              life-cycle of the content.
    */
-  public GraphDefinition setStatus(PublicationStatus value) {
+  public GraphDefinition setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -3192,7 +2716,7 @@ public class GraphDefinition extends MetadataResource {
     children.add(new Property("name", "string",
         "A natural language name identifying the graph definition. This name should be usable as an identifier for the module by machine processing applications such as code generation.",
         0, 1, name));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of this graph definition. Enables tracking the life-cycle of the content.", 0, 1, status));
     children.add(new Property("experimental", "boolean",
         "A Boolean value to indicate that this graph definition is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
@@ -3239,7 +2763,7 @@ public class GraphDefinition extends MetadataResource {
           "A natural language name identifying the graph definition. This name should be usable as an identifier for the module by machine processing applications such as code generation.",
           0, 1, name);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of this graph definition. Enables tracking the life-cycle of the content.", 0, 1, status);
     case -404562712:
       /* experimental */ return new Property("experimental", "boolean",
@@ -3296,7 +2820,7 @@ public class GraphDefinition extends MetadataResource {
     case 3373707:
       /* name */ return this.name == null ? new Base[0] : new Base[] { this.name }; // StringType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; //StringType
     case -404562712:
       /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
     case 3076014:
@@ -3340,8 +2864,7 @@ public class GraphDefinition extends MetadataResource {
       this.name = castToString(value); // StringType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -404562712: // experimental
       this.experimental = castToBoolean(value); // BooleanType
@@ -3391,8 +2914,7 @@ public class GraphDefinition extends MetadataResource {
     } else if (name.equals("name")) {
       this.name = castToString(value); // StringType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("date")) {
@@ -3506,7 +3028,7 @@ public class GraphDefinition extends MetadataResource {
     case 3373707:
       /* name */ return new String[] { "string" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -404562712:
       /* experimental */ return new String[] { "boolean" };
     case 3076014:

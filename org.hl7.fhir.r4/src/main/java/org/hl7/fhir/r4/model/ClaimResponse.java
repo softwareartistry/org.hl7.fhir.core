@@ -38,8 +38,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.NoteType;
-import org.hl7.fhir.r4.model.Enumerations.NoteTypeEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -6285,7 +6283,7 @@ public class ClaimResponse extends DomainResource {
       case -1034364087:
         /* number */ return this.number == null ? new Base[0] : new Base[] { this.number }; // PositiveIntType
       case 3575610:
-        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<NoteType>
+        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
       case 3556653:
         /* text */ return this.text == null ? new Base[0] : new Base[] { this.text }; // StringType
       case -1613589672:
@@ -6303,7 +6301,7 @@ public class ClaimResponse extends DomainResource {
         this.number = castToPositiveInt(value); // PositiveIntType
         return value;
       case 3575610: // type
-        this.type = castToString(value); // Enumeration<NoteType>
+        this.type = castToString(value); // StringType
         return value;
       case 3556653: // text
         this.text = castToString(value); // StringType
@@ -6322,7 +6320,7 @@ public class ClaimResponse extends DomainResource {
       if (name.equals("number")) {
         this.number = castToPositiveInt(value); // PositiveIntType
       } else if (name.equals("type")) {
-        this.type = castToString(value); // Enumeration<NoteType>
+        this.type = castToString(value); // StringType
       } else if (name.equals("text")) {
         this.text = castToString(value); // StringType
       } else if (name.equals("language")) {
@@ -9198,13 +9196,13 @@ public class ClaimResponse extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<ClaimResponseStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 3575610:
       /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // CodeableConcept
     case -1868521062:
       /* subType */ return this.subType == null ? new Base[0] : new Base[] { this.subType }; // CodeableConcept
     case 116103:
-      /* use */ return this.use == null ? new Base[0] : new Base[] { this.use }; // Enumeration<Use>
+      /* use */ return this.use == null ? new Base[0] : new Base[] { this.use }; // StringType
     case -791418107:
       /* patient */ return this.patient == null ? new Base[0] : new Base[] { this.patient }; // Reference
     case 1028554472:
@@ -9216,7 +9214,7 @@ public class ClaimResponse extends DomainResource {
     case 1095692943:
       /* request */ return this.request == null ? new Base[0] : new Base[] { this.request }; // Reference
     case -1106507950:
-      /* outcome */ return this.outcome == null ? new Base[0] : new Base[] { this.outcome }; // Enumeration<RemittanceOutcome>
+      /* outcome */ return this.outcome == null ? new Base[0] : new Base[] { this.outcome }; // StringType
     case 583380919:
       /* disposition */ return this.disposition == null ? new Base[0] : new Base[] { this.disposition }; // StringType
     case 522246568:
@@ -9266,7 +9264,7 @@ public class ClaimResponse extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      this.status = castToString(value); // Enumeration<ClaimResponseStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 3575610: // type
       this.type = castToCodeableConcept(value); // CodeableConcept
@@ -9275,7 +9273,7 @@ public class ClaimResponse extends DomainResource {
       this.subType = castToCodeableConcept(value); // CodeableConcept
       return value;
     case 116103: // use
-      this.use = castToString(value); // Enumeration<Use>
+      this.use = castToString(value); // StringType
       return value;
     case -791418107: // patient
       this.patient = castToReference(value); // Reference
@@ -9293,7 +9291,7 @@ public class ClaimResponse extends DomainResource {
       this.request = castToReference(value); // Reference
       return value;
     case -1106507950: // outcome
-      this.outcome = castToString(value); // Enumeration<RemittanceOutcome>
+      this.outcome = castToString(value); // StringType
       return value;
     case 583380919: // disposition
       this.disposition = castToString(value); // StringType
@@ -9354,13 +9352,13 @@ public class ClaimResponse extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      this.status = castToString(value); // Enumeration<ClaimResponseStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("type")) {
       this.type = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("subType")) {
       this.subType = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("use")) {
-      this.use = castToString(value); // Enumeration<Use>
+      this.use = castToString(value); // StringType
     } else if (name.equals("patient")) {
       this.patient = castToReference(value); // Reference
     } else if (name.equals("created")) {
@@ -9372,7 +9370,7 @@ public class ClaimResponse extends DomainResource {
     } else if (name.equals("request")) {
       this.request = castToReference(value); // Reference
     } else if (name.equals("outcome")) {
-      this.outcome = castToString(value); // Enumeration<RemittanceOutcome>
+      this.outcome = castToString(value); // StringType
     } else if (name.equals("disposition")) {
       this.disposition = castToString(value); // StringType
     } else if (name.equals("preAuthRef")) {

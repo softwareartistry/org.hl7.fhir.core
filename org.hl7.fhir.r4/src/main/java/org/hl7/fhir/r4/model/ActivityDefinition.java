@@ -36,8 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -61,1002 +59,15 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
     "observationRequirement", "observationResultRequirement", "transform", "dynamicValue" })
 public class ActivityDefinition extends MetadataResource {
 
-  public enum ActivityDefinitionKind {
-    /**
-     * A booking of a healthcare event among patient(s), practitioner(s), related
-     * person(s) and/or device(s) for a specific date/time. This may result in one
-     * or more Encounter(s).
-     */
-    APPOINTMENT,
-    /**
-     * A reply to an appointment request for a patient and/or practitioner(s), such
-     * as a confirmation or rejection.
-     */
-    APPOINTMENTRESPONSE,
-    /**
-     * Healthcare plan for patient or group.
-     */
-    CAREPLAN,
-    /**
-     * Claim, Pre-determination or Pre-authorization.
-     */
-    CLAIM,
-    /**
-     * A request for information to be sent to a receiver.
-     */
-    COMMUNICATIONREQUEST,
-    /**
-     * Legal Agreement.
-     */
-    CONTRACT,
-    /**
-     * Medical device request.
-     */
-    DEVICEREQUEST,
-    /**
-     * Enrollment request.
-     */
-    ENROLLMENTREQUEST,
-    /**
-     * Guidance or advice relating to an immunization.
-     */
-    IMMUNIZATIONRECOMMENDATION,
-    /**
-     * Ordering of medication for patient or group.
-     */
-    MEDICATIONREQUEST,
-    /**
-     * Diet, formula or nutritional supplement request.
-     */
-    NUTRITIONORDER,
-    /**
-     * A record of a request for service such as diagnostic investigations,
-     * treatments, or operations to be performed.
-     */
-    SERVICEREQUEST,
-    /**
-     * Request for a medication, substance or device.
-     */
-    SUPPLYREQUEST,
-    /**
-     * A task to be performed.
-     */
-    TASK,
-    /**
-     * Prescription for vision correction products for a patient.
-     */
-    VISIONPRESCRIPTION,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ActivityDefinitionKind fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("Appointment".equals(codeString))
-        return APPOINTMENT;
-      if ("AppointmentResponse".equals(codeString))
-        return APPOINTMENTRESPONSE;
-      if ("CarePlan".equals(codeString))
-        return CAREPLAN;
-      if ("Claim".equals(codeString))
-        return CLAIM;
-      if ("CommunicationRequest".equals(codeString))
-        return COMMUNICATIONREQUEST;
-      if ("Contract".equals(codeString))
-        return CONTRACT;
-      if ("DeviceRequest".equals(codeString))
-        return DEVICEREQUEST;
-      if ("EnrollmentRequest".equals(codeString))
-        return ENROLLMENTREQUEST;
-      if ("ImmunizationRecommendation".equals(codeString))
-        return IMMUNIZATIONRECOMMENDATION;
-      if ("MedicationRequest".equals(codeString))
-        return MEDICATIONREQUEST;
-      if ("NutritionOrder".equals(codeString))
-        return NUTRITIONORDER;
-      if ("ServiceRequest".equals(codeString))
-        return SERVICEREQUEST;
-      if ("SupplyRequest".equals(codeString))
-        return SUPPLYREQUEST;
-      if ("Task".equals(codeString))
-        return TASK;
-      if ("VisionPrescription".equals(codeString))
-        return VISIONPRESCRIPTION;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ActivityDefinitionKind code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case APPOINTMENT:
-        return "Appointment";
-      case APPOINTMENTRESPONSE:
-        return "AppointmentResponse";
-      case CAREPLAN:
-        return "CarePlan";
-      case CLAIM:
-        return "Claim";
-      case COMMUNICATIONREQUEST:
-        return "CommunicationRequest";
-      case CONTRACT:
-        return "Contract";
-      case DEVICEREQUEST:
-        return "DeviceRequest";
-      case ENROLLMENTREQUEST:
-        return "EnrollmentRequest";
-      case IMMUNIZATIONRECOMMENDATION:
-        return "ImmunizationRecommendation";
-      case MEDICATIONREQUEST:
-        return "MedicationRequest";
-      case NUTRITIONORDER:
-        return "NutritionOrder";
-      case SERVICEREQUEST:
-        return "ServiceRequest";
-      case SUPPLYREQUEST:
-        return "SupplyRequest";
-      case TASK:
-        return "Task";
-      case VISIONPRESCRIPTION:
-        return "VisionPrescription";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case APPOINTMENT:
-        return "http://hl7.org/fhir/request-resource-types";
-      case APPOINTMENTRESPONSE:
-        return "http://hl7.org/fhir/request-resource-types";
-      case CAREPLAN:
-        return "http://hl7.org/fhir/request-resource-types";
-      case CLAIM:
-        return "http://hl7.org/fhir/request-resource-types";
-      case COMMUNICATIONREQUEST:
-        return "http://hl7.org/fhir/request-resource-types";
-      case CONTRACT:
-        return "http://hl7.org/fhir/request-resource-types";
-      case DEVICEREQUEST:
-        return "http://hl7.org/fhir/request-resource-types";
-      case ENROLLMENTREQUEST:
-        return "http://hl7.org/fhir/request-resource-types";
-      case IMMUNIZATIONRECOMMENDATION:
-        return "http://hl7.org/fhir/request-resource-types";
-      case MEDICATIONREQUEST:
-        return "http://hl7.org/fhir/request-resource-types";
-      case NUTRITIONORDER:
-        return "http://hl7.org/fhir/request-resource-types";
-      case SERVICEREQUEST:
-        return "http://hl7.org/fhir/request-resource-types";
-      case SUPPLYREQUEST:
-        return "http://hl7.org/fhir/request-resource-types";
-      case TASK:
-        return "http://hl7.org/fhir/request-resource-types";
-      case VISIONPRESCRIPTION:
-        return "http://hl7.org/fhir/request-resource-types";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case APPOINTMENT:
-        return "A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time. This may result in one or more Encounter(s).";
-      case APPOINTMENTRESPONSE:
-        return "A reply to an appointment request for a patient and/or practitioner(s), such as a confirmation or rejection.";
-      case CAREPLAN:
-        return "Healthcare plan for patient or group.";
-      case CLAIM:
-        return "Claim, Pre-determination or Pre-authorization.";
-      case COMMUNICATIONREQUEST:
-        return "A request for information to be sent to a receiver.";
-      case CONTRACT:
-        return "Legal Agreement.";
-      case DEVICEREQUEST:
-        return "Medical device request.";
-      case ENROLLMENTREQUEST:
-        return "Enrollment request.";
-      case IMMUNIZATIONRECOMMENDATION:
-        return "Guidance or advice relating to an immunization.";
-      case MEDICATIONREQUEST:
-        return "Ordering of medication for patient or group.";
-      case NUTRITIONORDER:
-        return "Diet, formula or nutritional supplement request.";
-      case SERVICEREQUEST:
-        return "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.";
-      case SUPPLYREQUEST:
-        return "Request for a medication, substance or device.";
-      case TASK:
-        return "A task to be performed.";
-      case VISIONPRESCRIPTION:
-        return "Prescription for vision correction products for a patient.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case APPOINTMENT:
-        return "Appointment";
-      case APPOINTMENTRESPONSE:
-        return "AppointmentResponse";
-      case CAREPLAN:
-        return "CarePlan";
-      case CLAIM:
-        return "Claim";
-      case COMMUNICATIONREQUEST:
-        return "CommunicationRequest";
-      case CONTRACT:
-        return "Contract";
-      case DEVICEREQUEST:
-        return "DeviceRequest";
-      case ENROLLMENTREQUEST:
-        return "EnrollmentRequest";
-      case IMMUNIZATIONRECOMMENDATION:
-        return "ImmunizationRecommendation";
-      case MEDICATIONREQUEST:
-        return "MedicationRequest";
-      case NUTRITIONORDER:
-        return "NutritionOrder";
-      case SERVICEREQUEST:
-        return "ServiceRequest";
-      case SUPPLYREQUEST:
-        return "SupplyRequest";
-      case TASK:
-        return "Task";
-      case VISIONPRESCRIPTION:
-        return "VisionPrescription";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ActivityDefinitionKindEnumFactory implements EnumFactory<ActivityDefinitionKind> {
-    public ActivityDefinitionKind fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("Appointment".equals(codeString))
-        return ActivityDefinitionKind.APPOINTMENT;
-      if ("AppointmentResponse".equals(codeString))
-        return ActivityDefinitionKind.APPOINTMENTRESPONSE;
-      if ("CarePlan".equals(codeString))
-        return ActivityDefinitionKind.CAREPLAN;
-      if ("Claim".equals(codeString))
-        return ActivityDefinitionKind.CLAIM;
-      if ("CommunicationRequest".equals(codeString))
-        return ActivityDefinitionKind.COMMUNICATIONREQUEST;
-      if ("Contract".equals(codeString))
-        return ActivityDefinitionKind.CONTRACT;
-      if ("DeviceRequest".equals(codeString))
-        return ActivityDefinitionKind.DEVICEREQUEST;
-      if ("EnrollmentRequest".equals(codeString))
-        return ActivityDefinitionKind.ENROLLMENTREQUEST;
-      if ("ImmunizationRecommendation".equals(codeString))
-        return ActivityDefinitionKind.IMMUNIZATIONRECOMMENDATION;
-      if ("MedicationRequest".equals(codeString))
-        return ActivityDefinitionKind.MEDICATIONREQUEST;
-      if ("NutritionOrder".equals(codeString))
-        return ActivityDefinitionKind.NUTRITIONORDER;
-      if ("ServiceRequest".equals(codeString))
-        return ActivityDefinitionKind.SERVICEREQUEST;
-      if ("SupplyRequest".equals(codeString))
-        return ActivityDefinitionKind.SUPPLYREQUEST;
-      if ("Task".equals(codeString))
-        return ActivityDefinitionKind.TASK;
-      if ("VisionPrescription".equals(codeString))
-        return ActivityDefinitionKind.VISIONPRESCRIPTION;
-      throw new IllegalArgumentException("Unknown ActivityDefinitionKind code '" + codeString + "'");
-    }
-
-    public Enumeration<ActivityDefinitionKind> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ActivityDefinitionKind>(this, ActivityDefinitionKind.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ActivityDefinitionKind>(this, ActivityDefinitionKind.NULL, code);
-      if ("Appointment".equals(codeString))
-        return new Enumeration<ActivityDefinitionKind>(this, ActivityDefinitionKind.APPOINTMENT, code);
-      if ("AppointmentResponse".equals(codeString))
-        return new Enumeration<ActivityDefinitionKind>(this, ActivityDefinitionKind.APPOINTMENTRESPONSE, code);
-      if ("CarePlan".equals(codeString))
-        return new Enumeration<ActivityDefinitionKind>(this, ActivityDefinitionKind.CAREPLAN, code);
-      if ("Claim".equals(codeString))
-        return new Enumeration<ActivityDefinitionKind>(this, ActivityDefinitionKind.CLAIM, code);
-      if ("CommunicationRequest".equals(codeString))
-        return new Enumeration<ActivityDefinitionKind>(this, ActivityDefinitionKind.COMMUNICATIONREQUEST, code);
-      if ("Contract".equals(codeString))
-        return new Enumeration<ActivityDefinitionKind>(this, ActivityDefinitionKind.CONTRACT, code);
-      if ("DeviceRequest".equals(codeString))
-        return new Enumeration<ActivityDefinitionKind>(this, ActivityDefinitionKind.DEVICEREQUEST, code);
-      if ("EnrollmentRequest".equals(codeString))
-        return new Enumeration<ActivityDefinitionKind>(this, ActivityDefinitionKind.ENROLLMENTREQUEST, code);
-      if ("ImmunizationRecommendation".equals(codeString))
-        return new Enumeration<ActivityDefinitionKind>(this, ActivityDefinitionKind.IMMUNIZATIONRECOMMENDATION, code);
-      if ("MedicationRequest".equals(codeString))
-        return new Enumeration<ActivityDefinitionKind>(this, ActivityDefinitionKind.MEDICATIONREQUEST, code);
-      if ("NutritionOrder".equals(codeString))
-        return new Enumeration<ActivityDefinitionKind>(this, ActivityDefinitionKind.NUTRITIONORDER, code);
-      if ("ServiceRequest".equals(codeString))
-        return new Enumeration<ActivityDefinitionKind>(this, ActivityDefinitionKind.SERVICEREQUEST, code);
-      if ("SupplyRequest".equals(codeString))
-        return new Enumeration<ActivityDefinitionKind>(this, ActivityDefinitionKind.SUPPLYREQUEST, code);
-      if ("Task".equals(codeString))
-        return new Enumeration<ActivityDefinitionKind>(this, ActivityDefinitionKind.TASK, code);
-      if ("VisionPrescription".equals(codeString))
-        return new Enumeration<ActivityDefinitionKind>(this, ActivityDefinitionKind.VISIONPRESCRIPTION, code);
-      throw new FHIRException("Unknown ActivityDefinitionKind code '" + codeString + "'");
-    }
-
-    public String toCode(ActivityDefinitionKind code) {
-       if (code == ActivityDefinitionKind.NULL)
-           return null;
-       if (code == ActivityDefinitionKind.APPOINTMENT)
-        return "Appointment";
-      if (code == ActivityDefinitionKind.APPOINTMENTRESPONSE)
-        return "AppointmentResponse";
-      if (code == ActivityDefinitionKind.CAREPLAN)
-        return "CarePlan";
-      if (code == ActivityDefinitionKind.CLAIM)
-        return "Claim";
-      if (code == ActivityDefinitionKind.COMMUNICATIONREQUEST)
-        return "CommunicationRequest";
-      if (code == ActivityDefinitionKind.CONTRACT)
-        return "Contract";
-      if (code == ActivityDefinitionKind.DEVICEREQUEST)
-        return "DeviceRequest";
-      if (code == ActivityDefinitionKind.ENROLLMENTREQUEST)
-        return "EnrollmentRequest";
-      if (code == ActivityDefinitionKind.IMMUNIZATIONRECOMMENDATION)
-        return "ImmunizationRecommendation";
-      if (code == ActivityDefinitionKind.MEDICATIONREQUEST)
-        return "MedicationRequest";
-      if (code == ActivityDefinitionKind.NUTRITIONORDER)
-        return "NutritionOrder";
-      if (code == ActivityDefinitionKind.SERVICEREQUEST)
-        return "ServiceRequest";
-      if (code == ActivityDefinitionKind.SUPPLYREQUEST)
-        return "SupplyRequest";
-      if (code == ActivityDefinitionKind.TASK)
-        return "Task";
-      if (code == ActivityDefinitionKind.VISIONPRESCRIPTION)
-        return "VisionPrescription";
-      return "?";
-   }
-
-    public String toSystem(ActivityDefinitionKind code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum RequestIntent {
-    /**
-     * The request is a suggestion made by someone/something that does not have an
-     * intention to ensure it occurs and without providing an authorization to act.
-     */
-    PROPOSAL,
-    /**
-     * The request represents an intention to ensure something occurs without
-     * providing an authorization for others to act.
-     */
-    PLAN,
-    /**
-     * The request represents a legally binding instruction authored by a Patient or
-     * RelatedPerson.
-     */
-    DIRECTIVE,
-    /**
-     * The request represents a request/demand and authorization for action by a
-     * Practitioner.
-     */
-    ORDER,
-    /**
-     * The request represents an original authorization for action.
-     */
-    ORIGINALORDER,
-    /**
-     * The request represents an automatically generated supplemental authorization
-     * for action based on a parent authorization together with initial results of
-     * the action taken against that parent authorization.
-     */
-    REFLEXORDER,
-    /**
-     * The request represents the view of an authorization instantiated by a
-     * fulfilling system representing the details of the fulfiller's intention to
-     * act upon a submitted order.
-     */
-    FILLERORDER,
-    /**
-     * An order created in fulfillment of a broader order that represents the
-     * authorization for a single activity occurrence. E.g. The administration of a
-     * single dose of a drug.
-     */
-    INSTANCEORDER,
-    /**
-     * The request represents a component or option for a RequestGroup that
-     * establishes timing, conditionality and/or other constraints among a set of
-     * requests. Refer to [[[RequestGroup]]] for additional information on how this
-     * status is used.
-     */
-    OPTION,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static RequestIntent fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("proposal".equals(codeString))
-        return PROPOSAL;
-      if ("plan".equals(codeString))
-        return PLAN;
-      if ("directive".equals(codeString))
-        return DIRECTIVE;
-      if ("order".equals(codeString))
-        return ORDER;
-      if ("original-order".equals(codeString))
-        return ORIGINALORDER;
-      if ("reflex-order".equals(codeString))
-        return REFLEXORDER;
-      if ("filler-order".equals(codeString))
-        return FILLERORDER;
-      if ("instance-order".equals(codeString))
-        return INSTANCEORDER;
-      if ("option".equals(codeString))
-        return OPTION;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown RequestIntent code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case PROPOSAL:
-        return "proposal";
-      case PLAN:
-        return "plan";
-      case DIRECTIVE:
-        return "directive";
-      case ORDER:
-        return "order";
-      case ORIGINALORDER:
-        return "original-order";
-      case REFLEXORDER:
-        return "reflex-order";
-      case FILLERORDER:
-        return "filler-order";
-      case INSTANCEORDER:
-        return "instance-order";
-      case OPTION:
-        return "option";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case PROPOSAL:
-        return "http://hl7.org/fhir/request-intent";
-      case PLAN:
-        return "http://hl7.org/fhir/request-intent";
-      case DIRECTIVE:
-        return "http://hl7.org/fhir/request-intent";
-      case ORDER:
-        return "http://hl7.org/fhir/request-intent";
-      case ORIGINALORDER:
-        return "http://hl7.org/fhir/request-intent";
-      case REFLEXORDER:
-        return "http://hl7.org/fhir/request-intent";
-      case FILLERORDER:
-        return "http://hl7.org/fhir/request-intent";
-      case INSTANCEORDER:
-        return "http://hl7.org/fhir/request-intent";
-      case OPTION:
-        return "http://hl7.org/fhir/request-intent";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case PROPOSAL:
-        return "The request is a suggestion made by someone/something that does not have an intention to ensure it occurs and without providing an authorization to act.";
-      case PLAN:
-        return "The request represents an intention to ensure something occurs without providing an authorization for others to act.";
-      case DIRECTIVE:
-        return "The request represents a legally binding instruction authored by a Patient or RelatedPerson.";
-      case ORDER:
-        return "The request represents a request/demand and authorization for action by a Practitioner.";
-      case ORIGINALORDER:
-        return "The request represents an original authorization for action.";
-      case REFLEXORDER:
-        return "The request represents an automatically generated supplemental authorization for action based on a parent authorization together with initial results of the action taken against that parent authorization.";
-      case FILLERORDER:
-        return "The request represents the view of an authorization instantiated by a fulfilling system representing the details of the fulfiller's intention to act upon a submitted order.";
-      case INSTANCEORDER:
-        return "An order created in fulfillment of a broader order that represents the authorization for a single activity occurrence.  E.g. The administration of a single dose of a drug.";
-      case OPTION:
-        return "The request represents a component or option for a RequestGroup that establishes timing, conditionality and/or other constraints among a set of requests.  Refer to [[[RequestGroup]]] for additional information on how this status is used.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case PROPOSAL:
-        return "Proposal";
-      case PLAN:
-        return "Plan";
-      case DIRECTIVE:
-        return "Directive";
-      case ORDER:
-        return "Order";
-      case ORIGINALORDER:
-        return "Original Order";
-      case REFLEXORDER:
-        return "Reflex Order";
-      case FILLERORDER:
-        return "Filler Order";
-      case INSTANCEORDER:
-        return "Instance Order";
-      case OPTION:
-        return "Option";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class RequestIntentEnumFactory implements EnumFactory<RequestIntent> {
-    public RequestIntent fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("proposal".equals(codeString))
-        return RequestIntent.PROPOSAL;
-      if ("plan".equals(codeString))
-        return RequestIntent.PLAN;
-      if ("directive".equals(codeString))
-        return RequestIntent.DIRECTIVE;
-      if ("order".equals(codeString))
-        return RequestIntent.ORDER;
-      if ("original-order".equals(codeString))
-        return RequestIntent.ORIGINALORDER;
-      if ("reflex-order".equals(codeString))
-        return RequestIntent.REFLEXORDER;
-      if ("filler-order".equals(codeString))
-        return RequestIntent.FILLERORDER;
-      if ("instance-order".equals(codeString))
-        return RequestIntent.INSTANCEORDER;
-      if ("option".equals(codeString))
-        return RequestIntent.OPTION;
-      throw new IllegalArgumentException("Unknown RequestIntent code '" + codeString + "'");
-    }
-
-    public Enumeration<RequestIntent> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<RequestIntent>(this, RequestIntent.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<RequestIntent>(this, RequestIntent.NULL, code);
-      if ("proposal".equals(codeString))
-        return new Enumeration<RequestIntent>(this, RequestIntent.PROPOSAL, code);
-      if ("plan".equals(codeString))
-        return new Enumeration<RequestIntent>(this, RequestIntent.PLAN, code);
-      if ("directive".equals(codeString))
-        return new Enumeration<RequestIntent>(this, RequestIntent.DIRECTIVE, code);
-      if ("order".equals(codeString))
-        return new Enumeration<RequestIntent>(this, RequestIntent.ORDER, code);
-      if ("original-order".equals(codeString))
-        return new Enumeration<RequestIntent>(this, RequestIntent.ORIGINALORDER, code);
-      if ("reflex-order".equals(codeString))
-        return new Enumeration<RequestIntent>(this, RequestIntent.REFLEXORDER, code);
-      if ("filler-order".equals(codeString))
-        return new Enumeration<RequestIntent>(this, RequestIntent.FILLERORDER, code);
-      if ("instance-order".equals(codeString))
-        return new Enumeration<RequestIntent>(this, RequestIntent.INSTANCEORDER, code);
-      if ("option".equals(codeString))
-        return new Enumeration<RequestIntent>(this, RequestIntent.OPTION, code);
-      throw new FHIRException("Unknown RequestIntent code '" + codeString + "'");
-    }
-
-    public String toCode(RequestIntent code) {
-       if (code == RequestIntent.NULL)
-           return null;
-       if (code == RequestIntent.PROPOSAL)
-        return "proposal";
-      if (code == RequestIntent.PLAN)
-        return "plan";
-      if (code == RequestIntent.DIRECTIVE)
-        return "directive";
-      if (code == RequestIntent.ORDER)
-        return "order";
-      if (code == RequestIntent.ORIGINALORDER)
-        return "original-order";
-      if (code == RequestIntent.REFLEXORDER)
-        return "reflex-order";
-      if (code == RequestIntent.FILLERORDER)
-        return "filler-order";
-      if (code == RequestIntent.INSTANCEORDER)
-        return "instance-order";
-      if (code == RequestIntent.OPTION)
-        return "option";
-      return "?";
-   }
-
-    public String toSystem(RequestIntent code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum RequestPriority {
-    /**
-     * The request has normal priority.
-     */
-    ROUTINE,
-    /**
-     * The request should be actioned promptly - higher priority than routine.
-     */
-    URGENT,
-    /**
-     * The request should be actioned as soon as possible - higher priority than
-     * urgent.
-     */
-    ASAP,
-    /**
-     * The request should be actioned immediately - highest possible priority. E.g.
-     * an emergency.
-     */
-    STAT,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static RequestPriority fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("routine".equals(codeString))
-        return ROUTINE;
-      if ("urgent".equals(codeString))
-        return URGENT;
-      if ("asap".equals(codeString))
-        return ASAP;
-      if ("stat".equals(codeString))
-        return STAT;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown RequestPriority code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ROUTINE:
-        return "routine";
-      case URGENT:
-        return "urgent";
-      case ASAP:
-        return "asap";
-      case STAT:
-        return "stat";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ROUTINE:
-        return "http://hl7.org/fhir/request-priority";
-      case URGENT:
-        return "http://hl7.org/fhir/request-priority";
-      case ASAP:
-        return "http://hl7.org/fhir/request-priority";
-      case STAT:
-        return "http://hl7.org/fhir/request-priority";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ROUTINE:
-        return "The request has normal priority.";
-      case URGENT:
-        return "The request should be actioned promptly - higher priority than routine.";
-      case ASAP:
-        return "The request should be actioned as soon as possible - higher priority than urgent.";
-      case STAT:
-        return "The request should be actioned immediately - highest possible priority.  E.g. an emergency.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ROUTINE:
-        return "Routine";
-      case URGENT:
-        return "Urgent";
-      case ASAP:
-        return "ASAP";
-      case STAT:
-        return "STAT";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class RequestPriorityEnumFactory implements EnumFactory<RequestPriority> {
-    public RequestPriority fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("routine".equals(codeString))
-        return RequestPriority.ROUTINE;
-      if ("urgent".equals(codeString))
-        return RequestPriority.URGENT;
-      if ("asap".equals(codeString))
-        return RequestPriority.ASAP;
-      if ("stat".equals(codeString))
-        return RequestPriority.STAT;
-      throw new IllegalArgumentException("Unknown RequestPriority code '" + codeString + "'");
-    }
-
-    public Enumeration<RequestPriority> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<RequestPriority>(this, RequestPriority.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<RequestPriority>(this, RequestPriority.NULL, code);
-      if ("routine".equals(codeString))
-        return new Enumeration<RequestPriority>(this, RequestPriority.ROUTINE, code);
-      if ("urgent".equals(codeString))
-        return new Enumeration<RequestPriority>(this, RequestPriority.URGENT, code);
-      if ("asap".equals(codeString))
-        return new Enumeration<RequestPriority>(this, RequestPriority.ASAP, code);
-      if ("stat".equals(codeString))
-        return new Enumeration<RequestPriority>(this, RequestPriority.STAT, code);
-      throw new FHIRException("Unknown RequestPriority code '" + codeString + "'");
-    }
-
-    public String toCode(RequestPriority code) {
-       if (code == RequestPriority.NULL)
-           return null;
-       if (code == RequestPriority.ROUTINE)
-        return "routine";
-      if (code == RequestPriority.URGENT)
-        return "urgent";
-      if (code == RequestPriority.ASAP)
-        return "asap";
-      if (code == RequestPriority.STAT)
-        return "stat";
-      return "?";
-   }
-
-    public String toSystem(RequestPriority code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum ActivityParticipantType {
-    /**
-     * The participant is the patient under evaluation.
-     */
-    PATIENT,
-    /**
-     * The participant is a practitioner involved in the patient's care.
-     */
-    PRACTITIONER,
-    /**
-     * The participant is a person related to the patient.
-     */
-    RELATEDPERSON,
-    /**
-     * The participant is a system or device used in the care of the patient.
-     */
-    DEVICE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ActivityParticipantType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("patient".equals(codeString))
-        return PATIENT;
-      if ("practitioner".equals(codeString))
-        return PRACTITIONER;
-      if ("related-person".equals(codeString))
-        return RELATEDPERSON;
-      if ("device".equals(codeString))
-        return DEVICE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ActivityParticipantType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case PATIENT:
-        return "patient";
-      case PRACTITIONER:
-        return "practitioner";
-      case RELATEDPERSON:
-        return "related-person";
-      case DEVICE:
-        return "device";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case PATIENT:
-        return "http://hl7.org/fhir/action-participant-type";
-      case PRACTITIONER:
-        return "http://hl7.org/fhir/action-participant-type";
-      case RELATEDPERSON:
-        return "http://hl7.org/fhir/action-participant-type";
-      case DEVICE:
-        return "http://hl7.org/fhir/action-participant-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case PATIENT:
-        return "The participant is the patient under evaluation.";
-      case PRACTITIONER:
-        return "The participant is a practitioner involved in the patient's care.";
-      case RELATEDPERSON:
-        return "The participant is a person related to the patient.";
-      case DEVICE:
-        return "The participant is a system or device used in the care of the patient.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case PATIENT:
-        return "Patient";
-      case PRACTITIONER:
-        return "Practitioner";
-      case RELATEDPERSON:
-        return "Related Person";
-      case DEVICE:
-        return "Device";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ActivityParticipantTypeEnumFactory implements EnumFactory<ActivityParticipantType> {
-    public ActivityParticipantType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("patient".equals(codeString))
-        return ActivityParticipantType.PATIENT;
-      if ("practitioner".equals(codeString))
-        return ActivityParticipantType.PRACTITIONER;
-      if ("related-person".equals(codeString))
-        return ActivityParticipantType.RELATEDPERSON;
-      if ("device".equals(codeString))
-        return ActivityParticipantType.DEVICE;
-      throw new IllegalArgumentException("Unknown ActivityParticipantType code '" + codeString + "'");
-    }
-
-    public Enumeration<ActivityParticipantType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ActivityParticipantType>(this, ActivityParticipantType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ActivityParticipantType>(this, ActivityParticipantType.NULL, code);
-      if ("patient".equals(codeString))
-        return new Enumeration<ActivityParticipantType>(this, ActivityParticipantType.PATIENT, code);
-      if ("practitioner".equals(codeString))
-        return new Enumeration<ActivityParticipantType>(this, ActivityParticipantType.PRACTITIONER, code);
-      if ("related-person".equals(codeString))
-        return new Enumeration<ActivityParticipantType>(this, ActivityParticipantType.RELATEDPERSON, code);
-      if ("device".equals(codeString))
-        return new Enumeration<ActivityParticipantType>(this, ActivityParticipantType.DEVICE, code);
-      throw new FHIRException("Unknown ActivityParticipantType code '" + codeString + "'");
-    }
-
-    public String toCode(ActivityParticipantType code) {
-       if (code == ActivityParticipantType.NULL)
-           return null;
-       if (code == ActivityParticipantType.PATIENT)
-        return "patient";
-      if (code == ActivityParticipantType.PRACTITIONER)
-        return "practitioner";
-      if (code == ActivityParticipantType.RELATEDPERSON)
-        return "related-person";
-      if (code == ActivityParticipantType.DEVICE)
-        return "device";
-      return "?";
-   }
-
-    public String toSystem(ActivityParticipantType code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class ActivityDefinitionParticipantComponent extends BackboneElement implements IBaseBackboneElement {
     /**
      * The type of participant in the action.
      */
-    @Child(name = "type", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
+    @Child(name = "type", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "patient | practitioner | related-person | device", formalDefinition = "The type of participant in the action.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/action-participant-type")
-    protected Enumeration<ActivityParticipantType> type;
+    protected StringType type;
 
     /**
      * The role the participant should play in performing the described action.
@@ -1079,7 +90,7 @@ public class ActivityDefinition extends MetadataResource {
     /**
      * Constructor
      */
-    public ActivityDefinitionParticipantComponent(Enumeration<ActivityParticipantType> type) {
+    public ActivityDefinitionParticipantComponent(StringType type) {
       super();
       this.type = type;
     }
@@ -1089,12 +100,12 @@ public class ActivityDefinition extends MetadataResource {
      *         underlying object with id, value and extensions. The accessor
      *         "getType" gives direct access to the value
      */
-    public Enumeration<ActivityParticipantType> getTypeElement() {
+    public StringType getTypeElement() {
       if (this.type == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create ActivityDefinitionParticipantComponent.type");
         else if (Configuration.doAutoCreate())
-          this.type = new Enumeration<ActivityParticipantType>(new ActivityParticipantTypeEnumFactory()); // bb
+          this.type = new StringType(); // bb
       return this.type;
     }
 
@@ -1111,7 +122,7 @@ public class ActivityDefinition extends MetadataResource {
      *              the underlying object with id, value and extensions. The
      *              accessor "getType" gives direct access to the value
      */
-    public ActivityDefinitionParticipantComponent setTypeElement(Enumeration<ActivityParticipantType> value) {
+    public ActivityDefinitionParticipantComponent setTypeElement(StringType value) {
       this.type = value;
       return this;
     }
@@ -1119,16 +130,16 @@ public class ActivityDefinition extends MetadataResource {
     /**
      * @return The type of participant in the action.
      */
-    public ActivityParticipantType getType() {
-      return this.type == null ? null : this.type.getValue();
+    public StringType getType() {
+      return this.type == null ? null : this.type;
     }
 
     /**
      * @param value The type of participant in the action.
      */
-    public ActivityDefinitionParticipantComponent setType(ActivityParticipantType value) {
+    public ActivityDefinitionParticipantComponent setType(String value) {
       if (this.type == null)
-        this.type = new Enumeration<ActivityParticipantType>(new ActivityParticipantTypeEnumFactory());
+        this.type = new StringType();
       this.type.setValue(value);
       return this;
     }
@@ -1161,7 +172,7 @@ public class ActivityDefinition extends MetadataResource {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("type", "code", "The type of participant in the action.", 0, 1, type));
+      children.add(new Property("type", "string", "The type of participant in the action.", 0, 1, type));
       children.add(new Property("role", "CodeableConcept",
           "The role the participant should play in performing the described action.", 0, 1, role));
     }
@@ -1170,7 +181,7 @@ public class ActivityDefinition extends MetadataResource {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 3575610:
-        /* type */ return new Property("type", "code", "The type of participant in the action.", 0, 1, type);
+        /* type */ return new Property("type", "string", "The type of participant in the action.", 0, 1, type);
       case 3506294:
         /* role */ return new Property("role", "CodeableConcept",
             "The role the participant should play in performing the described action.", 0, 1, role);
@@ -1184,7 +195,7 @@ public class ActivityDefinition extends MetadataResource {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 3575610:
-        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<ActivityParticipantType>
+        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
       case 3506294:
         /* role */ return this.role == null ? new Base[0] : new Base[] { this.role }; // CodeableConcept
       default:
@@ -1197,8 +208,7 @@ public class ActivityDefinition extends MetadataResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3575610: // type
-        value = new ActivityParticipantTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<ActivityParticipantType>
+        this.type = castToString(value); // StringType
         return value;
       case 3506294: // role
         this.role = castToCodeableConcept(value); // CodeableConcept
@@ -1212,8 +222,7 @@ public class ActivityDefinition extends MetadataResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("type")) {
-        value = new ActivityParticipantTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<ActivityParticipantType>
+        this.type = castToString(value); // StringType
       } else if (name.equals("role")) {
         this.role = castToCodeableConcept(value); // CodeableConcept
       } else
@@ -1249,7 +258,7 @@ public class ActivityDefinition extends MetadataResource {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 3575610:
-        /* type */ return new String[] { "code" };
+        /* type */ return new String[] { "string" };
       case 3506294:
         /* role */ return new String[] { "CodeableConcept" };
       default:
@@ -1770,10 +779,10 @@ public class ActivityDefinition extends MetadataResource {
    * representing. For example, a MedicationRequest, a ServiceRequest, or a
    * CommunicationRequest. Typically, but not always, this is a Request resource.
    */
-  @Child(name = "kind", type = { CodeType.class }, order = 16, min = 0, max = 1, modifier = false, summary = true)
+  @Child(name = "kind", type = { StringType.class }, order = 16, min = 0, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "Kind of resource", formalDefinition = "A description of the kind of resource the activity definition is representing. For example, a MedicationRequest, a ServiceRequest, or a CommunicationRequest. Typically, but not always, this is a Request resource.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/request-resource-types")
-  protected Enumeration<ActivityDefinitionKind> kind;
+  protected StringType kind;
 
   /**
    * A profile to which the target of the activity definition is expected to
@@ -1798,19 +807,19 @@ public class ActivityDefinition extends MetadataResource {
    * Indicates the level of authority/intentionality associated with the activity
    * and where the request should fit into the workflow chain.
    */
-  @Child(name = "intent", type = { CodeType.class }, order = 19, min = 0, max = 1, modifier = false, summary = false)
+  @Child(name = "intent", type = { StringType.class }, order = 19, min = 0, max = 1, modifier = false, summary = false)
   @Description(shortDefinition = "proposal | plan | directive | order | original-order | reflex-order | filler-order | instance-order | option", formalDefinition = "Indicates the level of authority/intentionality associated with the activity and where the request should fit into the workflow chain.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/request-intent")
-  protected Enumeration<RequestIntent> intent;
+  protected StringType intent;
 
   /**
    * Indicates how quickly the activity should be addressed with respect to other
    * requests.
    */
-  @Child(name = "priority", type = { CodeType.class }, order = 20, min = 0, max = 1, modifier = false, summary = false)
+  @Child(name = "priority", type = { StringType.class }, order = 20, min = 0, max = 1, modifier = false, summary = false)
   @Description(shortDefinition = "routine | urgent | asap | stat", formalDefinition = "Indicates how quickly the activity  should be addressed with respect to other requests.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/request-priority")
-  protected Enumeration<RequestPriority> priority;
+  protected StringType priority;
 
   /**
    * Set this to true if the definition is to indicate that a particular activity
@@ -1967,7 +976,7 @@ public class ActivityDefinition extends MetadataResource {
   /**
    * Constructor
    */
-  public ActivityDefinition(Enumeration<PublicationStatus> status) {
+  public ActivityDefinition(StringType status) {
     super();
     this.status = status;
   }
@@ -2390,12 +1399,12 @@ public class ActivityDefinition extends MetadataResource {
    *         object with id, value and extensions. The accessor "getStatus" gives
    *         direct access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create ActivityDefinition.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -2413,7 +1422,7 @@ public class ActivityDefinition extends MetadataResource {
    *              object with id, value and extensions. The accessor "getStatus"
    *              gives direct access to the value
    */
-  public ActivityDefinition setStatusElement(Enumeration<PublicationStatus> value) {
+  public ActivityDefinition setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -2422,17 +1431,17 @@ public class ActivityDefinition extends MetadataResource {
    * @return The status of this activity definition. Enables tracking the
    *         life-cycle of the content.
    */
-  public PublicationStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The status of this activity definition. Enables tracking the
    *              life-cycle of the content.
    */
-  public ActivityDefinition setStatus(PublicationStatus value) {
+  public ActivityDefinition setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -3636,12 +2645,12 @@ public class ActivityDefinition extends MetadataResource {
    *         value and extensions. The accessor "getKind" gives direct access to
    *         the value
    */
-  public Enumeration<ActivityDefinitionKind> getKindElement() {
+  public StringType getKindElement() {
     if (this.kind == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create ActivityDefinition.kind");
       else if (Configuration.doAutoCreate())
-        this.kind = new Enumeration<ActivityDefinitionKind>(new ActivityDefinitionKindEnumFactory()); // bb
+        this.kind = new StringType(); // bb
     return this.kind;
   }
 
@@ -3661,7 +2670,7 @@ public class ActivityDefinition extends MetadataResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getKind" gives direct access to the value
    */
-  public ActivityDefinition setKindElement(Enumeration<ActivityDefinitionKind> value) {
+  public ActivityDefinition setKindElement(StringType value) {
     this.kind = value;
     return this;
   }
@@ -3672,8 +2681,8 @@ public class ActivityDefinition extends MetadataResource {
    *         a CommunicationRequest. Typically, but not always, this is a Request
    *         resource.
    */
-  public ActivityDefinitionKind getKind() {
-    return this.kind == null ? null : this.kind.getValue();
+  public StringType getKind() {
+    return this.kind == null ? null : this.kind;
   }
 
   /**
@@ -3682,12 +2691,12 @@ public class ActivityDefinition extends MetadataResource {
    *              ServiceRequest, or a CommunicationRequest. Typically, but not
    *              always, this is a Request resource.
    */
-  public ActivityDefinition setKind(ActivityDefinitionKind value) {
+  public ActivityDefinition setKind(String value) {
     if (value == null)
       this.kind = null;
     else {
       if (this.kind == null)
-        this.kind = new Enumeration<ActivityDefinitionKind>(new ActivityDefinitionKindEnumFactory());
+        this.kind = new StringType();
       this.kind.setValue(value);
     }
     return this;
@@ -3783,12 +2792,12 @@ public class ActivityDefinition extends MetadataResource {
    *         and extensions. The accessor "getIntent" gives direct access to the
    *         value
    */
-  public Enumeration<RequestIntent> getIntentElement() {
+  public StringType getIntentElement() {
     if (this.intent == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create ActivityDefinition.intent");
       else if (Configuration.doAutoCreate())
-        this.intent = new Enumeration<RequestIntent>(new RequestIntentEnumFactory()); // bb
+        this.intent = new StringType(); // bb
     return this.intent;
   }
 
@@ -3807,7 +2816,7 @@ public class ActivityDefinition extends MetadataResource {
    *              id, value and extensions. The accessor "getIntent" gives direct
    *              access to the value
    */
-  public ActivityDefinition setIntentElement(Enumeration<RequestIntent> value) {
+  public ActivityDefinition setIntentElement(StringType value) {
     this.intent = value;
     return this;
   }
@@ -3816,8 +2825,8 @@ public class ActivityDefinition extends MetadataResource {
    * @return Indicates the level of authority/intentionality associated with the
    *         activity and where the request should fit into the workflow chain.
    */
-  public RequestIntent getIntent() {
-    return this.intent == null ? null : this.intent.getValue();
+  public StringType getIntent() {
+    return this.intent == null ? null : this.intent;
   }
 
   /**
@@ -3825,12 +2834,12 @@ public class ActivityDefinition extends MetadataResource {
    *              the activity and where the request should fit into the workflow
    *              chain.
    */
-  public ActivityDefinition setIntent(RequestIntent value) {
+  public ActivityDefinition setIntent(String value) {
     if (value == null)
       this.intent = null;
     else {
       if (this.intent == null)
-        this.intent = new Enumeration<RequestIntent>(new RequestIntentEnumFactory());
+        this.intent = new StringType();
       this.intent.setValue(value);
     }
     return this;
@@ -3842,12 +2851,12 @@ public class ActivityDefinition extends MetadataResource {
    *         object with id, value and extensions. The accessor "getPriority"
    *         gives direct access to the value
    */
-  public Enumeration<RequestPriority> getPriorityElement() {
+  public StringType getPriorityElement() {
     if (this.priority == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create ActivityDefinition.priority");
       else if (Configuration.doAutoCreate())
-        this.priority = new Enumeration<RequestPriority>(new RequestPriorityEnumFactory()); // bb
+        this.priority = new StringType(); // bb
     return this.priority;
   }
 
@@ -3865,7 +2874,7 @@ public class ActivityDefinition extends MetadataResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getPriority" gives direct access to the value
    */
-  public ActivityDefinition setPriorityElement(Enumeration<RequestPriority> value) {
+  public ActivityDefinition setPriorityElement(StringType value) {
     this.priority = value;
     return this;
   }
@@ -3874,20 +2883,20 @@ public class ActivityDefinition extends MetadataResource {
    * @return Indicates how quickly the activity should be addressed with respect
    *         to other requests.
    */
-  public RequestPriority getPriority() {
-    return this.priority == null ? null : this.priority.getValue();
+  public StringType getPriority() {
+    return this.priority == null ? null : this.priority;
   }
 
   /**
    * @param value Indicates how quickly the activity should be addressed with
    *              respect to other requests.
    */
-  public ActivityDefinition setPriority(RequestPriority value) {
+  public ActivityDefinition setPriority(String value) {
     if (value == null)
       this.priority = null;
     else {
       if (this.priority == null)
-        this.priority = new Enumeration<RequestPriority>(new RequestPriorityEnumFactory());
+        this.priority = new StringType();
       this.priority.setValue(value);
     }
     return this;
@@ -4692,7 +3701,7 @@ public class ActivityDefinition extends MetadataResource {
     children.add(new Property("subtitle", "string",
         "An explanatory or alternate title for the activity definition giving additional information about its content.",
         0, 1, subtitle));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of this activity definition. Enables tracking the life-cycle of the content.", 0, 1, status));
     children.add(new Property("experimental", "boolean",
         "A Boolean value to indicate that this activity definition is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
@@ -4755,7 +3764,7 @@ public class ActivityDefinition extends MetadataResource {
     children.add(new Property("library", "canonical(Library)",
         "A reference to a Library resource containing any formal logic used by the activity definition.", 0,
         java.lang.Integer.MAX_VALUE, library));
-    children.add(new Property("kind", "code",
+    children.add(new Property("kind", "string",
         "A description of the kind of resource the activity definition is representing. For example, a MedicationRequest, a ServiceRequest, or a CommunicationRequest. Typically, but not always, this is a Request resource.",
         0, 1, kind));
     children.add(new Property("profile", "canonical(StructureDefinition)",
@@ -4763,10 +3772,10 @@ public class ActivityDefinition extends MetadataResource {
     children.add(new Property("code", "CodeableConcept",
         "Detailed description of the type of activity; e.g. What lab test, what procedure, what kind of encounter.", 0,
         1, code));
-    children.add(new Property("intent", "code",
+    children.add(new Property("intent", "string",
         "Indicates the level of authority/intentionality associated with the activity and where the request should fit into the workflow chain.",
         0, 1, intent));
-    children.add(new Property("priority", "code",
+    children.add(new Property("priority", "string",
         "Indicates how quickly the activity  should be addressed with respect to other requests.", 0, 1, priority));
     children.add(new Property("doNotPerform", "boolean",
         "Set this to true if the definition is to indicate that a particular activity should NOT be performed. If true, this element should be interpreted to reinforce a negative coding. For example NPO as a code with a doNotPerform of true would still indicate to NOT perform the action.",
@@ -4832,7 +3841,7 @@ public class ActivityDefinition extends MetadataResource {
           "An explanatory or alternate title for the activity definition giving additional information about its content.",
           0, 1, subtitle);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of this activity definition. Enables tracking the life-cycle of the content.", 0, 1, status);
     case -404562712:
       /* experimental */ return new Property("experimental", "boolean",
@@ -4929,7 +3938,7 @@ public class ActivityDefinition extends MetadataResource {
           "A reference to a Library resource containing any formal logic used by the activity definition.", 0,
           java.lang.Integer.MAX_VALUE, library);
     case 3292052:
-      /* kind */ return new Property("kind", "code",
+      /* kind */ return new Property("kind", "string",
           "A description of the kind of resource the activity definition is representing. For example, a MedicationRequest, a ServiceRequest, or a CommunicationRequest. Typically, but not always, this is a Request resource.",
           0, 1, kind);
     case -309425751:
@@ -4940,11 +3949,11 @@ public class ActivityDefinition extends MetadataResource {
           "Detailed description of the type of activity; e.g. What lab test, what procedure, what kind of encounter.",
           0, 1, code);
     case -1183762788:
-      /* intent */ return new Property("intent", "code",
+      /* intent */ return new Property("intent", "string",
           "Indicates the level of authority/intentionality associated with the activity and where the request should fit into the workflow chain.",
           0, 1, intent);
     case -1165461084:
-      /* priority */ return new Property("priority", "code",
+      /* priority */ return new Property("priority", "string",
           "Indicates how quickly the activity  should be addressed with respect to other requests.", 0, 1, priority);
     case -1788508167:
       /* doNotPerform */ return new Property("doNotPerform", "boolean",
@@ -5049,7 +4058,7 @@ public class ActivityDefinition extends MetadataResource {
     case -2060497896:
       /* subtitle */ return this.subtitle == null ? new Base[0] : new Base[] { this.subtitle }; // StringType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -404562712:
       /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
     case -1867885268:
@@ -5096,15 +4105,15 @@ public class ActivityDefinition extends MetadataResource {
     case 166208699:
       /* library */ return this.library == null ? new Base[0] : this.library.toArray(new Base[this.library.size()]); // CanonicalType
     case 3292052:
-      /* kind */ return this.kind == null ? new Base[0] : new Base[] { this.kind }; // Enumeration<ActivityDefinitionKind>
+      /* kind */ return this.kind == null ? new Base[0] : new Base[] { this.kind }; // StringType
     case -309425751:
       /* profile */ return this.profile == null ? new Base[0] : new Base[] { this.profile }; // CanonicalType
     case 3059181:
       /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // CodeableConcept
     case -1183762788:
-      /* intent */ return this.intent == null ? new Base[0] : new Base[] { this.intent }; // Enumeration<RequestIntent>
+      /* intent */ return this.intent == null ? new Base[0] : new Base[] { this.intent }; // StringType
     case -1165461084:
-      /* priority */ return this.priority == null ? new Base[0] : new Base[] { this.priority }; // Enumeration<RequestPriority>
+      /* priority */ return this.priority == null ? new Base[0] : new Base[] { this.priority }; // StringType
     case -1788508167:
       /* doNotPerform */ return this.doNotPerform == null ? new Base[0] : new Base[] { this.doNotPerform }; // BooleanType
     case -873664438:
@@ -5164,8 +4173,7 @@ public class ActivityDefinition extends MetadataResource {
       this.subtitle = castToString(value); // StringType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -404562712: // experimental
       this.experimental = castToBoolean(value); // BooleanType
@@ -5231,8 +4239,7 @@ public class ActivityDefinition extends MetadataResource {
       this.getLibrary().add(castToCanonical(value)); // CanonicalType
       return value;
     case 3292052: // kind
-      value = new ActivityDefinitionKindEnumFactory().fromType(castToCode(value));
-      this.kind = (Enumeration) value; // Enumeration<ActivityDefinitionKind>
+      this.kind = castToString(value); // StringType
       return value;
     case -309425751: // profile
       this.profile = castToCanonical(value); // CanonicalType
@@ -5241,12 +4248,10 @@ public class ActivityDefinition extends MetadataResource {
       this.code = castToCodeableConcept(value); // CodeableConcept
       return value;
     case -1183762788: // intent
-      value = new RequestIntentEnumFactory().fromType(castToCode(value));
-      this.intent = (Enumeration) value; // Enumeration<RequestIntent>
+      this.intent = castToString(value); // StringType
       return value;
     case -1165461084: // priority
-      value = new RequestPriorityEnumFactory().fromType(castToCode(value));
-      this.priority = (Enumeration) value; // Enumeration<RequestPriority>
+      this.priority = castToString(value); // StringType
       return value;
     case -1788508167: // doNotPerform
       this.doNotPerform = castToBoolean(value); // BooleanType
@@ -5308,8 +4313,7 @@ public class ActivityDefinition extends MetadataResource {
     } else if (name.equals("subtitle")) {
       this.subtitle = castToString(value); // StringType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("subject[x]")) {
@@ -5353,18 +4357,15 @@ public class ActivityDefinition extends MetadataResource {
     } else if (name.equals("library")) {
       this.getLibrary().add(castToCanonical(value));
     } else if (name.equals("kind")) {
-      value = new ActivityDefinitionKindEnumFactory().fromType(castToCode(value));
-      this.kind = (Enumeration) value; // Enumeration<ActivityDefinitionKind>
+      this.kind = castToString(value); // StringType
     } else if (name.equals("profile")) {
       this.profile = castToCanonical(value); // CanonicalType
     } else if (name.equals("code")) {
       this.code = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("intent")) {
-      value = new RequestIntentEnumFactory().fromType(castToCode(value));
-      this.intent = (Enumeration) value; // Enumeration<RequestIntent>
+      this.intent = castToString(value); // StringType
     } else if (name.equals("priority")) {
-      value = new RequestPriorityEnumFactory().fromType(castToCode(value));
-      this.priority = (Enumeration) value; // Enumeration<RequestPriority>
+      this.priority = castToString(value); // StringType
     } else if (name.equals("doNotPerform")) {
       this.doNotPerform = castToBoolean(value); // BooleanType
     } else if (name.equals("timing[x]")) {
@@ -5618,7 +4619,7 @@ public class ActivityDefinition extends MetadataResource {
     case -2060497896:
       /* subtitle */ return new String[] { "string" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -404562712:
       /* experimental */ return new String[] { "boolean" };
     case -1867885268:
@@ -5662,15 +4663,15 @@ public class ActivityDefinition extends MetadataResource {
     case 166208699:
       /* library */ return new String[] { "canonical" };
     case 3292052:
-      /* kind */ return new String[] { "code" };
+      /* kind */ return new String[] { "string" };
     case -309425751:
       /* profile */ return new String[] { "canonical" };
     case 3059181:
       /* code */ return new String[] { "CodeableConcept" };
     case -1183762788:
-      /* intent */ return new String[] { "code" };
+      /* intent */ return new String[] { "string" };
     case -1165461084:
-      /* priority */ return new String[] { "code" };
+      /* priority */ return new String[] { "string" };
     case -1788508167:
       /* doNotPerform */ return new String[] { "boolean" };
     case -873664438:

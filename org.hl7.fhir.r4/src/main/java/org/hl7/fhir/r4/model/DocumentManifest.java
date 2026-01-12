@@ -36,8 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.DocumentReferenceStatus;
-import org.hl7.fhir.r4.model.Enumerations.DocumentReferenceStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -344,10 +342,10 @@ public class DocumentManifest extends DomainResource {
   /**
    * The status of this document manifest.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 2, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 2, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "current | superseded | entered-in-error", formalDefinition = "The status of this document manifest.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/document-reference-status")
-  protected Enumeration<DocumentReferenceStatus> status;
+  protected StringType status;
 
   /**
    * The code specifying the type of clinical activity that resulted in placing
@@ -470,7 +468,7 @@ public class DocumentManifest extends DomainResource {
   /**
    * Constructor
    */
-  public DocumentManifest(Enumeration<DocumentReferenceStatus> status) {
+  public DocumentManifest(StringType status) {
     super();
     this.status = status;
   }
@@ -563,12 +561,12 @@ public class DocumentManifest extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<DocumentReferenceStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create DocumentManifest.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<DocumentReferenceStatus>(new DocumentReferenceStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -585,7 +583,7 @@ public class DocumentManifest extends DomainResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public DocumentManifest setStatusElement(Enumeration<DocumentReferenceStatus> value) {
+  public DocumentManifest setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -593,16 +591,16 @@ public class DocumentManifest extends DomainResource {
   /**
    * @return The status of this document manifest.
    */
-  public DocumentReferenceStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The status of this document manifest.
    */
-  public DocumentManifest setStatus(DocumentReferenceStatus value) {
+  public DocumentManifest setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<DocumentReferenceStatus>(new DocumentReferenceStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -1108,7 +1106,7 @@ public class DocumentManifest extends DomainResource {
     children.add(new Property("identifier", "Identifier",
         "Other identifiers associated with the document manifest, including version independent  identifiers.", 0,
         java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code", "The status of this document manifest.", 0, 1, status));
+    children.add(new Property("status", "string", "The status of this document manifest.", 0, 1, status));
     children.add(new Property("type", "CodeableConcept",
         "The code specifying the type of clinical activity that resulted in placing the associated content into the DocumentManifest.",
         0, 1, type));
@@ -1149,7 +1147,7 @@ public class DocumentManifest extends DomainResource {
           "Other identifiers associated with the document manifest, including version independent  identifiers.", 0,
           java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "The status of this document manifest.", 0, 1, status);
+      /* status */ return new Property("status", "string", "The status of this document manifest.", 0, 1, status);
     case 3575610:
       /* type */ return new Property("type", "CodeableConcept",
           "The code specifying the type of clinical activity that resulted in placing the associated content into the DocumentManifest.",
@@ -1201,7 +1199,7 @@ public class DocumentManifest extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<DocumentReferenceStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 3575610:
       /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // CodeableConcept
     case -1867885268:
@@ -1237,8 +1235,7 @@ public class DocumentManifest extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new DocumentReferenceStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<DocumentReferenceStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 3575610: // type
       this.type = castToCodeableConcept(value); // CodeableConcept
@@ -1280,8 +1277,7 @@ public class DocumentManifest extends DomainResource {
     } else if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new DocumentReferenceStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<DocumentReferenceStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("type")) {
       this.type = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("subject")) {
@@ -1377,7 +1373,7 @@ public class DocumentManifest extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 3575610:
       /* type */ return new String[] { "CodeableConcept" };
     case -1867885268:

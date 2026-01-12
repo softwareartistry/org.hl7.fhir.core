@@ -36,10 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.NoteType;
-import org.hl7.fhir.r4.model.Enumerations.NoteTypeEnumFactory;
-import org.hl7.fhir.r4.model.Enumerations.RemittanceOutcome;
-import org.hl7.fhir.r4.model.Enumerations.RemittanceOutcomeEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -922,10 +918,10 @@ public class PaymentReconciliation extends DomainResource {
     /**
      * The business purpose of the note text.
      */
-    @Child(name = "type", type = { CodeType.class }, order = 1, min = 0, max = 1, modifier = false, summary = false)
+    @Child(name = "type", type = { StringType.class }, order = 1, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "display | print | printoper", formalDefinition = "The business purpose of the note text.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/note-type")
-    protected Enumeration<NoteType> type;
+    protected StringType type;
 
     /**
      * The explanation or description associated with the processing.
@@ -948,12 +944,12 @@ public class PaymentReconciliation extends DomainResource {
      *         underlying object with id, value and extensions. The accessor
      *         "getType" gives direct access to the value
      */
-    public Enumeration<NoteType> getTypeElement() {
+    public StringType getTypeElement() {
       if (this.type == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create NotesComponent.type");
         else if (Configuration.doAutoCreate())
-          this.type = new Enumeration<NoteType>(new NoteTypeEnumFactory()); // bb
+          this.type = new StringType(); // bb
       return this.type;
     }
 
@@ -970,7 +966,7 @@ public class PaymentReconciliation extends DomainResource {
      *              the underlying object with id, value and extensions. The
      *              accessor "getType" gives direct access to the value
      */
-    public NotesComponent setTypeElement(Enumeration<NoteType> value) {
+    public NotesComponent setTypeElement(StringType value) {
       this.type = value;
       return this;
     }
@@ -978,19 +974,19 @@ public class PaymentReconciliation extends DomainResource {
     /**
      * @return The business purpose of the note text.
      */
-    public NoteType getType() {
-      return this.type == null ? null : this.type.getValue();
+    public StringType getType() {
+      return this.type == null ? null : this.type;
     }
 
     /**
      * @param value The business purpose of the note text.
      */
-    public NotesComponent setType(NoteType value) {
+    public NotesComponent setType(String value) {
       if (value == null)
         this.type = null;
       else {
         if (this.type == null)
-          this.type = new Enumeration<NoteType>(new NoteTypeEnumFactory());
+          this.type = new StringType();
         this.type.setValue(value);
       }
       return this;
@@ -1052,7 +1048,7 @@ public class PaymentReconciliation extends DomainResource {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("type", "code", "The business purpose of the note text.", 0, 1, type));
+      children.add(new Property("type", "string", "The business purpose of the note text.", 0, 1, type));
       children.add(
           new Property("text", "string", "The explanation or description associated with the processing.", 0, 1, text));
     }
@@ -1061,7 +1057,7 @@ public class PaymentReconciliation extends DomainResource {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 3575610:
-        /* type */ return new Property("type", "code", "The business purpose of the note text.", 0, 1, type);
+        /* type */ return new Property("type", "string", "The business purpose of the note text.", 0, 1, type);
       case 3556653:
         /* text */ return new Property("text", "string",
             "The explanation or description associated with the processing.", 0, 1, text);
@@ -1075,7 +1071,7 @@ public class PaymentReconciliation extends DomainResource {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 3575610:
-        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<NoteType>
+        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
       case 3556653:
         /* text */ return this.text == null ? new Base[0] : new Base[] { this.text }; // StringType
       default:
@@ -1088,8 +1084,7 @@ public class PaymentReconciliation extends DomainResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3575610: // type
-        value = new NoteTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<NoteType>
+        this.type = castToString(value); // StringType
         return value;
       case 3556653: // text
         this.text = castToString(value); // StringType
@@ -1103,8 +1098,7 @@ public class PaymentReconciliation extends DomainResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("type")) {
-        value = new NoteTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<NoteType>
+        this.type = castToString(value); // StringType
       } else if (name.equals("text")) {
         this.text = castToString(value); // StringType
       } else
@@ -1140,7 +1134,7 @@ public class PaymentReconciliation extends DomainResource {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 3575610:
-        /* type */ return new String[] { "code" };
+        /* type */ return new String[] { "string" };
       case 3556653:
         /* text */ return new String[] { "string" };
       default:
@@ -1277,10 +1271,10 @@ public class PaymentReconciliation extends DomainResource {
   /**
    * The outcome of a request for a reconciliation.
    */
-  @Child(name = "outcome", type = { CodeType.class }, order = 7, min = 0, max = 1, modifier = false, summary = false)
+  @Child(name = "outcome", type = { StringType.class }, order = 7, min = 0, max = 1, modifier = false, summary = false)
   @Description(shortDefinition = "queued | complete | error | partial", formalDefinition = "The outcome of a request for a reconciliation.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/remittance-outcome")
-  protected Enumeration<RemittanceOutcome> outcome;
+  protected StringType outcome;
 
   /**
    * A human readable description of the status of the request for the
@@ -1688,12 +1682,12 @@ public class PaymentReconciliation extends DomainResource {
    *         This is the underlying object with id, value and extensions. The
    *         accessor "getOutcome" gives direct access to the value
    */
-  public Enumeration<RemittanceOutcome> getOutcomeElement() {
+  public StringType getOutcomeElement() {
     if (this.outcome == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create PaymentReconciliation.outcome");
       else if (Configuration.doAutoCreate())
-        this.outcome = new Enumeration<RemittanceOutcome>(new RemittanceOutcomeEnumFactory()); // bb
+        this.outcome = new StringType(); // bb
     return this.outcome;
   }
 
@@ -1711,7 +1705,7 @@ public class PaymentReconciliation extends DomainResource {
    *              and extensions. The accessor "getOutcome" gives direct access to
    *              the value
    */
-  public PaymentReconciliation setOutcomeElement(Enumeration<RemittanceOutcome> value) {
+  public PaymentReconciliation setOutcomeElement(StringType value) {
     this.outcome = value;
     return this;
   }
@@ -1719,19 +1713,19 @@ public class PaymentReconciliation extends DomainResource {
   /**
    * @return The outcome of a request for a reconciliation.
    */
-  public RemittanceOutcome getOutcome() {
-    return this.outcome == null ? null : this.outcome.getValue();
+  public StringType getOutcome() {
+    return this.outcome == null ? null : this.outcome;
   }
 
   /**
    * @param value The outcome of a request for a reconciliation.
    */
-  public PaymentReconciliation setOutcome(RemittanceOutcome value) {
+  public PaymentReconciliation setOutcome(String value) {
     if (value == null)
       this.outcome = null;
     else {
       if (this.outcome == null)
-        this.outcome = new Enumeration<RemittanceOutcome>(new RemittanceOutcomeEnumFactory());
+        this.outcome = new StringType();
       this.outcome.setValue(value);
     }
     return this;
@@ -2047,7 +2041,7 @@ public class PaymentReconciliation extends DomainResource {
     children.add(new Property("request", "Reference(Task)", "Original request resource reference.", 0, 1, request));
     children.add(new Property("requestor", "Reference(Practitioner|PractitionerRole|Organization)",
         "The practitioner who is responsible for the services rendered to the patient.", 0, 1, requestor));
-    children.add(new Property("outcome", "code", "The outcome of a request for a reconciliation.", 0, 1, outcome));
+    children.add(new Property("outcome", "string", "The outcome of a request for a reconciliation.", 0, 1, outcome));
     children.add(new Property("disposition", "string",
         "A human readable description of the status of the request for the reconciliation.", 0, 1, disposition));
     children.add(new Property("paymentDate", "date", "The date of payment as indicated on the financial instrument.", 0,
@@ -2090,7 +2084,7 @@ public class PaymentReconciliation extends DomainResource {
       /* requestor */ return new Property("requestor", "Reference(Practitioner|PractitionerRole|Organization)",
           "The practitioner who is responsible for the services rendered to the patient.", 0, 1, requestor);
     case -1106507950:
-      /* outcome */ return new Property("outcome", "code", "The outcome of a request for a reconciliation.", 0, 1,
+      /* outcome */ return new Property("outcome", "string", "The outcome of a request for a reconciliation.", 0, 1,
           outcome);
     case 583380919:
       /* disposition */ return new Property("disposition", "string",
@@ -2140,7 +2134,7 @@ public class PaymentReconciliation extends DomainResource {
     case 693934258:
       /* requestor */ return this.requestor == null ? new Base[0] : new Base[] { this.requestor }; // Reference
     case -1106507950:
-      /* outcome */ return this.outcome == null ? new Base[0] : new Base[] { this.outcome }; // Enumeration<RemittanceOutcome>
+      /* outcome */ return this.outcome == null ? new Base[0] : new Base[] { this.outcome }; // StringType
     case 583380919:
       /* disposition */ return this.disposition == null ? new Base[0] : new Base[] { this.disposition }; // StringType
     case -1540873516:
@@ -2170,7 +2164,6 @@ public class PaymentReconciliation extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-//      value = new PaymentReconciliationStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // StringType
       return value;
     case -991726143: // period
@@ -2189,8 +2182,7 @@ public class PaymentReconciliation extends DomainResource {
       this.requestor = castToReference(value); // Reference
       return value;
     case -1106507950: // outcome
-      value = new RemittanceOutcomeEnumFactory().fromType(castToCode(value));
-      this.outcome = (Enumeration) value; // Enumeration<RemittanceOutcome>
+      this.outcome = castToString(value); // StringType
       return value;
     case 583380919: // disposition
       this.disposition = castToString(value); // StringType
@@ -2224,8 +2216,7 @@ public class PaymentReconciliation extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-//      value = new PaymentReconciliationStatusEnumFactory().fromType(castToCode(value));
-      this.status = castToString(value); // Enumeration<PaymentReconciliationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("period")) {
       this.period = castToPeriod(value); // Period
     } else if (name.equals("created")) {
@@ -2237,8 +2228,7 @@ public class PaymentReconciliation extends DomainResource {
     } else if (name.equals("requestor")) {
       this.requestor = castToReference(value); // Reference
     } else if (name.equals("outcome")) {
-      value = new RemittanceOutcomeEnumFactory().fromType(castToCode(value));
-      this.outcome = (Enumeration) value; // Enumeration<RemittanceOutcome>
+      this.outcome = castToString(value); // StringType
     } else if (name.equals("disposition")) {
       this.disposition = castToString(value); // StringType
     } else if (name.equals("paymentDate")) {
@@ -2352,7 +2342,7 @@ public class PaymentReconciliation extends DomainResource {
     case 693934258:
       /* requestor */ return new String[] { "Reference" };
     case -1106507950:
-      /* outcome */ return new String[] { "code" };
+      /* outcome */ return new String[] { "string" };
     case 583380919:
       /* disposition */ return new String[] { "string" };
     case -1540873516:

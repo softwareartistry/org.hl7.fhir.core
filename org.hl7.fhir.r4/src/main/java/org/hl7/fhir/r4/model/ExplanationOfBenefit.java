@@ -38,8 +38,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.NoteType;
-import org.hl7.fhir.r4.model.Enumerations.NoteTypeEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -12869,10 +12867,10 @@ public class ExplanationOfBenefit extends DomainResource {
     /**
      * The business purpose of the note text.
      */
-    @Child(name = "type", type = { CodeType.class }, order = 2, min = 0, max = 1, modifier = false, summary = false)
+    @Child(name = "type", type = { StringType.class }, order = 2, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "display | print | printoper", formalDefinition = "The business purpose of the note text.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/note-type")
-    protected Enumeration<NoteType> type;
+    protected StringType type;
 
     /**
      * The explanation or description associated with the processing.
@@ -12953,12 +12951,12 @@ public class ExplanationOfBenefit extends DomainResource {
      *         underlying object with id, value and extensions. The accessor
      *         "getType" gives direct access to the value
      */
-    public Enumeration<NoteType> getTypeElement() {
+    public StringType getTypeElement() {
       if (this.type == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create NoteComponent.type");
         else if (Configuration.doAutoCreate())
-          this.type = new Enumeration<NoteType>(new NoteTypeEnumFactory()); // bb
+          this.type = new StringType(); // bb
       return this.type;
     }
 
@@ -12975,7 +12973,7 @@ public class ExplanationOfBenefit extends DomainResource {
      *              the underlying object with id, value and extensions. The
      *              accessor "getType" gives direct access to the value
      */
-    public NoteComponent setTypeElement(Enumeration<NoteType> value) {
+    public NoteComponent setTypeElement(StringType value) {
       this.type = value;
       return this;
     }
@@ -12983,19 +12981,19 @@ public class ExplanationOfBenefit extends DomainResource {
     /**
      * @return The business purpose of the note text.
      */
-    public NoteType getType() {
-      return this.type == null ? null : this.type.getValue();
+    public StringType getType() {
+      return this.type == null ? null : this.type;
     }
 
     /**
      * @param value The business purpose of the note text.
      */
-    public NoteComponent setType(NoteType value) {
+    public NoteComponent setType(String value) {
       if (value == null)
         this.type = null;
       else {
         if (this.type == null)
-          this.type = new Enumeration<NoteType>(new NoteTypeEnumFactory());
+          this.type = new StringType();
         this.type.setValue(value);
       }
       return this;
@@ -13084,7 +13082,7 @@ public class ExplanationOfBenefit extends DomainResource {
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
       children.add(new Property("number", "positiveInt", "A number to uniquely identify a note entry.", 0, 1, number));
-      children.add(new Property("type", "code", "The business purpose of the note text.", 0, 1, type));
+      children.add(new Property("type", "string", "The business purpose of the note text.", 0, 1, type));
       children.add(
           new Property("text", "string", "The explanation or description associated with the processing.", 0, 1, text));
       children.add(new Property("language", "CodeableConcept",
@@ -13098,7 +13096,7 @@ public class ExplanationOfBenefit extends DomainResource {
         /* number */ return new Property("number", "positiveInt", "A number to uniquely identify a note entry.", 0, 1,
             number);
       case 3575610:
-        /* type */ return new Property("type", "code", "The business purpose of the note text.", 0, 1, type);
+        /* type */ return new Property("type", "string", "The business purpose of the note text.", 0, 1, type);
       case 3556653:
         /* text */ return new Property("text", "string",
             "The explanation or description associated with the processing.", 0, 1, text);
@@ -13117,7 +13115,7 @@ public class ExplanationOfBenefit extends DomainResource {
       case -1034364087:
         /* number */ return this.number == null ? new Base[0] : new Base[] { this.number }; // PositiveIntType
       case 3575610:
-        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<NoteType>
+        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
       case 3556653:
         /* text */ return this.text == null ? new Base[0] : new Base[] { this.text }; // StringType
       case -1613589672:
@@ -13135,8 +13133,7 @@ public class ExplanationOfBenefit extends DomainResource {
         this.number = castToPositiveInt(value); // PositiveIntType
         return value;
       case 3575610: // type
-        value = new NoteTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<NoteType>
+        this.type = castToString(value); // StringType
         return value;
       case 3556653: // text
         this.text = castToString(value); // StringType
@@ -13155,8 +13152,7 @@ public class ExplanationOfBenefit extends DomainResource {
       if (name.equals("number")) {
         this.number = castToPositiveInt(value); // PositiveIntType
       } else if (name.equals("type")) {
-        value = new NoteTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<NoteType>
+        this.type = castToString(value); // StringType
       } else if (name.equals("text")) {
         this.text = castToString(value); // StringType
       } else if (name.equals("language")) {
@@ -13204,7 +13200,7 @@ public class ExplanationOfBenefit extends DomainResource {
       case -1034364087:
         /* number */ return new String[] { "positiveInt" };
       case 3575610:
-        /* type */ return new String[] { "code" };
+        /* type */ return new String[] { "string" };
       case 3556653:
         /* text */ return new String[] { "string" };
       case -1613589672:

@@ -36,8 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -57,327 +55,15 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
     "useContext", "jurisdiction", "usage", "uniqueId" })
 public class NamingSystem extends MetadataResource {
 
-  public enum NamingSystemType {
-    /**
-     * The naming system is used to define concepts and symbols to represent those
-     * concepts; e.g. UCUM, LOINC, NDC code, local lab codes, etc.
-     */
-    CODESYSTEM,
-    /**
-     * The naming system is used to manage identifiers (e.g. license numbers, order
-     * numbers, etc.).
-     */
-    IDENTIFIER,
-    /**
-     * The naming system is used as the root for other identifiers and naming
-     * systems.
-     */
-    ROOT,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static NamingSystemType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("codesystem".equals(codeString))
-        return CODESYSTEM;
-      if ("identifier".equals(codeString))
-        return IDENTIFIER;
-      if ("root".equals(codeString))
-        return ROOT;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown NamingSystemType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case CODESYSTEM:
-        return "codesystem";
-      case IDENTIFIER:
-        return "identifier";
-      case ROOT:
-        return "root";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case CODESYSTEM:
-        return "http://hl7.org/fhir/namingsystem-type";
-      case IDENTIFIER:
-        return "http://hl7.org/fhir/namingsystem-type";
-      case ROOT:
-        return "http://hl7.org/fhir/namingsystem-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case CODESYSTEM:
-        return "The naming system is used to define concepts and symbols to represent those concepts; e.g. UCUM, LOINC, NDC code, local lab codes, etc.";
-      case IDENTIFIER:
-        return "The naming system is used to manage identifiers (e.g. license numbers, order numbers, etc.).";
-      case ROOT:
-        return "The naming system is used as the root for other identifiers and naming systems.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case CODESYSTEM:
-        return "Code System";
-      case IDENTIFIER:
-        return "Identifier";
-      case ROOT:
-        return "Root";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class NamingSystemTypeEnumFactory implements EnumFactory<NamingSystemType> {
-    public NamingSystemType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("codesystem".equals(codeString))
-        return NamingSystemType.CODESYSTEM;
-      if ("identifier".equals(codeString))
-        return NamingSystemType.IDENTIFIER;
-      if ("root".equals(codeString))
-        return NamingSystemType.ROOT;
-      throw new IllegalArgumentException("Unknown NamingSystemType code '" + codeString + "'");
-    }
-
-    public Enumeration<NamingSystemType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<NamingSystemType>(this, NamingSystemType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<NamingSystemType>(this, NamingSystemType.NULL, code);
-      if ("codesystem".equals(codeString))
-        return new Enumeration<NamingSystemType>(this, NamingSystemType.CODESYSTEM, code);
-      if ("identifier".equals(codeString))
-        return new Enumeration<NamingSystemType>(this, NamingSystemType.IDENTIFIER, code);
-      if ("root".equals(codeString))
-        return new Enumeration<NamingSystemType>(this, NamingSystemType.ROOT, code);
-      throw new FHIRException("Unknown NamingSystemType code '" + codeString + "'");
-    }
-
-    public String toCode(NamingSystemType code) {
-       if (code == NamingSystemType.NULL)
-           return null;
-       if (code == NamingSystemType.CODESYSTEM)
-        return "codesystem";
-      if (code == NamingSystemType.IDENTIFIER)
-        return "identifier";
-      if (code == NamingSystemType.ROOT)
-        return "root";
-      return "?";
-   }
-
-    public String toSystem(NamingSystemType code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum NamingSystemIdentifierType {
-    /**
-     * An ISO object identifier; e.g. 1.2.3.4.5.
-     */
-    OID,
-    /**
-     * A universally unique identifier of the form
-     * a5afddf4-e880-459b-876e-e4591b0acc11.
-     */
-    UUID,
-    /**
-     * A uniform resource identifier (ideally a URL - uniform resource locator);
-     * e.g. http://unitsofmeasure.org.
-     */
-    URI,
-    /**
-     * Some other type of unique identifier; e.g. HL7-assigned reserved string such
-     * as LN for LOINC.
-     */
-    OTHER,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static NamingSystemIdentifierType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("oid".equals(codeString))
-        return OID;
-      if ("uuid".equals(codeString))
-        return UUID;
-      if ("uri".equals(codeString))
-        return URI;
-      if ("other".equals(codeString))
-        return OTHER;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown NamingSystemIdentifierType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case OID:
-        return "oid";
-      case UUID:
-        return "uuid";
-      case URI:
-        return "uri";
-      case OTHER:
-        return "other";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case OID:
-        return "http://hl7.org/fhir/namingsystem-identifier-type";
-      case UUID:
-        return "http://hl7.org/fhir/namingsystem-identifier-type";
-      case URI:
-        return "http://hl7.org/fhir/namingsystem-identifier-type";
-      case OTHER:
-        return "http://hl7.org/fhir/namingsystem-identifier-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case OID:
-        return "An ISO object identifier; e.g. 1.2.3.4.5.";
-      case UUID:
-        return "A universally unique identifier of the form a5afddf4-e880-459b-876e-e4591b0acc11.";
-      case URI:
-        return "A uniform resource identifier (ideally a URL - uniform resource locator); e.g. http://unitsofmeasure.org.";
-      case OTHER:
-        return "Some other type of unique identifier; e.g. HL7-assigned reserved string such as LN for LOINC.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case OID:
-        return "OID";
-      case UUID:
-        return "UUID";
-      case URI:
-        return "URI";
-      case OTHER:
-        return "Other";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class NamingSystemIdentifierTypeEnumFactory implements EnumFactory<NamingSystemIdentifierType> {
-    public NamingSystemIdentifierType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("oid".equals(codeString))
-        return NamingSystemIdentifierType.OID;
-      if ("uuid".equals(codeString))
-        return NamingSystemIdentifierType.UUID;
-      if ("uri".equals(codeString))
-        return NamingSystemIdentifierType.URI;
-      if ("other".equals(codeString))
-        return NamingSystemIdentifierType.OTHER;
-      throw new IllegalArgumentException("Unknown NamingSystemIdentifierType code '" + codeString + "'");
-    }
-
-    public Enumeration<NamingSystemIdentifierType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<NamingSystemIdentifierType>(this, NamingSystemIdentifierType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<NamingSystemIdentifierType>(this, NamingSystemIdentifierType.NULL, code);
-      if ("oid".equals(codeString))
-        return new Enumeration<NamingSystemIdentifierType>(this, NamingSystemIdentifierType.OID, code);
-      if ("uuid".equals(codeString))
-        return new Enumeration<NamingSystemIdentifierType>(this, NamingSystemIdentifierType.UUID, code);
-      if ("uri".equals(codeString))
-        return new Enumeration<NamingSystemIdentifierType>(this, NamingSystemIdentifierType.URI, code);
-      if ("other".equals(codeString))
-        return new Enumeration<NamingSystemIdentifierType>(this, NamingSystemIdentifierType.OTHER, code);
-      throw new FHIRException("Unknown NamingSystemIdentifierType code '" + codeString + "'");
-    }
-
-    public String toCode(NamingSystemIdentifierType code) {
-       if (code == NamingSystemIdentifierType.NULL)
-           return null;
-       if (code == NamingSystemIdentifierType.NULL)
-        return null;
-      if (code == NamingSystemIdentifierType.OID)
-        return "oid";
-      if (code == NamingSystemIdentifierType.UUID)
-        return "uuid";
-      if (code == NamingSystemIdentifierType.URI)
-        return "uri";
-      if (code == NamingSystemIdentifierType.OTHER)
-        return "other";
-      return "?";
-   }
-
-    public String toSystem(NamingSystemIdentifierType code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class NamingSystemUniqueIdComponent extends BackboneElement implements IBaseBackboneElement {
     /**
      * Identifies the unique identifier scheme used for this particular identifier.
      */
-    @Child(name = "type", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "type", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "oid | uuid | uri | other", formalDefinition = "Identifies the unique identifier scheme used for this particular identifier.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/namingsystem-identifier-type")
-    protected Enumeration<NamingSystemIdentifierType> type;
+    protected StringType type;
 
     /**
      * The string that should be sent over the wire to identify the code system or
@@ -424,7 +110,7 @@ public class NamingSystem extends MetadataResource {
     /**
      * Constructor
      */
-    public NamingSystemUniqueIdComponent(Enumeration<NamingSystemIdentifierType> type, StringType value) {
+    public NamingSystemUniqueIdComponent(StringType type, StringType value) {
       super();
       this.type = type;
       this.value = value;
@@ -436,12 +122,12 @@ public class NamingSystem extends MetadataResource {
      *         and extensions. The accessor "getType" gives direct access to the
      *         value
      */
-    public Enumeration<NamingSystemIdentifierType> getTypeElement() {
+    public StringType getTypeElement() {
       if (this.type == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create NamingSystemUniqueIdComponent.type");
         else if (Configuration.doAutoCreate())
-          this.type = new Enumeration<NamingSystemIdentifierType>(new NamingSystemIdentifierTypeEnumFactory()); // bb
+          this.type = new StringType(); // bb
       return this.type;
     }
 
@@ -459,7 +145,7 @@ public class NamingSystem extends MetadataResource {
      *              id, value and extensions. The accessor "getType" gives direct
      *              access to the value
      */
-    public NamingSystemUniqueIdComponent setTypeElement(Enumeration<NamingSystemIdentifierType> value) {
+    public NamingSystemUniqueIdComponent setTypeElement(StringType value) {
       this.type = value;
       return this;
     }
@@ -468,17 +154,17 @@ public class NamingSystem extends MetadataResource {
      * @return Identifies the unique identifier scheme used for this particular
      *         identifier.
      */
-    public NamingSystemIdentifierType getType() {
-      return this.type == null ? null : this.type.getValue();
+    public StringType getType() {
+      return this.type == null ? null : this.type;
     }
 
     /**
      * @param value Identifies the unique identifier scheme used for this particular
      *              identifier.
      */
-    public NamingSystemUniqueIdComponent setType(NamingSystemIdentifierType value) {
+    public NamingSystemUniqueIdComponent setType(String value) {
       if (this.type == null)
-        this.type = new Enumeration<NamingSystemIdentifierType>(new NamingSystemIdentifierTypeEnumFactory());
+        this.type = new StringType();
       this.type.setValue(value);
       return this;
     }
@@ -675,7 +361,7 @@ public class NamingSystem extends MetadataResource {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("type", "code",
+      children.add(new Property("type", "string",
           "Identifies the unique identifier scheme used for this particular identifier.", 0, 1, type));
       children.add(new Property("value", "string",
           "The string that should be sent over the wire to identify the code system or identifier system.", 0, 1,
@@ -693,7 +379,7 @@ public class NamingSystem extends MetadataResource {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 3575610:
-        /* type */ return new Property("type", "code",
+        /* type */ return new Property("type", "string",
             "Identifies the unique identifier scheme used for this particular identifier.", 0, 1, type);
       case 111972721:
         /* value */ return new Property("value", "string",
@@ -719,7 +405,7 @@ public class NamingSystem extends MetadataResource {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 3575610:
-        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<NamingSystemIdentifierType>
+        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
       case 111972721:
         /* value */ return this.value == null ? new Base[0] : new Base[] { this.value }; // StringType
       case -1294005119:
@@ -738,8 +424,7 @@ public class NamingSystem extends MetadataResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3575610: // type
-        value = new NamingSystemIdentifierTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<NamingSystemIdentifierType>
+        this.type = castToString(value); // StringType
         return value;
       case 111972721: // value
         this.value = castToString(value); // StringType
@@ -762,8 +447,7 @@ public class NamingSystem extends MetadataResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("type")) {
-        value = new NamingSystemIdentifierTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<NamingSystemIdentifierType>
+        this.type = castToString(value); // StringType
       } else if (name.equals("value")) {
         this.value = castToString(value); // StringType
       } else if (name.equals("preferred")) {
@@ -817,7 +501,7 @@ public class NamingSystem extends MetadataResource {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 3575610:
-        /* type */ return new String[] { "code" };
+        /* type */ return new String[] { "string" };
       case 111972721:
         /* value */ return new String[] { "string" };
       case -1294005119:
@@ -902,10 +586,10 @@ public class NamingSystem extends MetadataResource {
    * Indicates the purpose for the naming system - what kinds of things does it
    * make unique?
    */
-  @Child(name = "kind", type = { CodeType.class }, order = 0, min = 1, max = 1, modifier = false, summary = true)
+  @Child(name = "kind", type = { StringType.class }, order = 0, min = 1, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "codesystem | identifier | root", formalDefinition = "Indicates the purpose for the naming system - what kinds of things does it make unique?")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/namingsystem-type")
-  protected Enumeration<NamingSystemType> kind;
+  protected StringType kind;
 
   /**
    * The name of the organization that is responsible for issuing identifiers or
@@ -954,7 +638,7 @@ public class NamingSystem extends MetadataResource {
   /**
    * Constructor
    */
-  public NamingSystem(StringType name, Enumeration<PublicationStatus> status, Enumeration<NamingSystemType> kind,
+  public NamingSystem(StringType name, StringType status, StringType kind,
       DateTimeType date) {
     super();
     this.name = name;
@@ -1027,12 +711,12 @@ public class NamingSystem extends MetadataResource {
    *         id, value and extensions. The accessor "getStatus" gives direct
    *         access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create NamingSystem.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -1050,7 +734,7 @@ public class NamingSystem extends MetadataResource {
    *              object with id, value and extensions. The accessor "getStatus"
    *              gives direct access to the value
    */
-  public NamingSystem setStatusElement(Enumeration<PublicationStatus> value) {
+  public NamingSystem setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1059,17 +743,17 @@ public class NamingSystem extends MetadataResource {
    * @return The status of this naming system. Enables tracking the life-cycle of
    *         the content.
    */
-  public PublicationStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The status of this naming system. Enables tracking the
    *              life-cycle of the content.
    */
-  public NamingSystem setStatus(PublicationStatus value) {
+  public NamingSystem setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -1080,12 +764,12 @@ public class NamingSystem extends MetadataResource {
    *         with id, value and extensions. The accessor "getKind" gives direct
    *         access to the value
    */
-  public Enumeration<NamingSystemType> getKindElement() {
+  public StringType getKindElement() {
     if (this.kind == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create NamingSystem.kind");
       else if (Configuration.doAutoCreate())
-        this.kind = new Enumeration<NamingSystemType>(new NamingSystemTypeEnumFactory()); // bb
+        this.kind = new StringType(); // bb
     return this.kind;
   }
 
@@ -1103,7 +787,7 @@ public class NamingSystem extends MetadataResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getKind" gives direct access to the value
    */
-  public NamingSystem setKindElement(Enumeration<NamingSystemType> value) {
+  public NamingSystem setKindElement(StringType value) {
     this.kind = value;
     return this;
   }
@@ -1112,17 +796,17 @@ public class NamingSystem extends MetadataResource {
    * @return Indicates the purpose for the naming system - what kinds of things
    *         does it make unique?
    */
-  public NamingSystemType getKind() {
-    return this.kind == null ? null : this.kind.getValue();
+  public StringType getKind() {
+    return this.kind == null ? null : this.kind;
   }
 
   /**
    * @param value Indicates the purpose for the naming system - what kinds of
    *              things does it make unique?
    */
-  public NamingSystem setKind(NamingSystemType value) {
+  public NamingSystem setKind(String value) {
     if (this.kind == null)
-      this.kind = new Enumeration<NamingSystemType>(new NamingSystemTypeEnumFactory());
+      this.kind = new StringType();
     this.kind.setValue(value);
     return this;
   }
@@ -1684,9 +1368,9 @@ public class NamingSystem extends MetadataResource {
     children.add(new Property("name", "string",
         "A natural language name identifying the naming system. This name should be usable as an identifier for the module by machine processing applications such as code generation.",
         0, 1, name));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of this naming system. Enables tracking the life-cycle of the content.", 0, 1, status));
-    children.add(new Property("kind", "code",
+    children.add(new Property("kind", "string",
         "Indicates the purpose for the naming system - what kinds of things does it make unique?", 0, 1, kind));
     children.add(new Property("date", "dateTime",
         "The date  (and optionally time) when the naming system was published. The date must change when the business version changes and it must change if the status code changes. In addition, it should change when the substantive content of the naming system changes.",
@@ -1726,10 +1410,10 @@ public class NamingSystem extends MetadataResource {
           "A natural language name identifying the naming system. This name should be usable as an identifier for the module by machine processing applications such as code generation.",
           0, 1, name);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of this naming system. Enables tracking the life-cycle of the content.", 0, 1, status);
     case 3292052:
-      /* kind */ return new Property("kind", "code",
+      /* kind */ return new Property("kind", "string",
           "Indicates the purpose for the naming system - what kinds of things does it make unique?", 0, 1, kind);
     case 3076014:
       /* date */ return new Property("date", "dateTime",
@@ -1781,9 +1465,9 @@ public class NamingSystem extends MetadataResource {
     case 3373707:
       /* name */ return this.name == null ? new Base[0] : new Base[] { this.name }; // StringType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 3292052:
-      /* kind */ return this.kind == null ? new Base[0] : new Base[] { this.kind }; // Enumeration<NamingSystemType>
+      /* kind */ return this.kind == null ? new Base[0] : new Base[] { this.kind }; // StringType
     case 3076014:
       /* date */ return this.date == null ? new Base[0] : new Base[] { this.date }; // DateTimeType
     case 1447404028:
@@ -1819,12 +1503,10 @@ public class NamingSystem extends MetadataResource {
       this.name = castToString(value); // StringType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 3292052: // kind
-      value = new NamingSystemTypeEnumFactory().fromType(castToCode(value));
-      this.kind = (Enumeration) value; // Enumeration<NamingSystemType>
+      this.kind = castToString(value); // StringType
       return value;
     case 3076014: // date
       this.date = castToDateTime(value); // DateTimeType
@@ -1867,11 +1549,9 @@ public class NamingSystem extends MetadataResource {
     if (name.equals("name")) {
       this.name = castToString(value); // StringType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("kind")) {
-      value = new NamingSystemTypeEnumFactory().fromType(castToCode(value));
-      this.kind = (Enumeration) value; // Enumeration<NamingSystemType>
+      this.kind = castToString(value); // StringType
     } else if (name.equals("date")) {
       this.date = castToDateTime(value); // DateTimeType
     } else if (name.equals("publisher")) {
@@ -1971,9 +1651,9 @@ public class NamingSystem extends MetadataResource {
     case 3373707:
       /* name */ return new String[] { "string" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 3292052:
-      /* kind */ return new String[] { "code" };
+      /* kind */ return new String[] { "string" };
     case 3076014:
       /* date */ return new String[] { "dateTime" };
     case 1447404028:

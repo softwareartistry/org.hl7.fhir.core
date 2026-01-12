@@ -36,8 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.RemittanceOutcome;
-import org.hl7.fhir.r4.model.Enumerations.RemittanceOutcomeEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -2453,10 +2451,10 @@ public class CoverageEligibilityResponse extends DomainResource {
   /**
    * The outcome of the request processing.
    */
-  @Child(name = "outcome", type = { CodeType.class }, order = 8, min = 1, max = 1, modifier = false, summary = true)
+  @Child(name = "outcome", type = { StringType.class }, order = 8, min = 1, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "queued | complete | error | partial", formalDefinition = "The outcome of the request processing.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/remittance-outcome")
-  protected Enumeration<RemittanceOutcome> outcome;
+  protected StringType outcome;
 
   /**
    * A human readable description of the status of the adjudication.
@@ -2527,7 +2525,7 @@ public class CoverageEligibilityResponse extends DomainResource {
    * Constructor
    */
   public CoverageEligibilityResponse(StringType status, Reference patient,
-      DateTimeType created, Reference request, Enumeration<RemittanceOutcome> outcome, Reference insurer) {
+      DateTimeType created, Reference request, StringType outcome, Reference insurer) {
     super();
     this.status = status;
     this.patient = patient;
@@ -2984,12 +2982,12 @@ public class CoverageEligibilityResponse extends DomainResource {
    *         the underlying object with id, value and extensions. The accessor
    *         "getOutcome" gives direct access to the value
    */
-  public Enumeration<RemittanceOutcome> getOutcomeElement() {
+  public StringType getOutcomeElement() {
     if (this.outcome == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create CoverageEligibilityResponse.outcome");
       else if (Configuration.doAutoCreate())
-        this.outcome = new Enumeration<RemittanceOutcome>(new RemittanceOutcomeEnumFactory()); // bb
+        this.outcome = new StringType(); // bb
     return this.outcome;
   }
 
@@ -3006,7 +3004,7 @@ public class CoverageEligibilityResponse extends DomainResource {
    *              is the underlying object with id, value and extensions. The
    *              accessor "getOutcome" gives direct access to the value
    */
-  public CoverageEligibilityResponse setOutcomeElement(Enumeration<RemittanceOutcome> value) {
+  public CoverageEligibilityResponse setOutcomeElement(StringType value) {
     this.outcome = value;
     return this;
   }
@@ -3014,16 +3012,16 @@ public class CoverageEligibilityResponse extends DomainResource {
   /**
    * @return The outcome of the request processing.
    */
-  public RemittanceOutcome getOutcome() {
-    return this.outcome == null ? null : this.outcome.getValue();
+  public StringType getOutcome() {
+    return this.outcome == null ? null : this.outcome;
   }
 
   /**
    * @param value The outcome of the request processing.
    */
-  public CoverageEligibilityResponse setOutcome(RemittanceOutcome value) {
+  public CoverageEligibilityResponse setOutcome(String value) {
     if (this.outcome == null)
-      this.outcome = new Enumeration<RemittanceOutcome>(new RemittanceOutcomeEnumFactory());
+      this.outcome = new StringType();
     this.outcome.setValue(value);
     return this;
   }
@@ -3351,7 +3349,7 @@ public class CoverageEligibilityResponse extends DomainResource {
         "The provider which is responsible for the request.", 0, 1, requestor));
     children.add(new Property("request", "Reference(CoverageEligibilityRequest)",
         "Reference to the original request resource.", 0, 1, request));
-    children.add(new Property("outcome", "code", "The outcome of the request processing.", 0, 1, outcome));
+    children.add(new Property("outcome", "string", "The outcome of the request processing.", 0, 1, outcome));
     children.add(new Property("disposition", "string",
         "A human readable description of the status of the adjudication.", 0, 1, disposition));
     children.add(new Property("insurer", "Reference(Organization)",
@@ -3406,7 +3404,7 @@ public class CoverageEligibilityResponse extends DomainResource {
       /* request */ return new Property("request", "Reference(CoverageEligibilityRequest)",
           "Reference to the original request resource.", 0, 1, request);
     case -1106507950:
-      /* outcome */ return new Property("outcome", "code", "The outcome of the request processing.", 0, 1, outcome);
+      /* outcome */ return new Property("outcome", "string", "The outcome of the request processing.", 0, 1, outcome);
     case 583380919:
       /* disposition */ return new Property("disposition", "string",
           "A human readable description of the status of the adjudication.", 0, 1, disposition);
@@ -3440,9 +3438,9 @@ public class CoverageEligibilityResponse extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<EligibilityResponseStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -220463842:
-      /* purpose */ return this.purpose == null ? new Base[0] : this.purpose.toArray(new Base[this.purpose.size()]); // Enumeration<EligibilityResponsePurpose>
+      /* purpose */ return this.purpose == null ? new Base[0] : this.purpose.toArray(new Base[this.purpose.size()]); // StringType
     case -791418107:
       /* patient */ return this.patient == null ? new Base[0] : new Base[] { this.patient }; // Reference
     case 1379209295:
@@ -3454,7 +3452,7 @@ public class CoverageEligibilityResponse extends DomainResource {
     case 1095692943:
       /* request */ return this.request == null ? new Base[0] : new Base[] { this.request }; // Reference
     case -1106507950:
-      /* outcome */ return this.outcome == null ? new Base[0] : new Base[] { this.outcome }; // Enumeration<RemittanceOutcome>
+      /* outcome */ return this.outcome == null ? new Base[0] : new Base[] { this.outcome }; // StringType
     case 583380919:
       /* disposition */ return this.disposition == null ? new Base[0] : new Base[] { this.disposition }; // StringType
     case 1957615864:
@@ -3481,12 +3479,10 @@ public class CoverageEligibilityResponse extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-//      value = new EligibilityResponseStatusEnumFactory().fromType(castToCode(value));
-      this.status = castToString(value); // Enumeration<EligibilityResponseStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -220463842: // purpose
-//      value = new EligibilityResponsePurposeEnumFactory().fromType(castToCode(value));
-      this.getPurpose().add(castToString(value)); // Enumeration<EligibilityResponsePurpose>
+      this.getPurpose().add(castToString(value)); // StringType
       return value;
     case -791418107: // patient
       this.patient = castToReference(value); // Reference
@@ -3504,8 +3500,7 @@ public class CoverageEligibilityResponse extends DomainResource {
       this.request = castToReference(value); // Reference
       return value;
     case -1106507950: // outcome
-      value = new RemittanceOutcomeEnumFactory().fromType(castToCode(value));
-      this.outcome = (Enumeration) value; // Enumeration<RemittanceOutcome>
+      this.outcome = castToString(value); // StringType
       return value;
     case 583380919: // disposition
       this.disposition = castToString(value); // StringType
@@ -3536,11 +3531,9 @@ public class CoverageEligibilityResponse extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-//      value = new EligibilityResponseStatusEnumFactory().fromType(castToCode(value));
-      this.status = (castToString(value)); // Enumeration<EligibilityResponseStatus>
+      this.status = (castToString(value)); // StringType
     } else if (name.equals("purpose")) {
-//      value = new EligibilityResponsePurposeEnumFactory().fromType(castToCode(value));
-      this.getPurpose().add(castToString(value));
+      this.getPurpose().add(castToString(value)); // StringType
     } else if (name.equals("patient")) {
       this.patient = castToReference(value); // Reference
     } else if (name.equals("serviced[x]")) {
@@ -3552,8 +3545,7 @@ public class CoverageEligibilityResponse extends DomainResource {
     } else if (name.equals("request")) {
       this.request = castToReference(value); // Reference
     } else if (name.equals("outcome")) {
-      value = new RemittanceOutcomeEnumFactory().fromType(castToCode(value));
-      this.outcome = (Enumeration) value; // Enumeration<RemittanceOutcome>
+      this.outcome = castToString(value); // StringType
     } else if (name.equals("disposition")) {
       this.disposition = castToString(value); // StringType
     } else if (name.equals("insurer")) {
@@ -3669,7 +3661,7 @@ public class CoverageEligibilityResponse extends DomainResource {
     case 1095692943:
       /* request */ return new String[] { "Reference" };
     case -1106507950:
-      /* outcome */ return new String[] { "code" };
+      /* outcome */ return new String[] { "string" };
     case 583380919:
       /* disposition */ return new String[] { "string" };
     case 1957615864:

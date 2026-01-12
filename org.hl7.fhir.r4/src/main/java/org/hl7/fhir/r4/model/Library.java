@@ -35,8 +35,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Child;
@@ -245,7 +243,7 @@ public class Library extends MetadataResource {
   /**
    * Constructor
    */
-  public Library(Enumeration<PublicationStatus> status, CodeableConcept type) {
+  public Library(StringType status, CodeableConcept type) {
     super();
     this.status = status;
     this.type = type;
@@ -662,12 +660,12 @@ public class Library extends MetadataResource {
    *         value and extensions. The accessor "getStatus" gives direct access to
    *         the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Library.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -685,7 +683,7 @@ public class Library extends MetadataResource {
    *              with id, value and extensions. The accessor "getStatus" gives
    *              direct access to the value
    */
-  public Library setStatusElement(Enumeration<PublicationStatus> value) {
+  public Library setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -694,17 +692,17 @@ public class Library extends MetadataResource {
    * @return The status of this library. Enables tracking the life-cycle of the
    *         content.
    */
-  public PublicationStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The status of this library. Enables tracking the life-cycle of
    *              the content.
    */
-  public Library setStatus(PublicationStatus value) {
+  public Library setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -2041,7 +2039,7 @@ public class Library extends MetadataResource {
     children.add(new Property("subtitle", "string",
         "An explanatory or alternate title for the library giving additional information about its content.", 0, 1,
         subtitle));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of this library. Enables tracking the life-cycle of the content.", 0, 1, status));
     children.add(new Property("experimental", "boolean",
         "A Boolean value to indicate that this library is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
@@ -2138,7 +2136,7 @@ public class Library extends MetadataResource {
           "An explanatory or alternate title for the library giving additional information about its content.", 0, 1,
           subtitle);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of this library. Enables tracking the life-cycle of the content.", 0, 1, status);
     case -404562712:
       /* experimental */ return new Property("experimental", "boolean",
@@ -2265,7 +2263,7 @@ public class Library extends MetadataResource {
     case -2060497896:
       /* subtitle */ return this.subtitle == null ? new Base[0] : new Base[] { this.subtitle }; // StringType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -404562712:
       /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
     case 3575610:
@@ -2347,8 +2345,7 @@ public class Library extends MetadataResource {
       this.subtitle = castToString(value); // StringType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -404562712: // experimental
       this.experimental = castToBoolean(value); // BooleanType
@@ -2443,8 +2440,7 @@ public class Library extends MetadataResource {
     } else if (name.equals("subtitle")) {
       this.subtitle = castToString(value); // StringType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("type")) {
