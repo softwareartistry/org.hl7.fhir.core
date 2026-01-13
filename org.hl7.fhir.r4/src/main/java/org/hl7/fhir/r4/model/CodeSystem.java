@@ -4350,7 +4350,7 @@ public class CodeSystem extends MetadataResource {
     case 110371416:
       /* title */ return this.title == null ? new Base[0] : new Base[] { this.title }; // StringType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -404562712:
       /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
     case 3076014:

@@ -13,7 +13,6 @@ import org.hl7.fhir.r4.formats.XmlParser;
 import org.hl7.fhir.r4.model.Base;
 import org.hl7.fhir.r4.model.ElementDefinition;
 import org.hl7.fhir.r4.model.StructureDefinition;
-import org.hl7.fhir.r4.model.StructureDefinition.TypeDerivationRule;
 import org.hl7.fhir.r4.test.utils.TestingUtilities;
 import org.hl7.fhir.r4.utils.EOperationOutcome;
 import org.hl7.fhir.utilities.UUIDUtilities;
@@ -44,7 +43,7 @@ public class ProfileUtilitiesTests {
       focus.setUrl(UUIDUtilities.makeUuidUrn());
       focus.setBaseDefinition(base.getUrl());
       focus.setType("Patient");
-      focus.setDerivation(TypeDerivationRule.CONSTRAINT);
+      focus.setDerivation("CONSTRAINT");
       List<ValidationMessage> messages = new ArrayList<ValidationMessage>();
       new ProfileUtilities(TestingUtilities.context(), messages, null).generateSnapshot(base, focus, focus.getUrl(),
           "http://hl7.org/fhir/R4", "Simple Test");

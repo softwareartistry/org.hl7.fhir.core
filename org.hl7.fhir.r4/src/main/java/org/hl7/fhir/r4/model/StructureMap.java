@@ -36,8 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 // added from java-adornments.txt:
 import org.hl7.fhir.r4.utils.StructureMapUtilities;
 import org.hl7.fhir.utilities.Utilities;
@@ -59,1340 +57,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
     "contact", "description", "useContext", "jurisdiction", "purpose", "copyright", "structure", "import", "group" })
 public class StructureMap extends MetadataResource {
 
-  public enum StructureMapModelMode {
-    /**
-     * This structure describes an instance passed to the mapping engine that is
-     * used a source of data.
-     */
-    SOURCE,
-    /**
-     * This structure describes an instance that the mapping engine may ask for that
-     * is used a source of data.
-     */
-    QUERIED,
-    /**
-     * This structure describes an instance passed to the mapping engine that is
-     * used a target of data.
-     */
-    TARGET,
-    /**
-     * This structure describes an instance that the mapping engine may ask to
-     * create that is used a target of data.
-     */
-    PRODUCED,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static StructureMapModelMode fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("source".equals(codeString))
-        return SOURCE;
-      if ("queried".equals(codeString))
-        return QUERIED;
-      if ("target".equals(codeString))
-        return TARGET;
-      if ("produced".equals(codeString))
-        return PRODUCED;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown StructureMapModelMode code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case SOURCE:
-        return "source";
-      case QUERIED:
-        return "queried";
-      case TARGET:
-        return "target";
-      case PRODUCED:
-        return "produced";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case SOURCE:
-        return "http://hl7.org/fhir/map-model-mode";
-      case QUERIED:
-        return "http://hl7.org/fhir/map-model-mode";
-      case TARGET:
-        return "http://hl7.org/fhir/map-model-mode";
-      case PRODUCED:
-        return "http://hl7.org/fhir/map-model-mode";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case SOURCE:
-        return "This structure describes an instance passed to the mapping engine that is used a source of data.";
-      case QUERIED:
-        return "This structure describes an instance that the mapping engine may ask for that is used a source of data.";
-      case TARGET:
-        return "This structure describes an instance passed to the mapping engine that is used a target of data.";
-      case PRODUCED:
-        return "This structure describes an instance that the mapping engine may ask to create that is used a target of data.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case SOURCE:
-        return "Source Structure Definition";
-      case QUERIED:
-        return "Queried Structure Definition";
-      case TARGET:
-        return "Target Structure Definition";
-      case PRODUCED:
-        return "Produced Structure Definition";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class StructureMapModelModeEnumFactory implements EnumFactory<StructureMapModelMode> {
-    public StructureMapModelMode fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("source".equals(codeString))
-        return StructureMapModelMode.SOURCE;
-      if ("queried".equals(codeString))
-        return StructureMapModelMode.QUERIED;
-      if ("target".equals(codeString))
-        return StructureMapModelMode.TARGET;
-      if ("produced".equals(codeString))
-        return StructureMapModelMode.PRODUCED;
-      throw new IllegalArgumentException("Unknown StructureMapModelMode code '" + codeString + "'");
-    }
-
-    public Enumeration<StructureMapModelMode> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<StructureMapModelMode>(this, StructureMapModelMode.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<StructureMapModelMode>(this, StructureMapModelMode.NULL, code);
-      if ("source".equals(codeString))
-        return new Enumeration<StructureMapModelMode>(this, StructureMapModelMode.SOURCE, code);
-      if ("queried".equals(codeString))
-        return new Enumeration<StructureMapModelMode>(this, StructureMapModelMode.QUERIED, code);
-      if ("target".equals(codeString))
-        return new Enumeration<StructureMapModelMode>(this, StructureMapModelMode.TARGET, code);
-      if ("produced".equals(codeString))
-        return new Enumeration<StructureMapModelMode>(this, StructureMapModelMode.PRODUCED, code);
-      throw new FHIRException("Unknown StructureMapModelMode code '" + codeString + "'");
-    }
-
-    public String toCode(StructureMapModelMode code) {
-       if (code == StructureMapModelMode.NULL)
-           return null;
-       if (code == StructureMapModelMode.SOURCE)
-        return "source";
-      if (code == StructureMapModelMode.QUERIED)
-        return "queried";
-      if (code == StructureMapModelMode.TARGET)
-        return "target";
-      if (code == StructureMapModelMode.PRODUCED)
-        return "produced";
-      return "?";
-   }
-
-    public String toSystem(StructureMapModelMode code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum StructureMapGroupTypeMode {
-    /**
-     * This group is not a default group for the types.
-     */
-    NONE,
-    /**
-     * This group is a default mapping group for the specified types and for the
-     * primary source type.
-     */
-    TYPES,
-    /**
-     * This group is a default mapping group for the specified types.
-     */
-    TYPEANDTYPES,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static StructureMapGroupTypeMode fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("none".equals(codeString))
-        return NONE;
-      if ("types".equals(codeString))
-        return TYPES;
-      if ("type-and-types".equals(codeString))
-        return TYPEANDTYPES;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown StructureMapGroupTypeMode code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case NONE:
-        return "none";
-      case TYPES:
-        return "types";
-      case TYPEANDTYPES:
-        return "type-and-types";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case NONE:
-        return "http://hl7.org/fhir/map-group-type-mode";
-      case TYPES:
-        return "http://hl7.org/fhir/map-group-type-mode";
-      case TYPEANDTYPES:
-        return "http://hl7.org/fhir/map-group-type-mode";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case NONE:
-        return "This group is not a default group for the types.";
-      case TYPES:
-        return "This group is a default mapping group for the specified types and for the primary source type.";
-      case TYPEANDTYPES:
-        return "This group is a default mapping group for the specified types.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case NONE:
-        return "Not a Default";
-      case TYPES:
-        return "Default for Type Combination";
-      case TYPEANDTYPES:
-        return "Default for type + combination";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class StructureMapGroupTypeModeEnumFactory implements EnumFactory<StructureMapGroupTypeMode> {
-    public StructureMapGroupTypeMode fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("none".equals(codeString))
-        return StructureMapGroupTypeMode.NONE;
-      if ("types".equals(codeString))
-        return StructureMapGroupTypeMode.TYPES;
-      if ("type-and-types".equals(codeString))
-        return StructureMapGroupTypeMode.TYPEANDTYPES;
-      throw new IllegalArgumentException("Unknown StructureMapGroupTypeMode code '" + codeString + "'");
-    }
-
-    public Enumeration<StructureMapGroupTypeMode> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<StructureMapGroupTypeMode>(this, StructureMapGroupTypeMode.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<StructureMapGroupTypeMode>(this, StructureMapGroupTypeMode.NULL, code);
-      if ("none".equals(codeString))
-        return new Enumeration<StructureMapGroupTypeMode>(this, StructureMapGroupTypeMode.NONE, code);
-      if ("types".equals(codeString))
-        return new Enumeration<StructureMapGroupTypeMode>(this, StructureMapGroupTypeMode.TYPES, code);
-      if ("type-and-types".equals(codeString))
-        return new Enumeration<StructureMapGroupTypeMode>(this, StructureMapGroupTypeMode.TYPEANDTYPES, code);
-      throw new FHIRException("Unknown StructureMapGroupTypeMode code '" + codeString + "'");
-    }
-
-    public String toCode(StructureMapGroupTypeMode code) {
-       if (code == StructureMapGroupTypeMode.NULL)
-           return null;
-       if (code == StructureMapGroupTypeMode.NONE)
-        return "none";
-      if (code == StructureMapGroupTypeMode.TYPES)
-        return "types";
-      if (code == StructureMapGroupTypeMode.TYPEANDTYPES)
-        return "type-and-types";
-      return "?";
-   }
-
-    public String toSystem(StructureMapGroupTypeMode code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum StructureMapInputMode {
-    /**
-     * Names an input instance used a source for mapping.
-     */
-    SOURCE,
-    /**
-     * Names an instance that is being populated.
-     */
-    TARGET,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static StructureMapInputMode fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("source".equals(codeString))
-        return SOURCE;
-      if ("target".equals(codeString))
-        return TARGET;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown StructureMapInputMode code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case SOURCE:
-        return "source";
-      case TARGET:
-        return "target";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case SOURCE:
-        return "http://hl7.org/fhir/map-input-mode";
-      case TARGET:
-        return "http://hl7.org/fhir/map-input-mode";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case SOURCE:
-        return "Names an input instance used a source for mapping.";
-      case TARGET:
-        return "Names an instance that is being populated.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case SOURCE:
-        return "Source Instance";
-      case TARGET:
-        return "Target Instance";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class StructureMapInputModeEnumFactory implements EnumFactory<StructureMapInputMode> {
-    public StructureMapInputMode fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("source".equals(codeString))
-        return StructureMapInputMode.SOURCE;
-      if ("target".equals(codeString))
-        return StructureMapInputMode.TARGET;
-      throw new IllegalArgumentException("Unknown StructureMapInputMode code '" + codeString + "'");
-    }
-
-    public Enumeration<StructureMapInputMode> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<StructureMapInputMode>(this, StructureMapInputMode.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<StructureMapInputMode>(this, StructureMapInputMode.NULL, code);
-      if ("source".equals(codeString))
-        return new Enumeration<StructureMapInputMode>(this, StructureMapInputMode.SOURCE, code);
-      if ("target".equals(codeString))
-        return new Enumeration<StructureMapInputMode>(this, StructureMapInputMode.TARGET, code);
-      throw new FHIRException("Unknown StructureMapInputMode code '" + codeString + "'");
-    }
-
-    public String toCode(StructureMapInputMode code) {
-       if (code == StructureMapInputMode.NULL)
-           return null;
-       if (code == StructureMapInputMode.SOURCE)
-        return "source";
-      if (code == StructureMapInputMode.TARGET)
-        return "target";
-      return "?";
-   }
-
-    public String toSystem(StructureMapInputMode code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum StructureMapSourceListMode {
-    /**
-     * Only process this rule for the first in the list.
-     */
-    FIRST,
-    /**
-     * Process this rule for all but the first.
-     */
-    NOTFIRST,
-    /**
-     * Only process this rule for the last in the list.
-     */
-    LAST,
-    /**
-     * Process this rule for all but the last.
-     */
-    NOTLAST,
-    /**
-     * Only process this rule is there is only item.
-     */
-    ONLYONE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static StructureMapSourceListMode fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("first".equals(codeString))
-        return FIRST;
-      if ("not_first".equals(codeString))
-        return NOTFIRST;
-      if ("last".equals(codeString))
-        return LAST;
-      if ("not_last".equals(codeString))
-        return NOTLAST;
-      if ("only_one".equals(codeString))
-        return ONLYONE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown StructureMapSourceListMode code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case FIRST:
-        return "first";
-      case NOTFIRST:
-        return "not_first";
-      case LAST:
-        return "last";
-      case NOTLAST:
-        return "not_last";
-      case ONLYONE:
-        return "only_one";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case FIRST:
-        return "http://hl7.org/fhir/map-source-list-mode";
-      case NOTFIRST:
-        return "http://hl7.org/fhir/map-source-list-mode";
-      case LAST:
-        return "http://hl7.org/fhir/map-source-list-mode";
-      case NOTLAST:
-        return "http://hl7.org/fhir/map-source-list-mode";
-      case ONLYONE:
-        return "http://hl7.org/fhir/map-source-list-mode";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case FIRST:
-        return "Only process this rule for the first in the list.";
-      case NOTFIRST:
-        return "Process this rule for all but the first.";
-      case LAST:
-        return "Only process this rule for the last in the list.";
-      case NOTLAST:
-        return "Process this rule for all but the last.";
-      case ONLYONE:
-        return "Only process this rule is there is only item.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case FIRST:
-        return "First";
-      case NOTFIRST:
-        return "All but the first";
-      case LAST:
-        return "Last";
-      case NOTLAST:
-        return "All but the last";
-      case ONLYONE:
-        return "Enforce only one";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class StructureMapSourceListModeEnumFactory implements EnumFactory<StructureMapSourceListMode> {
-    public StructureMapSourceListMode fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("first".equals(codeString))
-        return StructureMapSourceListMode.FIRST;
-      if ("not_first".equals(codeString))
-        return StructureMapSourceListMode.NOTFIRST;
-      if ("last".equals(codeString))
-        return StructureMapSourceListMode.LAST;
-      if ("not_last".equals(codeString))
-        return StructureMapSourceListMode.NOTLAST;
-      if ("only_one".equals(codeString))
-        return StructureMapSourceListMode.ONLYONE;
-      throw new IllegalArgumentException("Unknown StructureMapSourceListMode code '" + codeString + "'");
-    }
-
-    public Enumeration<StructureMapSourceListMode> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<StructureMapSourceListMode>(this, StructureMapSourceListMode.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<StructureMapSourceListMode>(this, StructureMapSourceListMode.NULL, code);
-      if ("first".equals(codeString))
-        return new Enumeration<StructureMapSourceListMode>(this, StructureMapSourceListMode.FIRST, code);
-      if ("not_first".equals(codeString))
-        return new Enumeration<StructureMapSourceListMode>(this, StructureMapSourceListMode.NOTFIRST, code);
-      if ("last".equals(codeString))
-        return new Enumeration<StructureMapSourceListMode>(this, StructureMapSourceListMode.LAST, code);
-      if ("not_last".equals(codeString))
-        return new Enumeration<StructureMapSourceListMode>(this, StructureMapSourceListMode.NOTLAST, code);
-      if ("only_one".equals(codeString))
-        return new Enumeration<StructureMapSourceListMode>(this, StructureMapSourceListMode.ONLYONE, code);
-      throw new FHIRException("Unknown StructureMapSourceListMode code '" + codeString + "'");
-    }
-
-    public String toCode(StructureMapSourceListMode code) {
-       if (code == StructureMapSourceListMode.NULL)
-           return null;
-       if (code == StructureMapSourceListMode.FIRST)
-        return "first";
-      if (code == StructureMapSourceListMode.NOTFIRST)
-        return "not_first";
-      if (code == StructureMapSourceListMode.LAST)
-        return "last";
-      if (code == StructureMapSourceListMode.NOTLAST)
-        return "not_last";
-      if (code == StructureMapSourceListMode.ONLYONE)
-        return "only_one";
-      return "?";
-   }
-
-    public String toSystem(StructureMapSourceListMode code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum StructureMapContextType {
-    /**
-     * The context specifies a type.
-     */
-    TYPE,
-    /**
-     * The context specifies a variable.
-     */
-    VARIABLE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static StructureMapContextType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("type".equals(codeString))
-        return TYPE;
-      if ("variable".equals(codeString))
-        return VARIABLE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown StructureMapContextType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case TYPE:
-        return "type";
-      case VARIABLE:
-        return "variable";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case TYPE:
-        return "http://hl7.org/fhir/map-context-type";
-      case VARIABLE:
-        return "http://hl7.org/fhir/map-context-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case TYPE:
-        return "The context specifies a type.";
-      case VARIABLE:
-        return "The context specifies a variable.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case TYPE:
-        return "Type";
-      case VARIABLE:
-        return "Variable";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class StructureMapContextTypeEnumFactory implements EnumFactory<StructureMapContextType> {
-    public StructureMapContextType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("type".equals(codeString))
-        return StructureMapContextType.TYPE;
-      if ("variable".equals(codeString))
-        return StructureMapContextType.VARIABLE;
-      throw new IllegalArgumentException("Unknown StructureMapContextType code '" + codeString + "'");
-    }
-
-    public Enumeration<StructureMapContextType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<StructureMapContextType>(this, StructureMapContextType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<StructureMapContextType>(this, StructureMapContextType.NULL, code);
-      if ("type".equals(codeString))
-        return new Enumeration<StructureMapContextType>(this, StructureMapContextType.TYPE, code);
-      if ("variable".equals(codeString))
-        return new Enumeration<StructureMapContextType>(this, StructureMapContextType.VARIABLE, code);
-      throw new FHIRException("Unknown StructureMapContextType code '" + codeString + "'");
-    }
-
-    public String toCode(StructureMapContextType code) {
-       if (code == StructureMapContextType.NULL)
-           return null;
-       if (code == StructureMapContextType.TYPE)
-        return "type";
-      if (code == StructureMapContextType.VARIABLE)
-        return "variable";
-      return "?";
-   }
-
-    public String toSystem(StructureMapContextType code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum StructureMapTargetListMode {
-    /**
-     * when the target list is being assembled, the items for this rule go first. If
-     * more than one rule defines a first item (for a given instance of mapping)
-     * then this is an error.
-     */
-    FIRST,
-    /**
-     * the target instance is shared with the target instances generated by another
-     * rule (up to the first common n items, then create new ones).
-     */
-    SHARE,
-    /**
-     * when the target list is being assembled, the items for this rule go last. If
-     * more than one rule defines a last item (for a given instance of mapping) then
-     * this is an error.
-     */
-    LAST,
-    /**
-     * re-use the first item in the list, and keep adding content to it.
-     */
-    COLLATE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static StructureMapTargetListMode fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("first".equals(codeString))
-        return FIRST;
-      if ("share".equals(codeString))
-        return SHARE;
-      if ("last".equals(codeString))
-        return LAST;
-      if ("collate".equals(codeString))
-        return COLLATE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown StructureMapTargetListMode code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case FIRST:
-        return "first";
-      case SHARE:
-        return "share";
-      case LAST:
-        return "last";
-      case COLLATE:
-        return "collate";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case FIRST:
-        return "http://hl7.org/fhir/map-target-list-mode";
-      case SHARE:
-        return "http://hl7.org/fhir/map-target-list-mode";
-      case LAST:
-        return "http://hl7.org/fhir/map-target-list-mode";
-      case COLLATE:
-        return "http://hl7.org/fhir/map-target-list-mode";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case FIRST:
-        return "when the target list is being assembled, the items for this rule go first. If more than one rule defines a first item (for a given instance of mapping) then this is an error.";
-      case SHARE:
-        return "the target instance is shared with the target instances generated by another rule (up to the first common n items, then create new ones).";
-      case LAST:
-        return "when the target list is being assembled, the items for this rule go last. If more than one rule defines a last item (for a given instance of mapping) then this is an error.";
-      case COLLATE:
-        return "re-use the first item in the list, and keep adding content to it.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case FIRST:
-        return "First";
-      case SHARE:
-        return "Share";
-      case LAST:
-        return "Last";
-      case COLLATE:
-        return "Collate";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class StructureMapTargetListModeEnumFactory implements EnumFactory<StructureMapTargetListMode> {
-    public StructureMapTargetListMode fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("first".equals(codeString))
-        return StructureMapTargetListMode.FIRST;
-      if ("share".equals(codeString))
-        return StructureMapTargetListMode.SHARE;
-      if ("last".equals(codeString))
-        return StructureMapTargetListMode.LAST;
-      if ("collate".equals(codeString))
-        return StructureMapTargetListMode.COLLATE;
-      throw new IllegalArgumentException("Unknown StructureMapTargetListMode code '" + codeString + "'");
-    }
-
-    public Enumeration<StructureMapTargetListMode> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<StructureMapTargetListMode>(this, StructureMapTargetListMode.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<StructureMapTargetListMode>(this, StructureMapTargetListMode.NULL, code);
-      if ("first".equals(codeString))
-        return new Enumeration<StructureMapTargetListMode>(this, StructureMapTargetListMode.FIRST, code);
-      if ("share".equals(codeString))
-        return new Enumeration<StructureMapTargetListMode>(this, StructureMapTargetListMode.SHARE, code);
-      if ("last".equals(codeString))
-        return new Enumeration<StructureMapTargetListMode>(this, StructureMapTargetListMode.LAST, code);
-      if ("collate".equals(codeString))
-        return new Enumeration<StructureMapTargetListMode>(this, StructureMapTargetListMode.COLLATE, code);
-      throw new FHIRException("Unknown StructureMapTargetListMode code '" + codeString + "'");
-    }
-
-    public String toCode(StructureMapTargetListMode code) {
-       if (code == StructureMapTargetListMode.NULL)
-           return null;
-       if (code == StructureMapTargetListMode.FIRST)
-        return "first";
-      if (code == StructureMapTargetListMode.SHARE)
-        return "share";
-      if (code == StructureMapTargetListMode.LAST)
-        return "last";
-      if (code == StructureMapTargetListMode.COLLATE)
-        return "collate";
-      return "?";
-   }
-
-    public String toSystem(StructureMapTargetListMode code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum StructureMapTransform {
-    /**
-     * create(type : string) - type is passed through to the application on the
-     * standard API, and must be known by it.
-     */
-    CREATE,
-    /**
-     * copy(source).
-     */
-    COPY,
-    /**
-     * truncate(source, length) - source must be stringy type.
-     */
-    TRUNCATE,
-    /**
-     * escape(source, fmt1, fmt2) - change source from one kind of escaping to
-     * another (plain, java, xml, json). note that this is for when the string
-     * itself is escaped.
-     */
-    ESCAPE,
-    /**
-     * cast(source, type?) - case source from one type to another. target type can
-     * be left as implicit if there is one and only one target type known.
-     */
-    CAST,
-    /**
-     * append(source...) - source is element or string.
-     */
-    APPEND,
-    /**
-     * translate(source, uri_of_map) - use the translate operation.
-     */
-    TRANSLATE,
-    /**
-     * reference(source : object) - return a string that references the provided
-     * tree properly.
-     */
-    REFERENCE,
-    /**
-     * Perform a date operation. *Parameters to be documented*.
-     */
-    DATEOP,
-    /**
-     * Generate a random UUID (in lowercase). No Parameters.
-     */
-    UUID,
-    /**
-     * Return the appropriate string to put in a reference that refers to the
-     * resource provided as a parameter.
-     */
-    POINTER,
-    /**
-     * Execute the supplied FHIRPath expression and use the value returned by that.
-     */
-    EVALUATE,
-    /**
-     * Create a CodeableConcept. Parameters = (text) or (system. Code[, display]).
-     */
-    CC,
-    /**
-     * Create a Coding. Parameters = (system. Code[, display]).
-     */
-    C,
-    /**
-     * Create a quantity. Parameters = (text) or (value, unit, [system, code]) where
-     * text is the natural representation e.g. [comparator]value[space]unit.
-     */
-    QTY,
-    /**
-     * Create an identifier. Parameters = (system, value[, type]) where type is a
-     * code from the identifier type value set.
-     */
-    ID,
-    /**
-     * Create a contact details. Parameters = (value) or (system, value). If no
-     * system is provided, the system should be inferred from the content of the
-     * value.
-     */
-    CP,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static StructureMapTransform fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("create".equals(codeString))
-        return CREATE;
-      if ("copy".equals(codeString))
-        return COPY;
-      if ("truncate".equals(codeString))
-        return TRUNCATE;
-      if ("escape".equals(codeString))
-        return ESCAPE;
-      if ("cast".equals(codeString))
-        return CAST;
-      if ("append".equals(codeString))
-        return APPEND;
-      if ("translate".equals(codeString))
-        return TRANSLATE;
-      if ("reference".equals(codeString))
-        return REFERENCE;
-      if ("dateOp".equals(codeString))
-        return DATEOP;
-      if ("uuid".equals(codeString))
-        return UUID;
-      if ("pointer".equals(codeString))
-        return POINTER;
-      if ("evaluate".equals(codeString))
-        return EVALUATE;
-      if ("cc".equals(codeString))
-        return CC;
-      if ("c".equals(codeString))
-        return C;
-      if ("qty".equals(codeString))
-        return QTY;
-      if ("id".equals(codeString))
-        return ID;
-      if ("cp".equals(codeString))
-        return CP;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown StructureMapTransform code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case CREATE:
-        return "create";
-      case COPY:
-        return "copy";
-      case TRUNCATE:
-        return "truncate";
-      case ESCAPE:
-        return "escape";
-      case CAST:
-        return "cast";
-      case APPEND:
-        return "append";
-      case TRANSLATE:
-        return "translate";
-      case REFERENCE:
-        return "reference";
-      case DATEOP:
-        return "dateOp";
-      case UUID:
-        return "uuid";
-      case POINTER:
-        return "pointer";
-      case EVALUATE:
-        return "evaluate";
-      case CC:
-        return "cc";
-      case C:
-        return "c";
-      case QTY:
-        return "qty";
-      case ID:
-        return "id";
-      case CP:
-        return "cp";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case CREATE:
-        return "http://hl7.org/fhir/map-transform";
-      case COPY:
-        return "http://hl7.org/fhir/map-transform";
-      case TRUNCATE:
-        return "http://hl7.org/fhir/map-transform";
-      case ESCAPE:
-        return "http://hl7.org/fhir/map-transform";
-      case CAST:
-        return "http://hl7.org/fhir/map-transform";
-      case APPEND:
-        return "http://hl7.org/fhir/map-transform";
-      case TRANSLATE:
-        return "http://hl7.org/fhir/map-transform";
-      case REFERENCE:
-        return "http://hl7.org/fhir/map-transform";
-      case DATEOP:
-        return "http://hl7.org/fhir/map-transform";
-      case UUID:
-        return "http://hl7.org/fhir/map-transform";
-      case POINTER:
-        return "http://hl7.org/fhir/map-transform";
-      case EVALUATE:
-        return "http://hl7.org/fhir/map-transform";
-      case CC:
-        return "http://hl7.org/fhir/map-transform";
-      case C:
-        return "http://hl7.org/fhir/map-transform";
-      case QTY:
-        return "http://hl7.org/fhir/map-transform";
-      case ID:
-        return "http://hl7.org/fhir/map-transform";
-      case CP:
-        return "http://hl7.org/fhir/map-transform";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case CREATE:
-        return "create(type : string) - type is passed through to the application on the standard API, and must be known by it.";
-      case COPY:
-        return "copy(source).";
-      case TRUNCATE:
-        return "truncate(source, length) - source must be stringy type.";
-      case ESCAPE:
-        return "escape(source, fmt1, fmt2) - change source from one kind of escaping to another (plain, java, xml, json). note that this is for when the string itself is escaped.";
-      case CAST:
-        return "cast(source, type?) - case source from one type to another. target type can be left as implicit if there is one and only one target type known.";
-      case APPEND:
-        return "append(source...) - source is element or string.";
-      case TRANSLATE:
-        return "translate(source, uri_of_map) - use the translate operation.";
-      case REFERENCE:
-        return "reference(source : object) - return a string that references the provided tree properly.";
-      case DATEOP:
-        return "Perform a date operation. *Parameters to be documented*.";
-      case UUID:
-        return "Generate a random UUID (in lowercase). No Parameters.";
-      case POINTER:
-        return "Return the appropriate string to put in a reference that refers to the resource provided as a parameter.";
-      case EVALUATE:
-        return "Execute the supplied FHIRPath expression and use the value returned by that.";
-      case CC:
-        return "Create a CodeableConcept. Parameters = (text) or (system. Code[, display]).";
-      case C:
-        return "Create a Coding. Parameters = (system. Code[, display]).";
-      case QTY:
-        return "Create a quantity. Parameters = (text) or (value, unit, [system, code]) where text is the natural representation e.g. [comparator]value[space]unit.";
-      case ID:
-        return "Create an identifier. Parameters = (system, value[, type]) where type is a code from the identifier type value set.";
-      case CP:
-        return "Create a contact details. Parameters = (value) or (system, value). If no system is provided, the system should be inferred from the content of the value.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case CREATE:
-        return "create";
-      case COPY:
-        return "copy";
-      case TRUNCATE:
-        return "truncate";
-      case ESCAPE:
-        return "escape";
-      case CAST:
-        return "cast";
-      case APPEND:
-        return "append";
-      case TRANSLATE:
-        return "translate";
-      case REFERENCE:
-        return "reference";
-      case DATEOP:
-        return "dateOp";
-      case UUID:
-        return "uuid";
-      case POINTER:
-        return "pointer";
-      case EVALUATE:
-        return "evaluate";
-      case CC:
-        return "cc";
-      case C:
-        return "c";
-      case QTY:
-        return "qty";
-      case ID:
-        return "id";
-      case CP:
-        return "cp";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class StructureMapTransformEnumFactory implements EnumFactory<StructureMapTransform> {
-    public StructureMapTransform fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("create".equals(codeString))
-        return StructureMapTransform.CREATE;
-      if ("copy".equals(codeString))
-        return StructureMapTransform.COPY;
-      if ("truncate".equals(codeString))
-        return StructureMapTransform.TRUNCATE;
-      if ("escape".equals(codeString))
-        return StructureMapTransform.ESCAPE;
-      if ("cast".equals(codeString))
-        return StructureMapTransform.CAST;
-      if ("append".equals(codeString))
-        return StructureMapTransform.APPEND;
-      if ("translate".equals(codeString))
-        return StructureMapTransform.TRANSLATE;
-      if ("reference".equals(codeString))
-        return StructureMapTransform.REFERENCE;
-      if ("dateOp".equals(codeString))
-        return StructureMapTransform.DATEOP;
-      if ("uuid".equals(codeString))
-        return StructureMapTransform.UUID;
-      if ("pointer".equals(codeString))
-        return StructureMapTransform.POINTER;
-      if ("evaluate".equals(codeString))
-        return StructureMapTransform.EVALUATE;
-      if ("cc".equals(codeString))
-        return StructureMapTransform.CC;
-      if ("c".equals(codeString))
-        return StructureMapTransform.C;
-      if ("qty".equals(codeString))
-        return StructureMapTransform.QTY;
-      if ("id".equals(codeString))
-        return StructureMapTransform.ID;
-      if ("cp".equals(codeString))
-        return StructureMapTransform.CP;
-      throw new IllegalArgumentException("Unknown StructureMapTransform code '" + codeString + "'");
-    }
-
-    public Enumeration<StructureMapTransform> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<StructureMapTransform>(this, StructureMapTransform.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<StructureMapTransform>(this, StructureMapTransform.NULL, code);
-      if ("create".equals(codeString))
-        return new Enumeration<StructureMapTransform>(this, StructureMapTransform.CREATE, code);
-      if ("copy".equals(codeString))
-        return new Enumeration<StructureMapTransform>(this, StructureMapTransform.COPY, code);
-      if ("truncate".equals(codeString))
-        return new Enumeration<StructureMapTransform>(this, StructureMapTransform.TRUNCATE, code);
-      if ("escape".equals(codeString))
-        return new Enumeration<StructureMapTransform>(this, StructureMapTransform.ESCAPE, code);
-      if ("cast".equals(codeString))
-        return new Enumeration<StructureMapTransform>(this, StructureMapTransform.CAST, code);
-      if ("append".equals(codeString))
-        return new Enumeration<StructureMapTransform>(this, StructureMapTransform.APPEND, code);
-      if ("translate".equals(codeString))
-        return new Enumeration<StructureMapTransform>(this, StructureMapTransform.TRANSLATE, code);
-      if ("reference".equals(codeString))
-        return new Enumeration<StructureMapTransform>(this, StructureMapTransform.REFERENCE, code);
-      if ("dateOp".equals(codeString))
-        return new Enumeration<StructureMapTransform>(this, StructureMapTransform.DATEOP, code);
-      if ("uuid".equals(codeString))
-        return new Enumeration<StructureMapTransform>(this, StructureMapTransform.UUID, code);
-      if ("pointer".equals(codeString))
-        return new Enumeration<StructureMapTransform>(this, StructureMapTransform.POINTER, code);
-      if ("evaluate".equals(codeString))
-        return new Enumeration<StructureMapTransform>(this, StructureMapTransform.EVALUATE, code);
-      if ("cc".equals(codeString))
-        return new Enumeration<StructureMapTransform>(this, StructureMapTransform.CC, code);
-      if ("c".equals(codeString))
-        return new Enumeration<StructureMapTransform>(this, StructureMapTransform.C, code);
-      if ("qty".equals(codeString))
-        return new Enumeration<StructureMapTransform>(this, StructureMapTransform.QTY, code);
-      if ("id".equals(codeString))
-        return new Enumeration<StructureMapTransform>(this, StructureMapTransform.ID, code);
-      if ("cp".equals(codeString))
-        return new Enumeration<StructureMapTransform>(this, StructureMapTransform.CP, code);
-      throw new FHIRException("Unknown StructureMapTransform code '" + codeString + "'");
-    }
-
-    public String toCode(StructureMapTransform code) {
-       if (code == StructureMapTransform.NULL)
-           return null;
-       if (code == StructureMapTransform.CREATE)
-        return "create";
-      if (code == StructureMapTransform.COPY)
-        return "copy";
-      if (code == StructureMapTransform.TRUNCATE)
-        return "truncate";
-      if (code == StructureMapTransform.ESCAPE)
-        return "escape";
-      if (code == StructureMapTransform.CAST)
-        return "cast";
-      if (code == StructureMapTransform.APPEND)
-        return "append";
-      if (code == StructureMapTransform.TRANSLATE)
-        return "translate";
-      if (code == StructureMapTransform.REFERENCE)
-        return "reference";
-      if (code == StructureMapTransform.DATEOP)
-        return "dateOp";
-      if (code == StructureMapTransform.UUID)
-        return "uuid";
-      if (code == StructureMapTransform.POINTER)
-        return "pointer";
-      if (code == StructureMapTransform.EVALUATE)
-        return "evaluate";
-      if (code == StructureMapTransform.CC)
-        return "cc";
-      if (code == StructureMapTransform.C)
-        return "c";
-      if (code == StructureMapTransform.QTY)
-        return "qty";
-      if (code == StructureMapTransform.ID)
-        return "id";
-      if (code == StructureMapTransform.CP)
-        return "cp";
-      return "?";
-   }
-
-    public String toSystem(StructureMapTransform code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class StructureMapStructureComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -1405,10 +69,10 @@ public class StructureMap extends MetadataResource {
     /**
      * How the referenced structure is used in this mapping.
      */
-    @Child(name = "mode", type = { CodeType.class }, order = 2, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "mode", type = { StringType.class }, order = 2, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "source | queried | target | produced", formalDefinition = "How the referenced structure is used in this mapping.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/map-model-mode")
-    protected Enumeration<StructureMapModelMode> mode;
+    protected StringType mode;
 
     /**
      * The name used for this type in the map.
@@ -1437,7 +101,7 @@ public class StructureMap extends MetadataResource {
     /**
      * Constructor
      */
-    public StructureMapStructureComponent(CanonicalType url, Enumeration<StructureMapModelMode> mode) {
+    public StructureMapStructureComponent(CanonicalType url, StringType mode) {
       super();
       this.url = url;
       this.mode = mode;
@@ -1497,12 +161,12 @@ public class StructureMap extends MetadataResource {
      *         mapping.). This is the underlying object with id, value and
      *         extensions. The accessor "getMode" gives direct access to the value
      */
-    public Enumeration<StructureMapModelMode> getModeElement() {
+    public StringType getModeElement() {
       if (this.mode == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create StructureMapStructureComponent.mode");
         else if (Configuration.doAutoCreate())
-          this.mode = new Enumeration<StructureMapModelMode>(new StructureMapModelModeEnumFactory()); // bb
+          this.mode = new StringType(); // bb
       return this.mode;
     }
 
@@ -1520,7 +184,7 @@ public class StructureMap extends MetadataResource {
      *              extensions. The accessor "getMode" gives direct access to the
      *              value
      */
-    public StructureMapStructureComponent setModeElement(Enumeration<StructureMapModelMode> value) {
+    public StructureMapStructureComponent setModeElement(StringType value) {
       this.mode = value;
       return this;
     }
@@ -1528,16 +192,16 @@ public class StructureMap extends MetadataResource {
     /**
      * @return How the referenced structure is used in this mapping.
      */
-    public StructureMapModelMode getMode() {
-      return this.mode == null ? null : this.mode.getValue();
+    public StringType getMode() {
+      return this.mode == null ? null : this.mode;
     }
 
     /**
      * @param value How the referenced structure is used in this mapping.
      */
-    public StructureMapStructureComponent setMode(StructureMapModelMode value) {
+    public StructureMapStructureComponent setMode(String value) {
       if (this.mode == null)
-        this.mode = new Enumeration<StructureMapModelMode>(new StructureMapModelModeEnumFactory());
+        this.mode = new StringType();
       this.mode.setValue(value);
       return this;
     }
@@ -1656,7 +320,7 @@ public class StructureMap extends MetadataResource {
       super.listChildren(children);
       children.add(new Property("url", "canonical(StructureDefinition)", "The canonical reference to the structure.", 0,
           1, url));
-      children.add(new Property("mode", "code", "How the referenced structure is used in this mapping.", 0, 1, mode));
+      children.add(new Property("mode", "string", "How the referenced structure is used in this mapping.", 0, 1, mode));
       children.add(new Property("alias", "string", "The name used for this type in the map.", 0, 1, alias));
       children.add(new Property("documentation", "string",
           "Documentation that describes how the structure is used in the mapping.", 0, 1, documentation));
@@ -1669,7 +333,7 @@ public class StructureMap extends MetadataResource {
         /* url */ return new Property("url", "canonical(StructureDefinition)",
             "The canonical reference to the structure.", 0, 1, url);
       case 3357091:
-        /* mode */ return new Property("mode", "code", "How the referenced structure is used in this mapping.", 0, 1,
+        /* mode */ return new Property("mode", "string", "How the referenced structure is used in this mapping.", 0, 1,
             mode);
       case 92902992:
         /* alias */ return new Property("alias", "string", "The name used for this type in the map.", 0, 1, alias);
@@ -1688,7 +352,7 @@ public class StructureMap extends MetadataResource {
       case 116079:
         /* url */ return this.url == null ? new Base[0] : new Base[] { this.url }; // CanonicalType
       case 3357091:
-        /* mode */ return this.mode == null ? new Base[0] : new Base[] { this.mode }; // Enumeration<StructureMapModelMode>
+        /* mode */ return this.mode == null ? new Base[0] : new Base[] { this.mode }; //StringType
       case 92902992:
         /* alias */ return this.alias == null ? new Base[0] : new Base[] { this.alias }; // StringType
       case 1587405498:
@@ -1706,8 +370,7 @@ public class StructureMap extends MetadataResource {
         this.url = castToCanonical(value); // CanonicalType
         return value;
       case 3357091: // mode
-        value = new StructureMapModelModeEnumFactory().fromType(castToCode(value));
-        this.mode = (Enumeration) value; // Enumeration<StructureMapModelMode>
+        this.mode = castToString(value); // StringType
         return value;
       case 92902992: // alias
         this.alias = castToString(value); // StringType
@@ -1726,8 +389,7 @@ public class StructureMap extends MetadataResource {
       if (name.equals("url")) {
         this.url = castToCanonical(value); // CanonicalType
       } else if (name.equals("mode")) {
-        value = new StructureMapModelModeEnumFactory().fromType(castToCode(value));
-        this.mode = (Enumeration) value; // Enumeration<StructureMapModelMode>
+        this.mode = castToString(value); // StringType
       } else if (name.equals("alias")) {
         this.alias = castToString(value); // StringType
       } else if (name.equals("documentation")) {
@@ -1775,7 +437,7 @@ public class StructureMap extends MetadataResource {
       case 116079:
         /* url */ return new String[] { "canonical" };
       case 3357091:
-        /* mode */ return new String[] { "code" };
+        /* mode */ return new String[] { "string" };
       case 92902992:
         /* alias */ return new String[] { "string" };
       case 1587405498:
@@ -1867,10 +529,10 @@ public class StructureMap extends MetadataResource {
      * If this is the default rule set to apply for the source type or this
      * combination of types.
      */
-    @Child(name = "typeMode", type = { CodeType.class }, order = 3, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "typeMode", type = { StringType.class }, order = 3, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "none | types | type-and-types", formalDefinition = "If this is the default rule set to apply for the source type or this combination of types.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/map-group-type-mode")
-    protected Enumeration<StructureMapGroupTypeMode> typeMode;
+    protected StringType typeMode;
 
     /**
      * Additional supporting documentation that explains the purpose of the group
@@ -1908,7 +570,7 @@ public class StructureMap extends MetadataResource {
     /**
      * Constructor
      */
-    public StructureMapGroupComponent(IdType name, Enumeration<StructureMapGroupTypeMode> typeMode) {
+    public StructureMapGroupComponent(IdType name, StringType typeMode) {
       super();
       this.name = name;
       this.typeMode = typeMode;
@@ -2025,12 +687,12 @@ public class StructureMap extends MetadataResource {
      *         object with id, value and extensions. The accessor "getTypeMode"
      *         gives direct access to the value
      */
-    public Enumeration<StructureMapGroupTypeMode> getTypeModeElement() {
+    public StringType getTypeModeElement() {
       if (this.typeMode == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create StructureMapGroupComponent.typeMode");
         else if (Configuration.doAutoCreate())
-          this.typeMode = new Enumeration<StructureMapGroupTypeMode>(new StructureMapGroupTypeModeEnumFactory()); // bb
+          this.typeMode = new StringType(); // bb
       return this.typeMode;
     }
 
@@ -2048,7 +710,7 @@ public class StructureMap extends MetadataResource {
      *              underlying object with id, value and extensions. The accessor
      *              "getTypeMode" gives direct access to the value
      */
-    public StructureMapGroupComponent setTypeModeElement(Enumeration<StructureMapGroupTypeMode> value) {
+    public StructureMapGroupComponent setTypeModeElement(StringType value) {
       this.typeMode = value;
       return this;
     }
@@ -2057,17 +719,17 @@ public class StructureMap extends MetadataResource {
      * @return If this is the default rule set to apply for the source type or this
      *         combination of types.
      */
-    public StructureMapGroupTypeMode getTypeMode() {
-      return this.typeMode == null ? null : this.typeMode.getValue();
+    public StringType getTypeMode() {
+      return this.typeMode == null ? null : this.typeMode;
     }
 
     /**
      * @param value If this is the default rule set to apply for the source type or
      *              this combination of types.
      */
-    public StructureMapGroupComponent setTypeMode(StructureMapGroupTypeMode value) {
+    public StructureMapGroupComponent setTypeMode(String value) {
       if (this.typeMode == null)
-        this.typeMode = new Enumeration<StructureMapGroupTypeMode>(new StructureMapGroupTypeModeEnumFactory());
+        this.typeMode = new StringType();
       this.typeMode.setValue(value);
       return this;
     }
@@ -2244,7 +906,7 @@ public class StructureMap extends MetadataResource {
       children.add(
           new Property("name", "id", "A unique name for the group for the convenience of human readers.", 0, 1, name));
       children.add(new Property("extends", "id", "Another group that this group adds rules to.", 0, 1, extends_));
-      children.add(new Property("typeMode", "code",
+      children.add(new Property("typeMode", "string",
           "If this is the default rule set to apply for the source type or this combination of types.", 0, 1,
           typeMode));
       children.add(new Property("documentation", "string",
@@ -2267,7 +929,7 @@ public class StructureMap extends MetadataResource {
         /* extends */ return new Property("extends", "id", "Another group that this group adds rules to.", 0, 1,
             extends_);
       case -676524035:
-        /* typeMode */ return new Property("typeMode", "code",
+        /* typeMode */ return new Property("typeMode", "string",
             "If this is the default rule set to apply for the source type or this combination of types.", 0, 1,
             typeMode);
       case 1587405498:
@@ -2295,7 +957,7 @@ public class StructureMap extends MetadataResource {
       case -1305664359:
         /* extends */ return this.extends_ == null ? new Base[0] : new Base[] { this.extends_ }; // IdType
       case -676524035:
-        /* typeMode */ return this.typeMode == null ? new Base[0] : new Base[] { this.typeMode }; // Enumeration<StructureMapGroupTypeMode>
+        /* typeMode */ return this.typeMode == null ? new Base[0] : new Base[] { this.typeMode }; // StringType
       case 1587405498:
         /* documentation */ return this.documentation == null ? new Base[0] : new Base[] { this.documentation }; // StringType
       case 100358090:
@@ -2318,8 +980,7 @@ public class StructureMap extends MetadataResource {
         this.extends_ = castToId(value); // IdType
         return value;
       case -676524035: // typeMode
-        value = new StructureMapGroupTypeModeEnumFactory().fromType(castToCode(value));
-        this.typeMode = (Enumeration) value; // Enumeration<StructureMapGroupTypeMode>
+        this.typeMode = castToString(value); //StringType
         return value;
       case 1587405498: // documentation
         this.documentation = castToString(value); // StringType
@@ -2343,8 +1004,7 @@ public class StructureMap extends MetadataResource {
       } else if (name.equals("extends")) {
         this.extends_ = castToId(value); // IdType
       } else if (name.equals("typeMode")) {
-        value = new StructureMapGroupTypeModeEnumFactory().fromType(castToCode(value));
-        this.typeMode = (Enumeration) value; // Enumeration<StructureMapGroupTypeMode>
+        this.typeMode = castToString(value); // StringType
       } else if (name.equals("documentation")) {
         this.documentation = castToString(value); // StringType
       } else if (name.equals("input")) {
@@ -2404,7 +1064,7 @@ public class StructureMap extends MetadataResource {
       case -1305664359:
         /* extends */ return new String[] { "id" };
       case -676524035:
-        /* typeMode */ return new String[] { "code" };
+        /* typeMode */ return new String[] { "string" };
       case 1587405498:
         /* documentation */ return new String[] { "string" };
       case 100358090:
@@ -2522,10 +1182,10 @@ public class StructureMap extends MetadataResource {
     /**
      * Mode for this instance of data.
      */
-    @Child(name = "mode", type = { CodeType.class }, order = 3, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "mode", type = { StringType.class }, order = 3, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "source | target", formalDefinition = "Mode for this instance of data.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/map-input-mode")
-    protected Enumeration<StructureMapInputMode> mode;
+    protected StringType mode;
 
     /**
      * Documentation for this instance of data.
@@ -2547,7 +1207,7 @@ public class StructureMap extends MetadataResource {
     /**
      * Constructor
      */
-    public StructureMapGroupInputComponent(IdType name, Enumeration<StructureMapInputMode> mode) {
+    public StructureMapGroupInputComponent(IdType name, StringType mode) {
       super();
       this.name = name;
       this.mode = mode;
@@ -2660,12 +1320,12 @@ public class StructureMap extends MetadataResource {
      *         underlying object with id, value and extensions. The accessor
      *         "getMode" gives direct access to the value
      */
-    public Enumeration<StructureMapInputMode> getModeElement() {
+    public StringType getModeElement() {
       if (this.mode == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create StructureMapGroupInputComponent.mode");
         else if (Configuration.doAutoCreate())
-          this.mode = new Enumeration<StructureMapInputMode>(new StructureMapInputModeEnumFactory()); // bb
+          this.mode = new StringType(); // bb
       return this.mode;
     }
 
@@ -2682,7 +1342,7 @@ public class StructureMap extends MetadataResource {
      *              underlying object with id, value and extensions. The accessor
      *              "getMode" gives direct access to the value
      */
-    public StructureMapGroupInputComponent setModeElement(Enumeration<StructureMapInputMode> value) {
+    public StructureMapGroupInputComponent setModeElement(StringType value) {
       this.mode = value;
       return this;
     }
@@ -2690,16 +1350,16 @@ public class StructureMap extends MetadataResource {
     /**
      * @return Mode for this instance of data.
      */
-    public StructureMapInputMode getMode() {
-      return this.mode == null ? null : this.mode.getValue();
+    public StringType getMode() {
+      return this.mode == null ? null : this.mode;
     }
 
     /**
      * @param value Mode for this instance of data.
      */
-    public StructureMapGroupInputComponent setMode(StructureMapInputMode value) {
+    public StructureMapGroupInputComponent setMode(String value) {
       if (this.mode == null)
-        this.mode = new Enumeration<StructureMapInputMode>(new StructureMapInputModeEnumFactory());
+        this.mode = new StringType();
       this.mode.setValue(value);
       return this;
     }
@@ -2762,7 +1422,7 @@ public class StructureMap extends MetadataResource {
       super.listChildren(children);
       children.add(new Property("name", "id", "Name for this instance of data.", 0, 1, name));
       children.add(new Property("type", "string", "Type for this instance of data.", 0, 1, type));
-      children.add(new Property("mode", "code", "Mode for this instance of data.", 0, 1, mode));
+      children.add(new Property("mode", "string", "Mode for this instance of data.", 0, 1, mode));
       children.add(
           new Property("documentation", "string", "Documentation for this instance of data.", 0, 1, documentation));
     }
@@ -2775,7 +1435,7 @@ public class StructureMap extends MetadataResource {
       case 3575610:
         /* type */ return new Property("type", "string", "Type for this instance of data.", 0, 1, type);
       case 3357091:
-        /* mode */ return new Property("mode", "code", "Mode for this instance of data.", 0, 1, mode);
+        /* mode */ return new Property("mode", "string", "Mode for this instance of data.", 0, 1, mode);
       case 1587405498:
         /* documentation */ return new Property("documentation", "string", "Documentation for this instance of data.",
             0, 1, documentation);
@@ -2793,7 +1453,7 @@ public class StructureMap extends MetadataResource {
       case 3575610:
         /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
       case 3357091:
-        /* mode */ return this.mode == null ? new Base[0] : new Base[] { this.mode }; // Enumeration<StructureMapInputMode>
+        /* mode */ return this.mode == null ? new Base[0] : new Base[] { this.mode }; // StringType
       case 1587405498:
         /* documentation */ return this.documentation == null ? new Base[0] : new Base[] { this.documentation }; // StringType
       default:
@@ -2812,8 +1472,7 @@ public class StructureMap extends MetadataResource {
         this.type = castToString(value); // StringType
         return value;
       case 3357091: // mode
-        value = new StructureMapInputModeEnumFactory().fromType(castToCode(value));
-        this.mode = (Enumeration) value; // Enumeration<StructureMapInputMode>
+        this.mode = castToString(value); // StringType
         return value;
       case 1587405498: // documentation
         this.documentation = castToString(value); // StringType
@@ -2831,8 +1490,7 @@ public class StructureMap extends MetadataResource {
       } else if (name.equals("type")) {
         this.type = castToString(value); // StringType
       } else if (name.equals("mode")) {
-        value = new StructureMapInputModeEnumFactory().fromType(castToCode(value));
-        this.mode = (Enumeration) value; // Enumeration<StructureMapInputMode>
+        this.mode = castToString(value); // StringType
       } else if (name.equals("documentation")) {
         this.documentation = castToString(value); // StringType
       } else
@@ -2880,7 +1538,7 @@ public class StructureMap extends MetadataResource {
       case 3575610:
         /* type */ return new String[] { "string" };
       case 3357091:
-        /* mode */ return new String[] { "code" };
+        /* mode */ return new String[] { "string" };
       case 1587405498:
         /* documentation */ return new String[] { "string" };
       default:
@@ -3648,10 +2306,10 @@ public class StructureMap extends MetadataResource {
     /**
      * How to handle the list mode for this element.
      */
-    @Child(name = "listMode", type = { CodeType.class }, order = 7, min = 0, max = 1, modifier = false, summary = true)
+    @Child(name = "listMode", type = { StringType.class }, order = 7, min = 0, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "first | not_first | last | not_last | only_one", formalDefinition = "How to handle the list mode for this element.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/map-source-list-mode")
-    protected Enumeration<StructureMapSourceListMode> listMode;
+    protected StringType listMode;
 
     /**
      * Named context for field, if a field is specified.
@@ -4004,12 +2662,12 @@ public class StructureMap extends MetadataResource {
      *         This is the underlying object with id, value and extensions. The
      *         accessor "getListMode" gives direct access to the value
      */
-    public Enumeration<StructureMapSourceListMode> getListModeElement() {
+    public StringType getListModeElement() {
       if (this.listMode == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create StructureMapGroupRuleSourceComponent.listMode");
         else if (Configuration.doAutoCreate())
-          this.listMode = new Enumeration<StructureMapSourceListMode>(new StructureMapSourceListModeEnumFactory()); // bb
+          this.listMode = new StringType(); // bb
       return this.listMode;
     }
 
@@ -4027,7 +2685,7 @@ public class StructureMap extends MetadataResource {
      *              extensions. The accessor "getListMode" gives direct access to
      *              the value
      */
-    public StructureMapGroupRuleSourceComponent setListModeElement(Enumeration<StructureMapSourceListMode> value) {
+    public StructureMapGroupRuleSourceComponent setListModeElement(StringType value) {
       this.listMode = value;
       return this;
     }
@@ -4035,19 +2693,19 @@ public class StructureMap extends MetadataResource {
     /**
      * @return How to handle the list mode for this element.
      */
-    public StructureMapSourceListMode getListMode() {
-      return this.listMode == null ? null : this.listMode.getValue();
+    public StringType getListMode() {
+      return this.listMode == null ? null : this.listMode;
     }
 
     /**
      * @param value How to handle the list mode for this element.
      */
-    public StructureMapGroupRuleSourceComponent setListMode(StructureMapSourceListMode value) {
+    public StructureMapGroupRuleSourceComponent setListMode(String value) {
       if (value == null)
         this.listMode = null;
       else {
         if (this.listMode == null)
-          this.listMode = new Enumeration<StructureMapSourceListMode>(new StructureMapSourceListModeEnumFactory());
+          this.listMode = new StringType();
         this.listMode.setValue(value);
       }
       return this;
@@ -4293,7 +2951,7 @@ public class StructureMap extends MetadataResource {
       children.add(new Property("defaultValue[x]", "*",
           "A value to use if there is no existing value in the source object.", 0, 1, defaultValue));
       children.add(new Property("element", "string", "Optional field for this source.", 0, 1, element));
-      children.add(new Property("listMode", "code", "How to handle the list mode for this element.", 0, 1, listMode));
+      children.add(new Property("listMode", "string", "How to handle the list mode for this element.", 0, 1, listMode));
       children.add(new Property("variable", "id", "Named context for field, if a field is specified.", 0, 1, variable));
       children.add(new Property("condition", "string",
           "FHIRPath expression  - must be true or the rule does not apply.", 0, 1, condition));
@@ -4439,7 +3097,7 @@ public class StructureMap extends MetadataResource {
       case -1662836996:
         /* element */ return new Property("element", "string", "Optional field for this source.", 0, 1, element);
       case 1345445729:
-        /* listMode */ return new Property("listMode", "code", "How to handle the list mode for this element.", 0, 1,
+        /* listMode */ return new Property("listMode", "string", "How to handle the list mode for this element.", 0, 1,
             listMode);
       case -1249586564:
         /* variable */ return new Property("variable", "id", "Named context for field, if a field is specified.", 0, 1,
@@ -4477,7 +3135,7 @@ public class StructureMap extends MetadataResource {
       case -1662836996:
         /* element */ return this.element == null ? new Base[0] : new Base[] { this.element }; // StringType
       case 1345445729:
-        /* listMode */ return this.listMode == null ? new Base[0] : new Base[] { this.listMode }; // Enumeration<StructureMapSourceListMode>
+        /* listMode */ return this.listMode == null ? new Base[0] : new Base[] { this.listMode }; //StringType
       case -1249586564:
         /* variable */ return this.variable == null ? new Base[0] : new Base[] { this.variable }; // IdType
       case -861311717:
@@ -4514,8 +3172,7 @@ public class StructureMap extends MetadataResource {
         this.element = castToString(value); // StringType
         return value;
       case 1345445729: // listMode
-        value = new StructureMapSourceListModeEnumFactory().fromType(castToCode(value));
-        this.listMode = (Enumeration) value; // Enumeration<StructureMapSourceListMode>
+        this.listMode = castToString(value); // StringType
         return value;
       case -1249586564: // variable
         this.variable = castToId(value); // IdType
@@ -4550,8 +3207,7 @@ public class StructureMap extends MetadataResource {
       } else if (name.equals("element")) {
         this.element = castToString(value); // StringType
       } else if (name.equals("listMode")) {
-        value = new StructureMapSourceListModeEnumFactory().fromType(castToCode(value));
-        this.listMode = (Enumeration) value; // Enumeration<StructureMapSourceListMode>
+        this.listMode = castToString(value); // StringType
       } else if (name.equals("variable")) {
         this.variable = castToId(value); // IdType
       } else if (name.equals("condition")) {
@@ -4643,7 +3299,7 @@ public class StructureMap extends MetadataResource {
       case -1662836996:
         /* element */ return new String[] { "string" };
       case 1345445729:
-        /* listMode */ return new String[] { "code" };
+        /* listMode */ return new String[] { "string" };
       case -1249586564:
         /* variable */ return new String[] { "id" };
       case -861311717:
@@ -4915,10 +3571,10 @@ public class StructureMap extends MetadataResource {
      * How to interpret the context.
      */
     @Child(name = "contextType", type = {
-        CodeType.class }, order = 2, min = 0, max = 1, modifier = false, summary = true)
+      StringType.class }, order = 2, min = 0, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "type | variable", formalDefinition = "How to interpret the context.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/map-context-type")
-    protected Enumeration<StructureMapContextType> contextType;
+    protected StringType contextType;
 
     /**
      * Field to create in the context.
@@ -4938,10 +3594,10 @@ public class StructureMap extends MetadataResource {
      * If field is a list, how to manage the list.
      */
     @Child(name = "listMode", type = {
-        CodeType.class }, order = 5, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
+      StringType.class }, order = 5, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
     @Description(shortDefinition = "first | share | last | collate", formalDefinition = "If field is a list, how to manage the list.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/map-target-list-mode")
-    protected List<Enumeration<StructureMapTargetListMode>> listMode;
+    protected List<StringType> listMode;
 
     /**
      * Internal rule reference for shared list items.
@@ -4953,10 +3609,10 @@ public class StructureMap extends MetadataResource {
     /**
      * How the data is copied / created.
      */
-    @Child(name = "transform", type = { CodeType.class }, order = 7, min = 0, max = 1, modifier = false, summary = true)
+    @Child(name = "transform", type = { StringType.class }, order = 7, min = 0, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "create | copy +", formalDefinition = "How the data is copied / created.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/map-transform")
-    protected Enumeration<StructureMapTransform> transform;
+    protected StringType transform;
 
     /**
      * Parameters to the transform.
@@ -5032,12 +3688,12 @@ public class StructureMap extends MetadataResource {
      *         underlying object with id, value and extensions. The accessor
      *         "getContextType" gives direct access to the value
      */
-    public Enumeration<StructureMapContextType> getContextTypeElement() {
+    public StringType getContextTypeElement() {
       if (this.contextType == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create StructureMapGroupRuleTargetComponent.contextType");
         else if (Configuration.doAutoCreate())
-          this.contextType = new Enumeration<StructureMapContextType>(new StructureMapContextTypeEnumFactory()); // bb
+          this.contextType = new StringType(); // bb
       return this.contextType;
     }
 
@@ -5054,7 +3710,7 @@ public class StructureMap extends MetadataResource {
      *              the underlying object with id, value and extensions. The
      *              accessor "getContextType" gives direct access to the value
      */
-    public StructureMapGroupRuleTargetComponent setContextTypeElement(Enumeration<StructureMapContextType> value) {
+    public StructureMapGroupRuleTargetComponent setContextTypeElement(StringType value) {
       this.contextType = value;
       return this;
     }
@@ -5062,19 +3718,19 @@ public class StructureMap extends MetadataResource {
     /**
      * @return How to interpret the context.
      */
-    public StructureMapContextType getContextType() {
-      return this.contextType == null ? null : this.contextType.getValue();
+    public StringType getContextType() {
+      return this.contextType == null ? null : this.contextType;
     }
 
     /**
      * @param value How to interpret the context.
      */
-    public StructureMapGroupRuleTargetComponent setContextType(StructureMapContextType value) {
+    public StructureMapGroupRuleTargetComponent setContextType(String value) {
       if (value == null)
         this.contextType = null;
       else {
         if (this.contextType == null)
-          this.contextType = new Enumeration<StructureMapContextType>(new StructureMapContextTypeEnumFactory());
+          this.contextType = new StringType();
         this.contextType.setValue(value);
       }
       return this;
@@ -5191,16 +3847,16 @@ public class StructureMap extends MetadataResource {
     /**
      * @return {@link #listMode} (If field is a list, how to manage the list.)
      */
-    public List<Enumeration<StructureMapTargetListMode>> getListMode() {
+    public List<StringType> getListMode() {
       if (this.listMode == null)
-        this.listMode = new ArrayList<Enumeration<StructureMapTargetListMode>>();
+        this.listMode = new ArrayList<StringType>();
       return this.listMode;
     }
 
     /**
      * @return Returns a reference to <code>this</code> for easy method chaining
      */
-    public StructureMapGroupRuleTargetComponent setListMode(List<Enumeration<StructureMapTargetListMode>> theListMode) {
+    public StructureMapGroupRuleTargetComponent setListMode(List<StringType> theListMode) {
       this.listMode = theListMode;
       return this;
     }
@@ -5208,7 +3864,7 @@ public class StructureMap extends MetadataResource {
     public boolean hasListMode() {
       if (this.listMode == null)
         return false;
-      for (Enumeration<StructureMapTargetListMode> item : this.listMode)
+      for (StringType item : this.listMode)
         if (!item.isEmpty())
           return true;
       return false;
@@ -5217,11 +3873,10 @@ public class StructureMap extends MetadataResource {
     /**
      * @return {@link #listMode} (If field is a list, how to manage the list.)
      */
-    public Enumeration<StructureMapTargetListMode> addListModeElement() {// 2
-      Enumeration<StructureMapTargetListMode> t = new Enumeration<StructureMapTargetListMode>(
-          new StructureMapTargetListModeEnumFactory());
+    public StringType addListModeElement() {// 2
+      StringType t = new StringType();
       if (this.listMode == null)
-        this.listMode = new ArrayList<Enumeration<StructureMapTargetListMode>>();
+        this.listMode = new ArrayList<StringType>();
       this.listMode.add(t);
       return t;
     }
@@ -5229,12 +3884,11 @@ public class StructureMap extends MetadataResource {
     /**
      * @param value {@link #listMode} (If field is a list, how to manage the list.)
      */
-    public StructureMapGroupRuleTargetComponent addListMode(StructureMapTargetListMode value) { // 1
-      Enumeration<StructureMapTargetListMode> t = new Enumeration<StructureMapTargetListMode>(
-          new StructureMapTargetListModeEnumFactory());
+    public StructureMapGroupRuleTargetComponent addListMode(String value) { // 1
+      StringType t = new StringType();
       t.setValue(value);
       if (this.listMode == null)
-        this.listMode = new ArrayList<Enumeration<StructureMapTargetListMode>>();
+        this.listMode = new ArrayList<StringType>();
       this.listMode.add(t);
       return this;
     }
@@ -5242,10 +3896,10 @@ public class StructureMap extends MetadataResource {
     /**
      * @param value {@link #listMode} (If field is a list, how to manage the list.)
      */
-    public boolean hasListMode(StructureMapTargetListMode value) {
+    public boolean hasListMode(String value) {
       if (this.listMode == null)
         return false;
-      for (Enumeration<StructureMapTargetListMode> v : this.listMode)
+      for (StringType v : this.listMode)
         if (v.getValue().equals(value)) // code
           return true;
       return false;
@@ -5310,12 +3964,12 @@ public class StructureMap extends MetadataResource {
      *         underlying object with id, value and extensions. The accessor
      *         "getTransform" gives direct access to the value
      */
-    public Enumeration<StructureMapTransform> getTransformElement() {
+    public StringType getTransformElement() {
       if (this.transform == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create StructureMapGroupRuleTargetComponent.transform");
         else if (Configuration.doAutoCreate())
-          this.transform = new Enumeration<StructureMapTransform>(new StructureMapTransformEnumFactory()); // bb
+          this.transform = new StringType(); // bb
       return this.transform;
     }
 
@@ -5332,7 +3986,7 @@ public class StructureMap extends MetadataResource {
      *              the underlying object with id, value and extensions. The
      *              accessor "getTransform" gives direct access to the value
      */
-    public StructureMapGroupRuleTargetComponent setTransformElement(Enumeration<StructureMapTransform> value) {
+    public StructureMapGroupRuleTargetComponent setTransformElement(StringType value) {
       this.transform = value;
       return this;
     }
@@ -5340,19 +3994,19 @@ public class StructureMap extends MetadataResource {
     /**
      * @return How the data is copied / created.
      */
-    public StructureMapTransform getTransform() {
-      return this.transform == null ? null : this.transform.getValue();
+    public StringType getTransform() {
+      return this.transform == null ? null : this.transform;
     }
 
     /**
      * @param value How the data is copied / created.
      */
-    public StructureMapGroupRuleTargetComponent setTransform(StructureMapTransform value) {
+    public StructureMapGroupRuleTargetComponent setTransform(String value) {
       if (value == null)
         this.transform = null;
       else {
         if (this.transform == null)
-          this.transform = new Enumeration<StructureMapTransform>(new StructureMapTransformEnumFactory());
+          this.transform = new StringType();
         this.transform.setValue(value);
       }
       return this;
@@ -5416,15 +4070,15 @@ public class StructureMap extends MetadataResource {
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
       children.add(new Property("context", "id", "Type or variable this rule applies to.", 0, 1, context));
-      children.add(new Property("contextType", "code", "How to interpret the context.", 0, 1, contextType));
+      children.add(new Property("contextType", "string", "How to interpret the context.", 0, 1, contextType));
       children.add(new Property("element", "string", "Field to create in the context.", 0, 1, element));
       children.add(new Property("variable", "id", "Named context for field, if desired, and a field is specified.", 0,
           1, variable));
-      children.add(new Property("listMode", "code", "If field is a list, how to manage the list.", 0,
+      children.add(new Property("listMode", "string", "If field is a list, how to manage the list.", 0,
           java.lang.Integer.MAX_VALUE, listMode));
       children
           .add(new Property("listRuleId", "id", "Internal rule reference for shared list items.", 0, 1, listRuleId));
-      children.add(new Property("transform", "code", "How the data is copied / created.", 0, 1, transform));
+      children.add(new Property("transform", "string", "How the data is copied / created.", 0, 1, transform));
       children.add(
           new Property("parameter", "", "Parameters to the transform.", 0, java.lang.Integer.MAX_VALUE, parameter));
     }
@@ -5435,7 +4089,7 @@ public class StructureMap extends MetadataResource {
       case 951530927:
         /* context */ return new Property("context", "id", "Type or variable this rule applies to.", 0, 1, context);
       case -102839927:
-        /* contextType */ return new Property("contextType", "code", "How to interpret the context.", 0, 1,
+        /* contextType */ return new Property("contextType", "string", "How to interpret the context.", 0, 1,
             contextType);
       case -1662836996:
         /* element */ return new Property("element", "string", "Field to create in the context.", 0, 1, element);
@@ -5443,13 +4097,13 @@ public class StructureMap extends MetadataResource {
         /* variable */ return new Property("variable", "id",
             "Named context for field, if desired, and a field is specified.", 0, 1, variable);
       case 1345445729:
-        /* listMode */ return new Property("listMode", "code", "If field is a list, how to manage the list.", 0,
+        /* listMode */ return new Property("listMode", "string", "If field is a list, how to manage the list.", 0,
             java.lang.Integer.MAX_VALUE, listMode);
       case 337117045:
         /* listRuleId */ return new Property("listRuleId", "id", "Internal rule reference for shared list items.", 0, 1,
             listRuleId);
       case 1052666732:
-        /* transform */ return new Property("transform", "code", "How the data is copied / created.", 0, 1, transform);
+        /* transform */ return new Property("transform", "string", "How the data is copied / created.", 0, 1, transform);
       case 1954460585:
         /* parameter */ return new Property("parameter", "", "Parameters to the transform.", 0,
             java.lang.Integer.MAX_VALUE, parameter);
@@ -5465,18 +4119,18 @@ public class StructureMap extends MetadataResource {
       case 951530927:
         /* context */ return this.context == null ? new Base[0] : new Base[] { this.context }; // IdType
       case -102839927:
-        /* contextType */ return this.contextType == null ? new Base[0] : new Base[] { this.contextType }; // Enumeration<StructureMapContextType>
+        /* contextType */ return this.contextType == null ? new Base[0] : new Base[] { this.contextType }; // StringType
       case -1662836996:
         /* element */ return this.element == null ? new Base[0] : new Base[] { this.element }; // StringType
       case -1249586564:
         /* variable */ return this.variable == null ? new Base[0] : new Base[] { this.variable }; // IdType
       case 1345445729:
         /* listMode */ return this.listMode == null ? new Base[0]
-            : this.listMode.toArray(new Base[this.listMode.size()]); // Enumeration<StructureMapTargetListMode>
+            : this.listMode.toArray(new Base[this.listMode.size()]); // StringType
       case 337117045:
         /* listRuleId */ return this.listRuleId == null ? new Base[0] : new Base[] { this.listRuleId }; // IdType
       case 1052666732:
-        /* transform */ return this.transform == null ? new Base[0] : new Base[] { this.transform }; // Enumeration<StructureMapTransform>
+        /* transform */ return this.transform == null ? new Base[0] : new Base[] { this.transform }; // StringType
       case 1954460585:
         /* parameter */ return this.parameter == null ? new Base[0]
             : this.parameter.toArray(new Base[this.parameter.size()]); // StructureMapGroupRuleTargetParameterComponent
@@ -5493,8 +4147,7 @@ public class StructureMap extends MetadataResource {
         this.context = castToId(value); // IdType
         return value;
       case -102839927: // contextType
-        value = new StructureMapContextTypeEnumFactory().fromType(castToCode(value));
-        this.contextType = (Enumeration) value; // Enumeration<StructureMapContextType>
+        this.contextType = castToString(value); // StringType
         return value;
       case -1662836996: // element
         this.element = castToString(value); // StringType
@@ -5503,15 +4156,13 @@ public class StructureMap extends MetadataResource {
         this.variable = castToId(value); // IdType
         return value;
       case 1345445729: // listMode
-        value = new StructureMapTargetListModeEnumFactory().fromType(castToCode(value));
-        this.getListMode().add((Enumeration) value); // Enumeration<StructureMapTargetListMode>
+        this.getListMode().add(castToString(value)); // StringType
         return value;
       case 337117045: // listRuleId
         this.listRuleId = castToId(value); // IdType
         return value;
       case 1052666732: // transform
-        value = new StructureMapTransformEnumFactory().fromType(castToCode(value));
-        this.transform = (Enumeration) value; // Enumeration<StructureMapTransform>
+        this.transform = castToString(value); // StringType
         return value;
       case 1954460585: // parameter
         this.getParameter().add((StructureMapGroupRuleTargetParameterComponent) value); // StructureMapGroupRuleTargetParameterComponent
@@ -5527,20 +4178,17 @@ public class StructureMap extends MetadataResource {
       if (name.equals("context")) {
         this.context = castToId(value); // IdType
       } else if (name.equals("contextType")) {
-        value = new StructureMapContextTypeEnumFactory().fromType(castToCode(value));
-        this.contextType = (Enumeration) value; // Enumeration<StructureMapContextType>
+        this.contextType = castToString(value); // StringType
       } else if (name.equals("element")) {
         this.element = castToString(value); // StringType
       } else if (name.equals("variable")) {
         this.variable = castToId(value); // IdType
       } else if (name.equals("listMode")) {
-        value = new StructureMapTargetListModeEnumFactory().fromType(castToCode(value));
-        this.getListMode().add((Enumeration) value);
+        this.getListMode().add(castToString(value));
       } else if (name.equals("listRuleId")) {
         this.listRuleId = castToId(value); // IdType
       } else if (name.equals("transform")) {
-        value = new StructureMapTransformEnumFactory().fromType(castToCode(value));
-        this.transform = (Enumeration) value; // Enumeration<StructureMapTransform>
+        this.transform = castToString(value); // StringType
       } else if (name.equals("parameter")) {
         this.getParameter().add((StructureMapGroupRuleTargetParameterComponent) value);
       } else
@@ -5559,7 +4207,7 @@ public class StructureMap extends MetadataResource {
       } else if (name.equals("variable")) {
         this.variable = null;
       } else if (name.equals("listMode")) {
-        this.getListMode().remove((Enumeration) value);
+        this.getListMode().remove(castToString(value));
       } else if (name.equals("listRuleId")) {
         this.listRuleId = null;
       } else if (name.equals("transform")) {
@@ -5656,8 +4304,8 @@ public class StructureMap extends MetadataResource {
       dst.element = element == null ? null : element.copy();
       dst.variable = variable == null ? null : variable.copy();
       if (listMode != null) {
-        dst.listMode = new ArrayList<Enumeration<StructureMapTargetListMode>>();
-        for (Enumeration<StructureMapTargetListMode> i : listMode)
+        dst.listMode = new ArrayList<StringType>();
+        for (StringType i : listMode)
           dst.listMode.add(i.copy());
       }
       ;
@@ -6383,7 +5031,7 @@ public class StructureMap extends MetadataResource {
   /**
    * Constructor
    */
-  public StructureMap(UriType url, StringType name, Enumeration<PublicationStatus> status) {
+  public StructureMap(UriType url, StringType name, StringType status) {
     super();
     this.url = url;
     this.name = name;
@@ -6716,12 +5364,12 @@ public class StructureMap extends MetadataResource {
    *         id, value and extensions. The accessor "getStatus" gives direct
    *         access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create StructureMap.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -6739,7 +5387,7 @@ public class StructureMap extends MetadataResource {
    *              object with id, value and extensions. The accessor "getStatus"
    *              gives direct access to the value
    */
-  public StructureMap setStatusElement(Enumeration<PublicationStatus> value) {
+  public StructureMap setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -6748,17 +5396,17 @@ public class StructureMap extends MetadataResource {
    * @return The status of this structure map. Enables tracking the life-cycle of
    *         the content.
    */
-  public PublicationStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The status of this structure map. Enables tracking the
    *              life-cycle of the content.
    */
-  public StructureMap setStatus(PublicationStatus value) {
+  public StructureMap setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -7479,7 +6127,7 @@ public class StructureMap extends MetadataResource {
         0, 1, name));
     children.add(new Property("title", "string", "A short, descriptive, user-friendly title for the structure map.", 0,
         1, title));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of this structure map. Enables tracking the life-cycle of the content.", 0, 1, status));
     children.add(new Property("experimental", "boolean",
         "A Boolean value to indicate that this structure map is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
@@ -7539,7 +6187,7 @@ public class StructureMap extends MetadataResource {
       /* title */ return new Property("title", "string",
           "A short, descriptive, user-friendly title for the structure map.", 0, 1, title);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of this structure map. Enables tracking the life-cycle of the content.", 0, 1, status);
     case -404562712:
       /* experimental */ return new Property("experimental", "boolean",
@@ -7607,7 +6255,7 @@ public class StructureMap extends MetadataResource {
     case 110371416:
       /* title */ return this.title == null ? new Base[0] : new Base[] { this.title }; // StringType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -404562712:
       /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
     case 3076014:
@@ -7660,8 +6308,7 @@ public class StructureMap extends MetadataResource {
       this.title = castToString(value); // StringType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -404562712: // experimental
       this.experimental = castToBoolean(value); // BooleanType
@@ -7718,8 +6365,7 @@ public class StructureMap extends MetadataResource {
     } else if (name.equals("title")) {
       this.title = castToString(value); // StringType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("date")) {

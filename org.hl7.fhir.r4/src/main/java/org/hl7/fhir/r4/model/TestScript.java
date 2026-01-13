@@ -36,8 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -56,974 +54,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
     "contact", "description", "useContext", "jurisdiction", "purpose", "copyright", "origin", "destination", "metadata",
     "fixture", "profile", "variable", "setup", "test", "teardown" })
 public class TestScript extends MetadataResource {
-
-  public enum TestScriptRequestMethodCode {
-    /**
-     * HTTP DELETE operation.
-     */
-    DELETE,
-    /**
-     * HTTP GET operation.
-     */
-    GET,
-    /**
-     * HTTP OPTIONS operation.
-     */
-    OPTIONS,
-    /**
-     * HTTP PATCH operation.
-     */
-    PATCH,
-    /**
-     * HTTP POST operation.
-     */
-    POST,
-    /**
-     * HTTP PUT operation.
-     */
-    PUT,
-    /**
-     * HTTP HEAD operation.
-     */
-    HEAD,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static TestScriptRequestMethodCode fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("delete".equals(codeString))
-        return DELETE;
-      if ("get".equals(codeString))
-        return GET;
-      if ("options".equals(codeString))
-        return OPTIONS;
-      if ("patch".equals(codeString))
-        return PATCH;
-      if ("post".equals(codeString))
-        return POST;
-      if ("put".equals(codeString))
-        return PUT;
-      if ("head".equals(codeString))
-        return HEAD;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown TestScriptRequestMethodCode code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case DELETE:
-        return "delete";
-      case GET:
-        return "get";
-      case OPTIONS:
-        return "options";
-      case PATCH:
-        return "patch";
-      case POST:
-        return "post";
-      case PUT:
-        return "put";
-      case HEAD:
-        return "head";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case DELETE:
-        return "http://hl7.org/fhir/http-operations";
-      case GET:
-        return "http://hl7.org/fhir/http-operations";
-      case OPTIONS:
-        return "http://hl7.org/fhir/http-operations";
-      case PATCH:
-        return "http://hl7.org/fhir/http-operations";
-      case POST:
-        return "http://hl7.org/fhir/http-operations";
-      case PUT:
-        return "http://hl7.org/fhir/http-operations";
-      case HEAD:
-        return "http://hl7.org/fhir/http-operations";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case DELETE:
-        return "HTTP DELETE operation.";
-      case GET:
-        return "HTTP GET operation.";
-      case OPTIONS:
-        return "HTTP OPTIONS operation.";
-      case PATCH:
-        return "HTTP PATCH operation.";
-      case POST:
-        return "HTTP POST operation.";
-      case PUT:
-        return "HTTP PUT operation.";
-      case HEAD:
-        return "HTTP HEAD operation.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case DELETE:
-        return "DELETE";
-      case GET:
-        return "GET";
-      case OPTIONS:
-        return "OPTIONS";
-      case PATCH:
-        return "PATCH";
-      case POST:
-        return "POST";
-      case PUT:
-        return "PUT";
-      case HEAD:
-        return "HEAD";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class TestScriptRequestMethodCodeEnumFactory implements EnumFactory<TestScriptRequestMethodCode> {
-    public TestScriptRequestMethodCode fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("delete".equals(codeString))
-        return TestScriptRequestMethodCode.DELETE;
-      if ("get".equals(codeString))
-        return TestScriptRequestMethodCode.GET;
-      if ("options".equals(codeString))
-        return TestScriptRequestMethodCode.OPTIONS;
-      if ("patch".equals(codeString))
-        return TestScriptRequestMethodCode.PATCH;
-      if ("post".equals(codeString))
-        return TestScriptRequestMethodCode.POST;
-      if ("put".equals(codeString))
-        return TestScriptRequestMethodCode.PUT;
-      if ("head".equals(codeString))
-        return TestScriptRequestMethodCode.HEAD;
-      throw new IllegalArgumentException("Unknown TestScriptRequestMethodCode code '" + codeString + "'");
-    }
-
-    public Enumeration<TestScriptRequestMethodCode> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<TestScriptRequestMethodCode>(this, TestScriptRequestMethodCode.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<TestScriptRequestMethodCode>(this, TestScriptRequestMethodCode.NULL, code);
-      if ("delete".equals(codeString))
-        return new Enumeration<TestScriptRequestMethodCode>(this, TestScriptRequestMethodCode.DELETE, code);
-      if ("get".equals(codeString))
-        return new Enumeration<TestScriptRequestMethodCode>(this, TestScriptRequestMethodCode.GET, code);
-      if ("options".equals(codeString))
-        return new Enumeration<TestScriptRequestMethodCode>(this, TestScriptRequestMethodCode.OPTIONS, code);
-      if ("patch".equals(codeString))
-        return new Enumeration<TestScriptRequestMethodCode>(this, TestScriptRequestMethodCode.PATCH, code);
-      if ("post".equals(codeString))
-        return new Enumeration<TestScriptRequestMethodCode>(this, TestScriptRequestMethodCode.POST, code);
-      if ("put".equals(codeString))
-        return new Enumeration<TestScriptRequestMethodCode>(this, TestScriptRequestMethodCode.PUT, code);
-      if ("head".equals(codeString))
-        return new Enumeration<TestScriptRequestMethodCode>(this, TestScriptRequestMethodCode.HEAD, code);
-      throw new FHIRException("Unknown TestScriptRequestMethodCode code '" + codeString + "'");
-    }
-
-    public String toCode(TestScriptRequestMethodCode code) {
-       if (code == TestScriptRequestMethodCode.NULL)
-           return null;
-       if (code == TestScriptRequestMethodCode.DELETE)
-        return "delete";
-      if (code == TestScriptRequestMethodCode.GET)
-        return "get";
-      if (code == TestScriptRequestMethodCode.OPTIONS)
-        return "options";
-      if (code == TestScriptRequestMethodCode.PATCH)
-        return "patch";
-      if (code == TestScriptRequestMethodCode.POST)
-        return "post";
-      if (code == TestScriptRequestMethodCode.PUT)
-        return "put";
-      if (code == TestScriptRequestMethodCode.HEAD)
-        return "head";
-      return "?";
-   }
-
-    public String toSystem(TestScriptRequestMethodCode code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum AssertionDirectionType {
-    /**
-     * The assertion is evaluated on the response. This is the default value.
-     */
-    RESPONSE,
-    /**
-     * The assertion is evaluated on the request.
-     */
-    REQUEST,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static AssertionDirectionType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("response".equals(codeString))
-        return RESPONSE;
-      if ("request".equals(codeString))
-        return REQUEST;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown AssertionDirectionType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case RESPONSE:
-        return "response";
-      case REQUEST:
-        return "request";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case RESPONSE:
-        return "http://hl7.org/fhir/assert-direction-codes";
-      case REQUEST:
-        return "http://hl7.org/fhir/assert-direction-codes";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case RESPONSE:
-        return "The assertion is evaluated on the response. This is the default value.";
-      case REQUEST:
-        return "The assertion is evaluated on the request.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case RESPONSE:
-        return "response";
-      case REQUEST:
-        return "request";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class AssertionDirectionTypeEnumFactory implements EnumFactory<AssertionDirectionType> {
-    public AssertionDirectionType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("response".equals(codeString))
-        return AssertionDirectionType.RESPONSE;
-      if ("request".equals(codeString))
-        return AssertionDirectionType.REQUEST;
-      throw new IllegalArgumentException("Unknown AssertionDirectionType code '" + codeString + "'");
-    }
-
-    public Enumeration<AssertionDirectionType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<AssertionDirectionType>(this, AssertionDirectionType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<AssertionDirectionType>(this, AssertionDirectionType.NULL, code);
-      if ("response".equals(codeString))
-        return new Enumeration<AssertionDirectionType>(this, AssertionDirectionType.RESPONSE, code);
-      if ("request".equals(codeString))
-        return new Enumeration<AssertionDirectionType>(this, AssertionDirectionType.REQUEST, code);
-      throw new FHIRException("Unknown AssertionDirectionType code '" + codeString + "'");
-    }
-
-    public String toCode(AssertionDirectionType code) {
-       if (code == AssertionDirectionType.NULL)
-           return null;
-       if (code == AssertionDirectionType.RESPONSE)
-        return "response";
-      if (code == AssertionDirectionType.REQUEST)
-        return "request";
-      return "?";
-   }
-
-    public String toSystem(AssertionDirectionType code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum AssertionOperatorType {
-    /**
-     * Default value. Equals comparison.
-     */
-    EQUALS,
-    /**
-     * Not equals comparison.
-     */
-    NOTEQUALS,
-    /**
-     * Compare value within a known set of values.
-     */
-    IN,
-    /**
-     * Compare value not within a known set of values.
-     */
-    NOTIN,
-    /**
-     * Compare value to be greater than a known value.
-     */
-    GREATERTHAN,
-    /**
-     * Compare value to be less than a known value.
-     */
-    LESSTHAN,
-    /**
-     * Compare value is empty.
-     */
-    EMPTY,
-    /**
-     * Compare value is not empty.
-     */
-    NOTEMPTY,
-    /**
-     * Compare value string contains a known value.
-     */
-    CONTAINS,
-    /**
-     * Compare value string does not contain a known value.
-     */
-    NOTCONTAINS,
-    /**
-     * Evaluate the FHIRPath expression as a boolean condition.
-     */
-    EVAL,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static AssertionOperatorType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("equals".equals(codeString))
-        return EQUALS;
-      if ("notEquals".equals(codeString))
-        return NOTEQUALS;
-      if ("in".equals(codeString))
-        return IN;
-      if ("notIn".equals(codeString))
-        return NOTIN;
-      if ("greaterThan".equals(codeString))
-        return GREATERTHAN;
-      if ("lessThan".equals(codeString))
-        return LESSTHAN;
-      if ("empty".equals(codeString))
-        return EMPTY;
-      if ("notEmpty".equals(codeString))
-        return NOTEMPTY;
-      if ("contains".equals(codeString))
-        return CONTAINS;
-      if ("notContains".equals(codeString))
-        return NOTCONTAINS;
-      if ("eval".equals(codeString))
-        return EVAL;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown AssertionOperatorType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case EQUALS:
-        return "equals";
-      case NOTEQUALS:
-        return "notEquals";
-      case IN:
-        return "in";
-      case NOTIN:
-        return "notIn";
-      case GREATERTHAN:
-        return "greaterThan";
-      case LESSTHAN:
-        return "lessThan";
-      case EMPTY:
-        return "empty";
-      case NOTEMPTY:
-        return "notEmpty";
-      case CONTAINS:
-        return "contains";
-      case NOTCONTAINS:
-        return "notContains";
-      case EVAL:
-        return "eval";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case EQUALS:
-        return "http://hl7.org/fhir/assert-operator-codes";
-      case NOTEQUALS:
-        return "http://hl7.org/fhir/assert-operator-codes";
-      case IN:
-        return "http://hl7.org/fhir/assert-operator-codes";
-      case NOTIN:
-        return "http://hl7.org/fhir/assert-operator-codes";
-      case GREATERTHAN:
-        return "http://hl7.org/fhir/assert-operator-codes";
-      case LESSTHAN:
-        return "http://hl7.org/fhir/assert-operator-codes";
-      case EMPTY:
-        return "http://hl7.org/fhir/assert-operator-codes";
-      case NOTEMPTY:
-        return "http://hl7.org/fhir/assert-operator-codes";
-      case CONTAINS:
-        return "http://hl7.org/fhir/assert-operator-codes";
-      case NOTCONTAINS:
-        return "http://hl7.org/fhir/assert-operator-codes";
-      case EVAL:
-        return "http://hl7.org/fhir/assert-operator-codes";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case EQUALS:
-        return "Default value. Equals comparison.";
-      case NOTEQUALS:
-        return "Not equals comparison.";
-      case IN:
-        return "Compare value within a known set of values.";
-      case NOTIN:
-        return "Compare value not within a known set of values.";
-      case GREATERTHAN:
-        return "Compare value to be greater than a known value.";
-      case LESSTHAN:
-        return "Compare value to be less than a known value.";
-      case EMPTY:
-        return "Compare value is empty.";
-      case NOTEMPTY:
-        return "Compare value is not empty.";
-      case CONTAINS:
-        return "Compare value string contains a known value.";
-      case NOTCONTAINS:
-        return "Compare value string does not contain a known value.";
-      case EVAL:
-        return "Evaluate the FHIRPath expression as a boolean condition.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case EQUALS:
-        return "equals";
-      case NOTEQUALS:
-        return "notEquals";
-      case IN:
-        return "in";
-      case NOTIN:
-        return "notIn";
-      case GREATERTHAN:
-        return "greaterThan";
-      case LESSTHAN:
-        return "lessThan";
-      case EMPTY:
-        return "empty";
-      case NOTEMPTY:
-        return "notEmpty";
-      case CONTAINS:
-        return "contains";
-      case NOTCONTAINS:
-        return "notContains";
-      case EVAL:
-        return "evaluate";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class AssertionOperatorTypeEnumFactory implements EnumFactory<AssertionOperatorType> {
-    public AssertionOperatorType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("equals".equals(codeString))
-        return AssertionOperatorType.EQUALS;
-      if ("notEquals".equals(codeString))
-        return AssertionOperatorType.NOTEQUALS;
-      if ("in".equals(codeString))
-        return AssertionOperatorType.IN;
-      if ("notIn".equals(codeString))
-        return AssertionOperatorType.NOTIN;
-      if ("greaterThan".equals(codeString))
-        return AssertionOperatorType.GREATERTHAN;
-      if ("lessThan".equals(codeString))
-        return AssertionOperatorType.LESSTHAN;
-      if ("empty".equals(codeString))
-        return AssertionOperatorType.EMPTY;
-      if ("notEmpty".equals(codeString))
-        return AssertionOperatorType.NOTEMPTY;
-      if ("contains".equals(codeString))
-        return AssertionOperatorType.CONTAINS;
-      if ("notContains".equals(codeString))
-        return AssertionOperatorType.NOTCONTAINS;
-      if ("eval".equals(codeString))
-        return AssertionOperatorType.EVAL;
-      throw new IllegalArgumentException("Unknown AssertionOperatorType code '" + codeString + "'");
-    }
-
-    public Enumeration<AssertionOperatorType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<AssertionOperatorType>(this, AssertionOperatorType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<AssertionOperatorType>(this, AssertionOperatorType.NULL, code);
-      if ("equals".equals(codeString))
-        return new Enumeration<AssertionOperatorType>(this, AssertionOperatorType.EQUALS, code);
-      if ("notEquals".equals(codeString))
-        return new Enumeration<AssertionOperatorType>(this, AssertionOperatorType.NOTEQUALS, code);
-      if ("in".equals(codeString))
-        return new Enumeration<AssertionOperatorType>(this, AssertionOperatorType.IN, code);
-      if ("notIn".equals(codeString))
-        return new Enumeration<AssertionOperatorType>(this, AssertionOperatorType.NOTIN, code);
-      if ("greaterThan".equals(codeString))
-        return new Enumeration<AssertionOperatorType>(this, AssertionOperatorType.GREATERTHAN, code);
-      if ("lessThan".equals(codeString))
-        return new Enumeration<AssertionOperatorType>(this, AssertionOperatorType.LESSTHAN, code);
-      if ("empty".equals(codeString))
-        return new Enumeration<AssertionOperatorType>(this, AssertionOperatorType.EMPTY, code);
-      if ("notEmpty".equals(codeString))
-        return new Enumeration<AssertionOperatorType>(this, AssertionOperatorType.NOTEMPTY, code);
-      if ("contains".equals(codeString))
-        return new Enumeration<AssertionOperatorType>(this, AssertionOperatorType.CONTAINS, code);
-      if ("notContains".equals(codeString))
-        return new Enumeration<AssertionOperatorType>(this, AssertionOperatorType.NOTCONTAINS, code);
-      if ("eval".equals(codeString))
-        return new Enumeration<AssertionOperatorType>(this, AssertionOperatorType.EVAL, code);
-      throw new FHIRException("Unknown AssertionOperatorType code '" + codeString + "'");
-    }
-
-    public String toCode(AssertionOperatorType code) {
-       if (code == AssertionOperatorType.NULL)
-           return null;
-       if (code == AssertionOperatorType.EQUALS)
-        return "equals";
-      if (code == AssertionOperatorType.NOTEQUALS)
-        return "notEquals";
-      if (code == AssertionOperatorType.IN)
-        return "in";
-      if (code == AssertionOperatorType.NOTIN)
-        return "notIn";
-      if (code == AssertionOperatorType.GREATERTHAN)
-        return "greaterThan";
-      if (code == AssertionOperatorType.LESSTHAN)
-        return "lessThan";
-      if (code == AssertionOperatorType.EMPTY)
-        return "empty";
-      if (code == AssertionOperatorType.NOTEMPTY)
-        return "notEmpty";
-      if (code == AssertionOperatorType.CONTAINS)
-        return "contains";
-      if (code == AssertionOperatorType.NOTCONTAINS)
-        return "notContains";
-      if (code == AssertionOperatorType.EVAL)
-        return "eval";
-      return "?";
-   }
-
-    public String toSystem(AssertionOperatorType code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum AssertionResponseTypes {
-    /**
-     * Response code is 200.
-     */
-    OKAY,
-    /**
-     * Response code is 201.
-     */
-    CREATED,
-    /**
-     * Response code is 204.
-     */
-    NOCONTENT,
-    /**
-     * Response code is 304.
-     */
-    NOTMODIFIED,
-    /**
-     * Response code is 400.
-     */
-    BAD,
-    /**
-     * Response code is 403.
-     */
-    FORBIDDEN,
-    /**
-     * Response code is 404.
-     */
-    NOTFOUND,
-    /**
-     * Response code is 405.
-     */
-    METHODNOTALLOWED,
-    /**
-     * Response code is 409.
-     */
-    CONFLICT,
-    /**
-     * Response code is 410.
-     */
-    GONE,
-    /**
-     * Response code is 412.
-     */
-    PRECONDITIONFAILED,
-    /**
-     * Response code is 422.
-     */
-    UNPROCESSABLE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static AssertionResponseTypes fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("okay".equals(codeString))
-        return OKAY;
-      if ("created".equals(codeString))
-        return CREATED;
-      if ("noContent".equals(codeString))
-        return NOCONTENT;
-      if ("notModified".equals(codeString))
-        return NOTMODIFIED;
-      if ("bad".equals(codeString))
-        return BAD;
-      if ("forbidden".equals(codeString))
-        return FORBIDDEN;
-      if ("notFound".equals(codeString))
-        return NOTFOUND;
-      if ("methodNotAllowed".equals(codeString))
-        return METHODNOTALLOWED;
-      if ("conflict".equals(codeString))
-        return CONFLICT;
-      if ("gone".equals(codeString))
-        return GONE;
-      if ("preconditionFailed".equals(codeString))
-        return PRECONDITIONFAILED;
-      if ("unprocessable".equals(codeString))
-        return UNPROCESSABLE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown AssertionResponseTypes code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case OKAY:
-        return "okay";
-      case CREATED:
-        return "created";
-      case NOCONTENT:
-        return "noContent";
-      case NOTMODIFIED:
-        return "notModified";
-      case BAD:
-        return "bad";
-      case FORBIDDEN:
-        return "forbidden";
-      case NOTFOUND:
-        return "notFound";
-      case METHODNOTALLOWED:
-        return "methodNotAllowed";
-      case CONFLICT:
-        return "conflict";
-      case GONE:
-        return "gone";
-      case PRECONDITIONFAILED:
-        return "preconditionFailed";
-      case UNPROCESSABLE:
-        return "unprocessable";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case OKAY:
-        return "http://hl7.org/fhir/assert-response-code-types";
-      case CREATED:
-        return "http://hl7.org/fhir/assert-response-code-types";
-      case NOCONTENT:
-        return "http://hl7.org/fhir/assert-response-code-types";
-      case NOTMODIFIED:
-        return "http://hl7.org/fhir/assert-response-code-types";
-      case BAD:
-        return "http://hl7.org/fhir/assert-response-code-types";
-      case FORBIDDEN:
-        return "http://hl7.org/fhir/assert-response-code-types";
-      case NOTFOUND:
-        return "http://hl7.org/fhir/assert-response-code-types";
-      case METHODNOTALLOWED:
-        return "http://hl7.org/fhir/assert-response-code-types";
-      case CONFLICT:
-        return "http://hl7.org/fhir/assert-response-code-types";
-      case GONE:
-        return "http://hl7.org/fhir/assert-response-code-types";
-      case PRECONDITIONFAILED:
-        return "http://hl7.org/fhir/assert-response-code-types";
-      case UNPROCESSABLE:
-        return "http://hl7.org/fhir/assert-response-code-types";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case OKAY:
-        return "Response code is 200.";
-      case CREATED:
-        return "Response code is 201.";
-      case NOCONTENT:
-        return "Response code is 204.";
-      case NOTMODIFIED:
-        return "Response code is 304.";
-      case BAD:
-        return "Response code is 400.";
-      case FORBIDDEN:
-        return "Response code is 403.";
-      case NOTFOUND:
-        return "Response code is 404.";
-      case METHODNOTALLOWED:
-        return "Response code is 405.";
-      case CONFLICT:
-        return "Response code is 409.";
-      case GONE:
-        return "Response code is 410.";
-      case PRECONDITIONFAILED:
-        return "Response code is 412.";
-      case UNPROCESSABLE:
-        return "Response code is 422.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case OKAY:
-        return "okay";
-      case CREATED:
-        return "created";
-      case NOCONTENT:
-        return "noContent";
-      case NOTMODIFIED:
-        return "notModified";
-      case BAD:
-        return "bad";
-      case FORBIDDEN:
-        return "forbidden";
-      case NOTFOUND:
-        return "notFound";
-      case METHODNOTALLOWED:
-        return "methodNotAllowed";
-      case CONFLICT:
-        return "conflict";
-      case GONE:
-        return "gone";
-      case PRECONDITIONFAILED:
-        return "preconditionFailed";
-      case UNPROCESSABLE:
-        return "unprocessable";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class AssertionResponseTypesEnumFactory implements EnumFactory<AssertionResponseTypes> {
-    public AssertionResponseTypes fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("okay".equals(codeString))
-        return AssertionResponseTypes.OKAY;
-      if ("created".equals(codeString))
-        return AssertionResponseTypes.CREATED;
-      if ("noContent".equals(codeString))
-        return AssertionResponseTypes.NOCONTENT;
-      if ("notModified".equals(codeString))
-        return AssertionResponseTypes.NOTMODIFIED;
-      if ("bad".equals(codeString))
-        return AssertionResponseTypes.BAD;
-      if ("forbidden".equals(codeString))
-        return AssertionResponseTypes.FORBIDDEN;
-      if ("notFound".equals(codeString))
-        return AssertionResponseTypes.NOTFOUND;
-      if ("methodNotAllowed".equals(codeString))
-        return AssertionResponseTypes.METHODNOTALLOWED;
-      if ("conflict".equals(codeString))
-        return AssertionResponseTypes.CONFLICT;
-      if ("gone".equals(codeString))
-        return AssertionResponseTypes.GONE;
-      if ("preconditionFailed".equals(codeString))
-        return AssertionResponseTypes.PRECONDITIONFAILED;
-      if ("unprocessable".equals(codeString))
-        return AssertionResponseTypes.UNPROCESSABLE;
-      throw new IllegalArgumentException("Unknown AssertionResponseTypes code '" + codeString + "'");
-    }
-
-    public Enumeration<AssertionResponseTypes> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<AssertionResponseTypes>(this, AssertionResponseTypes.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<AssertionResponseTypes>(this, AssertionResponseTypes.NULL, code);
-      if ("okay".equals(codeString))
-        return new Enumeration<AssertionResponseTypes>(this, AssertionResponseTypes.OKAY, code);
-      if ("created".equals(codeString))
-        return new Enumeration<AssertionResponseTypes>(this, AssertionResponseTypes.CREATED, code);
-      if ("noContent".equals(codeString))
-        return new Enumeration<AssertionResponseTypes>(this, AssertionResponseTypes.NOCONTENT, code);
-      if ("notModified".equals(codeString))
-        return new Enumeration<AssertionResponseTypes>(this, AssertionResponseTypes.NOTMODIFIED, code);
-      if ("bad".equals(codeString))
-        return new Enumeration<AssertionResponseTypes>(this, AssertionResponseTypes.BAD, code);
-      if ("forbidden".equals(codeString))
-        return new Enumeration<AssertionResponseTypes>(this, AssertionResponseTypes.FORBIDDEN, code);
-      if ("notFound".equals(codeString))
-        return new Enumeration<AssertionResponseTypes>(this, AssertionResponseTypes.NOTFOUND, code);
-      if ("methodNotAllowed".equals(codeString))
-        return new Enumeration<AssertionResponseTypes>(this, AssertionResponseTypes.METHODNOTALLOWED, code);
-      if ("conflict".equals(codeString))
-        return new Enumeration<AssertionResponseTypes>(this, AssertionResponseTypes.CONFLICT, code);
-      if ("gone".equals(codeString))
-        return new Enumeration<AssertionResponseTypes>(this, AssertionResponseTypes.GONE, code);
-      if ("preconditionFailed".equals(codeString))
-        return new Enumeration<AssertionResponseTypes>(this, AssertionResponseTypes.PRECONDITIONFAILED, code);
-      if ("unprocessable".equals(codeString))
-        return new Enumeration<AssertionResponseTypes>(this, AssertionResponseTypes.UNPROCESSABLE, code);
-      throw new FHIRException("Unknown AssertionResponseTypes code '" + codeString + "'");
-    }
-
-    public String toCode(AssertionResponseTypes code) {
-       if (code == AssertionResponseTypes.NULL)
-           return null;
-       if (code == AssertionResponseTypes.OKAY)
-        return "okay";
-      if (code == AssertionResponseTypes.CREATED)
-        return "created";
-      if (code == AssertionResponseTypes.NOCONTENT)
-        return "noContent";
-      if (code == AssertionResponseTypes.NOTMODIFIED)
-        return "notModified";
-      if (code == AssertionResponseTypes.BAD)
-        return "bad";
-      if (code == AssertionResponseTypes.FORBIDDEN)
-        return "forbidden";
-      if (code == AssertionResponseTypes.NOTFOUND)
-        return "notFound";
-      if (code == AssertionResponseTypes.METHODNOTALLOWED)
-        return "methodNotAllowed";
-      if (code == AssertionResponseTypes.CONFLICT)
-        return "conflict";
-      if (code == AssertionResponseTypes.GONE)
-        return "gone";
-      if (code == AssertionResponseTypes.PRECONDITIONFAILED)
-        return "preconditionFailed";
-      if (code == AssertionResponseTypes.UNPROCESSABLE)
-        return "unprocessable";
-      return "?";
-   }
-
-    public String toSystem(AssertionResponseTypes code) {
-      return code.getSystem();
-    }
-  }
 
   @Block()
   public static class TestScriptOriginComponent extends BackboneElement implements IBaseBackboneElement {
@@ -4689,10 +3719,10 @@ public class TestScript extends MetadataResource {
      * The HTTP method the test engine MUST use for this operation regardless of any
      * other operation details.
      */
-    @Child(name = "method", type = { CodeType.class }, order = 9, min = 0, max = 1, modifier = false, summary = false)
+    @Child(name = "method", type = { StringType.class }, order = 9, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "delete | get | options | patch | post | put | head", formalDefinition = "The HTTP method the test engine MUST use for this operation regardless of any other operation details.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/http-operations")
-    protected Enumeration<TestScriptRequestMethodCode> method;
+    protected StringType method;
 
     /**
      * The server where the request message originates from. Must be one of the
@@ -5204,12 +4234,12 @@ public class TestScript extends MetadataResource {
      *         underlying object with id, value and extensions. The accessor
      *         "getMethod" gives direct access to the value
      */
-    public Enumeration<TestScriptRequestMethodCode> getMethodElement() {
+    public StringType getMethodElement() {
       if (this.method == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create SetupActionOperationComponent.method");
         else if (Configuration.doAutoCreate())
-          this.method = new Enumeration<TestScriptRequestMethodCode>(new TestScriptRequestMethodCodeEnumFactory()); // bb
+          this.method = new StringType(); // bb
       return this.method;
     }
 
@@ -5227,7 +4257,7 @@ public class TestScript extends MetadataResource {
      *              is the underlying object with id, value and extensions. The
      *              accessor "getMethod" gives direct access to the value
      */
-    public SetupActionOperationComponent setMethodElement(Enumeration<TestScriptRequestMethodCode> value) {
+    public SetupActionOperationComponent setMethodElement(StringType value) {
       this.method = value;
       return this;
     }
@@ -5236,20 +4266,20 @@ public class TestScript extends MetadataResource {
      * @return The HTTP method the test engine MUST use for this operation
      *         regardless of any other operation details.
      */
-    public TestScriptRequestMethodCode getMethod() {
-      return this.method == null ? null : this.method.getValue();
+    public StringType getMethod() {
+      return this.method == null ? null : this.method;
     }
 
     /**
      * @param value The HTTP method the test engine MUST use for this operation
      *              regardless of any other operation details.
      */
-    public SetupActionOperationComponent setMethod(TestScriptRequestMethodCode value) {
+    public SetupActionOperationComponent setMethod(String value) {
       if (value == null)
         this.method = null;
       else {
         if (this.method == null)
-          this.method = new Enumeration<TestScriptRequestMethodCode>(new TestScriptRequestMethodCodeEnumFactory());
+          this.method = new StringType();
         this.method.setValue(value);
       }
       return this;
@@ -5716,7 +4746,7 @@ public class TestScript extends MetadataResource {
       children.add(new Property("encodeRequestUrl", "boolean",
           "Whether or not to implicitly send the request url in encoded format. The default is true to match the standard RESTful client behavior. Set to false when communicating with a server that does not support encoded url paths.",
           0, 1, encodeRequestUrl));
-      children.add(new Property("method", "code",
+      children.add(new Property("method", "string",
           "The HTTP method the test engine MUST use for this operation regardless of any other operation details.", 0,
           1, method));
       children.add(new Property("origin", "integer",
@@ -5766,7 +4796,7 @@ public class TestScript extends MetadataResource {
             "Whether or not to implicitly send the request url in encoded format. The default is true to match the standard RESTful client behavior. Set to false when communicating with a server that does not support encoded url paths.",
             0, 1, encodeRequestUrl);
       case -1077554975:
-        /* method */ return new Property("method", "code",
+        /* method */ return new Property("method", "string",
             "The HTTP method the test engine MUST use for this operation regardless of any other operation details.", 0,
             1, method);
       case -1008619738:
@@ -5820,7 +4850,7 @@ public class TestScript extends MetadataResource {
         /* encodeRequestUrl */ return this.encodeRequestUrl == null ? new Base[0]
             : new Base[] { this.encodeRequestUrl }; // BooleanType
       case -1077554975:
-        /* method */ return this.method == null ? new Base[0] : new Base[] { this.method }; // Enumeration<TestScriptRequestMethodCode>
+        /* method */ return this.method == null ? new Base[0] : new Base[] { this.method }; // StringType
       case -1008619738:
         /* origin */ return this.origin == null ? new Base[0] : new Base[] { this.origin }; // IntegerType
       case -995427962:
@@ -5872,8 +4902,7 @@ public class TestScript extends MetadataResource {
         this.encodeRequestUrl = castToBoolean(value); // BooleanType
         return value;
       case -1077554975: // method
-        value = new TestScriptRequestMethodCodeEnumFactory().fromType(castToCode(value));
-        this.method = (Enumeration) value; // Enumeration<TestScriptRequestMethodCode>
+        this.method = castToString(value); // StringType
         return value;
       case -1008619738: // origin
         this.origin = castToInteger(value); // IntegerType
@@ -5924,8 +4953,7 @@ public class TestScript extends MetadataResource {
       } else if (name.equals("encodeRequestUrl")) {
         this.encodeRequestUrl = castToBoolean(value); // BooleanType
       } else if (name.equals("method")) {
-        value = new TestScriptRequestMethodCodeEnumFactory().fromType(castToCode(value));
-        this.method = (Enumeration) value; // Enumeration<TestScriptRequestMethodCode>
+        this.method = castToString(value); // StringType
       } else if (name.equals("origin")) {
         this.origin = castToInteger(value); // IntegerType
       } else if (name.equals("params")) {
@@ -6051,7 +5079,7 @@ public class TestScript extends MetadataResource {
       case -1760554218:
         /* encodeRequestUrl */ return new String[] { "boolean" };
       case -1077554975:
-        /* method */ return new String[] { "code" };
+        /* method */ return new String[] { "string" };
       case -1008619738:
         /* origin */ return new String[] { "integer" };
       case -995427962:
@@ -6502,10 +5530,10 @@ public class TestScript extends MetadataResource {
      * The direction to use for the assertion.
      */
     @Child(name = "direction", type = {
-        CodeType.class }, order = 3, min = 0, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 3, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "response | request", formalDefinition = "The direction to use for the assertion.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/assert-direction-codes")
-    protected Enumeration<AssertionDirectionType> direction;
+    protected StringType direction;
 
     /**
      * Id of the source fixture used as the contents to be evaluated by either the
@@ -6586,10 +5614,10 @@ public class TestScript extends MetadataResource {
      * defined, the default is equals.
      */
     @Child(name = "operator", type = {
-        CodeType.class }, order = 12, min = 0, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 12, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "equals | notEquals | in | notIn | greaterThan | lessThan | empty | notEmpty | contains | notContains | eval", formalDefinition = "The operator type defines the conditional behavior of the assert. If not defined, the default is equals.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/assert-operator-codes")
-    protected Enumeration<AssertionOperatorType> operator;
+    protected StringType operator;
 
     /**
      * The XPath or JSONPath expression to be evaluated against the fixture
@@ -6604,10 +5632,10 @@ public class TestScript extends MetadataResource {
      * client system under test.
      */
     @Child(name = "requestMethod", type = {
-        CodeType.class }, order = 14, min = 0, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 14, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "delete | get | options | patch | post | put | head", formalDefinition = "The request method or HTTP operation code to compare against that used by the client system under test.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/http-operations")
-    protected Enumeration<TestScriptRequestMethodCode> requestMethod;
+    protected StringType requestMethod;
 
     /**
      * The value to use in a comparison against the request URL path string.
@@ -6631,10 +5659,10 @@ public class TestScript extends MetadataResource {
      * methodNotAllowed | conflict | gone | preconditionFailed | unprocessable.
      */
     @Child(name = "response", type = {
-        CodeType.class }, order = 17, min = 0, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 17, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "okay | created | noContent | notModified | bad | forbidden | notFound | methodNotAllowed | conflict | gone | preconditionFailed | unprocessable", formalDefinition = "okay | created | noContent | notModified | bad | forbidden | notFound | methodNotAllowed | conflict | gone | preconditionFailed | unprocessable.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/assert-response-code-types")
-    protected Enumeration<AssertionResponseTypes> response;
+    protected StringType response;
 
     /**
      * The value of the HTTP response code to be tested.
@@ -6810,12 +5838,12 @@ public class TestScript extends MetadataResource {
      *         the underlying object with id, value and extensions. The accessor
      *         "getDirection" gives direct access to the value
      */
-    public Enumeration<AssertionDirectionType> getDirectionElement() {
+    public StringType getDirectionElement() {
       if (this.direction == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create SetupActionAssertComponent.direction");
         else if (Configuration.doAutoCreate())
-          this.direction = new Enumeration<AssertionDirectionType>(new AssertionDirectionTypeEnumFactory()); // bb
+          this.direction = new StringType(); // bb
       return this.direction;
     }
 
@@ -6832,7 +5860,7 @@ public class TestScript extends MetadataResource {
      *              This is the underlying object with id, value and extensions. The
      *              accessor "getDirection" gives direct access to the value
      */
-    public SetupActionAssertComponent setDirectionElement(Enumeration<AssertionDirectionType> value) {
+    public SetupActionAssertComponent setDirectionElement(StringType value) {
       this.direction = value;
       return this;
     }
@@ -6840,19 +5868,19 @@ public class TestScript extends MetadataResource {
     /**
      * @return The direction to use for the assertion.
      */
-    public AssertionDirectionType getDirection() {
-      return this.direction == null ? null : this.direction.getValue();
+    public StringType getDirection() {
+      return this.direction == null ? null : this.direction;
     }
 
     /**
      * @param value The direction to use for the assertion.
      */
-    public SetupActionAssertComponent setDirection(AssertionDirectionType value) {
+    public SetupActionAssertComponent setDirection(String value) {
       if (value == null)
         this.direction = null;
       else {
         if (this.direction == null)
-          this.direction = new Enumeration<AssertionDirectionType>(new AssertionDirectionTypeEnumFactory());
+          this.direction = new StringType();
         this.direction.setValue(value);
       }
       return this;
@@ -7332,12 +6360,12 @@ public class TestScript extends MetadataResource {
      *         underlying object with id, value and extensions. The accessor
      *         "getOperator" gives direct access to the value
      */
-    public Enumeration<AssertionOperatorType> getOperatorElement() {
+    public StringType getOperatorElement() {
       if (this.operator == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create SetupActionAssertComponent.operator");
         else if (Configuration.doAutoCreate())
-          this.operator = new Enumeration<AssertionOperatorType>(new AssertionOperatorTypeEnumFactory()); // bb
+          this.operator = new StringType(); // bb
       return this.operator;
     }
 
@@ -7355,7 +6383,7 @@ public class TestScript extends MetadataResource {
      *              This is the underlying object with id, value and extensions. The
      *              accessor "getOperator" gives direct access to the value
      */
-    public SetupActionAssertComponent setOperatorElement(Enumeration<AssertionOperatorType> value) {
+    public SetupActionAssertComponent setOperatorElement(StringType value) {
       this.operator = value;
       return this;
     }
@@ -7364,20 +6392,20 @@ public class TestScript extends MetadataResource {
      * @return The operator type defines the conditional behavior of the assert. If
      *         not defined, the default is equals.
      */
-    public AssertionOperatorType getOperator() {
-      return this.operator == null ? null : this.operator.getValue();
+    public StringType getOperator() {
+      return this.operator == null ? null : this.operator;
     }
 
     /**
      * @param value The operator type defines the conditional behavior of the
      *              assert. If not defined, the default is equals.
      */
-    public SetupActionAssertComponent setOperator(AssertionOperatorType value) {
+    public SetupActionAssertComponent setOperator(String value) {
       if (value == null)
         this.operator = null;
       else {
         if (this.operator == null)
-          this.operator = new Enumeration<AssertionOperatorType>(new AssertionOperatorTypeEnumFactory());
+          this.operator = new StringType();
         this.operator.setValue(value);
       }
       return this;
@@ -7447,13 +6475,12 @@ public class TestScript extends MetadataResource {
      *         the underlying object with id, value and extensions. The accessor
      *         "getRequestMethod" gives direct access to the value
      */
-    public Enumeration<TestScriptRequestMethodCode> getRequestMethodElement() {
+    public StringType getRequestMethodElement() {
       if (this.requestMethod == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create SetupActionAssertComponent.requestMethod");
         else if (Configuration.doAutoCreate())
-          this.requestMethod = new Enumeration<TestScriptRequestMethodCode>(
-              new TestScriptRequestMethodCodeEnumFactory()); // bb
+          this.requestMethod = new StringType(); // bb
       return this.requestMethod;
     }
 
@@ -7472,7 +6499,7 @@ public class TestScript extends MetadataResource {
      *              extensions. The accessor "getRequestMethod" gives direct access
      *              to the value
      */
-    public SetupActionAssertComponent setRequestMethodElement(Enumeration<TestScriptRequestMethodCode> value) {
+    public SetupActionAssertComponent setRequestMethodElement(StringType value) {
       this.requestMethod = value;
       return this;
     }
@@ -7481,21 +6508,20 @@ public class TestScript extends MetadataResource {
      * @return The request method or HTTP operation code to compare against that
      *         used by the client system under test.
      */
-    public TestScriptRequestMethodCode getRequestMethod() {
-      return this.requestMethod == null ? null : this.requestMethod.getValue();
+    public StringType getRequestMethod() {
+      return this.requestMethod == null ? null : this.requestMethod;
     }
 
     /**
      * @param value The request method or HTTP operation code to compare against
      *              that used by the client system under test.
      */
-    public SetupActionAssertComponent setRequestMethod(TestScriptRequestMethodCode value) {
+    public SetupActionAssertComponent setRequestMethod(String value) {
       if (value == null)
         this.requestMethod = null;
       else {
         if (this.requestMethod == null)
-          this.requestMethod = new Enumeration<TestScriptRequestMethodCode>(
-              new TestScriptRequestMethodCodeEnumFactory());
+          this.requestMethod = new StringType();
         this.requestMethod.setValue(value);
       }
       return this;
@@ -7621,12 +6647,12 @@ public class TestScript extends MetadataResource {
      *         with id, value and extensions. The accessor "getResponse" gives
      *         direct access to the value
      */
-    public Enumeration<AssertionResponseTypes> getResponseElement() {
+    public StringType getResponseElement() {
       if (this.response == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create SetupActionAssertComponent.response");
         else if (Configuration.doAutoCreate())
-          this.response = new Enumeration<AssertionResponseTypes>(new AssertionResponseTypesEnumFactory()); // bb
+          this.response = new StringType(); // bb
       return this.response;
     }
 
@@ -7645,7 +6671,7 @@ public class TestScript extends MetadataResource {
      *              object with id, value and extensions. The accessor "getResponse"
      *              gives direct access to the value
      */
-    public SetupActionAssertComponent setResponseElement(Enumeration<AssertionResponseTypes> value) {
+    public SetupActionAssertComponent setResponseElement(StringType value) {
       this.response = value;
       return this;
     }
@@ -7655,8 +6681,8 @@ public class TestScript extends MetadataResource {
      *         | methodNotAllowed | conflict | gone | preconditionFailed |
      *         unprocessable.
      */
-    public AssertionResponseTypes getResponse() {
-      return this.response == null ? null : this.response.getValue();
+    public StringType getResponse() {
+      return this.response == null ? null : this.response;
     }
 
     /**
@@ -7664,12 +6690,12 @@ public class TestScript extends MetadataResource {
      *              notFound | methodNotAllowed | conflict | gone |
      *              preconditionFailed | unprocessable.
      */
-    public SetupActionAssertComponent setResponse(AssertionResponseTypes value) {
+    public SetupActionAssertComponent setResponse(String value) {
       if (value == null)
         this.response = null;
       else {
         if (this.response == null)
-          this.response = new Enumeration<AssertionResponseTypes>(new AssertionResponseTypesEnumFactory());
+          this.response = new StringType();
         this.response.setValue(value);
       }
       return this;
@@ -8159,8 +7185,7 @@ public class TestScript extends MetadataResource {
         this.description = castToString(value); // StringType
         return value;
       case -962590849: // direction
-        value = new AssertionDirectionTypeEnumFactory().fromType(castToCode(value));
-        this.direction = (Enumeration) value; // Enumeration<AssertionDirectionType>
+        this.direction = castToString(value); // StringType
         return value;
       case 2081856758: // compareToSourceId
         this.compareToSourceId = castToString(value); // StringType
@@ -8187,15 +7212,13 @@ public class TestScript extends MetadataResource {
         this.navigationLinks = castToBoolean(value); // BooleanType
         return value;
       case -500553564: // operator
-        value = new AssertionOperatorTypeEnumFactory().fromType(castToCode(value));
-        this.operator = (Enumeration) value; // Enumeration<AssertionOperatorType>
+        this.operator = castToString(value); // StringType
         return value;
       case 3433509: // path
         this.path = castToString(value); // StringType
         return value;
       case 1217874000: // requestMethod
-        value = new TestScriptRequestMethodCodeEnumFactory().fromType(castToCode(value));
-        this.requestMethod = (Enumeration) value; // Enumeration<TestScriptRequestMethodCode>
+        this.requestMethod = castToString(value); // StringType
         return value;
       case 37099616: // requestURL
         this.requestURL = castToString(value); // StringType
@@ -8204,8 +7227,7 @@ public class TestScript extends MetadataResource {
         this.resource = castToCode(value); // CodeType
         return value;
       case -340323263: // response
-        value = new AssertionResponseTypesEnumFactory().fromType(castToCode(value));
-        this.response = (Enumeration) value; // Enumeration<AssertionResponseTypes>
+        this.response = castToString(value); // StringType
         return value;
       case 1438723534: // responseCode
         this.responseCode = castToString(value); // StringType
@@ -8235,8 +7257,7 @@ public class TestScript extends MetadataResource {
       } else if (name.equals("description")) {
         this.description = castToString(value); // StringType
       } else if (name.equals("direction")) {
-        value = new AssertionDirectionTypeEnumFactory().fromType(castToCode(value));
-        this.direction = (Enumeration) value; // Enumeration<AssertionDirectionType>
+        this.direction = castToString(value); // StringType
       } else if (name.equals("compareToSourceId")) {
         this.compareToSourceId = castToString(value); // StringType
       } else if (name.equals("compareToSourceExpression")) {
@@ -8254,20 +7275,17 @@ public class TestScript extends MetadataResource {
       } else if (name.equals("navigationLinks")) {
         this.navigationLinks = castToBoolean(value); // BooleanType
       } else if (name.equals("operator")) {
-        value = new AssertionOperatorTypeEnumFactory().fromType(castToCode(value));
-        this.operator = (Enumeration) value; // Enumeration<AssertionOperatorType>
+        this.operator = castToString(value); // StringType
       } else if (name.equals("path")) {
         this.path = castToString(value); // StringType
       } else if (name.equals("requestMethod")) {
-        value = new TestScriptRequestMethodCodeEnumFactory().fromType(castToCode(value));
-        this.requestMethod = (Enumeration) value; // Enumeration<TestScriptRequestMethodCode>
+        this.requestMethod = castToString(value); // StringType
       } else if (name.equals("requestURL")) {
         this.requestURL = castToString(value); // StringType
       } else if (name.equals("resource")) {
         this.resource = castToCode(value); // CodeType
       } else if (name.equals("response")) {
-        value = new AssertionResponseTypesEnumFactory().fromType(castToCode(value));
-        this.response = (Enumeration) value; // Enumeration<AssertionResponseTypes>
+        this.response = castToString(value); // StringType
       } else if (name.equals("responseCode")) {
         this.responseCode = castToString(value); // StringType
       } else if (name.equals("sourceId")) {
@@ -8395,7 +7413,7 @@ public class TestScript extends MetadataResource {
       case -1724546052:
         /* description */ return new String[] { "string" };
       case -962590849:
-        /* direction */ return new String[] { "code" };
+        /* direction */ return new String[] { "string" };
       case 2081856758:
         /* compareToSourceId */ return new String[] { "string" };
       case -1415702669:
@@ -8413,17 +7431,17 @@ public class TestScript extends MetadataResource {
       case 1001488901:
         /* navigationLinks */ return new String[] { "boolean" };
       case -500553564:
-        /* operator */ return new String[] { "code" };
+        /* operator */ return new String[] { "string" };
       case 3433509:
         /* path */ return new String[] { "string" };
       case 1217874000:
-        /* requestMethod */ return new String[] { "code" };
+        /* requestMethod */ return new String[] { "string" };
       case 37099616:
         /* requestURL */ return new String[] { "string" };
       case -341064690:
         /* resource */ return new String[] { "code" };
       case -340323263:
-        /* response */ return new String[] { "code" };
+        /* response */ return new String[] { "string" };
       case 1438723534:
         /* responseCode */ return new String[] { "string" };
       case 1746327190:
@@ -9707,7 +8725,7 @@ public class TestScript extends MetadataResource {
   /**
    * Constructor
    */
-  public TestScript(UriType url, StringType name, Enumeration<PublicationStatus> status) {
+  public TestScript(UriType url, StringType name, StringType status) {
     super();
     this.url = url;
     this.name = name;
@@ -10014,12 +9032,12 @@ public class TestScript extends MetadataResource {
    *         value and extensions. The accessor "getStatus" gives direct access to
    *         the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create TestScript.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -10037,7 +9055,7 @@ public class TestScript extends MetadataResource {
    *              object with id, value and extensions. The accessor "getStatus"
    *              gives direct access to the value
    */
-  public TestScript setStatusElement(Enumeration<PublicationStatus> value) {
+  public TestScript setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -10046,17 +9064,17 @@ public class TestScript extends MetadataResource {
    * @return The status of this test script. Enables tracking the life-cycle of
    *         the content.
    */
-  public PublicationStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The status of this test script. Enables tracking the life-cycle
    *              of the content.
    */
-  public TestScript setStatus(PublicationStatus value) {
+  public TestScript setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -11240,8 +10258,7 @@ public class TestScript extends MetadataResource {
       this.title = castToString(value); // StringType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -404562712: // experimental
       this.experimental = castToBoolean(value); // BooleanType
@@ -11316,8 +10333,7 @@ public class TestScript extends MetadataResource {
     } else if (name.equals("title")) {
       this.title = castToString(value); // StringType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("date")) {
@@ -11485,7 +10501,7 @@ public class TestScript extends MetadataResource {
     case 110371416:
       /* title */ return new String[] { "string" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -404562712:
       /* experimental */ return new String[] { "boolean" };
     case 3076014:

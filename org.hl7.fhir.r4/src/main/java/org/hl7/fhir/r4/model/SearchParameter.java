@@ -36,10 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
-import org.hl7.fhir.r4.model.Enumerations.SearchParamType;
-import org.hl7.fhir.r4.model.Enumerations.SearchParamTypeEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -58,795 +54,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
     "description", "useContext", "jurisdiction", "purpose", "code", "base", "type", "expression", "xpath", "xpathUsage",
     "target", "multipleOr", "multipleAnd", "comparator", "modifier", "chain", "component" })
 public class SearchParameter extends MetadataResource {
-
-  public enum XPathUsageType {
-    /**
-     * The search parameter is derived directly from the selected nodes based on the
-     * type definitions.
-     */
-    NORMAL,
-    /**
-     * The search parameter is derived by a phonetic transform from the selected
-     * nodes.
-     */
-    PHONETIC,
-    /**
-     * The search parameter is based on a spatial transform of the selected nodes.
-     */
-    NEARBY,
-    /**
-     * The search parameter is based on a spatial transform of the selected nodes,
-     * using physical distance from the middle.
-     */
-    DISTANCE,
-    /**
-     * The interpretation of the xpath statement is unknown (and can't be
-     * automated).
-     */
-    OTHER,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static XPathUsageType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("normal".equals(codeString))
-        return NORMAL;
-      if ("phonetic".equals(codeString))
-        return PHONETIC;
-      if ("nearby".equals(codeString))
-        return NEARBY;
-      if ("distance".equals(codeString))
-        return DISTANCE;
-      if ("other".equals(codeString))
-        return OTHER;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown XPathUsageType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case NORMAL:
-        return "normal";
-      case PHONETIC:
-        return "phonetic";
-      case NEARBY:
-        return "nearby";
-      case DISTANCE:
-        return "distance";
-      case OTHER:
-        return "other";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case NORMAL:
-        return "http://hl7.org/fhir/search-xpath-usage";
-      case PHONETIC:
-        return "http://hl7.org/fhir/search-xpath-usage";
-      case NEARBY:
-        return "http://hl7.org/fhir/search-xpath-usage";
-      case DISTANCE:
-        return "http://hl7.org/fhir/search-xpath-usage";
-      case OTHER:
-        return "http://hl7.org/fhir/search-xpath-usage";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case NORMAL:
-        return "The search parameter is derived directly from the selected nodes based on the type definitions.";
-      case PHONETIC:
-        return "The search parameter is derived by a phonetic transform from the selected nodes.";
-      case NEARBY:
-        return "The search parameter is based on a spatial transform of the selected nodes.";
-      case DISTANCE:
-        return "The search parameter is based on a spatial transform of the selected nodes, using physical distance from the middle.";
-      case OTHER:
-        return "The interpretation of the xpath statement is unknown (and can't be automated).";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case NORMAL:
-        return "Normal";
-      case PHONETIC:
-        return "Phonetic";
-      case NEARBY:
-        return "Nearby";
-      case DISTANCE:
-        return "Distance";
-      case OTHER:
-        return "Other";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class XPathUsageTypeEnumFactory implements EnumFactory<XPathUsageType> {
-    public XPathUsageType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("normal".equals(codeString))
-        return XPathUsageType.NORMAL;
-      if ("phonetic".equals(codeString))
-        return XPathUsageType.PHONETIC;
-      if ("nearby".equals(codeString))
-        return XPathUsageType.NEARBY;
-      if ("distance".equals(codeString))
-        return XPathUsageType.DISTANCE;
-      if ("other".equals(codeString))
-        return XPathUsageType.OTHER;
-      throw new IllegalArgumentException("Unknown XPathUsageType code '" + codeString + "'");
-    }
-
-    public Enumeration<XPathUsageType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<XPathUsageType>(this, XPathUsageType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<XPathUsageType>(this, XPathUsageType.NULL, code);
-      if ("normal".equals(codeString))
-        return new Enumeration<XPathUsageType>(this, XPathUsageType.NORMAL, code);
-      if ("phonetic".equals(codeString))
-        return new Enumeration<XPathUsageType>(this, XPathUsageType.PHONETIC, code);
-      if ("nearby".equals(codeString))
-        return new Enumeration<XPathUsageType>(this, XPathUsageType.NEARBY, code);
-      if ("distance".equals(codeString))
-        return new Enumeration<XPathUsageType>(this, XPathUsageType.DISTANCE, code);
-      if ("other".equals(codeString))
-        return new Enumeration<XPathUsageType>(this, XPathUsageType.OTHER, code);
-      throw new FHIRException("Unknown XPathUsageType code '" + codeString + "'");
-    }
-
-    public String toCode(XPathUsageType code) {
-       if (code == XPathUsageType.NULL)
-           return null;
-       if (code == XPathUsageType.NORMAL)
-        return "normal";
-      if (code == XPathUsageType.PHONETIC)
-        return "phonetic";
-      if (code == XPathUsageType.NEARBY)
-        return "nearby";
-      if (code == XPathUsageType.DISTANCE)
-        return "distance";
-      if (code == XPathUsageType.OTHER)
-        return "other";
-      return "?";
-   }
-
-    public String toSystem(XPathUsageType code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum SearchComparator {
-    /**
-     * the value for the parameter in the resource is equal to the provided value.
-     */
-    EQ,
-    /**
-     * the value for the parameter in the resource is not equal to the provided
-     * value.
-     */
-    NE,
-    /**
-     * the value for the parameter in the resource is greater than the provided
-     * value.
-     */
-    GT,
-    /**
-     * the value for the parameter in the resource is less than the provided value.
-     */
-    LT,
-    /**
-     * the value for the parameter in the resource is greater or equal to the
-     * provided value.
-     */
-    GE,
-    /**
-     * the value for the parameter in the resource is less or equal to the provided
-     * value.
-     */
-    LE,
-    /**
-     * the value for the parameter in the resource starts after the provided value.
-     */
-    SA,
-    /**
-     * the value for the parameter in the resource ends before the provided value.
-     */
-    EB,
-    /**
-     * the value for the parameter in the resource is approximately the same to the
-     * provided value.
-     */
-    AP,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static SearchComparator fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("eq".equals(codeString))
-        return EQ;
-      if ("ne".equals(codeString))
-        return NE;
-      if ("gt".equals(codeString))
-        return GT;
-      if ("lt".equals(codeString))
-        return LT;
-      if ("ge".equals(codeString))
-        return GE;
-      if ("le".equals(codeString))
-        return LE;
-      if ("sa".equals(codeString))
-        return SA;
-      if ("eb".equals(codeString))
-        return EB;
-      if ("ap".equals(codeString))
-        return AP;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown SearchComparator code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case EQ:
-        return "eq";
-      case NE:
-        return "ne";
-      case GT:
-        return "gt";
-      case LT:
-        return "lt";
-      case GE:
-        return "ge";
-      case LE:
-        return "le";
-      case SA:
-        return "sa";
-      case EB:
-        return "eb";
-      case AP:
-        return "ap";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case EQ:
-        return "http://hl7.org/fhir/search-comparator";
-      case NE:
-        return "http://hl7.org/fhir/search-comparator";
-      case GT:
-        return "http://hl7.org/fhir/search-comparator";
-      case LT:
-        return "http://hl7.org/fhir/search-comparator";
-      case GE:
-        return "http://hl7.org/fhir/search-comparator";
-      case LE:
-        return "http://hl7.org/fhir/search-comparator";
-      case SA:
-        return "http://hl7.org/fhir/search-comparator";
-      case EB:
-        return "http://hl7.org/fhir/search-comparator";
-      case AP:
-        return "http://hl7.org/fhir/search-comparator";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case EQ:
-        return "the value for the parameter in the resource is equal to the provided value.";
-      case NE:
-        return "the value for the parameter in the resource is not equal to the provided value.";
-      case GT:
-        return "the value for the parameter in the resource is greater than the provided value.";
-      case LT:
-        return "the value for the parameter in the resource is less than the provided value.";
-      case GE:
-        return "the value for the parameter in the resource is greater or equal to the provided value.";
-      case LE:
-        return "the value for the parameter in the resource is less or equal to the provided value.";
-      case SA:
-        return "the value for the parameter in the resource starts after the provided value.";
-      case EB:
-        return "the value for the parameter in the resource ends before the provided value.";
-      case AP:
-        return "the value for the parameter in the resource is approximately the same to the provided value.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case EQ:
-        return "Equals";
-      case NE:
-        return "Not Equals";
-      case GT:
-        return "Greater Than";
-      case LT:
-        return "Less Than";
-      case GE:
-        return "Greater or Equals";
-      case LE:
-        return "Less of Equal";
-      case SA:
-        return "Starts After";
-      case EB:
-        return "Ends Before";
-      case AP:
-        return "Approximately";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class SearchComparatorEnumFactory implements EnumFactory<SearchComparator> {
-    public SearchComparator fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("eq".equals(codeString))
-        return SearchComparator.EQ;
-      if ("ne".equals(codeString))
-        return SearchComparator.NE;
-      if ("gt".equals(codeString))
-        return SearchComparator.GT;
-      if ("lt".equals(codeString))
-        return SearchComparator.LT;
-      if ("ge".equals(codeString))
-        return SearchComparator.GE;
-      if ("le".equals(codeString))
-        return SearchComparator.LE;
-      if ("sa".equals(codeString))
-        return SearchComparator.SA;
-      if ("eb".equals(codeString))
-        return SearchComparator.EB;
-      if ("ap".equals(codeString))
-        return SearchComparator.AP;
-      throw new IllegalArgumentException("Unknown SearchComparator code '" + codeString + "'");
-    }
-
-    public Enumeration<SearchComparator> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<SearchComparator>(this, SearchComparator.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<SearchComparator>(this, SearchComparator.NULL, code);
-      if ("eq".equals(codeString))
-        return new Enumeration<SearchComparator>(this, SearchComparator.EQ, code);
-      if ("ne".equals(codeString))
-        return new Enumeration<SearchComparator>(this, SearchComparator.NE, code);
-      if ("gt".equals(codeString))
-        return new Enumeration<SearchComparator>(this, SearchComparator.GT, code);
-      if ("lt".equals(codeString))
-        return new Enumeration<SearchComparator>(this, SearchComparator.LT, code);
-      if ("ge".equals(codeString))
-        return new Enumeration<SearchComparator>(this, SearchComparator.GE, code);
-      if ("le".equals(codeString))
-        return new Enumeration<SearchComparator>(this, SearchComparator.LE, code);
-      if ("sa".equals(codeString))
-        return new Enumeration<SearchComparator>(this, SearchComparator.SA, code);
-      if ("eb".equals(codeString))
-        return new Enumeration<SearchComparator>(this, SearchComparator.EB, code);
-      if ("ap".equals(codeString))
-        return new Enumeration<SearchComparator>(this, SearchComparator.AP, code);
-      throw new FHIRException("Unknown SearchComparator code '" + codeString + "'");
-    }
-
-    public String toCode(SearchComparator code) {
-       if (code == SearchComparator.NULL)
-           return null;
-       if (code == SearchComparator.EQ)
-        return "eq";
-      if (code == SearchComparator.NE)
-        return "ne";
-      if (code == SearchComparator.GT)
-        return "gt";
-      if (code == SearchComparator.LT)
-        return "lt";
-      if (code == SearchComparator.GE)
-        return "ge";
-      if (code == SearchComparator.LE)
-        return "le";
-      if (code == SearchComparator.SA)
-        return "sa";
-      if (code == SearchComparator.EB)
-        return "eb";
-      if (code == SearchComparator.AP)
-        return "ap";
-      return "?";
-   }
-
-    public String toSystem(SearchComparator code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum SearchModifierCode {
-    /**
-     * The search parameter returns resources that have a value or not.
-     */
-    MISSING,
-    /**
-     * The search parameter returns resources that have a value that exactly matches
-     * the supplied parameter (the whole string, including casing and accents).
-     */
-    EXACT,
-    /**
-     * The search parameter returns resources that include the supplied parameter
-     * value anywhere within the field being searched.
-     */
-    CONTAINS,
-    /**
-     * The search parameter returns resources that do not contain a match.
-     */
-    NOT,
-    /**
-     * The search parameter is processed as a string that searches text associated
-     * with the code/value - either CodeableConcept.text, Coding.display, or
-     * Identifier.type.text.
-     */
-    TEXT,
-    /**
-     * The search parameter is a URI (relative or absolute) that identifies a value
-     * set, and the search parameter tests whether the coding is in the specified
-     * value set.
-     */
-    IN,
-    /**
-     * The search parameter is a URI (relative or absolute) that identifies a value
-     * set, and the search parameter tests whether the coding is not in the
-     * specified value set.
-     */
-    NOTIN,
-    /**
-     * The search parameter tests whether the value in a resource is subsumed by the
-     * specified value (is-a, or hierarchical relationships).
-     */
-    BELOW,
-    /**
-     * The search parameter tests whether the value in a resource subsumes the
-     * specified value (is-a, or hierarchical relationships).
-     */
-    ABOVE,
-    /**
-     * The search parameter only applies to the Resource Type specified as a
-     * modifier (e.g. the modifier is not actually :type, but :Patient etc.).
-     */
-    TYPE,
-    /**
-     * The search parameter applies to the identifier on the resource, not the
-     * reference.
-     */
-    IDENTIFIER,
-    /**
-     * The search parameter has the format system|code|value, where the system and
-     * code refer to an Identifier.type.coding.system and .code, and match if any of
-     * the type codes match. All 3 parts must be present.
-     */
-    OFTYPE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static SearchModifierCode fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("missing".equals(codeString))
-        return MISSING;
-      if ("exact".equals(codeString))
-        return EXACT;
-      if ("contains".equals(codeString))
-        return CONTAINS;
-      if ("not".equals(codeString))
-        return NOT;
-      if ("text".equals(codeString))
-        return TEXT;
-      if ("in".equals(codeString))
-        return IN;
-      if ("not-in".equals(codeString))
-        return NOTIN;
-      if ("below".equals(codeString))
-        return BELOW;
-      if ("above".equals(codeString))
-        return ABOVE;
-      if ("type".equals(codeString))
-        return TYPE;
-      if ("identifier".equals(codeString))
-        return IDENTIFIER;
-      if ("ofType".equals(codeString))
-        return OFTYPE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown SearchModifierCode code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case MISSING:
-        return "missing";
-      case EXACT:
-        return "exact";
-      case CONTAINS:
-        return "contains";
-      case NOT:
-        return "not";
-      case TEXT:
-        return "text";
-      case IN:
-        return "in";
-      case NOTIN:
-        return "not-in";
-      case BELOW:
-        return "below";
-      case ABOVE:
-        return "above";
-      case TYPE:
-        return "type";
-      case IDENTIFIER:
-        return "identifier";
-      case OFTYPE:
-        return "ofType";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case MISSING:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case EXACT:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case CONTAINS:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case NOT:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case TEXT:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case IN:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case NOTIN:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case BELOW:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case ABOVE:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case TYPE:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case IDENTIFIER:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case OFTYPE:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case MISSING:
-        return "The search parameter returns resources that have a value or not.";
-      case EXACT:
-        return "The search parameter returns resources that have a value that exactly matches the supplied parameter (the whole string, including casing and accents).";
-      case CONTAINS:
-        return "The search parameter returns resources that include the supplied parameter value anywhere within the field being searched.";
-      case NOT:
-        return "The search parameter returns resources that do not contain a match.";
-      case TEXT:
-        return "The search parameter is processed as a string that searches text associated with the code/value - either CodeableConcept.text, Coding.display, or Identifier.type.text.";
-      case IN:
-        return "The search parameter is a URI (relative or absolute) that identifies a value set, and the search parameter tests whether the coding is in the specified value set.";
-      case NOTIN:
-        return "The search parameter is a URI (relative or absolute) that identifies a value set, and the search parameter tests whether the coding is not in the specified value set.";
-      case BELOW:
-        return "The search parameter tests whether the value in a resource is subsumed by the specified value (is-a, or hierarchical relationships).";
-      case ABOVE:
-        return "The search parameter tests whether the value in a resource subsumes the specified value (is-a, or hierarchical relationships).";
-      case TYPE:
-        return "The search parameter only applies to the Resource Type specified as a modifier (e.g. the modifier is not actually :type, but :Patient etc.).";
-      case IDENTIFIER:
-        return "The search parameter applies to the identifier on the resource, not the reference.";
-      case OFTYPE:
-        return "The search parameter has the format system|code|value, where the system and code refer to an Identifier.type.coding.system and .code, and match if any of the type codes match. All 3 parts must be present.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case MISSING:
-        return "Missing";
-      case EXACT:
-        return "Exact";
-      case CONTAINS:
-        return "Contains";
-      case NOT:
-        return "Not";
-      case TEXT:
-        return "Text";
-      case IN:
-        return "In";
-      case NOTIN:
-        return "Not In";
-      case BELOW:
-        return "Below";
-      case ABOVE:
-        return "Above";
-      case TYPE:
-        return "Type";
-      case IDENTIFIER:
-        return "Identifier";
-      case OFTYPE:
-        return "Of Type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class SearchModifierCodeEnumFactory implements EnumFactory<SearchModifierCode> {
-    public SearchModifierCode fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("missing".equals(codeString))
-        return SearchModifierCode.MISSING;
-      if ("exact".equals(codeString))
-        return SearchModifierCode.EXACT;
-      if ("contains".equals(codeString))
-        return SearchModifierCode.CONTAINS;
-      if ("not".equals(codeString))
-        return SearchModifierCode.NOT;
-      if ("text".equals(codeString))
-        return SearchModifierCode.TEXT;
-      if ("in".equals(codeString))
-        return SearchModifierCode.IN;
-      if ("not-in".equals(codeString))
-        return SearchModifierCode.NOTIN;
-      if ("below".equals(codeString))
-        return SearchModifierCode.BELOW;
-      if ("above".equals(codeString))
-        return SearchModifierCode.ABOVE;
-      if ("type".equals(codeString))
-        return SearchModifierCode.TYPE;
-      if ("identifier".equals(codeString))
-        return SearchModifierCode.IDENTIFIER;
-      if ("ofType".equals(codeString))
-        return SearchModifierCode.OFTYPE;
-      throw new IllegalArgumentException("Unknown SearchModifierCode code '" + codeString + "'");
-    }
-
-    public Enumeration<SearchModifierCode> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<SearchModifierCode>(this, SearchModifierCode.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<SearchModifierCode>(this, SearchModifierCode.NULL, code);
-      if ("missing".equals(codeString))
-        return new Enumeration<SearchModifierCode>(this, SearchModifierCode.MISSING, code);
-      if ("exact".equals(codeString))
-        return new Enumeration<SearchModifierCode>(this, SearchModifierCode.EXACT, code);
-      if ("contains".equals(codeString))
-        return new Enumeration<SearchModifierCode>(this, SearchModifierCode.CONTAINS, code);
-      if ("not".equals(codeString))
-        return new Enumeration<SearchModifierCode>(this, SearchModifierCode.NOT, code);
-      if ("text".equals(codeString))
-        return new Enumeration<SearchModifierCode>(this, SearchModifierCode.TEXT, code);
-      if ("in".equals(codeString))
-        return new Enumeration<SearchModifierCode>(this, SearchModifierCode.IN, code);
-      if ("not-in".equals(codeString))
-        return new Enumeration<SearchModifierCode>(this, SearchModifierCode.NOTIN, code);
-      if ("below".equals(codeString))
-        return new Enumeration<SearchModifierCode>(this, SearchModifierCode.BELOW, code);
-      if ("above".equals(codeString))
-        return new Enumeration<SearchModifierCode>(this, SearchModifierCode.ABOVE, code);
-      if ("type".equals(codeString))
-        return new Enumeration<SearchModifierCode>(this, SearchModifierCode.TYPE, code);
-      if ("identifier".equals(codeString))
-        return new Enumeration<SearchModifierCode>(this, SearchModifierCode.IDENTIFIER, code);
-      if ("ofType".equals(codeString))
-        return new Enumeration<SearchModifierCode>(this, SearchModifierCode.OFTYPE, code);
-      throw new FHIRException("Unknown SearchModifierCode code '" + codeString + "'");
-    }
-
-    public String toCode(SearchModifierCode code) {
-       if (code == SearchModifierCode.NULL)
-           return null;
-       if (code == SearchModifierCode.MISSING)
-        return "missing";
-      if (code == SearchModifierCode.EXACT)
-        return "exact";
-      if (code == SearchModifierCode.CONTAINS)
-        return "contains";
-      if (code == SearchModifierCode.NOT)
-        return "not";
-      if (code == SearchModifierCode.TEXT)
-        return "text";
-      if (code == SearchModifierCode.IN)
-        return "in";
-      if (code == SearchModifierCode.NOTIN)
-        return "not-in";
-      if (code == SearchModifierCode.BELOW)
-        return "below";
-      if (code == SearchModifierCode.ABOVE)
-        return "above";
-      if (code == SearchModifierCode.TYPE)
-        return "type";
-      if (code == SearchModifierCode.IDENTIFIER)
-        return "identifier";
-      if (code == SearchModifierCode.OFTYPE)
-        return "ofType";
-      return "?";
-   }
-
-    public String toSystem(SearchModifierCode code) {
-      return code.getSystem();
-    }
-  }
 
   @Block()
   public static class SearchParameterComponentComponent extends BackboneElement implements IBaseBackboneElement {
@@ -1064,7 +271,7 @@ public class SearchParameter extends MetadataResource {
         this.expression = null;
       } else
         super.removeChild(name, value);
-      
+
     }
 
     @Override
@@ -1188,10 +395,10 @@ public class SearchParameter extends MetadataResource {
    * The type of value that a search parameter may contain, and how the content is
    * interpreted.
    */
-  @Child(name = "type", type = { CodeType.class }, order = 4, min = 1, max = 1, modifier = false, summary = true)
+  @Child(name = "type", type = { StringType.class }, order = 4, min = 1, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "number | date | string | token | reference | composite | quantity | uri | special", formalDefinition = "The type of value that a search parameter may contain, and how the content is interpreted.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/search-param-type")
-  protected Enumeration<SearchParamType> type;
+  protected StringType type;
 
   /**
    * A FHIRPath expression that returns a set of elements for the search
@@ -1213,10 +420,10 @@ public class SearchParameter extends MetadataResource {
    * How the search parameter relates to the set of elements returned by
    * evaluating the xpath query.
    */
-  @Child(name = "xpathUsage", type = { CodeType.class }, order = 7, min = 0, max = 1, modifier = false, summary = false)
+  @Child(name = "xpathUsage", type = { StringType.class }, order = 7, min = 0, max = 1, modifier = false, summary = false)
   @Description(shortDefinition = "normal | phonetic | nearby | distance | other", formalDefinition = "How the search parameter relates to the set of elements returned by evaluating the xpath query.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/search-xpath-usage")
-  protected Enumeration<XPathUsageType> xpathUsage;
+  protected StringType xpathUsage;
 
   /**
    * Types of resource (if a resource is referenced).
@@ -1250,19 +457,19 @@ public class SearchParameter extends MetadataResource {
    * Comparators supported for the search parameter.
    */
   @Child(name = "comparator", type = {
-      CodeType.class }, order = 11, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = false)
+    StringType.class }, order = 11, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = false)
   @Description(shortDefinition = "eq | ne | gt | lt | ge | le | sa | eb | ap", formalDefinition = "Comparators supported for the search parameter.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/search-comparator")
-  protected List<Enumeration<SearchComparator>> comparator;
+  protected List<StringType> comparator;
 
   /**
    * A modifier supported for the search parameter.
    */
   @Child(name = "modifier", type = {
-      CodeType.class }, order = 12, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = false)
+    StringType.class }, order = 12, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = false)
   @Description(shortDefinition = "missing | exact | contains | not | text | in | not-in | below | above | type | identifier | ofType", formalDefinition = "A modifier supported for the search parameter.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/search-modifier-code")
-  protected List<Enumeration<SearchModifierCode>> modifier;
+  protected List<StringType> modifier;
 
   /**
    * Contains the names of any search parameters which may be chained to the
@@ -1296,8 +503,8 @@ public class SearchParameter extends MetadataResource {
   /**
    * Constructor
    */
-  public SearchParameter(UriType url, StringType name, Enumeration<PublicationStatus> status, MarkdownType description,
-      CodeType code, Enumeration<SearchParamType> type) {
+  public SearchParameter(UriType url, StringType name, StringType status, MarkdownType description,
+      CodeType code, StringType type) {
     super();
     this.url = url;
     this.name = name;
@@ -1597,12 +804,12 @@ public class SearchParameter extends MetadataResource {
    *         object with id, value and extensions. The accessor "getStatus" gives
    *         direct access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create SearchParameter.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -1620,7 +827,7 @@ public class SearchParameter extends MetadataResource {
    *              object with id, value and extensions. The accessor "getStatus"
    *              gives direct access to the value
    */
-  public SearchParameter setStatusElement(Enumeration<PublicationStatus> value) {
+  public SearchParameter setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1629,17 +836,17 @@ public class SearchParameter extends MetadataResource {
    * @return The status of this search parameter. Enables tracking the life-cycle
    *         of the content.
    */
-  public PublicationStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The status of this search parameter. Enables tracking the
    *              life-cycle of the content.
    */
-  public SearchParameter setStatus(PublicationStatus value) {
+  public SearchParameter setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -2227,12 +1434,12 @@ public class SearchParameter extends MetadataResource {
    *         with id, value and extensions. The accessor "getType" gives direct
    *         access to the value
    */
-  public Enumeration<SearchParamType> getTypeElement() {
+  public StringType getTypeElement() {
     if (this.type == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create SearchParameter.type");
       else if (Configuration.doAutoCreate())
-        this.type = new Enumeration<SearchParamType>(new SearchParamTypeEnumFactory()); // bb
+        this.type = new StringType(); // bb
     return this.type;
   }
 
@@ -2250,7 +1457,7 @@ public class SearchParameter extends MetadataResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getType" gives direct access to the value
    */
-  public SearchParameter setTypeElement(Enumeration<SearchParamType> value) {
+  public SearchParameter setTypeElement(StringType value) {
     this.type = value;
     return this;
   }
@@ -2259,17 +1466,17 @@ public class SearchParameter extends MetadataResource {
    * @return The type of value that a search parameter may contain, and how the
    *         content is interpreted.
    */
-  public SearchParamType getType() {
-    return this.type == null ? null : this.type.getValue();
+  public StringType getType() {
+    return this.type == null ? null : this.type;
   }
 
   /**
    * @param value The type of value that a search parameter may contain, and how
    *              the content is interpreted.
    */
-  public SearchParameter setType(SearchParamType value) {
+  public SearchParameter setType(String value) {
     if (this.type == null)
-      this.type = new Enumeration<SearchParamType>(new SearchParamTypeEnumFactory());
+      this.type = new StringType();
     this.type.setValue(value);
     return this;
   }
@@ -2394,12 +1601,12 @@ public class SearchParameter extends MetadataResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getXpathUsage" gives direct access to the value
    */
-  public Enumeration<XPathUsageType> getXpathUsageElement() {
+  public StringType getXpathUsageElement() {
     if (this.xpathUsage == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create SearchParameter.xpathUsage");
       else if (Configuration.doAutoCreate())
-        this.xpathUsage = new Enumeration<XPathUsageType>(new XPathUsageTypeEnumFactory()); // bb
+        this.xpathUsage = new StringType(); // bb
     return this.xpathUsage;
   }
 
@@ -2417,7 +1624,7 @@ public class SearchParameter extends MetadataResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getXpathUsage" gives direct access to the value
    */
-  public SearchParameter setXpathUsageElement(Enumeration<XPathUsageType> value) {
+  public SearchParameter setXpathUsageElement(StringType value) {
     this.xpathUsage = value;
     return this;
   }
@@ -2426,20 +1633,20 @@ public class SearchParameter extends MetadataResource {
    * @return How the search parameter relates to the set of elements returned by
    *         evaluating the xpath query.
    */
-  public XPathUsageType getXpathUsage() {
-    return this.xpathUsage == null ? null : this.xpathUsage.getValue();
+  public StringType getXpathUsage() {
+    return this.xpathUsage == null ? null : this.xpathUsage;
   }
 
   /**
    * @param value How the search parameter relates to the set of elements returned
    *              by evaluating the xpath query.
    */
-  public SearchParameter setXpathUsage(XPathUsageType value) {
+  public SearchParameter setXpathUsage(String value) {
     if (value == null)
       this.xpathUsage = null;
     else {
       if (this.xpathUsage == null)
-        this.xpathUsage = new Enumeration<XPathUsageType>(new XPathUsageTypeEnumFactory());
+        this.xpathUsage = new StringType();
       this.xpathUsage.setValue(value);
     }
     return this;
@@ -2625,16 +1832,16 @@ public class SearchParameter extends MetadataResource {
   /**
    * @return {@link #comparator} (Comparators supported for the search parameter.)
    */
-  public List<Enumeration<SearchComparator>> getComparator() {
+  public List<StringType> getComparator() {
     if (this.comparator == null)
-      this.comparator = new ArrayList<Enumeration<SearchComparator>>();
+      this.comparator = new ArrayList<StringType>();
     return this.comparator;
   }
 
   /**
    * @return Returns a reference to <code>this</code> for easy method chaining
    */
-  public SearchParameter setComparator(List<Enumeration<SearchComparator>> theComparator) {
+  public SearchParameter setComparator(List<StringType> theComparator) {
     this.comparator = theComparator;
     return this;
   }
@@ -2642,7 +1849,7 @@ public class SearchParameter extends MetadataResource {
   public boolean hasComparator() {
     if (this.comparator == null)
       return false;
-    for (Enumeration<SearchComparator> item : this.comparator)
+    for (StringType item : this.comparator)
       if (!item.isEmpty())
         return true;
     return false;
@@ -2651,10 +1858,10 @@ public class SearchParameter extends MetadataResource {
   /**
    * @return {@link #comparator} (Comparators supported for the search parameter.)
    */
-  public Enumeration<SearchComparator> addComparatorElement() {// 2
-    Enumeration<SearchComparator> t = new Enumeration<SearchComparator>(new SearchComparatorEnumFactory());
+  public StringType addComparatorElement() {// 2
+    StringType t = new StringType();
     if (this.comparator == null)
-      this.comparator = new ArrayList<Enumeration<SearchComparator>>();
+      this.comparator = new ArrayList<StringType>();
     this.comparator.add(t);
     return t;
   }
@@ -2663,11 +1870,11 @@ public class SearchParameter extends MetadataResource {
    * @param value {@link #comparator} (Comparators supported for the search
    *              parameter.)
    */
-  public SearchParameter addComparator(SearchComparator value) { // 1
-    Enumeration<SearchComparator> t = new Enumeration<SearchComparator>(new SearchComparatorEnumFactory());
+  public SearchParameter addComparator(String value) { // 1
+    StringType t = new StringType();
     t.setValue(value);
     if (this.comparator == null)
-      this.comparator = new ArrayList<Enumeration<SearchComparator>>();
+      this.comparator = new ArrayList<StringType>();
     this.comparator.add(t);
     return this;
   }
@@ -2676,10 +1883,10 @@ public class SearchParameter extends MetadataResource {
    * @param value {@link #comparator} (Comparators supported for the search
    *              parameter.)
    */
-  public boolean hasComparator(SearchComparator value) {
+  public boolean hasComparator(String value) {
     if (this.comparator == null)
       return false;
-    for (Enumeration<SearchComparator> v : this.comparator)
+    for (StringType v : this.comparator)
       if (v.getValue().equals(value)) // code
         return true;
     return false;
@@ -2688,16 +1895,16 @@ public class SearchParameter extends MetadataResource {
   /**
    * @return {@link #modifier} (A modifier supported for the search parameter.)
    */
-  public List<Enumeration<SearchModifierCode>> getModifier() {
+  public List<StringType> getModifier() {
     if (this.modifier == null)
-      this.modifier = new ArrayList<Enumeration<SearchModifierCode>>();
+      this.modifier = new ArrayList<StringType>();
     return this.modifier;
   }
 
   /**
    * @return Returns a reference to <code>this</code> for easy method chaining
    */
-  public SearchParameter setModifier(List<Enumeration<SearchModifierCode>> theModifier) {
+  public SearchParameter setModifier(List<StringType> theModifier) {
     this.modifier = theModifier;
     return this;
   }
@@ -2705,7 +1912,7 @@ public class SearchParameter extends MetadataResource {
   public boolean hasModifier() {
     if (this.modifier == null)
       return false;
-    for (Enumeration<SearchModifierCode> item : this.modifier)
+    for (StringType item : this.modifier)
       if (!item.isEmpty())
         return true;
     return false;
@@ -2714,10 +1921,10 @@ public class SearchParameter extends MetadataResource {
   /**
    * @return {@link #modifier} (A modifier supported for the search parameter.)
    */
-  public Enumeration<SearchModifierCode> addModifierElement() {// 2
-    Enumeration<SearchModifierCode> t = new Enumeration<SearchModifierCode>(new SearchModifierCodeEnumFactory());
+  public StringType addModifierElement() {// 2
+    StringType t = new StringType();
     if (this.modifier == null)
-      this.modifier = new ArrayList<Enumeration<SearchModifierCode>>();
+      this.modifier = new ArrayList<StringType>();
     this.modifier.add(t);
     return t;
   }
@@ -2726,11 +1933,11 @@ public class SearchParameter extends MetadataResource {
    * @param value {@link #modifier} (A modifier supported for the search
    *              parameter.)
    */
-  public SearchParameter addModifier(SearchModifierCode value) { // 1
-    Enumeration<SearchModifierCode> t = new Enumeration<SearchModifierCode>(new SearchModifierCodeEnumFactory());
+  public SearchParameter addModifier(String value) { // 1
+    StringType t = new StringType();
     t.setValue(value);
     if (this.modifier == null)
-      this.modifier = new ArrayList<Enumeration<SearchModifierCode>>();
+      this.modifier = new ArrayList<StringType>();
     this.modifier.add(t);
     return this;
   }
@@ -2739,10 +1946,10 @@ public class SearchParameter extends MetadataResource {
    * @param value {@link #modifier} (A modifier supported for the search
    *              parameter.)
    */
-  public boolean hasModifier(SearchModifierCode value) {
+  public boolean hasModifier(String value) {
     if (this.modifier == null)
       return false;
-    for (Enumeration<SearchModifierCode> v : this.modifier)
+    for (StringType v : this.modifier)
       if (v.getValue().equals(value)) // code
         return true;
     return false;
@@ -2904,7 +2111,7 @@ public class SearchParameter extends MetadataResource {
     children.add(new Property("derivedFrom", "canonical(SearchParameter)",
         "Where this search parameter is originally defined. If a derivedFrom is provided, then the details in the search parameter must be consistent with the definition from which it is defined. i.e. the parameter should have the same meaning, and (usually) the functionality should be a proper subset of the underlying search parameter.",
         0, 1, derivedFrom));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of this search parameter. Enables tracking the life-cycle of the content.", 0, 1, status));
     children.add(new Property("experimental", "boolean",
         "A Boolean value to indicate that this search parameter is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
@@ -2932,13 +2139,13 @@ public class SearchParameter extends MetadataResource {
     children
         .add(new Property("base", "code", "The base resource type(s) that this search parameter can be used against.",
             0, java.lang.Integer.MAX_VALUE, base));
-    children.add(new Property("type", "code",
+    children.add(new Property("type", "string",
         "The type of value that a search parameter may contain, and how the content is interpreted.", 0, 1, type));
     children.add(new Property("expression", "string",
         "A FHIRPath expression that returns a set of elements for the search parameter.", 0, 1, expression));
     children.add(new Property("xpath", "string",
         "An XPath expression that returns a set of elements for the search parameter.", 0, 1, xpath));
-    children.add(new Property("xpathUsage", "code",
+    children.add(new Property("xpathUsage", "string",
         "How the search parameter relates to the set of elements returned by evaluating the xpath query.", 0, 1,
         xpathUsage));
     children.add(new Property("target", "code", "Types of resource (if a resource is referenced).", 0,
@@ -2949,9 +2156,9 @@ public class SearchParameter extends MetadataResource {
     children.add(new Property("multipleAnd", "boolean",
         "Whether multiple parameters are allowed - e.g. more than one parameter with the same name. The search matches if all the parameters match.",
         0, 1, multipleAnd));
-    children.add(new Property("comparator", "code", "Comparators supported for the search parameter.", 0,
+    children.add(new Property("comparator", "string", "Comparators supported for the search parameter.", 0,
         java.lang.Integer.MAX_VALUE, comparator));
-    children.add(new Property("modifier", "code", "A modifier supported for the search parameter.", 0,
+    children.add(new Property("modifier", "string", "A modifier supported for the search parameter.", 0,
         java.lang.Integer.MAX_VALUE, modifier));
     children.add(new Property("chain", "string",
         "Contains the names of any search parameters which may be chained to the containing search parameter. Chained parameters may be added to search parameters of type reference and specify that resources will only be returned if they contain a reference to a resource which matches the chained parameter value. Values for this field should be drawn from SearchParameter.code for a parameter on the target resource type.",
@@ -2980,7 +2187,7 @@ public class SearchParameter extends MetadataResource {
           "Where this search parameter is originally defined. If a derivedFrom is provided, then the details in the search parameter must be consistent with the definition from which it is defined. i.e. the parameter should have the same meaning, and (usually) the functionality should be a proper subset of the underlying search parameter.",
           0, 1, derivedFrom);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of this search parameter. Enables tracking the life-cycle of the content.", 0, 1, status);
     case -404562712:
       /* experimental */ return new Property("experimental", "boolean",
@@ -3019,7 +2226,7 @@ public class SearchParameter extends MetadataResource {
           "The base resource type(s) that this search parameter can be used against.", 0, java.lang.Integer.MAX_VALUE,
           base);
     case 3575610:
-      /* type */ return new Property("type", "code",
+      /* type */ return new Property("type", "string",
           "The type of value that a search parameter may contain, and how the content is interpreted.", 0, 1, type);
     case -1795452264:
       /* expression */ return new Property("expression", "string",
@@ -3028,7 +2235,7 @@ public class SearchParameter extends MetadataResource {
       /* xpath */ return new Property("xpath", "string",
           "An XPath expression that returns a set of elements for the search parameter.", 0, 1, xpath);
     case 1801322244:
-      /* xpathUsage */ return new Property("xpathUsage", "code",
+      /* xpathUsage */ return new Property("xpathUsage", "string",
           "How the search parameter relates to the set of elements returned by evaluating the xpath query.", 0, 1,
           xpathUsage);
     case -880905839:
@@ -3043,10 +2250,10 @@ public class SearchParameter extends MetadataResource {
           "Whether multiple parameters are allowed - e.g. more than one parameter with the same name. The search matches if all the parameters match.",
           0, 1, multipleAnd);
     case -844673834:
-      /* comparator */ return new Property("comparator", "code", "Comparators supported for the search parameter.", 0,
+      /* comparator */ return new Property("comparator", "string", "Comparators supported for the search parameter.", 0,
           java.lang.Integer.MAX_VALUE, comparator);
     case -615513385:
-      /* modifier */ return new Property("modifier", "code", "A modifier supported for the search parameter.", 0,
+      /* modifier */ return new Property("modifier", "string", "A modifier supported for the search parameter.", 0,
           java.lang.Integer.MAX_VALUE, modifier);
     case 94623425:
       /* chain */ return new Property("chain", "string",
@@ -3073,7 +2280,7 @@ public class SearchParameter extends MetadataResource {
     case 1077922663:
       /* derivedFrom */ return this.derivedFrom == null ? new Base[0] : new Base[] { this.derivedFrom }; // CanonicalType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -404562712:
       /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
     case 3076014:
@@ -3097,13 +2304,13 @@ public class SearchParameter extends MetadataResource {
     case 3016401:
       /* base */ return this.base == null ? new Base[0] : this.base.toArray(new Base[this.base.size()]); // CodeType
     case 3575610:
-      /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<SearchParamType>
+      /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
     case -1795452264:
       /* expression */ return this.expression == null ? new Base[0] : new Base[] { this.expression }; // StringType
     case 114256029:
       /* xpath */ return this.xpath == null ? new Base[0] : new Base[] { this.xpath }; // StringType
     case 1801322244:
-      /* xpathUsage */ return this.xpathUsage == null ? new Base[0] : new Base[] { this.xpathUsage }; // Enumeration<XPathUsageType>
+      /* xpathUsage */ return this.xpathUsage == null ? new Base[0] : new Base[] { this.xpathUsage }; // StringType
     case -880905839:
       /* target */ return this.target == null ? new Base[0] : this.target.toArray(new Base[this.target.size()]); // CodeType
     case 1265069075:
@@ -3112,9 +2319,9 @@ public class SearchParameter extends MetadataResource {
       /* multipleAnd */ return this.multipleAnd == null ? new Base[0] : new Base[] { this.multipleAnd }; // BooleanType
     case -844673834:
       /* comparator */ return this.comparator == null ? new Base[0]
-          : this.comparator.toArray(new Base[this.comparator.size()]); // Enumeration<SearchComparator>
+          : this.comparator.toArray(new Base[this.comparator.size()]); // StringType
     case -615513385:
-      /* modifier */ return this.modifier == null ? new Base[0] : this.modifier.toArray(new Base[this.modifier.size()]); // Enumeration<SearchModifierCode>
+      /* modifier */ return this.modifier == null ? new Base[0] : this.modifier.toArray(new Base[this.modifier.size()]); // StringType
     case 94623425:
       /* chain */ return this.chain == null ? new Base[0] : this.chain.toArray(new Base[this.chain.size()]); // StringType
     case -1399907075:
@@ -3142,8 +2349,7 @@ public class SearchParameter extends MetadataResource {
       this.derivedFrom = castToCanonical(value); // CanonicalType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -404562712: // experimental
       this.experimental = castToBoolean(value); // BooleanType
@@ -3176,8 +2382,7 @@ public class SearchParameter extends MetadataResource {
       this.getBase().add(castToCode(value)); // CodeType
       return value;
     case 3575610: // type
-      value = new SearchParamTypeEnumFactory().fromType(castToCode(value));
-      this.type = (Enumeration) value; // Enumeration<SearchParamType>
+      this.type = castToString(value); // StringType
       return value;
     case -1795452264: // expression
       this.expression = castToString(value); // StringType
@@ -3186,8 +2391,7 @@ public class SearchParameter extends MetadataResource {
       this.xpath = castToString(value); // StringType
       return value;
     case 1801322244: // xpathUsage
-      value = new XPathUsageTypeEnumFactory().fromType(castToCode(value));
-      this.xpathUsage = (Enumeration) value; // Enumeration<XPathUsageType>
+      this.xpathUsage = castToString(value); // StringType
       return value;
     case -880905839: // target
       this.getTarget().add(castToCode(value)); // CodeType
@@ -3199,12 +2403,10 @@ public class SearchParameter extends MetadataResource {
       this.multipleAnd = castToBoolean(value); // BooleanType
       return value;
     case -844673834: // comparator
-      value = new SearchComparatorEnumFactory().fromType(castToCode(value));
-      this.getComparator().add((Enumeration) value); // Enumeration<SearchComparator>
+      this.getComparator().add(castToString(value)); // StringType
       return value;
     case -615513385: // modifier
-      value = new SearchModifierCodeEnumFactory().fromType(castToCode(value));
-      this.getModifier().add((Enumeration) value); // Enumeration<SearchModifierCode>
+      this.getModifier().add(castToString(value)); // StringType
       return value;
     case 94623425: // chain
       this.getChain().add(castToString(value)); // StringType
@@ -3229,8 +2431,7 @@ public class SearchParameter extends MetadataResource {
     } else if (name.equals("derivedFrom")) {
       this.derivedFrom = castToCanonical(value); // CanonicalType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("date")) {
@@ -3252,15 +2453,13 @@ public class SearchParameter extends MetadataResource {
     } else if (name.equals("base")) {
       this.getBase().add(castToCode(value));
     } else if (name.equals("type")) {
-      value = new SearchParamTypeEnumFactory().fromType(castToCode(value));
-      this.type = (Enumeration) value; // Enumeration<SearchParamType>
+      this.type = castToString(value); // StringType
     } else if (name.equals("expression")) {
       this.expression = castToString(value); // StringType
     } else if (name.equals("xpath")) {
       this.xpath = castToString(value); // StringType
     } else if (name.equals("xpathUsage")) {
-      value = new XPathUsageTypeEnumFactory().fromType(castToCode(value));
-      this.xpathUsage = (Enumeration) value; // Enumeration<XPathUsageType>
+      this.xpathUsage = castToString(value); // StringType
     } else if (name.equals("target")) {
       this.getTarget().add(castToCode(value));
     } else if (name.equals("multipleOr")) {
@@ -3268,11 +2467,9 @@ public class SearchParameter extends MetadataResource {
     } else if (name.equals("multipleAnd")) {
       this.multipleAnd = castToBoolean(value); // BooleanType
     } else if (name.equals("comparator")) {
-      value = new SearchComparatorEnumFactory().fromType(castToCode(value));
-      this.getComparator().add((Enumeration) value);
+      this.getComparator().add(castToString(value)); // StringType
     } else if (name.equals("modifier")) {
-      value = new SearchModifierCodeEnumFactory().fromType(castToCode(value));
-      this.getModifier().add((Enumeration) value);
+      this.getModifier().add(castToString(value)); // StringType
     } else if (name.equals("chain")) {
       this.getChain().add(castToString(value));
     } else if (name.equals("component")) {
@@ -3329,10 +2526,10 @@ public class SearchParameter extends MetadataResource {
     } else if (name.equals("multipleAnd")) {
       this.multipleAnd = null;
     } else if (name.equals("comparator")) {
-      this.getComparator().remove((Enumeration) value);
+      this.getComparator().remove(castToString(value));
     } else if (name.equals("modifier")) {
       value = null;
-      this.getModifier().remove((Enumeration) value);
+      this.getModifier().remove(castToString(value));
     } else if (name.equals("chain")) {
       this.getChain().remove(castToString(value));
     } else if (name.equals("component")) {
@@ -3415,7 +2612,7 @@ public class SearchParameter extends MetadataResource {
     case 1077922663:
       /* derivedFrom */ return new String[] { "canonical" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -404562712:
       /* experimental */ return new String[] { "boolean" };
     case 3076014:
@@ -3437,13 +2634,13 @@ public class SearchParameter extends MetadataResource {
     case 3016401:
       /* base */ return new String[] { "code" };
     case 3575610:
-      /* type */ return new String[] { "code" };
+      /* type */ return new String[] { "string" };
     case -1795452264:
       /* expression */ return new String[] { "string" };
     case 114256029:
       /* xpath */ return new String[] { "string" };
     case 1801322244:
-      /* xpathUsage */ return new String[] { "code" };
+      /* xpathUsage */ return new String[] { "string" };
     case -880905839:
       /* target */ return new String[] { "code" };
     case 1265069075:
@@ -3451,9 +2648,9 @@ public class SearchParameter extends MetadataResource {
     case 562422183:
       /* multipleAnd */ return new String[] { "boolean" };
     case -844673834:
-      /* comparator */ return new String[] { "code" };
+      /* comparator */ return new String[] { "string" };
     case -615513385:
-      /* modifier */ return new String[] { "code" };
+      /* modifier */ return new String[] { "string" };
     case 94623425:
       /* chain */ return new String[] { "string" };
     case -1399907075:
@@ -3583,14 +2780,14 @@ public class SearchParameter extends MetadataResource {
     dst.multipleOr = multipleOr == null ? null : multipleOr.copy();
     dst.multipleAnd = multipleAnd == null ? null : multipleAnd.copy();
     if (comparator != null) {
-      dst.comparator = new ArrayList<Enumeration<SearchComparator>>();
-      for (Enumeration<SearchComparator> i : comparator)
+      dst.comparator = new ArrayList<StringType>();
+      for (StringType i : comparator)
         dst.comparator.add(i.copy());
     }
     ;
     if (modifier != null) {
-      dst.modifier = new ArrayList<Enumeration<SearchModifierCode>>();
-      for (Enumeration<SearchModifierCode> i : modifier)
+      dst.modifier = new ArrayList<StringType>();
+      for (StringType i : modifier)
         dst.modifier.add(i.copy());
     }
     ;

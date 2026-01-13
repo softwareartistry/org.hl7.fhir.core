@@ -388,7 +388,7 @@ public class StructureMapUtilities {
     b.append("}\r\n\r\n");
   }
 
-  private static Object getChar(ConceptMapEquivalence equivalence) {
+  private static Object getChar(StringType equivalence) {
     switch (equivalence) {
     case RELATEDTO:
       return "-";
@@ -824,7 +824,7 @@ public class StructureMapUtilities {
       lexer.token("=");
       String v = lexer.take();
       if (v.equals("provided")) {
-        g.getUnmapped().setMode(ConceptMapGroupUnmappedMode.PROVIDED);
+        g.getUnmapped().setMode("PROVIDED");
       } else
         throw lexer.error("Only unmapped mode PROVIDED is supported at this time");
     }
@@ -832,8 +832,8 @@ public class StructureMapUtilities {
       String srcs = readPrefix(prefixes, lexer);
       lexer.token(":");
       String sc = lexer.getCurrent().startsWith("\"") ? lexer.readConstant("code") : lexer.take();
-      ConceptMapEquivalence eq = readEquivalence(lexer);
-      String tgts = (eq != ConceptMapEquivalence.UNMATCHED) ? readPrefix(prefixes, lexer) : "";
+      String eq = readEquivalence(lexer);
+      String tgts = (eq != "UNMATCHED") ? readPrefix(prefixes, lexer) : "";
       ConceptMapGroupComponent g = getGroup(map, srcs, tgts);
       SourceElementComponent e = g.addElement();
       e.setCode(sc);
@@ -841,7 +841,7 @@ public class StructureMapUtilities {
         e.setCode(lexer.processConstant(e.getCode()));
       TargetElementComponent tgt = e.addTarget();
       tgt.setEquivalence(eq);
-      if (tgt.getEquivalence() != ConceptMapEquivalence.UNMATCHED) {
+      if (tgt.getEquivalence() != "UNMATCHED") {
         lexer.token(":");
         tgt.setCode(lexer.take());
         if (tgt.getCode().startsWith("\""))
@@ -937,13 +937,13 @@ public class StructureMapUtilities {
         lexer.token("type");
         lexer.token("+");
         lexer.token("types");
-        group.setTypeMode(StructureMapGroupTypeMode.TYPEANDTYPES);
+        group.setTypeMode("TYPEANDTYPES");
       } else {
         lexer.token("types");
-        group.setTypeMode(StructureMapGroupTypeMode.TYPES);
+        group.setTypeMode("TYPES");
       }
     } else
-      group.setTypeMode(StructureMapGroupTypeMode.NONE);
+      group.setTypeMode("NONE");
     group.setName(lexer.take());
     if (lexer.hasToken("(")) {
       newFmt = true;
@@ -960,17 +960,17 @@ public class StructureMapUtilities {
       group.setExtends(lexer.take());
     }
     if (newFmt) {
-      group.setTypeMode(StructureMapGroupTypeMode.NONE);
+      group.setTypeMode("NONE");
       if (lexer.hasToken("<")) {
         lexer.token("<");
         lexer.token("<");
         if (lexer.hasToken("types")) {
-          group.setTypeMode(StructureMapGroupTypeMode.TYPES);
+          group.setTypeMode("TYPES");
           lexer.token("types");
         } else {
           lexer.token("type");
           lexer.token("+");
-          group.setTypeMode(StructureMapGroupTypeMode.TYPEANDTYPES);
+          group.setTypeMode("TYPEANDTYPES");
         }
         lexer.token(">");
         lexer.token(">");
@@ -1076,7 +1076,7 @@ public class StructureMapUtilities {
     if (isSimpleSyntax(rule)) {
       rule.getSourceFirstRep().setVariable(AUTO_VAR_NAME);
       rule.getTargetFirstRep().setVariable(AUTO_VAR_NAME);
-      rule.getTargetFirstRep().setTransform(StructureMapTransform.CREATE); // with no parameter - e.g. imply what is to
+      rule.getTargetFirstRep().setTransform("CREATE"); // with no parameter - e.g. imply what is to
                                                                            // be created
       // no dependencies - imply what is to be done based on types
     }
@@ -3022,7 +3022,7 @@ public class StructureMapUtilities {
 
     StructureDefinition profile = new StructureDefinition();
     profiles.add(profile);
-    profile.setDerivation(TypeDerivationRule.CONSTRAINT);
+    profile.setDerivation("CONSTRAINT");
     profile.setType(type);
     profile.setBaseDefinition(prop.getBaseProperty().getStructure().getUrl());
     profile.setName("Profile for " + profile.getType() + " for " + sliceName);

@@ -56,237 +56,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "ChargeItem", profile = "http://hl7.org/fhir/StructureDefinition/ChargeItem")
 public class ChargeItem extends DomainResource {
 
-  public enum ChargeItemStatus {
-    /**
-     * The charge item has been entered, but the charged service is not yet
-     * complete, so it shall not be billed yet but might be used in the context of
-     * pre-authorization.
-     */
-    PLANNED,
-    /**
-     * The charge item is ready for billing.
-     */
-    BILLABLE,
-    /**
-     * The charge item has been determined to be not billable (e.g. due to rules
-     * associated with the billing code).
-     */
-    NOTBILLABLE,
-    /**
-     * The processing of the charge was aborted.
-     */
-    ABORTED,
-    /**
-     * The charge item has been billed (e.g. a billing engine has generated
-     * financial transactions by applying the associated ruled for the charge item
-     * to the context of the Encounter, and placed them into Claims/Invoices.
-     */
-    BILLED,
-    /**
-     * The charge item has been entered in error and should not be processed for
-     * billing.
-     */
-    ENTEREDINERROR,
-    /**
-     * The authoring system does not know which of the status values currently
-     * applies for this charge item Note: This concept is not to be used for "other"
-     * - one of the listed statuses is presumed to apply, it's just not known which
-     * one.
-     */
-    UNKNOWN,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ChargeItemStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("planned".equals(codeString))
-        return PLANNED;
-      if ("billable".equals(codeString))
-        return BILLABLE;
-      if ("not-billable".equals(codeString))
-        return NOTBILLABLE;
-      if ("aborted".equals(codeString))
-        return ABORTED;
-      if ("billed".equals(codeString))
-        return BILLED;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return UNKNOWN;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ChargeItemStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case PLANNED:
-        return "planned";
-      case BILLABLE:
-        return "billable";
-      case NOTBILLABLE:
-        return "not-billable";
-      case ABORTED:
-        return "aborted";
-      case BILLED:
-        return "billed";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case UNKNOWN:
-        return "unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case PLANNED:
-        return "http://hl7.org/fhir/chargeitem-status";
-      case BILLABLE:
-        return "http://hl7.org/fhir/chargeitem-status";
-      case NOTBILLABLE:
-        return "http://hl7.org/fhir/chargeitem-status";
-      case ABORTED:
-        return "http://hl7.org/fhir/chargeitem-status";
-      case BILLED:
-        return "http://hl7.org/fhir/chargeitem-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/chargeitem-status";
-      case UNKNOWN:
-        return "http://hl7.org/fhir/chargeitem-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case PLANNED:
-        return "The charge item has been entered, but the charged service is not  yet complete, so it shall not be billed yet but might be used in the context of pre-authorization.";
-      case BILLABLE:
-        return "The charge item is ready for billing.";
-      case NOTBILLABLE:
-        return "The charge item has been determined to be not billable (e.g. due to rules associated with the billing code).";
-      case ABORTED:
-        return "The processing of the charge was aborted.";
-      case BILLED:
-        return "The charge item has been billed (e.g. a billing engine has generated financial transactions by applying the associated ruled for the charge item to the context of the Encounter, and placed them into Claims/Invoices.";
-      case ENTEREDINERROR:
-        return "The charge item has been entered in error and should not be processed for billing.";
-      case UNKNOWN:
-        return "The authoring system does not know which of the status values currently applies for this charge item  Note: This concept is not to be used for \"other\" - one of the listed statuses is presumed to apply, it's just not known which one.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case PLANNED:
-        return "Planned";
-      case BILLABLE:
-        return "Billable";
-      case NOTBILLABLE:
-        return "Not billable";
-      case ABORTED:
-        return "Aborted";
-      case BILLED:
-        return "Billed";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case UNKNOWN:
-        return "Unknown";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ChargeItemStatusEnumFactory implements EnumFactory<ChargeItemStatus> {
-    public ChargeItemStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("planned".equals(codeString))
-        return ChargeItemStatus.PLANNED;
-      if ("billable".equals(codeString))
-        return ChargeItemStatus.BILLABLE;
-      if ("not-billable".equals(codeString))
-        return ChargeItemStatus.NOTBILLABLE;
-      if ("aborted".equals(codeString))
-        return ChargeItemStatus.ABORTED;
-      if ("billed".equals(codeString))
-        return ChargeItemStatus.BILLED;
-      if ("entered-in-error".equals(codeString))
-        return ChargeItemStatus.ENTEREDINERROR;
-      if ("unknown".equals(codeString))
-        return ChargeItemStatus.UNKNOWN;
-      throw new IllegalArgumentException("Unknown ChargeItemStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<ChargeItemStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ChargeItemStatus>(this, ChargeItemStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ChargeItemStatus>(this, ChargeItemStatus.NULL, code);
-      if ("planned".equals(codeString))
-        return new Enumeration<ChargeItemStatus>(this, ChargeItemStatus.PLANNED, code);
-      if ("billable".equals(codeString))
-        return new Enumeration<ChargeItemStatus>(this, ChargeItemStatus.BILLABLE, code);
-      if ("not-billable".equals(codeString))
-        return new Enumeration<ChargeItemStatus>(this, ChargeItemStatus.NOTBILLABLE, code);
-      if ("aborted".equals(codeString))
-        return new Enumeration<ChargeItemStatus>(this, ChargeItemStatus.ABORTED, code);
-      if ("billed".equals(codeString))
-        return new Enumeration<ChargeItemStatus>(this, ChargeItemStatus.BILLED, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<ChargeItemStatus>(this, ChargeItemStatus.ENTEREDINERROR, code);
-      if ("unknown".equals(codeString))
-        return new Enumeration<ChargeItemStatus>(this, ChargeItemStatus.UNKNOWN, code);
-      throw new FHIRException("Unknown ChargeItemStatus code '" + codeString + "'");
-    }
-
-    public String toCode(ChargeItemStatus code) {
-       if (code == ChargeItemStatus.NULL)
-           return null;
-       if (code == ChargeItemStatus.PLANNED)
-        return "planned";
-      if (code == ChargeItemStatus.BILLABLE)
-        return "billable";
-      if (code == ChargeItemStatus.NOTBILLABLE)
-        return "not-billable";
-      if (code == ChargeItemStatus.ABORTED)
-        return "aborted";
-      if (code == ChargeItemStatus.BILLED)
-        return "billed";
-      if (code == ChargeItemStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      if (code == ChargeItemStatus.UNKNOWN)
-        return "unknown";
-      return "?";
-   }
-
-    public String toSystem(ChargeItemStatus code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class ChargeItemPerformerComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -592,10 +361,10 @@ public class ChargeItem extends DomainResource {
   /**
    * The current state of the ChargeItem.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 3, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 3, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "planned | billable | not-billable | aborted | billed | entered-in-error | unknown", formalDefinition = "The current state of the ChargeItem.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/chargeitem-status")
-  protected Enumeration<ChargeItemStatus> status;
+  protected StringType status;
 
   /**
    * ChargeItems can be grouped to larger ChargeItems covering the whole set.
@@ -848,7 +617,7 @@ public class ChargeItem extends DomainResource {
   /**
    * Constructor
    */
-  public ChargeItem(Enumeration<ChargeItemStatus> status, CodeableConcept code, Reference subject) {
+  public ChargeItem(StringType status, CodeableConcept code, Reference subject) {
     super();
     this.status = status;
     this.code = code;
@@ -1049,12 +818,12 @@ public class ChargeItem extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<ChargeItemStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create ChargeItem.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<ChargeItemStatus>(new ChargeItemStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -1071,7 +840,7 @@ public class ChargeItem extends DomainResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public ChargeItem setStatusElement(Enumeration<ChargeItemStatus> value) {
+  public ChargeItem setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1079,16 +848,16 @@ public class ChargeItem extends DomainResource {
   /**
    * @return The current state of the ChargeItem.
    */
-  public ChargeItemStatus getStatus() {
-    return this.status == null ? null : this.status.getValue();
+  public StringType getStatus() {
+    return this.status == null ? null : this.status;
   }
 
   /**
    * @param value The current state of the ChargeItem.
    */
-  public ChargeItem setStatus(ChargeItemStatus value) {
+  public ChargeItem setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<ChargeItemStatus>(new ChargeItemStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -2241,7 +2010,7 @@ public class ChargeItem extends DomainResource {
     children.add(new Property("definitionCanonical", "canonical(ChargeItemDefinition)",
         "References the source of pricing information, rules of application for the code this ChargeItem uses.", 0,
         java.lang.Integer.MAX_VALUE, definitionCanonical));
-    children.add(new Property("status", "code", "The current state of the ChargeItem.", 0, 1, status));
+    children.add(new Property("status", "string", "The current state of the ChargeItem.", 0, 1, status));
     children.add(new Property("partOf", "Reference(ChargeItem)",
         "ChargeItems can be grouped to larger ChargeItems covering the whole set.", 0, java.lang.Integer.MAX_VALUE,
         partOf));
@@ -2310,7 +2079,7 @@ public class ChargeItem extends DomainResource {
           "References the source of pricing information, rules of application for the code this ChargeItem uses.", 0,
           java.lang.Integer.MAX_VALUE, definitionCanonical);
     case -892481550:
-      /* status */ return new Property("status", "code", "The current state of the ChargeItem.", 0, 1, status);
+      /* status */ return new Property("status", "string", "The current state of the ChargeItem.", 0, 1, status);
     case -995410646:
       /* partOf */ return new Property("partOf", "Reference(ChargeItem)",
           "ChargeItems can be grouped to larger ChargeItems covering the whole set.", 0, java.lang.Integer.MAX_VALUE,
@@ -2429,7 +2198,7 @@ public class ChargeItem extends DomainResource {
       /* definitionCanonical */ return this.definitionCanonical == null ? new Base[0]
           : this.definitionCanonical.toArray(new Base[this.definitionCanonical.size()]); // CanonicalType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<ChargeItemStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -995410646:
       /* partOf */ return this.partOf == null ? new Base[0] : this.partOf.toArray(new Base[this.partOf.size()]); // Reference
     case 3059181:
@@ -2497,8 +2266,7 @@ public class ChargeItem extends DomainResource {
       this.getDefinitionCanonical().add(castToCanonical(value)); // CanonicalType
       return value;
     case -892481550: // status
-      value = new ChargeItemStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ChargeItemStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -995410646: // partOf
       this.getPartOf().add(castToReference(value)); // Reference
@@ -2581,8 +2349,7 @@ public class ChargeItem extends DomainResource {
     } else if (name.equals("definitionCanonical")) {
       this.getDefinitionCanonical().add(castToCanonical(value));
     } else if (name.equals("status")) {
-      value = new ChargeItemStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ChargeItemStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("partOf")) {
       this.getPartOf().add(castToReference(value));
     } else if (name.equals("code")) {

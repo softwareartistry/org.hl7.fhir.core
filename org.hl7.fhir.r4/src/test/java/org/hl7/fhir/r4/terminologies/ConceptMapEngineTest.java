@@ -70,7 +70,7 @@ class ConceptMapEngineTest {
   private ConceptMap.SourceElementComponent getSourceElementComponent() {
     ConceptMap.TargetElementComponent targetElementComponent = new ConceptMap.TargetElementComponent();
     targetElementComponent.setCode(TARGET_CODE_STRING);
-    targetElementComponent.setEquivalence(Enumerations.ConceptMapEquivalence.EQUIVALENT);
+    targetElementComponent.setEquivalence("EQUIVALENT");
 
     ConceptMap.SourceElementComponent sourceElementComponent = new ConceptMap.SourceElementComponent();
     sourceElementComponent.setCode(SOURCE_CODE_STRING);

@@ -2446,7 +2446,7 @@ public class NarrativeGenerator implements INarrativeGenerator {
           if (display != null && !isSameCodeAndDisplay(ccl.getCode(), display))
             td.tx(" (" + display + ")");
           TargetElementComponent ccm = ccl.getTarget().get(0);
-          tr.td().addText(!ccm.hasEquivalence() ? "" : ccm.getEquivalence().toCode());
+          tr.td().addText(!ccm.hasEquivalence() ? "" : ccm.getEquivalence().getValue());
           td = tr.td();
           td.addText(ccm.getCode());
           display = getDisplayForConcept(grp.getTarget(), ccm.getCode());
@@ -2534,9 +2534,9 @@ public class NarrativeGenerator implements INarrativeGenerator {
             }
             first = false;
             if (!ccm.hasEquivalence())
-              tr.td().tx(":" + "(" + ConceptMapEquivalence.EQUIVALENT.toCode() + ")");
+              tr.td().tx(":" + "(" + "EQUIVALENT" + ")");
             else
-              tr.td().ah(eqpath + "#" + ccm.getEquivalence().toCode()).tx(ccm.getEquivalence().toCode());
+              tr.td().ah(eqpath + "#" + ccm.getEquivalence().getValue()).tx(ccm.getEquivalence().getValue());
             td = tr.td();
             if (targets.get("code").size() == 1)
               td.addText(ccm.getCode());
@@ -3654,7 +3654,7 @@ public class NarrativeGenerator implements INarrativeGenerator {
         if (!first)
           td.br();
         first = false;
-        XhtmlNode span = td.span(null, mapping.comp.hasEquivalence() ? mapping.comp.getEquivalence().toCode() : "");
+        XhtmlNode span = td.span(null, mapping.comp.hasEquivalence() ? mapping.comp.getEquivalence().getValue() : "");
         span.addText(getCharForEquivalence(mapping.comp));
         a = td.ah(prefix + m.getLink() + "#" + makeAnchor(mapping.group.getTarget(), mapping.comp.getCode()));
         a.addText(mapping.comp.getCode());
