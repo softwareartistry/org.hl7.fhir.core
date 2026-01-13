@@ -4266,8 +4266,8 @@ public class TestScript extends MetadataResource {
      * @return The HTTP method the test engine MUST use for this operation
      *         regardless of any other operation details.
      */
-    public StringType getMethod() {
-      return this.method == null ? null : this.method;
+    public String getMethod() {
+      return this.method == null ? null : this.method.getValue();
     }
 
     /**
@@ -5868,8 +5868,8 @@ public class TestScript extends MetadataResource {
     /**
      * @return The direction to use for the assertion.
      */
-    public StringType getDirection() {
-      return this.direction == null ? null : this.direction;
+    public String getDirection() {
+      return this.direction == null ? null : this.direction.getValue();
     }
 
     /**
@@ -6392,8 +6392,8 @@ public class TestScript extends MetadataResource {
      * @return The operator type defines the conditional behavior of the assert. If
      *         not defined, the default is equals.
      */
-    public StringType getOperator() {
-      return this.operator == null ? null : this.operator;
+    public String getOperator() {
+      return this.operator == null ? null : this.operator.getValue();
     }
 
     /**
@@ -6508,8 +6508,8 @@ public class TestScript extends MetadataResource {
      * @return The request method or HTTP operation code to compare against that
      *         used by the client system under test.
      */
-    public StringType getRequestMethod() {
-      return this.requestMethod == null ? null : this.requestMethod;
+    public String getRequestMethod() {
+      return this.requestMethod == null ? null : this.requestMethod.getValue();
     }
 
     /**
@@ -6681,8 +6681,8 @@ public class TestScript extends MetadataResource {
      *         | methodNotAllowed | conflict | gone | preconditionFailed |
      *         unprocessable.
      */
-    public StringType getResponse() {
-      return this.response == null ? null : this.response;
+    public String getResponse() {
+      return this.response == null ? null : this.response.getValue();
     }
 
     /**
@@ -9064,8 +9064,8 @@ public class TestScript extends MetadataResource {
    * @return The status of this test script. Enables tracking the life-cycle of
    *         the content.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

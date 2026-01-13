@@ -809,8 +809,8 @@ public class CommunicationRequest extends DomainResource {
   /**
    * @return The status of the proposal or order.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -943,8 +943,8 @@ public class CommunicationRequest extends DomainResource {
    * @return Characterizes how quickly the proposed act must be initiated.
    *         Includes concepts such as stat, urgent, routine.
    */
-  public StringType getPriority() {
-    return this.priority == null ? null : this.priority;
+  public String getPriority() {
+    return this.priority == null ? null : this.priority.getValue();
   }
 
   /**

@@ -597,8 +597,8 @@ public class Provenance extends DomainResource {
     /**
      * @return How the entity was used during the activity.
      */
-    public StringType getRole() {
-      return this.role == null ? null : this.role;
+    public String getRole() {
+      return this.role == null ? null : this.role.getValue();
     }
 
     /**

@@ -502,8 +502,8 @@ public class Device extends DomainResource {
     /**
      * @return A coded entry to indicate how the data was entered.
      */
-    public StringType getEntryType() {
-      return this.entryType == null ? null : this.entryType;
+    public String getEntryType() {
+      return this.entryType == null ? null : this.entryType.getValue();
     }
 
     /**
@@ -896,8 +896,8 @@ public class Device extends DomainResource {
      * @return The type of deviceName. UDILabelName | UserFriendlyName |
      *         PatientReportedName | ManufactureDeviceName | ModelName.
      */
-    public StringType getType() {
-      return this.type == null ? null : this.type;
+    public String getType() {
+      return this.type == null ? null : this.type.getValue();
     }
 
     /**
@@ -2462,8 +2462,8 @@ public class Device extends DomainResource {
   /**
    * @return Status of the Device availability.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

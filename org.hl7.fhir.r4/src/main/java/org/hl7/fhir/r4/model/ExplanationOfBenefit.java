@@ -12981,8 +12981,8 @@ public class ExplanationOfBenefit extends DomainResource {
     /**
      * @return The business purpose of the note text.
      */
-    public StringType getType() {
-      return this.type == null ? null : this.type;
+    public String getType() {
+      return this.type == null ? null : this.type.getValue();
     }
 
     /**
@@ -14932,8 +14932,8 @@ public class ExplanationOfBenefit extends DomainResource {
   /**
    * @return The status of the resource instance.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -15048,8 +15048,8 @@ public class ExplanationOfBenefit extends DomainResource {
    *         future; or requesting the non-binding adjudication of the listed
    *         products and services which could be provided in the future.
    */
-  public StringType getUse() {
-    return this.use == null ? null : this.use;
+  public String getUse() {
+    return this.use == null ? null : this.use.getValue();
   }
 
   /**

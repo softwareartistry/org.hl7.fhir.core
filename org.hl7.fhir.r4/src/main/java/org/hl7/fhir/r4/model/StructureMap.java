@@ -192,8 +192,8 @@ public class StructureMap extends MetadataResource {
     /**
      * @return How the referenced structure is used in this mapping.
      */
-    public StringType getMode() {
-      return this.mode == null ? null : this.mode;
+    public String getMode() {
+      return this.mode == null ? null : this.mode.getValue();
     }
 
     /**
@@ -719,8 +719,8 @@ public class StructureMap extends MetadataResource {
      * @return If this is the default rule set to apply for the source type or this
      *         combination of types.
      */
-    public StringType getTypeMode() {
-      return this.typeMode == null ? null : this.typeMode;
+    public String getTypeMode() {
+      return this.typeMode == null ? null : this.typeMode.getValue();
     }
 
     /**
@@ -1350,8 +1350,8 @@ public class StructureMap extends MetadataResource {
     /**
      * @return Mode for this instance of data.
      */
-    public StringType getMode() {
-      return this.mode == null ? null : this.mode;
+    public String getMode() {
+      return this.mode == null ? null : this.mode.getValue();
     }
 
     /**
@@ -2693,8 +2693,8 @@ public class StructureMap extends MetadataResource {
     /**
      * @return How to handle the list mode for this element.
      */
-    public StringType getListMode() {
-      return this.listMode == null ? null : this.listMode;
+    public String getListMode() {
+      return this.listMode == null ? null : this.listMode.getValue();
     }
 
     /**
@@ -3718,8 +3718,8 @@ public class StructureMap extends MetadataResource {
     /**
      * @return How to interpret the context.
      */
-    public StringType getContextType() {
-      return this.contextType == null ? null : this.contextType;
+    public String getContextType() {
+      return this.contextType == null ? null : this.contextType.getValue();
     }
 
     /**
@@ -3994,8 +3994,8 @@ public class StructureMap extends MetadataResource {
     /**
      * @return How the data is copied / created.
      */
-    public StringType getTransform() {
-      return this.transform == null ? null : this.transform;
+    public String getTransform() {
+      return this.transform == null ? null : this.transform.getValue();
     }
 
     /**
@@ -5396,8 +5396,8 @@ public class StructureMap extends MetadataResource {
    * @return The status of this structure map. Enables tracking the life-cycle of
    *         the content.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

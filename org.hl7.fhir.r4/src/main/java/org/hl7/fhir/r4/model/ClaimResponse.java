@@ -6153,8 +6153,8 @@ public class ClaimResponse extends DomainResource {
     /**
      * @return The business purpose of the note text.
      */
-    public StringType getType() {
-      return this.type == null ? null : this.type;
+    public String getType() {
+      return this.type == null ? null : this.type.getValue();
     }
 
     /**
@@ -7867,8 +7867,8 @@ public class ClaimResponse extends DomainResource {
   /**
    * @return The status of the resource instance.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -7985,8 +7985,8 @@ public class ClaimResponse extends DomainResource {
    *         future; or requesting the non-binding adjudication of the listed
    *         products and services which could be provided in the future.
    */
-  public StringType getUse() {
-    return this.use == null ? null : this.use;
+  public String getUse() {
+    return this.use == null ? null : this.use.getValue();
   }
 
   /**
@@ -8298,8 +8298,8 @@ public class ClaimResponse extends DomainResource {
    * @return The outcome of the claim, predetermination, or preauthorization
    *         processing.
    */
-  public StringType getOutcome() {
-    return this.outcome == null ? null : this.outcome;
+  public String getOutcome() {
+    return this.outcome == null ? null : this.outcome.getValue();
   }
 
   /**

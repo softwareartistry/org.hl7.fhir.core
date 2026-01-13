@@ -1178,8 +1178,8 @@ public class Group extends DomainResource {
    * @return Identifies the broad classification of the kind of resources the
    *         group includes.
    */
-  public StringType getType() {
-    return this.type == null ? null : this.type;
+  public String getType() {
+    return this.type == null ? null : this.type.getValue();
   }
 
   /**

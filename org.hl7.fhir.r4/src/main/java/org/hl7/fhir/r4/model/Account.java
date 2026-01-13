@@ -948,8 +948,8 @@ public class Account extends DomainResource {
   /**
    * @return Indicates whether the account is presently used/usable or not.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

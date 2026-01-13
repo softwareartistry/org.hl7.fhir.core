@@ -5239,8 +5239,8 @@ public class MedicationKnowledge extends DomainResource {
    *         refers to the validity about the information of the medication and
    *         not to its medicinal properties.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

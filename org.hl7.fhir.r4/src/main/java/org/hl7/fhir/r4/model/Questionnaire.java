@@ -604,8 +604,8 @@ public class Questionnaire extends MetadataResource {
      *         grouping of other items or a particular type of data to be captured
      *         (string, integer, coded choice, etc.).
      */
-    public StringType getType() {
-      return this.type == null ? null : this.type;
+    public String getType() {
+      return this.type == null ? null : this.type.getValue();
     }
 
     /**
@@ -714,8 +714,8 @@ public class Questionnaire extends MetadataResource {
      * @return Controls how multiple enableWhen values are interpreted - whether all
      *         or any must be true.
      */
-    public StringType getEnableBehavior() {
-      return this.enableBehavior == null ? null : this.enableBehavior;
+    public String getEnableBehavior() {
+      return this.enableBehavior == null ? null : this.enableBehavior.getValue();
     }
 
     /**
@@ -1837,8 +1837,8 @@ public class Questionnaire extends MetadataResource {
     /**
      * @return Specifies the criteria by which the question is enabled.
      */
-    public StringType getOperator() {
-      return this.operator == null ? null : this.operator;
+    public String getOperator() {
+      return this.operator == null ? null : this.operator.getValue();
     }
 
     /**
@@ -3732,8 +3732,8 @@ public class Questionnaire extends MetadataResource {
    * @return The status of this questionnaire. Enables tracking the life-cycle of
    *         the content.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

@@ -876,8 +876,8 @@ public class Consent extends DomainResource {
      * @return Action to take - permit or deny - when the rule conditions are met.
      *         Not permitted in root rule, required in all nested rules.
      */
-    public StringType getType() {
-      return this.type == null ? null : this.type;
+    public String getType() {
+      return this.type == null ? null : this.type.getValue();
     }
 
     /**
@@ -2157,8 +2157,8 @@ public class Consent extends DomainResource {
      * @return How the resource reference is interpreted when testing consent
      *         restrictions.
      */
-    public StringType getMeaning() {
-      return this.meaning == null ? null : this.meaning;
+    public String getMeaning() {
+      return this.meaning == null ? null : this.meaning.getValue();
     }
 
     /**
@@ -2618,8 +2618,8 @@ public class Consent extends DomainResource {
   /**
    * @return Indicates the current state of this consent.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

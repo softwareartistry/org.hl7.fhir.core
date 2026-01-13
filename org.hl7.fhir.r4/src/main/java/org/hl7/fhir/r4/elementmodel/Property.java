@@ -39,10 +39,8 @@ import org.hl7.fhir.r4.context.IWorkerContext;
 import org.hl7.fhir.r4.fhirpath.TypeDetails;
 import org.hl7.fhir.r4.formats.FormatUtilities;
 import org.hl7.fhir.r4.model.ElementDefinition;
-import org.hl7.fhir.r4.model.ElementDefinition.PropertyRepresentation;
 import org.hl7.fhir.r4.model.ElementDefinition.TypeRefComponent;
 import org.hl7.fhir.r4.model.StructureDefinition;
-import org.hl7.fhir.r4.model.StructureDefinition.StructureDefinitionKind;
 import org.hl7.fhir.r4.utils.ToolingExtensions;
 import org.hl7.fhir.r4.utils.TypesUtilities;
 import org.hl7.fhir.utilities.Utilities;
@@ -173,7 +171,7 @@ public class Property {
     return TypesUtilities.isPrimitive(code);
     // was this... but this can be very inefficient compared to hard coding the list
 //		StructureDefinition sd = context.fetchTypeDefinition(code);
-//      return sd != null && sd.getKind() == StructureDefinitionKind.PRIMITIVETYPE;
+//      return sd != null && sd.getKind() == PRIMITIVETYPE;
   }
 
   private String lowFirst(String t) {
@@ -185,7 +183,7 @@ public class Property {
       return definition.getType().size() == 1 && ("Resource".equals(definition.getType().get(0).getCode())
           || "DomainResource".equals(definition.getType().get(0).getCode()));
     else
-      return !definition.getPath().contains(".") && structure.getKind() == StructureDefinitionKind.RESOURCE;
+      return !definition.getPath().contains(".") && structure.getKind() == "RESOURCE";
   }
 
   public boolean isList() {
@@ -227,7 +225,7 @@ public class Property {
 //			return canBePrimitive;
 
     canBePrimitive = false;
-    if (structure.getKind() != StructureDefinitionKind.LOGICAL)
+    if (structure.getKind() != "LOGICAL")
       return false;
     if (!hasType(name))
       return false;
@@ -236,9 +234,9 @@ public class Property {
     if (sd == null)
       sd = context.fetchResource(StructureDefinition.class,
           ProfileUtilities.sdNs(getType(name), context.getOverrideVersionNs()));
-    if (sd != null && sd.getKind() == StructureDefinitionKind.PRIMITIVETYPE)
+    if (sd != null && sd.getKind() == "PRIMITIVETYPE")
       return true;
-    if (sd == null || sd.getKind() != StructureDefinitionKind.LOGICAL)
+    if (sd == null || sd.getKind() != "LOGICAL")
       return false;
     for (ElementDefinition ed : sd.getSnapshot().getElement()) {
       if (ed.getPath().equals(sd.getId() + ".value") && ed.getType().size() == 1
@@ -283,7 +281,7 @@ public class Property {
         }
         if (!all) {
           // ok, it's polymorphic
-          if (ed.hasRepresentation(PropertyRepresentation.TYPEATTR)) {
+          if (ed.hasRepresentation("TYPEATTR")) {
             t = statedType;
             if (t == null && ToolingExtensions.hasExtension(ed,
                 "http://hl7.org/fhir/StructureDefinition/elementdefinition-defaulttype"))

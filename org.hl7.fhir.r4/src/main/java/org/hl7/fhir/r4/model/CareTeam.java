@@ -733,8 +733,8 @@ public class CareTeam extends DomainResource {
   /**
    * @return Indicates the current state of the care team.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

@@ -2625,8 +2625,8 @@ public class CoverageEligibilityResponse extends DomainResource {
   /**
    * @return The status of the resource instance.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -3012,8 +3012,8 @@ public class CoverageEligibilityResponse extends DomainResource {
   /**
    * @return The outcome of the request processing.
    */
-  public StringType getOutcome() {
-    return this.outcome == null ? null : this.outcome;
+  public String getOutcome() {
+    return this.outcome == null ? null : this.outcome.getValue();
   }
 
   /**

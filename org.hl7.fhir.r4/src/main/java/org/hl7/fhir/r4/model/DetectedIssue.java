@@ -952,8 +952,8 @@ public class DetectedIssue extends DomainResource {
   /**
    * @return Indicates the status of the detected issue.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -1029,8 +1029,8 @@ public class DetectedIssue extends DomainResource {
    * @return Indicates the degree of importance associated with the identified
    *         issue based on the potential impact on the patient.
    */
-  public StringType getSeverity() {
-    return this.severity == null ? null : this.severity;
+  public String getSeverity() {
+    return this.severity == null ? null : this.severity.getValue();
   }
 
   /**

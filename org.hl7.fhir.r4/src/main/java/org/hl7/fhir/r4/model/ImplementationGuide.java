@@ -2479,8 +2479,8 @@ public class ImplementationGuide extends MetadataResource {
     /**
      * @return A code that indicates how the page is generated.
      */
-    public StringType getGeneration() {
-      return this.generation == null ? null : this.generation;
+    public String getGeneration() {
+      return this.generation == null ? null : this.generation.getValue();
     }
 
     /**
@@ -5216,8 +5216,8 @@ public class ImplementationGuide extends MetadataResource {
    * @return The status of this implementation guide. Enables tracking the
    *         life-cycle of the content.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -5807,8 +5807,8 @@ public class ImplementationGuide extends MetadataResource {
    * @return The license that applies to this Implementation Guide, using an SPDX
    *         license code, or 'not-open-source'.
    */
-  public StringType getLicense() {
-    return this.license == null ? null : this.license;
+  public String getLicense() {
+    return this.license == null ? null : this.license.getValue();
   }
 
   /**

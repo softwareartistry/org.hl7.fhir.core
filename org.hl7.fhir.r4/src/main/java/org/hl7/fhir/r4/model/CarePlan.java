@@ -873,8 +873,8 @@ public class CarePlan extends DomainResource {
      *         CarePlan.activity.reference. For example, a MedicationRequest, a
      *         ServiceRequest, or a CommunicationRequest.
      */
-    public StringType getKind() {
-      return this.kind == null ? null : this.kind;
+    public String getKind() {
+      return this.kind == null ? null : this.kind.getValue();
     }
 
     /**
@@ -1268,8 +1268,8 @@ public class CarePlan extends DomainResource {
     /**
      * @return Identifies what progress is being made for the specific activity.
      */
-    public StringType getStatus() {
-      return this.status == null ? null : this.status;
+    public String getStatus() {
+      return this.status == null ? null : this.status.getValue();
     }
 
     /**
@@ -3003,8 +3003,8 @@ public class CarePlan extends DomainResource {
    * @return Indicates whether the plan is currently being acted upon, represents
    *         future intentions or is now a historical record.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -3057,8 +3057,8 @@ public class CarePlan extends DomainResource {
    * @return Indicates the level of authority/intentionality associated with the
    *         care plan and where the care plan fits into the workflow chain.
    */
-  public StringType getIntent() {
-    return this.intent == null ? null : this.intent;
+  public String getIntent() {
+    return this.intent == null ? null : this.intent.getValue();
   }
 
   /**

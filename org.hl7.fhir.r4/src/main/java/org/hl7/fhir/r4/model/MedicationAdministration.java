@@ -1403,8 +1403,8 @@ public class MedicationAdministration extends DomainResource {
    *         it is possible for an administration to be started but not completed
    *         or it may be paused while some other process is under way.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

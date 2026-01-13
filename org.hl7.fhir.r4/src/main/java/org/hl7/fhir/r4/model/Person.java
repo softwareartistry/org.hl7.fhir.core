@@ -177,8 +177,8 @@ public class Person extends DomainResource {
      * @return Level of assurance that this link is associated with the target
      *         resource.
      */
-    public StringType getAssurance() {
-      return this.assurance == null ? null : this.assurance;
+    public String getAssurance() {
+      return this.assurance == null ? null : this.assurance.getValue();
     }
 
     /**
@@ -640,8 +640,8 @@ public class Person extends DomainResource {
   /**
    * @return Administrative Gender.
    */
-  public StringType getGender() {
-    return this.gender == null ? null : this.gender;
+  public String getGender() {
+    return this.gender == null ? null : this.gender.getValue();
   }
 
   /**

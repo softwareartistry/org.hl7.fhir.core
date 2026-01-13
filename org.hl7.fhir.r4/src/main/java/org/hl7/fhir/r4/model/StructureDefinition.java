@@ -603,8 +603,8 @@ public class StructureDefinition extends MetadataResource {
      * @return Defines how to interpret the expression that defines what the context
      *         of the extension is.
      */
-    public StringType getType() {
-      return this.type == null ? null : this.type;
+    public String getType() {
+      return this.type == null ? null : this.type.getValue();
     }
 
     /**
@@ -1795,8 +1795,8 @@ public class StructureDefinition extends MetadataResource {
    * @return The status of this structure definition. Enables tracking the
    *         life-cycle of the content.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -2445,8 +2445,8 @@ public class StructureDefinition extends MetadataResource {
    *         specification, without the revision number, e.g.
    *         [publication].[major].[minor], which is 4.0.1. for this version.
    */
-  public StringType getFhirVersion() {
-    return this.fhirVersion == null ? null : this.fhirVersion;
+  public String getFhirVersion() {
+    return this.fhirVersion == null ? null : this.fhirVersion.getValue();
   }
 
   /**
@@ -2557,8 +2557,8 @@ public class StructureDefinition extends MetadataResource {
   /**
    * @return Defines the kind of structure that this definition is describing.
    */
-  public StringType getKind() {
-    return this.kind == null ? null : this.kind;
+  public String getKind() {
+    return this.kind == null ? null : this.kind.getValue();
   }
 
   /**
@@ -2935,8 +2935,8 @@ public class StructureDefinition extends MetadataResource {
   /**
    * @return How the type relates to the baseDefinition.
    */
-  public StringType getDerivation() {
-    return this.derivation == null ? null : this.derivation;
+  public String getDerivation() {
+    return this.derivation == null ? null : this.derivation.getValue();
   }
 
   /**

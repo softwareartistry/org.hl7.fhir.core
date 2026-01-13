@@ -54,8 +54,8 @@ import org.hl7.fhir.r4.elementmodel.Element.SpecialElement;
 import org.hl7.fhir.r4.formats.FormatUtilities;
 import org.hl7.fhir.r4.formats.IParser.OutputStyle;
 import org.hl7.fhir.r4.model.DateTimeType;
-import org.hl7.fhir.r4.model.ElementDefinition.PropertyRepresentation;
 import org.hl7.fhir.r4.model.Enumeration;
+import org.hl7.fhir.r4.model.StringType;
 import org.hl7.fhir.r4.model.StructureDefinition;
 import org.hl7.fhir.r4.utils.ToolingExtensions;
 import org.hl7.fhir.r4.utils.formats.XmlLocationAnnotator;
@@ -309,7 +309,7 @@ public class XmlParser extends ParserBase {
         if (property != null) {
           if (!property.isChoice() && "xhtml".equals(property.getType())) {
             XhtmlNode xhtml;
-            if (property.getDefinition().hasRepresentation(PropertyRepresentation.CDATEXT))
+            if (property.getDefinition().hasRepresentation("CDATEXT"))
               xhtml = new CDANarrativeFormat().convert((org.w3c.dom.Element) child);
             else {
               XhtmlParser xp = new XhtmlParser();
@@ -331,7 +331,7 @@ public class XmlParser extends ParserBase {
             checkElement((org.w3c.dom.Element) child, npath, n.getProperty());
             boolean ok = true;
             if (property.isChoice()) {
-              if (property.getDefinition().hasRepresentation(PropertyRepresentation.TYPEATTR)) {
+              if (property.getDefinition().hasRepresentation("TYPEATTR")) {
                 String xsiType = ((org.w3c.dom.Element) child).getAttributeNS(FormatUtilities.NS_XSI, "type");
                 if (Utilities.noString(xsiType)) {
                   logError(line(child), col(child), path, IssueType.STRUCTURE,
@@ -379,8 +379,8 @@ public class XmlParser extends ParserBase {
       }
     });
     for (Property p : propsSortedByLongestFirst)
-      if (!p.getDefinition().hasRepresentation(PropertyRepresentation.XMLATTR)
-          && !p.getDefinition().hasRepresentation(PropertyRepresentation.XMLTEXT)) {
+      if (!p.getDefinition().hasRepresentation("XMLATTR")
+          && !p.getDefinition().hasRepresentation("XMLTEXT")) {
         if (p.getName().equals(nodeName))
           return p;
         if (p.getName().endsWith("[x]") && nodeName.length() > p.getName().length() - 3 && p.getName()
@@ -392,14 +392,14 @@ public class XmlParser extends ParserBase {
 
   private Property getAttrProp(List<Property> properties, String nodeName) {
     for (Property p : properties)
-      if (p.getName().equals(nodeName) && p.getDefinition().hasRepresentation(PropertyRepresentation.XMLATTR))
+      if (p.getName().equals(nodeName) && p.getDefinition().hasRepresentation("XMLATTR"))
         return p;
     return null;
   }
 
   private Property getTextProp(List<Property> properties) {
     for (Property p : properties)
-      if (p.getDefinition().hasRepresentation(PropertyRepresentation.XMLTEXT))
+      if (p.getDefinition().hasRepresentation("XMLTEXT"))
         return p;
     return null;
   }
@@ -454,8 +454,8 @@ public class XmlParser extends ParserBase {
   }
 
   private boolean isAttr(Property property) {
-    for (Enumeration<PropertyRepresentation> r : property.getDefinition().getRepresentation()) {
-      if (r.getValue() == PropertyRepresentation.XMLATTR) {
+    for (StringType r : property.getDefinition().getRepresentation()) {
+      if (r.getValue() == "XMLATTR") {
         return true;
       }
     }
@@ -463,8 +463,8 @@ public class XmlParser extends ParserBase {
   }
 
   private boolean isCdaText(Property property) {
-    for (Enumeration<PropertyRepresentation> r : property.getDefinition().getRepresentation()) {
-      if (r.getValue() == PropertyRepresentation.CDATEXT) {
+    for (StringType r : property.getDefinition().getRepresentation()) {
+      if (r.getValue() == "CDATEXT") {
         return true;
       }
     }
@@ -472,8 +472,8 @@ public class XmlParser extends ParserBase {
   }
 
   private boolean isTypeAttr(Property property) {
-    for (Enumeration<PropertyRepresentation> r : property.getDefinition().getRepresentation()) {
-      if (r.getValue() == PropertyRepresentation.TYPEATTR) {
+    for (StringType r : property.getDefinition().getRepresentation()) {
+      if (r.getValue() == "TYPEATTR") {
         return true;
       }
     }
@@ -481,8 +481,8 @@ public class XmlParser extends ParserBase {
   }
 
   private boolean isText(Property property) {
-    for (Enumeration<PropertyRepresentation> r : property.getDefinition().getRepresentation()) {
-      if (r.getValue() == PropertyRepresentation.XMLTEXT) {
+    for (StringType r : property.getDefinition().getRepresentation()) {
+      if (r.getValue() == "XMLTEXT") {
         return true;
       }
     }

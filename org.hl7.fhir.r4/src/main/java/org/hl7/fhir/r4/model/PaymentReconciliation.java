@@ -974,8 +974,8 @@ public class PaymentReconciliation extends DomainResource {
     /**
      * @return The business purpose of the note text.
      */
-    public StringType getType() {
-      return this.type == null ? null : this.type;
+    public String getType() {
+      return this.type == null ? null : this.type.getValue();
     }
 
     /**
@@ -1441,8 +1441,8 @@ public class PaymentReconciliation extends DomainResource {
   /**
    * @return The status of the resource instance.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -1713,8 +1713,8 @@ public class PaymentReconciliation extends DomainResource {
   /**
    * @return The outcome of a request for a reconciliation.
    */
-  public StringType getOutcome() {
-    return this.outcome == null ? null : this.outcome;
+  public String getOutcome() {
+    return this.outcome == null ? null : this.outcome.getValue();
   }
 
   /**

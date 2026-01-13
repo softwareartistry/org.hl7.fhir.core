@@ -269,8 +269,8 @@ public class Appointment extends DomainResource {
      *         results for a specific patient, and the patient is not required to be
      *         present.
      */
-    public StringType getRequired() {
-      return this.required == null ? null : this.required;
+    public String getRequired() {
+      return this.required == null ? null : this.required.getValue();
     }
 
     /**
@@ -325,8 +325,8 @@ public class Appointment extends DomainResource {
     /**
      * @return Participation status of the actor.
      */
-    public StringType getStatus() {
-      return this.status == null ? null : this.status;
+    public String getStatus() {
+      return this.status == null ? null : this.status.getValue();
     }
 
     /**
@@ -946,8 +946,8 @@ public class Appointment extends DomainResource {
    *         their own participation status which indicates their involvement in
    *         the process, however this status indicates the shared status.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

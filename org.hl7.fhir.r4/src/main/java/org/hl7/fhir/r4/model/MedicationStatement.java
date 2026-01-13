@@ -500,8 +500,8 @@ public class MedicationStatement extends DomainResource {
    *         state of the medication used that this statement is about. Generally,
    *         this will be active or completed.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

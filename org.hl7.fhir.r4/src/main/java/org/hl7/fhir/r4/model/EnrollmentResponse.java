@@ -229,8 +229,8 @@ public class EnrollmentResponse extends DomainResource {
   /**
    * @return The status of the resource instance.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -332,8 +332,8 @@ public class EnrollmentResponse extends DomainResource {
   /**
    * @return Processing status: error, complete.
    */
-  public StringType getOutcome() {
-    return this.outcome == null ? null : this.outcome;
+  public String getOutcome() {
+    return this.outcome == null ? null : this.outcome.getValue();
   }
 
   /**

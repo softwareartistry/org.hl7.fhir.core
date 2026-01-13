@@ -848,8 +848,8 @@ public class ChargeItem extends DomainResource {
   /**
    * @return The current state of the ChargeItem.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

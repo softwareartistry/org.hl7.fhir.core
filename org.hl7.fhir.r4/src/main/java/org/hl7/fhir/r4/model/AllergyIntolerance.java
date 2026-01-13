@@ -389,8 +389,8 @@ public class AllergyIntolerance extends DomainResource {
      * @return Clinical assessment of the severity of the reaction event as a whole,
      *         potentially considering multiple different manifestations.
      */
-    public StringType getSeverity() {
-      return this.severity == null ? null : this.severity;
+    public String getSeverity() {
+      return this.severity == null ? null : this.severity.getValue();
     }
 
     /**
@@ -1118,8 +1118,8 @@ public class AllergyIntolerance extends DomainResource {
    * @return Identification of the underlying physiological mechanism for the
    *         reaction risk.
    */
-  public StringType getType() {
-    return this.type == null ? null : this.type;
+  public String getType() {
+    return this.type == null ? null : this.type.getValue();
   }
 
   /**
@@ -1239,8 +1239,8 @@ public class AllergyIntolerance extends DomainResource {
    * @return Estimate of the potential clinical harm, or seriousness, of the
    *         reaction to the identified substance.
    */
-  public StringType getCriticality() {
-    return this.criticality == null ? null : this.criticality;
+  public String getCriticality() {
+    return this.criticality == null ? null : this.criticality.getValue();
   }
 
   /**

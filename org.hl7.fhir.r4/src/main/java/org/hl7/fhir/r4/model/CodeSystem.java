@@ -809,8 +809,8 @@ public class CodeSystem extends MetadataResource {
      *         code defined by the code system (e.g. a reference to another defined
      *         concept).
      */
-    public StringType getType() {
-      return this.type == null ? null : this.type;
+    public String getType() {
+      return this.type == null ? null : this.type.getValue();
     }
 
     /**
@@ -2996,8 +2996,8 @@ public class CodeSystem extends MetadataResource {
    * @return The date (and optionally time) when the code system resource was
    *         created or revised.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -3687,8 +3687,8 @@ public class CodeSystem extends MetadataResource {
    * @return The meaning of the hierarchy of concepts as represented in this
    *         resource.
    */
-  public StringType getHierarchyMeaning() {
-    return this.hierarchyMeaning == null ? null : this.hierarchyMeaning;
+  public String getHierarchyMeaning() {
+    return this.hierarchyMeaning == null ? null : this.hierarchyMeaning.getValue();
   }
 
   /**
@@ -3857,8 +3857,8 @@ public class CodeSystem extends MetadataResource {
    * @return The extent of the content of the code system (the concepts and codes
    *         it defines) are represented in this resource instance.
    */
-  public StringType getContent() {
-    return this.content == null ? null : this.content;
+  public String getContent() {
+    return this.content == null ? null : this.content.getValue();
   }
 
   /**

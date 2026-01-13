@@ -760,8 +760,8 @@ public class CompartmentDefinition extends MetadataResource {
    * @return The status of this compartment definition. Enables tracking the
    *         life-cycle of the content.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -1224,8 +1224,8 @@ public class CompartmentDefinition extends MetadataResource {
   /**
    * @return Which compartment this definition describes.
    */
-  public StringType getCode() {
-    return this.code == null ? null : this.code;
+  public String getCode() {
+    return this.code == null ? null : this.code.getValue();
   }
 
   /**

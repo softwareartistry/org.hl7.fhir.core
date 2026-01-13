@@ -1087,8 +1087,8 @@ public class AdverseEvent extends DomainResource {
    *         Note that this is independent of whether anyone was affected or
    *         harmed or how severely.
    */
-  public StringType getActuality() {
-    return this.actuality == null ? null : this.actuality;
+  public String getActuality() {
+    return this.actuality == null ? null : this.actuality.getValue();
   }
 
   /**

@@ -2040,8 +2040,8 @@ public class ValueSet extends MetadataResource {
     /**
      * @return The kind of operation to perform as a part of the filter criteria.
      */
-    public StringType getOp() {
-      return this.op == null ? null : this.op;
+    public String getOp() {
+      return this.op == null ? null : this.op.getValue();
     }
 
     /**
@@ -3108,7 +3108,7 @@ public class ValueSet extends MetadataResource {
     /**
      * @return {@link #value} (The value of the parameter.)
      */
-    public StringType getValueStringType() throws FHIRException {
+    public String getValueStringType() throws FHIRException {
       if (this.value == null)
         this.value = new StringType();
       if (!(this.value instanceof StringType))
@@ -4755,8 +4755,8 @@ public class ValueSet extends MetadataResource {
    *         definition (ValueSet.compose) and the associated ValueSet metadata.
    *         Expansions do not have a state.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

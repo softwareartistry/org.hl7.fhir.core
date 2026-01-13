@@ -582,8 +582,8 @@ public class EffectEvidenceSynthesis extends MetadataResource {
      * @return Whether these results are for the exposure state or alternative
      *         exposure state.
      */
-    public StringType getExposureState() {
-      return this.exposureState == null ? null : this.exposureState;
+    public String getExposureState() {
+      return this.exposureState == null ? null : this.exposureState.getValue();
     }
 
     /**
@@ -3295,8 +3295,8 @@ public class EffectEvidenceSynthesis extends MetadataResource {
    * @return The status of this effect evidence synthesis. Enables tracking the
    *         life-cycle of the content.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

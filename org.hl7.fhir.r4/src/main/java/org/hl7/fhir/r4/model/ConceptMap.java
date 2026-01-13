@@ -1296,8 +1296,8 @@ public class ConceptMap extends MetadataResource {
      *         the dependencies and products). The equivalence is read from target
      *         to source (e.g. the target is 'wider' than the source).
      */
-    public StringType getEquivalence() {
-      return this.equivalence == null ? null : this.equivalence;
+    public String getEquivalence() {
+      return this.equivalence == null ? null : this.equivalence.getValue();
     }
 
     /**
@@ -2346,8 +2346,8 @@ public class ConceptMap extends MetadataResource {
      *         use a fixed code (a default code), or alternatively, a reference to a
      *         different concept map can be provided (by canonical URL).
      */
-    public StringType getMode() {
-      return this.mode == null ? null : this.mode;
+    public String getMode() {
+      return this.mode == null ? null : this.mode.getValue();
     }
 
     /**
@@ -3157,8 +3157,8 @@ public class ConceptMap extends MetadataResource {
    * @return The status of this concept map. Enables tracking the life-cycle of
    *         the content.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

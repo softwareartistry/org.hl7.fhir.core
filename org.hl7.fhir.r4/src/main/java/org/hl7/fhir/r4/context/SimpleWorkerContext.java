@@ -67,10 +67,7 @@ import org.hl7.fhir.r4.model.Questionnaire;
 import org.hl7.fhir.r4.model.Resource;
 import org.hl7.fhir.r4.model.ResourceType;
 import org.hl7.fhir.r4.model.StructureDefinition;
-import org.hl7.fhir.r4.model.StructureDefinition.StructureDefinitionKind;
-import org.hl7.fhir.r4.model.StructureDefinition.TypeDerivationRule;
 import org.hl7.fhir.r4.model.StructureMap;
-import org.hl7.fhir.r4.model.StructureMap.StructureMapModelMode;
 import org.hl7.fhir.r4.model.StructureMap.StructureMapStructureComponent;
 import org.hl7.fhir.r4.terminologies.TerminologyClient;
 import org.hl7.fhir.r4.utils.INarrativeGenerator;
@@ -411,7 +408,7 @@ public class SimpleWorkerContext extends BaseWorkerContext implements IWorkerCon
   public List<String> getResourceNames() {
     List<String> result = new ArrayList<String>();
     for (StructureDefinition sd : listStructures()) {
-      if (sd.getKind() == StructureDefinitionKind.RESOURCE && sd.getDerivation() == TypeDerivationRule.SPECIALIZATION)
+      if (sd.getKind() == "RESOURCE" && sd.getDerivation() == "SPECIALIZATION")
         result.add(sd.getName());
     }
     Collections.sort(result);
@@ -422,7 +419,7 @@ public class SimpleWorkerContext extends BaseWorkerContext implements IWorkerCon
   public List<String> getTypeNames() {
     List<String> result = new ArrayList<String>();
     for (StructureDefinition sd : listStructures()) {
-      if (sd.getKind() != StructureDefinitionKind.LOGICAL && sd.getDerivation() == TypeDerivationRule.SPECIALIZATION)
+      if (sd.getKind() != "LOGICAL" && sd.getDerivation() == "SPECIALIZATION")
         result.add(sd.getName());
     }
     Collections.sort(result);
@@ -450,9 +447,9 @@ public class SimpleWorkerContext extends BaseWorkerContext implements IWorkerCon
     }
     if (sd == null)
       return false;
-    if (sd.getDerivation() == TypeDerivationRule.CONSTRAINT)
+    if (sd.getDerivation() == "CONSTRAINT")
       return false;
-    return sd.getKind() == StructureDefinitionKind.RESOURCE;
+    return sd.getKind() == "RESOURCE";
   }
 
   @Override
@@ -578,7 +575,7 @@ public class SimpleWorkerContext extends BaseWorkerContext implements IWorkerCon
       boolean match = false;
       boolean ok = true;
       for (StructureMapStructureComponent t : map.getStructure()) {
-        if (t.getMode() == StructureMapModelMode.SOURCE) {
+        if (t.getMode() == "SOURCE") {
           match = match || t.getUrl().equals(url);
           ok = ok && t.getUrl().equals(url);
         }
@@ -613,7 +610,7 @@ public class SimpleWorkerContext extends BaseWorkerContext implements IWorkerCon
   }
 
   public void generateSnapshot(StructureDefinition p) throws DefinitionException, FHIRException {
-    if (!p.hasSnapshot() && p.getKind() != StructureDefinitionKind.LOGICAL) {
+    if (!p.hasSnapshot() && p.getKind() != "LOGICAL") {
       if (!p.hasBaseDefinition())
         throw new DefinitionException("Profile " + p.getName() + " (" + p.getUrl() + ") has no base and no snapshot");
       StructureDefinition sd = fetchResource(StructureDefinition.class, p.getBaseDefinition());

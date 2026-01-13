@@ -36,8 +36,6 @@ import java.util.List;
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseDatatypeElement;
 import org.hl7.fhir.instance.model.api.ICompositeType;
-import org.hl7.fhir.r4.model.Enumerations.BindingStrength;
-import org.hl7.fhir.r4.model.Enumerations.BindingStrengthEnumFactory;
 import org.hl7.fhir.r4.utils.ToolingExtensions;
 // added from java-adornments.txt:
 import org.hl7.fhir.utilities.CommaSeparatedStringBuilder;
@@ -55,929 +53,6 @@ import ca.uhn.fhir.model.api.annotation.Description;
  */
 @DatatypeDef(name = "ElementDefinition")
 public class ElementDefinition extends BackboneType implements ICompositeType {
-
-  public enum PropertyRepresentation {
-    /**
-     * In XML, this property is represented as an attribute not an element.
-     */
-    XMLATTR,
-    /**
-     * This element is represented using the XML text attribute (primitives only).
-     */
-    XMLTEXT,
-    /**
-     * The type of this element is indicated using xsi:type.
-     */
-    TYPEATTR,
-    /**
-     * Use CDA narrative instead of XHTML.
-     */
-    CDATEXT,
-    /**
-     * The property is represented using XHTML.
-     */
-    XHTML,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static PropertyRepresentation fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("xmlAttr".equals(codeString))
-        return XMLATTR;
-      if ("xmlText".equals(codeString))
-        return XMLTEXT;
-      if ("typeAttr".equals(codeString))
-        return TYPEATTR;
-      if ("cdaText".equals(codeString))
-        return CDATEXT;
-      if ("xhtml".equals(codeString))
-        return XHTML;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown PropertyRepresentation code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case XMLATTR:
-        return "xmlAttr";
-      case XMLTEXT:
-        return "xmlText";
-      case TYPEATTR:
-        return "typeAttr";
-      case CDATEXT:
-        return "cdaText";
-      case XHTML:
-        return "xhtml";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case XMLATTR:
-        return "http://hl7.org/fhir/property-representation";
-      case XMLTEXT:
-        return "http://hl7.org/fhir/property-representation";
-      case TYPEATTR:
-        return "http://hl7.org/fhir/property-representation";
-      case CDATEXT:
-        return "http://hl7.org/fhir/property-representation";
-      case XHTML:
-        return "http://hl7.org/fhir/property-representation";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case XMLATTR:
-        return "In XML, this property is represented as an attribute not an element.";
-      case XMLTEXT:
-        return "This element is represented using the XML text attribute (primitives only).";
-      case TYPEATTR:
-        return "The type of this element is indicated using xsi:type.";
-      case CDATEXT:
-        return "Use CDA narrative instead of XHTML.";
-      case XHTML:
-        return "The property is represented using XHTML.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case XMLATTR:
-        return "XML Attribute";
-      case XMLTEXT:
-        return "XML Text";
-      case TYPEATTR:
-        return "Type Attribute";
-      case CDATEXT:
-        return "CDA Text Format";
-      case XHTML:
-        return "XHTML";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class PropertyRepresentationEnumFactory implements EnumFactory<PropertyRepresentation> {
-    public PropertyRepresentation fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("xmlAttr".equals(codeString))
-        return PropertyRepresentation.XMLATTR;
-      if ("xmlText".equals(codeString))
-        return PropertyRepresentation.XMLTEXT;
-      if ("typeAttr".equals(codeString))
-        return PropertyRepresentation.TYPEATTR;
-      if ("cdaText".equals(codeString))
-        return PropertyRepresentation.CDATEXT;
-      if ("xhtml".equals(codeString))
-        return PropertyRepresentation.XHTML;
-      throw new IllegalArgumentException("Unknown PropertyRepresentation code '" + codeString + "'");
-    }
-
-    public Enumeration<PropertyRepresentation> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<PropertyRepresentation>(this, PropertyRepresentation.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<PropertyRepresentation>(this, PropertyRepresentation.NULL, code);
-      if ("xmlAttr".equals(codeString))
-        return new Enumeration<PropertyRepresentation>(this, PropertyRepresentation.XMLATTR, code);
-      if ("xmlText".equals(codeString))
-        return new Enumeration<PropertyRepresentation>(this, PropertyRepresentation.XMLTEXT, code);
-      if ("typeAttr".equals(codeString))
-        return new Enumeration<PropertyRepresentation>(this, PropertyRepresentation.TYPEATTR, code);
-      if ("cdaText".equals(codeString))
-        return new Enumeration<PropertyRepresentation>(this, PropertyRepresentation.CDATEXT, code);
-      if ("xhtml".equals(codeString))
-        return new Enumeration<PropertyRepresentation>(this, PropertyRepresentation.XHTML, code);
-      throw new FHIRException("Unknown PropertyRepresentation code '" + codeString + "'");
-    }
-
-    public String toCode(PropertyRepresentation code) {
-       if (code == PropertyRepresentation.NULL)
-           return null;
-       if (code == PropertyRepresentation.XMLATTR)
-        return "xmlAttr";
-      if (code == PropertyRepresentation.XMLTEXT)
-        return "xmlText";
-      if (code == PropertyRepresentation.TYPEATTR)
-        return "typeAttr";
-      if (code == PropertyRepresentation.CDATEXT)
-        return "cdaText";
-      if (code == PropertyRepresentation.XHTML)
-        return "xhtml";
-      return "?";
-   }
-
-    public String toSystem(PropertyRepresentation code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum DiscriminatorType {
-    /**
-     * The slices have different values in the nominated element.
-     */
-    VALUE,
-    /**
-     * The slices are differentiated by the presence or absence of the nominated
-     * element.
-     */
-    EXISTS,
-    /**
-     * The slices have different values in the nominated element, as determined by
-     * testing them against the applicable ElementDefinition.pattern[x].
-     */
-    PATTERN,
-    /**
-     * The slices are differentiated by type of the nominated element.
-     */
-    TYPE,
-    /**
-     * The slices are differentiated by conformance of the nominated element to a
-     * specified profile. Note that if the path specifies .resolve() then the
-     * profile is the target profile on the reference. In this case, validation by
-     * the possible profiles is required to differentiate the slices.
-     */
-    PROFILE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static DiscriminatorType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("value".equals(codeString))
-        return VALUE;
-      if ("exists".equals(codeString))
-        return EXISTS;
-      if ("pattern".equals(codeString))
-        return PATTERN;
-      if ("type".equals(codeString))
-        return TYPE;
-      if ("profile".equals(codeString))
-        return PROFILE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown DiscriminatorType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case VALUE:
-        return "value";
-      case EXISTS:
-        return "exists";
-      case PATTERN:
-        return "pattern";
-      case TYPE:
-        return "type";
-      case PROFILE:
-        return "profile";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case VALUE:
-        return "http://hl7.org/fhir/discriminator-type";
-      case EXISTS:
-        return "http://hl7.org/fhir/discriminator-type";
-      case PATTERN:
-        return "http://hl7.org/fhir/discriminator-type";
-      case TYPE:
-        return "http://hl7.org/fhir/discriminator-type";
-      case PROFILE:
-        return "http://hl7.org/fhir/discriminator-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case VALUE:
-        return "The slices have different values in the nominated element.";
-      case EXISTS:
-        return "The slices are differentiated by the presence or absence of the nominated element.";
-      case PATTERN:
-        return "The slices have different values in the nominated element, as determined by testing them against the applicable ElementDefinition.pattern[x].";
-      case TYPE:
-        return "The slices are differentiated by type of the nominated element.";
-      case PROFILE:
-        return "The slices are differentiated by conformance of the nominated element to a specified profile. Note that if the path specifies .resolve() then the profile is the target profile on the reference. In this case, validation by the possible profiles is required to differentiate the slices.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case VALUE:
-        return "Value";
-      case EXISTS:
-        return "Exists";
-      case PATTERN:
-        return "Pattern";
-      case TYPE:
-        return "Type";
-      case PROFILE:
-        return "Profile";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class DiscriminatorTypeEnumFactory implements EnumFactory<DiscriminatorType> {
-    public DiscriminatorType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("value".equals(codeString))
-        return DiscriminatorType.VALUE;
-      if ("exists".equals(codeString))
-        return DiscriminatorType.EXISTS;
-      if ("pattern".equals(codeString))
-        return DiscriminatorType.PATTERN;
-      if ("type".equals(codeString))
-        return DiscriminatorType.TYPE;
-      if ("profile".equals(codeString))
-        return DiscriminatorType.PROFILE;
-      throw new IllegalArgumentException("Unknown DiscriminatorType code '" + codeString + "'");
-    }
-
-    public Enumeration<DiscriminatorType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<DiscriminatorType>(this, DiscriminatorType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<DiscriminatorType>(this, DiscriminatorType.NULL, code);
-      if ("value".equals(codeString))
-        return new Enumeration<DiscriminatorType>(this, DiscriminatorType.VALUE, code);
-      if ("exists".equals(codeString))
-        return new Enumeration<DiscriminatorType>(this, DiscriminatorType.EXISTS, code);
-      if ("pattern".equals(codeString))
-        return new Enumeration<DiscriminatorType>(this, DiscriminatorType.PATTERN, code);
-      if ("type".equals(codeString))
-        return new Enumeration<DiscriminatorType>(this, DiscriminatorType.TYPE, code);
-      if ("profile".equals(codeString))
-        return new Enumeration<DiscriminatorType>(this, DiscriminatorType.PROFILE, code);
-      throw new FHIRException("Unknown DiscriminatorType code '" + codeString + "'");
-    }
-
-    public String toCode(DiscriminatorType code) {
-       if (code == DiscriminatorType.NULL)
-           return null;
-       if (code == DiscriminatorType.VALUE)
-        return "value";
-      if (code == DiscriminatorType.EXISTS)
-        return "exists";
-      if (code == DiscriminatorType.PATTERN)
-        return "pattern";
-      if (code == DiscriminatorType.TYPE)
-        return "type";
-      if (code == DiscriminatorType.PROFILE)
-        return "profile";
-      return "?";
-   }
-
-    public String toSystem(DiscriminatorType code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum SlicingRules {
-    /**
-     * No additional content is allowed other than that described by the slices in
-     * this profile.
-     */
-    CLOSED,
-    /**
-     * Additional content is allowed anywhere in the list.
-     */
-    OPEN,
-    /**
-     * Additional content is allowed, but only at the end of the list. Note that
-     * using this requires that the slices be ordered, which makes it hard to share
-     * uses. This should only be done where absolutely required.
-     */
-    OPENATEND,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static SlicingRules fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("closed".equals(codeString))
-        return CLOSED;
-      if ("open".equals(codeString))
-        return OPEN;
-      if ("openAtEnd".equals(codeString))
-        return OPENATEND;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown SlicingRules code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case CLOSED:
-        return "closed";
-      case OPEN:
-        return "open";
-      case OPENATEND:
-        return "openAtEnd";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case CLOSED:
-        return "http://hl7.org/fhir/resource-slicing-rules";
-      case OPEN:
-        return "http://hl7.org/fhir/resource-slicing-rules";
-      case OPENATEND:
-        return "http://hl7.org/fhir/resource-slicing-rules";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case CLOSED:
-        return "No additional content is allowed other than that described by the slices in this profile.";
-      case OPEN:
-        return "Additional content is allowed anywhere in the list.";
-      case OPENATEND:
-        return "Additional content is allowed, but only at the end of the list. Note that using this requires that the slices be ordered, which makes it hard to share uses. This should only be done where absolutely required.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case CLOSED:
-        return "Closed";
-      case OPEN:
-        return "Open";
-      case OPENATEND:
-        return "Open at End";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class SlicingRulesEnumFactory implements EnumFactory<SlicingRules> {
-    public SlicingRules fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("closed".equals(codeString))
-        return SlicingRules.CLOSED;
-      if ("open".equals(codeString))
-        return SlicingRules.OPEN;
-      if ("openAtEnd".equals(codeString))
-        return SlicingRules.OPENATEND;
-      throw new IllegalArgumentException("Unknown SlicingRules code '" + codeString + "'");
-    }
-
-    public Enumeration<SlicingRules> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<SlicingRules>(this, SlicingRules.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<SlicingRules>(this, SlicingRules.NULL, code);
-      if ("closed".equals(codeString))
-        return new Enumeration<SlicingRules>(this, SlicingRules.CLOSED, code);
-      if ("open".equals(codeString))
-        return new Enumeration<SlicingRules>(this, SlicingRules.OPEN, code);
-      if ("openAtEnd".equals(codeString))
-        return new Enumeration<SlicingRules>(this, SlicingRules.OPENATEND, code);
-      throw new FHIRException("Unknown SlicingRules code '" + codeString + "'");
-    }
-
-    public String toCode(SlicingRules code) {
-       if (code == SlicingRules.NULL)
-           return null;
-       if (code == SlicingRules.CLOSED)
-        return "closed";
-      if (code == SlicingRules.OPEN)
-        return "open";
-      if (code == SlicingRules.OPENATEND)
-        return "openAtEnd";
-      return "?";
-   }
-
-    public String toSystem(SlicingRules code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum AggregationMode {
-    /**
-     * The reference is a local reference to a contained resource.
-     */
-    CONTAINED,
-    /**
-     * The reference to a resource that has to be resolved externally to the
-     * resource that includes the reference.
-     */
-    REFERENCED,
-    /**
-     * The resource the reference points to will be found in the same bundle as the
-     * resource that includes the reference.
-     */
-    BUNDLED,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static AggregationMode fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("contained".equals(codeString))
-        return CONTAINED;
-      if ("referenced".equals(codeString))
-        return REFERENCED;
-      if ("bundled".equals(codeString))
-        return BUNDLED;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown AggregationMode code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case CONTAINED:
-        return "contained";
-      case REFERENCED:
-        return "referenced";
-      case BUNDLED:
-        return "bundled";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case CONTAINED:
-        return "http://hl7.org/fhir/resource-aggregation-mode";
-      case REFERENCED:
-        return "http://hl7.org/fhir/resource-aggregation-mode";
-      case BUNDLED:
-        return "http://hl7.org/fhir/resource-aggregation-mode";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case CONTAINED:
-        return "The reference is a local reference to a contained resource.";
-      case REFERENCED:
-        return "The reference to a resource that has to be resolved externally to the resource that includes the reference.";
-      case BUNDLED:
-        return "The resource the reference points to will be found in the same bundle as the resource that includes the reference.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case CONTAINED:
-        return "Contained";
-      case REFERENCED:
-        return "Referenced";
-      case BUNDLED:
-        return "Bundled";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class AggregationModeEnumFactory implements EnumFactory<AggregationMode> {
-    public AggregationMode fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("contained".equals(codeString))
-        return AggregationMode.CONTAINED;
-      if ("referenced".equals(codeString))
-        return AggregationMode.REFERENCED;
-      if ("bundled".equals(codeString))
-        return AggregationMode.BUNDLED;
-      throw new IllegalArgumentException("Unknown AggregationMode code '" + codeString + "'");
-    }
-
-    public Enumeration<AggregationMode> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<AggregationMode>(this, AggregationMode.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<AggregationMode>(this, AggregationMode.NULL, code);
-      if ("contained".equals(codeString))
-        return new Enumeration<AggregationMode>(this, AggregationMode.CONTAINED, code);
-      if ("referenced".equals(codeString))
-        return new Enumeration<AggregationMode>(this, AggregationMode.REFERENCED, code);
-      if ("bundled".equals(codeString))
-        return new Enumeration<AggregationMode>(this, AggregationMode.BUNDLED, code);
-      throw new FHIRException("Unknown AggregationMode code '" + codeString + "'");
-    }
-
-    public String toCode(AggregationMode code) {
-       if (code == AggregationMode.NULL)
-           return null;
-       if (code == AggregationMode.CONTAINED)
-        return "contained";
-      if (code == AggregationMode.REFERENCED)
-        return "referenced";
-      if (code == AggregationMode.BUNDLED)
-        return "bundled";
-      return "?";
-   }
-
-    public String toSystem(AggregationMode code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum ReferenceVersionRules {
-    /**
-     * The reference may be either version independent or version specific.
-     */
-    EITHER,
-    /**
-     * The reference must be version independent.
-     */
-    INDEPENDENT,
-    /**
-     * The reference must be version specific.
-     */
-    SPECIFIC,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ReferenceVersionRules fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("either".equals(codeString))
-        return EITHER;
-      if ("independent".equals(codeString))
-        return INDEPENDENT;
-      if ("specific".equals(codeString))
-        return SPECIFIC;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ReferenceVersionRules code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case EITHER:
-        return "either";
-      case INDEPENDENT:
-        return "independent";
-      case SPECIFIC:
-        return "specific";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case EITHER:
-        return "http://hl7.org/fhir/reference-version-rules";
-      case INDEPENDENT:
-        return "http://hl7.org/fhir/reference-version-rules";
-      case SPECIFIC:
-        return "http://hl7.org/fhir/reference-version-rules";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case EITHER:
-        return "The reference may be either version independent or version specific.";
-      case INDEPENDENT:
-        return "The reference must be version independent.";
-      case SPECIFIC:
-        return "The reference must be version specific.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case EITHER:
-        return "Either Specific or independent";
-      case INDEPENDENT:
-        return "Version independent";
-      case SPECIFIC:
-        return "Version Specific";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ReferenceVersionRulesEnumFactory implements EnumFactory<ReferenceVersionRules> {
-    public ReferenceVersionRules fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("either".equals(codeString))
-        return ReferenceVersionRules.EITHER;
-      if ("independent".equals(codeString))
-        return ReferenceVersionRules.INDEPENDENT;
-      if ("specific".equals(codeString))
-        return ReferenceVersionRules.SPECIFIC;
-      throw new IllegalArgumentException("Unknown ReferenceVersionRules code '" + codeString + "'");
-    }
-
-    public Enumeration<ReferenceVersionRules> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ReferenceVersionRules>(this, ReferenceVersionRules.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ReferenceVersionRules>(this, ReferenceVersionRules.NULL, code);
-      if ("either".equals(codeString))
-        return new Enumeration<ReferenceVersionRules>(this, ReferenceVersionRules.EITHER, code);
-      if ("independent".equals(codeString))
-        return new Enumeration<ReferenceVersionRules>(this, ReferenceVersionRules.INDEPENDENT, code);
-      if ("specific".equals(codeString))
-        return new Enumeration<ReferenceVersionRules>(this, ReferenceVersionRules.SPECIFIC, code);
-      throw new FHIRException("Unknown ReferenceVersionRules code '" + codeString + "'");
-    }
-
-    public String toCode(ReferenceVersionRules code) {
-       if (code == ReferenceVersionRules.NULL)
-           return null;
-       if (code == ReferenceVersionRules.EITHER)
-        return "either";
-      if (code == ReferenceVersionRules.INDEPENDENT)
-        return "independent";
-      if (code == ReferenceVersionRules.SPECIFIC)
-        return "specific";
-      return "?";
-   }
-
-    public String toSystem(ReferenceVersionRules code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum ConstraintSeverity {
-    /**
-     * If the constraint is violated, the resource is not conformant.
-     */
-    ERROR,
-    /**
-     * If the constraint is violated, the resource is conformant, but it is not
-     * necessarily following best practice.
-     */
-    WARNING,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ConstraintSeverity fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("error".equals(codeString))
-        return ERROR;
-      if ("warning".equals(codeString))
-        return WARNING;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ConstraintSeverity code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ERROR:
-        return "error";
-      case WARNING:
-        return "warning";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ERROR:
-        return "http://hl7.org/fhir/constraint-severity";
-      case WARNING:
-        return "http://hl7.org/fhir/constraint-severity";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ERROR:
-        return "If the constraint is violated, the resource is not conformant.";
-      case WARNING:
-        return "If the constraint is violated, the resource is conformant, but it is not necessarily following best practice.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ERROR:
-        return "Error";
-      case WARNING:
-        return "Warning";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ConstraintSeverityEnumFactory implements EnumFactory<ConstraintSeverity> {
-    public ConstraintSeverity fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("error".equals(codeString))
-        return ConstraintSeverity.ERROR;
-      if ("warning".equals(codeString))
-        return ConstraintSeverity.WARNING;
-      throw new IllegalArgumentException("Unknown ConstraintSeverity code '" + codeString + "'");
-    }
-
-    public Enumeration<ConstraintSeverity> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ConstraintSeverity>(this, ConstraintSeverity.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ConstraintSeverity>(this, ConstraintSeverity.NULL, code);
-      if ("error".equals(codeString))
-        return new Enumeration<ConstraintSeverity>(this, ConstraintSeverity.ERROR, code);
-      if ("warning".equals(codeString))
-        return new Enumeration<ConstraintSeverity>(this, ConstraintSeverity.WARNING, code);
-      throw new FHIRException("Unknown ConstraintSeverity code '" + codeString + "'");
-    }
-
-    public String toCode(ConstraintSeverity code) {
-       if (code == ConstraintSeverity.NULL)
-           return null;
-       if (code == ConstraintSeverity.ERROR)
-        return "error";
-      if (code == ConstraintSeverity.WARNING)
-        return "warning";
-      return "?";
-   }
-
-    public String toSystem(ConstraintSeverity code) {
-      return code.getSystem();
-    }
-  }
 
   @Block()
   public static class ElementDefinitionSlicingComponent extends Element implements IBaseDatatypeElement {
@@ -1016,10 +91,10 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      * profile authors can also say that additional slices are only allowed at the
      * end.
      */
-    @Child(name = "rules", type = { CodeType.class }, order = 4, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "rules", type = { StringType.class }, order = 4, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "closed | open | openAtEnd", formalDefinition = "Whether additional slices are allowed or not. When the slices are ordered, profile authors can also say that additional slices are only allowed at the end.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/resource-slicing-rules")
-    protected Enumeration<SlicingRules> rules;
+    protected StringType rules;
 
     private static final long serialVersionUID = -311635839L;
 
@@ -1033,7 +108,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     /**
      * Constructor
      */
-    public ElementDefinitionSlicingComponent(Enumeration<SlicingRules> rules) {
+    public ElementDefinitionSlicingComponent(StringType rules) {
       super();
       this.rules = rules;
     }
@@ -1223,12 +298,12 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *         with id, value and extensions. The accessor "getRules" gives direct
      *         access to the value
      */
-    public Enumeration<SlicingRules> getRulesElement() {
+    public StringType getRulesElement() {
       if (this.rules == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create ElementDefinitionSlicingComponent.rules");
         else if (Configuration.doAutoCreate())
-          this.rules = new Enumeration<SlicingRules>(new SlicingRulesEnumFactory()); // bb
+          this.rules = new StringType(); // bb
       return this.rules;
     }
 
@@ -1247,7 +322,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *              underlying object with id, value and extensions. The accessor
      *              "getRules" gives direct access to the value
      */
-    public ElementDefinitionSlicingComponent setRulesElement(Enumeration<SlicingRules> value) {
+    public ElementDefinitionSlicingComponent setRulesElement(StringType value) {
       this.rules = value;
       return this;
     }
@@ -1257,7 +332,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *         ordered, profile authors can also say that additional slices are only
      *         allowed at the end.
      */
-    public SlicingRules getRules() {
+    public String getRules() {
       return this.rules == null ? null : this.rules.getValue();
     }
 
@@ -1266,9 +341,9 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *              are ordered, profile authors can also say that additional slices
      *              are only allowed at the end.
      */
-    public ElementDefinitionSlicingComponent setRules(SlicingRules value) {
+    public ElementDefinitionSlicingComponent setRules(String value) {
       if (this.rules == null)
-        this.rules = new Enumeration<SlicingRules>(new SlicingRulesEnumFactory());
+        this.rules = new StringType();
       this.rules.setValue(value);
       return this;
     }
@@ -1283,7 +358,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
           0, 1, description));
       children.add(new Property("ordered", "boolean",
           "If the matching elements have to occur in the same order as defined in the profile.", 0, 1, ordered));
-      children.add(new Property("rules", "code",
+      children.add(new Property("rules", "string",
           "Whether additional slices are allowed or not. When the slices are ordered, profile authors can also say that additional slices are only allowed at the end.",
           0, 1, rules));
     }
@@ -1303,7 +378,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
         /* ordered */ return new Property("ordered", "boolean",
             "If the matching elements have to occur in the same order as defined in the profile.", 0, 1, ordered);
       case 108873975:
-        /* rules */ return new Property("rules", "code",
+        /* rules */ return new Property("rules", "string",
             "Whether additional slices are allowed or not. When the slices are ordered, profile authors can also say that additional slices are only allowed at the end.",
             0, 1, rules);
       default:
@@ -1323,7 +398,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
       case -1207109523:
         /* ordered */ return this.ordered == null ? new Base[0] : new Base[] { this.ordered }; // BooleanType
       case 108873975:
-        /* rules */ return this.rules == null ? new Base[0] : new Base[] { this.rules }; // Enumeration<SlicingRules>
+        /* rules */ return this.rules == null ? new Base[0] : new Base[] { this.rules }; // StringType
       default:
         return super.getProperty(hash, name, checkValid);
       }
@@ -1343,8 +418,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
         this.ordered = castToBoolean(value); // BooleanType
         return value;
       case 108873975: // rules
-        value = new SlicingRulesEnumFactory().fromType(castToCode(value));
-        this.rules = (Enumeration) value; // Enumeration<SlicingRules>
+        this.rules = castToString(value); // StringType
         return value;
       default:
         return super.setProperty(hash, name, value);
@@ -1361,8 +435,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
       } else if (name.equals("ordered")) {
         this.ordered = castToBoolean(value); // BooleanType
       } else if (name.equals("rules")) {
-        value = new SlicingRulesEnumFactory().fromType(castToCode(value));
-        this.rules = (Enumeration) value; // Enumeration<SlicingRules>
+        this.rules = castToString(value); // StringType
       } else
         return super.setProperty(name, value);
       return value;
@@ -1410,7 +483,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
       case -1207109523:
         /* ordered */ return new String[] { "boolean" };
       case 108873975:
-        /* rules */ return new String[] { "code" };
+        /* rules */ return new String[] { "string" };
       default:
         return super.getTypesForProperty(hash, name);
       }
@@ -1488,10 +561,10 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     /**
      * How the element value is interpreted when discrimination is evaluated.
      */
-    @Child(name = "type", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "type", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "value | exists | pattern | type | profile", formalDefinition = "How the element value is interpreted when discrimination is evaluated.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/discriminator-type")
-    protected Enumeration<DiscriminatorType> type;
+    protected StringType type;
 
     /**
      * A FHIRPath expression, using [the simple subset of
@@ -1514,7 +587,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     /**
      * Constructor
      */
-    public ElementDefinitionSlicingDiscriminatorComponent(Enumeration<DiscriminatorType> type, StringType path) {
+    public ElementDefinitionSlicingDiscriminatorComponent(StringType type, StringType path) {
       super();
       this.type = type;
       this.path = path;
@@ -1526,12 +599,12 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *         value and extensions. The accessor "getType" gives direct access to
      *         the value
      */
-    public Enumeration<DiscriminatorType> getTypeElement() {
+    public StringType getTypeElement() {
       if (this.type == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create ElementDefinitionSlicingDiscriminatorComponent.type");
         else if (Configuration.doAutoCreate())
-          this.type = new Enumeration<DiscriminatorType>(new DiscriminatorTypeEnumFactory()); // bb
+          this.type = new StringType(); // bb
       return this.type;
     }
 
@@ -1549,7 +622,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *              with id, value and extensions. The accessor "getType" gives
      *              direct access to the value
      */
-    public ElementDefinitionSlicingDiscriminatorComponent setTypeElement(Enumeration<DiscriminatorType> value) {
+    public ElementDefinitionSlicingDiscriminatorComponent setTypeElement(StringType value) {
       this.type = value;
       return this;
     }
@@ -1558,7 +631,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      * @return How the element value is interpreted when discrimination is
      *         evaluated.
      */
-    public DiscriminatorType getType() {
+    public String getType() {
       return this.type == null ? null : this.type.getValue();
     }
 
@@ -1566,9 +639,9 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      * @param value How the element value is interpreted when discrimination is
      *              evaluated.
      */
-    public ElementDefinitionSlicingDiscriminatorComponent setType(DiscriminatorType value) {
+    public ElementDefinitionSlicingDiscriminatorComponent setType(String value) {
       if (this.type == null)
-        this.type = new Enumeration<DiscriminatorType>(new DiscriminatorTypeEnumFactory());
+        this.type = new StringType();
       this.type.setValue(value);
       return this;
     }
@@ -1632,7 +705,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("type", "code",
+      children.add(new Property("type", "string",
           "How the element value is interpreted when discrimination is evaluated.", 0, 1, type));
       children.add(new Property("path", "string",
           "A FHIRPath expression, using [the simple subset of FHIRPath](fhirpath.html#simple), that is used to identify the element on which discrimination is based.",
@@ -1643,7 +716,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 3575610:
-        /* type */ return new Property("type", "code",
+        /* type */ return new Property("type", "string",
             "How the element value is interpreted when discrimination is evaluated.", 0, 1, type);
       case 3433509:
         /* path */ return new Property("path", "string",
@@ -1659,7 +732,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 3575610:
-        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<DiscriminatorType>
+        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
       case 3433509:
         /* path */ return this.path == null ? new Base[0] : new Base[] { this.path }; // StringType
       default:
@@ -1672,8 +745,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3575610: // type
-        value = new DiscriminatorTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<DiscriminatorType>
+        this.type = castToString(value); // StringType
         return value;
       case 3433509: // path
         this.path = castToString(value); // StringType
@@ -1687,8 +759,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("type")) {
-        value = new DiscriminatorTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<DiscriminatorType>
+        this.type = castToString(value); // StringType
       } else if (name.equals("path")) {
         this.path = castToString(value); // StringType
       } else
@@ -1724,7 +795,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 3575610:
-        /* type */ return new String[] { "code" };
+        /* type */ return new String[] { "string" };
       case 3433509:
         /* path */ return new String[] { "string" };
       default:
@@ -2220,20 +1291,20 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      * is a bundle, is it included in the bundle.
      */
     @Child(name = "aggregation", type = {
-        CodeType.class }, order = 4, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
+      StringType.class }, order = 4, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
     @Description(shortDefinition = "contained | referenced | bundled - how aggregated", formalDefinition = "If the type is a reference to another resource, how the resource is or can be aggregated - is it a contained resource, or a reference, and if the context is a bundle, is it included in the bundle.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/resource-aggregation-mode")
-    protected List<Enumeration<AggregationMode>> aggregation;
+    protected List<StringType> aggregation;
 
     /**
      * Whether this reference needs to be version specific or version independent,
      * or whether either can be used.
      */
     @Child(name = "versioning", type = {
-        CodeType.class }, order = 5, min = 0, max = 1, modifier = false, summary = true)
+      StringType.class }, order = 5, min = 0, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "either | independent | specific", formalDefinition = "Whether this reference needs to be version specific or version independent, or whether either can be used.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/reference-version-rules")
-    protected Enumeration<ReferenceVersionRules> versioning;
+    protected StringType versioning;
 
     private static final long serialVersionUID = 957891653L;
 
@@ -2510,16 +1581,16 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *         resource, or a reference, and if the context is a bundle, is it
      *         included in the bundle.)
      */
-    public List<Enumeration<AggregationMode>> getAggregation() {
+    public List<StringType> getAggregation() {
       if (this.aggregation == null)
-        this.aggregation = new ArrayList<Enumeration<AggregationMode>>();
+        this.aggregation = new ArrayList<StringType>();
       return this.aggregation;
     }
 
     /**
      * @return Returns a reference to <code>this</code> for easy method chaining
      */
-    public TypeRefComponent setAggregation(List<Enumeration<AggregationMode>> theAggregation) {
+    public TypeRefComponent setAggregation(List<StringType> theAggregation) {
       this.aggregation = theAggregation;
       return this;
     }
@@ -2527,7 +1598,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     public boolean hasAggregation() {
       if (this.aggregation == null)
         return false;
-      for (Enumeration<AggregationMode> item : this.aggregation)
+      for (StringType item : this.aggregation)
         if (!item.isEmpty())
           return true;
       return false;
@@ -2539,10 +1610,10 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *         resource, or a reference, and if the context is a bundle, is it
      *         included in the bundle.)
      */
-    public Enumeration<AggregationMode> addAggregationElement() {// 2
-      Enumeration<AggregationMode> t = new Enumeration<AggregationMode>(new AggregationModeEnumFactory());
+    public StringType addAggregationElement() {// 2
+      StringType t = new StringType();
       if (this.aggregation == null)
-        this.aggregation = new ArrayList<Enumeration<AggregationMode>>();
+        this.aggregation = new ArrayList<StringType>();
       this.aggregation.add(t);
       return t;
     }
@@ -2553,11 +1624,11 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *              contained resource, or a reference, and if the context is a
      *              bundle, is it included in the bundle.)
      */
-    public TypeRefComponent addAggregation(AggregationMode value) { // 1
-      Enumeration<AggregationMode> t = new Enumeration<AggregationMode>(new AggregationModeEnumFactory());
+    public TypeRefComponent addAggregation(String value) { // 1
+      StringType t = new StringType();
       t.setValue(value);
       if (this.aggregation == null)
-        this.aggregation = new ArrayList<Enumeration<AggregationMode>>();
+        this.aggregation = new ArrayList<StringType>();
       this.aggregation.add(t);
       return this;
     }
@@ -2568,10 +1639,10 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *              contained resource, or a reference, and if the context is a
      *              bundle, is it included in the bundle.)
      */
-    public boolean hasAggregation(AggregationMode value) {
+    public boolean hasAggregation(String value) {
       if (this.aggregation == null)
         return false;
-      for (Enumeration<AggregationMode> v : this.aggregation)
+      for (StringType v : this.aggregation)
         if (v.getValue().equals(value)) // code
           return true;
       return false;
@@ -2583,12 +1654,12 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *         This is the underlying object with id, value and extensions. The
      *         accessor "getVersioning" gives direct access to the value
      */
-    public Enumeration<ReferenceVersionRules> getVersioningElement() {
+    public StringType getVersioningElement() {
       if (this.versioning == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create TypeRefComponent.versioning");
         else if (Configuration.doAutoCreate())
-          this.versioning = new Enumeration<ReferenceVersionRules>(new ReferenceVersionRulesEnumFactory()); // bb
+          this.versioning = new StringType(); // bb
       return this.versioning;
     }
 
@@ -2607,7 +1678,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *              extensions. The accessor "getVersioning" gives direct access to
      *              the value
      */
-    public TypeRefComponent setVersioningElement(Enumeration<ReferenceVersionRules> value) {
+    public TypeRefComponent setVersioningElement(StringType value) {
       this.versioning = value;
       return this;
     }
@@ -2616,7 +1687,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      * @return Whether this reference needs to be version specific or version
      *         independent, or whether either can be used.
      */
-    public ReferenceVersionRules getVersioning() {
+    public String getVersioning() {
       return this.versioning == null ? null : this.versioning.getValue();
     }
 
@@ -2624,12 +1695,12 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      * @param value Whether this reference needs to be version specific or version
      *              independent, or whether either can be used.
      */
-    public TypeRefComponent setVersioning(ReferenceVersionRules value) {
+    public TypeRefComponent setVersioning(String value) {
       if (value == null)
         this.versioning = null;
       else {
         if (this.versioning == null)
-          this.versioning = new Enumeration<ReferenceVersionRules>(new ReferenceVersionRulesEnumFactory());
+          this.versioning = new StringType();
         this.versioning.setValue(value);
       }
       return this;
@@ -2646,10 +1717,10 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
       children.add(new Property("targetProfile", "canonical(StructureDefinition|ImplementationGuide)",
           "Used when the type is \"Reference\" or \"canonical\", and identifies a profile structure or implementation Guide that applies to the target of the reference this element refers to. If any profiles are specified, then the content must conform to at least one of them. The URL can be a local reference - to a contained StructureDefinition, or a reference to another StructureDefinition or Implementation Guide by a canonical URL. When an implementation guide is specified, the target resource SHALL conform to at least one profile defined in the implementation guide.",
           0, java.lang.Integer.MAX_VALUE, targetProfile));
-      children.add(new Property("aggregation", "code",
+      children.add(new Property("aggregation", "string",
           "If the type is a reference to another resource, how the resource is or can be aggregated - is it a contained resource, or a reference, and if the context is a bundle, is it included in the bundle.",
           0, java.lang.Integer.MAX_VALUE, aggregation));
-      children.add(new Property("versioning", "code",
+      children.add(new Property("versioning", "string",
           "Whether this reference needs to be version specific or version independent, or whether either can be used.",
           0, 1, versioning));
     }
@@ -2670,11 +1741,11 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
             "Used when the type is \"Reference\" or \"canonical\", and identifies a profile structure or implementation Guide that applies to the target of the reference this element refers to. If any profiles are specified, then the content must conform to at least one of them. The URL can be a local reference - to a contained StructureDefinition, or a reference to another StructureDefinition or Implementation Guide by a canonical URL. When an implementation guide is specified, the target resource SHALL conform to at least one profile defined in the implementation guide.",
             0, java.lang.Integer.MAX_VALUE, targetProfile);
       case 841524962:
-        /* aggregation */ return new Property("aggregation", "code",
+        /* aggregation */ return new Property("aggregation", "string",
             "If the type is a reference to another resource, how the resource is or can be aggregated - is it a contained resource, or a reference, and if the context is a bundle, is it included in the bundle.",
             0, java.lang.Integer.MAX_VALUE, aggregation);
       case -670487542:
-        /* versioning */ return new Property("versioning", "code",
+        /* versioning */ return new Property("versioning", "string",
             "Whether this reference needs to be version specific or version independent, or whether either can be used.",
             0, 1, versioning);
       default:
@@ -2695,9 +1766,9 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
             : this.targetProfile.toArray(new Base[this.targetProfile.size()]); // CanonicalType
       case 841524962:
         /* aggregation */ return this.aggregation == null ? new Base[0]
-            : this.aggregation.toArray(new Base[this.aggregation.size()]); // Enumeration<AggregationMode>
+            : this.aggregation.toArray(new Base[this.aggregation.size()]); // StringType
       case -670487542:
-        /* versioning */ return this.versioning == null ? new Base[0] : new Base[] { this.versioning }; // Enumeration<ReferenceVersionRules>
+        /* versioning */ return this.versioning == null ? new Base[0] : new Base[] { this.versioning }; // StringType
       default:
         return super.getProperty(hash, name, checkValid);
       }
@@ -2717,12 +1788,10 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
         this.getTargetProfile().add(castToCanonical(value)); // CanonicalType
         return value;
       case 841524962: // aggregation
-        value = new AggregationModeEnumFactory().fromType(castToCode(value));
-        this.getAggregation().add((Enumeration) value); // Enumeration<AggregationMode>
+        this.getAggregation().add(castToString(value)); // StringType
         return value;
       case -670487542: // versioning
-        value = new ReferenceVersionRulesEnumFactory().fromType(castToCode(value));
-        this.versioning = (Enumeration) value; // Enumeration<ReferenceVersionRules>
+        this.versioning = castToString(value); // StringType
         return value;
       default:
         return super.setProperty(hash, name, value);
@@ -2739,11 +1808,9 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
       } else if (name.equals("targetProfile")) {
         this.getTargetProfile().add(castToCanonical(value));
       } else if (name.equals("aggregation")) {
-        value = new AggregationModeEnumFactory().fromType(castToCode(value));
-        this.getAggregation().add((Enumeration) value);
+        this.getAggregation().add(castToString(value));
       } else if (name.equals("versioning")) {
-        value = new ReferenceVersionRulesEnumFactory().fromType(castToCode(value));
-        this.versioning = (Enumeration) value; // Enumeration<ReferenceVersionRules>
+        this.versioning = castToString(value); // StringType
       } else
         return super.setProperty(name, value);
       return value;
@@ -2758,10 +1825,9 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
       } else if (name.equals("targetProfile")) {
         this.getTargetProfile().remove(castToCanonical(value));
       } else if (name.equals("aggregation")) {
-        this.getAggregation().remove((Enumeration) value);
+        this.getAggregation().remove(castToString(value));
       } else if (name.equals("versioning")) {
-        value = null;
-        this.versioning = (Enumeration) value; // Enumeration<ReferenceVersionRules>
+        this.versioning = null;
       } else
         super.removeChild(name, value);
       
@@ -2796,9 +1862,9 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
       case 1994521304:
         /* targetProfile */ return new String[] { "canonical" };
       case 841524962:
-        /* aggregation */ return new String[] { "code" };
+        /* aggregation */ return new String[] { "string" };
       case -670487542:
-        /* versioning */ return new String[] { "code" };
+        /* versioning */ return new String[] { "string" };
       default:
         return super.getTypesForProperty(hash, name);
       }
@@ -2843,8 +1909,8 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
       }
       ;
       if (aggregation != null) {
-        dst.aggregation = new ArrayList<Enumeration<AggregationMode>>();
-        for (Enumeration<AggregationMode> i : aggregation)
+        dst.aggregation = new ArrayList<StringType>();
+        for (StringType i : aggregation)
           dst.aggregation.add(i.copy());
       }
       ;
@@ -3480,10 +2546,10 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      * Identifies the impact constraint violation has on the conformance of the
      * instance.
      */
-    @Child(name = "severity", type = { CodeType.class }, order = 3, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "severity", type = { StringType.class }, order = 3, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "error | warning", formalDefinition = "Identifies the impact constraint violation has on the conformance of the instance.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/constraint-severity")
-    protected Enumeration<ConstraintSeverity> severity;
+    protected StringType severity;
 
     /**
      * Text that can be used to describe the constraint in messages identifying that
@@ -3531,7 +2597,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     /**
      * Constructor
      */
-    public ElementDefinitionConstraintComponent(IdType key, Enumeration<ConstraintSeverity> severity,
+    public ElementDefinitionConstraintComponent(IdType key, StringType severity,
         StringType human) {
       super();
       this.key = key;
@@ -3657,12 +2723,12 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *         id, value and extensions. The accessor "getSeverity" gives direct
      *         access to the value
      */
-    public Enumeration<ConstraintSeverity> getSeverityElement() {
+    public StringType getSeverityElement() {
       if (this.severity == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create ElementDefinitionConstraintComponent.severity");
         else if (Configuration.doAutoCreate())
-          this.severity = new Enumeration<ConstraintSeverity>(new ConstraintSeverityEnumFactory()); // bb
+          this.severity = new StringType(); // bb
       return this.severity;
     }
 
@@ -3680,7 +2746,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *              object with id, value and extensions. The accessor "getSeverity"
      *              gives direct access to the value
      */
-    public ElementDefinitionConstraintComponent setSeverityElement(Enumeration<ConstraintSeverity> value) {
+    public ElementDefinitionConstraintComponent setSeverityElement(StringType value) {
       this.severity = value;
       return this;
     }
@@ -3689,7 +2755,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      * @return Identifies the impact constraint violation has on the conformance of
      *         the instance.
      */
-    public ConstraintSeverity getSeverity() {
+    public String getSeverity() {
       return this.severity == null ? null : this.severity.getValue();
     }
 
@@ -3697,9 +2763,9 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      * @param value Identifies the impact constraint violation has on the
      *              conformance of the instance.
      */
-    public ElementDefinitionConstraintComponent setSeverity(ConstraintSeverity value) {
+    public ElementDefinitionConstraintComponent setSeverity(String value) {
       if (this.severity == null)
-        this.severity = new Enumeration<ConstraintSeverity>(new ConstraintSeverityEnumFactory());
+        this.severity = new StringType();
       this.severity.setValue(value);
       return this;
     }
@@ -3936,7 +3002,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
           0, 1, key));
       children.add(new Property("requirements", "string",
           "Description of why this constraint is necessary or appropriate.", 0, 1, requirements));
-      children.add(new Property("severity", "code",
+      children.add(new Property("severity", "string",
           "Identifies the impact constraint violation has on the conformance of the instance.", 0, 1, severity));
       children.add(new Property("human", "string",
           "Text that can be used to describe the constraint in messages identifying that the constraint has been violated.",
@@ -3961,7 +3027,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
         /* requirements */ return new Property("requirements", "string",
             "Description of why this constraint is necessary or appropriate.", 0, 1, requirements);
       case 1478300413:
-        /* severity */ return new Property("severity", "code",
+        /* severity */ return new Property("severity", "string",
             "Identifies the impact constraint violation has on the conformance of the instance.", 0, 1, severity);
       case 99639597:
         /* human */ return new Property("human", "string",
@@ -3991,7 +3057,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
       case -1619874672:
         /* requirements */ return this.requirements == null ? new Base[0] : new Base[] { this.requirements }; // StringType
       case 1478300413:
-        /* severity */ return this.severity == null ? new Base[0] : new Base[] { this.severity }; // Enumeration<ConstraintSeverity>
+        /* severity */ return this.severity == null ? new Base[0] : new Base[] { this.severity }; // StringType
       case 99639597:
         /* human */ return this.human == null ? new Base[0] : new Base[] { this.human }; // StringType
       case -1795452264:
@@ -4016,8 +3082,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
         this.requirements = castToString(value); // StringType
         return value;
       case 1478300413: // severity
-        value = new ConstraintSeverityEnumFactory().fromType(castToCode(value));
-        this.severity = (Enumeration) value; // Enumeration<ConstraintSeverity>
+        this.severity = castToString(value); // StringType
         return value;
       case 99639597: // human
         this.human = castToString(value); // StringType
@@ -4044,8 +3109,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
       } else if (name.equals("requirements")) {
         this.requirements = castToString(value); // StringType
       } else if (name.equals("severity")) {
-        value = new ConstraintSeverityEnumFactory().fromType(castToCode(value));
-        this.severity = (Enumeration) value; // Enumeration<ConstraintSeverity>
+        this.severity = castToString(value); // StringType
       } else if (name.equals("human")) {
         this.human = castToString(value); // StringType
       } else if (name.equals("expression")) {
@@ -4111,7 +3175,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
       case -1619874672:
         /* requirements */ return new String[] { "string" };
       case 1478300413:
-        /* severity */ return new String[] { "code" };
+        /* severity */ return new String[] { "string" };
       case 99639597:
         /* human */ return new String[] { "string" };
       case -1795452264:
@@ -4207,10 +3271,10 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      * - that is, the degree to which the provided value set must be adhered to in
      * the instances.
      */
-    @Child(name = "strength", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "strength", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "required | extensible | preferred | example", formalDefinition = "Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the provided value set must be adhered to in the instances.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/binding-strength")
-    protected Enumeration<BindingStrength> strength;
+    protected StringType strength;
 
     /**
      * Describes the intended use of this particular set of codes.
@@ -4241,7 +3305,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     /**
      * Constructor
      */
-    public ElementDefinitionBindingComponent(Enumeration<BindingStrength> strength) {
+    public ElementDefinitionBindingComponent(StringType strength) {
       super();
       this.strength = strength;
     }
@@ -4253,12 +3317,12 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *         underlying object with id, value and extensions. The accessor
      *         "getStrength" gives direct access to the value
      */
-    public Enumeration<BindingStrength> getStrengthElement() {
+    public StringType getStrengthElement() {
       if (this.strength == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create ElementDefinitionBindingComponent.strength");
         else if (Configuration.doAutoCreate())
-          this.strength = new Enumeration<BindingStrength>(new BindingStrengthEnumFactory()); // bb
+          this.strength = new StringType(); // bb
       return this.strength;
     }
 
@@ -4278,7 +3342,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *              extensions. The accessor "getStrength" gives direct access to
      *              the value
      */
-    public ElementDefinitionBindingComponent setStrengthElement(Enumeration<BindingStrength> value) {
+    public ElementDefinitionBindingComponent setStrengthElement(StringType value) {
       this.strength = value;
       return this;
     }
@@ -4288,7 +3352,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *         binding - that is, the degree to which the provided value set must be
      *         adhered to in the instances.
      */
-    public BindingStrength getStrength() {
+    public String getStrength() {
       return this.strength == null ? null : this.strength.getValue();
     }
 
@@ -4297,9 +3361,9 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *              this binding - that is, the degree to which the provided value
      *              set must be adhered to in the instances.
      */
-    public ElementDefinitionBindingComponent setStrength(BindingStrength value) {
+    public ElementDefinitionBindingComponent setStrength(String value) {
       if (this.strength == null)
-        this.strength = new Enumeration<BindingStrength>(new BindingStrengthEnumFactory());
+        this.strength = new StringType();
       this.strength.setValue(value);
       return this;
     }
@@ -4418,7 +3482,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("strength", "code",
+      children.add(new Property("strength", "string",
           "Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the provided value set must be adhered to in the instances.",
           0, 1, strength));
       children.add(new Property("description", "string", "Describes the intended use of this particular set of codes.",
@@ -4431,7 +3495,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 1791316033:
-        /* strength */ return new Property("strength", "code",
+        /* strength */ return new Property("strength", "string",
             "Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the provided value set must be adhered to in the instances.",
             0, 1, strength);
       case -1724546052:
@@ -4450,7 +3514,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 1791316033:
-        /* strength */ return this.strength == null ? new Base[0] : new Base[] { this.strength }; // Enumeration<BindingStrength>
+        /* strength */ return this.strength == null ? new Base[0] : new Base[] { this.strength }; // StringType
       case -1724546052:
         /* description */ return this.description == null ? new Base[0] : new Base[] { this.description }; // StringType
       case -1410174671:
@@ -4465,8 +3529,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 1791316033: // strength
-        value = new BindingStrengthEnumFactory().fromType(castToCode(value));
-        this.strength = (Enumeration) value; // Enumeration<BindingStrength>
+        this.strength = castToString(value); // StringType
         return value;
       case -1724546052: // description
         this.description = castToString(value); // StringType
@@ -4483,8 +3546,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("strength")) {
-        value = new BindingStrengthEnumFactory().fromType(castToCode(value));
-        this.strength = (Enumeration) value; // Enumeration<BindingStrength>
+        this.strength = castToString(value); // StringType
       } else if (name.equals("description")) {
         this.description = castToString(value); // StringType
       } else if (name.equals("valueSet")) {
@@ -4526,7 +3588,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 1791316033:
-        /* strength */ return new String[] { "code" };
+        /* strength */ return new String[] { "string" };
       case -1724546052:
         /* description */ return new String[] { "string" };
       case -1410174671:
@@ -5067,10 +4129,10 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
    * deviation varies from the normal case.
    */
   @Child(name = "representation", type = {
-      CodeType.class }, order = 1, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
+    StringType.class }, order = 1, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
   @Description(shortDefinition = "xmlAttr | xmlText | typeAttr | cdaText | xhtml", formalDefinition = "Codes that define how this element is represented in instances, when the deviation varies from the normal case.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/property-representation")
-  protected List<Enumeration<PropertyRepresentation>> representation;
+  protected List<StringType> representation;
 
   /**
    * The name of this element definition slice, when slicing is working. The name
@@ -5475,16 +4537,16 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
    *         represented in instances, when the deviation varies from the normal
    *         case.)
    */
-  public List<Enumeration<PropertyRepresentation>> getRepresentation() {
+  public List<StringType> getRepresentation() {
     if (this.representation == null)
-      this.representation = new ArrayList<Enumeration<PropertyRepresentation>>();
+      this.representation = new ArrayList<StringType>();
     return this.representation;
   }
 
   /**
    * @return Returns a reference to <code>this</code> for easy method chaining
    */
-  public ElementDefinition setRepresentation(List<Enumeration<PropertyRepresentation>> theRepresentation) {
+  public ElementDefinition setRepresentation(List<StringType> theRepresentation) {
     this.representation = theRepresentation;
     return this;
   }
@@ -5492,7 +4554,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
   public boolean hasRepresentation() {
     if (this.representation == null)
       return false;
-    for (Enumeration<PropertyRepresentation> item : this.representation)
+    for (StringType item : this.representation)
       if (!item.isEmpty())
         return true;
     return false;
@@ -5503,11 +4565,10 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
    *         represented in instances, when the deviation varies from the normal
    *         case.)
    */
-  public Enumeration<PropertyRepresentation> addRepresentationElement() {// 2
-    Enumeration<PropertyRepresentation> t = new Enumeration<PropertyRepresentation>(
-        new PropertyRepresentationEnumFactory());
+  public StringType addRepresentationElement() {// 2
+    StringType t = new StringType();
     if (this.representation == null)
-      this.representation = new ArrayList<Enumeration<PropertyRepresentation>>();
+      this.representation = new ArrayList<StringType>();
     this.representation.add(t);
     return t;
   }
@@ -5517,12 +4578,11 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
    *              represented in instances, when the deviation varies from the
    *              normal case.)
    */
-  public ElementDefinition addRepresentation(PropertyRepresentation value) { // 1
-    Enumeration<PropertyRepresentation> t = new Enumeration<PropertyRepresentation>(
-        new PropertyRepresentationEnumFactory());
+  public ElementDefinition addRepresentation(String value) { // 1
+    StringType t = new StringType();
     t.setValue(value);
     if (this.representation == null)
-      this.representation = new ArrayList<Enumeration<PropertyRepresentation>>();
+      this.representation = new ArrayList<StringType>();
     this.representation.add(t);
     return this;
   }
@@ -5532,10 +4592,10 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
    *              represented in instances, when the deviation varies from the
    *              normal case.)
    */
-  public boolean hasRepresentation(PropertyRepresentation value) {
+  public boolean hasRepresentation(String value) {
     if (this.representation == null)
       return false;
-    for (Enumeration<PropertyRepresentation> v : this.representation)
+    for (StringType v : this.representation)
       if (v.getValue().equals(value)) // code
         return true;
     return false;
@@ -8495,8 +7555,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
       this.path = castToString(value); // StringType
       return value;
     case -671065907: // representation
-      value = new PropertyRepresentationEnumFactory().fromType(castToCode(value));
-      this.getRepresentation().add((Enumeration) value); // Enumeration<PropertyRepresentation>
+      this.getRepresentation().add(castToString(value)); // StringType
       return value;
     case -825289923: // sliceName
       this.sliceName = castToString(value); // StringType
@@ -8605,8 +7664,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     if (name.equals("path")) {
       this.path = castToString(value); // StringType
     } else if (name.equals("representation")) {
-      value = new PropertyRepresentationEnumFactory().fromType(castToCode(value));
-      this.getRepresentation().add((Enumeration) value);
+      this.getRepresentation().add(castToString(value)); // StringType
     } else if (name.equals("sliceName")) {
       this.sliceName = castToString(value); // StringType
     } else if (name.equals("sliceIsConstraining")) {
@@ -8844,7 +7902,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     case 3433509:
       /* path */ return new String[] { "string" };
     case -671065907:
-      /* representation */ return new String[] { "code" };
+      /* representation */ return new String[] { "string" };
     case -825289923:
       /* sliceName */ return new String[] { "string" };
     case 333040519:
@@ -9503,8 +8561,8 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     super.copyValues(dst);
     dst.path = path == null ? null : path.copy();
     if (representation != null) {
-      dst.representation = new ArrayList<Enumeration<PropertyRepresentation>>();
-      for (Enumeration<PropertyRepresentation> i : representation)
+      dst.representation = new ArrayList<StringType>();
+      for (StringType i : representation)
         dst.representation.add(i.copy());
     }
     ;

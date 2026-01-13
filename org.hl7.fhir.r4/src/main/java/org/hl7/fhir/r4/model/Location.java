@@ -1254,8 +1254,8 @@ public class Location extends DomainResource {
    *         not the current value which may be covered by the operationStatus, or
    *         by a schedule/slots if they are configured for the location.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -1522,8 +1522,8 @@ public class Location extends DomainResource {
    * @return Indicates whether a resource instance represents a specific location
    *         or a class of locations.
    */
-  public StringType getMode() {
-    return this.mode == null ? null : this.mode;
+  public String getMode() {
+    return this.mode == null ? null : this.mode.getValue();
   }
 
   /**

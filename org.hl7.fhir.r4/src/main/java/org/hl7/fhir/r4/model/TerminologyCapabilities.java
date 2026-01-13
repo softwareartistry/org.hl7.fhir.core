@@ -3843,8 +3843,8 @@ public class TerminologyCapabilities extends MetadataResource {
    * @return The status of this terminology capabilities. Enables tracking the
    *         life-cycle of the content.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -4442,8 +4442,8 @@ public class TerminologyCapabilities extends MetadataResource {
    *         instance of software) or a class of implementation (e.g. a desired
    *         purchase).
    */
-  public StringType getKind() {
-    return this.kind == null ? null : this.kind;
+  public String getKind() {
+    return this.kind == null ? null : this.kind.getValue();
   }
 
   /**
@@ -4689,8 +4689,8 @@ public class TerminologyCapabilities extends MetadataResource {
    * @return The degree to which the server supports the code search parameter on
    *         ValueSet, if it is supported.
    */
-  public StringType getCodeSearch() {
-    return this.codeSearch == null ? null : this.codeSearch;
+  public String getCodeSearch() {
+    return this.codeSearch == null ? null : this.codeSearch.getValue();
   }
 
   /**

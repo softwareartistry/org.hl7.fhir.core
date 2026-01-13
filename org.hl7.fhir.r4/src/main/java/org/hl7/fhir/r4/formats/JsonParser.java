@@ -1650,11 +1650,10 @@ public class JsonParser extends JsonParserBase {
       JsonArray array = json.getAsJsonArray("representation");
       for (int i = 0; i < array.size(); i++) {
         if (array.get(i).isJsonNull()) {
-          res.getRepresentation().add(new Enumeration<ElementDefinition.PropertyRepresentation>());
+          res.getRepresentation().add(new StringType());
         } else {
           res.getRepresentation()
-            .add(parseEnumeration(array.get(i).getAsString(), ElementDefinition.PropertyRepresentation.NULL,
-              new ElementDefinition.PropertyRepresentationEnumFactory()));
+            .add(parseString(array.get(i).getAsString()));
         }
       }
     }
@@ -1663,8 +1662,7 @@ public class JsonParser extends JsonParserBase {
       JsonArray array = json.getAsJsonArray("_representation");
       for (int i = 0; i < array.size(); i++) {
         if (i == res.getRepresentation().size())
-          res.getRepresentation().add(parseEnumeration(null, ElementDefinition.PropertyRepresentation.NULL,
-            new ElementDefinition.PropertyRepresentationEnumFactory()));
+          res.getRepresentation().add(parseString(null));
         if (array.get(i) instanceof JsonObject)
           parseElementProperties(array.get(i).getAsJsonObject(), res.getRepresentation().get(i));
       }
@@ -1869,8 +1867,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_ordered"))
       parseElementProperties(getJObject(json, "_ordered"), res.getOrderedElement());
     if (json.has("rules"))
-      res.setRulesElement(parseEnumeration(json.get("rules").getAsString(), ElementDefinition.SlicingRules.NULL,
-        new ElementDefinition.SlicingRulesEnumFactory()));
+      res.setRulesElement(parseString(json.get("rules").getAsString()));
     if (json.has("_rules"))
       parseElementProperties(getJObject(json, "_rules"), res.getRulesElement());
   }
@@ -1887,8 +1884,7 @@ public class JsonParser extends JsonParserBase {
     throws IOException, FHIRFormatError {
     parseTypeProperties(json, res);
     if (json.has("type"))
-      res.setTypeElement(parseEnumeration(json.get("type").getAsString(), ElementDefinition.DiscriminatorType.NULL,
-        new ElementDefinition.DiscriminatorTypeEnumFactory()));
+      res.setTypeElement(parseString(json.get("type").getAsString()));
     if (json.has("_type"))
       parseElementProperties(getJObject(json, "_type"), res.getTypeElement());
     if (json.has("path"))
@@ -1982,10 +1978,9 @@ public class JsonParser extends JsonParserBase {
       JsonArray array = json.getAsJsonArray("aggregation");
       for (int i = 0; i < array.size(); i++) {
         if (array.get(i).isJsonNull()) {
-          res.getAggregation().add(new Enumeration<ElementDefinition.AggregationMode>());
+          res.getAggregation().add(new StringType());
         } else {
-          res.getAggregation().add(parseEnumeration(array.get(i).getAsString(), ElementDefinition.AggregationMode.NULL,
-            new ElementDefinition.AggregationModeEnumFactory()));
+          res.getAggregation().add(parseString(array.get(i).getAsString()));
         }
       }
     }
@@ -1994,16 +1989,14 @@ public class JsonParser extends JsonParserBase {
       JsonArray array = json.getAsJsonArray("_aggregation");
       for (int i = 0; i < array.size(); i++) {
         if (i == res.getAggregation().size())
-          res.getAggregation().add(parseEnumeration(null, ElementDefinition.AggregationMode.NULL,
-            new ElementDefinition.AggregationModeEnumFactory()));
+          res.getAggregation().add(parseString(null));
         if (array.get(i) instanceof JsonObject)
           parseElementProperties(array.get(i).getAsJsonObject(), res.getAggregation().get(i));
       }
     }
     ;
     if (json.has("versioning"))
-      res.setVersioningElement(parseEnumeration(json.get("versioning").getAsString(),
-        ElementDefinition.ReferenceVersionRules.NULL, new ElementDefinition.ReferenceVersionRulesEnumFactory()));
+      res.setVersioningElement(parseString(json.get("versioning").getAsString()));
     if (json.has("_versioning"))
       parseElementProperties(getJObject(json, "_versioning"), res.getVersioningElement());
   }
@@ -2048,8 +2041,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_requirements"))
       parseElementProperties(getJObject(json, "_requirements"), res.getRequirementsElement());
     if (json.has("severity"))
-      res.setSeverityElement(parseEnumeration(json.get("severity").getAsString(),
-        ElementDefinition.ConstraintSeverity.NULL, new ElementDefinition.ConstraintSeverityEnumFactory()));
+      res.setSeverityElement(parseString(json.get("severity").getAsString()));
     if (json.has("_severity"))
       parseElementProperties(getJObject(json, "_severity"), res.getSeverityElement());
     if (json.has("human"))
@@ -2082,8 +2074,7 @@ public class JsonParser extends JsonParserBase {
     throws IOException, FHIRFormatError {
     parseTypeProperties(json, res);
     if (json.has("strength"))
-      res.setStrengthElement(parseEnumeration(json.get("strength").getAsString(), Enumerations.BindingStrength.NULL,
-        new Enumerations.BindingStrengthEnumFactory()));
+      res.setStrengthElement(parseString(json.get("strength").getAsString()));
     if (json.has("_strength"))
       parseElementProperties(getJObject(json, "_strength"), res.getStrengthElement());
     if (json.has("description"))
@@ -3776,8 +3767,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_title"))
       parseElementProperties(getJObject(json, "_title"), res.getTitleElement());
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Enumerations.PublicationStatus.NULL,
-        new Enumerations.PublicationStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("experimental"))
@@ -3826,9 +3816,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_copyright"))
       parseElementProperties(getJObject(json, "_copyright"), res.getCopyrightElement());
     if (json.has("kind"))
-      res.setKindElement(
-        parseEnumeration(json.get("kind").getAsString(), CapabilityStatement.CapabilityStatementKind.NULL,
-          new CapabilityStatement.CapabilityStatementKindEnumFactory()));
+      res.setKindElement(parseString(json.get("kind").getAsString()));
     if (json.has("_kind"))
       parseElementProperties(getJObject(json, "_kind"), res.getKindElement());
     if (json.has("instantiates")) {
@@ -3879,8 +3867,7 @@ public class JsonParser extends JsonParserBase {
       res.setImplementation(
         parseCapabilityStatementCapabilityStatementImplementationComponent(getJObject(json, "implementation"), res));
     if (json.has("fhirVersion"))
-      res.setFhirVersionElement(parseEnumeration(json.get("fhirVersion").getAsString(), Enumerations.FHIRVersion.NULL,
-        new Enumerations.FHIRVersionEnumFactory()));
+      res.setFhirVersionElement(parseString(json.get("fhirVersion").getAsString()));
     if (json.has("_fhirVersion"))
       parseElementProperties(getJObject(json, "_fhirVersion"), res.getFhirVersionElement());
     if (json.has("format")) {
@@ -4032,8 +4019,7 @@ public class JsonParser extends JsonParserBase {
     throws IOException, FHIRFormatError {
     parseBackboneElementProperties(json, res);
     if (json.has("mode"))
-      res.setModeElement(parseEnumeration(json.get("mode").getAsString(),
-        CapabilityStatement.RestfulCapabilityMode.NULL, new CapabilityStatement.RestfulCapabilityModeEnumFactory()));
+      res.setModeElement(parseString(json.get("mode").getAsString()));
     if (json.has("_mode"))
       parseElementProperties(getJObject(json, "_mode"), res.getModeElement());
     if (json.has("documentation"))
@@ -4179,8 +4165,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("versioning"))
-      res.setVersioningElement(parseEnumeration(json.get("versioning").getAsString(),
-        CapabilityStatement.ResourceVersionPolicy.NULL, new CapabilityStatement.ResourceVersionPolicyEnumFactory()));
+      res.setVersioningElement(parseString(json.get("versioning").getAsString()));
     if (json.has("_versioning"))
       parseElementProperties(getJObject(json, "_versioning"), res.getVersioningElement());
     if (json.has("readHistory"))
@@ -4196,8 +4181,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_conditionalCreate"))
       parseElementProperties(getJObject(json, "_conditionalCreate"), res.getConditionalCreateElement());
     if (json.has("conditionalRead"))
-      res.setConditionalReadElement(parseEnumeration(json.get("conditionalRead").getAsString(),
-        CapabilityStatement.ConditionalReadStatus.NULL, new CapabilityStatement.ConditionalReadStatusEnumFactory()));
+      res.setConditionalReadElement(parseString(json.get("conditionalRead").getAsString()));
     if (json.has("_conditionalRead"))
       parseElementProperties(getJObject(json, "_conditionalRead"), res.getConditionalReadElement());
     if (json.has("conditionalUpdate"))
@@ -4205,20 +4189,17 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_conditionalUpdate"))
       parseElementProperties(getJObject(json, "_conditionalUpdate"), res.getConditionalUpdateElement());
     if (json.has("conditionalDelete"))
-      res.setConditionalDeleteElement(parseEnumeration(json.get("conditionalDelete").getAsString(),
-        CapabilityStatement.ConditionalDeleteStatus.NULL,
-        new CapabilityStatement.ConditionalDeleteStatusEnumFactory()));
+      res.setConditionalDeleteElement(parseString(json.get("conditionalDelete").getAsString()));
     if (json.has("_conditionalDelete"))
       parseElementProperties(getJObject(json, "_conditionalDelete"), res.getConditionalDeleteElement());
     if (json.has("referencePolicy")) {
       JsonArray array = json.getAsJsonArray("referencePolicy");
       for (int i = 0; i < array.size(); i++) {
         if (array.get(i).isJsonNull()) {
-          res.getReferencePolicy().add(new Enumeration<CapabilityStatement.ReferenceHandlingPolicy>());
+          res.getReferencePolicy().add(new StringType());
         } else {
           res.getReferencePolicy()
-            .add(parseEnumeration(array.get(i).getAsString(), CapabilityStatement.ReferenceHandlingPolicy.NULL,
-              new CapabilityStatement.ReferenceHandlingPolicyEnumFactory()));
+            .add(parseString(array.get(i).getAsString()));
         }
       }
     }
@@ -4227,8 +4208,7 @@ public class JsonParser extends JsonParserBase {
       JsonArray array = json.getAsJsonArray("_referencePolicy");
       for (int i = 0; i < array.size(); i++) {
         if (i == res.getReferencePolicy().size())
-          res.getReferencePolicy().add(parseEnumeration(null, CapabilityStatement.ReferenceHandlingPolicy.NULL,
-            new CapabilityStatement.ReferenceHandlingPolicyEnumFactory()));
+          res.getReferencePolicy().add(parseString(null));
         if (array.get(i) instanceof JsonObject)
           parseElementProperties(array.get(i).getAsJsonObject(), res.getReferencePolicy().get(i));
       }
@@ -4306,9 +4286,7 @@ public class JsonParser extends JsonParserBase {
     throws IOException, FHIRFormatError {
     parseBackboneElementProperties(json, res);
     if (json.has("code"))
-      res.setCodeElement(
-        parseEnumeration(json.get("code").getAsString(), CapabilityStatement.TypeRestfulInteraction.NULL,
-          new CapabilityStatement.TypeRestfulInteractionEnumFactory()));
+      res.setCodeElement(parseString(json.get("code").getAsString()));
     if (json.has("_code"))
       parseElementProperties(getJObject(json, "_code"), res.getCodeElement());
     if (json.has("documentation"))
@@ -4337,8 +4315,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_definition"))
       parseElementProperties(getJObject(json, "_definition"), res.getDefinitionElement());
     if (json.has("type"))
-      res.setTypeElement(parseEnumeration(json.get("type").getAsString(), Enumerations.SearchParamType.NULL,
-        new Enumerations.SearchParamTypeEnumFactory()));
+      res.setTypeElement(parseString(json.get("type").getAsString()));
     if (json.has("_type"))
       parseElementProperties(getJObject(json, "_type"), res.getTypeElement());
     if (json.has("documentation"))
@@ -4384,9 +4361,7 @@ public class JsonParser extends JsonParserBase {
     throws IOException, FHIRFormatError {
     parseBackboneElementProperties(json, res);
     if (json.has("code"))
-      res.setCodeElement(
-        parseEnumeration(json.get("code").getAsString(), CapabilityStatement.SystemRestfulInteraction.NULL,
-          new CapabilityStatement.SystemRestfulInteractionEnumFactory()));
+      res.setCodeElement(parseString(json.get("code").getAsString()));
     if (json.has("_code"))
       parseElementProperties(getJObject(json, "_code"), res.getCodeElement());
     if (json.has("documentation"))
@@ -4464,8 +4439,7 @@ public class JsonParser extends JsonParserBase {
     throws IOException, FHIRFormatError {
     parseBackboneElementProperties(json, res);
     if (json.has("mode"))
-      res.setModeElement(parseEnumeration(json.get("mode").getAsString(), CapabilityStatement.EventCapabilityMode.NULL,
-        new CapabilityStatement.EventCapabilityModeEnumFactory()));
+      res.setModeElement(parseString(json.get("mode").getAsString()));
     if (json.has("_mode"))
       parseElementProperties(getJObject(json, "_mode"), res.getModeElement());
     if (json.has("definition"))
@@ -4486,8 +4460,7 @@ public class JsonParser extends JsonParserBase {
     throws IOException, FHIRFormatError {
     parseBackboneElementProperties(json, res);
     if (json.has("mode"))
-      res.setModeElement(parseEnumeration(json.get("mode").getAsString(), CapabilityStatement.DocumentMode.NULL,
-        new CapabilityStatement.DocumentModeEnumFactory()));
+      res.setModeElement(parseString(json.get("mode").getAsString()));
     if (json.has("_mode"))
       parseElementProperties(getJObject(json, "_mode"), res.getModeElement());
     if (json.has("documentation"))
@@ -16004,7 +15977,7 @@ public class JsonParser extends JsonParserBase {
       for (int i = 0; i < array.size(); i++) {
         if (i == res.getFhirVersion().size())
           res.getFhirVersion()
-            .add(parseEnumeration(null, Enumerations.FHIRVersion.NULL, new Enumerations.FHIRVersionEnumFactory()));
+            .add(parseString(null));
         if (array.get(i) instanceof JsonObject)
           parseElementProperties(array.get(i).getAsJsonObject(), res.getFhirVersion().get(i));
       }
@@ -16176,7 +16149,7 @@ public class JsonParser extends JsonParserBase {
       for (int i = 0; i < array.size(); i++) {
         if (i == res.getFhirVersion().size())
           res.getFhirVersion()
-            .add(parseEnumeration(null, Enumerations.FHIRVersion.NULL, new Enumerations.FHIRVersionEnumFactory()));
+            .add(parseString(null));
         if (array.get(i) instanceof JsonObject)
           parseElementProperties(array.get(i).getAsJsonObject(), res.getFhirVersion().get(i));
       }
@@ -21993,8 +21966,7 @@ public class JsonParser extends JsonParserBase {
       JsonArray array = json.getAsJsonArray("_permittedDataType");
       for (int i = 0; i < array.size(); i++) {
         if (i == res.getPermittedDataType().size())
-          res.getPermittedDataType().add(parseEnumeration(null, ObservationDefinition.ObservationDataType.NULL,
-            new ObservationDefinition.ObservationDataTypeEnumFactory()));
+          res.getPermittedDataType().add(parseString(null));
         if (array.get(i) instanceof JsonObject)
           parseElementProperties(array.get(i).getAsJsonObject(), res.getPermittedDataType().get(i));
       }
@@ -22069,8 +22041,7 @@ public class JsonParser extends JsonParserBase {
     parseBackboneElementProperties(json, res);
     if (json.has("category"))
       res.setCategoryElement(
-        parseEnumeration(json.get("category").getAsString(), ObservationDefinition.ObservationRangeCategory.NULL,
-          new ObservationDefinition.ObservationRangeCategoryEnumFactory()));
+        v(json.get("category").getAsString()));
     if (json.has("_category"))
       parseElementProperties(getJObject(json, "_category"), res.getCategoryElement());
     if (json.has("range"))
@@ -22085,8 +22056,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("gender"))
-      res.setGenderElement(parseEnumeration(json.get("gender").getAsString(), Enumerations.AdministrativeGender.NULL,
-        new Enumerations.AdministrativeGenderEnumFactory()));
+      res.setGenderElement(parseString(json.get("gender").getAsString()));
     if (json.has("_gender"))
       parseElementProperties(getJObject(json, "_gender"), res.getGenderElement());
     if (json.has("age"))
@@ -27274,8 +27244,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_title"))
       parseElementProperties(getJObject(json, "_title"), res.getTitleElement());
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Enumerations.PublicationStatus.NULL,
-        new Enumerations.PublicationStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("experimental"))
@@ -27375,8 +27344,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_url"))
       parseElementProperties(getJObject(json, "_url"), res.getUrlElement());
     if (json.has("mode"))
-      res.setModeElement(parseEnumeration(json.get("mode").getAsString(), StructureMap.StructureMapModelMode.NULL,
-        new StructureMap.StructureMapModelModeEnumFactory()));
+      res.setModeElement(parseString(json.get("mode").getAsString()));
     if (json.has("_mode"))
       parseElementProperties(getJObject(json, "_mode"), res.getModeElement());
     if (json.has("alias"))
@@ -27408,8 +27376,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_extends"))
       parseElementProperties(getJObject(json, "_extends"), res.getExtendsElement());
     if (json.has("typeMode"))
-      res.setTypeModeElement(parseEnumeration(json.get("typeMode").getAsString(),
-        StructureMap.StructureMapGroupTypeMode.NULL, new StructureMap.StructureMapGroupTypeModeEnumFactory()));
+      res.setTypeModeElement(parseString(json.get("typeMode").getAsString()));
     if (json.has("_typeMode"))
       parseElementProperties(getJObject(json, "_typeMode"), res.getTypeModeElement());
     if (json.has("documentation"))
@@ -27451,8 +27418,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_type"))
       parseElementProperties(getJObject(json, "_type"), res.getTypeElement());
     if (json.has("mode"))
-      res.setModeElement(parseEnumeration(json.get("mode").getAsString(), StructureMap.StructureMapInputMode.NULL,
-        new StructureMap.StructureMapInputModeEnumFactory()));
+      res.setModeElement(parseString(json.get("mode").getAsString()));
     if (json.has("_mode"))
       parseElementProperties(getJObject(json, "_mode"), res.getModeElement());
     if (json.has("documentation"))
@@ -27546,8 +27512,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_element"))
       parseElementProperties(getJObject(json, "_element"), res.getElementElement());
     if (json.has("listMode"))
-      res.setListModeElement(parseEnumeration(json.get("listMode").getAsString(),
-        StructureMap.StructureMapSourceListMode.NULL, new StructureMap.StructureMapSourceListModeEnumFactory()));
+      res.setListModeElement(parseString(json.get("listMode").getAsString()));
     if (json.has("_listMode"))
       parseElementProperties(getJObject(json, "_listMode"), res.getListModeElement());
     if (json.has("variable"))
@@ -27583,8 +27548,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_context"))
       parseElementProperties(getJObject(json, "_context"), res.getContextElement());
     if (json.has("contextType"))
-      res.setContextTypeElement(parseEnumeration(json.get("contextType").getAsString(),
-        StructureMap.StructureMapContextType.NULL, new StructureMap.StructureMapContextTypeEnumFactory()));
+      res.setContextTypeElement(parseString(json.get("contextType").getAsString()));
     if (json.has("_contextType"))
       parseElementProperties(getJObject(json, "_contextType"), res.getContextTypeElement());
     if (json.has("element"))
@@ -27599,10 +27563,9 @@ public class JsonParser extends JsonParserBase {
       JsonArray array = json.getAsJsonArray("listMode");
       for (int i = 0; i < array.size(); i++) {
         if (array.get(i).isJsonNull()) {
-          res.getListMode().add(new Enumeration<StructureMap.StructureMapTargetListMode>());
+          res.getListMode().add(new StringType());
         } else {
-          res.getListMode().add(parseEnumeration(array.get(i).getAsString(),
-            StructureMap.StructureMapTargetListMode.NULL, new StructureMap.StructureMapTargetListModeEnumFactory()));
+          res.getListMode().add(parseString(array.get(i).getAsString()));
         }
       }
     }
@@ -27611,8 +27574,7 @@ public class JsonParser extends JsonParserBase {
       JsonArray array = json.getAsJsonArray("_listMode");
       for (int i = 0; i < array.size(); i++) {
         if (i == res.getListMode().size())
-          res.getListMode().add(parseEnumeration(null, StructureMap.StructureMapTargetListMode.NULL,
-            new StructureMap.StructureMapTargetListModeEnumFactory()));
+          res.getListMode().add(parseString(null));
         if (array.get(i) instanceof JsonObject)
           parseElementProperties(array.get(i).getAsJsonObject(), res.getListMode().get(i));
       }
@@ -27623,8 +27585,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_listRuleId"))
       parseElementProperties(getJObject(json, "_listRuleId"), res.getListRuleIdElement());
     if (json.has("transform"))
-      res.setTransformElement(parseEnumeration(json.get("transform").getAsString(),
-        StructureMap.StructureMapTransform.NULL, new StructureMap.StructureMapTransformEnumFactory()));
+      res.setTransformElement(parseString(json.get("transform").getAsString()));
     if (json.has("_transform"))
       parseElementProperties(getJObject(json, "_transform"), res.getTransformElement());
     if (json.has("parameter")) {
@@ -34343,13 +34304,13 @@ public class JsonParser extends JsonParserBase {
     }
     if (element.hasRepresentation()) {
       openArray("representation");
-      for (Enumeration<ElementDefinition.PropertyRepresentation> e : element.getRepresentation())
-        composeEnumerationCore(null, e, new ElementDefinition.PropertyRepresentationEnumFactory(), true);
+      for (StringType e : element.getRepresentation())
+        composeStringCore(null, e, true);
       closeArray();
       if (anyHasExtras(element.getRepresentation())) {
         openArray("_representation");
-        for (Enumeration<ElementDefinition.PropertyRepresentation> e : element.getRepresentation())
-          composeEnumerationExtras(null, e, new ElementDefinition.PropertyRepresentationEnumFactory(), true);
+        for (StringType e : element.getRepresentation())
+          composeStringExtras(null, e, true);
         closeArray();
       }
     }
@@ -34537,10 +34498,8 @@ public class JsonParser extends JsonParserBase {
       composeBooleanExtras("ordered", element.getOrderedElement(), false);
     }
     if (element.hasRulesElement()) {
-      composeEnumerationCore("rules", element.getRulesElement(), new ElementDefinition.SlicingRulesEnumFactory(),
-        false);
-      composeEnumerationExtras("rules", element.getRulesElement(), new ElementDefinition.SlicingRulesEnumFactory(),
-        false);
+      composeStringCore("rules", element.getRulesElement(), false);
+      composeStringExtras("rules", element.getRulesElement(), false);
     }
   }
 
@@ -34557,10 +34516,8 @@ public class JsonParser extends JsonParserBase {
     ElementDefinition.ElementDefinitionSlicingDiscriminatorComponent element) throws IOException {
     composeElement(element);
     if (element.hasTypeElement()) {
-      composeEnumerationCore("type", element.getTypeElement(), new ElementDefinition.DiscriminatorTypeEnumFactory(),
-        false);
-      composeEnumerationExtras("type", element.getTypeElement(), new ElementDefinition.DiscriminatorTypeEnumFactory(),
-        false);
+      composeStringCore("type", element.getTypeElement(), false);
+      composeStringExtras("type", element.getTypeElement(), false);
     }
     if (element.hasPathElement()) {
       composeStringCore("path", element.getPathElement(), false);
@@ -34638,22 +34595,20 @@ public class JsonParser extends JsonParserBase {
     ;
     if (element.hasAggregation()) {
       openArray("aggregation");
-      for (Enumeration<ElementDefinition.AggregationMode> e : element.getAggregation())
-        composeEnumerationCore(null, e, new ElementDefinition.AggregationModeEnumFactory(), true);
+      for (StringType e : element.getAggregation())
+        composeStringCore(null, e, true);
       closeArray();
       if (anyHasExtras(element.getAggregation())) {
         openArray("_aggregation");
-        for (Enumeration<ElementDefinition.AggregationMode> e : element.getAggregation())
-          composeEnumerationExtras(null, e, new ElementDefinition.AggregationModeEnumFactory(), true);
+        for (StringType e : element.getAggregation())
+          composeStringExtras(null, e, true);
         closeArray();
       }
     }
     ;
     if (element.hasVersioningElement()) {
-      composeEnumerationCore("versioning", element.getVersioningElement(),
-        new ElementDefinition.ReferenceVersionRulesEnumFactory(), false);
-      composeEnumerationExtras("versioning", element.getVersioningElement(),
-        new ElementDefinition.ReferenceVersionRulesEnumFactory(), false);
+      composeStringCore("versioning", element.getVersioningElement(), false);
+      composeStringExtras("versioning", element.getVersioningElement(), false);
     }
   }
 
@@ -34699,10 +34654,8 @@ public class JsonParser extends JsonParserBase {
       composeStringExtras("requirements", element.getRequirementsElement(), false);
     }
     if (element.hasSeverityElement()) {
-      composeEnumerationCore("severity", element.getSeverityElement(),
-        new ElementDefinition.ConstraintSeverityEnumFactory(), false);
-      composeEnumerationExtras("severity", element.getSeverityElement(),
-        new ElementDefinition.ConstraintSeverityEnumFactory(), false);
+      composeStringCore("severity", element.getSeverityElement(), false);
+      composeStringExtras("severity", element.getSeverityElement(), false);
     }
     if (element.hasHumanElement()) {
       composeStringCore("human", element.getHumanElement(), false);
@@ -34735,10 +34688,8 @@ public class JsonParser extends JsonParserBase {
     ElementDefinition.ElementDefinitionBindingComponent element) throws IOException {
     composeElement(element);
     if (element.hasStrengthElement()) {
-      composeEnumerationCore("strength", element.getStrengthElement(), new Enumerations.BindingStrengthEnumFactory(),
-        false);
-      composeEnumerationExtras("strength", element.getStrengthElement(), new Enumerations.BindingStrengthEnumFactory(),
-        false);
+      composeStringCore("strength", element.getStrengthElement(), false);
+      composeStringExtras("strength", element.getStrengthElement(), false);
     }
     if (element.hasDescriptionElement()) {
       composeStringCore("description", element.getDescriptionElement(), false);
@@ -36524,10 +36475,8 @@ public class JsonParser extends JsonParserBase {
       composeStringExtras("title", element.getTitleElement(), false);
     }
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new Enumerations.PublicationStatusEnumFactory(),
-        false);
-      composeEnumerationExtras("status", element.getStatusElement(), new Enumerations.PublicationStatusEnumFactory(),
-        false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasExperimentalElement()) {
       composeBooleanCore("experimental", element.getExperimentalElement(), false);
@@ -36614,10 +36563,8 @@ public class JsonParser extends JsonParserBase {
         element.getImplementation());
     }
     if (element.hasFhirVersionElement()) {
-      composeEnumerationCore("fhirVersion", element.getFhirVersionElement(), new Enumerations.FHIRVersionEnumFactory(),
-        false);
-      composeEnumerationExtras("fhirVersion", element.getFhirVersionElement(),
-        new Enumerations.FHIRVersionEnumFactory(), false);
+      composeStringCore("fhirVersion", element.getFhirVersionElement(), false);
+      composeStringExtras("fhirVersion", element.getFhirVersionElement(), false);
     }
     if (element.hasFormat()) {
       openArray("format");
@@ -36745,10 +36692,8 @@ public class JsonParser extends JsonParserBase {
     CapabilityStatement.CapabilityStatementRestComponent element) throws IOException {
     composeBackbone(element);
     if (element.hasModeElement()) {
-      composeEnumerationCore("mode", element.getModeElement(),
-        new CapabilityStatement.RestfulCapabilityModeEnumFactory(), false);
-      composeEnumerationExtras("mode", element.getModeElement(),
-        new CapabilityStatement.RestfulCapabilityModeEnumFactory(), false);
+      composeStringCore("mode", element.getModeElement(), false);
+      composeStringExtras("mode", element.getModeElement(), false);
     }
     if (element.hasDocumentationElement()) {
       composeMarkdownCore("documentation", element.getDocumentationElement(), false);
@@ -36874,10 +36819,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasVersioningElement()) {
-      composeEnumerationCore("versioning", element.getVersioningElement(),
-        new CapabilityStatement.ResourceVersionPolicyEnumFactory(), false);
-      composeEnumerationExtras("versioning", element.getVersioningElement(),
-        new CapabilityStatement.ResourceVersionPolicyEnumFactory(), false);
+      composeStringCore("versioning", element.getVersioningElement(), false);
+      composeStringExtras("versioning", element.getVersioningElement(), false);
     }
     if (element.hasReadHistoryElement()) {
       composeBooleanCore("readHistory", element.getReadHistoryElement(), false);
@@ -36892,30 +36835,26 @@ public class JsonParser extends JsonParserBase {
       composeBooleanExtras("conditionalCreate", element.getConditionalCreateElement(), false);
     }
     if (element.hasConditionalReadElement()) {
-      composeEnumerationCore("conditionalRead", element.getConditionalReadElement(),
-        new CapabilityStatement.ConditionalReadStatusEnumFactory(), false);
-      composeEnumerationExtras("conditionalRead", element.getConditionalReadElement(),
-        new CapabilityStatement.ConditionalReadStatusEnumFactory(), false);
+      composeStringCore("conditionalRead", element.getConditionalReadElement(), false);
+      composeStringExtras("conditionalRead", element.getConditionalReadElement(), false);
     }
     if (element.hasConditionalUpdateElement()) {
       composeBooleanCore("conditionalUpdate", element.getConditionalUpdateElement(), false);
       composeBooleanExtras("conditionalUpdate", element.getConditionalUpdateElement(), false);
     }
     if (element.hasConditionalDeleteElement()) {
-      composeEnumerationCore("conditionalDelete", element.getConditionalDeleteElement(),
-        new CapabilityStatement.ConditionalDeleteStatusEnumFactory(), false);
-      composeEnumerationExtras("conditionalDelete", element.getConditionalDeleteElement(),
-        new CapabilityStatement.ConditionalDeleteStatusEnumFactory(), false);
+      composeStringCore("conditionalDelete", element.getConditionalDeleteElement(), false);
+      composeStringExtras("conditionalDelete", element.getConditionalDeleteElement(), false);
     }
     if (element.hasReferencePolicy()) {
       openArray("referencePolicy");
-      for (Enumeration<CapabilityStatement.ReferenceHandlingPolicy> e : element.getReferencePolicy())
-        composeEnumerationCore(null, e, new CapabilityStatement.ReferenceHandlingPolicyEnumFactory(), true);
+      for (StringType e : element.getReferencePolicy())
+        composeStringCore(null, e, true);
       closeArray();
       if (anyHasExtras(element.getReferencePolicy())) {
         openArray("_referencePolicy");
-        for (Enumeration<CapabilityStatement.ReferenceHandlingPolicy> e : element.getReferencePolicy())
-          composeEnumerationExtras(null, e, new CapabilityStatement.ReferenceHandlingPolicyEnumFactory(), true);
+        for (StringType e : element.getReferencePolicy())
+          composeStringExtras(null, e, true);
         closeArray();
       }
     }
@@ -36975,10 +36914,8 @@ public class JsonParser extends JsonParserBase {
     CapabilityStatement.ResourceInteractionComponent element) throws IOException {
     composeBackbone(element);
     if (element.hasCodeElement()) {
-      composeEnumerationCore("code", element.getCodeElement(),
-        new CapabilityStatement.TypeRestfulInteractionEnumFactory(), false);
-      composeEnumerationExtras("code", element.getCodeElement(),
-        new CapabilityStatement.TypeRestfulInteractionEnumFactory(), false);
+      composeStringCore("code", element.getCodeElement(), false);
+      composeStringExtras("code", element.getCodeElement(), false);
     }
     if (element.hasDocumentationElement()) {
       composeMarkdownCore("documentation", element.getDocumentationElement(), false);
@@ -37007,8 +36944,8 @@ public class JsonParser extends JsonParserBase {
       composeCanonicalExtras("definition", element.getDefinitionElement(), false);
     }
     if (element.hasTypeElement()) {
-      composeEnumerationCore("type", element.getTypeElement(), new Enumerations.SearchParamTypeEnumFactory(), false);
-      composeEnumerationExtras("type", element.getTypeElement(), new Enumerations.SearchParamTypeEnumFactory(), false);
+      composeStringCore("type", element.getTypeElement(), false);
+      composeStringExtras("type", element.getTypeElement(), false);
     }
     if (element.hasDocumentationElement()) {
       composeMarkdownCore("documentation", element.getDocumentationElement(), false);
@@ -37055,10 +36992,8 @@ public class JsonParser extends JsonParserBase {
     CapabilityStatement.SystemInteractionComponent element) throws IOException {
     composeBackbone(element);
     if (element.hasCodeElement()) {
-      composeEnumerationCore("code", element.getCodeElement(),
-        new CapabilityStatement.SystemRestfulInteractionEnumFactory(), false);
-      composeEnumerationExtras("code", element.getCodeElement(),
-        new CapabilityStatement.SystemRestfulInteractionEnumFactory(), false);
+      composeStringCore("code", element.getCodeElement(), false);
+      composeStringExtras("code", element.getCodeElement(), false);
     }
     if (element.hasDocumentationElement()) {
       composeMarkdownCore("documentation", element.getDocumentationElement(), false);
@@ -37136,10 +37071,8 @@ public class JsonParser extends JsonParserBase {
     CapabilityStatement.CapabilityStatementMessagingSupportedMessageComponent element) throws IOException {
     composeBackbone(element);
     if (element.hasModeElement()) {
-      composeEnumerationCore("mode", element.getModeElement(), new CapabilityStatement.EventCapabilityModeEnumFactory(),
-        false);
-      composeEnumerationExtras("mode", element.getModeElement(),
-        new CapabilityStatement.EventCapabilityModeEnumFactory(), false);
+      composeStringCore("mode", element.getModeElement(), false);
+      composeStringExtras("mode", element.getModeElement(), false);
     }
     if (element.hasDefinitionElement()) {
       composeCanonicalCore("definition", element.getDefinitionElement(), false);
@@ -37160,10 +37093,8 @@ public class JsonParser extends JsonParserBase {
     CapabilityStatement.CapabilityStatementDocumentComponent element) throws IOException {
     composeBackbone(element);
     if (element.hasModeElement()) {
-      composeEnumerationCore("mode", element.getModeElement(), new CapabilityStatement.DocumentModeEnumFactory(),
-        false);
-      composeEnumerationExtras("mode", element.getModeElement(), new CapabilityStatement.DocumentModeEnumFactory(),
-        false);
+      composeStringCore("mode", element.getModeElement(), false);
+      composeStringExtras("mode", element.getModeElement(), false);
     }
     if (element.hasDocumentationElement()) {
       composeMarkdownCore("documentation", element.getDocumentationElement(), false);
@@ -58448,7 +58379,7 @@ public class JsonParser extends JsonParserBase {
       composeDuration("participantEffectiveTimeFromStart", element.getParticipantEffectiveTimeFromStart());
     }
     if (element.hasParticipantEffectiveGroupMeasureElement()) {
-      composeStringCore("participantEffectiveGroupMeasure", element.getParticipantEffectiveGroupMeasureElement() false);
+      composeStringCore("participantEffectiveGroupMeasure", element.getParticipantEffectiveGroupMeasureElement(), false);
       composeStringExtras("participantEffectiveGroupMeasure", element.getParticipantEffectiveGroupMeasureElement(), false);
     }
   }
@@ -60390,10 +60321,8 @@ public class JsonParser extends JsonParserBase {
       composeCanonicalExtras("url", element.getUrlElement(), false);
     }
     if (element.hasModeElement()) {
-      composeEnumerationCore("mode", element.getModeElement(), new StructureMap.StructureMapModelModeEnumFactory(),
-        false);
-      composeEnumerationExtras("mode", element.getModeElement(), new StructureMap.StructureMapModelModeEnumFactory(),
-        false);
+      composeStringCore("mode", element.getModeElement(), false);
+      composeStringExtras("mode", element.getModeElement(), false);
     }
     if (element.hasAliasElement()) {
       composeStringCore("alias", element.getAliasElement(), false);

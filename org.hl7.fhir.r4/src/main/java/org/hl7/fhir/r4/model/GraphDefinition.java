@@ -1323,8 +1323,8 @@ public class GraphDefinition extends MetadataResource {
      *         test whether resources are subject to the rule, or whether it is a
      *         rule that must be followed.
      */
-    public StringType getUse() {
-      return this.use == null ? null : this.use;
+    public String getUse() {
+      return this.use == null ? null : this.use.getValue();
     }
 
     /**
@@ -1374,8 +1374,8 @@ public class GraphDefinition extends MetadataResource {
     /**
      * @return Identifies the compartment.
      */
-    public StringType getCode() {
-      return this.code == null ? null : this.code;
+    public String getCode() {
+      return this.code == null ? null : this.code.getValue();
     }
 
     /**
@@ -1424,8 +1424,8 @@ public class GraphDefinition extends MetadataResource {
     /**
      * @return identical | matching | different | no-rule | custom.
      */
-    public StringType getRule() {
-      return this.rule == null ? null : this.rule;
+    public String getRule() {
+      return this.rule == null ? null : this.rule.getValue();
     }
 
     /**
@@ -2062,8 +2062,8 @@ public class GraphDefinition extends MetadataResource {
    * @return The status of this graph definition. Enables tracking the life-cycle
    *         of the content.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

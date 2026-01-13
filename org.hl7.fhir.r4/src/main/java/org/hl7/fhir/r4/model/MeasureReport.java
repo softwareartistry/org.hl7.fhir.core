@@ -2370,8 +2370,8 @@ public class MeasureReport extends DomainResource {
    * @return The MeasureReport status. No data will be available until the
    *         MeasureReport status is complete.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -2439,8 +2439,8 @@ public class MeasureReport extends DomainResource {
    *         or a data-collection, which enables the MeasureReport to be used to
    *         exchange the data-of-interest for a quality measure.
    */
-  public StringType getType() {
-    return this.type == null ? null : this.type;
+  public String getType() {
+    return this.type == null ? null : this.type.getValue();
   }
 
   /**

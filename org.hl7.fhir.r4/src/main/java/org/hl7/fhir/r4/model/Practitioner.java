@@ -870,8 +870,8 @@ public class Practitioner extends DomainResource {
    * @return Administrative Gender - the gender that the person is considered to
    *         have for administration and record keeping purposes.
    */
-  public StringType getGender() {
-    return this.gender == null ? null : this.gender;
+  public String getGender() {
+    return this.gender == null ? null : this.gender.getValue();
   }
 
   /**

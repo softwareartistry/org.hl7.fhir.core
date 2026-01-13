@@ -876,8 +876,8 @@ public class ChargeItemDefinition extends MetadataResource {
     /**
      * @return This code identifies the type of the component.
      */
-    public StringType getType() {
-      return this.type == null ? null : this.type;
+    public String getType() {
+      return this.type == null ? null : this.type.getValue();
     }
 
     /**
@@ -1875,8 +1875,8 @@ public class ChargeItemDefinition extends MetadataResource {
   /**
    * @return The current state of the ChargeItemDefinition.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

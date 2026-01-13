@@ -1618,8 +1618,8 @@ public class PlanDefinition extends MetadataResource {
      * @return Indicates how quickly the action should be addressed with respect to
      *         other actions.
      */
-    public StringType getPriority() {
-      return this.priority == null ? null : this.priority;
+    public String getPriority() {
+      return this.priority == null ? null : this.priority.getValue();
     }
 
     /**
@@ -2449,8 +2449,8 @@ public class PlanDefinition extends MetadataResource {
     /**
      * @return Defines the grouping behavior for the action and its children.
      */
-    public StringType getGroupingBehavior() {
-      return this.groupingBehavior == null ? null : this.groupingBehavior;
+    public String getGroupingBehavior() {
+      return this.groupingBehavior == null ? null : this.groupingBehavior.getValue();
     }
 
     /**
@@ -2504,8 +2504,8 @@ public class PlanDefinition extends MetadataResource {
     /**
      * @return Defines the selection behavior for the action and its children.
      */
-    public StringType getSelectionBehavior() {
-      return this.selectionBehavior == null ? null : this.selectionBehavior;
+    public String getSelectionBehavior() {
+      return this.selectionBehavior == null ? null : this.selectionBehavior.getValue();
     }
 
     /**
@@ -2559,8 +2559,8 @@ public class PlanDefinition extends MetadataResource {
     /**
      * @return Defines the required behavior for the action.
      */
-    public StringType getRequiredBehavior() {
-      return this.requiredBehavior == null ? null : this.requiredBehavior;
+    public String getRequiredBehavior() {
+      return this.requiredBehavior == null ? null : this.requiredBehavior.getValue();
     }
 
     /**
@@ -2614,8 +2614,8 @@ public class PlanDefinition extends MetadataResource {
     /**
      * @return Defines whether the action should usually be preselected.
      */
-    public StringType getPrecheckBehavior() {
-      return this.precheckBehavior == null ? null : this.precheckBehavior;
+    public String getPrecheckBehavior() {
+      return this.precheckBehavior == null ? null : this.precheckBehavior.getValue();
     }
 
     /**
@@ -2669,8 +2669,8 @@ public class PlanDefinition extends MetadataResource {
     /**
      * @return Defines whether the action can be selected multiple times.
      */
-    public StringType getCardinalityBehavior() {
-      return this.cardinalityBehavior == null ? null : this.cardinalityBehavior;
+    public String getCardinalityBehavior() {
+      return this.cardinalityBehavior == null ? null : this.cardinalityBehavior.getValue();
     }
 
     /**
@@ -3868,8 +3868,8 @@ public class PlanDefinition extends MetadataResource {
     /**
      * @return The kind of condition.
      */
-    public StringType getKind() {
-      return this.kind == null ? null : this.kind;
+    public String getKind() {
+      return this.kind == null ? null : this.kind.getValue();
     }
 
     /**
@@ -4195,8 +4195,8 @@ public class PlanDefinition extends MetadataResource {
     /**
      * @return The relationship of this action to the related action.
      */
-    public StringType getRelationship() {
-      return this.relationship == null ? null : this.relationship;
+    public String getRelationship() {
+      return this.relationship == null ? null : this.relationship.getValue();
     }
 
     /**
@@ -4529,8 +4529,8 @@ public class PlanDefinition extends MetadataResource {
     /**
      * @return The type of participant in the action.
      */
-    public StringType getType() {
-      return this.type == null ? null : this.type;
+    public String getType() {
+      return this.type == null ? null : this.type.getValue();
     }
 
     /**
@@ -5686,8 +5686,8 @@ public class PlanDefinition extends MetadataResource {
    * @return The status of this plan definition. Enables tracking the life-cycle
    *         of the content.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

@@ -3618,8 +3618,8 @@ public class InsurancePlan extends DomainResource {
   /**
    * @return The current state of the health insurance product.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

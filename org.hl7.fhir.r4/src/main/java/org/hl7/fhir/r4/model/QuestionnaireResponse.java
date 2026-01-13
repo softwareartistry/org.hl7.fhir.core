@@ -1572,8 +1572,8 @@ public class QuestionnaireResponse extends DomainResource {
    * @return The position of the questionnaire response within its overall
    *         lifecycle.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

@@ -2910,8 +2910,8 @@ public class RiskEvidenceSynthesis extends MetadataResource {
    * @return The status of this risk evidence synthesis. Enables tracking the
    *         life-cycle of the content.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

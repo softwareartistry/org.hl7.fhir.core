@@ -1239,8 +1239,8 @@ public class MedicationDispense extends DomainResource {
   /**
    * @return A code specifying the state of the set of dispense events.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

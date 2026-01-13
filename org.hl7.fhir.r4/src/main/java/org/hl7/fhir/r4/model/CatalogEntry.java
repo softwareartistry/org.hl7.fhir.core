@@ -131,8 +131,8 @@ public class CatalogEntry extends DomainResource {
      * @return The type of relation to the related item: child, parent,
      *         packageContent, containerPackage, usedIn, uses, requires, etc.
      */
-    public StringType getRelationtype() {
-      return this.relationtype == null ? null : this.relationtype;
+    public String getRelationtype() {
+      return this.relationtype == null ? null : this.relationtype.getValue();
     }
 
     /**
@@ -808,8 +808,8 @@ public class CatalogEntry extends DomainResource {
    * @return Used to support catalog exchange even for unsupported products, e.g.
    *         getting list of medications even if not prescribable.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

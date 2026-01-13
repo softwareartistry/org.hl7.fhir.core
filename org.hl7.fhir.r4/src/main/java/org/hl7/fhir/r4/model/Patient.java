@@ -321,8 +321,8 @@ public class Patient extends DomainResource {
      * @return Administrative Gender - the gender that the contact person is
      *         considered to have for administration and record keeping purposes.
      */
-    public StringType getGender() {
-      return this.gender == null ? null : this.gender;
+    public String getGender() {
+      return this.gender == null ? null : this.gender.getValue();
     }
 
     /**
@@ -1111,8 +1111,8 @@ public class Patient extends DomainResource {
      * @return The type of link between this patient resource and another patient
      *         resource.
      */
-    public StringType getType() {
-      return this.type == null ? null : this.type;
+    public String getType() {
+      return this.type == null ? null : this.type.getValue();
     }
 
     /**
@@ -1719,8 +1719,8 @@ public class Patient extends DomainResource {
    * @return Administrative Gender - the gender that the patient is considered to
    *         have for administration and record keeping purposes.
    */
-  public StringType getGender() {
-    return this.gender == null ? null : this.gender;
+  public String getGender() {
+    return this.gender == null ? null : this.gender.getValue();
   }
 
   /**

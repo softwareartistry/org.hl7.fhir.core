@@ -813,8 +813,8 @@ public class ResearchDefinition extends MetadataResource {
    * @return The status of this research definition. Enables tracking the
    *         life-cycle of the content.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

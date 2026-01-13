@@ -245,8 +245,8 @@ public class Flag extends DomainResource {
   /**
    * @return Supports basic workflow.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

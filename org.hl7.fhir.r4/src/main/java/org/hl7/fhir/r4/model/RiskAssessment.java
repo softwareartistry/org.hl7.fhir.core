@@ -1101,8 +1101,8 @@ public class RiskAssessment extends DomainResource {
    * @return The status of the RiskAssessment, using the same statuses as an
    *         Observation.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

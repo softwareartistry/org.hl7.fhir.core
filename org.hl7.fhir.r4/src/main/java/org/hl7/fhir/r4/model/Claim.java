@@ -8435,8 +8435,8 @@ public class Claim extends DomainResource {
   /**
    * @return The status of the resource instance.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -8551,8 +8551,8 @@ public class Claim extends DomainResource {
    *         future; or requesting the non-binding adjudication of the listed
    *         products and services which could be provided in the future.
    */
-  public StringType getUse() {
-    return this.use == null ? null : this.use;
+  public String getUse() {
+    return this.use == null ? null : this.use.getValue();
   }
 
   /**

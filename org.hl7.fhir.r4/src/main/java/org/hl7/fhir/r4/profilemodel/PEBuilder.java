@@ -43,16 +43,12 @@ import org.hl7.fhir.r4.fhirpath.FHIRPathEngine;
 import org.hl7.fhir.r4.model.Base;
 import org.hl7.fhir.r4.model.CanonicalType;
 import org.hl7.fhir.r4.model.ElementDefinition;
-import org.hl7.fhir.r4.model.ElementDefinition.DiscriminatorType;
 import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionSlicingComponent;
 import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionSlicingDiscriminatorComponent;
-import org.hl7.fhir.r4.model.ElementDefinition.SlicingRules;
 import org.hl7.fhir.r4.model.ElementDefinition.TypeRefComponent;
-import org.hl7.fhir.r4.model.Enumerations.BindingStrength;
 import org.hl7.fhir.r4.model.Resource;
 import org.hl7.fhir.r4.model.ResourceFactory;
 import org.hl7.fhir.r4.model.StructureDefinition;
-import org.hl7.fhir.r4.model.StructureDefinition.TypeDerivationRule;
 import org.hl7.fhir.r4.model.ValueSet;
 import org.hl7.fhir.r4.model.ValueSet.ValueSetExpansionContainsComponent;
 import org.hl7.fhir.r4.terminologies.ValueSetExpander.ValueSetExpansionOutcome;
@@ -342,7 +338,7 @@ public class PEBuilder {
 
   protected List<PEDefinition> listChildren(boolean allFixed, PEDefinition parent, StructureDefinition profileStructure, ElementDefinition definition, String url, String... omitList) {
     StructureDefinition profile = profileStructure;
-    boolean inExtension = profile.getDerivation() == TypeDerivationRule.CONSTRAINT && "Extension".equals(profile.getType());
+    boolean inExtension = profile.getDerivation() == "CONSTRAINT" && "Extension".equals(profile.getType());
     List<ElementDefinition> list = pu.getChildList(profile, definition);
     if (definition.getType().size() == 1 || (!definition.getPath().contains(".")) || list.isEmpty()) {
       assert url == null || checkType(definition, url);
@@ -363,13 +359,13 @@ public class PEBuilder {
             if (passElementPropsCheck(defn, inExtension) && !Utilities.existsInList(defn.getName(), omitList)) {
               String name = uniquefy(names, defn.getName());
               PEDefinitionElement pe = new PEDefinitionElement(this, name, profile, defn, parent.path());
-              pe.setRecursing(definition == defn || (profile.getDerivation() == TypeDerivationRule.SPECIALIZATION && profile.getType().equals("Extension")));
+              pe.setRecursing(definition == defn || (profile.getDerivation() == "SPECIALIZATION" && profile.getType().equals("Extension")));
               if (context.isPrimitiveType(definition.getTypeFirstRep().getWorkingCode()) && "value".equals(pe.name())) {
                 pe.setMustHaveValue(definition.getMustHaveValue());
               }
               pe.setInFixedValue(definition.hasFixed() || definition.hasPattern() || parent.isInFixedValue());
               if (defn.hasSlicing()) {
-                if (defn.getSlicing().getRules() != SlicingRules.CLOSED) {
+                if (defn.getSlicing().getRules() != "CLOSED") {
                   res.add(pe);
                   pe.setSlicer(true);
                 }
@@ -447,8 +443,8 @@ public class PEBuilder {
 
   private boolean isTypeSlicing(ElementDefinition defn) {
     ElementDefinitionSlicingComponent sl = defn.getSlicing();
-    return sl.getRules() == SlicingRules.CLOSED && sl.getDiscriminator().size() == 1 &&
-        sl.getDiscriminatorFirstRep().getType() == DiscriminatorType.TYPE && "$this".equals(sl.getDiscriminatorFirstRep().getPath());
+    return sl.getRules() == "CLOSED" && sl.getDiscriminator().size() == 1 &&
+        sl.getDiscriminatorFirstRep().getType() == "TYPE" && "$this".equals(sl.getDiscriminatorFirstRep().getPath());
   }
 
   private boolean include(ElementDefinition defn) {
@@ -463,11 +459,11 @@ public class PEBuilder {
     List<ElementDefinition> list = pu.getSliceList(profileStructure, definition);
     List<PEDefinition> res = new ArrayList<>();
     for (ElementDefinition ed : list) {
-      if (profileStructure.getDerivation() == TypeDerivationRule.CONSTRAINT && profileStructure.getType().equals("Extension")) {
+      if (profileStructure.getDerivation() == "CONSTRAINT" && profileStructure.getType().equals("Extension")) {
         res.add(new PEDefinitionSubExtension(this, profileStructure, ed, parent.path()));
       } else {
         PEDefinitionElement pe = new PEDefinitionElement(this, profileStructure, ed, parent.path());
-        pe.setRecursing(definition == ed || (profileStructure.getDerivation() == TypeDerivationRule.SPECIALIZATION && profileStructure.getType().equals("Extension")));
+        pe.setRecursing(definition == ed || (profileStructure.getDerivation() == "SPECIALIZATION" && profileStructure.getType().equals("Extension")));
         res.add(pe);
       }
     }
@@ -590,15 +586,15 @@ public class PEBuilder {
     CommaSeparatedStringBuilder b = new CommaSeparatedStringBuilder(" and ");
     for (ElementDefinitionSlicingDiscriminatorComponent d : slicing.getDiscriminator()) {
       switch (d.getType()) {
-      case EXISTS:
+      case "EXISTS":
         throw new DefinitionException("The discriminator type 'exists' is not supported by the PEBuilder");
-      case PATTERN:
+      case "PATTERN":
         throw new DefinitionException("The discriminator type 'pattern' is not supported by the PEBuilder");
-      case PROFILE:
+      case "PROFILE":
         throw new DefinitionException("The discriminator type 'profile' is not supported by the PEBuilder");
-      case TYPE:
+      case "TYPE":
         throw new DefinitionException("The discriminator type 'type' is not supported by the PEBuilder");
-      case VALUE:
+      case "VALUE":
         String path = d.getPath();
         ElementDefinition ed = getChildElement(profile, definition, path);
         if (ed == null) {
@@ -614,7 +610,7 @@ public class PEBuilder {
         } else if (ed.hasPattern()) {
           throw new DefinitionException("The discriminator path '"+path+"' has a pattern on the element '"+ed.getId()+"' - this is not supported by the PEBuilder");
         } else if (ed.hasBinding()) {
-          if (ed.getBinding().getStrength() != BindingStrength.REQUIRED) {
+          if (ed.getBinding().getStrength() != "REQUIRED") {
             throw new DefinitionException("The discriminator path '"+path+"' has a binding on the element '"+ed.getId()+"' but the strength is not required - this is not supported by the PEBuilder");
           } else {
             ValueSet vs = context.fetchResource(ValueSet.class, ed.getBinding().getValueSet());
@@ -637,7 +633,7 @@ public class PEBuilder {
           
         }
         break;
-      case NULL:
+      case "NULL":
         throw new DefinitionException("The discriminator type 'null' is not supported by the PEBuilder");
       default:
         throw new DefinitionException("The discriminator type '??' is not supported by the PEBuilder"); 

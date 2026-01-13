@@ -154,8 +154,8 @@ public class NamingSystem extends MetadataResource {
      * @return Identifies the unique identifier scheme used for this particular
      *         identifier.
      */
-    public StringType getType() {
-      return this.type == null ? null : this.type;
+    public String getType() {
+      return this.type == null ? null : this.type.getValue();
     }
 
     /**
@@ -743,8 +743,8 @@ public class NamingSystem extends MetadataResource {
    * @return The status of this naming system. Enables tracking the life-cycle of
    *         the content.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -796,8 +796,8 @@ public class NamingSystem extends MetadataResource {
    * @return Indicates the purpose for the naming system - what kinds of things
    *         does it make unique?
    */
-  public StringType getKind() {
-    return this.kind == null ? null : this.kind;
+  public String getKind() {
+    return this.kind == null ? null : this.kind.getValue();
   }
 
   /**

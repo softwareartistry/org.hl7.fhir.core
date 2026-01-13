@@ -130,8 +130,8 @@ public class ActivityDefinition extends MetadataResource {
     /**
      * @return The type of participant in the action.
      */
-    public StringType getType() {
-      return this.type == null ? null : this.type;
+    public String getType() {
+      return this.type == null ? null : this.type.getValue();
     }
 
     /**
@@ -1431,8 +1431,8 @@ public class ActivityDefinition extends MetadataResource {
    * @return The status of this activity definition. Enables tracking the
    *         life-cycle of the content.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -2681,8 +2681,8 @@ public class ActivityDefinition extends MetadataResource {
    *         a CommunicationRequest. Typically, but not always, this is a Request
    *         resource.
    */
-  public StringType getKind() {
-    return this.kind == null ? null : this.kind;
+  public String getKind() {
+    return this.kind == null ? null : this.kind.getValue();
   }
 
   /**
@@ -2825,8 +2825,8 @@ public class ActivityDefinition extends MetadataResource {
    * @return Indicates the level of authority/intentionality associated with the
    *         activity and where the request should fit into the workflow chain.
    */
-  public StringType getIntent() {
-    return this.intent == null ? null : this.intent;
+  public String getIntent() {
+    return this.intent == null ? null : this.intent.getValue();
   }
 
   /**
@@ -2883,8 +2883,8 @@ public class ActivityDefinition extends MetadataResource {
    * @return Indicates how quickly the activity should be addressed with respect
    *         to other requests.
    */
-  public StringType getPriority() {
-    return this.priority == null ? null : this.priority;
+  public String getPriority() {
+    return this.priority == null ? null : this.priority.getValue();
   }
 
   /**

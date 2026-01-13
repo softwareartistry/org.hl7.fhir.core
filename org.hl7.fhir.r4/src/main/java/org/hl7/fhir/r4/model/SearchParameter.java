@@ -836,8 +836,8 @@ public class SearchParameter extends MetadataResource {
    * @return The status of this search parameter. Enables tracking the life-cycle
    *         of the content.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -1466,8 +1466,8 @@ public class SearchParameter extends MetadataResource {
    * @return The type of value that a search parameter may contain, and how the
    *         content is interpreted.
    */
-  public StringType getType() {
-    return this.type == null ? null : this.type;
+  public String getType() {
+    return this.type == null ? null : this.type.getValue();
   }
 
   /**
@@ -1633,8 +1633,8 @@ public class SearchParameter extends MetadataResource {
    * @return How the search parameter relates to the set of elements returned by
    *         evaluating the xpath query.
    */
-  public StringType getXpathUsage() {
-    return this.xpathUsage == null ? null : this.xpathUsage;
+  public String getXpathUsage() {
+    return this.xpathUsage == null ? null : this.xpathUsage.getValue();
   }
 
   /**

@@ -258,8 +258,8 @@ public class OperationDefinition extends MetadataResource {
     /**
      * @return Whether this is an input or an output parameter.
      */
-    public StringType getUse() {
-      return this.use == null ? null : this.use;
+    public String getUse() {
+      return this.use == null ? null : this.use.getValue();
     }
 
     /**
@@ -620,8 +620,8 @@ public class OperationDefinition extends MetadataResource {
      * @return How the parameter is understood as a search parameter. This is only
      *         used if the parameter type is 'string'.
      */
-    public StringType getSearchType() {
-      return this.searchType == null ? null : this.searchType;
+    public String getSearchType() {
+      return this.searchType == null ? null : this.searchType.getValue();
     }
 
     /**
@@ -1225,8 +1225,8 @@ public class OperationDefinition extends MetadataResource {
      *         binding - that is, the degree to which the provided value set must be
      *         adhered to in the instances.
      */
-    public StringType getStrength() {
-      return this.strength == null ? null : this.strength;
+    public String getStrength() {
+      return this.strength == null ? null : this.strength.getValue();
     }
 
     /**
@@ -2514,8 +2514,8 @@ public class OperationDefinition extends MetadataResource {
    * @return The status of this operation definition. Enables tracking the
    *         life-cycle of the content.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -2564,8 +2564,8 @@ public class OperationDefinition extends MetadataResource {
   /**
    * @return Whether this is an operation or a named query.
    */
-  public StringType getKind() {
-    return this.kind == null ? null : this.kind;
+  public String getKind() {
+    return this.kind == null ? null : this.kind.getValue();
   }
 
   /**

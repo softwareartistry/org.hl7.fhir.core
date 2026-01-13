@@ -44,7 +44,6 @@ import org.hl7.fhir.r4.conformance.ProfileUtilities;
 import org.hl7.fhir.r4.model.Base;
 import org.hl7.fhir.r4.model.ElementDefinition;
 import org.hl7.fhir.r4.model.ElementDefinition.TypeRefComponent;
-import org.hl7.fhir.r4.model.Enumerations.BindingStrength;
 import org.hl7.fhir.r4.model.ICoding;
 import org.hl7.fhir.r4.model.StringType;
 import org.hl7.fhir.r4.model.StructureDefinition;
@@ -863,7 +862,7 @@ public class Element extends Base {
 
   public ICoding getAsICoding() throws FHIRException {
     if ("code".equals(fhirType())) {
-      if (property.getDefinition().getBinding().getStrength() != BindingStrength.REQUIRED)
+      if (property.getDefinition().getBinding().getStrength() != "REQUIRED")
         return null;
       ICodingImpl c = new ICodingImpl(true, true, false, false);
       c.code = primitiveValue();

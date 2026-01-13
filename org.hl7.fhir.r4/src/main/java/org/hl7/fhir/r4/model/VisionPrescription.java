@@ -244,8 +244,8 @@ public class VisionPrescription extends DomainResource {
     /**
      * @return The eye for which the lens specification applies.
      */
-    public StringType getEye() {
-      return this.eye == null ? null : this.eye;
+    public String getEye() {
+      return this.eye == null ? null : this.eye.getValue();
     }
 
     /**
@@ -1549,8 +1549,8 @@ public class VisionPrescription extends DomainResource {
     /**
      * @return The relative base, or reference lens edge, for the prism.
      */
-    public StringType getBase() {
-      return this.base == null ? null : this.base;
+    public String getBase() {
+      return this.base == null ? null : this.base.getValue();
     }
 
     /**
@@ -1909,8 +1909,8 @@ public class VisionPrescription extends DomainResource {
   /**
    * @return The status of the resource instance.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

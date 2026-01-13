@@ -612,8 +612,8 @@ public class EvidenceVariable extends MetadataResource {
      * @return Indicates how elements are aggregated within the study effective
      *         period.
      */
-    public StringType getGroupMeasure() {
-      return this.groupMeasure == null ? null : this.groupMeasure;
+    public String getGroupMeasure() {
+      return this.groupMeasure == null ? null : this.groupMeasure.getValue();
     }
 
     /**
@@ -1661,8 +1661,8 @@ public class EvidenceVariable extends MetadataResource {
    * @return The status of this evidence variable. Enables tracking the life-cycle
    *         of the content.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -2663,8 +2663,8 @@ public class EvidenceVariable extends MetadataResource {
    * @return The type of evidence element, a population, an exposure, or an
    *         outcome.
    */
-  public StringType getType() {
-    return this.type == null ? null : this.type;
+  public String getType() {
+    return this.type == null ? null : this.type.getValue();
   }
 
   /**

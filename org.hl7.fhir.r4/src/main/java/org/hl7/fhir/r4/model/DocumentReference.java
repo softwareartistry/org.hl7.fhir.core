@@ -132,8 +132,8 @@ public class DocumentReference extends DomainResource {
     /**
      * @return The type of relationship that this document has with anther document.
      */
-    public StringType getCode() {
-      return this.code == null ? null : this.code;
+    public String getCode() {
+      return this.code == null ? null : this.code.getValue();
     }
 
     /**
@@ -1597,8 +1597,8 @@ public class DocumentReference extends DomainResource {
   /**
    * @return The status of this document reference.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -1646,8 +1646,8 @@ public class DocumentReference extends DomainResource {
   /**
    * @return The status of the underlying document.
    */
-  public StringType getDocStatus() {
-    return this.docStatus == null ? null : this.docStatus;
+  public String getDocStatus() {
+    return this.docStatus == null ? null : this.docStatus.getValue();
   }
 
   /**

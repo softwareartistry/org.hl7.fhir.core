@@ -1380,8 +1380,8 @@ public class BiologicallyDerivedProduct extends DomainResource {
     /**
      * @return Temperature scale used.
      */
-    public StringType getScale() {
-      return this.scale == null ? null : this.scale;
+    public String getScale() {
+      return this.scale == null ? null : this.scale.getValue();
     }
 
     /**
@@ -1816,8 +1816,8 @@ public class BiologicallyDerivedProduct extends DomainResource {
   /**
    * @return Broad category of this product.
    */
-  public StringType getProductCategory() {
-    return this.productCategory == null ? null : this.productCategory;
+  public String getProductCategory() {
+    return this.productCategory == null ? null : this.productCategory.getValue();
   }
 
   /**
@@ -1895,8 +1895,8 @@ public class BiologicallyDerivedProduct extends DomainResource {
   /**
    * @return Whether the product is currently available.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

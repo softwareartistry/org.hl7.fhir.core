@@ -934,8 +934,8 @@ public class Medication extends DomainResource {
   /**
    * @return A code to indicate if the medication is in active use.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

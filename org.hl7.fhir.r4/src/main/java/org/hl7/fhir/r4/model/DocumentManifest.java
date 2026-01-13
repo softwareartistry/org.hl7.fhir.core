@@ -591,8 +591,8 @@ public class DocumentManifest extends DomainResource {
   /**
    * @return The status of this document manifest.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

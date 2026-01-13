@@ -3398,8 +3398,8 @@ public class NutritionOrder extends DomainResource {
   /**
    * @return The workflow status of the nutrition order/request.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -3451,8 +3451,8 @@ public class NutritionOrder extends DomainResource {
    * @return Indicates the level of authority/intentionality associated with the
    *         NutrionOrder and where the request fits into the workflow chain.
    */
-  public StringType getIntent() {
-    return this.intent == null ? null : this.intent;
+  public String getIntent() {
+    return this.intent == null ? null : this.intent.getValue();
   }
 
   /**

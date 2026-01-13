@@ -640,8 +640,8 @@ public class ResearchElementDefinition extends MetadataResource {
      * @return Indicates how elements are aggregated within the study effective
      *         period.
      */
-    public StringType getStudyEffectiveGroupMeasure() {
-      return this.studyEffectiveGroupMeasure == null ? null : this.studyEffectiveGroupMeasure;
+    public String getStudyEffectiveGroupMeasure() {
+      return this.studyEffectiveGroupMeasure == null ? null : this.studyEffectiveGroupMeasure.getValue();
     }
 
     /**
@@ -879,8 +879,8 @@ public class ResearchElementDefinition extends MetadataResource {
      * @return Indicates how elements are aggregated within the study effective
      *         period.
      */
-    public StringType getParticipantEffectiveGroupMeasure() {
-      return this.participantEffectiveGroupMeasure == null ? null : this.participantEffectiveGroupMeasure;
+    public String getParticipantEffectiveGroupMeasure() {
+      return this.participantEffectiveGroupMeasure == null ? null : this.participantEffectiveGroupMeasure.getValue();
     }
 
     /**
@@ -2128,8 +2128,8 @@ public class ResearchElementDefinition extends MetadataResource {
    * @return The status of this research element definition. Enables tracking the
    *         life-cycle of the content.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -3449,8 +3449,8 @@ public class ResearchElementDefinition extends MetadataResource {
    * @return The type of research element, a population, an exposure, or an
    *         outcome.
    */
-  public StringType getType() {
-    return this.type == null ? null : this.type;
+  public String getType() {
+    return this.type == null ? null : this.type.getValue();
   }
 
   /**
@@ -3502,8 +3502,8 @@ public class ResearchElementDefinition extends MetadataResource {
    * @return The type of the outcome (e.g. Dichotomous, Continuous, or
    *         Descriptive).
    */
-  public StringType getVariableType() {
-    return this.variableType == null ? null : this.variableType;
+  public String getVariableType() {
+    return this.variableType == null ? null : this.variableType.getValue();
   }
 
   /**

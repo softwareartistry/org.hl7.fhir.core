@@ -822,8 +822,8 @@ public class Substance extends DomainResource {
   /**
    * @return A code to indicate if the substance is actively used.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

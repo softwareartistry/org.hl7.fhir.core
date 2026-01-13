@@ -616,8 +616,8 @@ public class ObservationDefinition extends DomainResource {
      * @return The category of interval of values for continuous or ordinal
      *         observations conforming to this ObservationDefinition.
      */
-    public StringType getCategory() {
-      return this.category == null ? null : this.category;
+    public String getCategory() {
+      return this.category == null ? null : this.category.getValue();
     }
 
     /**
@@ -777,8 +777,8 @@ public class ObservationDefinition extends DomainResource {
     /**
      * @return Sex of the population the range applies to.
      */
-    public StringType getGender() {
-      return this.gender == null ? null : this.gender;
+    public String getGender() {
+      return this.gender == null ? null : this.gender.getValue();
     }
 
     /**

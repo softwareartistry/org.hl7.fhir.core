@@ -982,8 +982,8 @@ public class Communication extends DomainResource {
   /**
    * @return The status of the transmission.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -1117,8 +1117,8 @@ public class Communication extends DomainResource {
    * @return Characterizes how quickly the planned or in progress communication
    *         must be addressed. Includes concepts such as stat, urgent, routine.
    */
-  public StringType getPriority() {
-    return this.priority == null ? null : this.priority;
+  public String getPriority() {
+    return this.priority == null ? null : this.priority.getValue();
   }
 
   /**

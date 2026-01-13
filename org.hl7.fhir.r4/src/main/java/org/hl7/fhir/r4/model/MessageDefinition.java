@@ -1383,8 +1383,8 @@ public class MessageDefinition extends MetadataResource {
    * @return The status of this message definition. Enables tracking the
    *         life-cycle of the content.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -2137,8 +2137,8 @@ public class MessageDefinition extends MetadataResource {
   /**
    * @return The impact of the content of the message.
    */
-  public StringType getCategory() {
-    return this.category == null ? null : this.category;
+  public String getCategory() {
+    return this.category == null ? null : this.category.getValue();
   }
 
   /**
@@ -2250,8 +2250,8 @@ public class MessageDefinition extends MetadataResource {
    * @return Declare at a message definition level whether a response is required
    *         or only upon error or success, or never.
    */
-  public StringType getResponseRequired() {
-    return this.responseRequired == null ? null : this.responseRequired;
+  public String getResponseRequired() {
+    return this.responseRequired == null ? null : this.responseRequired.getValue();
   }
 
   /**

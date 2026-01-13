@@ -497,8 +497,8 @@ public class Media extends DomainResource {
   /**
    * @return The current state of the {{title}}.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

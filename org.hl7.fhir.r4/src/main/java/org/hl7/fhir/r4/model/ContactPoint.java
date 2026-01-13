@@ -135,8 +135,8 @@ public class ContactPoint extends Type implements ICompositeType {
    * @return Telecommunications form for contact point - what communications
    *         system is required to make use of the contact.
    */
-  public StringType getSystem() {
-    return this.system == null ? null : this.system;
+  public String getSystem() {
+    return this.system == null ? null : this.system.getValue();
   }
 
   /**
@@ -248,8 +248,8 @@ public class ContactPoint extends Type implements ICompositeType {
   /**
    * @return Identifies the purpose for the contact point.
    */
-  public StringType getUse() {
-    return this.use == null ? null : this.use;
+  public String getUse() {
+    return this.use == null ? null : this.use.getValue();
   }
 
   /**

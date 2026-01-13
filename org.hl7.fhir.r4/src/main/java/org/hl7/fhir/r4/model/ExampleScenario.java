@@ -188,8 +188,8 @@ public class ExampleScenario extends MetadataResource {
     /**
      * @return The type of actor - person or system.
      */
-    public StringType getType() {
-      return this.type == null ? null : this.type;
+    public String getType() {
+      return this.type == null ? null : this.type.getValue();
     }
 
     /**
@@ -648,8 +648,8 @@ public class ExampleScenario extends MetadataResource {
     /**
      * @return The type of the resource.
      */
-    public StringType getResourceType() {
-      return this.resourceType == null ? null : this.resourceType;
+    public String getResourceType() {
+      return this.resourceType == null ? null : this.resourceType.getValue();
     }
 
     /**
@@ -4356,8 +4356,8 @@ public class ExampleScenario extends MetadataResource {
    * @return The status of this example scenario. Enables tracking the life-cycle
    *         of the content.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

@@ -1697,8 +1697,8 @@ public class MedicationRequest extends DomainResource {
    * @return A code specifying the current state of the order. Generally, this
    *         will be active or completed state.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -1774,8 +1774,8 @@ public class MedicationRequest extends DomainResource {
   /**
    * @return Whether the request is a proposal, plan, or an original order.
    */
-  public StringType getIntent() {
-    return this.intent == null ? null : this.intent;
+  public String getIntent() {
+    return this.intent == null ? null : this.intent.getValue();
   }
 
   /**
@@ -1882,8 +1882,8 @@ public class MedicationRequest extends DomainResource {
    * @return Indicates how quickly the Medication Request should be addressed with
    *         respect to other requests.
    */
-  public StringType getPriority() {
-    return this.priority == null ? null : this.priority;
+  public String getPriority() {
+    return this.priority == null ? null : this.priority.getValue();
   }
 
   /**

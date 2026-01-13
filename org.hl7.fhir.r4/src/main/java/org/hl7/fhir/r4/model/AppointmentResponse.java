@@ -531,8 +531,8 @@ public class AppointmentResponse extends DomainResource {
    *         When the status is accepted, the times can either be the time of the
    *         appointment (as a confirmation of the time) or can be empty.
    */
-  public StringType getParticipantStatus() {
-    return this.participantStatus == null ? null : this.participantStatus;
+  public String getParticipantStatus() {
+    return this.participantStatus == null ? null : this.participantStatus.getValue();
   }
 
   /**
