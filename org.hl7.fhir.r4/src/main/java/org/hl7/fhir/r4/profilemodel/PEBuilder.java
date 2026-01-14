@@ -46,9 +46,11 @@ import org.hl7.fhir.r4.model.ElementDefinition;
 import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionSlicingComponent;
 import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionSlicingDiscriminatorComponent;
 import org.hl7.fhir.r4.model.ElementDefinition.TypeRefComponent;
+import org.hl7.fhir.r4.model.Enumerations.BindingStrength;
 import org.hl7.fhir.r4.model.Resource;
 import org.hl7.fhir.r4.model.ResourceFactory;
 import org.hl7.fhir.r4.model.StructureDefinition;
+import org.hl7.fhir.r4.model.StructureDefinition.TypeDerivationRule;
 import org.hl7.fhir.r4.model.ValueSet;
 import org.hl7.fhir.r4.model.ValueSet.ValueSetExpansionContainsComponent;
 import org.hl7.fhir.r4.terminologies.ValueSetExpander.ValueSetExpansionOutcome;
@@ -338,7 +340,7 @@ public class PEBuilder {
 
   protected List<PEDefinition> listChildren(boolean allFixed, PEDefinition parent, StructureDefinition profileStructure, ElementDefinition definition, String url, String... omitList) {
     StructureDefinition profile = profileStructure;
-    boolean inExtension = profile.getDerivation() == "CONSTRAINT" && "Extension".equals(profile.getType());
+    boolean inExtension = profile.getDerivation() == TypeDerivationRule.CONSTRAINT && "Extension".equals(profile.getType());
     List<ElementDefinition> list = pu.getChildList(profile, definition);
     if (definition.getType().size() == 1 || (!definition.getPath().contains(".")) || list.isEmpty()) {
       assert url == null || checkType(definition, url);
@@ -359,7 +361,7 @@ public class PEBuilder {
             if (passElementPropsCheck(defn, inExtension) && !Utilities.existsInList(defn.getName(), omitList)) {
               String name = uniquefy(names, defn.getName());
               PEDefinitionElement pe = new PEDefinitionElement(this, name, profile, defn, parent.path());
-              pe.setRecursing(definition == defn || (profile.getDerivation() == "SPECIALIZATION" && profile.getType().equals("Extension")));
+              pe.setRecursing(definition == defn || (profile.getDerivation() == TypeDerivationRule.SPECIALIZATION && profile.getType().equals("Extension")));
               if (context.isPrimitiveType(definition.getTypeFirstRep().getWorkingCode()) && "value".equals(pe.name())) {
                 pe.setMustHaveValue(definition.getMustHaveValue());
               }
@@ -459,11 +461,11 @@ public class PEBuilder {
     List<ElementDefinition> list = pu.getSliceList(profileStructure, definition);
     List<PEDefinition> res = new ArrayList<>();
     for (ElementDefinition ed : list) {
-      if (profileStructure.getDerivation() == "CONSTRAINT" && profileStructure.getType().equals("Extension")) {
+      if (profileStructure.getDerivation() == TypeDerivationRule.CONSTRAINT && profileStructure.getType().equals("Extension")) {
         res.add(new PEDefinitionSubExtension(this, profileStructure, ed, parent.path()));
       } else {
         PEDefinitionElement pe = new PEDefinitionElement(this, profileStructure, ed, parent.path());
-        pe.setRecursing(definition == ed || (profileStructure.getDerivation() == "SPECIALIZATION" && profileStructure.getType().equals("Extension")));
+        pe.setRecursing(definition == ed || (profileStructure.getDerivation() == TypeDerivationRule.SPECIALIZATION && profileStructure.getType().equals("Extension")));
         res.add(pe);
       }
     }
@@ -610,7 +612,7 @@ public class PEBuilder {
         } else if (ed.hasPattern()) {
           throw new DefinitionException("The discriminator path '"+path+"' has a pattern on the element '"+ed.getId()+"' - this is not supported by the PEBuilder");
         } else if (ed.hasBinding()) {
-          if (ed.getBinding().getStrength() != "REQUIRED") {
+          if (ed.getBinding().getStrength() != BindingStrength.REQUIRED) {
             throw new DefinitionException("The discriminator path '"+path+"' has a binding on the element '"+ed.getId()+"' but the strength is not required - this is not supported by the PEBuilder");
           } else {
             ValueSet vs = context.fetchResource(ValueSet.class, ed.getBinding().getValueSet());

@@ -29,6 +29,7 @@ package org.hl7.fhir.r4.model;
   
  */
 
+import org.hl7.fhir.r4.model.Enumerations.FHIRVersion;
 import org.hl7.fhir.utilities.VersionUtilities;
 
 /**
@@ -86,8 +87,8 @@ public enum FhirPublication {
     }
   }
 
-  public static FhirPublication fromVersion(String v) {
-    return fromCode(v);
+  public static FhirPublication fromVersion(FHIRVersion v) {
+    return fromCode(v.toCode());
   }
 
 }

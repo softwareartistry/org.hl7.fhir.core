@@ -41,7 +41,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.hl7.fhir.exceptions.FHIRFormatError;
 import org.hl7.fhir.r4.formats.XmlParser;
 import org.hl7.fhir.r4.model.Bundle;
-import org.hl7.fhir.r4.model.Bundle.BundleType;
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
 import org.hl7.fhir.r4.model.DateTimeType;
@@ -123,7 +122,7 @@ public class LoincToDEConvertor {
     now = DateTimeType.now();
 
     bundle = new Bundle();
-    bundle.setType(BundleType.COLLECTION);
+    bundle.setType("COLLECTION");
     bundle.setId("http://hl7.org/fhir/commondataelement/loinc");
     bundle.setMeta(new Meta().setLastUpdatedElement(InstantType.now()));
 

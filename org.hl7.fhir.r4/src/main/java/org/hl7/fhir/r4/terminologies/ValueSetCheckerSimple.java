@@ -40,7 +40,6 @@ import org.hl7.fhir.r4.context.IWorkerContext;
 import org.hl7.fhir.r4.context.IWorkerContext.ValidationResult;
 import org.hl7.fhir.r4.model.CanonicalType;
 import org.hl7.fhir.r4.model.CodeSystem;
-import org.hl7.fhir.r4.model.CodeSystem.CodeSystemContentMode;
 import org.hl7.fhir.r4.model.CodeSystem.ConceptDefinitionComponent;
 import org.hl7.fhir.r4.model.CodeSystem.ConceptDefinitionDesignationComponent;
 import org.hl7.fhir.r4.model.CodeableConcept;
@@ -82,7 +81,7 @@ public class ValueSetCheckerSimple implements ValueSetChecker {
       CodeSystem cs = context.fetchCodeSystem(c.getSystem());
       if (cs == null)
         warnings.add("Unsupported system " + c.getSystem() + " - system is not specified or implicit");
-      else if (cs.getContent() != CodeSystemContentMode.COMPLETE)
+      else if (cs.getContent() != "COMPLETE")
         warnings.add("Unable to resolve system " + c.getSystem() + " - system is not complete");
       else {
         ValidationResult res = validateCode(c, cs);
@@ -125,7 +124,7 @@ public class ValueSetCheckerSimple implements ValueSetChecker {
       if (!inExpansion)
         throw new FHIRException(warningMessage);
     }
-    if (cs != null && cs.getContent() != CodeSystemContentMode.COMPLETE) {
+    if (cs != null && cs.getContent() != "COMPLETE") {
       warningMessage = "Unable to resolve system " + system + " - system is not complete";
       if (!inExpansion)
         throw new FHIRException(warningMessage);
@@ -372,7 +371,7 @@ public class ValueSetCheckerSimple implements ValueSetChecker {
     }
 
     CodeSystem def = context.fetchCodeSystem(system);
-    if (def.getContent() != CodeSystemContentMode.COMPLETE)
+    if (def.getContent() != "COMPLETE")
       throw new FHIRException("Unable to resolve system " + vsi.getSystem() + " - system is not complete");
 
     List<ConceptDefinitionComponent> list = def.getConcept();

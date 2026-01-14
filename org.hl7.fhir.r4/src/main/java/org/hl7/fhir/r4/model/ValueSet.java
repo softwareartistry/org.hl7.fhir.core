@@ -57,6 +57,280 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
     "expansion" })
 public class ValueSet extends MetadataResource {
 
+  public enum FilterOperator {
+    /**
+     * The specified property of the code equals the provided value.
+     */
+    EQUAL,
+    /**
+     * Includes all concept ids that have a transitive is-a relationship with the
+     * concept Id provided as the value, including the provided concept itself
+     * (include descendant codes and self).
+     */
+    ISA,
+    /**
+     * Includes all concept ids that have a transitive is-a relationship with the
+     * concept Id provided as the value, excluding the provided concept itself i.e.
+     * include descendant codes only).
+     */
+    DESCENDENTOF,
+    /**
+     * The specified property of the code does not have an is-a relationship with
+     * the provided value.
+     */
+    ISNOTA,
+    /**
+     * The specified property of the code matches the regex specified in the
+     * provided value.
+     */
+    REGEX,
+    /**
+     * The specified property of the code is in the set of codes or concepts
+     * specified in the provided value (comma separated list).
+     */
+    IN,
+    /**
+     * The specified property of the code is not in the set of codes or concepts
+     * specified in the provided value (comma separated list).
+     */
+    NOTIN,
+    /**
+     * Includes all concept ids that have a transitive is-a relationship from the
+     * concept Id provided as the value, including the provided concept itself (i.e.
+     * include ancestor codes and self).
+     */
+    GENERALIZES,
+    /**
+     * The specified property of the code has at least one value (if the specified
+     * value is true; if the specified value is false, then matches when the
+     * specified property of the code has no values).
+     */
+    EXISTS,
+    /**
+     * added to help the parsers with the generic types
+     */
+    NULL;
+
+    public static FilterOperator fromCode(String codeString) throws FHIRException {
+      if (codeString == null || "".equals(codeString))
+        return null;
+      if ("=".equals(codeString))
+        return EQUAL;
+      if ("is-a".equals(codeString))
+        return ISA;
+      if ("descendent-of".equals(codeString))
+        return DESCENDENTOF;
+      if ("is-not-a".equals(codeString))
+        return ISNOTA;
+      if ("regex".equals(codeString))
+        return REGEX;
+      if ("in".equals(codeString))
+        return IN;
+      if ("not-in".equals(codeString))
+        return NOTIN;
+      if ("generalizes".equals(codeString))
+        return GENERALIZES;
+      if ("exists".equals(codeString))
+        return EXISTS;
+      if (Configuration.isAcceptInvalidEnums())
+        return null;
+      else
+        throw new FHIRException("Unknown FilterOperator code '" + codeString + "'");
+    }
+
+    public String toCode() {
+      switch (this) {
+        case EQUAL:
+          return "=";
+        case ISA:
+          return "is-a";
+        case DESCENDENTOF:
+          return "descendent-of";
+        case ISNOTA:
+          return "is-not-a";
+        case REGEX:
+          return "regex";
+        case IN:
+          return "in";
+        case NOTIN:
+          return "not-in";
+        case GENERALIZES:
+          return "generalizes";
+        case EXISTS:
+          return "exists";
+        case NULL:
+          return null;
+        default:
+          return "?";
+      }
+    }
+
+    public String getSystem() {
+      switch (this) {
+        case EQUAL:
+          return "http://hl7.org/fhir/filter-operator";
+        case ISA:
+          return "http://hl7.org/fhir/filter-operator";
+        case DESCENDENTOF:
+          return "http://hl7.org/fhir/filter-operator";
+        case ISNOTA:
+          return "http://hl7.org/fhir/filter-operator";
+        case REGEX:
+          return "http://hl7.org/fhir/filter-operator";
+        case IN:
+          return "http://hl7.org/fhir/filter-operator";
+        case NOTIN:
+          return "http://hl7.org/fhir/filter-operator";
+        case GENERALIZES:
+          return "http://hl7.org/fhir/filter-operator";
+        case EXISTS:
+          return "http://hl7.org/fhir/filter-operator";
+        case NULL:
+          return null;
+        default:
+          return "?";
+      }
+    }
+
+    public String getDefinition() {
+      switch (this) {
+        case EQUAL:
+          return "The specified property of the code equals the provided value.";
+        case ISA:
+          return "Includes all concept ids that have a transitive is-a relationship with the concept Id provided as the value, including the provided concept itself (include descendant codes and self).";
+        case DESCENDENTOF:
+          return "Includes all concept ids that have a transitive is-a relationship with the concept Id provided as the value, excluding the provided concept itself i.e. include descendant codes only).";
+        case ISNOTA:
+          return "The specified property of the code does not have an is-a relationship with the provided value.";
+        case REGEX:
+          return "The specified property of the code  matches the regex specified in the provided value.";
+        case IN:
+          return "The specified property of the code is in the set of codes or concepts specified in the provided value (comma separated list).";
+        case NOTIN:
+          return "The specified property of the code is not in the set of codes or concepts specified in the provided value (comma separated list).";
+        case GENERALIZES:
+          return "Includes all concept ids that have a transitive is-a relationship from the concept Id provided as the value, including the provided concept itself (i.e. include ancestor codes and self).";
+        case EXISTS:
+          return "The specified property of the code has at least one value (if the specified value is true; if the specified value is false, then matches when the specified property of the code has no values).";
+        case NULL:
+          return null;
+        default:
+          return "?";
+      }
+    }
+
+    public String getDisplay() {
+      switch (this) {
+        case EQUAL:
+          return "Equals";
+        case ISA:
+          return "Is A (by subsumption)";
+        case DESCENDENTOF:
+          return "Descendent Of (by subsumption)";
+        case ISNOTA:
+          return "Not (Is A) (by subsumption)";
+        case REGEX:
+          return "Regular Expression";
+        case IN:
+          return "In Set";
+        case NOTIN:
+          return "Not in Set";
+        case GENERALIZES:
+          return "Generalizes (by Subsumption)";
+        case EXISTS:
+          return "Exists";
+        case NULL:
+          return null;
+        default:
+          return "?";
+      }
+    }
+  }
+
+  public static class FilterOperatorEnumFactory implements EnumFactory<FilterOperator> {
+    public FilterOperator fromCode(String codeString) throws IllegalArgumentException {
+      if (codeString == null || "".equals(codeString))
+        if (codeString == null || "".equals(codeString))
+          return null;
+      if ("=".equals(codeString))
+        return FilterOperator.EQUAL;
+      if ("is-a".equals(codeString))
+        return FilterOperator.ISA;
+      if ("descendent-of".equals(codeString))
+        return FilterOperator.DESCENDENTOF;
+      if ("is-not-a".equals(codeString))
+        return FilterOperator.ISNOTA;
+      if ("regex".equals(codeString))
+        return FilterOperator.REGEX;
+      if ("in".equals(codeString))
+        return FilterOperator.IN;
+      if ("not-in".equals(codeString))
+        return FilterOperator.NOTIN;
+      if ("generalizes".equals(codeString))
+        return FilterOperator.GENERALIZES;
+      if ("exists".equals(codeString))
+        return FilterOperator.EXISTS;
+      throw new IllegalArgumentException("Unknown FilterOperator code '" + codeString + "'");
+    }
+
+    public Enumeration<FilterOperator> fromType(PrimitiveType<?> code) throws FHIRException {
+      if (code == null)
+        return null;
+      if (code.isEmpty())
+        return new Enumeration<FilterOperator>(this, FilterOperator.NULL, code);
+      String codeString = code.asStringValue();
+      if (codeString == null || "".equals(codeString))
+        return new Enumeration<FilterOperator>(this, FilterOperator.NULL, code);
+      if ("=".equals(codeString))
+        return new Enumeration<FilterOperator>(this, FilterOperator.EQUAL, code);
+      if ("is-a".equals(codeString))
+        return new Enumeration<FilterOperator>(this, FilterOperator.ISA, code);
+      if ("descendent-of".equals(codeString))
+        return new Enumeration<FilterOperator>(this, FilterOperator.DESCENDENTOF, code);
+      if ("is-not-a".equals(codeString))
+        return new Enumeration<FilterOperator>(this, FilterOperator.ISNOTA, code);
+      if ("regex".equals(codeString))
+        return new Enumeration<FilterOperator>(this, FilterOperator.REGEX, code);
+      if ("in".equals(codeString))
+        return new Enumeration<FilterOperator>(this, FilterOperator.IN, code);
+      if ("not-in".equals(codeString))
+        return new Enumeration<FilterOperator>(this, FilterOperator.NOTIN, code);
+      if ("generalizes".equals(codeString))
+        return new Enumeration<FilterOperator>(this, FilterOperator.GENERALIZES, code);
+      if ("exists".equals(codeString))
+        return new Enumeration<FilterOperator>(this, FilterOperator.EXISTS, code);
+      throw new FHIRException("Unknown FilterOperator code '" + codeString + "'");
+    }
+
+    public String toCode(FilterOperator code) {
+      if (code == FilterOperator.NULL)
+        return null;
+      if (code == FilterOperator.EQUAL)
+        return "=";
+      if (code == FilterOperator.ISA)
+        return "is-a";
+      if (code == FilterOperator.DESCENDENTOF)
+        return "descendent-of";
+      if (code == FilterOperator.ISNOTA)
+        return "is-not-a";
+      if (code == FilterOperator.REGEX)
+        return "regex";
+      if (code == FilterOperator.IN)
+        return "in";
+      if (code == FilterOperator.NOTIN)
+        return "not-in";
+      if (code == FilterOperator.GENERALIZES)
+        return "generalizes";
+      if (code == FilterOperator.EXISTS)
+        return "exists";
+      return "?";
+    }
+
+    public String toSystem(FilterOperator code) {
+      return code.getSystem();
+    }
+  }
+
   @Block()
   public static class ValueSetComposeComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -1915,10 +2189,10 @@ public class ValueSet extends MetadataResource {
     /**
      * The kind of operation to perform as a part of the filter criteria.
      */
-    @Child(name = "op", type = { StringType.class }, order = 2, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "op", type = { CodeType.class }, order = 2, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "= | is-a | descendent-of | is-not-a | regex | in | not-in | generalizes | exists", formalDefinition = "The kind of operation to perform as a part of the filter criteria.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/filter-operator")
-    protected StringType op;
+    protected Enumeration<FilterOperator> op;
 
     /**
      * The match value may be either a code defined by the system, or a string
@@ -1944,7 +2218,7 @@ public class ValueSet extends MetadataResource {
     /**
      * Constructor
      */
-    public ConceptSetFilterComponent(CodeType property, StringType op, StringType value) {
+    public ConceptSetFilterComponent(CodeType property, Enumeration<FilterOperator> op, StringType value) {
       super();
       this.property = property;
       this.op = op;
@@ -2009,12 +2283,12 @@ public class ValueSet extends MetadataResource {
      *         criteria.). This is the underlying object with id, value and
      *         extensions. The accessor "getOp" gives direct access to the value
      */
-    public StringType getOpElement() {
+    public Enumeration<FilterOperator> getOpElement() {
       if (this.op == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create ConceptSetFilterComponent.op");
         else if (Configuration.doAutoCreate())
-          this.op = new StringType(); // bb
+          this.op = new Enumeration<FilterOperator>(new FilterOperatorEnumFactory()); // bb
       return this.op;
     }
 
@@ -2032,7 +2306,7 @@ public class ValueSet extends MetadataResource {
      *              and extensions. The accessor "getOp" gives direct access to the
      *              value
      */
-    public ConceptSetFilterComponent setOpElement(StringType value) {
+    public ConceptSetFilterComponent setOpElement(Enumeration<FilterOperator> value) {
       this.op = value;
       return this;
     }
@@ -2040,7 +2314,7 @@ public class ValueSet extends MetadataResource {
     /**
      * @return The kind of operation to perform as a part of the filter criteria.
      */
-    public String getOp() {
+    public FilterOperator getOp() {
       return this.op == null ? null : this.op.getValue();
     }
 
@@ -2048,9 +2322,9 @@ public class ValueSet extends MetadataResource {
      * @param value The kind of operation to perform as a part of the filter
      *              criteria.
      */
-    public ConceptSetFilterComponent setOp(String value) {
+    public ConceptSetFilterComponent setOp(FilterOperator value) {
       if (this.op == null)
-        this.op = new StringType();
+        this.op = new Enumeration<FilterOperator>(new FilterOperatorEnumFactory());
       this.op.setValue(value);
       return this;
     }
@@ -2131,7 +2405,7 @@ public class ValueSet extends MetadataResource {
       children.add(new Property("property", "code",
           "A code that identifies a property or a filter defined in the code system.", 0, 1, property));
       children.add(
-          new Property("op", "string", "The kind of operation to perform as a part of the filter criteria.", 0, 1, op));
+          new Property("op", "code", "The kind of operation to perform as a part of the filter criteria.", 0, 1, op));
       children.add(new Property("value", "string",
           "The match value may be either a code defined by the system, or a string value, which is a regex match on the literal string of the property value  (if the filter represents a property defined in CodeSystem) or of the system filter value (if the filter represents a filter defined in CodeSystem) when the operation is 'regex', or one of the values (true and false), when the operation is 'exists'.",
           0, 1, value));
@@ -2144,7 +2418,7 @@ public class ValueSet extends MetadataResource {
         /* property */ return new Property("property", "code",
             "A code that identifies a property or a filter defined in the code system.", 0, 1, property);
       case 3553:
-        /* op */ return new Property("op", "string", "The kind of operation to perform as a part of the filter criteria.",
+        /* op */ return new Property("op", "code", "The kind of operation to perform as a part of the filter criteria.",
             0, 1, op);
       case 111972721:
         /* value */ return new Property("value", "string",
@@ -2162,7 +2436,7 @@ public class ValueSet extends MetadataResource {
       case -993141291:
         /* property */ return this.property == null ? new Base[0] : new Base[] { this.property }; // CodeType
       case 3553:
-        /* op */ return this.op == null ? new Base[0] : new Base[] { this.op }; // StringType
+        /* op */ return this.op == null ? new Base[0] : new Base[] { this.op }; // Enumeration<FilterOperator>
       case 111972721:
         /* value */ return this.value == null ? new Base[0] : new Base[] { this.value }; // StringType
       default:
@@ -2178,7 +2452,8 @@ public class ValueSet extends MetadataResource {
         this.property = castToCode(value); // CodeType
         return value;
       case 3553: // op
-        this.op = castToString(value); // StringType
+        value = new FilterOperatorEnumFactory().fromType(castToCode(value));
+        this.op = (Enumeration) value; // Enumeration<FilterOperator>
         return value;
       case 111972721: // value
         this.value = castToString(value); // StringType
@@ -2194,7 +2469,8 @@ public class ValueSet extends MetadataResource {
       if (name.equals("property")) {
         this.property = castToCode(value); // CodeType
       } else if (name.equals("op")) {
-        this.op = castToString(value); // StringType
+        value = new FilterOperatorEnumFactory().fromType(castToCode(value));
+        this.op = (Enumeration) value; // Enumeration<FilterOperator>
       } else if (name.equals("value")) {
         this.value = castToString(value); // StringType
       } else
@@ -2236,7 +2512,7 @@ public class ValueSet extends MetadataResource {
       case -993141291:
         /* property */ return new String[] { "code" };
       case 3553:
-        /* op */ return new String[] { "string" };
+        /* op */ return new String[] { "code" };
       case 111972721:
         /* value */ return new String[] { "string" };
       default:
@@ -3108,7 +3384,7 @@ public class ValueSet extends MetadataResource {
     /**
      * @return {@link #value} (The value of the parameter.)
      */
-    public String getValueStringType() throws FHIRException {
+    public StringType getValueStringType() throws FHIRException {
       if (this.value == null)
         this.value = new StringType();
       if (!(this.value instanceof StringType))

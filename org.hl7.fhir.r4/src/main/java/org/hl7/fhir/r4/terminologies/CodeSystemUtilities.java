@@ -44,10 +44,8 @@ import org.hl7.fhir.r4.model.CodeSystem;
 import org.hl7.fhir.r4.model.CodeSystem.ConceptDefinitionComponent;
 import org.hl7.fhir.r4.model.CodeSystem.ConceptPropertyComponent;
 import org.hl7.fhir.r4.model.CodeSystem.PropertyComponent;
-import org.hl7.fhir.r4.model.CodeSystem.PropertyType;
 import org.hl7.fhir.r4.model.CodeType;
 import org.hl7.fhir.r4.model.DateTimeType;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
 import org.hl7.fhir.r4.model.Identifier;
 import org.hl7.fhir.r4.model.Meta;
 import org.hl7.fhir.r4.model.Type;
@@ -80,7 +78,7 @@ public class CodeSystemUtilities {
   public static void defineNotSelectableProperty(CodeSystem cs) {
     defineCodeSystemProperty(cs, "notSelectable",
         "Indicates that the code is abstract - only intended to be used as a selector for other concepts",
-        PropertyType.BOOLEAN);
+        "BOOLEAN");
   }
 
 
@@ -120,25 +118,25 @@ public class CodeSystemUtilities {
   public static void defineStatusProperty(CodeSystem cs) {
     defineCodeSystemProperty(cs, "status",
         "A property that indicates the status of the concept. One of active, experimental, deprecated, retired",
-        PropertyType.CODE);
+        "CODE");
   }
 
   private static void defineDeprecatedProperty(CodeSystem cs) {
     defineCodeSystemProperty(cs, "deprecationDate",
         "The date at which a concept was deprecated. Concepts that are deprecated but not inactive can still be used, but their use is discouraged",
-        PropertyType.DATETIME);
+        "DATETIME");
   }
 
   public static void defineParentProperty(CodeSystem cs) {
     defineCodeSystemProperty(cs, "parent",
         "The concept identified in this property is a parent of the concept on which it is a property. The property type will be 'code'. The meaning of parent/child relationships is defined by the hierarchyMeaning attribute",
-        PropertyType.CODE);
+        "CODE");
   }
 
   public static void defineChildProperty(CodeSystem cs) {
     defineCodeSystemProperty(cs, "child",
         "The concept identified in this property is a child of the concept on which it is a property. The property type will be 'code'. The meaning of parent/child relationships is defined by the hierarchyMeaning attribute",
-        PropertyType.CODE);
+        "CODE");
   }
 
   public static boolean isDeprecated(CodeSystem cs, ConceptDefinitionComponent def) {
@@ -183,7 +181,7 @@ public class CodeSystemUtilities {
   }
 
   public static PropertyComponent defineCodeSystemProperty(CodeSystem cs, String code, String description,
-      PropertyType type) {
+      String type) {
     for (PropertyComponent p : cs.getProperty()) {
       if (p.getCode().equals(code))
         return p;
@@ -276,7 +274,7 @@ public class CodeSystemUtilities {
       }
       if (status == StandardsStatus.NORMATIVE) {
         cs.setExperimental(false);
-        cs.setStatus(PublicationStatus.ACTIVE);
+        cs.setStatus("ACTIVE");
       }
     }
     if (fmm != null) {

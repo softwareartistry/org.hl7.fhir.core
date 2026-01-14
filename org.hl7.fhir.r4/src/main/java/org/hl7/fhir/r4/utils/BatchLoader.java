@@ -44,8 +44,7 @@ import org.hl7.fhir.r4.formats.JsonParser;
 import org.hl7.fhir.r4.formats.XmlParser;
 import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.Bundle.BundleEntryComponent;
-import org.hl7.fhir.r4.model.Bundle.BundleType;
-import org.hl7.fhir.r4.model.Bundle.HTTPVerb;
+
 import org.hl7.fhir.r4.model.Resource;
 import org.hl7.fhir.r4.utils.client.FHIRToolingClient;
 import org.hl7.fhir.utilities.IniFile;
@@ -105,12 +104,12 @@ public class BatchLoader {
       int cursor = ini.hasProperty("progress", f.getName()) ? ini.getIntegerProperty("progress", f.getName()) : 0;
       while (cursor < bnd.getEntry().size()) {
         Bundle bt = new Bundle();
-        bt.setType(BundleType.BATCH);
+        bt.setType("BATCH");
         bt.setId(UUID.randomUUID().toString().toLowerCase());
         for (int i = cursor; i < Math.min(bnd.getEntry().size(), cursor + size); i++) {
           BundleEntryComponent be = bt.addEntry();
           be.setResource(bnd.getEntry().get(i).getResource());
-          be.getRequest().setMethod(HTTPVerb.PUT);
+          be.getRequest().setMethod("PUT");
           be.getRequest().setUrl(be.getResource().getResourceType().toString() + "/" + be.getResource().getId());
         }
         System.out.print(f.getName() + " (" + cursor + "/" + bnd.getEntry().size() + "): ");

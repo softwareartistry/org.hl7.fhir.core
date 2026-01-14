@@ -197,7 +197,7 @@ public class CSVWriter extends TextStreamWriter {
       line.addString(itemList(ed.getSlicing().getDiscriminator()));
       line.addString(ed.getSlicing().getDescription());
       line.addBoolean(ed.getSlicing().getOrdered());
-      line.addString(ed.getSlicing().getRules() != null ? ed.getSlicing().getRules().toCode() : "");
+      line.addString(ed.getSlicing().getRules() != null ? ed.getSlicing().getRules() : "");
     } else {
       line.addValue("");
       line.addValue("");
@@ -250,7 +250,7 @@ public class CSVWriter extends TextStreamWriter {
         val = c.getKey() + ":" + c.getHuman() + " {" + c.getExpression() + "}";
       } else if (o instanceof ElementDefinitionSlicingDiscriminatorComponent) {
         ElementDefinitionSlicingDiscriminatorComponent c = (ElementDefinitionSlicingDiscriminatorComponent) o;
-        val = c.getType().toCode() + ":" + c.getPath() + "}";
+        val = c.getType() + ":" + c.getPath() + "}";
 
       } else {
         val = o.toString();

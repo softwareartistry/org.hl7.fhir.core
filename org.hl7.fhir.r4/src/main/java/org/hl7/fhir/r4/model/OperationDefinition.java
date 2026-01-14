@@ -36,6 +36,8 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
+import org.hl7.fhir.r4.model.Enumerations.SearchParamType;
+import org.hl7.fhir.r4.model.Enumerations.SearchParamTypeEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -124,10 +126,10 @@ public class OperationDefinition extends MetadataResource {
      * the parameter type is 'string'.
      */
     @Child(name = "searchType", type = {
-      StringType.class }, order = 8, min = 0, max = 1, modifier = false, summary = false)
+      CodeType.class }, order = 8, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "number | date | string | token | reference | composite | quantity | uri | special", formalDefinition = "How the parameter is understood as a search parameter. This is only used if the parameter type is 'string'.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/search-param-type")
-    protected StringType searchType;
+    protected Enumeration<SearchParamType> searchType;
 
     /**
      * Binds to a value set if this parameter is coded (code, Coding,
@@ -587,12 +589,12 @@ public class OperationDefinition extends MetadataResource {
      *         This is the underlying object with id, value and extensions. The
      *         accessor "getSearchType" gives direct access to the value
      */
-    public StringType getSearchTypeElement() {
+    public Enumeration<SearchParamType> getSearchTypeElement() {
       if (this.searchType == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create OperationDefinitionParameterComponent.searchType");
         else if (Configuration.doAutoCreate())
-          this.searchType = new StringType(); // bb
+          this.searchType = new Enumeration<SearchParamType>(new SearchParamTypeEnumFactory()); // bb
       return this.searchType;
     }
 
@@ -611,7 +613,7 @@ public class OperationDefinition extends MetadataResource {
      *              extensions. The accessor "getSearchType" gives direct access to
      *              the value
      */
-    public OperationDefinitionParameterComponent setSearchTypeElement(StringType value) {
+    public OperationDefinitionParameterComponent setSearchTypeElement(Enumeration<SearchParamType> value) {
       this.searchType = value;
       return this;
     }
@@ -620,7 +622,7 @@ public class OperationDefinition extends MetadataResource {
      * @return How the parameter is understood as a search parameter. This is only
      *         used if the parameter type is 'string'.
      */
-    public String getSearchType() {
+    public SearchParamType getSearchType() {
       return this.searchType == null ? null : this.searchType.getValue();
     }
 
@@ -628,12 +630,12 @@ public class OperationDefinition extends MetadataResource {
      * @param value How the parameter is understood as a search parameter. This is
      *              only used if the parameter type is 'string'.
      */
-    public OperationDefinitionParameterComponent setSearchType(String value) {
+    public OperationDefinitionParameterComponent setSearchType(SearchParamType value) {
       if (value == null)
         this.searchType = null;
       else {
         if (this.searchType == null)
-          this.searchType = new StringType();
+          this.searchType = new Enumeration<SearchParamType>(new SearchParamTypeEnumFactory());
         this.searchType.setValue(value);
       }
       return this;
@@ -791,7 +793,7 @@ public class OperationDefinition extends MetadataResource {
       children.add(new Property("targetProfile", "canonical(StructureDefinition)",
           "Used when the type is \"Reference\" or \"canonical\", and identifies a profile structure or implementation Guide that applies to the target of the reference this parameter refers to. If any profiles are specified, then the content must conform to at least one of them. The URL can be a local reference - to a contained StructureDefinition, or a reference to another StructureDefinition or Implementation Guide by a canonical URL. When an implementation guide is specified, the target resource SHALL conform to at least one profile defined in the implementation guide.",
           0, java.lang.Integer.MAX_VALUE, targetProfile));
-      children.add(new Property("searchType", "string",
+      children.add(new Property("searchType", "code",
           "How the parameter is understood as a search parameter. This is only used if the parameter type is 'string'.",
           0, 1, searchType));
       children.add(new Property("binding", "",
@@ -826,7 +828,7 @@ public class OperationDefinition extends MetadataResource {
             "Used when the type is \"Reference\" or \"canonical\", and identifies a profile structure or implementation Guide that applies to the target of the reference this parameter refers to. If any profiles are specified, then the content must conform to at least one of them. The URL can be a local reference - to a contained StructureDefinition, or a reference to another StructureDefinition or Implementation Guide by a canonical URL. When an implementation guide is specified, the target resource SHALL conform to at least one profile defined in the implementation guide.",
             0, java.lang.Integer.MAX_VALUE, targetProfile);
       case -710454014:
-        /* searchType */ return new Property("searchType", "string",
+        /* searchType */ return new Property("searchType", "code",
             "How the parameter is understood as a search parameter. This is only used if the parameter type is 'string'.",
             0, 1, searchType);
       case -108220795:
@@ -864,7 +866,7 @@ public class OperationDefinition extends MetadataResource {
         /* targetProfile */ return this.targetProfile == null ? new Base[0]
             : this.targetProfile.toArray(new Base[this.targetProfile.size()]); // CanonicalType
       case -710454014:
-        /* searchType */ return this.searchType == null ? new Base[0] : new Base[] { this.searchType }; // StringType
+        /* searchType */ return this.searchType == null ? new Base[0] : new Base[] { this.searchType }; // Enumeration<SearchParamType>
       case -108220795:
         /* binding */ return this.binding == null ? new Base[0] : new Base[] { this.binding }; // OperationDefinitionParameterBindingComponent
       case -1896721981:
@@ -903,7 +905,8 @@ public class OperationDefinition extends MetadataResource {
         this.getTargetProfile().add(castToCanonical(value)); // CanonicalType
         return value;
       case -710454014: // searchType
-        this.searchType = castToString(value); // StringType
+        value = new SearchParamTypeEnumFactory().fromType(castToCode(value));
+        this.searchType = (Enumeration) value; // Enumeration<SearchParamType>
         return value;
       case -108220795: // binding
         this.binding = (OperationDefinitionParameterBindingComponent) value; // OperationDefinitionParameterBindingComponent
@@ -937,7 +940,8 @@ public class OperationDefinition extends MetadataResource {
       } else if (name.equals("targetProfile")) {
         this.getTargetProfile().add(castToCanonical(value));
       } else if (name.equals("searchType")) {
-        this.searchType = castToString(value); // StringType
+        value = new SearchParamTypeEnumFactory().fromType(castToCode(value));
+        this.searchType = (Enumeration) value; // Enumeration<SearchParamType>
       } else if (name.equals("binding")) {
         this.binding = (OperationDefinitionParameterBindingComponent) value; // OperationDefinitionParameterBindingComponent
       } else if (name.equals("referencedFrom")) {
@@ -1027,7 +1031,7 @@ public class OperationDefinition extends MetadataResource {
       case 1994521304:
         /* targetProfile */ return new String[] { "canonical" };
       case -710454014:
-        /* searchType */ return new String[] { "string" };
+        /* searchType */ return new String[] { "code" };
       case -108220795:
         /* binding */ return new String[] {};
       case -1896721981:

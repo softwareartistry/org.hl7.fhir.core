@@ -50,208 +50,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "DeviceDefinition", profile = "http://hl7.org/fhir/StructureDefinition/DeviceDefinition")
 public class DeviceDefinition extends DomainResource {
 
-  public enum DeviceNameType {
-    /**
-     * UDI Label name.
-     */
-    UDILABELNAME,
-    /**
-     * User Friendly name.
-     */
-    USERFRIENDLYNAME,
-    /**
-     * Patient Reported name.
-     */
-    PATIENTREPORTEDNAME,
-    /**
-     * Manufacturer name.
-     */
-    MANUFACTURERNAME,
-    /**
-     * Model name.
-     */
-    MODELNAME,
-    /**
-     * other.
-     */
-    OTHER,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static DeviceNameType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("udi-label-name".equals(codeString))
-        return UDILABELNAME;
-      if ("user-friendly-name".equals(codeString))
-        return USERFRIENDLYNAME;
-      if ("patient-reported-name".equals(codeString))
-        return PATIENTREPORTEDNAME;
-      if ("manufacturer-name".equals(codeString))
-        return MANUFACTURERNAME;
-      if ("model-name".equals(codeString))
-        return MODELNAME;
-      if ("other".equals(codeString))
-        return OTHER;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown DeviceNameType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case UDILABELNAME:
-        return "udi-label-name";
-      case USERFRIENDLYNAME:
-        return "user-friendly-name";
-      case PATIENTREPORTEDNAME:
-        return "patient-reported-name";
-      case MANUFACTURERNAME:
-        return "manufacturer-name";
-      case MODELNAME:
-        return "model-name";
-      case OTHER:
-        return "other";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case UDILABELNAME:
-        return "http://hl7.org/fhir/device-nametype";
-      case USERFRIENDLYNAME:
-        return "http://hl7.org/fhir/device-nametype";
-      case PATIENTREPORTEDNAME:
-        return "http://hl7.org/fhir/device-nametype";
-      case MANUFACTURERNAME:
-        return "http://hl7.org/fhir/device-nametype";
-      case MODELNAME:
-        return "http://hl7.org/fhir/device-nametype";
-      case OTHER:
-        return "http://hl7.org/fhir/device-nametype";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case UDILABELNAME:
-        return "UDI Label name.";
-      case USERFRIENDLYNAME:
-        return "User Friendly name.";
-      case PATIENTREPORTEDNAME:
-        return "Patient Reported name.";
-      case MANUFACTURERNAME:
-        return "Manufacturer name.";
-      case MODELNAME:
-        return "Model name.";
-      case OTHER:
-        return "other.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case UDILABELNAME:
-        return "UDI Label name";
-      case USERFRIENDLYNAME:
-        return "User Friendly name";
-      case PATIENTREPORTEDNAME:
-        return "Patient Reported name";
-      case MANUFACTURERNAME:
-        return "Manufacturer name";
-      case MODELNAME:
-        return "Model name";
-      case OTHER:
-        return "other";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class DeviceNameTypeEnumFactory implements EnumFactory<DeviceNameType> {
-    public DeviceNameType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("udi-label-name".equals(codeString))
-        return DeviceNameType.UDILABELNAME;
-      if ("user-friendly-name".equals(codeString))
-        return DeviceNameType.USERFRIENDLYNAME;
-      if ("patient-reported-name".equals(codeString))
-        return DeviceNameType.PATIENTREPORTEDNAME;
-      if ("manufacturer-name".equals(codeString))
-        return DeviceNameType.MANUFACTURERNAME;
-      if ("model-name".equals(codeString))
-        return DeviceNameType.MODELNAME;
-      if ("other".equals(codeString))
-        return DeviceNameType.OTHER;
-      throw new IllegalArgumentException("Unknown DeviceNameType code '" + codeString + "'");
-    }
-
-    public Enumeration<DeviceNameType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<DeviceNameType>(this, DeviceNameType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<DeviceNameType>(this, DeviceNameType.NULL, code);
-      if ("udi-label-name".equals(codeString))
-        return new Enumeration<DeviceNameType>(this, DeviceNameType.UDILABELNAME, code);
-      if ("user-friendly-name".equals(codeString))
-        return new Enumeration<DeviceNameType>(this, DeviceNameType.USERFRIENDLYNAME, code);
-      if ("patient-reported-name".equals(codeString))
-        return new Enumeration<DeviceNameType>(this, DeviceNameType.PATIENTREPORTEDNAME, code);
-      if ("manufacturer-name".equals(codeString))
-        return new Enumeration<DeviceNameType>(this, DeviceNameType.MANUFACTURERNAME, code);
-      if ("model-name".equals(codeString))
-        return new Enumeration<DeviceNameType>(this, DeviceNameType.MODELNAME, code);
-      if ("other".equals(codeString))
-        return new Enumeration<DeviceNameType>(this, DeviceNameType.OTHER, code);
-      throw new FHIRException("Unknown DeviceNameType code '" + codeString + "'");
-    }
-
-    public String toCode(DeviceNameType code) {
-       if (code == DeviceNameType.NULL)
-           return null;
-       if (code == DeviceNameType.UDILABELNAME)
-        return "udi-label-name";
-      if (code == DeviceNameType.USERFRIENDLYNAME)
-        return "user-friendly-name";
-      if (code == DeviceNameType.PATIENTREPORTEDNAME)
-        return "patient-reported-name";
-      if (code == DeviceNameType.MANUFACTURERNAME)
-        return "manufacturer-name";
-      if (code == DeviceNameType.MODELNAME)
-        return "model-name";
-      if (code == DeviceNameType.OTHER)
-        return "other";
-      return "?";
-   }
-
-    public String toSystem(DeviceNameType code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class DeviceDefinitionUdiDeviceIdentifierComponent extends BackboneElement
       implements IBaseBackboneElement {
@@ -652,10 +450,10 @@ public class DeviceDefinition extends DomainResource {
      * The type of deviceName. UDILabelName | UserFriendlyName | PatientReportedName
      * | ManufactureDeviceName | ModelName.
      */
-    @Child(name = "type", type = { CodeType.class }, order = 2, min = 1, max = 1, modifier = false, summary = false)
+    @Child(name = "type", type = { StringType.class }, order = 2, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "udi-label-name | user-friendly-name | patient-reported-name | manufacturer-name | model-name | other", formalDefinition = "The type of deviceName.\nUDILabelName | UserFriendlyName | PatientReportedName | ManufactureDeviceName | ModelName.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/device-nametype")
-    protected Enumeration<DeviceNameType> type;
+    protected StringType type;
 
     private static final long serialVersionUID = 918983440L;
 
@@ -669,7 +467,7 @@ public class DeviceDefinition extends DomainResource {
     /**
      * Constructor
      */
-    public DeviceDefinitionDeviceNameComponent(StringType name, Enumeration<DeviceNameType> type) {
+    public DeviceDefinitionDeviceNameComponent(StringType name, StringType type) {
       super();
       this.name = name;
       this.type = type;
@@ -730,12 +528,12 @@ public class DeviceDefinition extends DomainResource {
      *         ModelName.). This is the underlying object with id, value and
      *         extensions. The accessor "getType" gives direct access to the value
      */
-    public Enumeration<DeviceNameType> getTypeElement() {
+    public StringType getTypeElement() {
       if (this.type == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create DeviceDefinitionDeviceNameComponent.type");
         else if (Configuration.doAutoCreate())
-          this.type = new Enumeration<DeviceNameType>(new DeviceNameTypeEnumFactory()); // bb
+          this.type = new StringType(); // bb
       return this.type;
     }
 
@@ -754,7 +552,7 @@ public class DeviceDefinition extends DomainResource {
      *              extensions. The accessor "getType" gives direct access to the
      *              value
      */
-    public DeviceDefinitionDeviceNameComponent setTypeElement(Enumeration<DeviceNameType> value) {
+    public DeviceDefinitionDeviceNameComponent setTypeElement(StringType value) {
       this.type = value;
       return this;
     }
@@ -763,7 +561,7 @@ public class DeviceDefinition extends DomainResource {
      * @return The type of deviceName. UDILabelName | UserFriendlyName |
      *         PatientReportedName | ManufactureDeviceName | ModelName.
      */
-    public DeviceNameType getType() {
+    public String getType() {
       return this.type == null ? null : this.type.getValue();
     }
 
@@ -771,9 +569,9 @@ public class DeviceDefinition extends DomainResource {
      * @param value The type of deviceName. UDILabelName | UserFriendlyName |
      *              PatientReportedName | ManufactureDeviceName | ModelName.
      */
-    public DeviceDefinitionDeviceNameComponent setType(DeviceNameType value) {
+    public DeviceDefinitionDeviceNameComponent setType(String value) {
       if (this.type == null)
-        this.type = new Enumeration<DeviceNameType>(new DeviceNameTypeEnumFactory());
+        this.type = new StringType();
       this.type.setValue(value);
       return this;
     }
@@ -781,7 +579,7 @@ public class DeviceDefinition extends DomainResource {
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
       children.add(new Property("name", "string", "The name of the device.", 0, 1, name));
-      children.add(new Property("type", "code",
+      children.add(new Property("type", "string",
           "The type of deviceName.\nUDILabelName | UserFriendlyName | PatientReportedName | ManufactureDeviceName | ModelName.",
           0, 1, type));
     }
@@ -792,7 +590,7 @@ public class DeviceDefinition extends DomainResource {
       case 3373707:
         /* name */ return new Property("name", "string", "The name of the device.", 0, 1, name);
       case 3575610:
-        /* type */ return new Property("type", "code",
+        /* type */ return new Property("type", "string",
             "The type of deviceName.\nUDILabelName | UserFriendlyName | PatientReportedName | ManufactureDeviceName | ModelName.",
             0, 1, type);
       default:
@@ -807,7 +605,7 @@ public class DeviceDefinition extends DomainResource {
       case 3373707:
         /* name */ return this.name == null ? new Base[0] : new Base[] { this.name }; // StringType
       case 3575610:
-        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<DeviceNameType>
+        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
       default:
         return super.getProperty(hash, name, checkValid);
       }
@@ -821,8 +619,7 @@ public class DeviceDefinition extends DomainResource {
         this.name = castToString(value); // StringType
         return value;
       case 3575610: // type
-        value = new DeviceNameTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<DeviceNameType>
+        this.type = castToString(value); // StringType
         return value;
       default:
         return super.setProperty(hash, name, value);
@@ -835,8 +632,7 @@ public class DeviceDefinition extends DomainResource {
       if (name.equals("name")) {
         this.name = castToString(value); // StringType
       } else if (name.equals("type")) {
-        value = new DeviceNameTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<DeviceNameType>
+        this.type = castToString(value); // StringType
       } else
         return super.setProperty(name, value);
       return value;
@@ -872,7 +668,7 @@ public class DeviceDefinition extends DomainResource {
       case 3373707:
         /* name */ return new String[] { "string" };
       case 3575610:
-        /* type */ return new String[] { "code" };
+        /* type */ return new String[] { "string" };
       default:
         return super.getTypesForProperty(hash, name);
       }

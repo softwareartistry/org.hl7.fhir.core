@@ -37,6 +37,10 @@ import java.util.List;
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
 import org.hl7.fhir.instance.model.api.IBaseConformance;
+import org.hl7.fhir.r4.model.Enumerations.FHIRVersion;
+import org.hl7.fhir.r4.model.Enumerations.FHIRVersionEnumFactory;
+import org.hl7.fhir.r4.model.Enumerations.SearchParamType;
+import org.hl7.fhir.r4.model.Enumerations.SearchParamTypeEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -4177,10 +4181,10 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * The type of value a search parameter refers to, and how the content is
      * interpreted.
      */
-    @Child(name = "type", type = { StringType.class }, order = 3, min = 1, max = 1, modifier = false, summary = false)
+    @Child(name = "type", type = { CodeType.class }, order = 3, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "number | date | string | token | reference | composite | quantity | uri | special", formalDefinition = "The type of value a search parameter refers to, and how the content is interpreted.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/search-param-type")
-    protected StringType type;
+    protected Enumeration<SearchParamType> type;
 
     /**
      * This allows documentation of any distinct behaviors about how the search
@@ -4203,7 +4207,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     /**
      * Constructor
      */
-    public CapabilityStatementRestResourceSearchParamComponent(StringType name, StringType type) {
+    public CapabilityStatementRestResourceSearchParamComponent(StringType name, Enumeration<SearchParamType> type) {
       super();
       this.name = name;
       this.type = type;
@@ -4338,12 +4342,12 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      *         id, value and extensions. The accessor "getType" gives direct access
      *         to the value
      */
-    public StringType getTypeElement() {
+    public Enumeration<SearchParamType> getTypeElement() {
       if (this.type == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create CapabilityStatementRestResourceSearchParamComponent.type");
         else if (Configuration.doAutoCreate())
-          this.type = new StringType(); // bb
+          this.type = new Enumeration<SearchParamType>(new SearchParamTypeEnumFactory()); // bb
       return this.type;
     }
 
@@ -4361,7 +4365,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      *              object with id, value and extensions. The accessor "getType"
      *              gives direct access to the value
      */
-    public CapabilityStatementRestResourceSearchParamComponent setTypeElement(StringType value) {
+    public CapabilityStatementRestResourceSearchParamComponent setTypeElement(Enumeration<SearchParamType> value) {
       this.type = value;
       return this;
     }
@@ -4370,7 +4374,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * @return The type of value a search parameter refers to, and how the content
      *         is interpreted.
      */
-    public String getType() {
+    public SearchParamType getType() {
       return this.type == null ? null : this.type.getValue();
     }
 
@@ -4378,9 +4382,9 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * @param value The type of value a search parameter refers to, and how the
      *              content is interpreted.
      */
-    public CapabilityStatementRestResourceSearchParamComponent setType(String value) {
+    public CapabilityStatementRestResourceSearchParamComponent setType(SearchParamType value) {
       if (this.type == null)
-        this.type = new StringType();
+        this.type = new Enumeration<SearchParamType>(new SearchParamTypeEnumFactory());
       this.type.setValue(value);
       return this;
     }
@@ -4452,7 +4456,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
       children.add(new Property("definition", "canonical(SearchParameter)",
           "An absolute URI that is a formal reference to where this parameter was first defined, so that a client can be confident of the meaning of the search parameter (a reference to [[[SearchParameter.url]]]). This element SHALL be populated if the search parameter refers to a SearchParameter defined by the FHIR core specification or externally defined IGs.",
           0, 1, definition));
-      children.add(new Property("type", "string",
+      children.add(new Property("type", "code",
           "The type of value a search parameter refers to, and how the content is interpreted.", 0, 1, type));
       children.add(new Property("documentation", "markdown",
           "This allows documentation of any distinct behaviors about how the search parameter is used.  For example, text matching algorithms.",
@@ -4470,7 +4474,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
             "An absolute URI that is a formal reference to where this parameter was first defined, so that a client can be confident of the meaning of the search parameter (a reference to [[[SearchParameter.url]]]). This element SHALL be populated if the search parameter refers to a SearchParameter defined by the FHIR core specification or externally defined IGs.",
             0, 1, definition);
       case 3575610:
-        /* type */ return new Property("type", "string",
+        /* type */ return new Property("type", "code",
             "The type of value a search parameter refers to, and how the content is interpreted.", 0, 1, type);
       case 1587405498:
         /* documentation */ return new Property("documentation", "markdown",
@@ -4490,7 +4494,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
       case -1014418093:
         /* definition */ return this.definition == null ? new Base[0] : new Base[] { this.definition }; // CanonicalType
       case 3575610:
-        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
+        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<SearchParamType>
       case 1587405498:
         /* documentation */ return this.documentation == null ? new Base[0] : new Base[] { this.documentation }; // MarkdownType
       default:
@@ -4509,7 +4513,8 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
         this.definition = castToCanonical(value); // CanonicalType
         return value;
       case 3575610: // type
-        this.type = castToString(value); // StringType
+        value = new SearchParamTypeEnumFactory().fromType(castToCode(value));
+        this.type = (Enumeration) value; // Enumeration<SearchParamType>
         return value;
       case 1587405498: // documentation
         this.documentation = castToMarkdown(value); // MarkdownType
@@ -4527,7 +4532,8 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
       } else if (name.equals("definition")) {
         this.definition = castToCanonical(value); // CanonicalType
       } else if (name.equals("type")) {
-        this.type = castToString(value); // StringType
+        value = new SearchParamTypeEnumFactory().fromType(castToCode(value));
+        this.type = (Enumeration) value; // Enumeration<SearchParamType>
       } else if (name.equals("documentation")) {
         this.documentation = castToMarkdown(value); // MarkdownType
       } else
@@ -4575,7 +4581,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
       case -1014418093:
         /* definition */ return new String[] { "canonical" };
       case 3575610:
-        /* type */ return new String[] { "string" };
+        /* type */ return new String[] { "code" };
       case 1587405498:
         /* documentation */ return new String[] { "markdown" };
       default:
@@ -6931,10 +6937,10 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
    * (which SHALL be the same as the FHIR version of the CapabilityStatement
    * itself). There is no default value.
    */
-  @Child(name = "fhirVersion", type = { StringType.class }, order = 7, min = 1, max = 1, modifier = false, summary = true)
+  @Child(name = "fhirVersion", type = { CodeType.class }, order = 7, min = 1, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "FHIR Version the system supports", formalDefinition = "The version of the FHIR specification that this CapabilityStatement describes (which SHALL be the same as the FHIR version of the CapabilityStatement itself). There is no default value.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/FHIR-version")
-  protected StringType fhirVersion;
+  protected Enumeration<FHIRVersion> fhirVersion;
 
   /**
    * A list of the formats supported by this implementation using their content
@@ -6999,7 +7005,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
    * Constructor
    */
   public CapabilityStatement(StringType status, DateTimeType date,
-                             StringType kind, StringType fhirVersion) {
+                             StringType kind, Enumeration<FHIRVersion> fhirVersion) {
     super();
     this.status = status;
     this.date = date;
@@ -8172,12 +8178,12 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
    *         value.). This is the underlying object with id, value and extensions.
    *         The accessor "getFhirVersion" gives direct access to the value
    */
-  public StringType getFhirVersionElement() {
+  public Enumeration<FHIRVersion> getFhirVersionElement() {
     if (this.fhirVersion == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create CapabilityStatement.fhirVersion");
       else if (Configuration.doAutoCreate())
-        this.fhirVersion = new StringType(); // bb
+        this.fhirVersion = new Enumeration<FHIRVersion>(new FHIRVersionEnumFactory()); // bb
     return this.fhirVersion;
   }
 
@@ -8197,7 +8203,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
    *              and extensions. The accessor "getFhirVersion" gives direct
    *              access to the value
    */
-  public CapabilityStatement setFhirVersionElement(StringType value) {
+  public CapabilityStatement setFhirVersionElement(Enumeration<FHIRVersion> value) {
     this.fhirVersion = value;
     return this;
   }
@@ -8207,7 +8213,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
    *         describes (which SHALL be the same as the FHIR version of the
    *         CapabilityStatement itself). There is no default value.
    */
-  public String getFhirVersion() {
+  public FHIRVersion getFhirVersion() {
     return this.fhirVersion == null ? null : this.fhirVersion.getValue();
   }
 
@@ -8217,9 +8223,9 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
    *              FHIR version of the CapabilityStatement itself). There is no
    *              default value.
    */
-  public CapabilityStatement setFhirVersion(String value) {
+  public CapabilityStatement setFhirVersion(FHIRVersion value) {
     if (this.fhirVersion == null)
-      this.fhirVersion = new StringType();
+      this.fhirVersion = new Enumeration<FHIRVersion>(new FHIRVersionEnumFactory());
     this.fhirVersion.setValue(value);
     return this;
   }
@@ -8639,7 +8645,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     children.add(new Property("implementation", "",
         "Identifies a specific implementation instance that is described by the capability statement - i.e. a particular installation, rather than the capabilities of a software program.",
         0, 1, implementation));
-    children.add(new Property("fhirVersion", "string",
+    children.add(new Property("fhirVersion", "code",
         "The version of the FHIR specification that this CapabilityStatement describes (which SHALL be the same as the FHIR version of the CapabilityStatement itself). There is no default value.",
         0, 1, fhirVersion));
     children.add(new Property("format", "code",
@@ -8735,7 +8741,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
           "Identifies a specific implementation instance that is described by the capability statement - i.e. a particular installation, rather than the capabilities of a software program.",
           0, 1, implementation);
     case 461006061:
-      /* fhirVersion */ return new Property("fhirVersion", "string",
+      /* fhirVersion */ return new Property("fhirVersion", "code",
           "The version of the FHIR specification that this CapabilityStatement describes (which SHALL be the same as the FHIR version of the CapabilityStatement itself). There is no default value.",
           0, 1, fhirVersion);
     case -1268779017:
@@ -8810,7 +8816,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     case 1683336114:
       /* implementation */ return this.implementation == null ? new Base[0] : new Base[] { this.implementation }; // CapabilityStatementImplementationComponent
     case 461006061:
-      /* fhirVersion */ return this.fhirVersion == null ? new Base[0] : new Base[] { this.fhirVersion }; // StringType
+      /* fhirVersion */ return this.fhirVersion == null ? new Base[0] : new Base[] { this.fhirVersion }; // Enumeration<FHIRVersion>
     case -1268779017:
       /* format */ return this.format == null ? new Base[0] : this.format.toArray(new Base[this.format.size()]); // CodeType
     case 172338783:
@@ -8893,7 +8899,8 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
       this.implementation = (CapabilityStatementImplementationComponent) value; // CapabilityStatementImplementationComponent
       return value;
     case 461006061: // fhirVersion
-      this.fhirVersion = castToString(value); // StringType
+      value = new FHIRVersionEnumFactory().fromType(castToCode(value));
+      this.fhirVersion = (Enumeration) value; // Enumeration<FHIRVersion>
       return value;
     case -1268779017: // format
       this.getFormat().add(castToCode(value)); // CodeType
@@ -8960,7 +8967,8 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     } else if (name.equals("implementation")) {
       this.implementation = (CapabilityStatementImplementationComponent) value; // CapabilityStatementImplementationComponent
     } else if (name.equals("fhirVersion")) {
-      this.fhirVersion = castToString(value); // StringType
+      value = new FHIRVersionEnumFactory().fromType(castToCode(value));
+      this.fhirVersion = (Enumeration) value; // Enumeration<FHIRVersion>
     } else if (name.equals("format")) {
       this.getFormat().add(castToCode(value));
     } else if (name.equals("patchFormat")) {

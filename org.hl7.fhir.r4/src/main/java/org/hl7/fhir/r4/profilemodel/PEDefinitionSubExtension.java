@@ -33,7 +33,6 @@ import java.util.List;
 
 import org.hl7.fhir.r4.model.CanonicalType;
 import org.hl7.fhir.r4.model.ElementDefinition;
-import org.hl7.fhir.r4.model.ElementDefinition.SlicingRules;
 import org.hl7.fhir.r4.model.ElementDefinition.TypeRefComponent;
 import org.hl7.fhir.r4.profilemodel.PEDefinition.PEDefinitionElementMode;
 import org.hl7.fhir.r4.model.StructureDefinition;
@@ -89,7 +88,7 @@ public class PEDefinitionSubExtension extends PEDefinition {
     if (ved.isRequired() || eed.isProhibited()) {
       children.addAll(builder.listChildren(allFixed, this, profile, ved, typeUrl));
     } else {
-      if (eed.getSlicing().getRules() != SlicingRules.CLOSED) {
+      if (eed.getSlicing().getRules() != "CLOSED") {
         children.addAll(builder.listChildren(allFixed, this, profile, eed, "http://hl7.org/fhir/StructureDefinition/Extension", "value[x]", "url"));
       } 
       children.addAll(builder.listSlices(profile, eed, this));

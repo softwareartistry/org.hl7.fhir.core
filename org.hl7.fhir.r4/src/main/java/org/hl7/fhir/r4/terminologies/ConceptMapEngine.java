@@ -91,9 +91,9 @@ public class ConceptMapEngine {
         .setDisplay(tt.getDisplay());
   }
 
-  private boolean isOkEquivalence(StringType equivalence) {
-    return equivalence != null && !Objects.equals(equivalence.getValue(), "DISJOINT")
-        && !Objects.equals(equivalence.getValue(), "UNMATCHED");
+  private boolean isOkEquivalence(String equivalence) {
+    return equivalence != null && !Objects.equals(equivalence, "DISJOINT")
+        && !Objects.equals(equivalence, "UNMATCHED");
   }
 
   private Coding translateBySystem(ConceptMap cm, String system, String code) {

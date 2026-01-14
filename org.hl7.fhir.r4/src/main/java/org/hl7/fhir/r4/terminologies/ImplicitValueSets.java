@@ -29,7 +29,6 @@ package org.hl7.fhir.r4.terminologies;
   
  */
 
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
 import org.hl7.fhir.r4.model.ValueSet;
 import org.hl7.fhir.utilities.MarkedToMoveToAdjunctPackage;
 import org.hl7.fhir.utilities.Utilities;
@@ -58,7 +57,7 @@ public class ImplicitValueSets {
     if (url.startsWith("http://loinc.org/vs/LL")) {
       ValueSet vs = new ValueSet();
       vs.setUrl(url);
-      vs.setStatus(PublicationStatus.ACTIVE);
+      vs.setStatus("ACTIVE");
       vs.setName("LoincVS" + url.substring(21).replace("-", ""));
       vs.setTitle("Loinc Implicit ValueSet for " + url.substring(21));
       // todo: populate the compose fro the terminology server
@@ -66,7 +65,7 @@ public class ImplicitValueSets {
     } else if (url.equals("http://loinc.org/vs")) {
       ValueSet vs = new ValueSet();
       vs.setUrl(url);
-      vs.setStatus(PublicationStatus.ACTIVE);
+      vs.setStatus("ACTIVE");
       vs.setName("LoincVSAll");
       vs.setTitle("Loinc Implicit ValueSet : all codes");
       // todo: populate the compose for the terminology server
@@ -79,7 +78,7 @@ public class ImplicitValueSets {
   private static ValueSet allUcumValueSet() {
     ValueSet vs = new ValueSet();
     vs.setUrl("http://unitsofmeasure.org/vs");
-    vs.setStatus(PublicationStatus.ACTIVE);
+    vs.setStatus("ACTIVE");
     vs.setName("AllUcumCodes");
     vs.setTitle("All Ucum Codes");
     vs.getCompose().addInclude().setSystem("http://unitsofmeasure.org");

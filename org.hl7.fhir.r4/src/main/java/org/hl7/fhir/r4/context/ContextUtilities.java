@@ -21,6 +21,8 @@ import org.hl7.fhir.r4.model.CodeSystem.ConceptPropertyComponent;
 import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionBindingComponent;
 import org.hl7.fhir.r4.model.NamingSystem.NamingSystemUniqueIdComponent;
 import org.hl7.fhir.r4.model.Resource;
+import org.hl7.fhir.r4.model.StructureDefinition.StructureDefinitionKind;
+import org.hl7.fhir.r4.model.StructureDefinition.TypeDerivationRule;
 import org.hl7.fhir.r4.model.StructureMap;
 import org.hl7.fhir.r4.model.Identifier;
 import org.hl7.fhir.r4.model.NamingSystem;
@@ -134,7 +136,7 @@ public class ContextUtilities implements ProfileKnowledgeProvider {
   public List<String> getTypeNames() {
     Set<String> result = new HashSet<String>();
     for (StructureDefinition sd : context.fetchResourcesByType(StructureDefinition.class)) {
-      if (sd.getKind() != "LOGICAL" && sd.getDerivation() == "SPECIALIZATION")
+      if (sd.getKind() != StructureDefinitionKind.LOGICAL && sd.getDerivation() == TypeDerivationRule.SPECIALIZATION)
         result.add(sd.getName());
     }
     return Utilities.sorted(result);
@@ -147,8 +149,8 @@ public class ContextUtilities implements ProfileKnowledgeProvider {
   public Set<String> getTypeNameSet() {
     Set<String> result = new HashSet<String>();
     for (StructureDefinition sd : context.fetchResourcesByType(StructureDefinition.class)) {
-      if (sd.getKind() != "LOGICAL" && sd.getDerivation() == "SPECIALIZATION" &&
-          VersionUtilities.versionMatches(context.getVersion(), sd.getFhirVersion())) {
+      if (sd.getKind() != StructureDefinitionKind.LOGICAL && sd.getDerivation() == TypeDerivationRule.SPECIALIZATION &&
+        VersionUtilities.versionMatches(context.getVersion(), sd.getFhirVersion().toCode())) {
         result.add(sd.getName());
       }
     }
@@ -198,7 +200,7 @@ public class ContextUtilities implements ProfileKnowledgeProvider {
       canonicalResourceNames =  new ArrayList<>();
       Set<String> names = new HashSet<>();
       for (StructureDefinition sd : allStructures()) {
-        if (sd.getKind() == "RESOURCE" && !sd.getAbstract() && hasUrlProperty(sd)) {
+        if (sd.getKind() == StructureDefinitionKind.RESOURCE && !sd.getAbstract() && hasUrlProperty(sd)) {
           names.add(sd.getType());
         }
       }
@@ -257,7 +259,7 @@ public class ContextUtilities implements ProfileKnowledgeProvider {
       List<String> errors = new ArrayList<String>();
       ProfileUtilities pu = new ProfileUtilities(context, msgs, this);
       pu.setThrowException(false);
-      if (sd.getDerivation() == "CONSTRAINT") {
+      if (sd.getDerivation() == TypeDerivationRule.CONSTRAINT) {
         pu.sortDifferential(sd, p, p.getUrl(), errors);
       }
       pu.setDebug(false);
@@ -298,7 +300,7 @@ public class ContextUtilities implements ProfileKnowledgeProvider {
   @Override
   public boolean isDatatype(String type) {
     StructureDefinition sd = context.fetchTypeDefinition(type);
-    return sd != null && (sd.getKind() == "PRIMITIVETYPE" || sd.getKind() == "COMPLEXTYPE") && sd.getDerivation() == "SPECIALIZATION";
+    return sd != null && (sd.getKind() == StructureDefinitionKind.PRIMITIVETYPE || sd.getKind() == StructureDefinitionKind.COMPLEXTYPE) && sd.getDerivation() == TypeDerivationRule.SPECIALIZATION;
   }
 
   @Override
@@ -314,9 +316,9 @@ public class ContextUtilities implements ProfileKnowledgeProvider {
     }
     if (sd == null)
       return false;
-    if (sd.getDerivation() == "CONSTRAINT")
+    if (sd.getDerivation() == TypeDerivationRule.CONSTRAINT)
       return false;
-    return sd.getKind() == "RESOURCE";
+    return sd.getKind() == StructureDefinitionKind.RESOURCE;
   }
 
   @Override
@@ -362,7 +364,7 @@ public class ContextUtilities implements ProfileKnowledgeProvider {
     if (concreteResourceNameSet == null) {
       concreteResourceNameSet =  new HashSet<>();
       for (StructureDefinition sd : getStructures()) {
-        if (sd.getKind() == "RESOURCE" && !sd.getAbstract() && sd.getDerivation() == "SPECIALIZATION") {
+        if (sd.getKind() == StructureDefinitionKind.RESOURCE && !sd.getAbstract() && sd.getDerivation() == TypeDerivationRule.SPECIALIZATION) {
           concreteResourceNameSet.add(sd.getType());
         }
       }

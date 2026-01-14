@@ -41,6 +41,7 @@ import org.hl7.fhir.r4.context.IWorkerContext;
 import org.hl7.fhir.r4.formats.FormatUtilities;
 import org.hl7.fhir.r4.formats.IParser.OutputStyle;
 import org.hl7.fhir.r4.model.StructureDefinition;
+import org.hl7.fhir.r4.model.StructureDefinition.TypeDerivationRule;
 import org.hl7.fhir.r4.utils.ToolingExtensions;
 import org.hl7.fhir.utilities.Utilities;
 import org.hl7.fhir.utilities.validation.ValidationMessage;
@@ -116,7 +117,7 @@ public abstract class ParserBase {
       return null;
     }
     for (StructureDefinition sd : context.allStructures()) {
-      if (sd.getDerivation() == "SPECIALIZATION"
+      if (sd.getDerivation() == TypeDerivationRule.SPECIALIZATION
           && !sd.getUrl().startsWith("http://hl7.org/fhir/StructureDefinition/de-")) {
         if (name.equals(sd.getType()) && (ns == null || ns.equals(FormatUtilities.FHIR_NS)) && !ToolingExtensions
             .hasExtension(sd, "http://hl7.org/fhir/StructureDefinition/elementdefinition-namespace"))
@@ -147,7 +148,7 @@ public abstract class ParserBase {
       }
     }
     for (StructureDefinition sd : context.getStructures()) {
-      if (name.equals(sd.getType()) && sd.getDerivation() == "SPECIALIZATION") {
+      if (name.equals(sd.getType()) && sd.getDerivation() == TypeDerivationRule.SPECIALIZATION) {
         context.generateSnapshot(sd);
         return sd;
       }

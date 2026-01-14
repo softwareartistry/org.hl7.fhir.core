@@ -36,6 +36,8 @@ import java.util.List;
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseDatatypeElement;
 import org.hl7.fhir.instance.model.api.ICompositeType;
+import org.hl7.fhir.r4.model.Enumerations.BindingStrength;
+import org.hl7.fhir.r4.model.Enumerations.BindingStrengthEnumFactory;
 import org.hl7.fhir.r4.utils.ToolingExtensions;
 // added from java-adornments.txt:
 import org.hl7.fhir.utilities.CommaSeparatedStringBuilder;
@@ -3271,10 +3273,10 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      * - that is, the degree to which the provided value set must be adhered to in
      * the instances.
      */
-    @Child(name = "strength", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "strength", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "required | extensible | preferred | example", formalDefinition = "Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the provided value set must be adhered to in the instances.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/binding-strength")
-    protected StringType strength;
+    protected Enumeration<BindingStrength> strength;
 
     /**
      * Describes the intended use of this particular set of codes.
@@ -3305,7 +3307,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     /**
      * Constructor
      */
-    public ElementDefinitionBindingComponent(StringType strength) {
+    public ElementDefinitionBindingComponent(Enumeration<BindingStrength> strength) {
       super();
       this.strength = strength;
     }
@@ -3317,12 +3319,12 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *         underlying object with id, value and extensions. The accessor
      *         "getStrength" gives direct access to the value
      */
-    public StringType getStrengthElement() {
+    public Enumeration<BindingStrength> getStrengthElement() {
       if (this.strength == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create ElementDefinitionBindingComponent.strength");
         else if (Configuration.doAutoCreate())
-          this.strength = new StringType(); // bb
+          this.strength = new Enumeration<BindingStrength>(new BindingStrengthEnumFactory()); // bb
       return this.strength;
     }
 
@@ -3342,7 +3344,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *              extensions. The accessor "getStrength" gives direct access to
      *              the value
      */
-    public ElementDefinitionBindingComponent setStrengthElement(StringType value) {
+    public ElementDefinitionBindingComponent setStrengthElement(Enumeration<BindingStrength> value) {
       this.strength = value;
       return this;
     }
@@ -3352,7 +3354,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *         binding - that is, the degree to which the provided value set must be
      *         adhered to in the instances.
      */
-    public String getStrength() {
+    public BindingStrength getStrength() {
       return this.strength == null ? null : this.strength.getValue();
     }
 
@@ -3361,9 +3363,9 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
      *              this binding - that is, the degree to which the provided value
      *              set must be adhered to in the instances.
      */
-    public ElementDefinitionBindingComponent setStrength(String value) {
+    public ElementDefinitionBindingComponent setStrength(BindingStrength value) {
       if (this.strength == null)
-        this.strength = new StringType();
+        this.strength = new Enumeration<BindingStrength>(new BindingStrengthEnumFactory());
       this.strength.setValue(value);
       return this;
     }
@@ -3482,7 +3484,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("strength", "string",
+      children.add(new Property("strength", "code",
           "Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the provided value set must be adhered to in the instances.",
           0, 1, strength));
       children.add(new Property("description", "string", "Describes the intended use of this particular set of codes.",
@@ -3495,7 +3497,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 1791316033:
-        /* strength */ return new Property("strength", "string",
+        /* strength */ return new Property("strength", "code",
             "Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the provided value set must be adhered to in the instances.",
             0, 1, strength);
       case -1724546052:
@@ -3514,7 +3516,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 1791316033:
-        /* strength */ return this.strength == null ? new Base[0] : new Base[] { this.strength }; // StringType
+        /* strength */ return this.strength == null ? new Base[0] : new Base[] { this.strength }; // Enumeration<BindingStrength>
       case -1724546052:
         /* description */ return this.description == null ? new Base[0] : new Base[] { this.description }; // StringType
       case -1410174671:
@@ -3529,7 +3531,8 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 1791316033: // strength
-        this.strength = castToString(value); // StringType
+        value = new BindingStrengthEnumFactory().fromType(castToCode(value));
+        this.strength = (Enumeration) value; // Enumeration<BindingStrength>
         return value;
       case -1724546052: // description
         this.description = castToString(value); // StringType
@@ -3546,7 +3549,8 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("strength")) {
-        this.strength = castToString(value); // StringType
+        value = new BindingStrengthEnumFactory().fromType(castToCode(value));
+        this.strength = (Enumeration) value; // Enumeration<BindingStrength>
       } else if (name.equals("description")) {
         this.description = castToString(value); // StringType
       } else if (name.equals("valueSet")) {
@@ -3588,7 +3592,7 @@ public class ElementDefinition extends BackboneType implements ICompositeType {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 1791316033:
-        /* strength */ return new String[] { "string" };
+        /* strength */ return new String[] { "code" };
       case -1724546052:
         /* description */ return new String[] { "string" };
       case -1410174671:

@@ -49,6 +49,7 @@ import org.hl7.fhir.r4.model.PrimitiveType;
 import org.hl7.fhir.r4.model.Reference;
 import org.hl7.fhir.r4.model.Resource;
 import org.hl7.fhir.r4.model.StructureDefinition;
+import org.hl7.fhir.r4.model.StructureDefinition.StructureDefinitionKind;
 import org.hl7.fhir.r4.model.Type;
 
 @Deprecated
@@ -83,13 +84,13 @@ public class ObjectConverter {
     if (sd == null)
       throw new FHIRException("Unable to find definition for type " + tn);
     Element res = new Element(property.getName(), property);
-    if (sd.getKind() == "PRIMITIVETYPE")
+    if (sd.getKind() == StructureDefinitionKind.PRIMITIVETYPE)
       res.setValue(((PrimitiveType) base).asStringValue());
 
     List<ElementDefinition> children = ProfileUtilities.getChildMap(sd, sd.getSnapshot().getElementFirstRep());
     for (ElementDefinition child : children) {
       String n = tail(child.getPath());
-      if (sd.getKind() != "PRIMITIVETYPE" || !"value".equals(n)) {
+      if (sd.getKind() != StructureDefinitionKind.PRIMITIVETYPE || !"value".equals(n)) {
         Base[] values = base.getProperty(n.hashCode(), n, false);
         if (values != null)
           for (Base value : values) {

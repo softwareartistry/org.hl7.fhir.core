@@ -71,6 +71,7 @@ import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionSlicingComponent
 import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionSlicingDiscriminatorComponent;
 import org.hl7.fhir.r4.model.ElementDefinition.TypeRefComponent;
 import org.hl7.fhir.r4.model.Enumeration;
+import org.hl7.fhir.r4.model.Enumerations.BindingStrength;
 import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.IntegerType;
 import org.hl7.fhir.r4.model.PrimitiveType;
@@ -78,10 +79,13 @@ import org.hl7.fhir.r4.model.Quantity;
 import org.hl7.fhir.r4.model.Resource;
 import org.hl7.fhir.r4.model.StringType;
 import org.hl7.fhir.r4.model.StructureDefinition;
+import org.hl7.fhir.r4.model.StructureDefinition.ExtensionContextType;
 import org.hl7.fhir.r4.model.StructureDefinition.StructureDefinitionContextComponent;
 import org.hl7.fhir.r4.model.StructureDefinition.StructureDefinitionDifferentialComponent;
+import org.hl7.fhir.r4.model.StructureDefinition.StructureDefinitionKind;
 import org.hl7.fhir.r4.model.StructureDefinition.StructureDefinitionMappingComponent;
 import org.hl7.fhir.r4.model.StructureDefinition.StructureDefinitionSnapshotComponent;
+import org.hl7.fhir.r4.model.StructureDefinition.TypeDerivationRule;
 import org.hl7.fhir.r4.model.Type;
 import org.hl7.fhir.r4.model.UriType;
 import org.hl7.fhir.r4.model.ValueSet;
@@ -125,11 +129,11 @@ import org.hl7.fhir.utilities.xml.SchematronWriter.Section;
  * generateSpanningTable: generate the HTML for a table presentation of a
  * network of structures, starting at a nominated point * summarize: describe
  * the contents of a profile
- * 
+ *
  * note to maintainers: Do not make modifications to the snapshot generation
  * without first changing the snapshot generation test cases to demonstrate the
  * grounds for your change
- * 
+ *
  * @author Grahame
  *
  */
@@ -552,7 +556,7 @@ public class ProfileUtilities extends TranslatingUtilities {
                 ValidationMessage.IssueSeverity.ERROR));
         }
       }
-      if ("SPECIALIZATION".equalsIgnoreCase(derived.getDerivation())) {
+      if (derived.getDerivation() == TypeDerivationRule.SPECIALIZATION) {
         for (ElementDefinition ed : derived.getSnapshot().getElement()) {
           if (!ed.hasBase()) {
             ed.getBase().setPath(ed.getPath()).setMin(ed.getMin()).setMax(ed.getMax());
@@ -1652,7 +1656,7 @@ public class ProfileUtilities extends TranslatingUtilities {
   /**
    * Finds internal references in an Element's Binding and StructureDefinition
    * references (in TypeRef) and bases them on the given url
-   * 
+   *
    * @param url     - the base url to use to turn internal references into
    *                absolute references
    * @param element - the Element to update
@@ -1819,7 +1823,7 @@ public class ProfileUtilities extends TranslatingUtilities {
          * out of order) in profile ... (looking for 'Bundle.entry') Not sure we have
          * enough information here to do the check properly. Might be better done when
          * we're sorting the profile?
-         * 
+         *
          * if (i != start && result.isEmpty() &&
          * !path.startsWith(context.getElement().get(start).getPath())) messages.add(new
          * ValidationMessage(Source.ProfileValidator, IssueType.VALUE,
@@ -1827,7 +1831,7 @@ public class ProfileUtilities extends TranslatingUtilities {
          * "Error: unknown element '"+context.getElement().get(start).getPath()
          * +"' (or it is out of order) in profile '"+url+"' (looking for '"+path+"')",
          * IssueSeverity.WARNING));
-         * 
+         *
          */
         result.add(context.getElement().get(i));
       }
@@ -2098,17 +2102,17 @@ public class ProfileUtilities extends TranslatingUtilities {
 
       if (derived.hasBinding()) {
         if (!base.hasBinding() || !Base.compareDeep(derived.getBinding(), base.getBinding(), false)) {
-          if (base.hasBinding() && base.getBinding().getStrength() == "REQUIRED"
-              && derived.getBinding().getStrength() != "REQUIRED")
+          if (base.hasBinding() && base.getBinding().getStrength() == BindingStrength.REQUIRED
+            && derived.getBinding().getStrength() != BindingStrength.REQUIRED)
             messages.add(new ValidationMessage(Source.ProfileValidator, ValidationMessage.IssueType.BUSINESSRULE,
-                pn + "." + derived.getPath(),
-                "illegal attempt to change the binding on " + derived.getPath() + " from "
-                    + base.getBinding().getStrength() + " to " + derived.getBinding().getStrength(),
-                ValidationMessage.IssueSeverity.ERROR));
+              pn + "." + derived.getPath(),
+              "illegal attempt to change the binding on " + derived.getPath() + " from "
+                + base.getBinding().getStrength().toCode() + " to " + derived.getBinding().getStrength().toCode(),
+              ValidationMessage.IssueSeverity.ERROR));
 //            throw new DefinitionException("StructureDefinition "+pn+" at "+derived.getPath()+": illegal attempt to change a binding from "+base.getBinding().getStrength().toCode()+" to "+derived.getBinding().getStrength().toCode());
           else if (base.hasBinding() && derived.hasBinding()
-              && base.getBinding().getStrength() == "REQUIRED" && base.getBinding().hasValueSet()
-              && derived.getBinding().hasValueSet()) {
+            && base.getBinding().getStrength() == BindingStrength.REQUIRED && base.getBinding().hasValueSet()
+            && derived.getBinding().hasValueSet()) {
             ValueSet baseVs = context.fetchResource(ValueSet.class, base.getBinding().getValueSet());
             ValueSet contextVs = context.fetchResource(ValueSet.class, derived.getBinding().getValueSet());
             if (baseVs == null) {
@@ -2166,7 +2170,7 @@ public class ProfileUtilities extends TranslatingUtilities {
           if (base.hasType()) {
             for (TypeRefComponent ts : derived.getType()) {
 //              if (!ts.hasCode()) { // ommitted in the differential; copy it over....
-//                if (base.getType().size() > 1) 
+//                if (base.getType().size() > 1)
 //                  throw new DefinitionException("StructureDefinition "+pn+" at "+derived.getPath()+": constrained type code must be present if there are multiple types ("+base.typeSummary()+")");
 //                if (base.getType().get(0).getCode() != null)
 //                  ts.setCode(base.getType().get(0).getCode());
@@ -2479,8 +2483,8 @@ public class ProfileUtilities extends TranslatingUtilities {
         c.getPieces().add(checkForNoChange(ved.getBinding(), gen.new Piece(null, " (", null)));
         c.getPieces()
             .add(checkForNoChange(ved.getBinding(),
-                gen.new Piece(corePath + "terminologies.html#" + ved.getBinding().getStrength(),
-                    egt(ved.getBinding().getStrengthElement()), ved.getBinding().getStrength())));
+              gen.new Piece(corePath + "terminologies.html#" + ved.getBinding().getStrength().toCode(),
+                egt(ved.getBinding().getStrengthElement()), ved.getBinding().getStrength().getDefinition())));
         c.getPieces().add(gen.new Piece(null, ")", null));
       }
     }
@@ -2797,7 +2801,7 @@ public class ProfileUtilities extends TranslatingUtilities {
     }
     genElement(defFile == null ? null : defFile + "#", gen, model.getRows(), list.get(0), list, profiles, diff,
         profileBaseFileName, null, snapshot, corePath, imagePath, true, logicalModel,
-        profile.getDerivation() == "CONSTRAINT" && usesMustSupport(list), allInvariants, null);
+        profile.getDerivation() == TypeDerivationRule.CONSTRAINT && usesMustSupport(list), allInvariants, null);
     try {
       return gen.generate(model, imagePath, 0, outputTracker);
     } catch (org.hl7.fhir.exceptions.FHIRException e) {
@@ -2815,7 +2819,7 @@ public class ProfileUtilities extends TranslatingUtilities {
     profiles.add(profile);
     genGridElement(defFile == null ? null : defFile + "#", gen, model.getRows(), list.get(0), list, profiles, true,
         profileBaseFileName, null, corePath, imagePath, true,
-        profile.getDerivation() == "CONSTRAINT" && usesMustSupport(list));
+        profile.getDerivation() == TypeDerivationRule.CONSTRAINT && usesMustSupport(list));
     try {
       return gen.generate(model, imagePath, 1, outputTracker);
     } catch (org.hl7.fhir.exceptions.FHIRException e) {
@@ -3026,7 +3030,7 @@ public class ProfileUtilities extends TranslatingUtilities {
           if (!child.hasSliceName())
             currRow = row;
           if (logicalModel || !child.getPath().endsWith(".id") || (child.getPath().endsWith(".id") && (profile != null)
-              && (profile.getDerivation() == "CONSTRAINT")))
+              && (profile.getDerivation() == TypeDerivationRule.CONSTRAINT)))
             currRow = genElement(defPath, gen, currRow.getSubRows(), child, all, profiles, showMissing,
                 profileBaseFileName, isExtension, snapshot, corePath, imagePath, false, logicalModel, isConstraintMode,
                 allInvariants, currRow);
@@ -3076,7 +3080,7 @@ public class ProfileUtilities extends TranslatingUtilities {
 
       } else {
         StructureDefinition sd = context.fetchTypeDefinition(t);
-        if (sd.getKind() == "PRIMITIVETYPE") {
+        if (sd.getKind() == StructureDefinitionKind.PRIMITIVETYPE) {
           choicerow.getCells().add(gen.new Cell(null, null,
               tail(element.getPath()).replace("[x]", Utilities.capitalize(t)), sd.getDescription(), null));
           choicerow.getCells().add(gen.new Cell());
@@ -3393,8 +3397,8 @@ public class ProfileUtilities extends TranslatingUtilities {
               c.getPieces().add(checkForNoChange(binding, gen.new Piece(null, " (", null)));
               c.getPieces()
                   .add(checkForNoChange(binding,
-                      gen.new Piece(corePath + "terminologies.html#" + binding.getStrength(),
-                          egt(binding.getStrengthElement()), binding.getStrength())));
+                      gen.new Piece(corePath + "terminologies.html#" + binding.getStrength().toCode(),
+                          egt(binding.getStrengthElement()), binding.getStrength().getDefinition())));
 
               c.getPieces().add(gen.new Piece(null, ")", null));
             }
@@ -3752,8 +3756,8 @@ public class ProfileUtilities extends TranslatingUtilities {
               c.getPieces().add(checkForNoChange(binding, gen.new Piece(null, " (", null)));
               c.getPieces()
                   .add(checkForNoChange(binding,
-                      gen.new Piece(corePath + "terminologies.html#" + binding.getStrength(),
-                          binding.getStrength(), binding.getStrength())));
+                      gen.new Piece(corePath + "terminologies.html#" + binding.getStrength().toCode(),
+                          binding.getStrength().toCode(), binding.getStrength().getDefinition())));
               c.getPieces().add(gen.new Piece(null, ")", null));
             }
           }
@@ -3924,8 +3928,8 @@ public class ProfileUtilities extends TranslatingUtilities {
           "DataRequirement", "Expression", "ParameterDefinition", "RelatedArtifact", "TriggerDefinition",
           "UsageContext");
     else
-      return sd.getKind() == "COMPLEXTYPE"
-          && sd.getDerivation() == "SPECIALIZATION";
+      return sd.getKind() == StructureDefinitionKind.COMPLEXTYPE
+        && sd.getDerivation() == TypeDerivationRule.SPECIALIZATION;
   }
 
   private boolean isConstrainedDataType(String value) {
@@ -3933,7 +3937,7 @@ public class ProfileUtilities extends TranslatingUtilities {
     if (sd == null) // might be running before all SDs are available
       return Utilities.existsInList(value, "SimpleQuantity", "MoneyQuantity");
     else
-      return sd.getKind() == "COMPLEXTYPE" && sd.getDerivation() == "CONSTRAINT";
+      return sd.getKind() == StructureDefinitionKind.COMPLEXTYPE && sd.getDerivation() == TypeDerivationRule.CONSTRAINT;
   }
 
   private String baseType(String value) {
@@ -3952,7 +3956,7 @@ public class ProfileUtilities extends TranslatingUtilities {
           "decimal", "id", "instant", "integer", "markdown", "oid", "positiveInt", "string", "time", "unsignedInt",
           "uri", "url", "uuid");
     else
-      return sd.getKind() == "PRIMITIVETYPE";
+      return sd.getKind() == StructureDefinitionKind.PRIMITIVETYPE;
   }
 
 //  private static String listStructures(StructureDefinition p) {
@@ -4356,7 +4360,7 @@ public class ProfileUtilities extends TranslatingUtilities {
   // generate schematrons for the rules in a structure definition
   public void generateSchematrons(OutputStream dest, StructureDefinition structure)
       throws IOException, DefinitionException {
-    if (structure.getDerivation() != "CONSTRAINT")
+    if (structure.getDerivation() != TypeDerivationRule.CONSTRAINT)
       throw new DefinitionException("not the right kind of structure to generate schematrons for");
     if (!structure.hasSnapshot())
       throw new DefinitionException("needs a snapshot");
@@ -4933,7 +4937,7 @@ public class ProfileUtilities extends TranslatingUtilities {
     SpanEntry res = buildSpanEntryFromProfile(name, cardinality, profile);
     boolean wantProcess = !processed.contains(profile.getUrl());
     processed.add(profile.getUrl());
-    if (wantProcess && profile.getDerivation() == "CONSTRAINT") {
+    if (wantProcess && profile.getDerivation() == TypeDerivationRule.CONSTRAINT) {
       for (ElementDefinition ed : profile.getSnapshot().getElement()) {
         if (!"0".equals(ed.getMax()) && ed.getType().size() > 0) {
           String card = getCardinality(ed, profile.getSnapshot().getElement());
@@ -4943,7 +4947,7 @@ public class ProfileUtilities extends TranslatingUtilities {
               String uri = refProfiles.get(0);
               if (uri != null) {
                 StructureDefinition sd = context.fetchResource(StructureDefinition.class, uri);
-                if (sd != null && (!onlyConstraints || (sd.getDerivation() == "CONSTRAINT"
+                if (sd != null && (!onlyConstraints || (sd.getDerivation() == TypeDerivationRule.CONSTRAINT
                     && (constraintPrefix == null || sd.getUrl().startsWith(constraintPrefix))))) {
                   res.getChildren().add(
                       buildSpanningTable(nameForElement(ed), card, sd, processed, onlyConstraints, constraintPrefix));
@@ -5009,12 +5013,12 @@ public class ProfileUtilities extends TranslatingUtilities {
     if (base != null)
       res.setResLink(base.getUserString("path"));
     res.setId(profile.getId());
-    res.setProfile(profile.getDerivation() == "CONSTRAINT");
+    res.setProfile(profile.getDerivation() == TypeDerivationRule.CONSTRAINT);
     StringBuilder b = new StringBuilder();
     b.append(res.getResType());
     boolean first = true;
     boolean open = false;
-    if (profile.getDerivation() == "CONSTRAINT") {
+    if (profile.getDerivation() == TypeDerivationRule.CONSTRAINT) {
       res.setDescription(profile.getName());
       for (ElementDefinition ed : profile.getSnapshot().getElement()) {
         if (isKeyProperty(ed.getBase().getPath()) && ed.hasFixed()) {
@@ -5177,7 +5181,7 @@ public class ProfileUtilities extends TranslatingUtilities {
       ext.setFhirVersion(sd.getFhirVersion());
       ext.setDescription(ed.getDefinition());
       ext.getContext().clear();
-      ext.addContext().setType("ELEMENT").setExpression(epath.substring(0, epath.lastIndexOf(".")));
+      ext.addContext().setType(ExtensionContextType.ELEMENT).setExpression(epath.substring(0, epath.lastIndexOf(".")));
       ext.getDifferential().getElement().clear();
       ext.getSnapshot().getElement().get(3).setFixed(new UriType(url));
       ext.getSnapshot().getElement().set(4, ed.copy());
@@ -5213,7 +5217,7 @@ public class ProfileUtilities extends TranslatingUtilities {
 
 
   public static boolean isExtensionDefinition(StructureDefinition sd) {
-    return sd.getDerivation() == "CONSTRAINT" && sd.getType().equals("Extension");
+    return sd.getDerivation() == TypeDerivationRule.CONSTRAINT && sd.getType().equals("Extension");
   }
 
   public static boolean isSimpleExtension(StructureDefinition sd) {

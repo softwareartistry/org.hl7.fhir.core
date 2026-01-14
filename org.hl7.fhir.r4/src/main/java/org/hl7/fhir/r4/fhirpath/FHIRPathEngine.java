@@ -60,6 +60,8 @@ import org.hl7.fhir.r4.model.Quantity;
 import org.hl7.fhir.r4.model.Resource;
 import org.hl7.fhir.r4.model.StringType;
 import org.hl7.fhir.r4.model.StructureDefinition;
+import org.hl7.fhir.r4.model.StructureDefinition.StructureDefinitionKind;
+import org.hl7.fhir.r4.model.StructureDefinition.TypeDerivationRule;
 import org.hl7.fhir.r4.model.TimeType;
 import org.hl7.fhir.r4.model.ValueSet;
 import org.hl7.fhir.utilities.*;
@@ -189,10 +191,10 @@ public class FHIRPathEngine {
     this.worker = worker;
     profileUtilities = utilities; 
     for (StructureDefinition sd : worker.fetchResourcesByType(StructureDefinition.class)) {
-      if (sd.getDerivation() == "SPECIALIZATION" && sd.getKind() != "LOGICAL") {
+      if (sd.getDerivation() == TypeDerivationRule.SPECIALIZATION && sd.getKind() != StructureDefinitionKind.LOGICAL) {
         allTypes.put(sd.getName(), sd);
       }
-      if (sd.getDerivation() == "SPECIALIZATION" && sd.getKind() == "PRIMITIVETYPE") {
+      if (sd.getDerivation() == TypeDerivationRule.SPECIALIZATION && sd.getKind() == StructureDefinitionKind.PRIMITIVETYPE) {
         primitiveTypes.add(sd.getName());
       }
     }
@@ -5165,7 +5167,7 @@ public class FHIRPathEngine {
               result.add(b);
               break;
             }
-            sd = sd.getKind() == "PRIMITIVETYPE" ? null : worker.fetchResource(StructureDefinition.class, sd.getBaseDefinition(), sd);
+            sd = sd.getKind() == StructureDefinitionKind.PRIMITIVETYPE ? null : worker.fetchResource(StructureDefinition.class, sd.getBaseDefinition(), sd);
           }
         }
       }
@@ -5206,7 +5208,7 @@ public class FHIRPathEngine {
               result.add(b);
               break;
             }
-            sd = sd.getKind() == "PRIMITIVETYPE" ? null : worker.fetchResource(StructureDefinition.class, sd.getBaseDefinition(), sd);
+            sd = sd.getKind() == StructureDefinitionKind.PRIMITIVETYPE ? null : worker.fetchResource(StructureDefinition.class, sd.getBaseDefinition(), sd);
           }
         }
       } else if (tn.startsWith("CDA.")) {
@@ -5220,7 +5222,7 @@ public class FHIRPathEngine {
               result.add(b);
               break;
             }
-            sd = sd.getKind() == "PRIMITIVETYPE" ? null : worker.fetchResource(StructureDefinition.class, sd.getBaseDefinition(), sd);
+            sd = sd.getKind() == StructureDefinitionKind.PRIMITIVETYPE ? null : worker.fetchResource(StructureDefinition.class, sd.getBaseDefinition(), sd);
           }
         }
       }
@@ -6499,7 +6501,7 @@ public class FHIRPathEngine {
   private void addTypeAndDescendents(List<StructureDefinition> sdl, StructureDefinition dt, List<StructureDefinition> types) {
     sdl.add(dt);
     for (StructureDefinition sd : types) {
-      if (sd.hasBaseDefinition() && sd.getBaseDefinition().equals(dt.getUrl()) && sd.getDerivation() == "SPECIALIZATION") {
+      if (sd.hasBaseDefinition() && sd.getBaseDefinition().equals(dt.getUrl()) && sd.getDerivation() == TypeDerivationRule.SPECIALIZATION) {
         addTypeAndDescendents(sdl, sd, types);
       }
     }  
@@ -6606,7 +6608,7 @@ public class FHIRPathEngine {
 
   private boolean isAbstractType(String code) {
     StructureDefinition sd = worker.fetchTypeDefinition(code);
-    return sd != null && sd.getAbstract() && sd.getKind() != "RESOURCE";
+    return sd != null && sd.getAbstract() && sd.getKind() != StructureDefinitionKind.RESOURCE;
   }
 
   

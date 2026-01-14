@@ -44,6 +44,7 @@ import org.hl7.fhir.r4.fhirpath.ExpressionNode.CollectionStatus;
 import org.hl7.fhir.r4.model.CanonicalType;
 import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionBindingComponent;
 import org.hl7.fhir.r4.model.StructureDefinition;
+import org.hl7.fhir.r4.model.StructureDefinition.StructureDefinitionKind;
 import org.hl7.fhir.r4.model.UriType;
 import org.hl7.fhir.utilities.CommaSeparatedStringBuilder;
 import org.hl7.fhir.utilities.Utilities;
@@ -252,7 +253,7 @@ public class TypeDetails {
       }
       t = ProfiledType.ns(n);
       StructureDefinition sd = context.fetchTypeDefinition(t);
-      if (sd != null && sd.getKind() != "LOGICAL" && Utilities.existsInList(sd.getType(), "boolean", "string", "integer", "decimal", "Quantity", "dateTime", "time")) {
+      if (sd != null && sd.getKind() != StructureDefinitionKind.LOGICAL && Utilities.existsInList(sd.getType(), "boolean", "string", "integer", "decimal", "Quantity", "dateTime", "time")) {
         t = FP_NS+"System."+Utilities.capitalize(sd.getType());
         if (typesContains(t)) {
           return true;
