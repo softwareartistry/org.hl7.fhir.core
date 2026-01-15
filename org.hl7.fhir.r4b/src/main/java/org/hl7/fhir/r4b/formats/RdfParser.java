@@ -3764,7 +3764,7 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "CareTeam", "identifier", element.getIdentifier().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "CareTeam", "status", element.getStatusElement(), -1);
+      composeString(t, "CareTeam", "status", element.getStatusElement(), -1);
     }
     for (int i = 0; i < element.getCategory().size(); i++) {
       composeCodeableConcept(t, "CareTeam", "category", element.getCategory().get(i), i);
