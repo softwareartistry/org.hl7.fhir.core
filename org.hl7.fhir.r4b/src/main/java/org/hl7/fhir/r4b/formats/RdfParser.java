@@ -2186,7 +2186,7 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "AdverseEvent", "identifier", element.getIdentifier(), -1);
     }
     if (element.hasActualityElement()) {
-      composeEnum(t, "AdverseEvent", "actuality", element.getActualityElement(), -1);
+      composeString(t, "AdverseEvent", "actuality", element.getActualityElement(), -1);
     }
     for (int i = 0; i < element.getCategory().size(); i++) {
       composeCodeableConcept(t, "AdverseEvent", "category", element.getCategory().get(i), i);

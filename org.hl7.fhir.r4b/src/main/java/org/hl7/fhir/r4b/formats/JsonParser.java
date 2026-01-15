@@ -2760,8 +2760,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("identifier"))
       res.setIdentifier(parseIdentifier(getJObject(json, "identifier")));
     if (json.has("actuality"))
-      res.setActualityElement(parseEnumeration(json.get("actuality").getAsString(),
-          AdverseEvent.AdverseEventActuality.NULL, new AdverseEvent.AdverseEventActualityEnumFactory()));
+      res.setActualityElement(parseString(json.get("actuality").getAsString()));
     if (json.has("_actuality"))
       parseElementProperties(getJObject(json, "_actuality"), res.getActualityElement());
     if (json.has("category")) {
@@ -36502,10 +36501,8 @@ public class JsonParser extends JsonParserBase {
       composeIdentifier("identifier", element.getIdentifier());
     }
     if (element.hasActualityElement()) {
-      composeEnumerationCore("actuality", element.getActualityElement(),
-          new AdverseEvent.AdverseEventActualityEnumFactory(), false);
-      composeEnumerationExtras("actuality", element.getActualityElement(),
-          new AdverseEvent.AdverseEventActualityEnumFactory(), false);
+      composeStringCore("actuality", element.getActualityElement(), false);
+      composeStringExtras("actuality", element.getActualityElement(), false);
     }
     if (element.hasCategory()) {
       openArray("category");

@@ -2730,8 +2730,7 @@ public class XmlParser extends XmlParserBase {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("identifier")) {
       res.setIdentifier(parseIdentifier(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("actuality")) {
-      res.setActualityElement(parseEnumeration(xpp, AdverseEvent.AdverseEventActuality.NULL,
-          new AdverseEvent.AdverseEventActualityEnumFactory()));
+      res.setActualityElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("category")) {
       res.getCategory().add(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("event")) {
@@ -30529,8 +30528,7 @@ public class XmlParser extends XmlParserBase {
       composeIdentifier("identifier", element.getIdentifier());
     }
     if (element.hasActualityElement())
-      composeEnumeration("actuality", element.getActualityElement(),
-          new AdverseEvent.AdverseEventActualityEnumFactory());
+      composeString("actuality", element.getActualityElement());
     if (element.hasCategory()) {
       for (CodeableConcept e : element.getCategory())
         composeCodeableConcept("category", e);
