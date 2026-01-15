@@ -3530,17 +3530,13 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("productCategory"))
-      res.setProductCategoryElement(parseEnumeration(json.get("productCategory").getAsString(),
-          BiologicallyDerivedProduct.BiologicallyDerivedProductCategory.NULL,
-          new BiologicallyDerivedProduct.BiologicallyDerivedProductCategoryEnumFactory()));
+      res.setProductCategoryElement(parseString(json.get("productCategory").getAsString()));
     if (json.has("_productCategory"))
       parseElementProperties(getJObject(json, "_productCategory"), res.getProductCategoryElement());
     if (json.has("productCode"))
       res.setProductCode(parseCodeableConcept(getJObject(json, "productCode")));
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(),
-          BiologicallyDerivedProduct.BiologicallyDerivedProductStatus.NULL,
-          new BiologicallyDerivedProduct.BiologicallyDerivedProductStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("request")) {
@@ -3664,9 +3660,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_temperature"))
       parseElementProperties(getJObject(json, "_temperature"), res.getTemperatureElement());
     if (json.has("scale"))
-      res.setScaleElement(parseEnumeration(json.get("scale").getAsString(),
-          BiologicallyDerivedProduct.BiologicallyDerivedProductStorageScale.NULL,
-          new BiologicallyDerivedProduct.BiologicallyDerivedProductStorageScaleEnumFactory()));
+      res.setScaleElement(parseString(json.get("scale").getAsString()));
     if (json.has("_scale"))
       parseElementProperties(getJObject(json, "_scale"), res.getScaleElement());
     if (json.has("duration"))
@@ -37309,19 +37303,15 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasProductCategoryElement()) {
-      composeEnumerationCore("productCategory", element.getProductCategoryElement(),
-          new BiologicallyDerivedProduct.BiologicallyDerivedProductCategoryEnumFactory(), false);
-      composeEnumerationExtras("productCategory", element.getProductCategoryElement(),
-          new BiologicallyDerivedProduct.BiologicallyDerivedProductCategoryEnumFactory(), false);
+      composeStringCore("productCategory", element.getProductCategoryElement(), false);
+      composeStringExtras("productCategory", element.getProductCategoryElement(), false);
     }
     if (element.hasProductCode()) {
       composeCodeableConcept("productCode", element.getProductCode());
     }
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(),
-          new BiologicallyDerivedProduct.BiologicallyDerivedProductStatusEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(),
-          new BiologicallyDerivedProduct.BiologicallyDerivedProductStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasRequest()) {
       openArray("request");
@@ -37455,10 +37445,8 @@ public class JsonParser extends JsonParserBase {
       composeDecimalExtras("temperature", element.getTemperatureElement(), false);
     }
     if (element.hasScaleElement()) {
-      composeEnumerationCore("scale", element.getScaleElement(),
-          new BiologicallyDerivedProduct.BiologicallyDerivedProductStorageScaleEnumFactory(), false);
-      composeEnumerationExtras("scale", element.getScaleElement(),
-          new BiologicallyDerivedProduct.BiologicallyDerivedProductStorageScaleEnumFactory(), false);
+      composeStringCore("scale", element.getScaleElement(), false);
+      composeStringExtras("scale", element.getScaleElement(), false);
     }
     if (element.hasDuration()) {
       composePeriod("duration", element.getDuration());

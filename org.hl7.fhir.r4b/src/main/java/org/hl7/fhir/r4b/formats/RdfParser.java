@@ -2785,13 +2785,13 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "BiologicallyDerivedProduct", "identifier", element.getIdentifier().get(i), i);
     }
     if (element.hasProductCategoryElement()) {
-      composeEnum(t, "BiologicallyDerivedProduct", "productCategory", element.getProductCategoryElement(), -1);
+      composeString(t, "BiologicallyDerivedProduct", "productCategory", element.getProductCategoryElement(), -1);
     }
     if (element.hasProductCode()) {
       composeCodeableConcept(t, "BiologicallyDerivedProduct", "productCode", element.getProductCode(), -1);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "BiologicallyDerivedProduct", "status", element.getStatusElement(), -1);
+      composeString(t, "BiologicallyDerivedProduct", "status", element.getStatusElement(), -1);
     }
     for (int i = 0; i < element.getRequest().size(); i++) {
       composeReference(t, "BiologicallyDerivedProduct", "request", element.getRequest().get(i), i);
@@ -2909,7 +2909,7 @@ public class RdfParser extends RdfParserBase {
           -1);
     }
     if (element.hasScaleElement()) {
-      composeEnum(t, "BiologicallyDerivedProductStorageComponent", "scale", element.getScaleElement(), -1);
+      composeString(t, "BiologicallyDerivedProductStorageComponent", "scale", element.getScaleElement(), -1);
     }
     if (element.hasDuration()) {
       composePeriod(t, "BiologicallyDerivedProductStorageComponent", "duration", element.getDuration(), -1);

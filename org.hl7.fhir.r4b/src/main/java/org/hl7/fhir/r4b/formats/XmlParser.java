@@ -3377,14 +3377,11 @@ public class XmlParser extends XmlParserBase {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("identifier")) {
       res.getIdentifier().add(parseIdentifier(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("productCategory")) {
-      res.setProductCategoryElement(
-          parseEnumeration(xpp, BiologicallyDerivedProduct.BiologicallyDerivedProductCategory.NULL,
-              new BiologicallyDerivedProduct.BiologicallyDerivedProductCategoryEnumFactory()));
+      res.setProductCategoryElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("productCode")) {
       res.setProductCode(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, BiologicallyDerivedProduct.BiologicallyDerivedProductStatus.NULL,
-          new BiologicallyDerivedProduct.BiologicallyDerivedProductStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("request")) {
       res.getRequest().add(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("quantity")) {
@@ -3522,8 +3519,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("temperature")) {
       res.setTemperatureElement(parseDecimal(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("scale")) {
-      res.setScaleElement(parseEnumeration(xpp, BiologicallyDerivedProduct.BiologicallyDerivedProductStorageScale.NULL,
-          new BiologicallyDerivedProduct.BiologicallyDerivedProductStorageScaleEnumFactory()));
+      res.setScaleElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("duration")) {
       res.setDuration(parsePeriod(xpp));
     } else if (!parseBackboneElementContent(eventType, xpp, res)) {
@@ -31182,14 +31178,12 @@ public class XmlParser extends XmlParserBase {
         composeIdentifier("identifier", e);
     }
     if (element.hasProductCategoryElement())
-      composeEnumeration("productCategory", element.getProductCategoryElement(),
-          new BiologicallyDerivedProduct.BiologicallyDerivedProductCategoryEnumFactory());
+      composeString("productCategory", element.getProductCategoryElement());
     if (element.hasProductCode()) {
       composeCodeableConcept("productCode", element.getProductCode());
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(),
-          new BiologicallyDerivedProduct.BiologicallyDerivedProductStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasRequest()) {
       for (Reference e : element.getRequest())
         composeReference("request", e);
@@ -31313,8 +31307,7 @@ public class XmlParser extends XmlParserBase {
       composeDecimal("temperature", element.getTemperatureElement());
     }
     if (element.hasScaleElement())
-      composeEnumeration("scale", element.getScaleElement(),
-          new BiologicallyDerivedProduct.BiologicallyDerivedProductStorageScaleEnumFactory());
+      composeString("scale", element.getScaleElement());
     if (element.hasDuration()) {
       composePeriod("duration", element.getDuration());
     }
