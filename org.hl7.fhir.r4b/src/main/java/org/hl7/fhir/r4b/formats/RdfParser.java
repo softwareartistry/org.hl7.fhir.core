@@ -3604,10 +3604,10 @@ public class RdfParser extends RdfParserBase {
       composeReference(t, "CarePlan", "partOf", element.getPartOf().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "CarePlan", "status", element.getStatusElement(), -1);
+      composeString(t, "CarePlan", "status", element.getStatusElement(), -1);
     }
     if (element.hasIntentElement()) {
-      composeEnum(t, "CarePlan", "intent", element.getIntentElement(), -1);
+      composeString(t, "CarePlan", "intent", element.getIntentElement(), -1);
     }
     for (int i = 0; i < element.getCategory().size(); i++) {
       composeCodeableConcept(t, "CarePlan", "category", element.getCategory().get(i), i);
@@ -3697,7 +3697,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "detail", name, element, index);
     if (element.hasKindElement()) {
-      composeEnum(t, "CarePlanActivityDetailComponent", "kind", element.getKindElement(), -1);
+      composeString(t, "CarePlanActivityDetailComponent", "kind", element.getKindElement(), -1);
     }
     for (int i = 0; i < element.getInstantiatesCanonical().size(); i++) {
       composeCanonical(t, "CarePlanActivityDetailComponent", "instantiatesCanonical",
@@ -3719,7 +3719,7 @@ public class RdfParser extends RdfParserBase {
       composeReference(t, "CarePlanActivityDetailComponent", "goal", element.getGoal().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "CarePlanActivityDetailComponent", "status", element.getStatusElement(), -1);
+      composeString(t, "CarePlanActivityDetailComponent", "status", element.getStatusElement(), -1);
     }
     if (element.hasStatusReason()) {
       composeCodeableConcept(t, "CarePlanActivityDetailComponent", "statusReason", element.getStatusReason(), -1);

@@ -4709,13 +4709,11 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Enumerations.RequestStatus.NULL,
-          new Enumerations.RequestStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("intent"))
-      res.setIntentElement(parseEnumeration(json.get("intent").getAsString(), CarePlan.CarePlanIntent.NULL,
-          new CarePlan.CarePlanIntentEnumFactory()));
+      res.setIntentElement(parseString(json.get("intent").getAsString()));
     if (json.has("_intent"))
       parseElementProperties(getJObject(json, "_intent"), res.getIntentElement());
     if (json.has("category")) {
@@ -4844,8 +4842,7 @@ public class JsonParser extends JsonParserBase {
       CarePlan.CarePlanActivityDetailComponent res) throws IOException, FHIRFormatError {
     parseBackboneElementProperties(json, res);
     if (json.has("kind"))
-      res.setKindElement(parseEnumeration(json.get("kind").getAsString(), CarePlan.CarePlanActivityKind.NULL,
-          new CarePlan.CarePlanActivityKindEnumFactory()));
+      res.setKindElement(parseString(json.get("kind").getAsString()));
     if (json.has("_kind"))
       parseElementProperties(getJObject(json, "_kind"), res.getKindElement());
     if (json.has("instantiatesCanonical")) {
@@ -4916,8 +4913,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), CarePlan.CarePlanActivityStatus.NULL,
-          new CarePlan.CarePlanActivityStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("statusReason"))
@@ -38462,13 +38458,12 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new Enumerations.RequestStatusEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(), new Enumerations.RequestStatusEnumFactory(),
-          false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasIntentElement()) {
-      composeEnumerationCore("intent", element.getIntentElement(), new CarePlan.CarePlanIntentEnumFactory(), false);
-      composeEnumerationExtras("intent", element.getIntentElement(), new CarePlan.CarePlanIntentEnumFactory(), false);
+      composeStringCore("intent", element.getIntentElement(), false);
+      composeStringExtras("intent", element.getIntentElement(), false);
     }
     if (element.hasCategory()) {
       openArray("category");
@@ -38606,8 +38601,8 @@ public class JsonParser extends JsonParserBase {
       throws IOException {
     composeBackboneElementProperties(element);
     if (element.hasKindElement()) {
-      composeEnumerationCore("kind", element.getKindElement(), new CarePlan.CarePlanActivityKindEnumFactory(), false);
-      composeEnumerationExtras("kind", element.getKindElement(), new CarePlan.CarePlanActivityKindEnumFactory(), false);
+      composeStringCore("kind", element.getKindElement(), false);
+      composeStringExtras("kind", element.getKindElement(), false);
     }
     if (element.hasInstantiatesCanonical()) {
       if (anyHasValue(element.getInstantiatesCanonical())) {
@@ -38665,10 +38660,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new CarePlan.CarePlanActivityStatusEnumFactory(),
-          false);
-      composeEnumerationExtras("status", element.getStatusElement(), new CarePlan.CarePlanActivityStatusEnumFactory(),
-          false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasStatusReason()) {
       composeCodeableConcept("statusReason", element.getStatusReason());

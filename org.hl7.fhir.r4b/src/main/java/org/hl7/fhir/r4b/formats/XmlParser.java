@@ -4322,11 +4322,9 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("partOf")) {
       res.getPartOf().add(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(
-          parseEnumeration(xpp, Enumerations.RequestStatus.NULL, new Enumerations.RequestStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("intent")) {
-      res.setIntentElement(
-          parseEnumeration(xpp, CarePlan.CarePlanIntent.NULL, new CarePlan.CarePlanIntentEnumFactory()));
+      res.setIntentElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("category")) {
       res.getCategory().add(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("title")) {
@@ -4416,8 +4414,7 @@ public class XmlParser extends XmlParserBase {
   protected boolean parseCarePlanActivityDetailComponentContent(int eventType, XmlPullParser xpp,
       CarePlan.CarePlanActivityDetailComponent res) throws XmlPullParserException, IOException, FHIRFormatError {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("kind")) {
-      res.setKindElement(
-          parseEnumeration(xpp, CarePlan.CarePlanActivityKind.NULL, new CarePlan.CarePlanActivityKindEnumFactory()));
+      res.setKindElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("instantiatesCanonical")) {
       res.getInstantiatesCanonical().add(parseCanonical(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("instantiatesUri")) {
@@ -4431,8 +4428,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("goal")) {
       res.getGoal().add(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, CarePlan.CarePlanActivityStatus.NULL,
-          new CarePlan.CarePlanActivityStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("statusReason")) {
       res.setStatusReason(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("doNotPerform")) {
@@ -32054,9 +32050,9 @@ public class XmlParser extends XmlParserBase {
         composeReference("partOf", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new Enumerations.RequestStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasIntentElement())
-      composeEnumeration("intent", element.getIntentElement(), new CarePlan.CarePlanIntentEnumFactory());
+      composeString("intent", element.getIntentElement());
     if (element.hasCategory()) {
       for (CodeableConcept e : element.getCategory())
         composeCodeableConcept("category", e);
@@ -32161,7 +32157,7 @@ public class XmlParser extends XmlParserBase {
       throws IOException {
     composeBackboneElementElements(element);
     if (element.hasKindElement())
-      composeEnumeration("kind", element.getKindElement(), new CarePlan.CarePlanActivityKindEnumFactory());
+      composeString("kind", element.getKindElement());
     if (element.hasInstantiatesCanonical()) {
       for (CanonicalType e : element.getInstantiatesCanonical())
         composeCanonical("instantiatesCanonical", e);
@@ -32186,7 +32182,7 @@ public class XmlParser extends XmlParserBase {
         composeReference("goal", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new CarePlan.CarePlanActivityStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasStatusReason()) {
       composeCodeableConcept("statusReason", element.getStatusReason());
     }
