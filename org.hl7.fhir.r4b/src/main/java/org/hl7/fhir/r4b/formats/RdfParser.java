@@ -3855,7 +3855,7 @@ public class RdfParser extends RdfParserBase {
       composeCodeableConcept(t, "CatalogEntry", "classification", element.getClassification().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "CatalogEntry", "status", element.getStatusElement(), -1);
+      composeString(t, "CatalogEntry", "status", element.getStatusElement(), -1);
     }
     if (element.hasValidityPeriod()) {
       composePeriod(t, "CatalogEntry", "validityPeriod", element.getValidityPeriod(), -1);
@@ -3891,7 +3891,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "relatedEntry", name, element, index);
     if (element.hasRelationtypeElement()) {
-      composeEnum(t, "CatalogEntryRelatedEntryComponent", "relationtype", element.getRelationtypeElement(), -1);
+      composeString(t, "CatalogEntryRelatedEntryComponent", "relationtype", element.getRelationtypeElement(), -1);
     }
     if (element.hasItem()) {
       composeReference(t, "CatalogEntryRelatedEntryComponent", "item", element.getItem(), -1);

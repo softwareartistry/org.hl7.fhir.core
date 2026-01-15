@@ -4565,8 +4565,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("classification")) {
       res.getClassification().add(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(
-          parseEnumeration(xpp, Enumerations.PublicationStatus.NULL, new Enumerations.PublicationStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("validityPeriod")) {
       res.setValidityPeriod(parsePeriod(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("validTo")) {
@@ -4604,8 +4603,7 @@ public class XmlParser extends XmlParserBase {
   protected boolean parseCatalogEntryRelatedEntryComponentContent(int eventType, XmlPullParser xpp,
       CatalogEntry.CatalogEntryRelatedEntryComponent res) throws XmlPullParserException, IOException, FHIRFormatError {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("relationtype")) {
-      res.setRelationtypeElement(parseEnumeration(xpp, CatalogEntry.CatalogEntryRelationType.NULL,
-          new CatalogEntry.CatalogEntryRelationTypeEnumFactory()));
+      res.setRelationtypeElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("item")) {
       res.setItem(parseReference(xpp));
     } else if (!parseBackboneElementContent(eventType, xpp, res)) {
@@ -32335,7 +32333,7 @@ public class XmlParser extends XmlParserBase {
         composeCodeableConcept("classification", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new Enumerations.PublicationStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasValidityPeriod()) {
       composePeriod("validityPeriod", element.getValidityPeriod());
     }
@@ -32374,8 +32372,7 @@ public class XmlParser extends XmlParserBase {
       CatalogEntry.CatalogEntryRelatedEntryComponent element) throws IOException {
     composeBackboneElementElements(element);
     if (element.hasRelationtypeElement())
-      composeEnumeration("relationtype", element.getRelationtypeElement(),
-          new CatalogEntry.CatalogEntryRelationTypeEnumFactory());
+      composeString("relationtype", element.getRelationtypeElement());
     if (element.hasItem()) {
       composeReference("item", element.getItem());
     }

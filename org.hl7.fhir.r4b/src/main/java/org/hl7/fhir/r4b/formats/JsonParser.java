@@ -5090,8 +5090,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Enumerations.PublicationStatus.NULL,
-          new Enumerations.PublicationStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("validityPeriod"))
@@ -5138,8 +5137,7 @@ public class JsonParser extends JsonParserBase {
       CatalogEntry.CatalogEntryRelatedEntryComponent res) throws IOException, FHIRFormatError {
     parseBackboneElementProperties(json, res);
     if (json.has("relationtype"))
-      res.setRelationtypeElement(parseEnumeration(json.get("relationtype").getAsString(),
-          CatalogEntry.CatalogEntryRelationType.NULL, new CatalogEntry.CatalogEntryRelationTypeEnumFactory()));
+      res.setRelationtypeElement(parseString(json.get("relationtype").getAsString()));
     if (json.has("_relationtype"))
       parseElementProperties(getJObject(json, "_relationtype"), res.getRelationtypeElement());
     if (json.has("item"))
@@ -38852,10 +38850,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new Enumerations.PublicationStatusEnumFactory(),
-          false);
-      composeEnumerationExtras("status", element.getStatusElement(), new Enumerations.PublicationStatusEnumFactory(),
-          false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasValidityPeriod()) {
       composePeriod("validityPeriod", element.getValidityPeriod());
@@ -38904,10 +38900,8 @@ public class JsonParser extends JsonParserBase {
       CatalogEntry.CatalogEntryRelatedEntryComponent element) throws IOException {
     composeBackboneElementProperties(element);
     if (element.hasRelationtypeElement()) {
-      composeEnumerationCore("relationtype", element.getRelationtypeElement(),
-          new CatalogEntry.CatalogEntryRelationTypeEnumFactory(), false);
-      composeEnumerationExtras("relationtype", element.getRelationtypeElement(),
-          new CatalogEntry.CatalogEntryRelationTypeEnumFactory(), false);
+      composeStringCore("relationtype", element.getRelationtypeElement(), false);
+      composeStringExtras("relationtype", element.getRelationtypeElement(), false);
     }
     if (element.hasItem()) {
       composeReference("item", element.getItem());
