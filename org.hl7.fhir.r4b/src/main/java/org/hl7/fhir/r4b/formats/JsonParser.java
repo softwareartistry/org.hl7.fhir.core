@@ -2906,8 +2906,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("verificationStatus"))
       res.setVerificationStatus(parseCodeableConcept(getJObject(json, "verificationStatus")));
     if (json.has("type"))
-      res.setTypeElement(parseEnumeration(json.get("type").getAsString(),
-          AllergyIntolerance.AllergyIntoleranceType.NULL, new AllergyIntolerance.AllergyIntoleranceTypeEnumFactory()));
+      res.setTypeElement(parseString(json.get("type").getAsString()));
     if (json.has("_type"))
       parseElementProperties(getJObject(json, "_type"), res.getTypeElement());
     if (json.has("category")) {
@@ -2915,14 +2914,11 @@ public class JsonParser extends JsonParserBase {
       for (int i = 0; i < array.size(); i++) {
         if (array.get(i).isJsonNull()) {
           res.getCategory()
-              .add(new Enumeration<AllergyIntolerance.AllergyIntoleranceCategory>(
-                  new AllergyIntolerance.AllergyIntoleranceCategoryEnumFactory(),
-                  AllergyIntolerance.AllergyIntoleranceCategory.NULL));
+              .add(new StringType());
         } else {
           ;
           res.getCategory()
-              .add(parseEnumeration(array.get(i).getAsString(), AllergyIntolerance.AllergyIntoleranceCategory.NULL,
-                  new AllergyIntolerance.AllergyIntoleranceCategoryEnumFactory()));
+              .add(parseString(array.get(i).getAsString()));
         }
       }
     }
@@ -2931,8 +2927,7 @@ public class JsonParser extends JsonParserBase {
       JsonArray array = getJArray(json, "_category");
       for (int i = 0; i < array.size(); i++) {
         if (i == res.getCategory().size())
-          res.getCategory().add(parseEnumeration(null, AllergyIntolerance.AllergyIntoleranceCategory.NULL,
-              new AllergyIntolerance.AllergyIntoleranceCategoryEnumFactory()));
+          res.getCategory().add(parseString(null));
         if (array.get(i) instanceof JsonObject)
           parseElementProperties(array.get(i).getAsJsonObject(), res.getCategory().get(i));
       }
@@ -2940,8 +2935,7 @@ public class JsonParser extends JsonParserBase {
     ;
     if (json.has("criticality"))
       res.setCriticalityElement(
-          parseEnumeration(json.get("criticality").getAsString(), AllergyIntolerance.AllergyIntoleranceCriticality.NULL,
-              new AllergyIntolerance.AllergyIntoleranceCriticalityEnumFactory()));
+          parseString(json.get("criticality").getAsString()));
     if (json.has("_criticality"))
       parseElementProperties(getJObject(json, "_criticality"), res.getCriticalityElement());
     if (json.has("code"))
@@ -3010,8 +3004,7 @@ public class JsonParser extends JsonParserBase {
       parseElementProperties(getJObject(json, "_onset"), res.getOnsetElement());
     if (json.has("severity"))
       res.setSeverityElement(
-          parseEnumeration(json.get("severity").getAsString(), AllergyIntolerance.AllergyIntoleranceSeverity.NULL,
-              new AllergyIntolerance.AllergyIntoleranceSeverityEnumFactory()));
+          parseString(json.get("severity").getAsString()));
     if (json.has("_severity"))
       parseElementProperties(getJObject(json, "_severity"), res.getSeverityElement());
     if (json.has("exposureRoute"))
@@ -3041,8 +3034,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Appointment.AppointmentStatus.NULL,
-          new Appointment.AppointmentStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("cancelationReason"))
@@ -3173,13 +3165,11 @@ public class JsonParser extends JsonParserBase {
     if (json.has("actor"))
       res.setActor(parseReference(getJObject(json, "actor")));
     if (json.has("required"))
-      res.setRequiredElement(parseEnumeration(json.get("required").getAsString(), Appointment.ParticipantRequired.NULL,
-          new Appointment.ParticipantRequiredEnumFactory()));
+      res.setRequiredElement(parseString(json.get("required").getAsString()));
     if (json.has("_required"))
       parseElementProperties(getJObject(json, "_required"), res.getRequiredElement());
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Enumerations.ParticipationStatus.NULL,
-          new Enumerations.ParticipationStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("period"))
@@ -36665,29 +36655,25 @@ public class JsonParser extends JsonParserBase {
       composeCodeableConcept("verificationStatus", element.getVerificationStatus());
     }
     if (element.hasTypeElement()) {
-      composeEnumerationCore("type", element.getTypeElement(),
-          new AllergyIntolerance.AllergyIntoleranceTypeEnumFactory(), false);
-      composeEnumerationExtras("type", element.getTypeElement(),
-          new AllergyIntolerance.AllergyIntoleranceTypeEnumFactory(), false);
+      composeStringCore("type", element.getTypeElement(), false);
+      composeStringExtras("type", element.getTypeElement(), false);
     }
     if (element.hasCategory()) {
       openArray("category");
-      for (Enumeration<AllergyIntolerance.AllergyIntoleranceCategory> e : element.getCategory())
-        composeEnumerationCore(null, e, new AllergyIntolerance.AllergyIntoleranceCategoryEnumFactory(), true);
+      for (StringType e : element.getCategory())
+        composeStringCore(null, e, true);
       closeArray();
       if (anyHasExtras(element.getCategory())) {
         openArray("_category");
-        for (Enumeration<AllergyIntolerance.AllergyIntoleranceCategory> e : element.getCategory())
-          composeEnumerationExtras(null, e, new AllergyIntolerance.AllergyIntoleranceCategoryEnumFactory(), true);
+        for (StringType e : element.getCategory())
+          composeStringExtras(null, e, true);
         closeArray();
       }
     }
     ;
     if (element.hasCriticalityElement()) {
-      composeEnumerationCore("criticality", element.getCriticalityElement(),
-          new AllergyIntolerance.AllergyIntoleranceCriticalityEnumFactory(), false);
-      composeEnumerationExtras("criticality", element.getCriticalityElement(),
-          new AllergyIntolerance.AllergyIntoleranceCriticalityEnumFactory(), false);
+      composeStringCore("criticality", element.getCriticalityElement(), false);
+      composeStringExtras("criticality", element.getCriticalityElement(), false);
     }
     if (element.hasCode()) {
       composeCodeableConcept("code", element.getCode());
@@ -36762,10 +36748,8 @@ public class JsonParser extends JsonParserBase {
       composeDateTimeExtras("onset", element.getOnsetElement(), false);
     }
     if (element.hasSeverityElement()) {
-      composeEnumerationCore("severity", element.getSeverityElement(),
-          new AllergyIntolerance.AllergyIntoleranceSeverityEnumFactory(), false);
-      composeEnumerationExtras("severity", element.getSeverityElement(),
-          new AllergyIntolerance.AllergyIntoleranceSeverityEnumFactory(), false);
+      composeStringCore("severity", element.getSeverityElement(), false);
+      composeStringExtras("severity", element.getSeverityElement(), false);
     }
     if (element.hasExposureRoute()) {
       composeCodeableConcept("exposureRoute", element.getExposureRoute());
@@ -36796,10 +36780,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new Appointment.AppointmentStatusEnumFactory(),
-          false);
-      composeEnumerationExtras("status", element.getStatusElement(), new Appointment.AppointmentStatusEnumFactory(),
-          false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasCancelationReason()) {
       composeCodeableConcept("cancelationReason", element.getCancelationReason());
@@ -36934,16 +36916,12 @@ public class JsonParser extends JsonParserBase {
       composeReference("actor", element.getActor());
     }
     if (element.hasRequiredElement()) {
-      composeEnumerationCore("required", element.getRequiredElement(), new Appointment.ParticipantRequiredEnumFactory(),
-          false);
-      composeEnumerationExtras("required", element.getRequiredElement(),
-          new Appointment.ParticipantRequiredEnumFactory(), false);
+      composeStringCore("required", element.getRequiredElement(), false);
+      composeStringExtras("required", element.getRequiredElement(), false);
     }
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new Enumerations.ParticipationStatusEnumFactory(),
-          false);
-      composeEnumerationExtras("status", element.getStatusElement(), new Enumerations.ParticipationStatusEnumFactory(),
-          false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasPeriod()) {
       composePeriod("period", element.getPeriod());

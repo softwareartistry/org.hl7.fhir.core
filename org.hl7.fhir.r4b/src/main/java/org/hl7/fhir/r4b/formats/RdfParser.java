@@ -2313,13 +2313,13 @@ public class RdfParser extends RdfParserBase {
       composeCodeableConcept(t, "AllergyIntolerance", "verificationStatus", element.getVerificationStatus(), -1);
     }
     if (element.hasTypeElement()) {
-      composeEnum(t, "AllergyIntolerance", "type", element.getTypeElement(), -1);
+      composeString(t, "AllergyIntolerance", "type", element.getTypeElement(), -1);
     }
     for (int i = 0; i < element.getCategory().size(); i++) {
-      composeEnum(t, "AllergyIntolerance", "category", element.getCategory().get(i), i);
+      composeString(t, "AllergyIntolerance", "category", element.getCategory().get(i), i);
     }
     if (element.hasCriticalityElement()) {
-      composeEnum(t, "AllergyIntolerance", "criticality", element.getCriticalityElement(), -1);
+      composeString(t, "AllergyIntolerance", "criticality", element.getCriticalityElement(), -1);
     }
     if (element.hasCode()) {
       composeCodeableConcept(t, "AllergyIntolerance", "code", element.getCode(), -1);
@@ -2378,7 +2378,7 @@ public class RdfParser extends RdfParserBase {
       composeDateTime(t, "AllergyIntoleranceReactionComponent", "onset", element.getOnsetElement(), -1);
     }
     if (element.hasSeverityElement()) {
-      composeEnum(t, "AllergyIntoleranceReactionComponent", "severity", element.getSeverityElement(), -1);
+      composeString(t, "AllergyIntoleranceReactionComponent", "severity", element.getSeverityElement(), -1);
     }
     if (element.hasExposureRoute()) {
       composeCodeableConcept(t, "AllergyIntoleranceReactionComponent", "exposureRoute", element.getExposureRoute(), -1);
@@ -2402,7 +2402,7 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "Appointment", "identifier", element.getIdentifier().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "Appointment", "status", element.getStatusElement(), -1);
+      composeString(t, "Appointment", "status", element.getStatusElement(), -1);
     }
     if (element.hasCancelationReason()) {
       composeCodeableConcept(t, "Appointment", "cancelationReason", element.getCancelationReason(), -1);
@@ -2484,10 +2484,10 @@ public class RdfParser extends RdfParserBase {
       composeReference(t, "AppointmentParticipantComponent", "actor", element.getActor(), -1);
     }
     if (element.hasRequiredElement()) {
-      composeEnum(t, "AppointmentParticipantComponent", "required", element.getRequiredElement(), -1);
+      composeString(t, "AppointmentParticipantComponent", "required", element.getRequiredElement(), -1);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "AppointmentParticipantComponent", "status", element.getStatusElement(), -1);
+      composeString(t, "AppointmentParticipantComponent", "status", element.getStatusElement(), -1);
     }
     if (element.hasPeriod()) {
       composePeriod(t, "AppointmentParticipantComponent", "period", element.getPeriod(), -1);

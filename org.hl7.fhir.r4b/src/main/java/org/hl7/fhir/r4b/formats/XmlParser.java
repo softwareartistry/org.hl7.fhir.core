@@ -2859,14 +2859,11 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("verificationStatus")) {
       res.setVerificationStatus(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("type")) {
-      res.setTypeElement(parseEnumeration(xpp, AllergyIntolerance.AllergyIntoleranceType.NULL,
-          new AllergyIntolerance.AllergyIntoleranceTypeEnumFactory()));
+      res.setTypeElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("category")) {
-      res.getCategory().add(parseEnumeration(xpp, AllergyIntolerance.AllergyIntoleranceCategory.NULL,
-          new AllergyIntolerance.AllergyIntoleranceCategoryEnumFactory()));
+      res.getCategory().add(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("criticality")) {
-      res.setCriticalityElement(parseEnumeration(xpp, AllergyIntolerance.AllergyIntoleranceCriticality.NULL,
-          new AllergyIntolerance.AllergyIntoleranceCriticalityEnumFactory()));
+      res.setCriticalityElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("code")) {
       res.setCode(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("patient")) {
@@ -2921,8 +2918,7 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("onset")) {
       res.setOnsetElement(parseDateTime(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("severity")) {
-      res.setSeverityElement(parseEnumeration(xpp, AllergyIntolerance.AllergyIntoleranceSeverity.NULL,
-          new AllergyIntolerance.AllergyIntoleranceSeverityEnumFactory()));
+      res.setSeverityElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("exposureRoute")) {
       res.setExposureRoute(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("note")) {
@@ -2954,8 +2950,7 @@ public class XmlParser extends XmlParserBase {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("identifier")) {
       res.getIdentifier().add(parseIdentifier(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(
-          parseEnumeration(xpp, Appointment.AppointmentStatus.NULL, new Appointment.AppointmentStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("cancelationReason")) {
       res.setCancelationReason(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("serviceCategory")) {
@@ -3025,11 +3020,9 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("actor")) {
       res.setActor(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("required")) {
-      res.setRequiredElement(parseEnumeration(xpp, Appointment.ParticipantRequired.NULL,
-          new Appointment.ParticipantRequiredEnumFactory()));
+      res.setRequiredElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, Enumerations.ParticipationStatus.NULL,
-          new Enumerations.ParticipationStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("period")) {
       res.setPeriod(parsePeriod(xpp));
     } else if (!parseBackboneElementContent(eventType, xpp, res)) {
@@ -30666,13 +30659,12 @@ public class XmlParser extends XmlParserBase {
       composeCodeableConcept("verificationStatus", element.getVerificationStatus());
     }
     if (element.hasTypeElement())
-      composeEnumeration("type", element.getTypeElement(), new AllergyIntolerance.AllergyIntoleranceTypeEnumFactory());
+      composeString("type", element.getTypeElement());
     if (element.hasCategory())
-      for (Enumeration<AllergyIntolerance.AllergyIntoleranceCategory> e : element.getCategory())
-        composeEnumeration("category", e, new AllergyIntolerance.AllergyIntoleranceCategoryEnumFactory());
+      for (StringType e : element.getCategory())
+        composeString("category", e);
     if (element.hasCriticalityElement())
-      composeEnumeration("criticality", element.getCriticalityElement(),
-          new AllergyIntolerance.AllergyIntoleranceCriticalityEnumFactory());
+      composeString("criticality", element.getCriticalityElement());
     if (element.hasCode()) {
       composeCodeableConcept("code", element.getCode());
     }
@@ -30735,8 +30727,7 @@ public class XmlParser extends XmlParserBase {
       composeDateTime("onset", element.getOnsetElement());
     }
     if (element.hasSeverityElement())
-      composeEnumeration("severity", element.getSeverityElement(),
-          new AllergyIntolerance.AllergyIntoleranceSeverityEnumFactory());
+      composeString("severity", element.getSeverityElement());
     if (element.hasExposureRoute()) {
       composeCodeableConcept("exposureRoute", element.getExposureRoute());
     }
@@ -30763,7 +30754,7 @@ public class XmlParser extends XmlParserBase {
         composeIdentifier("identifier", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new Appointment.AppointmentStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasCancelationReason()) {
       composeCodeableConcept("cancelationReason", element.getCancelationReason());
     }
@@ -30858,9 +30849,9 @@ public class XmlParser extends XmlParserBase {
       composeReference("actor", element.getActor());
     }
     if (element.hasRequiredElement())
-      composeEnumeration("required", element.getRequiredElement(), new Appointment.ParticipantRequiredEnumFactory());
+      composeString("required", element.getRequiredElement());
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new Enumerations.ParticipationStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasPeriod()) {
       composePeriod("period", element.getPeriod());
     }
