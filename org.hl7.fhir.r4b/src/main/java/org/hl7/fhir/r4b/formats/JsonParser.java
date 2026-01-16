@@ -11306,15 +11306,13 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Enumerations.ObservationStatus.NULL,
-          new Enumerations.ObservationStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("code"))
       res.setCode(parseCodeableConcept(getJObject(json, "code")));
     if (json.has("severity"))
-      res.setSeverityElement(parseEnumeration(json.get("severity").getAsString(),
-          DetectedIssue.DetectedIssueSeverity.NULL, new DetectedIssue.DetectedIssueSeverityEnumFactory()));
+      res.setSeverityElement(parseString(json.get("severity").getAsString()));
     if (json.has("_severity"))
       parseElementProperties(getJObject(json, "_severity"), res.getSeverityElement());
     if (json.has("patient"))
@@ -45228,19 +45226,15 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new Enumerations.ObservationStatusEnumFactory(),
-          false);
-      composeEnumerationExtras("status", element.getStatusElement(), new Enumerations.ObservationStatusEnumFactory(),
-          false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasCode()) {
       composeCodeableConcept("code", element.getCode());
     }
     if (element.hasSeverityElement()) {
-      composeEnumerationCore("severity", element.getSeverityElement(),
-          new DetectedIssue.DetectedIssueSeverityEnumFactory(), false);
-      composeEnumerationExtras("severity", element.getSeverityElement(),
-          new DetectedIssue.DetectedIssueSeverityEnumFactory(), false);
+      composeStringCore("severity", element.getSeverityElement(), false);
+      composeStringExtras("severity", element.getSeverityElement(), false);
     }
     if (element.hasPatient()) {
       composeReference("patient", element.getPatient());

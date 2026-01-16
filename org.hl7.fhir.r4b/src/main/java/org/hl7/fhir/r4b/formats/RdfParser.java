@@ -8430,13 +8430,13 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "DetectedIssue", "identifier", element.getIdentifier().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "DetectedIssue", "status", element.getStatusElement(), -1);
+      composeString(t, "DetectedIssue", "status", element.getStatusElement(), -1);
     }
     if (element.hasCode()) {
       composeCodeableConcept(t, "DetectedIssue", "code", element.getCode(), -1);
     }
     if (element.hasSeverityElement()) {
-      composeEnum(t, "DetectedIssue", "severity", element.getSeverityElement(), -1);
+      composeString(t, "DetectedIssue", "severity", element.getSeverityElement(), -1);
     }
     if (element.hasPatient()) {
       composeReference(t, "DetectedIssue", "patient", element.getPatient(), -1);

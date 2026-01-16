@@ -34,7 +34,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hl7.fhir.utilities.Utilities;
-import org.hl7.fhir.r4b.model.Enumerations.*;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.ICompositeType;
@@ -54,151 +53,6 @@ import ca.uhn.fhir.model.api.annotation.Block;
  */
 @ResourceDef(name = "DetectedIssue", profile = "http://hl7.org/fhir/StructureDefinition/DetectedIssue")
 public class DetectedIssue extends DomainResource {
-
-  public enum DetectedIssueSeverity {
-    /**
-     * Indicates the issue may be life-threatening or has the potential to cause
-     * permanent injury.
-     */
-    HIGH,
-    /**
-     * Indicates the issue may result in noticeable adverse consequences but is
-     * unlikely to be life-threatening or cause permanent injury.
-     */
-    MODERATE,
-    /**
-     * Indicates the issue may result in some adverse consequences but is unlikely
-     * to substantially affect the situation of the subject.
-     */
-    LOW,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static DetectedIssueSeverity fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("high".equals(codeString))
-        return HIGH;
-      if ("moderate".equals(codeString))
-        return MODERATE;
-      if ("low".equals(codeString))
-        return LOW;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown DetectedIssueSeverity code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case HIGH:
-        return "high";
-      case MODERATE:
-        return "moderate";
-      case LOW:
-        return "low";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case HIGH:
-        return "http://hl7.org/fhir/detectedissue-severity";
-      case MODERATE:
-        return "http://hl7.org/fhir/detectedissue-severity";
-      case LOW:
-        return "http://hl7.org/fhir/detectedissue-severity";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case HIGH:
-        return "Indicates the issue may be life-threatening or has the potential to cause permanent injury.";
-      case MODERATE:
-        return "Indicates the issue may result in noticeable adverse consequences but is unlikely to be life-threatening or cause permanent injury.";
-      case LOW:
-        return "Indicates the issue may result in some adverse consequences but is unlikely to substantially affect the situation of the subject.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case HIGH:
-        return "High";
-      case MODERATE:
-        return "Moderate";
-      case LOW:
-        return "Low";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class DetectedIssueSeverityEnumFactory implements EnumFactory<DetectedIssueSeverity> {
-    public DetectedIssueSeverity fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("high".equals(codeString))
-        return DetectedIssueSeverity.HIGH;
-      if ("moderate".equals(codeString))
-        return DetectedIssueSeverity.MODERATE;
-      if ("low".equals(codeString))
-        return DetectedIssueSeverity.LOW;
-      throw new IllegalArgumentException("Unknown DetectedIssueSeverity code '" + codeString + "'");
-    }
-
-    public Enumeration<DetectedIssueSeverity> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<DetectedIssueSeverity>(this, DetectedIssueSeverity.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<DetectedIssueSeverity>(this, DetectedIssueSeverity.NULL, code);
-      if ("high".equals(codeString))
-        return new Enumeration<DetectedIssueSeverity>(this, DetectedIssueSeverity.HIGH, code);
-      if ("moderate".equals(codeString))
-        return new Enumeration<DetectedIssueSeverity>(this, DetectedIssueSeverity.MODERATE, code);
-      if ("low".equals(codeString))
-        return new Enumeration<DetectedIssueSeverity>(this, DetectedIssueSeverity.LOW, code);
-      throw new FHIRException("Unknown DetectedIssueSeverity code '" + codeString + "'");
-    }
-
-    public String toCode(DetectedIssueSeverity code) {
-       if (code == DetectedIssueSeverity.NULL)
-           return null;
-       if (code == DetectedIssueSeverity.HIGH)
-        return "high";
-      if (code == DetectedIssueSeverity.MODERATE)
-        return "moderate";
-      if (code == DetectedIssueSeverity.LOW)
-        return "low";
-      return "?";
-   }
-
-    public String toSystem(DetectedIssueSeverity code) {
-      return code.getSystem();
-    }
-  }
 
   @Block()
   public static class DetectedIssueEvidenceComponent extends BackboneElement implements IBaseBackboneElement {
@@ -849,10 +703,10 @@ public class DetectedIssue extends DomainResource {
   /**
    * Indicates the status of the detected issue.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "registered | preliminary | final | amended +", formalDefinition = "Indicates the status of the detected issue.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/observation-status")
-  protected Enumeration<ObservationStatus> status;
+  protected StringType status;
 
   /**
    * Identifies the general type of issue identified.
@@ -866,10 +720,10 @@ public class DetectedIssue extends DomainResource {
    * Indicates the degree of importance associated with the identified issue based
    * on the potential impact on the patient.
    */
-  @Child(name = "severity", type = { CodeType.class }, order = 3, min = 0, max = 1, modifier = false, summary = true)
+  @Child(name = "severity", type = { StringType.class }, order = 3, min = 0, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "high | moderate | low", formalDefinition = "Indicates the degree of importance associated with the identified issue based on the potential impact on the patient.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/detectedissue-severity")
-  protected Enumeration<DetectedIssueSeverity> severity;
+  protected StringType severity;
 
   /**
    * Indicates the patient whose record the detected issue is associated with.
@@ -949,7 +803,7 @@ public class DetectedIssue extends DomainResource {
   /**
    * Constructor
    */
-  public DetectedIssue(ObservationStatus status) {
+  public DetectedIssue(String status) {
     super();
     this.setStatus(status);
   }
@@ -1014,12 +868,12 @@ public class DetectedIssue extends DomainResource {
    *         is the underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<ObservationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create DetectedIssue.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<ObservationStatus>(new ObservationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -1036,7 +890,7 @@ public class DetectedIssue extends DomainResource {
    *              This is the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public DetectedIssue setStatusElement(Enumeration<ObservationStatus> value) {
+  public DetectedIssue setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1044,17 +898,21 @@ public class DetectedIssue extends DomainResource {
   /**
    * @return Indicates the status of the detected issue.
    */
-  public ObservationStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
   /**
    * @param value Indicates the status of the detected issue.
    */
-  public DetectedIssue setStatus(ObservationStatus value) {
-    if (this.status == null)
-      this.status = new Enumeration<ObservationStatus>(new ObservationStatusEnumFactory());
-    this.status.setValue(value);
+  public DetectedIssue setStatus(String value) {
+    if (Utilities.noString(value)) {
+      this.status = null;
+    } else {
+      if (this.status == null)
+        this.status = new StringType();
+      this.status.setValue(value);
+    }
     return this;
   }
 
@@ -1088,12 +946,12 @@ public class DetectedIssue extends DomainResource {
    *         This is the underlying object with id, value and extensions. The
    *         accessor "getSeverity" gives direct access to the value
    */
-  public Enumeration<DetectedIssueSeverity> getSeverityElement() {
+  public StringType getSeverityElement() {
     if (this.severity == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create DetectedIssue.severity");
       else if (Configuration.doAutoCreate())
-        this.severity = new Enumeration<DetectedIssueSeverity>(new DetectedIssueSeverityEnumFactory()); // bb
+        this.severity = new StringType(); // bb
     return this.severity;
   }
 
@@ -1112,7 +970,7 @@ public class DetectedIssue extends DomainResource {
    *              extensions. The accessor "getSeverity" gives direct access to
    *              the value
    */
-  public DetectedIssue setSeverityElement(Enumeration<DetectedIssueSeverity> value) {
+  public DetectedIssue setSeverityElement(StringType value) {
     this.severity = value;
     return this;
   }
@@ -1121,7 +979,7 @@ public class DetectedIssue extends DomainResource {
    * @return Indicates the degree of importance associated with the identified
    *         issue based on the potential impact on the patient.
    */
-  public DetectedIssueSeverity getSeverity() {
+  public String getSeverity() {
     return this.severity == null ? null : this.severity.getValue();
   }
 
@@ -1129,12 +987,12 @@ public class DetectedIssue extends DomainResource {
    * @param value Indicates the degree of importance associated with the
    *              identified issue based on the potential impact on the patient.
    */
-  public DetectedIssue setSeverity(DetectedIssueSeverity value) {
-    if (value == null)
+  public DetectedIssue setSeverity(String value) {
+    if (Utilities.noString(value)) {
       this.severity = null;
-    else {
+    } else {
       if (this.severity == null)
-        this.severity = new Enumeration<DetectedIssueSeverity>(new DetectedIssueSeverityEnumFactory());
+        this.severity = new StringType();
       this.severity.setValue(value);
     }
     return this;
@@ -1536,10 +1394,10 @@ public class DetectedIssue extends DomainResource {
     super.listChildren(children);
     children.add(new Property("identifier", "Identifier",
         "Business identifier associated with the detected issue record.", 0, java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code", "Indicates the status of the detected issue.", 0, 1, status));
+    children.add(new Property("status", "string", "Indicates the status of the detected issue.", 0, 1, status));
     children
         .add(new Property("code", "CodeableConcept", "Identifies the general type of issue identified.", 0, 1, code));
-    children.add(new Property("severity", "code",
+    children.add(new Property("severity", "string",
         "Indicates the degree of importance associated with the identified issue based on the potential impact on the patient.",
         0, 1, severity));
     children.add(new Property("patient", "Reference(Patient)",
@@ -1571,12 +1429,12 @@ public class DetectedIssue extends DomainResource {
       /* identifier */ return new Property("identifier", "Identifier",
           "Business identifier associated with the detected issue record.", 0, java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "Indicates the status of the detected issue.", 0, 1, status);
+      /* status */ return new Property("status", "string", "Indicates the status of the detected issue.", 0, 1, status);
     case 3059181:
       /* code */ return new Property("code", "CodeableConcept", "Identifies the general type of issue identified.", 0,
           1, code);
     case 1478300413:
-      /* severity */ return new Property("severity", "code",
+      /* severity */ return new Property("severity", "string",
           "Indicates the degree of importance associated with the identified issue based on the potential impact on the patient.",
           0, 1, severity);
     case -791418107:
@@ -1630,11 +1488,11 @@ public class DetectedIssue extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<ObservationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 3059181:
       /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // CodeableConcept
     case 1478300413:
-      /* severity */ return this.severity == null ? new Base[0] : new Base[] { this.severity }; // Enumeration<DetectedIssueSeverity>
+      /* severity */ return this.severity == null ? new Base[0] : new Base[] { this.severity }; // StringType
     case -791418107:
       /* patient */ return this.patient == null ? new Base[0] : new Base[] { this.patient }; // Reference
     case -1618432869:
@@ -1666,15 +1524,13 @@ public class DetectedIssue extends DomainResource {
       this.getIdentifier().add(TypeConvertor.castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new ObservationStatusEnumFactory().fromType(TypeConvertor.castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ObservationStatus>
+      this.status = TypeConvertor.castToString(value); // StringType
       return value;
     case 3059181: // code
       this.code = TypeConvertor.castToCodeableConcept(value); // CodeableConcept
       return value;
     case 1478300413: // severity
-      value = new DetectedIssueSeverityEnumFactory().fromType(TypeConvertor.castToCode(value));
-      this.severity = (Enumeration) value; // Enumeration<DetectedIssueSeverity>
+      this.severity = TypeConvertor.castToString(value); // StringType
       return value;
     case -791418107: // patient
       this.patient = TypeConvertor.castToReference(value); // Reference
@@ -1711,13 +1567,11 @@ public class DetectedIssue extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(TypeConvertor.castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new ObservationStatusEnumFactory().fromType(TypeConvertor.castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ObservationStatus>
+      this.status = TypeConvertor.castToString(value); // StringType
     } else if (name.equals("code")) {
       this.code = TypeConvertor.castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("severity")) {
-      value = new DetectedIssueSeverityEnumFactory().fromType(TypeConvertor.castToCode(value));
-      this.severity = (Enumeration) value; // Enumeration<DetectedIssueSeverity>
+      this.severity = TypeConvertor.castToString(value); // StringType
     } else if (name.equals("patient")) {
       this.patient = TypeConvertor.castToReference(value); // Reference
     } else if (name.equals("identified[x]")) {
@@ -1811,11 +1665,11 @@ public class DetectedIssue extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 3059181:
       /* code */ return new String[] { "CodeableConcept" };
     case 1478300413:
-      /* severity */ return new String[] { "code" };
+      /* severity */ return new String[] { "string" };
     case -791418107:
       /* patient */ return new String[] { "Reference" };
     case -1618432869:
