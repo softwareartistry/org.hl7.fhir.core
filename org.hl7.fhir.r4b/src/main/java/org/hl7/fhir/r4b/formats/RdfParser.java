@@ -6463,7 +6463,7 @@ public class RdfParser extends RdfParserBase {
       composeReference(t, "Communication", "inResponseTo", element.getInResponseTo().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "Communication", "status", element.getStatusElement(), -1);
+    composeString(t, "Communication", "status", element.getStatusElement(), -1);
     }
     if (element.hasStatusReason()) {
       composeCodeableConcept(t, "Communication", "statusReason", element.getStatusReason(), -1);
@@ -6472,7 +6472,7 @@ public class RdfParser extends RdfParserBase {
       composeCodeableConcept(t, "Communication", "category", element.getCategory().get(i), i);
     }
     if (element.hasPriorityElement()) {
-      composeEnum(t, "Communication", "priority", element.getPriorityElement(), -1);
+    composeString(t, "Communication", "priority", element.getPriorityElement(), -1);
     }
     for (int i = 0; i < element.getMedium().size(); i++) {
       composeCodeableConcept(t, "Communication", "medium", element.getMedium().get(i), i);

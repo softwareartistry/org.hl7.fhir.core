@@ -7387,15 +7387,13 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("inResponseTo")) {
       res.getInResponseTo().add(parseReference(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(
-          parseEnumeration(xpp, Enumerations.EventStatus.NULL, new Enumerations.EventStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("statusReason")) {
       res.setStatusReason(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("category")) {
       res.getCategory().add(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("priority")) {
-      res.setPriorityElement(
-          parseEnumeration(xpp, Enumerations.RequestPriority.NULL, new Enumerations.RequestPriorityEnumFactory()));
+      res.setPriorityElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("medium")) {
       res.getMedium().add(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("subject")) {
@@ -35167,7 +35165,7 @@ public class XmlParser extends XmlParserBase {
         composeReference("inResponseTo", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new Enumerations.EventStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasStatusReason()) {
       composeCodeableConcept("statusReason", element.getStatusReason());
     }
@@ -35176,7 +35174,7 @@ public class XmlParser extends XmlParserBase {
         composeCodeableConcept("category", e);
     }
     if (element.hasPriorityElement())
-      composeEnumeration("priority", element.getPriorityElement(), new Enumerations.RequestPriorityEnumFactory());
+      composeString("priority", element.getPriorityElement());
     if (element.hasMedium()) {
       for (CodeableConcept e : element.getMedium())
         composeCodeableConcept("medium", e);
