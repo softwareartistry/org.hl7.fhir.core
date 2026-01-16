@@ -7762,9 +7762,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(
-          parseEnumeration(json.get("status").getAsString(), ClinicalImpression.ClinicalImpressionStatus.NULL,
-              new ClinicalImpression.ClinicalImpressionStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("statusReason"))
@@ -41611,10 +41609,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(),
-          new ClinicalImpression.ClinicalImpressionStatusEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(),
-          new ClinicalImpression.ClinicalImpressionStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasStatusReason()) {
       composeCodeableConcept("statusReason", element.getStatusReason());
