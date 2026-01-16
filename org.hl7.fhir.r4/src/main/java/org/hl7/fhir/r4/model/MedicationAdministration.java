@@ -1403,8 +1403,8 @@ public class MedicationAdministration extends DomainResource {
    *         it is possible for an administration to be started but not completed
    *         or it may be paused while some other process is under way.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -2424,7 +2424,6 @@ public class MedicationAdministration extends DomainResource {
       this.getPartOf().add(castToReference(value)); // Reference
       return value;
     case -892481550: // status
-//      value = new MedicationAdministrationStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // StringType
       return value;
     case 2051346646: // statusReason
@@ -2487,7 +2486,6 @@ public class MedicationAdministration extends DomainResource {
     } else if (name.equals("partOf")) {
       this.getPartOf().add(castToReference(value));
     } else if (name.equals("status")) {
-//      value = new MedicationAdministrationStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // StringType
     } else if (name.equals("statusReason")) {
       this.getStatusReason().add(castToCodeableConcept(value));

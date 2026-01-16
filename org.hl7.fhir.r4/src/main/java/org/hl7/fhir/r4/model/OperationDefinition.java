@@ -36,10 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.BindingStrength;
-import org.hl7.fhir.r4.model.Enumerations.BindingStrengthEnumFactory;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.r4.model.Enumerations.SearchParamType;
 import org.hl7.fhir.r4.model.Enumerations.SearchParamTypeEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
@@ -61,250 +57,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
     "resource", "system", "type", "instance", "inputProfile", "outputProfile", "parameter", "overload" })
 public class OperationDefinition extends MetadataResource {
 
-  public enum OperationKind {
-    /**
-     * This operation is invoked as an operation.
-     */
-    OPERATION,
-    /**
-     * This operation is a named query, invoked using the search mechanism.
-     */
-    QUERY,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static OperationKind fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("operation".equals(codeString))
-        return OPERATION;
-      if ("query".equals(codeString))
-        return QUERY;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown OperationKind code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case OPERATION:
-        return "operation";
-      case QUERY:
-        return "query";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case OPERATION:
-        return "http://hl7.org/fhir/operation-kind";
-      case QUERY:
-        return "http://hl7.org/fhir/operation-kind";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case OPERATION:
-        return "This operation is invoked as an operation.";
-      case QUERY:
-        return "This operation is a named query, invoked using the search mechanism.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case OPERATION:
-        return "Operation";
-      case QUERY:
-        return "Query";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class OperationKindEnumFactory implements EnumFactory<OperationKind> {
-    public OperationKind fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("operation".equals(codeString))
-        return OperationKind.OPERATION;
-      if ("query".equals(codeString))
-        return OperationKind.QUERY;
-      throw new IllegalArgumentException("Unknown OperationKind code '" + codeString + "'");
-    }
-
-    public Enumeration<OperationKind> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<OperationKind>(this, OperationKind.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<OperationKind>(this, OperationKind.NULL, code);
-      if ("operation".equals(codeString))
-        return new Enumeration<OperationKind>(this, OperationKind.OPERATION, code);
-      if ("query".equals(codeString))
-        return new Enumeration<OperationKind>(this, OperationKind.QUERY, code);
-      throw new FHIRException("Unknown OperationKind code '" + codeString + "'");
-    }
-
-    public String toCode(OperationKind code) {
-       if (code == OperationKind.NULL)
-           return null;
-       if (code == OperationKind.OPERATION)
-        return "operation";
-      if (code == OperationKind.QUERY)
-        return "query";
-      return "?";
-   }
-
-    public String toSystem(OperationKind code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum OperationParameterUse {
-    /**
-     * This is an input parameter.
-     */
-    IN,
-    /**
-     * This is an output parameter.
-     */
-    OUT,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static OperationParameterUse fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("in".equals(codeString))
-        return IN;
-      if ("out".equals(codeString))
-        return OUT;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown OperationParameterUse code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case IN:
-        return "in";
-      case OUT:
-        return "out";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case IN:
-        return "http://hl7.org/fhir/operation-parameter-use";
-      case OUT:
-        return "http://hl7.org/fhir/operation-parameter-use";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case IN:
-        return "This is an input parameter.";
-      case OUT:
-        return "This is an output parameter.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case IN:
-        return "In";
-      case OUT:
-        return "Out";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class OperationParameterUseEnumFactory implements EnumFactory<OperationParameterUse> {
-    public OperationParameterUse fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("in".equals(codeString))
-        return OperationParameterUse.IN;
-      if ("out".equals(codeString))
-        return OperationParameterUse.OUT;
-      throw new IllegalArgumentException("Unknown OperationParameterUse code '" + codeString + "'");
-    }
-
-    public Enumeration<OperationParameterUse> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<OperationParameterUse>(this, OperationParameterUse.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<OperationParameterUse>(this, OperationParameterUse.NULL, code);
-      if ("in".equals(codeString))
-        return new Enumeration<OperationParameterUse>(this, OperationParameterUse.IN, code);
-      if ("out".equals(codeString))
-        return new Enumeration<OperationParameterUse>(this, OperationParameterUse.OUT, code);
-      throw new FHIRException("Unknown OperationParameterUse code '" + codeString + "'");
-    }
-
-    public String toCode(OperationParameterUse code) {
-       if (code == OperationParameterUse.NULL)
-           return null;
-       if (code == OperationParameterUse.IN)
-        return "in";
-      if (code == OperationParameterUse.OUT)
-        return "out";
-      return "?";
-   }
-
-    public String toSystem(OperationParameterUse code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class OperationDefinitionParameterComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -317,10 +69,10 @@ public class OperationDefinition extends MetadataResource {
     /**
      * Whether this is an input or an output parameter.
      */
-    @Child(name = "use", type = { CodeType.class }, order = 2, min = 1, max = 1, modifier = false, summary = false)
+    @Child(name = "use", type = { StringType.class }, order = 2, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "in | out", formalDefinition = "Whether this is an input or an output parameter.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/operation-parameter-use")
-    protected Enumeration<OperationParameterUse> use;
+    protected StringType use;
 
     /**
      * The minimum number of times this parameter SHALL appear in the request or
@@ -374,7 +126,7 @@ public class OperationDefinition extends MetadataResource {
      * the parameter type is 'string'.
      */
     @Child(name = "searchType", type = {
-        CodeType.class }, order = 8, min = 0, max = 1, modifier = false, summary = false)
+      CodeType.class }, order = 8, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "number | date | string | token | reference | composite | quantity | uri | special", formalDefinition = "How the parameter is understood as a search parameter. This is only used if the parameter type is 'string'.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/search-param-type")
     protected Enumeration<SearchParamType> searchType;
@@ -415,7 +167,7 @@ public class OperationDefinition extends MetadataResource {
     /**
      * Constructor
      */
-    public OperationDefinitionParameterComponent(CodeType name, Enumeration<OperationParameterUse> use, IntegerType min,
+    public OperationDefinitionParameterComponent(CodeType name, StringType use, IntegerType min,
         StringType max) {
       super();
       this.name = name;
@@ -478,12 +230,12 @@ public class OperationDefinition extends MetadataResource {
      *         is the underlying object with id, value and extensions. The accessor
      *         "getUse" gives direct access to the value
      */
-    public Enumeration<OperationParameterUse> getUseElement() {
+    public StringType getUseElement() {
       if (this.use == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create OperationDefinitionParameterComponent.use");
         else if (Configuration.doAutoCreate())
-          this.use = new Enumeration<OperationParameterUse>(new OperationParameterUseEnumFactory()); // bb
+          this.use = new StringType(); // bb
       return this.use;
     }
 
@@ -500,7 +252,7 @@ public class OperationDefinition extends MetadataResource {
      *              This is the underlying object with id, value and extensions. The
      *              accessor "getUse" gives direct access to the value
      */
-    public OperationDefinitionParameterComponent setUseElement(Enumeration<OperationParameterUse> value) {
+    public OperationDefinitionParameterComponent setUseElement(StringType value) {
       this.use = value;
       return this;
     }
@@ -508,16 +260,16 @@ public class OperationDefinition extends MetadataResource {
     /**
      * @return Whether this is an input or an output parameter.
      */
-    public OperationParameterUse getUse() {
+    public String getUse() {
       return this.use == null ? null : this.use.getValue();
     }
 
     /**
      * @param value Whether this is an input or an output parameter.
      */
-    public OperationDefinitionParameterComponent setUse(OperationParameterUse value) {
+    public OperationDefinitionParameterComponent setUse(String value) {
       if (this.use == null)
-        this.use = new Enumeration<OperationParameterUse>(new OperationParameterUseEnumFactory());
+        this.use = new StringType();
       this.use.setValue(value);
       return this;
     }
@@ -1030,7 +782,7 @@ public class OperationDefinition extends MetadataResource {
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
       children.add(new Property("name", "code", "The name of used to identify the parameter.", 0, 1, name));
-      children.add(new Property("use", "code", "Whether this is an input or an output parameter.", 0, 1, use));
+      children.add(new Property("use", "string", "Whether this is an input or an output parameter.", 0, 1, use));
       children.add(new Property("min", "integer",
           "The minimum number of times this parameter SHALL appear in the request or response.", 0, 1, min));
       children.add(new Property("max", "string",
@@ -1059,7 +811,7 @@ public class OperationDefinition extends MetadataResource {
       case 3373707:
         /* name */ return new Property("name", "code", "The name of used to identify the parameter.", 0, 1, name);
       case 116103:
-        /* use */ return new Property("use", "code", "Whether this is an input or an output parameter.", 0, 1, use);
+        /* use */ return new Property("use", "string", "Whether this is an input or an output parameter.", 0, 1, use);
       case 108114:
         /* min */ return new Property("min", "integer",
             "The minimum number of times this parameter SHALL appear in the request or response.", 0, 1, min);
@@ -1101,7 +853,7 @@ public class OperationDefinition extends MetadataResource {
       case 3373707:
         /* name */ return this.name == null ? new Base[0] : new Base[] { this.name }; // CodeType
       case 116103:
-        /* use */ return this.use == null ? new Base[0] : new Base[] { this.use }; // Enumeration<OperationParameterUse>
+        /* use */ return this.use == null ? new Base[0] : new Base[] { this.use }; // StringType
       case 108114:
         /* min */ return this.min == null ? new Base[0] : new Base[] { this.min }; // IntegerType
       case 107876:
@@ -1135,8 +887,7 @@ public class OperationDefinition extends MetadataResource {
         this.name = castToCode(value); // CodeType
         return value;
       case 116103: // use
-        value = new OperationParameterUseEnumFactory().fromType(castToCode(value));
-        this.use = (Enumeration) value; // Enumeration<OperationParameterUse>
+        this.use = castToString(value); // StringType
         return value;
       case 108114: // min
         this.min = castToInteger(value); // IntegerType
@@ -1177,8 +928,7 @@ public class OperationDefinition extends MetadataResource {
       if (name.equals("name")) {
         this.name = castToCode(value); // CodeType
       } else if (name.equals("use")) {
-        value = new OperationParameterUseEnumFactory().fromType(castToCode(value));
-        this.use = (Enumeration) value; // Enumeration<OperationParameterUse>
+        this.use = castToString(value); // StringType
       } else if (name.equals("min")) {
         this.min = castToInteger(value); // IntegerType
       } else if (name.equals("max")) {
@@ -1269,7 +1019,7 @@ public class OperationDefinition extends MetadataResource {
       case 3373707:
         /* name */ return new String[] { "code" };
       case 116103:
-        /* use */ return new String[] { "code" };
+        /* use */ return new String[] { "string" };
       case 108114:
         /* min */ return new String[] { "integer" };
       case 107876:
@@ -1405,10 +1155,10 @@ public class OperationDefinition extends MetadataResource {
      * - that is, the degree to which the provided value set must be adhered to in
      * the instances.
      */
-    @Child(name = "strength", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
+    @Child(name = "strength", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "required | extensible | preferred | example", formalDefinition = "Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the provided value set must be adhered to in the instances.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/binding-strength")
-    protected Enumeration<BindingStrength> strength;
+    protected StringType strength;
 
     /**
      * Points to the value set or external definition (e.g. implicit value set) that
@@ -1431,7 +1181,7 @@ public class OperationDefinition extends MetadataResource {
     /**
      * Constructor
      */
-    public OperationDefinitionParameterBindingComponent(Enumeration<BindingStrength> strength, CanonicalType valueSet) {
+    public OperationDefinitionParameterBindingComponent(StringType strength, CanonicalType valueSet) {
       super();
       this.strength = strength;
       this.valueSet = valueSet;
@@ -1444,12 +1194,12 @@ public class OperationDefinition extends MetadataResource {
      *         underlying object with id, value and extensions. The accessor
      *         "getStrength" gives direct access to the value
      */
-    public Enumeration<BindingStrength> getStrengthElement() {
+    public StringType getStrengthElement() {
       if (this.strength == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create OperationDefinitionParameterBindingComponent.strength");
         else if (Configuration.doAutoCreate())
-          this.strength = new Enumeration<BindingStrength>(new BindingStrengthEnumFactory()); // bb
+          this.strength = new StringType(); // bb
       return this.strength;
     }
 
@@ -1469,7 +1219,7 @@ public class OperationDefinition extends MetadataResource {
      *              extensions. The accessor "getStrength" gives direct access to
      *              the value
      */
-    public OperationDefinitionParameterBindingComponent setStrengthElement(Enumeration<BindingStrength> value) {
+    public OperationDefinitionParameterBindingComponent setStrengthElement(StringType value) {
       this.strength = value;
       return this;
     }
@@ -1479,7 +1229,7 @@ public class OperationDefinition extends MetadataResource {
      *         binding - that is, the degree to which the provided value set must be
      *         adhered to in the instances.
      */
-    public BindingStrength getStrength() {
+    public String getStrength() {
       return this.strength == null ? null : this.strength.getValue();
     }
 
@@ -1488,9 +1238,9 @@ public class OperationDefinition extends MetadataResource {
      *              this binding - that is, the degree to which the provided value
      *              set must be adhered to in the instances.
      */
-    public OperationDefinitionParameterBindingComponent setStrength(BindingStrength value) {
+    public OperationDefinitionParameterBindingComponent setStrength(String value) {
       if (this.strength == null)
-        this.strength = new Enumeration<BindingStrength>(new BindingStrengthEnumFactory());
+        this.strength = new StringType();
       this.strength.setValue(value);
       return this;
     }
@@ -1551,7 +1301,7 @@ public class OperationDefinition extends MetadataResource {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("strength", "code",
+      children.add(new Property("strength", "string",
           "Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the provided value set must be adhered to in the instances.",
           0, 1, strength));
       children.add(new Property("valueSet", "canonical(ValueSet)",
@@ -1563,7 +1313,7 @@ public class OperationDefinition extends MetadataResource {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 1791316033:
-        /* strength */ return new Property("strength", "code",
+        /* strength */ return new Property("strength", "string",
             "Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the provided value set must be adhered to in the instances.",
             0, 1, strength);
       case -1410174671:
@@ -1580,7 +1330,7 @@ public class OperationDefinition extends MetadataResource {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 1791316033:
-        /* strength */ return this.strength == null ? new Base[0] : new Base[] { this.strength }; // Enumeration<BindingStrength>
+        /* strength */ return this.strength == null ? new Base[0] : new Base[] { this.strength }; // StringType
       case -1410174671:
         /* valueSet */ return this.valueSet == null ? new Base[0] : new Base[] { this.valueSet }; // CanonicalType
       default:
@@ -1593,8 +1343,7 @@ public class OperationDefinition extends MetadataResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 1791316033: // strength
-        value = new BindingStrengthEnumFactory().fromType(castToCode(value));
-        this.strength = (Enumeration) value; // Enumeration<BindingStrength>
+        this.strength = castToString(value); // StringType
         return value;
       case -1410174671: // valueSet
         this.valueSet = castToCanonical(value); // CanonicalType
@@ -1608,8 +1357,7 @@ public class OperationDefinition extends MetadataResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("strength")) {
-        value = new BindingStrengthEnumFactory().fromType(castToCode(value));
-        this.strength = (Enumeration) value; // Enumeration<BindingStrength>
+        this.strength = castToString(value); // StringType
       } else if (name.equals("valueSet")) {
         this.valueSet = castToCanonical(value); // CanonicalType
       } else
@@ -1645,7 +1393,7 @@ public class OperationDefinition extends MetadataResource {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 1791316033:
-        /* strength */ return new String[] { "code" };
+        /* strength */ return new String[] { "string" };
       case -1410174671:
         /* valueSet */ return new String[] { "canonical" };
       default:
@@ -2317,10 +2065,10 @@ public class OperationDefinition extends MetadataResource {
   /**
    * Whether this is an operation or a named query.
    */
-  @Child(name = "kind", type = { CodeType.class }, order = 0, min = 1, max = 1, modifier = false, summary = true)
+  @Child(name = "kind", type = { StringType.class }, order = 0, min = 1, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "operation | query", formalDefinition = "Whether this is an operation or a named query.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/operation-kind")
-  protected Enumeration<OperationKind> kind;
+  protected StringType kind;
 
   /**
    * Explanation of why this operation definition is needed and why it has been
@@ -2445,7 +2193,7 @@ public class OperationDefinition extends MetadataResource {
   /**
    * Constructor
    */
-  public OperationDefinition(StringType name, Enumeration<PublicationStatus> status, Enumeration<OperationKind> kind,
+  public OperationDefinition(StringType name, StringType status, StringType kind,
       CodeType code, BooleanType system, BooleanType type, BooleanType instance) {
     super();
     this.name = name;
@@ -2738,12 +2486,12 @@ public class OperationDefinition extends MetadataResource {
    *         object with id, value and extensions. The accessor "getStatus" gives
    *         direct access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create OperationDefinition.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -2761,7 +2509,7 @@ public class OperationDefinition extends MetadataResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getStatus" gives direct access to the value
    */
-  public OperationDefinition setStatusElement(Enumeration<PublicationStatus> value) {
+  public OperationDefinition setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -2770,7 +2518,7 @@ public class OperationDefinition extends MetadataResource {
    * @return The status of this operation definition. Enables tracking the
    *         life-cycle of the content.
    */
-  public PublicationStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
@@ -2778,9 +2526,9 @@ public class OperationDefinition extends MetadataResource {
    * @param value The status of this operation definition. Enables tracking the
    *              life-cycle of the content.
    */
-  public OperationDefinition setStatus(PublicationStatus value) {
+  public OperationDefinition setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -2790,12 +2538,12 @@ public class OperationDefinition extends MetadataResource {
    *         is the underlying object with id, value and extensions. The accessor
    *         "getKind" gives direct access to the value
    */
-  public Enumeration<OperationKind> getKindElement() {
+  public StringType getKindElement() {
     if (this.kind == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create OperationDefinition.kind");
       else if (Configuration.doAutoCreate())
-        this.kind = new Enumeration<OperationKind>(new OperationKindEnumFactory()); // bb
+        this.kind = new StringType(); // bb
     return this.kind;
   }
 
@@ -2812,7 +2560,7 @@ public class OperationDefinition extends MetadataResource {
    *              This is the underlying object with id, value and extensions. The
    *              accessor "getKind" gives direct access to the value
    */
-  public OperationDefinition setKindElement(Enumeration<OperationKind> value) {
+  public OperationDefinition setKindElement(StringType value) {
     this.kind = value;
     return this;
   }
@@ -2820,16 +2568,16 @@ public class OperationDefinition extends MetadataResource {
   /**
    * @return Whether this is an operation or a named query.
    */
-  public OperationKind getKind() {
+  public String getKind() {
     return this.kind == null ? null : this.kind.getValue();
   }
 
   /**
    * @param value Whether this is an operation or a named query.
    */
-  public OperationDefinition setKind(OperationKind value) {
+  public OperationDefinition setKind(String value) {
     if (this.kind == null)
-      this.kind = new Enumeration<OperationKind>(new OperationKindEnumFactory());
+      this.kind = new StringType();
     this.kind.setValue(value);
     return this;
   }
@@ -4002,9 +3750,9 @@ public class OperationDefinition extends MetadataResource {
         0, 1, name));
     children.add(new Property("title", "string",
         "A short, descriptive, user-friendly title for the operation definition.", 0, 1, title));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of this operation definition. Enables tracking the life-cycle of the content.", 0, 1, status));
-    children.add(new Property("kind", "code", "Whether this is an operation or a named query.", 0, 1, kind));
+    children.add(new Property("kind", "string", "Whether this is an operation or a named query.", 0, 1, kind));
     children.add(new Property("experimental", "boolean",
         "A Boolean value to indicate that this operation definition is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
         0, 1, experimental));
@@ -4079,10 +3827,10 @@ public class OperationDefinition extends MetadataResource {
       /* title */ return new Property("title", "string",
           "A short, descriptive, user-friendly title for the operation definition.", 0, 1, title);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of this operation definition. Enables tracking the life-cycle of the content.", 0, 1, status);
     case 3292052:
-      /* kind */ return new Property("kind", "code", "Whether this is an operation or a named query.", 0, 1, kind);
+      /* kind */ return new Property("kind", "string", "Whether this is an operation or a named query.", 0, 1, kind);
     case -404562712:
       /* experimental */ return new Property("experimental", "boolean",
           "A Boolean value to indicate that this operation definition is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
@@ -4174,9 +3922,9 @@ public class OperationDefinition extends MetadataResource {
     case 110371416:
       /* title */ return this.title == null ? new Base[0] : new Base[] { this.title }; // StringType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 3292052:
-      /* kind */ return this.kind == null ? new Base[0] : new Base[] { this.kind }; // Enumeration<OperationKind>
+      /* kind */ return this.kind == null ? new Base[0] : new Base[] { this.kind }; // StringType
     case -404562712:
       /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
     case 3076014:
@@ -4242,12 +3990,10 @@ public class OperationDefinition extends MetadataResource {
       this.title = castToString(value); // StringType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 3292052: // kind
-      value = new OperationKindEnumFactory().fromType(castToCode(value));
-      this.kind = (Enumeration) value; // Enumeration<OperationKind>
+      this.kind = castToString(value); // StringType
       return value;
     case -404562712: // experimental
       this.experimental = castToBoolean(value); // BooleanType
@@ -4326,11 +4072,9 @@ public class OperationDefinition extends MetadataResource {
     } else if (name.equals("title")) {
       this.title = castToString(value); // StringType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("kind")) {
-      value = new OperationKindEnumFactory().fromType(castToCode(value));
-      this.kind = (Enumeration) value; // Enumeration<OperationKind>
+      this.kind = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("date")) {
@@ -4508,9 +4252,9 @@ public class OperationDefinition extends MetadataResource {
     case 110371416:
       /* title */ return new String[] { "string" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 3292052:
-      /* kind */ return new String[] { "code" };
+      /* kind */ return new String[] { "string" };
     case -404562712:
       /* experimental */ return new String[] { "boolean" };
     case 3076014:

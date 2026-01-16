@@ -296,8 +296,8 @@ public class MolecularSequence extends DomainResource {
      *         "sense" strand, and the opposite complementary strand is the
      *         "antisense" strand.
      */
-    public StringType getOrientation() {
-      return this.orientation == null ? null : this.orientation;
+    public String getOrientation() {
+      return this.orientation == null ? null : this.orientation.getValue();
     }
 
     /**
@@ -497,8 +497,8 @@ public class MolecularSequence extends DomainResource {
      *         whose 5'-end is on the short arm of the chromosome, and the Crick
      *         strand as the one whose 5'-end is on the long arm.
      */
-    public StringType getStrand() {
-      return this.strand == null ? null : this.strand;
+    public String getStrand() {
+      return this.strand == null ? null : this.strand.getValue();
     }
 
     /**
@@ -1874,8 +1874,8 @@ public class MolecularSequence extends DomainResource {
     /**
      * @return INDEL / SNP / Undefined variant.
      */
-    public StringType getType() {
-      return this.type == null ? null : this.type;
+    public String getType() {
+      return this.type == null ? null : this.type.getValue();
     }
 
     /**
@@ -4189,8 +4189,8 @@ public class MolecularSequence extends DomainResource {
      * @return Click and see / RESTful API / Need login to see / RESTful API with
      *         authentication / Other ways to see resource.
      */
-    public StringType getType() {
-      return this.type == null ? null : this.type;
+    public String getType() {
+      return this.type == null ? null : this.type.getValue();
     }
 
     /**
@@ -6049,8 +6049,8 @@ public class MolecularSequence extends DomainResource {
   /**
    * @return Amino Acid Sequence/ DNA Sequence / RNA Sequence.
    */
-  public StringType getType() {
-    return this.type == null ? null : this.type;
+  public String getType() {
+    return this.type == null ? null : this.type.getValue();
   }
 
   /**

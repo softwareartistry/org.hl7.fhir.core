@@ -1026,8 +1026,8 @@ public class ClinicalImpression extends DomainResource {
   /**
    * @return Identifies the workflow status of the assessment.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

@@ -291,8 +291,8 @@ public class ImmunizationEvaluation extends DomainResource {
    * @return Indicates the current status of the evaluation of the vaccination
    *         administration event.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

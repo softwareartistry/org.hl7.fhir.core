@@ -20,7 +20,7 @@ public class ConceptTranslationEngine {
             matched = true;
             Parameters.ParametersParameterComponent match = p.addParameter();
             match.setName("match");
-            match.addPart().setName("equivalence").setValue(new CodeType(tgt.getEquivalence().toCode()));
+            match.addPart().setName("equivalence").setValue(new CodeType(tgt.getEquivalence()));
             match.addPart().setName("concept").setValue(new Coding().setCode(tgt.getCode()).setSystem(grp.getTarget()));
             // todo: dependencies and products
           }
@@ -43,7 +43,7 @@ public class ConceptTranslationEngine {
               matched = true;
               Parameters.ParametersParameterComponent match = p.addParameter();
               match.setName("match");
-              match.addPart().setName("equivalence").setValue(new CodeType(tgt.getEquivalence().toCode()));
+              match.addPart().setName("equivalence").setValue(new CodeType(tgt.getEquivalence()));
               match.addPart().setName("concept").setValue(new Coding().setCode(tgt.getCode()).setSystem(grp.getTarget()));
               // todo: dependencies and products
             }

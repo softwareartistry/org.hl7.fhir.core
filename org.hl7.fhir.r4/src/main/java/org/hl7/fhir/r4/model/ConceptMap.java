@@ -36,10 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.ConceptMapEquivalence;
-import org.hl7.fhir.r4.model.Enumerations.ConceptMapEquivalenceEnumFactory;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -58,148 +54,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ChildOrder(names = { "url", "identifier", "version", "name", "title", "status", "experimental", "date", "publisher",
     "contact", "description", "useContext", "jurisdiction", "purpose", "copyright", "source[x]", "target[x]", "group" })
 public class ConceptMap extends MetadataResource {
-
-  public enum ConceptMapGroupUnmappedMode {
-    /**
-     * Use the code as provided in the $translate request.
-     */
-    PROVIDED,
-    /**
-     * Use the code explicitly provided in the group.unmapped.
-     */
-    FIXED,
-    /**
-     * Use the map identified by the canonical URL in the url element.
-     */
-    OTHERMAP,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ConceptMapGroupUnmappedMode fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("provided".equals(codeString))
-        return PROVIDED;
-      if ("fixed".equals(codeString))
-        return FIXED;
-      if ("other-map".equals(codeString))
-        return OTHERMAP;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ConceptMapGroupUnmappedMode code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case PROVIDED:
-        return "provided";
-      case FIXED:
-        return "fixed";
-      case OTHERMAP:
-        return "other-map";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case PROVIDED:
-        return "http://hl7.org/fhir/conceptmap-unmapped-mode";
-      case FIXED:
-        return "http://hl7.org/fhir/conceptmap-unmapped-mode";
-      case OTHERMAP:
-        return "http://hl7.org/fhir/conceptmap-unmapped-mode";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case PROVIDED:
-        return "Use the code as provided in the $translate request.";
-      case FIXED:
-        return "Use the code explicitly provided in the group.unmapped.";
-      case OTHERMAP:
-        return "Use the map identified by the canonical URL in the url element.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case PROVIDED:
-        return "Provided Code";
-      case FIXED:
-        return "Fixed Code";
-      case OTHERMAP:
-        return "Other Map";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ConceptMapGroupUnmappedModeEnumFactory implements EnumFactory<ConceptMapGroupUnmappedMode> {
-    public ConceptMapGroupUnmappedMode fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("provided".equals(codeString))
-        return ConceptMapGroupUnmappedMode.PROVIDED;
-      if ("fixed".equals(codeString))
-        return ConceptMapGroupUnmappedMode.FIXED;
-      if ("other-map".equals(codeString))
-        return ConceptMapGroupUnmappedMode.OTHERMAP;
-      throw new IllegalArgumentException("Unknown ConceptMapGroupUnmappedMode code '" + codeString + "'");
-    }
-
-    public Enumeration<ConceptMapGroupUnmappedMode> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ConceptMapGroupUnmappedMode>(this, ConceptMapGroupUnmappedMode.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ConceptMapGroupUnmappedMode>(this, ConceptMapGroupUnmappedMode.NULL, code);
-      if ("provided".equals(codeString))
-        return new Enumeration<ConceptMapGroupUnmappedMode>(this, ConceptMapGroupUnmappedMode.PROVIDED, code);
-      if ("fixed".equals(codeString))
-        return new Enumeration<ConceptMapGroupUnmappedMode>(this, ConceptMapGroupUnmappedMode.FIXED, code);
-      if ("other-map".equals(codeString))
-        return new Enumeration<ConceptMapGroupUnmappedMode>(this, ConceptMapGroupUnmappedMode.OTHERMAP, code);
-      throw new FHIRException("Unknown ConceptMapGroupUnmappedMode code '" + codeString + "'");
-    }
-
-    public String toCode(ConceptMapGroupUnmappedMode code) {
-       if (code == ConceptMapGroupUnmappedMode.NULL)
-           return null;
-       if (code == ConceptMapGroupUnmappedMode.PROVIDED)
-        return "provided";
-      if (code == ConceptMapGroupUnmappedMode.FIXED)
-        return "fixed";
-      if (code == ConceptMapGroupUnmappedMode.OTHERMAP)
-        return "other-map";
-      return "?";
-   }
-
-    public String toSystem(ConceptMapGroupUnmappedMode code) {
-      return code.getSystem();
-    }
-  }
 
   @Block()
   public static class ConceptMapGroupComponent extends BackboneElement implements IBaseBackboneElement {
@@ -1235,10 +1089,10 @@ public class ConceptMap extends MetadataResource {
      * (e.g. the target is 'wider' than the source).
      */
     @Child(name = "equivalence", type = {
-        CodeType.class }, order = 3, min = 1, max = 1, modifier = true, summary = false)
+      StringType.class }, order = 3, min = 1, max = 1, modifier = true, summary = false)
     @Description(shortDefinition = "relatedto | equivalent | equal | wider | subsumes | narrower | specializes | inexact | unmatched | disjoint", formalDefinition = "The equivalence between the source and target concepts (counting for the dependencies and products). The equivalence is read from target to source (e.g. the target is 'wider' than the source).")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/concept-map-equivalence")
-    protected Enumeration<ConceptMapEquivalence> equivalence;
+    protected StringType equivalence;
 
     /**
      * A description of status/issues in mapping that conveys additional information
@@ -1282,7 +1136,7 @@ public class ConceptMap extends MetadataResource {
     /**
      * Constructor
      */
-    public TargetElementComponent(Enumeration<ConceptMapEquivalence> equivalence) {
+    public TargetElementComponent(StringType equivalence) {
       super();
       this.equivalence = equivalence;
     }
@@ -1407,12 +1261,12 @@ public class ConceptMap extends MetadataResource {
      *         extensions. The accessor "getEquivalence" gives direct access to the
      *         value
      */
-    public Enumeration<ConceptMapEquivalence> getEquivalenceElement() {
+    public StringType getEquivalenceElement() {
       if (this.equivalence == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create TargetElementComponent.equivalence");
         else if (Configuration.doAutoCreate())
-          this.equivalence = new Enumeration<ConceptMapEquivalence>(new ConceptMapEquivalenceEnumFactory()); // bb
+          this.equivalence = new StringType(); // bb
       return this.equivalence;
     }
 
@@ -1432,7 +1286,7 @@ public class ConceptMap extends MetadataResource {
      *              with id, value and extensions. The accessor "getEquivalence"
      *              gives direct access to the value
      */
-    public TargetElementComponent setEquivalenceElement(Enumeration<ConceptMapEquivalence> value) {
+    public TargetElementComponent setEquivalenceElement(StringType value) {
       this.equivalence = value;
       return this;
     }
@@ -1442,7 +1296,7 @@ public class ConceptMap extends MetadataResource {
      *         the dependencies and products). The equivalence is read from target
      *         to source (e.g. the target is 'wider' than the source).
      */
-    public ConceptMapEquivalence getEquivalence() {
+    public String getEquivalence() {
       return this.equivalence == null ? null : this.equivalence.getValue();
     }
 
@@ -1451,9 +1305,9 @@ public class ConceptMap extends MetadataResource {
      *              for the dependencies and products). The equivalence is read from
      *              target to source (e.g. the target is 'wider' than the source).
      */
-    public TargetElementComponent setEquivalence(ConceptMapEquivalence value) {
+    public TargetElementComponent setEquivalence(String value) {
       if (this.equivalence == null)
-        this.equivalence = new Enumeration<ConceptMapEquivalence>(new ConceptMapEquivalenceEnumFactory());
+        this.equivalence = new StringType();
       this.equivalence.setValue(value);
       return this;
     }
@@ -1637,7 +1491,7 @@ public class ConceptMap extends MetadataResource {
       children.add(new Property("display", "string",
           "The display for the code. The display is only provided to help editors when editing the concept map.", 0, 1,
           display));
-      children.add(new Property("equivalence", "code",
+      children.add(new Property("equivalence", "string",
           "The equivalence between the source and target concepts (counting for the dependencies and products). The equivalence is read from target to source (e.g. the target is 'wider' than the source).",
           0, 1, equivalence));
       children.add(new Property("comment", "string",
@@ -1662,7 +1516,7 @@ public class ConceptMap extends MetadataResource {
             "The display for the code. The display is only provided to help editors when editing the concept map.", 0,
             1, display);
       case -15828692:
-        /* equivalence */ return new Property("equivalence", "code",
+        /* equivalence */ return new Property("equivalence", "string",
             "The equivalence between the source and target concepts (counting for the dependencies and products). The equivalence is read from target to source (e.g. the target is 'wider' than the source).",
             0, 1, equivalence);
       case 950398559:
@@ -1691,7 +1545,7 @@ public class ConceptMap extends MetadataResource {
       case 1671764162:
         /* display */ return this.display == null ? new Base[0] : new Base[] { this.display }; // StringType
       case -15828692:
-        /* equivalence */ return this.equivalence == null ? new Base[0] : new Base[] { this.equivalence }; // Enumeration<ConceptMapEquivalence>
+        /* equivalence */ return this.equivalence == null ? new Base[0] : new Base[] { this.equivalence }; // StringType
       case 950398559:
         /* comment */ return this.comment == null ? new Base[0] : new Base[] { this.comment }; // StringType
       case -1109214266:
@@ -1715,8 +1569,7 @@ public class ConceptMap extends MetadataResource {
         this.display = castToString(value); // StringType
         return value;
       case -15828692: // equivalence
-        value = new ConceptMapEquivalenceEnumFactory().fromType(castToCode(value));
-        this.equivalence = (Enumeration) value; // Enumeration<ConceptMapEquivalence>
+        this.equivalence = castToString(value); // StringType
         return value;
       case 950398559: // comment
         this.comment = castToString(value); // StringType
@@ -1740,8 +1593,7 @@ public class ConceptMap extends MetadataResource {
       } else if (name.equals("display")) {
         this.display = castToString(value); // StringType
       } else if (name.equals("equivalence")) {
-        value = new ConceptMapEquivalenceEnumFactory().fromType(castToCode(value));
-        this.equivalence = (Enumeration) value; // Enumeration<ConceptMapEquivalence>
+        this.equivalence = castToString(value); // StringType
       } else if (name.equals("comment")) {
         this.comment = castToString(value); // StringType
       } else if (name.equals("dependsOn")) {
@@ -1801,7 +1653,7 @@ public class ConceptMap extends MetadataResource {
       case 1671764162:
         /* display */ return new String[] { "string" };
       case -15828692:
-        /* equivalence */ return new String[] { "code" };
+        /* equivalence */ return new String[] { "string" };
       case 950398559:
         /* comment */ return new String[] { "string" };
       case -1109214266:
@@ -2395,10 +2247,10 @@ public class ConceptMap extends MetadataResource {
      * alternatively, a reference to a different concept map can be provided (by
      * canonical URL).
      */
-    @Child(name = "mode", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
+    @Child(name = "mode", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "provided | fixed | other-map", formalDefinition = "Defines which action to take if there is no match for the source concept in the target system designated for the group. One of 3 actions are possible: use the unmapped code (this is useful when doing a mapping between versions, and only a few codes have changed), use a fixed code (a default code), or alternatively, a reference to a different concept map can be provided (by canonical URL).")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/conceptmap-unmapped-mode")
-    protected Enumeration<ConceptMapGroupUnmappedMode> mode;
+    protected StringType mode;
 
     /**
      * The fixed code to use when the mode = 'fixed' - all unmapped codes are mapped
@@ -2438,7 +2290,7 @@ public class ConceptMap extends MetadataResource {
     /**
      * Constructor
      */
-    public ConceptMapGroupUnmappedComponent(Enumeration<ConceptMapGroupUnmappedMode> mode) {
+    public ConceptMapGroupUnmappedComponent(StringType mode) {
       super();
       this.mode = mode;
     }
@@ -2453,12 +2305,12 @@ public class ConceptMap extends MetadataResource {
      *         the underlying object with id, value and extensions. The accessor
      *         "getMode" gives direct access to the value
      */
-    public Enumeration<ConceptMapGroupUnmappedMode> getModeElement() {
+    public StringType getModeElement() {
       if (this.mode == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create ConceptMapGroupUnmappedComponent.mode");
         else if (Configuration.doAutoCreate())
-          this.mode = new Enumeration<ConceptMapGroupUnmappedMode>(new ConceptMapGroupUnmappedModeEnumFactory()); // bb
+          this.mode = new StringType(); // bb
       return this.mode;
     }
 
@@ -2481,7 +2333,7 @@ public class ConceptMap extends MetadataResource {
      *              with id, value and extensions. The accessor "getMode" gives
      *              direct access to the value
      */
-    public ConceptMapGroupUnmappedComponent setModeElement(Enumeration<ConceptMapGroupUnmappedMode> value) {
+    public ConceptMapGroupUnmappedComponent setModeElement(StringType value) {
       this.mode = value;
       return this;
     }
@@ -2494,7 +2346,7 @@ public class ConceptMap extends MetadataResource {
      *         use a fixed code (a default code), or alternatively, a reference to a
      *         different concept map can be provided (by canonical URL).
      */
-    public ConceptMapGroupUnmappedMode getMode() {
+    public String getMode() {
       return this.mode == null ? null : this.mode.getValue();
     }
 
@@ -2507,9 +2359,9 @@ public class ConceptMap extends MetadataResource {
      *              reference to a different concept map can be provided (by
      *              canonical URL).
      */
-    public ConceptMapGroupUnmappedComponent setMode(ConceptMapGroupUnmappedMode value) {
+    public ConceptMapGroupUnmappedComponent setMode(String value) {
       if (this.mode == null)
-        this.mode = new Enumeration<ConceptMapGroupUnmappedMode>(new ConceptMapGroupUnmappedModeEnumFactory());
+        this.mode = new StringType();
       this.mode.setValue(value);
       return this;
     }
@@ -2692,7 +2544,7 @@ public class ConceptMap extends MetadataResource {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("mode", "code",
+      children.add(new Property("mode", "string",
           "Defines which action to take if there is no match for the source concept in the target system designated for the group. One of 3 actions are possible: use the unmapped code (this is useful when doing a mapping between versions, and only a few codes have changed), use a fixed code (a default code), or alternatively, a reference to a different concept map can be provided (by canonical URL).",
           0, 1, mode));
       children.add(new Property("code", "code",
@@ -2710,7 +2562,7 @@ public class ConceptMap extends MetadataResource {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 3357091:
-        /* mode */ return new Property("mode", "code",
+        /* mode */ return new Property("mode", "string",
             "Defines which action to take if there is no match for the source concept in the target system designated for the group. One of 3 actions are possible: use the unmapped code (this is useful when doing a mapping between versions, and only a few codes have changed), use a fixed code (a default code), or alternatively, a reference to a different concept map can be provided (by canonical URL).",
             0, 1, mode);
       case 3059181:
@@ -2735,7 +2587,7 @@ public class ConceptMap extends MetadataResource {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 3357091:
-        /* mode */ return this.mode == null ? new Base[0] : new Base[] { this.mode }; // Enumeration<ConceptMapGroupUnmappedMode>
+        /* mode */ return this.mode == null ? new Base[0] : new Base[] { this.mode }; // StringType
       case 3059181:
         /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // CodeType
       case 1671764162:
@@ -2752,8 +2604,7 @@ public class ConceptMap extends MetadataResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3357091: // mode
-        value = new ConceptMapGroupUnmappedModeEnumFactory().fromType(castToCode(value));
-        this.mode = (Enumeration) value; // Enumeration<ConceptMapGroupUnmappedMode>
+        this.mode = castToString(value); // StringType
         return value;
       case 3059181: // code
         this.code = castToCode(value); // CodeType
@@ -2773,8 +2624,7 @@ public class ConceptMap extends MetadataResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("mode")) {
-        value = new ConceptMapGroupUnmappedModeEnumFactory().fromType(castToCode(value));
-        this.mode = (Enumeration) value; // Enumeration<ConceptMapGroupUnmappedMode>
+        this.mode = castToString(value); // StringType
       } else if (name.equals("code")) {
         this.code = castToCode(value); // CodeType
       } else if (name.equals("display")) {
@@ -2822,7 +2672,7 @@ public class ConceptMap extends MetadataResource {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 3357091:
-        /* mode */ return new String[] { "code" };
+        /* mode */ return new String[] { "string" };
       case 3059181:
         /* code */ return new String[] { "code" };
       case 1671764162:
@@ -2963,7 +2813,7 @@ public class ConceptMap extends MetadataResource {
   /**
    * Constructor
    */
-  public ConceptMap(Enumeration<PublicationStatus> status) {
+  public ConceptMap(StringType status) {
     super();
     this.status = status;
   }
@@ -3275,12 +3125,12 @@ public class ConceptMap extends MetadataResource {
    *         value and extensions. The accessor "getStatus" gives direct access to
    *         the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create ConceptMap.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -3298,7 +3148,7 @@ public class ConceptMap extends MetadataResource {
    *              object with id, value and extensions. The accessor "getStatus"
    *              gives direct access to the value
    */
-  public ConceptMap setStatusElement(Enumeration<PublicationStatus> value) {
+  public ConceptMap setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -3307,7 +3157,7 @@ public class ConceptMap extends MetadataResource {
    * @return The status of this concept map. Enables tracking the life-cycle of
    *         the content.
    */
-  public PublicationStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
@@ -3315,9 +3165,9 @@ public class ConceptMap extends MetadataResource {
    * @param value The status of this concept map. Enables tracking the life-cycle
    *              of the content.
    */
-  public ConceptMap setStatus(PublicationStatus value) {
+  public ConceptMap setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -4047,7 +3897,7 @@ public class ConceptMap extends MetadataResource {
         0, 1, name));
     children.add(
         new Property("title", "string", "A short, descriptive, user-friendly title for the concept map.", 0, 1, title));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of this concept map. Enables tracking the life-cycle of the content.", 0, 1, status));
     children.add(new Property("experimental", "boolean",
         "A Boolean value to indicate that this concept map is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
@@ -4107,7 +3957,7 @@ public class ConceptMap extends MetadataResource {
       /* title */ return new Property("title", "string",
           "A short, descriptive, user-friendly title for the concept map.", 0, 1, title);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of this concept map. Enables tracking the life-cycle of the content.", 0, 1, status);
     case -404562712:
       /* experimental */ return new Property("experimental", "boolean",
@@ -4199,7 +4049,7 @@ public class ConceptMap extends MetadataResource {
     case 110371416:
       /* title */ return this.title == null ? new Base[0] : new Base[] { this.title }; // StringType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -404562712:
       /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
     case 3076014:
@@ -4251,8 +4101,7 @@ public class ConceptMap extends MetadataResource {
       this.title = castToString(value); // StringType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -404562712: // experimental
       this.experimental = castToBoolean(value); // BooleanType
@@ -4309,8 +4158,7 @@ public class ConceptMap extends MetadataResource {
     } else if (name.equals("title")) {
       this.title = castToString(value); // StringType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("date")) {
@@ -4446,7 +4294,7 @@ public class ConceptMap extends MetadataResource {
     case 110371416:
       /* title */ return new String[] { "string" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -404562712:
       /* experimental */ return new String[] { "boolean" };
     case 3076014:

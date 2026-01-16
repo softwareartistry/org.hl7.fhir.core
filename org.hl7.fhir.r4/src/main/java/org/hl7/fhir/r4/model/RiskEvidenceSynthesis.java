@@ -38,8 +38,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -2530,7 +2528,7 @@ public class RiskEvidenceSynthesis extends MetadataResource {
   /**
    * Constructor
    */
-  public RiskEvidenceSynthesis(Enumeration<PublicationStatus> status, Reference population, Reference outcome) {
+  public RiskEvidenceSynthesis(StringType status, Reference population, Reference outcome) {
     super();
     this.status = status;
     this.population = population;
@@ -2880,12 +2878,12 @@ public class RiskEvidenceSynthesis extends MetadataResource {
    *         object with id, value and extensions. The accessor "getStatus" gives
    *         direct access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create RiskEvidenceSynthesis.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -2903,7 +2901,7 @@ public class RiskEvidenceSynthesis extends MetadataResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getStatus" gives direct access to the value
    */
-  public RiskEvidenceSynthesis setStatusElement(Enumeration<PublicationStatus> value) {
+  public RiskEvidenceSynthesis setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -2912,7 +2910,7 @@ public class RiskEvidenceSynthesis extends MetadataResource {
    * @return The status of this risk evidence synthesis. Enables tracking the
    *         life-cycle of the content.
    */
-  public PublicationStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
@@ -2920,9 +2918,9 @@ public class RiskEvidenceSynthesis extends MetadataResource {
    * @param value The status of this risk evidence synthesis. Enables tracking the
    *              life-cycle of the content.
    */
-  public RiskEvidenceSynthesis setStatus(PublicationStatus value) {
+  public RiskEvidenceSynthesis setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -4209,7 +4207,7 @@ public class RiskEvidenceSynthesis extends MetadataResource {
         0, 1, name));
     children.add(new Property("title", "string",
         "A short, descriptive, user-friendly title for the risk evidence synthesis.", 0, 1, title));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of this risk evidence synthesis. Enables tracking the life-cycle of the content.", 0, 1, status));
     children.add(new Property("date", "dateTime",
         "The date  (and optionally time) when the risk evidence synthesis was published. The date must change when the business version changes and it must change if the status code changes. In addition, it should change when the substantive content of the risk evidence synthesis changes.",
@@ -4300,7 +4298,7 @@ public class RiskEvidenceSynthesis extends MetadataResource {
       /* title */ return new Property("title", "string",
           "A short, descriptive, user-friendly title for the risk evidence synthesis.", 0, 1, title);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of this risk evidence synthesis. Enables tracking the life-cycle of the content.", 0, 1, status);
     case 3076014:
       /* date */ return new Property("date", "dateTime",
@@ -4414,7 +4412,7 @@ public class RiskEvidenceSynthesis extends MetadataResource {
     case 110371416:
       /* title */ return this.title == null ? new Base[0] : new Base[] { this.title }; // StringType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 3076014:
       /* date */ return this.date == null ? new Base[0] : new Base[] { this.date }; // DateTimeType
     case 1447404028:
@@ -4494,8 +4492,7 @@ public class RiskEvidenceSynthesis extends MetadataResource {
       this.title = castToString(value); // StringType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); //StringType
       return value;
     case 3076014: // date
       this.date = castToDateTime(value); // DateTimeType
@@ -4591,8 +4588,7 @@ public class RiskEvidenceSynthesis extends MetadataResource {
     } else if (name.equals("title")) {
       this.title = castToString(value); // StringType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("date")) {
       this.date = castToDateTime(value); // DateTimeType
     } else if (name.equals("publisher")) {
@@ -4802,7 +4798,7 @@ public class RiskEvidenceSynthesis extends MetadataResource {
     case 110371416:
       /* title */ return new String[] { "string" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 3076014:
       /* date */ return new String[] { "dateTime" };
     case 1447404028:

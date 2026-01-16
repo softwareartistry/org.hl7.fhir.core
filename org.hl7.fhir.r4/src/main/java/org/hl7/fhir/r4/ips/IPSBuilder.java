@@ -7,7 +7,6 @@ import org.hl7.fhir.r4.model.Age;
 import org.hl7.fhir.r4.model.Annotation;
 import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.Bundle.BundleEntryComponent;
-import org.hl7.fhir.r4.model.Bundle.BundleType;
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
 import org.hl7.fhir.r4.model.Composition;
@@ -67,7 +66,7 @@ public class IPSBuilder {
     Bundle bnd = new Bundle();
     bnd.getIdentifier().setSystem("urn:ietf:rfc:3986");
     bnd.getIdentifier().setValue(UUIDUtilities.makeUuidUrn());
-    bnd.setType(BundleType.DOCUMENT);
+    bnd.setType("DOCUMENT");
     bnd.setTimestamp(new Date());
     return bnd;
   }

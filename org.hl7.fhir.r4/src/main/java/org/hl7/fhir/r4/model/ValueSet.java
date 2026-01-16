@@ -36,8 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -142,109 +140,109 @@ public class ValueSet extends MetadataResource {
 
     public String toCode() {
       switch (this) {
-      case EQUAL:
-        return "=";
-      case ISA:
-        return "is-a";
-      case DESCENDENTOF:
-        return "descendent-of";
-      case ISNOTA:
-        return "is-not-a";
-      case REGEX:
-        return "regex";
-      case IN:
-        return "in";
-      case NOTIN:
-        return "not-in";
-      case GENERALIZES:
-        return "generalizes";
-      case EXISTS:
-        return "exists";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case EQUAL:
+          return "=";
+        case ISA:
+          return "is-a";
+        case DESCENDENTOF:
+          return "descendent-of";
+        case ISNOTA:
+          return "is-not-a";
+        case REGEX:
+          return "regex";
+        case IN:
+          return "in";
+        case NOTIN:
+          return "not-in";
+        case GENERALIZES:
+          return "generalizes";
+        case EXISTS:
+          return "exists";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getSystem() {
       switch (this) {
-      case EQUAL:
-        return "http://hl7.org/fhir/filter-operator";
-      case ISA:
-        return "http://hl7.org/fhir/filter-operator";
-      case DESCENDENTOF:
-        return "http://hl7.org/fhir/filter-operator";
-      case ISNOTA:
-        return "http://hl7.org/fhir/filter-operator";
-      case REGEX:
-        return "http://hl7.org/fhir/filter-operator";
-      case IN:
-        return "http://hl7.org/fhir/filter-operator";
-      case NOTIN:
-        return "http://hl7.org/fhir/filter-operator";
-      case GENERALIZES:
-        return "http://hl7.org/fhir/filter-operator";
-      case EXISTS:
-        return "http://hl7.org/fhir/filter-operator";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case EQUAL:
+          return "http://hl7.org/fhir/filter-operator";
+        case ISA:
+          return "http://hl7.org/fhir/filter-operator";
+        case DESCENDENTOF:
+          return "http://hl7.org/fhir/filter-operator";
+        case ISNOTA:
+          return "http://hl7.org/fhir/filter-operator";
+        case REGEX:
+          return "http://hl7.org/fhir/filter-operator";
+        case IN:
+          return "http://hl7.org/fhir/filter-operator";
+        case NOTIN:
+          return "http://hl7.org/fhir/filter-operator";
+        case GENERALIZES:
+          return "http://hl7.org/fhir/filter-operator";
+        case EXISTS:
+          return "http://hl7.org/fhir/filter-operator";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDefinition() {
       switch (this) {
-      case EQUAL:
-        return "The specified property of the code equals the provided value.";
-      case ISA:
-        return "Includes all concept ids that have a transitive is-a relationship with the concept Id provided as the value, including the provided concept itself (include descendant codes and self).";
-      case DESCENDENTOF:
-        return "Includes all concept ids that have a transitive is-a relationship with the concept Id provided as the value, excluding the provided concept itself i.e. include descendant codes only).";
-      case ISNOTA:
-        return "The specified property of the code does not have an is-a relationship with the provided value.";
-      case REGEX:
-        return "The specified property of the code  matches the regex specified in the provided value.";
-      case IN:
-        return "The specified property of the code is in the set of codes or concepts specified in the provided value (comma separated list).";
-      case NOTIN:
-        return "The specified property of the code is not in the set of codes or concepts specified in the provided value (comma separated list).";
-      case GENERALIZES:
-        return "Includes all concept ids that have a transitive is-a relationship from the concept Id provided as the value, including the provided concept itself (i.e. include ancestor codes and self).";
-      case EXISTS:
-        return "The specified property of the code has at least one value (if the specified value is true; if the specified value is false, then matches when the specified property of the code has no values).";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case EQUAL:
+          return "The specified property of the code equals the provided value.";
+        case ISA:
+          return "Includes all concept ids that have a transitive is-a relationship with the concept Id provided as the value, including the provided concept itself (include descendant codes and self).";
+        case DESCENDENTOF:
+          return "Includes all concept ids that have a transitive is-a relationship with the concept Id provided as the value, excluding the provided concept itself i.e. include descendant codes only).";
+        case ISNOTA:
+          return "The specified property of the code does not have an is-a relationship with the provided value.";
+        case REGEX:
+          return "The specified property of the code  matches the regex specified in the provided value.";
+        case IN:
+          return "The specified property of the code is in the set of codes or concepts specified in the provided value (comma separated list).";
+        case NOTIN:
+          return "The specified property of the code is not in the set of codes or concepts specified in the provided value (comma separated list).";
+        case GENERALIZES:
+          return "Includes all concept ids that have a transitive is-a relationship from the concept Id provided as the value, including the provided concept itself (i.e. include ancestor codes and self).";
+        case EXISTS:
+          return "The specified property of the code has at least one value (if the specified value is true; if the specified value is false, then matches when the specified property of the code has no values).";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDisplay() {
       switch (this) {
-      case EQUAL:
-        return "Equals";
-      case ISA:
-        return "Is A (by subsumption)";
-      case DESCENDENTOF:
-        return "Descendent Of (by subsumption)";
-      case ISNOTA:
-        return "Not (Is A) (by subsumption)";
-      case REGEX:
-        return "Regular Expression";
-      case IN:
-        return "In Set";
-      case NOTIN:
-        return "Not in Set";
-      case GENERALIZES:
-        return "Generalizes (by Subsumption)";
-      case EXISTS:
-        return "Exists";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case EQUAL:
+          return "Equals";
+        case ISA:
+          return "Is A (by subsumption)";
+        case DESCENDENTOF:
+          return "Descendent Of (by subsumption)";
+        case ISNOTA:
+          return "Not (Is A) (by subsumption)";
+        case REGEX:
+          return "Regular Expression";
+        case IN:
+          return "In Set";
+        case NOTIN:
+          return "Not in Set";
+        case GENERALIZES:
+          return "Generalizes (by Subsumption)";
+        case EXISTS:
+          return "Exists";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
   }
@@ -305,9 +303,9 @@ public class ValueSet extends MetadataResource {
     }
 
     public String toCode(FilterOperator code) {
-       if (code == FilterOperator.NULL)
-           return null;
-       if (code == FilterOperator.EQUAL)
+      if (code == FilterOperator.NULL)
+        return null;
+      if (code == FilterOperator.EQUAL)
         return "=";
       if (code == FilterOperator.ISA)
         return "is-a";
@@ -326,7 +324,7 @@ public class ValueSet extends MetadataResource {
       if (code == FilterOperator.EXISTS)
         return "exists";
       return "?";
-   }
+    }
 
     public String toSystem(FilterOperator code) {
       return code.getSystem();
@@ -4656,7 +4654,7 @@ public class ValueSet extends MetadataResource {
   /**
    * Constructor
    */
-  public ValueSet(Enumeration<PublicationStatus> status) {
+  public ValueSet(StringType status) {
     super();
     this.status = status;
   }
@@ -4997,12 +4995,12 @@ public class ValueSet extends MetadataResource {
    *         object with id, value and extensions. The accessor "getStatus" gives
    *         direct access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create ValueSet.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -5022,7 +5020,7 @@ public class ValueSet extends MetadataResource {
    *              This is the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public ValueSet setStatusElement(Enumeration<PublicationStatus> value) {
+  public ValueSet setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -5033,7 +5031,7 @@ public class ValueSet extends MetadataResource {
    *         definition (ValueSet.compose) and the associated ValueSet metadata.
    *         Expansions do not have a state.
    */
-  public PublicationStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
@@ -5043,9 +5041,9 @@ public class ValueSet extends MetadataResource {
    *              set definition (ValueSet.compose) and the associated ValueSet
    *              metadata. Expansions do not have a state.
    */
-  public ValueSet setStatus(PublicationStatus value) {
+  public ValueSet setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -5711,7 +5709,7 @@ public class ValueSet extends MetadataResource {
         0, 1, name));
     children.add(
         new Property("title", "string", "A short, descriptive, user-friendly title for the value set.", 0, 1, title));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of this value set. Enables tracking the life-cycle of the content. The status of the value set applies to the value set definition (ValueSet.compose) and the associated ValueSet metadata. Expansions do not have a state.",
         0, 1, status));
     children.add(new Property("experimental", "boolean",
@@ -5773,7 +5771,7 @@ public class ValueSet extends MetadataResource {
       /* title */ return new Property("title", "string", "A short, descriptive, user-friendly title for the value set.",
           0, 1, title);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of this value set. Enables tracking the life-cycle of the content. The status of the value set applies to the value set definition (ValueSet.compose) and the associated ValueSet metadata. Expansions do not have a state.",
           0, 1, status);
     case -404562712:
@@ -5843,7 +5841,7 @@ public class ValueSet extends MetadataResource {
     case 110371416:
       /* title */ return this.title == null ? new Base[0] : new Base[] { this.title }; // StringType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -404562712:
       /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
     case 3076014:
@@ -5895,8 +5893,7 @@ public class ValueSet extends MetadataResource {
       this.title = castToString(value); // StringType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -404562712: // experimental
       this.experimental = castToBoolean(value); // BooleanType
@@ -5953,8 +5950,7 @@ public class ValueSet extends MetadataResource {
     } else if (name.equals("title")) {
       this.title = castToString(value); // StringType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("date")) {
@@ -6086,7 +6082,7 @@ public class ValueSet extends MetadataResource {
     case 110371416:
       /* title */ return new String[] { "string" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -404562712:
       /* experimental */ return new String[] { "boolean" };
     case 3076014:

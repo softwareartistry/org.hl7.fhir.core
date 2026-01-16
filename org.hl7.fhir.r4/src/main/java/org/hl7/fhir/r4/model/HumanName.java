@@ -152,8 +152,8 @@ public class HumanName extends Type implements ICompositeType {
   /**
    * @return Identifies the purpose for this name.
    */
-  public StringType getUse() {
-    return this.use == null ? null : this.use;
+  public String getUse() {
+    return this.use == null ? null : this.use.getValue();
   }
 
   /**

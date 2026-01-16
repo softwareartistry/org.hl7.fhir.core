@@ -500,8 +500,8 @@ public class MedicationStatement extends DomainResource {
    *         state of the medication used that this statement is about. Generally,
    *         this will be active or completed.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -1422,7 +1422,6 @@ public class MedicationStatement extends DomainResource {
       this.getPartOf().add(castToReference(value)); // Reference
       return value;
     case -892481550: // status
-//      value = new MedicationStatementStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // StringType
       return value;
     case 2051346646: // statusReason
@@ -1479,7 +1478,6 @@ public class MedicationStatement extends DomainResource {
     } else if (name.equals("partOf")) {
       this.getPartOf().add(castToReference(value));
     } else if (name.equals("status")) {
-//      value = new MedicationStatementStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // StringType
     } else if (name.equals("statusReason")) {
       this.getStatusReason().add(castToCodeableConcept(value));

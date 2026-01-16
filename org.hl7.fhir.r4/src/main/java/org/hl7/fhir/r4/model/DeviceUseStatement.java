@@ -367,8 +367,8 @@ public class DeviceUseStatement extends DomainResource {
    *         state of the device used that this statement is about. Generally this
    *         will be active or completed.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

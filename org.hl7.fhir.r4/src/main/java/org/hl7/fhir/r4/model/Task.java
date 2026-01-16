@@ -2101,8 +2101,8 @@ public class Task extends DomainResource {
   /**
    * @return The current status of the task.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -2208,8 +2208,8 @@ public class Task extends DomainResource {
    *         i+R[9]Cs this a proposed task, a planned task, an actionable task,
    *         etc.
    */
-  public StringType getIntent() {
-    return this.intent == null ? null : this.intent;
+  public String getIntent() {
+    return this.intent == null ? null : this.intent.getValue();
   }
 
   /**
@@ -2262,8 +2262,8 @@ public class Task extends DomainResource {
    * @return Indicates how quickly the Task should be addressed with respect to
    *         other requests.
    */
-  public StringType getPriority() {
-    return this.priority == null ? null : this.priority;
+  public String getPriority() {
+    return this.priority == null ? null : this.priority.getValue();
   }
 
   /**

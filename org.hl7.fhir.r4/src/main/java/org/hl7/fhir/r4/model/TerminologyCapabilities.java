@@ -36,8 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -58,277 +56,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
     "description", "useContext", "jurisdiction", "purpose", "copyright", "kind", "software", "implementation",
     "lockedDate", "codeSystem", "expansion", "codeSearch", "validateCode", "translation", "closure" })
 public class TerminologyCapabilities extends MetadataResource {
-
-  public enum CapabilityStatementKind {
-    /**
-     * The CapabilityStatement instance represents the present capabilities of a
-     * specific system instance. This is the kind returned by /metadata for a FHIR
-     * server end-point.
-     */
-    INSTANCE,
-    /**
-     * The CapabilityStatement instance represents the capabilities of a system or
-     * piece of software, independent of a particular installation.
-     */
-    CAPABILITY,
-    /**
-     * The CapabilityStatement instance represents a set of requirements for other
-     * systems to meet; e.g. as part of an implementation guide or 'request for
-     * proposal'.
-     */
-    REQUIREMENTS,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static CapabilityStatementKind fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("instance".equals(codeString))
-        return INSTANCE;
-      if ("capability".equals(codeString))
-        return CAPABILITY;
-      if ("requirements".equals(codeString))
-        return REQUIREMENTS;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown CapabilityStatementKind code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case INSTANCE:
-        return "instance";
-      case CAPABILITY:
-        return "capability";
-      case REQUIREMENTS:
-        return "requirements";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case INSTANCE:
-        return "http://hl7.org/fhir/capability-statement-kind";
-      case CAPABILITY:
-        return "http://hl7.org/fhir/capability-statement-kind";
-      case REQUIREMENTS:
-        return "http://hl7.org/fhir/capability-statement-kind";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case INSTANCE:
-        return "The CapabilityStatement instance represents the present capabilities of a specific system instance.  This is the kind returned by /metadata for a FHIR server end-point.";
-      case CAPABILITY:
-        return "The CapabilityStatement instance represents the capabilities of a system or piece of software, independent of a particular installation.";
-      case REQUIREMENTS:
-        return "The CapabilityStatement instance represents a set of requirements for other systems to meet; e.g. as part of an implementation guide or 'request for proposal'.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case INSTANCE:
-        return "Instance";
-      case CAPABILITY:
-        return "Capability";
-      case REQUIREMENTS:
-        return "Requirements";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class CapabilityStatementKindEnumFactory implements EnumFactory<CapabilityStatementKind> {
-    public CapabilityStatementKind fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("instance".equals(codeString))
-        return CapabilityStatementKind.INSTANCE;
-      if ("capability".equals(codeString))
-        return CapabilityStatementKind.CAPABILITY;
-      if ("requirements".equals(codeString))
-        return CapabilityStatementKind.REQUIREMENTS;
-      throw new IllegalArgumentException("Unknown CapabilityStatementKind code '" + codeString + "'");
-    }
-
-    public Enumeration<CapabilityStatementKind> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<CapabilityStatementKind>(this, CapabilityStatementKind.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<CapabilityStatementKind>(this, CapabilityStatementKind.NULL, code);
-      if ("instance".equals(codeString))
-        return new Enumeration<CapabilityStatementKind>(this, CapabilityStatementKind.INSTANCE, code);
-      if ("capability".equals(codeString))
-        return new Enumeration<CapabilityStatementKind>(this, CapabilityStatementKind.CAPABILITY, code);
-      if ("requirements".equals(codeString))
-        return new Enumeration<CapabilityStatementKind>(this, CapabilityStatementKind.REQUIREMENTS, code);
-      throw new FHIRException("Unknown CapabilityStatementKind code '" + codeString + "'");
-    }
-
-    public String toCode(CapabilityStatementKind code) {
-       if (code == CapabilityStatementKind.NULL)
-           return null;
-       if (code == CapabilityStatementKind.INSTANCE)
-        return "instance";
-      if (code == CapabilityStatementKind.CAPABILITY)
-        return "capability";
-      if (code == CapabilityStatementKind.REQUIREMENTS)
-        return "requirements";
-      return "?";
-   }
-
-    public String toSystem(CapabilityStatementKind code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum CodeSearchSupport {
-    /**
-     * The search for code on ValueSet only includes codes explicitly detailed on
-     * includes or expansions.
-     */
-    EXPLICIT,
-    /**
-     * The search for code on ValueSet only includes all codes based on the
-     * expansion of the value set.
-     */
-    ALL,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static CodeSearchSupport fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("explicit".equals(codeString))
-        return EXPLICIT;
-      if ("all".equals(codeString))
-        return ALL;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown CodeSearchSupport code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case EXPLICIT:
-        return "explicit";
-      case ALL:
-        return "all";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case EXPLICIT:
-        return "http://hl7.org/fhir/code-search-support";
-      case ALL:
-        return "http://hl7.org/fhir/code-search-support";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case EXPLICIT:
-        return "The search for code on ValueSet only includes codes explicitly detailed on includes or expansions.";
-      case ALL:
-        return "The search for code on ValueSet only includes all codes based on the expansion of the value set.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case EXPLICIT:
-        return "Explicit Codes";
-      case ALL:
-        return "Implicit Codes";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class CodeSearchSupportEnumFactory implements EnumFactory<CodeSearchSupport> {
-    public CodeSearchSupport fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("explicit".equals(codeString))
-        return CodeSearchSupport.EXPLICIT;
-      if ("all".equals(codeString))
-        return CodeSearchSupport.ALL;
-      throw new IllegalArgumentException("Unknown CodeSearchSupport code '" + codeString + "'");
-    }
-
-    public Enumeration<CodeSearchSupport> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<CodeSearchSupport>(this, CodeSearchSupport.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<CodeSearchSupport>(this, CodeSearchSupport.NULL, code);
-      if ("explicit".equals(codeString))
-        return new Enumeration<CodeSearchSupport>(this, CodeSearchSupport.EXPLICIT, code);
-      if ("all".equals(codeString))
-        return new Enumeration<CodeSearchSupport>(this, CodeSearchSupport.ALL, code);
-      throw new FHIRException("Unknown CodeSearchSupport code '" + codeString + "'");
-    }
-
-    public String toCode(CodeSearchSupport code) {
-       if (code == CodeSearchSupport.NULL)
-           return null;
-       if (code == CodeSearchSupport.EXPLICIT)
-        return "explicit";
-      if (code == CodeSearchSupport.ALL)
-        return "all";
-      return "?";
-   }
-
-    public String toSystem(CodeSearchSupport code) {
-      return code.getSystem();
-    }
-  }
 
   @Block()
   public static class TerminologyCapabilitiesSoftwareComponent extends BackboneElement implements IBaseBackboneElement {
@@ -3696,10 +3423,10 @@ public class TerminologyCapabilities extends MetadataResource {
    * running instance of software, a particular product (kind, not instance of
    * software) or a class of implementation (e.g. a desired purchase).
    */
-  @Child(name = "kind", type = { CodeType.class }, order = 2, min = 1, max = 1, modifier = false, summary = true)
+  @Child(name = "kind", type = { StringType.class }, order = 2, min = 1, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "instance | capability | requirements", formalDefinition = "The way that this statement is intended to be used, to describe an actual running instance of software, a particular product (kind, not instance of software) or a class of implementation (e.g. a desired purchase).")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/capability-statement-kind")
-  protected Enumeration<CapabilityStatementKind> kind;
+  protected StringType kind;
 
   /**
    * Software that is covered by this terminology capability statement. It is used
@@ -3748,10 +3475,10 @@ public class TerminologyCapabilities extends MetadataResource {
    * The degree to which the server supports the code search parameter on
    * ValueSet, if it is supported.
    */
-  @Child(name = "codeSearch", type = { CodeType.class }, order = 8, min = 0, max = 1, modifier = false, summary = false)
+  @Child(name = "codeSearch", type = { StringType.class }, order = 8, min = 0, max = 1, modifier = false, summary = false)
   @Description(shortDefinition = "explicit | all", formalDefinition = "The degree to which the server supports the code search parameter on ValueSet, if it is supported.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/code-search-support")
-  protected Enumeration<CodeSearchSupport> codeSearch;
+  protected StringType codeSearch;
 
   /**
    * Information about the
@@ -3788,8 +3515,8 @@ public class TerminologyCapabilities extends MetadataResource {
   /**
    * Constructor
    */
-  public TerminologyCapabilities(Enumeration<PublicationStatus> status, DateTimeType date,
-      Enumeration<CapabilityStatementKind> kind) {
+  public TerminologyCapabilities(StringType status, DateTimeType date,
+                                 StringType kind) {
     super();
     this.status = status;
     this.date = date;
@@ -4084,12 +3811,12 @@ public class TerminologyCapabilities extends MetadataResource {
    *         object with id, value and extensions. The accessor "getStatus" gives
    *         direct access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create TerminologyCapabilities.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -4107,7 +3834,7 @@ public class TerminologyCapabilities extends MetadataResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getStatus" gives direct access to the value
    */
-  public TerminologyCapabilities setStatusElement(Enumeration<PublicationStatus> value) {
+  public TerminologyCapabilities setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -4116,7 +3843,7 @@ public class TerminologyCapabilities extends MetadataResource {
    * @return The status of this terminology capabilities. Enables tracking the
    *         life-cycle of the content.
    */
-  public PublicationStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
@@ -4124,9 +3851,9 @@ public class TerminologyCapabilities extends MetadataResource {
    * @param value The status of this terminology capabilities. Enables tracking
    *              the life-cycle of the content.
    */
-  public TerminologyCapabilities setStatus(PublicationStatus value) {
+  public TerminologyCapabilities setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -4679,12 +4406,12 @@ public class TerminologyCapabilities extends MetadataResource {
    *         desired purchase).). This is the underlying object with id, value and
    *         extensions. The accessor "getKind" gives direct access to the value
    */
-  public Enumeration<CapabilityStatementKind> getKindElement() {
+  public StringType getKindElement() {
     if (this.kind == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create TerminologyCapabilities.kind");
       else if (Configuration.doAutoCreate())
-        this.kind = new Enumeration<CapabilityStatementKind>(new CapabilityStatementKindEnumFactory()); // bb
+        this.kind = new StringType(); // bb
     return this.kind;
   }
 
@@ -4704,7 +4431,7 @@ public class TerminologyCapabilities extends MetadataResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getKind" gives direct access to the value
    */
-  public TerminologyCapabilities setKindElement(Enumeration<CapabilityStatementKind> value) {
+  public TerminologyCapabilities setKindElement(StringType value) {
     this.kind = value;
     return this;
   }
@@ -4715,7 +4442,7 @@ public class TerminologyCapabilities extends MetadataResource {
    *         instance of software) or a class of implementation (e.g. a desired
    *         purchase).
    */
-  public CapabilityStatementKind getKind() {
+  public String getKind() {
     return this.kind == null ? null : this.kind.getValue();
   }
 
@@ -4725,9 +4452,9 @@ public class TerminologyCapabilities extends MetadataResource {
    *              (kind, not instance of software) or a class of implementation
    *              (e.g. a desired purchase).
    */
-  public TerminologyCapabilities setKind(CapabilityStatementKind value) {
+  public TerminologyCapabilities setKind(String value) {
     if (this.kind == null)
-      this.kind = new Enumeration<CapabilityStatementKind>(new CapabilityStatementKindEnumFactory());
+      this.kind = new StringType();
     this.kind.setValue(value);
     return this;
   }
@@ -4930,12 +4657,12 @@ public class TerminologyCapabilities extends MetadataResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getCodeSearch" gives direct access to the value
    */
-  public Enumeration<CodeSearchSupport> getCodeSearchElement() {
+  public StringType getCodeSearchElement() {
     if (this.codeSearch == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create TerminologyCapabilities.codeSearch");
       else if (Configuration.doAutoCreate())
-        this.codeSearch = new Enumeration<CodeSearchSupport>(new CodeSearchSupportEnumFactory()); // bb
+        this.codeSearch = new StringType(); // bb
     return this.codeSearch;
   }
 
@@ -4953,7 +4680,7 @@ public class TerminologyCapabilities extends MetadataResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getCodeSearch" gives direct access to the value
    */
-  public TerminologyCapabilities setCodeSearchElement(Enumeration<CodeSearchSupport> value) {
+  public TerminologyCapabilities setCodeSearchElement(StringType value) {
     this.codeSearch = value;
     return this;
   }
@@ -4962,7 +4689,7 @@ public class TerminologyCapabilities extends MetadataResource {
    * @return The degree to which the server supports the code search parameter on
    *         ValueSet, if it is supported.
    */
-  public CodeSearchSupport getCodeSearch() {
+  public String getCodeSearch() {
     return this.codeSearch == null ? null : this.codeSearch.getValue();
   }
 
@@ -4970,12 +4697,12 @@ public class TerminologyCapabilities extends MetadataResource {
    * @param value The degree to which the server supports the code search
    *              parameter on ValueSet, if it is supported.
    */
-  public TerminologyCapabilities setCodeSearch(CodeSearchSupport value) {
+  public TerminologyCapabilities setCodeSearch(String value) {
     if (value == null)
       this.codeSearch = null;
     else {
       if (this.codeSearch == null)
-        this.codeSearch = new Enumeration<CodeSearchSupport>(new CodeSearchSupportEnumFactory());
+        this.codeSearch = new StringType();
       this.codeSearch.setValue(value);
     }
     return this;
@@ -5074,7 +4801,7 @@ public class TerminologyCapabilities extends MetadataResource {
         0, 1, name));
     children.add(new Property("title", "string",
         "A short, descriptive, user-friendly title for the terminology capabilities.", 0, 1, title));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of this terminology capabilities. Enables tracking the life-cycle of the content.", 0, 1, status));
     children.add(new Property("experimental", "boolean",
         "A Boolean value to indicate that this terminology capabilities is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
@@ -5102,7 +4829,7 @@ public class TerminologyCapabilities extends MetadataResource {
     children.add(new Property("copyright", "markdown",
         "A copyright statement relating to the terminology capabilities and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the terminology capabilities.",
         0, 1, copyright));
-    children.add(new Property("kind", "code",
+    children.add(new Property("kind", "string",
         "The way that this statement is intended to be used, to describe an actual running instance of software, a particular product (kind, not instance of software) or a class of implementation (e.g. a desired purchase).",
         0, 1, kind));
     children.add(new Property("software", "",
@@ -5117,7 +4844,7 @@ public class TerminologyCapabilities extends MetadataResource {
         0, java.lang.Integer.MAX_VALUE, codeSystem));
     children.add(new Property("expansion", "",
         "Information about the [ValueSet/$expand](valueset-operation-expand.html) operation.", 0, 1, expansion));
-    children.add(new Property("codeSearch", "code",
+    children.add(new Property("codeSearch", "string",
         "The degree to which the server supports the code search parameter on ValueSet, if it is supported.", 0, 1,
         codeSearch));
     children.add(new Property("validateCode", "",
@@ -5148,7 +4875,7 @@ public class TerminologyCapabilities extends MetadataResource {
       /* title */ return new Property("title", "string",
           "A short, descriptive, user-friendly title for the terminology capabilities.", 0, 1, title);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of this terminology capabilities. Enables tracking the life-cycle of the content.", 0, 1, status);
     case -404562712:
       /* experimental */ return new Property("experimental", "boolean",
@@ -5186,7 +4913,7 @@ public class TerminologyCapabilities extends MetadataResource {
           "A copyright statement relating to the terminology capabilities and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the terminology capabilities.",
           0, 1, copyright);
     case 3292052:
-      /* kind */ return new Property("kind", "code",
+      /* kind */ return new Property("kind", "string",
           "The way that this statement is intended to be used, to describe an actual running instance of software, a particular product (kind, not instance of software) or a class of implementation (e.g. a desired purchase).",
           0, 1, kind);
     case 1319330215:
@@ -5208,7 +4935,7 @@ public class TerminologyCapabilities extends MetadataResource {
       /* expansion */ return new Property("expansion", "",
           "Information about the [ValueSet/$expand](valueset-operation-expand.html) operation.", 0, 1, expansion);
     case -935519755:
-      /* codeSearch */ return new Property("codeSearch", "code",
+      /* codeSearch */ return new Property("codeSearch", "string",
           "The degree to which the server supports the code search parameter on ValueSet, if it is supported.", 0, 1,
           codeSearch);
     case 1080737827:
@@ -5239,7 +4966,7 @@ public class TerminologyCapabilities extends MetadataResource {
     case 110371416:
       /* title */ return this.title == null ? new Base[0] : new Base[] { this.title }; // StringType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -404562712:
       /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
     case 3076014:
@@ -5261,7 +4988,7 @@ public class TerminologyCapabilities extends MetadataResource {
     case 1522889671:
       /* copyright */ return this.copyright == null ? new Base[0] : new Base[] { this.copyright }; // MarkdownType
     case 3292052:
-      /* kind */ return this.kind == null ? new Base[0] : new Base[] { this.kind }; // Enumeration<CapabilityStatementKind>
+      /* kind */ return this.kind == null ? new Base[0] : new Base[] { this.kind }; // StringType
     case 1319330215:
       /* software */ return this.software == null ? new Base[0] : new Base[] { this.software }; // TerminologyCapabilitiesSoftwareComponent
     case 1683336114:
@@ -5274,7 +5001,7 @@ public class TerminologyCapabilities extends MetadataResource {
     case 17878207:
       /* expansion */ return this.expansion == null ? new Base[0] : new Base[] { this.expansion }; // TerminologyCapabilitiesExpansionComponent
     case -935519755:
-      /* codeSearch */ return this.codeSearch == null ? new Base[0] : new Base[] { this.codeSearch }; // Enumeration<CodeSearchSupport>
+      /* codeSearch */ return this.codeSearch == null ? new Base[0] : new Base[] { this.codeSearch }; // StringType
     case 1080737827:
       /* validateCode */ return this.validateCode == null ? new Base[0] : new Base[] { this.validateCode }; // TerminologyCapabilitiesValidateCodeComponent
     case -1840647503:
@@ -5303,8 +5030,7 @@ public class TerminologyCapabilities extends MetadataResource {
       this.title = castToString(value); // StringType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -404562712: // experimental
       this.experimental = castToBoolean(value); // BooleanType
@@ -5334,8 +5060,7 @@ public class TerminologyCapabilities extends MetadataResource {
       this.copyright = castToMarkdown(value); // MarkdownType
       return value;
     case 3292052: // kind
-      value = new CapabilityStatementKindEnumFactory().fromType(castToCode(value));
-      this.kind = (Enumeration) value; // Enumeration<CapabilityStatementKind>
+      this.kind = castToString(value); // StringType
       return value;
     case 1319330215: // software
       this.software = (TerminologyCapabilitiesSoftwareComponent) value; // TerminologyCapabilitiesSoftwareComponent
@@ -5353,8 +5078,7 @@ public class TerminologyCapabilities extends MetadataResource {
       this.expansion = (TerminologyCapabilitiesExpansionComponent) value; // TerminologyCapabilitiesExpansionComponent
       return value;
     case -935519755: // codeSearch
-      value = new CodeSearchSupportEnumFactory().fromType(castToCode(value));
-      this.codeSearch = (Enumeration) value; // Enumeration<CodeSearchSupport>
+      this.codeSearch = castToString(value); // StringType
       return value;
     case 1080737827: // validateCode
       this.validateCode = (TerminologyCapabilitiesValidateCodeComponent) value; // TerminologyCapabilitiesValidateCodeComponent
@@ -5382,8 +5106,7 @@ public class TerminologyCapabilities extends MetadataResource {
     } else if (name.equals("title")) {
       this.title = castToString(value); // StringType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("date")) {
@@ -5403,8 +5126,7 @@ public class TerminologyCapabilities extends MetadataResource {
     } else if (name.equals("copyright")) {
       this.copyright = castToMarkdown(value); // MarkdownType
     } else if (name.equals("kind")) {
-      value = new CapabilityStatementKindEnumFactory().fromType(castToCode(value));
-      this.kind = (Enumeration) value; // Enumeration<CapabilityStatementKind>
+      this.kind = castToString(value); // StringType
     } else if (name.equals("software")) {
       this.software = (TerminologyCapabilitiesSoftwareComponent) value; // TerminologyCapabilitiesSoftwareComponent
     } else if (name.equals("implementation")) {
@@ -5416,8 +5138,7 @@ public class TerminologyCapabilities extends MetadataResource {
     } else if (name.equals("expansion")) {
       this.expansion = (TerminologyCapabilitiesExpansionComponent) value; // TerminologyCapabilitiesExpansionComponent
     } else if (name.equals("codeSearch")) {
-      value = new CodeSearchSupportEnumFactory().fromType(castToCode(value));
-      this.codeSearch = (Enumeration) value; // Enumeration<CodeSearchSupport>
+      this.codeSearch = castToString(value); // StringType
     } else if (name.equals("validateCode")) {
       this.validateCode = (TerminologyCapabilitiesValidateCodeComponent) value; // TerminologyCapabilitiesValidateCodeComponent
     } else if (name.equals("translation")) {
@@ -5553,7 +5274,7 @@ public class TerminologyCapabilities extends MetadataResource {
     case 110371416:
       /* title */ return new String[] { "string" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -404562712:
       /* experimental */ return new String[] { "boolean" };
     case 3076014:
@@ -5573,7 +5294,7 @@ public class TerminologyCapabilities extends MetadataResource {
     case 1522889671:
       /* copyright */ return new String[] { "markdown" };
     case 3292052:
-      /* kind */ return new String[] { "code" };
+      /* kind */ return new String[] { "string" };
     case 1319330215:
       /* software */ return new String[] {};
     case 1683336114:
@@ -5585,7 +5306,7 @@ public class TerminologyCapabilities extends MetadataResource {
     case 17878207:
       /* expansion */ return new String[] {};
     case -935519755:
-      /* codeSearch */ return new String[] { "code" };
+      /* codeSearch */ return new String[] { "string" };
     case 1080737827:
       /* validateCode */ return new String[] {};
     case -1840647503:

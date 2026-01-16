@@ -36,8 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -54,188 +52,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ChildOrder(names = { "url", "version", "name", "status", "experimental", "date", "publisher", "contact", "description",
     "useContext", "purpose", "code", "search", "resource" })
 public class CompartmentDefinition extends MetadataResource {
-
-  public enum CompartmentType {
-    /**
-     * The compartment definition is for the patient compartment.
-     */
-    PATIENT,
-    /**
-     * The compartment definition is for the encounter compartment.
-     */
-    ENCOUNTER,
-    /**
-     * The compartment definition is for the related-person compartment.
-     */
-    RELATEDPERSON,
-    /**
-     * The compartment definition is for the practitioner compartment.
-     */
-    PRACTITIONER,
-    /**
-     * The compartment definition is for the device compartment.
-     */
-    DEVICE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static CompartmentType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("Patient".equals(codeString))
-        return PATIENT;
-      if ("Encounter".equals(codeString))
-        return ENCOUNTER;
-      if ("RelatedPerson".equals(codeString))
-        return RELATEDPERSON;
-      if ("Practitioner".equals(codeString))
-        return PRACTITIONER;
-      if ("Device".equals(codeString))
-        return DEVICE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown CompartmentType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case PATIENT:
-        return "Patient";
-      case ENCOUNTER:
-        return "Encounter";
-      case RELATEDPERSON:
-        return "RelatedPerson";
-      case PRACTITIONER:
-        return "Practitioner";
-      case DEVICE:
-        return "Device";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case PATIENT:
-        return "http://hl7.org/fhir/compartment-type";
-      case ENCOUNTER:
-        return "http://hl7.org/fhir/compartment-type";
-      case RELATEDPERSON:
-        return "http://hl7.org/fhir/compartment-type";
-      case PRACTITIONER:
-        return "http://hl7.org/fhir/compartment-type";
-      case DEVICE:
-        return "http://hl7.org/fhir/compartment-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case PATIENT:
-        return "The compartment definition is for the patient compartment.";
-      case ENCOUNTER:
-        return "The compartment definition is for the encounter compartment.";
-      case RELATEDPERSON:
-        return "The compartment definition is for the related-person compartment.";
-      case PRACTITIONER:
-        return "The compartment definition is for the practitioner compartment.";
-      case DEVICE:
-        return "The compartment definition is for the device compartment.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case PATIENT:
-        return "Patient";
-      case ENCOUNTER:
-        return "Encounter";
-      case RELATEDPERSON:
-        return "RelatedPerson";
-      case PRACTITIONER:
-        return "Practitioner";
-      case DEVICE:
-        return "Device";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class CompartmentTypeEnumFactory implements EnumFactory<CompartmentType> {
-    public CompartmentType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("Patient".equals(codeString))
-        return CompartmentType.PATIENT;
-      if ("Encounter".equals(codeString))
-        return CompartmentType.ENCOUNTER;
-      if ("RelatedPerson".equals(codeString))
-        return CompartmentType.RELATEDPERSON;
-      if ("Practitioner".equals(codeString))
-        return CompartmentType.PRACTITIONER;
-      if ("Device".equals(codeString))
-        return CompartmentType.DEVICE;
-      throw new IllegalArgumentException("Unknown CompartmentType code '" + codeString + "'");
-    }
-
-    public Enumeration<CompartmentType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<CompartmentType>(this, CompartmentType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<CompartmentType>(this, CompartmentType.NULL, code);
-      if ("Patient".equals(codeString))
-        return new Enumeration<CompartmentType>(this, CompartmentType.PATIENT, code);
-      if ("Encounter".equals(codeString))
-        return new Enumeration<CompartmentType>(this, CompartmentType.ENCOUNTER, code);
-      if ("RelatedPerson".equals(codeString))
-        return new Enumeration<CompartmentType>(this, CompartmentType.RELATEDPERSON, code);
-      if ("Practitioner".equals(codeString))
-        return new Enumeration<CompartmentType>(this, CompartmentType.PRACTITIONER, code);
-      if ("Device".equals(codeString))
-        return new Enumeration<CompartmentType>(this, CompartmentType.DEVICE, code);
-      throw new FHIRException("Unknown CompartmentType code '" + codeString + "'");
-    }
-
-    public String toCode(CompartmentType code) {
-       if (code == CompartmentType.NULL)
-           return null;
-       if (code == CompartmentType.PATIENT)
-        return "Patient";
-      if (code == CompartmentType.ENCOUNTER)
-        return "Encounter";
-      if (code == CompartmentType.RELATEDPERSON)
-        return "RelatedPerson";
-      if (code == CompartmentType.PRACTITIONER)
-        return "Practitioner";
-      if (code == CompartmentType.DEVICE)
-        return "Device";
-      return "?";
-   }
-
-    public String toSystem(CompartmentType code) {
-      return code.getSystem();
-    }
-  }
 
   @Block()
   public static class CompartmentDefinitionResourceComponent extends BackboneElement implements IBaseBackboneElement {
@@ -649,10 +465,10 @@ public class CompartmentDefinition extends MetadataResource {
   /**
    * Which compartment this definition describes.
    */
-  @Child(name = "code", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
+  @Child(name = "code", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "Patient | Encounter | RelatedPerson | Practitioner | Device", formalDefinition = "Which compartment this definition describes.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/compartment-type")
-  protected Enumeration<CompartmentType> code;
+  protected StringType code;
 
   /**
    * Whether the search syntax is supported,.
@@ -680,8 +496,8 @@ public class CompartmentDefinition extends MetadataResource {
   /**
    * Constructor
    */
-  public CompartmentDefinition(UriType url, StringType name, Enumeration<PublicationStatus> status,
-      Enumeration<CompartmentType> code, BooleanType search) {
+  public CompartmentDefinition(UriType url, StringType name, StringType status,
+                               StringType code, BooleanType search) {
     super();
     this.url = url;
     this.name = name;
@@ -912,12 +728,12 @@ public class CompartmentDefinition extends MetadataResource {
    *         object with id, value and extensions. The accessor "getStatus" gives
    *         direct access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create CompartmentDefinition.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -935,7 +751,7 @@ public class CompartmentDefinition extends MetadataResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getStatus" gives direct access to the value
    */
-  public CompartmentDefinition setStatusElement(Enumeration<PublicationStatus> value) {
+  public CompartmentDefinition setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -944,7 +760,7 @@ public class CompartmentDefinition extends MetadataResource {
    * @return The status of this compartment definition. Enables tracking the
    *         life-cycle of the content.
    */
-  public PublicationStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
@@ -952,9 +768,9 @@ public class CompartmentDefinition extends MetadataResource {
    * @param value The status of this compartment definition. Enables tracking the
    *              life-cycle of the content.
    */
-  public CompartmentDefinition setStatus(PublicationStatus value) {
+  public CompartmentDefinition setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -1378,12 +1194,12 @@ public class CompartmentDefinition extends MetadataResource {
    *         the underlying object with id, value and extensions. The accessor
    *         "getCode" gives direct access to the value
    */
-  public Enumeration<CompartmentType> getCodeElement() {
+  public StringType getCodeElement() {
     if (this.code == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create CompartmentDefinition.code");
       else if (Configuration.doAutoCreate())
-        this.code = new Enumeration<CompartmentType>(new CompartmentTypeEnumFactory()); // bb
+        this.code = new StringType(); // bb
     return this.code;
   }
 
@@ -1400,7 +1216,7 @@ public class CompartmentDefinition extends MetadataResource {
    *              This is the underlying object with id, value and extensions. The
    *              accessor "getCode" gives direct access to the value
    */
-  public CompartmentDefinition setCodeElement(Enumeration<CompartmentType> value) {
+  public CompartmentDefinition setCodeElement(StringType value) {
     this.code = value;
     return this;
   }
@@ -1408,16 +1224,16 @@ public class CompartmentDefinition extends MetadataResource {
   /**
    * @return Which compartment this definition describes.
    */
-  public CompartmentType getCode() {
+  public String getCode() {
     return this.code == null ? null : this.code.getValue();
   }
 
   /**
    * @param value Which compartment this definition describes.
    */
-  public CompartmentDefinition setCode(CompartmentType value) {
+  public CompartmentDefinition setCode(String value) {
     if (this.code == null)
-      this.code = new Enumeration<CompartmentType>(new CompartmentTypeEnumFactory());
+      this.code = new StringType();
     this.code.setValue(value);
     return this;
   }
@@ -1537,7 +1353,7 @@ public class CompartmentDefinition extends MetadataResource {
     children.add(new Property("name", "string",
         "A natural language name identifying the compartment definition. This name should be usable as an identifier for the module by machine processing applications such as code generation.",
         0, 1, name));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of this compartment definition. Enables tracking the life-cycle of the content.", 0, 1, status));
     children.add(new Property("experimental", "boolean",
         "A Boolean value to indicate that this compartment definition is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
@@ -1559,7 +1375,7 @@ public class CompartmentDefinition extends MetadataResource {
     children.add(new Property("purpose", "markdown",
         "Explanation of why this compartment definition is needed and why it has been designed as it has.", 0, 1,
         purpose));
-    children.add(new Property("code", "code", "Which compartment this definition describes.", 0, 1, code));
+    children.add(new Property("code", "string", "Which compartment this definition describes.", 0, 1, code));
     children.add(new Property("search", "boolean", "Whether the search syntax is supported,.", 0, 1, search));
     children.add(new Property("resource", "", "Information about how a resource is related to the compartment.", 0,
         java.lang.Integer.MAX_VALUE, resource));
@@ -1581,7 +1397,7 @@ public class CompartmentDefinition extends MetadataResource {
           "A natural language name identifying the compartment definition. This name should be usable as an identifier for the module by machine processing applications such as code generation.",
           0, 1, name);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of this compartment definition. Enables tracking the life-cycle of the content.", 0, 1, status);
     case -404562712:
       /* experimental */ return new Property("experimental", "boolean",
@@ -1611,7 +1427,7 @@ public class CompartmentDefinition extends MetadataResource {
           "Explanation of why this compartment definition is needed and why it has been designed as it has.", 0, 1,
           purpose);
     case 3059181:
-      /* code */ return new Property("code", "code", "Which compartment this definition describes.", 0, 1, code);
+      /* code */ return new Property("code", "string", "Which compartment this definition describes.", 0, 1, code);
     case -906336856:
       /* search */ return new Property("search", "boolean", "Whether the search syntax is supported,.", 0, 1, search);
     case -341064690:
@@ -1633,7 +1449,7 @@ public class CompartmentDefinition extends MetadataResource {
     case 3373707:
       /* name */ return this.name == null ? new Base[0] : new Base[] { this.name }; // StringType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -404562712:
       /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
     case 3076014:
@@ -1650,7 +1466,7 @@ public class CompartmentDefinition extends MetadataResource {
     case -220463842:
       /* purpose */ return this.purpose == null ? new Base[0] : new Base[] { this.purpose }; // MarkdownType
     case 3059181:
-      /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // Enumeration<CompartmentType>
+      /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // StringType
     case -906336856:
       /* search */ return this.search == null ? new Base[0] : new Base[] { this.search }; // BooleanType
     case -341064690:
@@ -1674,8 +1490,7 @@ public class CompartmentDefinition extends MetadataResource {
       this.name = castToString(value); // StringType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -404562712: // experimental
       this.experimental = castToBoolean(value); // BooleanType
@@ -1699,8 +1514,7 @@ public class CompartmentDefinition extends MetadataResource {
       this.purpose = castToMarkdown(value); // MarkdownType
       return value;
     case 3059181: // code
-      value = new CompartmentTypeEnumFactory().fromType(castToCode(value));
-      this.code = (Enumeration) value; // Enumeration<CompartmentType>
+      this.code = castToString(value); // StringType
       return value;
     case -906336856: // search
       this.search = castToBoolean(value); // BooleanType
@@ -1723,8 +1537,7 @@ public class CompartmentDefinition extends MetadataResource {
     } else if (name.equals("name")) {
       this.name = castToString(value); // StringType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("date")) {
@@ -1740,8 +1553,7 @@ public class CompartmentDefinition extends MetadataResource {
     } else if (name.equals("purpose")) {
       this.purpose = castToMarkdown(value); // MarkdownType
     } else if (name.equals("code")) {
-      value = new CompartmentTypeEnumFactory().fromType(castToCode(value));
-      this.code = (Enumeration) value; // Enumeration<CompartmentType>
+      this.code = castToString(value); // StringType
     } else if (name.equals("search")) {
       this.search = castToBoolean(value); // BooleanType
     } else if (name.equals("resource")) {
@@ -1833,7 +1645,7 @@ public class CompartmentDefinition extends MetadataResource {
     case 3373707:
       /* name */ return new String[] { "string" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -404562712:
       /* experimental */ return new String[] { "boolean" };
     case 3076014:
@@ -1849,7 +1661,7 @@ public class CompartmentDefinition extends MetadataResource {
     case -220463842:
       /* purpose */ return new String[] { "markdown" };
     case 3059181:
-      /* code */ return new String[] { "code" };
+      /* code */ return new String[] { "string" };
     case -906336856:
       /* search */ return new String[] { "boolean" };
     case -341064690:

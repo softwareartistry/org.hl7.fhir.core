@@ -37,8 +37,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.AdministrativeGender;
-import org.hl7.fhir.r4.model.Enumerations.AdministrativeGenderEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -52,452 +50,6 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
  */
 @ResourceDef(name = "ObservationDefinition", profile = "http://hl7.org/fhir/StructureDefinition/ObservationDefinition")
 public class ObservationDefinition extends DomainResource {
-
-  public enum ObservationDataType {
-    /**
-     * A measured amount.
-     */
-    QUANTITY,
-    /**
-     * A coded concept from a reference terminology and/or text.
-     */
-    CODEABLECONCEPT,
-    /**
-     * A sequence of Unicode characters.
-     */
-    STRING,
-    /**
-     * true or false.
-     */
-    BOOLEAN,
-    /**
-     * A signed integer.
-     */
-    INTEGER,
-    /**
-     * A set of values bounded by low and high.
-     */
-    RANGE,
-    /**
-     * A ratio of two Quantity values - a numerator and a denominator.
-     */
-    RATIO,
-    /**
-     * A series of measurements taken by a device.
-     */
-    SAMPLEDDATA,
-    /**
-     * A time during the day, in the format hh:mm:ss.
-     */
-    TIME,
-    /**
-     * A date, date-time or partial date (e.g. just year or year + month) as used in
-     * human communication.
-     */
-    DATETIME,
-    /**
-     * A time range defined by start and end date/time.
-     */
-    PERIOD,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ObservationDataType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("Quantity".equals(codeString))
-        return QUANTITY;
-      if ("CodeableConcept".equals(codeString))
-        return CODEABLECONCEPT;
-      if ("string".equals(codeString))
-        return STRING;
-      if ("boolean".equals(codeString))
-        return BOOLEAN;
-      if ("integer".equals(codeString))
-        return INTEGER;
-      if ("Range".equals(codeString))
-        return RANGE;
-      if ("Ratio".equals(codeString))
-        return RATIO;
-      if ("SampledData".equals(codeString))
-        return SAMPLEDDATA;
-      if ("time".equals(codeString))
-        return TIME;
-      if ("dateTime".equals(codeString))
-        return DATETIME;
-      if ("Period".equals(codeString))
-        return PERIOD;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ObservationDataType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case QUANTITY:
-        return "Quantity";
-      case CODEABLECONCEPT:
-        return "CodeableConcept";
-      case STRING:
-        return "string";
-      case BOOLEAN:
-        return "boolean";
-      case INTEGER:
-        return "integer";
-      case RANGE:
-        return "Range";
-      case RATIO:
-        return "Ratio";
-      case SAMPLEDDATA:
-        return "SampledData";
-      case TIME:
-        return "time";
-      case DATETIME:
-        return "dateTime";
-      case PERIOD:
-        return "Period";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case QUANTITY:
-        return "http://hl7.org/fhir/permitted-data-type";
-      case CODEABLECONCEPT:
-        return "http://hl7.org/fhir/permitted-data-type";
-      case STRING:
-        return "http://hl7.org/fhir/permitted-data-type";
-      case BOOLEAN:
-        return "http://hl7.org/fhir/permitted-data-type";
-      case INTEGER:
-        return "http://hl7.org/fhir/permitted-data-type";
-      case RANGE:
-        return "http://hl7.org/fhir/permitted-data-type";
-      case RATIO:
-        return "http://hl7.org/fhir/permitted-data-type";
-      case SAMPLEDDATA:
-        return "http://hl7.org/fhir/permitted-data-type";
-      case TIME:
-        return "http://hl7.org/fhir/permitted-data-type";
-      case DATETIME:
-        return "http://hl7.org/fhir/permitted-data-type";
-      case PERIOD:
-        return "http://hl7.org/fhir/permitted-data-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case QUANTITY:
-        return "A measured amount.";
-      case CODEABLECONCEPT:
-        return "A coded concept from a reference terminology and/or text.";
-      case STRING:
-        return "A sequence of Unicode characters.";
-      case BOOLEAN:
-        return "true or false.";
-      case INTEGER:
-        return "A signed integer.";
-      case RANGE:
-        return "A set of values bounded by low and high.";
-      case RATIO:
-        return "A ratio of two Quantity values - a numerator and a denominator.";
-      case SAMPLEDDATA:
-        return "A series of measurements taken by a device.";
-      case TIME:
-        return "A time during the day, in the format hh:mm:ss.";
-      case DATETIME:
-        return "A date, date-time or partial date (e.g. just year or year + month) as used in human communication.";
-      case PERIOD:
-        return "A time range defined by start and end date/time.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case QUANTITY:
-        return "Quantity";
-      case CODEABLECONCEPT:
-        return "CodeableConcept";
-      case STRING:
-        return "string";
-      case BOOLEAN:
-        return "boolean";
-      case INTEGER:
-        return "integer";
-      case RANGE:
-        return "Range";
-      case RATIO:
-        return "Ratio";
-      case SAMPLEDDATA:
-        return "SampledData";
-      case TIME:
-        return "time";
-      case DATETIME:
-        return "dateTime";
-      case PERIOD:
-        return "Period";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ObservationDataTypeEnumFactory implements EnumFactory<ObservationDataType> {
-    public ObservationDataType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("Quantity".equals(codeString))
-        return ObservationDataType.QUANTITY;
-      if ("CodeableConcept".equals(codeString))
-        return ObservationDataType.CODEABLECONCEPT;
-      if ("string".equals(codeString))
-        return ObservationDataType.STRING;
-      if ("boolean".equals(codeString))
-        return ObservationDataType.BOOLEAN;
-      if ("integer".equals(codeString))
-        return ObservationDataType.INTEGER;
-      if ("Range".equals(codeString))
-        return ObservationDataType.RANGE;
-      if ("Ratio".equals(codeString))
-        return ObservationDataType.RATIO;
-      if ("SampledData".equals(codeString))
-        return ObservationDataType.SAMPLEDDATA;
-      if ("time".equals(codeString))
-        return ObservationDataType.TIME;
-      if ("dateTime".equals(codeString))
-        return ObservationDataType.DATETIME;
-      if ("Period".equals(codeString))
-        return ObservationDataType.PERIOD;
-      throw new IllegalArgumentException("Unknown ObservationDataType code '" + codeString + "'");
-    }
-
-    public Enumeration<ObservationDataType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ObservationDataType>(this, ObservationDataType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ObservationDataType>(this, ObservationDataType.NULL, code);
-      if ("Quantity".equals(codeString))
-        return new Enumeration<ObservationDataType>(this, ObservationDataType.QUANTITY, code);
-      if ("CodeableConcept".equals(codeString))
-        return new Enumeration<ObservationDataType>(this, ObservationDataType.CODEABLECONCEPT, code);
-      if ("string".equals(codeString))
-        return new Enumeration<ObservationDataType>(this, ObservationDataType.STRING, code);
-      if ("boolean".equals(codeString))
-        return new Enumeration<ObservationDataType>(this, ObservationDataType.BOOLEAN, code);
-      if ("integer".equals(codeString))
-        return new Enumeration<ObservationDataType>(this, ObservationDataType.INTEGER, code);
-      if ("Range".equals(codeString))
-        return new Enumeration<ObservationDataType>(this, ObservationDataType.RANGE, code);
-      if ("Ratio".equals(codeString))
-        return new Enumeration<ObservationDataType>(this, ObservationDataType.RATIO, code);
-      if ("SampledData".equals(codeString))
-        return new Enumeration<ObservationDataType>(this, ObservationDataType.SAMPLEDDATA, code);
-      if ("time".equals(codeString))
-        return new Enumeration<ObservationDataType>(this, ObservationDataType.TIME, code);
-      if ("dateTime".equals(codeString))
-        return new Enumeration<ObservationDataType>(this, ObservationDataType.DATETIME, code);
-      if ("Period".equals(codeString))
-        return new Enumeration<ObservationDataType>(this, ObservationDataType.PERIOD, code);
-      throw new FHIRException("Unknown ObservationDataType code '" + codeString + "'");
-    }
-
-    public String toCode(ObservationDataType code) {
-       if (code == ObservationDataType.NULL)
-           return null;
-       if (code == ObservationDataType.QUANTITY)
-        return "Quantity";
-      if (code == ObservationDataType.CODEABLECONCEPT)
-        return "CodeableConcept";
-      if (code == ObservationDataType.STRING)
-        return "string";
-      if (code == ObservationDataType.BOOLEAN)
-        return "boolean";
-      if (code == ObservationDataType.INTEGER)
-        return "integer";
-      if (code == ObservationDataType.RANGE)
-        return "Range";
-      if (code == ObservationDataType.RATIO)
-        return "Ratio";
-      if (code == ObservationDataType.SAMPLEDDATA)
-        return "SampledData";
-      if (code == ObservationDataType.TIME)
-        return "time";
-      if (code == ObservationDataType.DATETIME)
-        return "dateTime";
-      if (code == ObservationDataType.PERIOD)
-        return "Period";
-      return "?";
-   }
-
-    public String toSystem(ObservationDataType code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum ObservationRangeCategory {
-    /**
-     * Reference (Normal) Range for Ordinal and Continuous Observations.
-     */
-    REFERENCE,
-    /**
-     * Critical Range for Ordinal and Continuous Observations.
-     */
-    CRITICAL,
-    /**
-     * Absolute Range for Ordinal and Continuous Observations. Results outside this
-     * range are not possible.
-     */
-    ABSOLUTE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ObservationRangeCategory fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("reference".equals(codeString))
-        return REFERENCE;
-      if ("critical".equals(codeString))
-        return CRITICAL;
-      if ("absolute".equals(codeString))
-        return ABSOLUTE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ObservationRangeCategory code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case REFERENCE:
-        return "reference";
-      case CRITICAL:
-        return "critical";
-      case ABSOLUTE:
-        return "absolute";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case REFERENCE:
-        return "http://hl7.org/fhir/observation-range-category";
-      case CRITICAL:
-        return "http://hl7.org/fhir/observation-range-category";
-      case ABSOLUTE:
-        return "http://hl7.org/fhir/observation-range-category";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case REFERENCE:
-        return "Reference (Normal) Range for Ordinal and Continuous Observations.";
-      case CRITICAL:
-        return "Critical Range for Ordinal and Continuous Observations.";
-      case ABSOLUTE:
-        return "Absolute Range for Ordinal and Continuous Observations. Results outside this range are not possible.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case REFERENCE:
-        return "reference range";
-      case CRITICAL:
-        return "critical range";
-      case ABSOLUTE:
-        return "absolute range";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ObservationRangeCategoryEnumFactory implements EnumFactory<ObservationRangeCategory> {
-    public ObservationRangeCategory fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("reference".equals(codeString))
-        return ObservationRangeCategory.REFERENCE;
-      if ("critical".equals(codeString))
-        return ObservationRangeCategory.CRITICAL;
-      if ("absolute".equals(codeString))
-        return ObservationRangeCategory.ABSOLUTE;
-      throw new IllegalArgumentException("Unknown ObservationRangeCategory code '" + codeString + "'");
-    }
-
-    public Enumeration<ObservationRangeCategory> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ObservationRangeCategory>(this, ObservationRangeCategory.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ObservationRangeCategory>(this, ObservationRangeCategory.NULL, code);
-      if ("reference".equals(codeString))
-        return new Enumeration<ObservationRangeCategory>(this, ObservationRangeCategory.REFERENCE, code);
-      if ("critical".equals(codeString))
-        return new Enumeration<ObservationRangeCategory>(this, ObservationRangeCategory.CRITICAL, code);
-      if ("absolute".equals(codeString))
-        return new Enumeration<ObservationRangeCategory>(this, ObservationRangeCategory.ABSOLUTE, code);
-      throw new FHIRException("Unknown ObservationRangeCategory code '" + codeString + "'");
-    }
-
-    public String toCode(ObservationRangeCategory code) {
-       if (code == ObservationRangeCategory.NULL)
-           return null;
-       if (code == ObservationRangeCategory.REFERENCE)
-        return "reference";
-      if (code == ObservationRangeCategory.CRITICAL)
-        return "critical";
-      if (code == ObservationRangeCategory.ABSOLUTE)
-        return "absolute";
-      return "?";
-   }
-
-    public String toSystem(ObservationRangeCategory code) {
-      return code.getSystem();
-    }
-  }
 
   @Block()
   public static class ObservationDefinitionQuantitativeDetailsComponent extends BackboneElement
@@ -950,10 +502,10 @@ public class ObservationDefinition extends DomainResource {
      * The category of interval of values for continuous or ordinal observations
      * conforming to this ObservationDefinition.
      */
-    @Child(name = "category", type = { CodeType.class }, order = 1, min = 0, max = 1, modifier = false, summary = false)
+    @Child(name = "category", type = { StringType.class }, order = 1, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "reference | critical | absolute", formalDefinition = "The category of interval of values for continuous or ordinal observations conforming to this ObservationDefinition.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/observation-range-category")
-    protected Enumeration<ObservationRangeCategory> category;
+    protected StringType category;
 
     /**
      * The low and high values determining the interval. There may be only one of
@@ -985,10 +537,10 @@ public class ObservationDefinition extends DomainResource {
     /**
      * Sex of the population the range applies to.
      */
-    @Child(name = "gender", type = { CodeType.class }, order = 5, min = 0, max = 1, modifier = false, summary = false)
+    @Child(name = "gender", type = { StringType.class }, order = 5, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "male | female | other | unknown", formalDefinition = "Sex of the population the range applies to.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/administrative-gender")
-    protected Enumeration<AdministrativeGender> gender;
+    protected StringType gender;
 
     /**
      * The age at which this reference range is applicable. This is a neonatal age
@@ -1030,12 +582,12 @@ public class ObservationDefinition extends DomainResource {
      *         This is the underlying object with id, value and extensions. The
      *         accessor "getCategory" gives direct access to the value
      */
-    public Enumeration<ObservationRangeCategory> getCategoryElement() {
+    public StringType getCategoryElement() {
       if (this.category == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create ObservationDefinitionQualifiedIntervalComponent.category");
         else if (Configuration.doAutoCreate())
-          this.category = new Enumeration<ObservationRangeCategory>(new ObservationRangeCategoryEnumFactory()); // bb
+          this.category = new StringType(); // bb
       return this.category;
     }
 
@@ -1055,7 +607,7 @@ public class ObservationDefinition extends DomainResource {
      *              access to the value
      */
     public ObservationDefinitionQualifiedIntervalComponent setCategoryElement(
-        Enumeration<ObservationRangeCategory> value) {
+        StringType value) {
       this.category = value;
       return this;
     }
@@ -1064,7 +616,7 @@ public class ObservationDefinition extends DomainResource {
      * @return The category of interval of values for continuous or ordinal
      *         observations conforming to this ObservationDefinition.
      */
-    public ObservationRangeCategory getCategory() {
+    public String getCategory() {
       return this.category == null ? null : this.category.getValue();
     }
 
@@ -1072,12 +624,12 @@ public class ObservationDefinition extends DomainResource {
      * @param value The category of interval of values for continuous or ordinal
      *              observations conforming to this ObservationDefinition.
      */
-    public ObservationDefinitionQualifiedIntervalComponent setCategory(ObservationRangeCategory value) {
+    public ObservationDefinitionQualifiedIntervalComponent setCategory(String value) {
       if (value == null)
         this.category = null;
       else {
         if (this.category == null)
-          this.category = new Enumeration<ObservationRangeCategory>(new ObservationRangeCategoryEnumFactory());
+          this.category = new StringType();
         this.category.setValue(value);
       }
       return this;
@@ -1195,12 +747,12 @@ public class ObservationDefinition extends DomainResource {
      *         is the underlying object with id, value and extensions. The accessor
      *         "getGender" gives direct access to the value
      */
-    public Enumeration<AdministrativeGender> getGenderElement() {
+    public StringType getGenderElement() {
       if (this.gender == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create ObservationDefinitionQualifiedIntervalComponent.gender");
         else if (Configuration.doAutoCreate())
-          this.gender = new Enumeration<AdministrativeGender>(new AdministrativeGenderEnumFactory()); // bb
+          this.gender = new StringType(); // bb
       return this.gender;
     }
 
@@ -1217,7 +769,7 @@ public class ObservationDefinition extends DomainResource {
      *              This is the underlying object with id, value and extensions. The
      *              accessor "getGender" gives direct access to the value
      */
-    public ObservationDefinitionQualifiedIntervalComponent setGenderElement(Enumeration<AdministrativeGender> value) {
+    public ObservationDefinitionQualifiedIntervalComponent setGenderElement(StringType value) {
       this.gender = value;
       return this;
     }
@@ -1225,19 +777,19 @@ public class ObservationDefinition extends DomainResource {
     /**
      * @return Sex of the population the range applies to.
      */
-    public AdministrativeGender getGender() {
+    public String getGender() {
       return this.gender == null ? null : this.gender.getValue();
     }
 
     /**
      * @param value Sex of the population the range applies to.
      */
-    public ObservationDefinitionQualifiedIntervalComponent setGender(AdministrativeGender value) {
+    public ObservationDefinitionQualifiedIntervalComponent setGender(String value) {
       if (value == null)
         this.gender = null;
       else {
         if (this.gender == null)
-          this.gender = new Enumeration<AdministrativeGender>(new AdministrativeGenderEnumFactory());
+          this.gender = new StringType();
         this.gender.setValue(value);
       }
       return this;
@@ -1354,7 +906,7 @@ public class ObservationDefinition extends DomainResource {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("category", "code",
+      children.add(new Property("category", "string",
           "The category of interval of values for continuous or ordinal observations conforming to this ObservationDefinition.",
           0, 1, category));
       children.add(new Property("range", "Range",
@@ -1365,7 +917,7 @@ public class ObservationDefinition extends DomainResource {
       children.add(new Property("appliesTo", "CodeableConcept",
           "Codes to indicate the target population this reference range applies to.", 0, java.lang.Integer.MAX_VALUE,
           appliesTo));
-      children.add(new Property("gender", "code", "Sex of the population the range applies to.", 0, 1, gender));
+      children.add(new Property("gender", "string", "Sex of the population the range applies to.", 0, 1, gender));
       children.add(new Property("age", "Range",
           "The age at which this reference range is applicable. This is a neonatal age (e.g. number of weeks at term) if the meaning says so.",
           0, 1, age));
@@ -1380,7 +932,7 @@ public class ObservationDefinition extends DomainResource {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 50511102:
-        /* category */ return new Property("category", "code",
+        /* category */ return new Property("category", "string",
             "The category of interval of values for continuous or ordinal observations conforming to this ObservationDefinition.",
             0, 1, category);
       case 108280125:
@@ -1395,7 +947,7 @@ public class ObservationDefinition extends DomainResource {
             "Codes to indicate the target population this reference range applies to.", 0, java.lang.Integer.MAX_VALUE,
             appliesTo);
       case -1249512767:
-        /* gender */ return new Property("gender", "code", "Sex of the population the range applies to.", 0, 1, gender);
+        /* gender */ return new Property("gender", "string", "Sex of the population the range applies to.", 0, 1, gender);
       case 96511:
         /* age */ return new Property("age", "Range",
             "The age at which this reference range is applicable. This is a neonatal age (e.g. number of weeks at term) if the meaning says so.",
@@ -1417,7 +969,7 @@ public class ObservationDefinition extends DomainResource {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 50511102:
-        /* category */ return this.category == null ? new Base[0] : new Base[] { this.category }; // Enumeration<ObservationRangeCategory>
+        /* category */ return this.category == null ? new Base[0] : new Base[] { this.category }; // StringType
       case 108280125:
         /* range */ return this.range == null ? new Base[0] : new Base[] { this.range }; // Range
       case 951530927:
@@ -1426,7 +978,7 @@ public class ObservationDefinition extends DomainResource {
         /* appliesTo */ return this.appliesTo == null ? new Base[0]
             : this.appliesTo.toArray(new Base[this.appliesTo.size()]); // CodeableConcept
       case -1249512767:
-        /* gender */ return this.gender == null ? new Base[0] : new Base[] { this.gender }; // Enumeration<AdministrativeGender>
+        /* gender */ return this.gender == null ? new Base[0] : new Base[] { this.gender }; // StringType
       case 96511:
         /* age */ return this.age == null ? new Base[0] : new Base[] { this.age }; // Range
       case -241217538:
@@ -1443,8 +995,7 @@ public class ObservationDefinition extends DomainResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 50511102: // category
-        value = new ObservationRangeCategoryEnumFactory().fromType(castToCode(value));
-        this.category = (Enumeration) value; // Enumeration<ObservationRangeCategory>
+        this.category = castToString(value); // StringType
         return value;
       case 108280125: // range
         this.range = castToRange(value); // Range
@@ -1456,8 +1007,7 @@ public class ObservationDefinition extends DomainResource {
         this.getAppliesTo().add(castToCodeableConcept(value)); // CodeableConcept
         return value;
       case -1249512767: // gender
-        value = new AdministrativeGenderEnumFactory().fromType(castToCode(value));
-        this.gender = (Enumeration) value; // Enumeration<AdministrativeGender>
+        this.gender = castToString(value); // StringType
         return value;
       case 96511: // age
         this.age = castToRange(value); // Range
@@ -1477,8 +1027,7 @@ public class ObservationDefinition extends DomainResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("category")) {
-        value = new ObservationRangeCategoryEnumFactory().fromType(castToCode(value));
-        this.category = (Enumeration) value; // Enumeration<ObservationRangeCategory>
+        this.category = castToString(value); // StringType
       } else if (name.equals("range")) {
         this.range = castToRange(value); // Range
       } else if (name.equals("context")) {
@@ -1486,8 +1035,7 @@ public class ObservationDefinition extends DomainResource {
       } else if (name.equals("appliesTo")) {
         this.getAppliesTo().add(castToCodeableConcept(value));
       } else if (name.equals("gender")) {
-        value = new AdministrativeGenderEnumFactory().fromType(castToCode(value));
-        this.gender = (Enumeration) value; // Enumeration<AdministrativeGender>
+        this.gender = castToString(value); // StringType
       } else if (name.equals("age")) {
         this.age = castToRange(value); // Range
       } else if (name.equals("gestationalAge")) {
@@ -1551,7 +1099,7 @@ public class ObservationDefinition extends DomainResource {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 50511102:
-        /* category */ return new String[] { "code" };
+        /* category */ return new String[] { "string" };
       case 108280125:
         /* range */ return new String[] { "Range" };
       case 951530927:
@@ -1559,7 +1107,7 @@ public class ObservationDefinition extends DomainResource {
       case -2089924569:
         /* appliesTo */ return new String[] { "CodeableConcept" };
       case -1249512767:
-        /* gender */ return new String[] { "code" };
+        /* gender */ return new String[] { "string" };
       case 96511:
         /* age */ return new String[] { "Range" };
       case -241217538:
@@ -1688,10 +1236,10 @@ public class ObservationDefinition extends DomainResource {
    * conforming to this ObservationDefinition.
    */
   @Child(name = "permittedDataType", type = {
-      CodeType.class }, order = 3, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = false)
+    StringType.class }, order = 3, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = false)
   @Description(shortDefinition = "Quantity | CodeableConcept | string | boolean | integer | Range | Ratio | SampledData | time | dateTime | Period", formalDefinition = "The data types allowed for the value element of the instance observations conforming to this ObservationDefinition.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/permitted-data-type")
-  protected List<Enumeration<ObservationDataType>> permittedDataType;
+  protected List<StringType> permittedDataType;
 
   /**
    * Multiple results allowed for observations conforming to this
@@ -1953,16 +1501,16 @@ public class ObservationDefinition extends DomainResource {
    *         element of the instance observations conforming to this
    *         ObservationDefinition.)
    */
-  public List<Enumeration<ObservationDataType>> getPermittedDataType() {
+  public List<StringType> getPermittedDataType() {
     if (this.permittedDataType == null)
-      this.permittedDataType = new ArrayList<Enumeration<ObservationDataType>>();
+      this.permittedDataType = new ArrayList<StringType>();
     return this.permittedDataType;
   }
 
   /**
    * @return Returns a reference to <code>this</code> for easy method chaining
    */
-  public ObservationDefinition setPermittedDataType(List<Enumeration<ObservationDataType>> thePermittedDataType) {
+  public ObservationDefinition setPermittedDataType(List<StringType> thePermittedDataType) {
     this.permittedDataType = thePermittedDataType;
     return this;
   }
@@ -1970,7 +1518,7 @@ public class ObservationDefinition extends DomainResource {
   public boolean hasPermittedDataType() {
     if (this.permittedDataType == null)
       return false;
-    for (Enumeration<ObservationDataType> item : this.permittedDataType)
+    for (StringType item : this.permittedDataType)
       if (!item.isEmpty())
         return true;
     return false;
@@ -1981,10 +1529,10 @@ public class ObservationDefinition extends DomainResource {
    *         element of the instance observations conforming to this
    *         ObservationDefinition.)
    */
-  public Enumeration<ObservationDataType> addPermittedDataTypeElement() {// 2
-    Enumeration<ObservationDataType> t = new Enumeration<ObservationDataType>(new ObservationDataTypeEnumFactory());
+  public StringType addPermittedDataTypeElement() {// 2
+    StringType t = new StringType();
     if (this.permittedDataType == null)
-      this.permittedDataType = new ArrayList<Enumeration<ObservationDataType>>();
+      this.permittedDataType = new ArrayList<StringType>();
     this.permittedDataType.add(t);
     return t;
   }
@@ -1994,11 +1542,11 @@ public class ObservationDefinition extends DomainResource {
    *              element of the instance observations conforming to this
    *              ObservationDefinition.)
    */
-  public ObservationDefinition addPermittedDataType(ObservationDataType value) { // 1
-    Enumeration<ObservationDataType> t = new Enumeration<ObservationDataType>(new ObservationDataTypeEnumFactory());
+  public ObservationDefinition addPermittedDataType(String value) { // 1
+    StringType t = new StringType();
     t.setValue(value);
     if (this.permittedDataType == null)
-      this.permittedDataType = new ArrayList<Enumeration<ObservationDataType>>();
+      this.permittedDataType = new ArrayList<StringType>();
     this.permittedDataType.add(t);
     return this;
   }
@@ -2008,10 +1556,10 @@ public class ObservationDefinition extends DomainResource {
    *              element of the instance observations conforming to this
    *              ObservationDefinition.)
    */
-  public boolean hasPermittedDataType(ObservationDataType value) {
+  public boolean hasPermittedDataType(String value) {
     if (this.permittedDataType == null)
       return false;
-    for (Enumeration<ObservationDataType> v : this.permittedDataType)
+    for (StringType v : this.permittedDataType)
       if (v.getValue().equals(value)) // code
         return true;
     return false;
@@ -2467,7 +2015,7 @@ public class ObservationDefinition extends DomainResource {
     children.add(
         new Property("identifier", "Identifier", "A unique identifier assigned to this ObservationDefinition artifact.",
             0, java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("permittedDataType", "code",
+    children.add(new Property("permittedDataType", "string",
         "The data types allowed for the value element of the instance observations conforming to this ObservationDefinition.",
         0, java.lang.Integer.MAX_VALUE, permittedDataType));
     children.add(new Property("multipleResultsAllowed", "boolean",
@@ -2511,7 +2059,7 @@ public class ObservationDefinition extends DomainResource {
           "A unique identifier assigned to this ObservationDefinition artifact.", 0, java.lang.Integer.MAX_VALUE,
           identifier);
     case -99492804:
-      /* permittedDataType */ return new Property("permittedDataType", "code",
+      /* permittedDataType */ return new Property("permittedDataType", "string",
           "The data types allowed for the value element of the instance observations conforming to this ObservationDefinition.",
           0, java.lang.Integer.MAX_VALUE, permittedDataType);
     case -2102414590:
@@ -2566,7 +2114,7 @@ public class ObservationDefinition extends DomainResource {
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -99492804:
       /* permittedDataType */ return this.permittedDataType == null ? new Base[0]
-          : this.permittedDataType.toArray(new Base[this.permittedDataType.size()]); // Enumeration<ObservationDataType>
+          : this.permittedDataType.toArray(new Base[this.permittedDataType.size()]); // StringType
     case -2102414590:
       /* multipleResultsAllowed */ return this.multipleResultsAllowed == null ? new Base[0]
           : new Base[] { this.multipleResultsAllowed }; // BooleanType
@@ -2612,8 +2160,7 @@ public class ObservationDefinition extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -99492804: // permittedDataType
-      value = new ObservationDataTypeEnumFactory().fromType(castToCode(value));
-      this.getPermittedDataType().add((Enumeration) value); // Enumeration<ObservationDataType>
+      this.getPermittedDataType().add(castToString(value)); // StringType
       return value;
     case -2102414590: // multipleResultsAllowed
       this.multipleResultsAllowed = castToBoolean(value); // BooleanType
@@ -2657,8 +2204,7 @@ public class ObservationDefinition extends DomainResource {
     } else if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("permittedDataType")) {
-      value = new ObservationDataTypeEnumFactory().fromType(castToCode(value));
-      this.getPermittedDataType().add((Enumeration) value);
+      this.getPermittedDataType().add(castToString(value));
     } else if (name.equals("multipleResultsAllowed")) {
       this.multipleResultsAllowed = castToBoolean(value); // BooleanType
     } else if (name.equals("method")) {
@@ -2691,7 +2237,7 @@ public class ObservationDefinition extends DomainResource {
     } else if (name.equals("identifier")) {
       this.getIdentifier().remove(castToIdentifier(value));
     } else if (name.equals("permittedDataType")) {
-      this.getPermittedDataType().remove((Enumeration) value);
+      this.getPermittedDataType().remove(castToString(value));
     } else if (name.equals("multipleResultsAllowed")) {
       this.multipleResultsAllowed = null;
     } else if (name.equals("method")) {
@@ -2760,7 +2306,7 @@ public class ObservationDefinition extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -99492804:
-      /* permittedDataType */ return new String[] { "code" };
+      /* permittedDataType */ return new String[] { "string" };
     case -2102414590:
       /* multipleResultsAllowed */ return new String[] { "boolean" };
     case -1077554975:
@@ -2851,8 +2397,8 @@ public class ObservationDefinition extends DomainResource {
     }
     ;
     if (permittedDataType != null) {
-      dst.permittedDataType = new ArrayList<Enumeration<ObservationDataType>>();
-      for (Enumeration<ObservationDataType> i : permittedDataType)
+      dst.permittedDataType = new ArrayList<StringType>();
+      for (StringType i : permittedDataType)
         dst.permittedDataType.add(i.copy());
     }
     ;

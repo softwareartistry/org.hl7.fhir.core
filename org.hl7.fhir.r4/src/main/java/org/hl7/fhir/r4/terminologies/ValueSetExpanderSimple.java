@@ -77,7 +77,6 @@ import org.hl7.fhir.exceptions.NoTerminologyServiceException;
 import org.hl7.fhir.exceptions.TerminologyServiceException;
 import org.hl7.fhir.r4.context.IWorkerContext;
 import org.hl7.fhir.r4.model.CodeSystem;
-import org.hl7.fhir.r4.model.CodeSystem.CodeSystemContentMode;
 import org.hl7.fhir.r4.model.CodeSystem.ConceptDefinitionComponent;
 import org.hl7.fhir.r4.model.CodeSystem.ConceptDefinitionDesignationComponent;
 import org.hl7.fhir.r4.model.DateTimeType;
@@ -275,7 +274,7 @@ public class ValueSetExpanderSimple implements ValueSetExpander {
     // importValueSet(imp.getValue(), params, expParams);
 
     CodeSystem cs = context.fetchCodeSystem(exc.getSystem());
-    if ((cs == null || cs.getContent() != CodeSystemContentMode.COMPLETE) && context.supportsSystem(exc.getSystem())) {
+    if ((cs == null || cs.getContent() != "COMPLETE") && context.supportsSystem(exc.getSystem())) {
       ValueSetExpansionOutcome vse = context.expandVS(exc, false);
       ValueSet valueset = vse.getValueset();
       if (valueset == null)
@@ -460,7 +459,7 @@ public class ValueSetExpanderSimple implements ValueSetExpander {
       copyImportContains(base.getExpansion().getContains(), null, expParams, imports);
     } else {
       CodeSystem cs = context.fetchCodeSystem(inc.getSystem());
-      if ((cs == null || cs.getContent() != CodeSystemContentMode.COMPLETE)) {
+      if ((cs == null || cs.getContent() != "COMPLETE")) {
         doServerIncludeCodes(inc, heirarchical, params, imports, expParams);
       } else {
         doInternalIncludeCodes(inc, params, expParams, imports, cs);
@@ -498,7 +497,7 @@ public class ValueSetExpanderSimple implements ValueSetExpander {
         throw new TerminologyServiceException("unable to find code system " + inc.getSystem().toString());
     }
     cs.checkNoModifiers("Code System", "expanding");
-    if (cs.getContent() != CodeSystemContentMode.COMPLETE)
+    if (cs.getContent() != "COMPLETE")
       throw new TerminologyServiceException("Code system " + inc.getSystem().toString() + " is incomplete");
     if (cs.hasVersion())
       if (!existsInParams(params, "version", new UriType(cs.getUrl() + "|" + cs.getVersion())))

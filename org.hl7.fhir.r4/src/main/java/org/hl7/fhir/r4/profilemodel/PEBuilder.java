@@ -43,10 +43,8 @@ import org.hl7.fhir.r4.fhirpath.FHIRPathEngine;
 import org.hl7.fhir.r4.model.Base;
 import org.hl7.fhir.r4.model.CanonicalType;
 import org.hl7.fhir.r4.model.ElementDefinition;
-import org.hl7.fhir.r4.model.ElementDefinition.DiscriminatorType;
 import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionSlicingComponent;
 import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionSlicingDiscriminatorComponent;
-import org.hl7.fhir.r4.model.ElementDefinition.SlicingRules;
 import org.hl7.fhir.r4.model.ElementDefinition.TypeRefComponent;
 import org.hl7.fhir.r4.model.Enumerations.BindingStrength;
 import org.hl7.fhir.r4.model.Resource;
@@ -369,7 +367,7 @@ public class PEBuilder {
               }
               pe.setInFixedValue(definition.hasFixed() || definition.hasPattern() || parent.isInFixedValue());
               if (defn.hasSlicing()) {
-                if (defn.getSlicing().getRules() != SlicingRules.CLOSED) {
+                if (defn.getSlicing().getRules() != "CLOSED") {
                   res.add(pe);
                   pe.setSlicer(true);
                 }
@@ -447,8 +445,8 @@ public class PEBuilder {
 
   private boolean isTypeSlicing(ElementDefinition defn) {
     ElementDefinitionSlicingComponent sl = defn.getSlicing();
-    return sl.getRules() == SlicingRules.CLOSED && sl.getDiscriminator().size() == 1 &&
-        sl.getDiscriminatorFirstRep().getType() == DiscriminatorType.TYPE && "$this".equals(sl.getDiscriminatorFirstRep().getPath());
+    return sl.getRules() == "CLOSED" && sl.getDiscriminator().size() == 1 &&
+        sl.getDiscriminatorFirstRep().getType() == "TYPE" && "$this".equals(sl.getDiscriminatorFirstRep().getPath());
   }
 
   private boolean include(ElementDefinition defn) {
@@ -590,15 +588,15 @@ public class PEBuilder {
     CommaSeparatedStringBuilder b = new CommaSeparatedStringBuilder(" and ");
     for (ElementDefinitionSlicingDiscriminatorComponent d : slicing.getDiscriminator()) {
       switch (d.getType()) {
-      case EXISTS:
+      case "EXISTS":
         throw new DefinitionException("The discriminator type 'exists' is not supported by the PEBuilder");
-      case PATTERN:
+      case "PATTERN":
         throw new DefinitionException("The discriminator type 'pattern' is not supported by the PEBuilder");
-      case PROFILE:
+      case "PROFILE":
         throw new DefinitionException("The discriminator type 'profile' is not supported by the PEBuilder");
-      case TYPE:
+      case "TYPE":
         throw new DefinitionException("The discriminator type 'type' is not supported by the PEBuilder");
-      case VALUE:
+      case "VALUE":
         String path = d.getPath();
         ElementDefinition ed = getChildElement(profile, definition, path);
         if (ed == null) {
@@ -637,7 +635,7 @@ public class PEBuilder {
           
         }
         break;
-      case NULL:
+      case "NULL":
         throw new DefinitionException("The discriminator type 'null' is not supported by the PEBuilder");
       default:
         throw new DefinitionException("The discriminator type '??' is not supported by the PEBuilder"); 

@@ -507,8 +507,8 @@ public class Slot extends DomainResource {
   /**
    * @return busy | free | busy-unavailable | busy-tentative | entered-in-error.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

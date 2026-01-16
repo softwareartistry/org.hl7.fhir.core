@@ -683,7 +683,7 @@ public class HealthcareService extends DomainResource {
   @Override
   public void removeChild(String name, Base value) throws FHIRException {
       if (name.equals("daysOfWeek")) {
-        this.getDaysOfWeek().remove((Enumeration) value);
+        this.getDaysOfWeek().remove(castToString(value));
       } else if (name.equals("allDay")) {
         this.allDay = null;
       } else if (name.equals("availableStartTime")) {

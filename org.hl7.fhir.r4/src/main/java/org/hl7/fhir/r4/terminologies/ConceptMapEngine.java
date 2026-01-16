@@ -36,8 +36,10 @@ import org.hl7.fhir.r4.model.ConceptMap;
 import org.hl7.fhir.r4.model.ConceptMap.ConceptMapGroupComponent;
 import org.hl7.fhir.r4.model.ConceptMap.SourceElementComponent;
 import org.hl7.fhir.r4.model.ConceptMap.TargetElementComponent;
-import org.hl7.fhir.r4.model.Enumerations.ConceptMapEquivalence;
+import org.hl7.fhir.r4.model.StringType;
 import org.hl7.fhir.utilities.MarkedToMoveToAdjunctPackage;
+
+import java.util.Objects;
 
 @MarkedToMoveToAdjunctPackage
 public class ConceptMapEngine {
@@ -89,9 +91,9 @@ public class ConceptMapEngine {
         .setDisplay(tt.getDisplay());
   }
 
-  private boolean isOkEquivalence(ConceptMapEquivalence equivalence) {
-    return equivalence != null && equivalence != ConceptMapEquivalence.DISJOINT
-        && equivalence != ConceptMapEquivalence.UNMATCHED;
+  private boolean isOkEquivalence(String equivalence) {
+    return equivalence != null && !Objects.equals(equivalence, "DISJOINT")
+        && !Objects.equals(equivalence, "UNMATCHED");
   }
 
   private Coding translateBySystem(ConceptMap cm, String system, String code) {

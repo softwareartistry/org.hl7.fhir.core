@@ -70,16 +70,12 @@ import org.hl7.fhir.r4.model.Bundle.BundleEntryComponent;
 import org.hl7.fhir.r4.model.Bundle.BundleEntryRequestComponent;
 import org.hl7.fhir.r4.model.Bundle.BundleEntryResponseComponent;
 import org.hl7.fhir.r4.model.Bundle.BundleEntrySearchComponent;
-import org.hl7.fhir.r4.model.Bundle.BundleType;
 import org.hl7.fhir.r4.model.CapabilityStatement;
 import org.hl7.fhir.r4.model.CapabilityStatement.CapabilityStatementRestComponent;
 import org.hl7.fhir.r4.model.CapabilityStatement.CapabilityStatementRestResourceComponent;
 import org.hl7.fhir.r4.model.CapabilityStatement.ResourceInteractionComponent;
 import org.hl7.fhir.r4.model.CapabilityStatement.SystemInteractionComponent;
-import org.hl7.fhir.r4.model.CapabilityStatement.SystemRestfulInteraction;
-import org.hl7.fhir.r4.model.CapabilityStatement.TypeRestfulInteraction;
 import org.hl7.fhir.r4.model.CodeSystem;
-import org.hl7.fhir.r4.model.CodeSystem.CodeSystemContentMode;
 import org.hl7.fhir.r4.model.CodeSystem.CodeSystemFilterComponent;
 import org.hl7.fhir.r4.model.CodeSystem.ConceptDefinitionComponent;
 import org.hl7.fhir.r4.model.CodeSystem.ConceptDefinitionDesignationComponent;
@@ -104,7 +100,6 @@ import org.hl7.fhir.r4.model.DomainResource;
 import org.hl7.fhir.r4.model.Dosage;
 import org.hl7.fhir.r4.model.ElementDefinition;
 import org.hl7.fhir.r4.model.Enumeration;
-import org.hl7.fhir.r4.model.Enumerations.ConceptMapEquivalence;
 import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.ExtensionHelper;
 import org.hl7.fhir.r4.model.HumanName;
@@ -2238,7 +2233,7 @@ public class NarrativeGenerator implements INarrativeGenerator {
         s.append(" ");
       }
     }
-    if (name.hasUse() && name.getUse() != new StringType("USUAL"))
+    if (name.hasUse() && name.getUse() != "USUAL")
       s.append("(" + name.getUse().toString() + ")");
     return s.toString();
   }
@@ -2446,7 +2441,7 @@ public class NarrativeGenerator implements INarrativeGenerator {
           if (display != null && !isSameCodeAndDisplay(ccl.getCode(), display))
             td.tx(" (" + display + ")");
           TargetElementComponent ccm = ccl.getTarget().get(0);
-          tr.td().addText(!ccm.hasEquivalence() ? "" : ccm.getEquivalence().toCode());
+          tr.td().addText(!ccm.hasEquivalence() ? "" : ccm.getEquivalence());
           td = tr.td();
           td.addText(ccm.getCode());
           display = getDisplayForConcept(grp.getTarget(), ccm.getCode());
@@ -2534,9 +2529,9 @@ public class NarrativeGenerator implements INarrativeGenerator {
             }
             first = false;
             if (!ccm.hasEquivalence())
-              tr.td().tx(":" + "(" + ConceptMapEquivalence.EQUIVALENT.toCode() + ")");
+              tr.td().tx(":" + "(" + "EQUIVALENT" + ")");
             else
-              tr.td().ah(eqpath + "#" + ccm.getEquivalence().toCode()).tx(ccm.getEquivalence().toCode());
+              tr.td().ah(eqpath + "#" + ccm.getEquivalence()).tx(ccm.getEquivalence());
             td = tr.td();
             if (targets.get("code").size() == 1)
               td.addText(ccm.getCode());
@@ -2708,13 +2703,13 @@ public class NarrativeGenerator implements INarrativeGenerator {
   }
 
   private void addTelecom(XhtmlNode p, ContactPoint c) {
-    if (c.getSystem() == new StringType("PHONE")) {
+    if (c.getSystem() == "PHONE") {
       p.tx("Phone: " + c.getValue());
-    } else if (c.getSystem() == new StringType("FAX")) {
+    } else if (c.getSystem() == "FAX") {
       p.tx("Fax: " + c.getValue());
-    } else if (c.getSystem() == new StringType("EMAIL")) {
+    } else if (c.getSystem() == "EMAIL") {
       p.ah("mailto:" + c.getValue()).addText(c.getValue());
-    } else if (c.getSystem() == new StringType("URL")) {
+    } else if (c.getSystem() == "URL") {
       if (c.getValue().length() > 30)
         p.ah(c.getValue()).addText(c.getValue().substring(0, 30) + "...");
       else
@@ -2777,7 +2772,7 @@ public class NarrativeGenerator implements INarrativeGenerator {
         tr.td().tx(f.getCode());
         tr.td().tx(f.getDescription());
         XhtmlNode td = tr.td();
-        for (Enumeration<org.hl7.fhir.r4.model.CodeSystem.FilterOperator> t : f.getOperator())
+        for (StringType t : f.getOperator())
           td.tx(t.asStringValue() + " ");
         tr.td().tx(f.getValue());
       }
@@ -2798,7 +2793,7 @@ public class NarrativeGenerator implements INarrativeGenerator {
         tr.td().tx(p.getCode());
         tr.td().tx(p.getUri());
         tr.td().tx(p.getDescription());
-        tr.td().tx(p.hasType() ? p.getType().toCode() : "");
+        tr.td().tx(p.hasType() ? p.getType() : "");
       }
     }
   }
@@ -2806,16 +2801,16 @@ public class NarrativeGenerator implements INarrativeGenerator {
   private boolean generateCodeSystemContent(XhtmlNode x, CodeSystem cs, boolean hasExtensions,
       List<UsedConceptMap> maps, String lang) throws FHIRFormatError, DefinitionException, IOException {
     XhtmlNode p = x.para();
-    if (cs.getContent() == CodeSystemContentMode.COMPLETE)
+    if (cs.getContent() == "COMPLETE")
       p.tx(context.translator().translateAndFormat("xhtml-gen-cs", lang,
           "This code system %s defines the following codes", cs.getUrl()) + ":");
-    else if (cs.getContent() == CodeSystemContentMode.EXAMPLE)
+    else if (cs.getContent() == "EXAMPLE")
       p.tx(context.translator().translateAndFormat("xhtml-gen-cs", lang,
           "This code system %s defines many codes, of which the following are some examples", cs.getUrl()) + ":");
-    else if (cs.getContent() == CodeSystemContentMode.FRAGMENT)
+    else if (cs.getContent() == "FRAGMENT")
       p.tx(context.translator().translateAndFormat("xhtml-gen-cs", lang,
           "This code system %s defines many codes, of which the following are a subset", cs.getUrl()) + ":");
-    else if (cs.getContent() == CodeSystemContentMode.NOTPRESENT) {
+    else if (cs.getContent() == "NOTPRESENT") {
       p.tx(context.translator().translateAndFormat("xhtml-gen-cs", lang,
           "This code system %s defines many codes, but they are not represented here", cs.getUrl()));
       return false;
@@ -3448,7 +3443,7 @@ public class NarrativeGenerator implements INarrativeGenerator {
 
   private void addCodeToTable(boolean isAbstract, String system, String code, String display, XhtmlNode td) {
     CodeSystem e = context.fetchCodeSystem(system);
-    if (e == null || e.getContent() != org.hl7.fhir.r4.model.CodeSystem.CodeSystemContentMode.COMPLETE) {
+    if (e == null || e.getContent() != "COMPLETE") {
       if (isAbstract)
         td.i().setAttribute("title", ABSTRACT_CODE_HINT).addText(code);
       else if ("http://snomed.info/sct".equals(system)) {
@@ -3654,7 +3649,7 @@ public class NarrativeGenerator implements INarrativeGenerator {
         if (!first)
           td.br();
         first = false;
-        XhtmlNode span = td.span(null, mapping.comp.hasEquivalence() ? mapping.comp.getEquivalence().toCode() : "");
+        XhtmlNode span = td.span(null, mapping.comp.hasEquivalence() ? mapping.comp.getEquivalence() : "");
         span.addText(getCharForEquivalence(mapping.comp));
         a = td.ah(prefix + m.getLink() + "#" + makeAnchor(mapping.group.getTarget(), mapping.comp.getCode()));
         a.addText(mapping.comp.getCode());
@@ -3707,21 +3702,21 @@ public class NarrativeGenerator implements INarrativeGenerator {
     if (!mapping.hasEquivalence())
       return "";
     switch (mapping.getEquivalence()) {
-    case EQUAL:
+    case "EQUAL":
       return "=";
-    case EQUIVALENT:
+    case "EQUIVALENT":
       return "~";
-    case WIDER:
+    case "WIDER":
       return "<";
-    case NARROWER:
+    case "NARROWER":
       return ">";
-    case INEXACT:
+    case "INEXACT":
       return "><";
-    case UNMATCHED:
+    case "UNMATCHED":
       return "-";
-    case DISJOINT:
+    case "DISJOINT":
       return "!=";
-    case NULL:
+    case "NULL":
       return null;
     default:
       return "?";
@@ -4318,7 +4313,7 @@ public class NarrativeGenerator implements INarrativeGenerator {
     td = tr.td();
     if (p.hasBinding() && p.getBinding().hasValueSet()) {
       AddVsRef(rcontext, p.getBinding().getValueSet(), td);
-      td.tx(" (" + p.getBinding().getStrength().getDisplay() + ")");
+      td.tx(" (" + p.getBinding().getStrength() + ")");
     }
     addMarkdown(tr.td(), p.getDocumentation());
     if (!p.hasType()) {
@@ -4407,9 +4402,9 @@ public class NarrativeGenerator implements INarrativeGenerator {
       addTableRow(t, "Mode", rest.getMode().toString());
       addTableRow(t, "Description", rest.getDocumentation());
 
-      addTableRow(t, "Transaction", showOp(rest, SystemRestfulInteraction.TRANSACTION));
-      addTableRow(t, "System History", showOp(rest, SystemRestfulInteraction.HISTORYSYSTEM));
-      addTableRow(t, "System Search", showOp(rest, SystemRestfulInteraction.SEARCHSYSTEM));
+      addTableRow(t, "Transaction", showOp(rest, "TRANSACTION"));
+      addTableRow(t, "System History", showOp(rest, "HISTORYSYSTEM"));
+      addTableRow(t, "System Search", showOp(rest, "SEARCHSYSTEM"));
 
       boolean hasVRead = false;
       boolean hasPatch = false;
@@ -4417,11 +4412,11 @@ public class NarrativeGenerator implements INarrativeGenerator {
       boolean hasHistory = false;
       boolean hasUpdates = false;
       for (CapabilityStatementRestResourceComponent r : rest.getResource()) {
-        hasVRead = hasVRead || hasOp(r, TypeRestfulInteraction.VREAD);
-        hasPatch = hasPatch || hasOp(r, TypeRestfulInteraction.PATCH);
-        hasDelete = hasDelete || hasOp(r, TypeRestfulInteraction.DELETE);
-        hasHistory = hasHistory || hasOp(r, TypeRestfulInteraction.HISTORYTYPE);
-        hasUpdates = hasUpdates || hasOp(r, TypeRestfulInteraction.HISTORYINSTANCE);
+        hasVRead = hasVRead || hasOp(r, "VREAD");
+        hasPatch = hasPatch || hasOp(r, "PATCH");
+        hasDelete = hasDelete || hasOp(r, "DELETE");
+        hasHistory = hasHistory || hasOp(r, "HISTORYTYPE");
+        hasUpdates = hasUpdates || hasOp(r, "HISTORYINSTANCE");
       }
 
       t = x.table(null);
@@ -4450,20 +4445,20 @@ public class NarrativeGenerator implements INarrativeGenerator {
         if (r.hasProfile()) {
           tr.td().ah(prefix + r.getProfile()).addText(r.getProfile());
         }
-        tr.td().addText(showOp(r, TypeRestfulInteraction.READ));
+        tr.td().addText(showOp(r, "READ"));
         if (hasVRead)
-          tr.td().addText(showOp(r, TypeRestfulInteraction.VREAD));
-        tr.td().addText(showOp(r, TypeRestfulInteraction.SEARCHTYPE));
-        tr.td().addText(showOp(r, TypeRestfulInteraction.UPDATE));
+          tr.td().addText(showOp(r, "VREAD"));
+        tr.td().addText(showOp(r, "SEARCHTYPE"));
+        tr.td().addText(showOp(r, "UPDATE"));
         if (hasPatch)
-          tr.td().addText(showOp(r, TypeRestfulInteraction.PATCH));
-        tr.td().addText(showOp(r, TypeRestfulInteraction.CREATE));
+          tr.td().addText(showOp(r, "PATCH"));
+        tr.td().addText(showOp(r, "CREATE"));
         if (hasDelete)
-          tr.td().addText(showOp(r, TypeRestfulInteraction.DELETE));
+          tr.td().addText(showOp(r, "DELETE"));
         if (hasUpdates)
-          tr.td().addText(showOp(r, TypeRestfulInteraction.HISTORYINSTANCE));
+          tr.td().addText(showOp(r, "HISTORYINSTANCE"));
         if (hasHistory)
-          tr.td().addText(showOp(r, TypeRestfulInteraction.HISTORYTYPE));
+          tr.td().addText(showOp(r, "HISTORYTYPE"));
       }
     }
 
@@ -4471,7 +4466,7 @@ public class NarrativeGenerator implements INarrativeGenerator {
     return true;
   }
 
-  private boolean hasOp(CapabilityStatementRestResourceComponent r, TypeRestfulInteraction on) {
+  private boolean hasOp(CapabilityStatementRestResourceComponent r, String on) {
     for (ResourceInteractionComponent op : r.getInteraction()) {
       if (op.getCode() == on)
         return true;
@@ -4479,7 +4474,7 @@ public class NarrativeGenerator implements INarrativeGenerator {
     return false;
   }
 
-  private String showOp(CapabilityStatementRestResourceComponent r, TypeRestfulInteraction on) {
+  private String showOp(CapabilityStatementRestResourceComponent r, String on) {
     for (ResourceInteractionComponent op : r.getInteraction()) {
       if (op.getCode() == on)
         return "y";
@@ -4487,7 +4482,7 @@ public class NarrativeGenerator implements INarrativeGenerator {
     return "";
   }
 
-  private String showOp(CapabilityStatementRestComponent r, SystemRestfulInteraction on) {
+  private String showOp(CapabilityStatementRestComponent r, String on) {
     for (SystemInteractionComponent op : r.getInteraction()) {
       if (op.getCode() == on)
         return "y";
@@ -4778,7 +4773,7 @@ public class NarrativeGenerator implements INarrativeGenerator {
   }
 
   public XhtmlNode renderBundle(Bundle b) throws FHIRException {
-    if (b.getType() == BundleType.DOCUMENT) {
+    if ("DOCUMENT".equalsIgnoreCase(b.getType())) {
       if (!b.hasEntry()
           || !(b.getEntryFirstRep().hasResource() && b.getEntryFirstRep().getResource() instanceof Composition))
         throw new FHIRException("Invalid document - first entry is not a Composition");
@@ -4786,7 +4781,7 @@ public class NarrativeGenerator implements INarrativeGenerator {
       return dr.getText().getDiv();
     } else {
       XhtmlNode root = new XhtmlNode(NodeType.Element, "div");
-      root.para().addText("Bundle " + b.getId() + " of type " + b.getType().toCode());
+      root.para().addText("Bundle " + b.getId() + " of type " + b.getType());
       int i = 0;
       for (BundleEntryComponent be : b.getEntry()) {
         i++;
@@ -4818,7 +4813,7 @@ public class NarrativeGenerator implements INarrativeGenerator {
     StringBuilder b = new StringBuilder();
     b.append("Search: ");
     if (search.hasMode())
-      b.append("mode = " + search.getMode().toCode());
+      b.append("mode = " + search.getMode());
     if (search.hasScore()) {
       if (search.hasMode())
         b.append(",");

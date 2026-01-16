@@ -982,8 +982,8 @@ public class Communication extends DomainResource {
   /**
    * @return The status of the transmission.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -1117,8 +1117,8 @@ public class Communication extends DomainResource {
    * @return Characterizes how quickly the planned or in progress communication
    *         must be addressed. Includes concepts such as stat, urgent, routine.
    */
-  public StringType getPriority() {
-    return this.priority == null ? null : this.priority;
+  public String getPriority() {
+    return this.priority == null ? null : this.priority.getValue();
   }
 
   /**
@@ -1995,13 +1995,13 @@ public class Communication extends DomainResource {
       /* inResponseTo */ return this.inResponseTo == null ? new Base[0]
           : this.inResponseTo.toArray(new Base[this.inResponseTo.size()]); // Reference
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<CommunicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 2051346646:
       /* statusReason */ return this.statusReason == null ? new Base[0] : new Base[] { this.statusReason }; // CodeableConcept
     case 50511102:
       /* category */ return this.category == null ? new Base[0] : this.category.toArray(new Base[this.category.size()]); // CodeableConcept
     case -1165461084:
-      /* priority */ return this.priority == null ? new Base[0] : new Base[] { this.priority }; // Enumeration<CommunicationPriority>
+      /* priority */ return this.priority == null ? new Base[0] : new Base[] { this.priority }; // StringType
     case -1078030475:
       /* medium */ return this.medium == null ? new Base[0] : this.medium.toArray(new Base[this.medium.size()]); // CodeableConcept
     case -1867885268:
@@ -2059,7 +2059,7 @@ public class Communication extends DomainResource {
       this.getInResponseTo().add(castToReference(value)); // Reference
       return value;
     case -892481550: // status
-      this.status = castToString(value); // Enumeration<CommunicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 2051346646: // statusReason
       this.statusReason = castToCodeableConcept(value); // CodeableConcept
@@ -2068,7 +2068,7 @@ public class Communication extends DomainResource {
       this.getCategory().add(castToCodeableConcept(value)); // CodeableConcept
       return value;
     case -1165461084: // priority
-      this.priority = castToString(value); // Enumeration<CommunicationPriority>
+      this.priority = castToString(value); // StringType
       return value;
     case -1078030475: // medium
       this.getMedium().add(castToCodeableConcept(value)); // CodeableConcept
@@ -2130,13 +2130,13 @@ public class Communication extends DomainResource {
     } else if (name.equals("inResponseTo")) {
       this.getInResponseTo().add(castToReference(value));
     } else if (name.equals("status")) {
-      this.status = castToString(value); // Enumeration<CommunicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("statusReason")) {
       this.statusReason = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("category")) {
       this.getCategory().add(castToCodeableConcept(value));
     } else if (name.equals("priority")) {
-      this.priority = castToString(value); // Enumeration<CommunicationPriority>
+      this.priority = castToString(value); // StringType
     } else if (name.equals("medium")) {
       this.getMedium().add(castToCodeableConcept(value));
     } else if (name.equals("subject")) {

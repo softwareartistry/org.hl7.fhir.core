@@ -176,8 +176,8 @@ public class Address extends Type implements ICompositeType {
   /**
    * @return The purpose of this address.
    */
-  public StringType getUse() {
-    return this.use == null ? null : this.use;
+  public String getUse() {
+    return this.use == null ? null : this.use.getValue();
   }
 
   /**
@@ -235,8 +235,8 @@ public class Address extends Type implements ICompositeType {
    *         mailing addresses (e.g. PO Boxes and care-of addresses). Most
    *         addresses are both.
    */
-  public StringType getType() {
-    return this.type == null ? null : this.type;
+  public String getType() {
+    return this.type == null ? null : this.type.getValue();
   }
 
   /**

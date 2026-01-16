@@ -38,8 +38,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -60,869 +58,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
     "hierarchyMeaning", "compositional", "versionNeeded", "content", "supplements", "count", "filter", "property",
     "concept" })
 public class CodeSystem extends MetadataResource {
-
-  public enum CodeSystemHierarchyMeaning {
-    /**
-     * No particular relationship between the concepts can be assumed, except what
-     * can be determined by inspection of the definitions of the elements (possible
-     * reasons to use this: importing from a source where this is not defined, or
-     * where various parts of the hierarchy have different meanings).
-     */
-    GROUPEDBY,
-    /**
-     * A hierarchy where the child concepts have an IS-A relationship with the
-     * parents - that is, all the properties of the parent are also true for its
-     * child concepts. Not that is-a is a property of the concepts, so additional
-     * subsumption relationships may be defined using properties or the
-     * [subsumes](extension-codesystem-subsumes.html) extension.
-     */
-    ISA,
-    /**
-     * Child elements list the individual parts of a composite whole (e.g. body
-     * site).
-     */
-    PARTOF,
-    /**
-     * Child concepts in the hierarchy may have only one parent, and there is a
-     * presumption that the code system is a "closed world" meaning all things must
-     * be in the hierarchy. This results in concepts such as "not otherwise
-     * classified.".
-     */
-    CLASSIFIEDWITH,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static CodeSystemHierarchyMeaning fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("grouped-by".equals(codeString))
-        return GROUPEDBY;
-      if ("is-a".equals(codeString))
-        return ISA;
-      if ("part-of".equals(codeString))
-        return PARTOF;
-      if ("classified-with".equals(codeString))
-        return CLASSIFIEDWITH;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown CodeSystemHierarchyMeaning code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case GROUPEDBY:
-        return "grouped-by";
-      case ISA:
-        return "is-a";
-      case PARTOF:
-        return "part-of";
-      case CLASSIFIEDWITH:
-        return "classified-with";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case GROUPEDBY:
-        return "http://hl7.org/fhir/codesystem-hierarchy-meaning";
-      case ISA:
-        return "http://hl7.org/fhir/codesystem-hierarchy-meaning";
-      case PARTOF:
-        return "http://hl7.org/fhir/codesystem-hierarchy-meaning";
-      case CLASSIFIEDWITH:
-        return "http://hl7.org/fhir/codesystem-hierarchy-meaning";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case GROUPEDBY:
-        return "No particular relationship between the concepts can be assumed, except what can be determined by inspection of the definitions of the elements (possible reasons to use this: importing from a source where this is not defined, or where various parts of the hierarchy have different meanings).";
-      case ISA:
-        return "A hierarchy where the child concepts have an IS-A relationship with the parents - that is, all the properties of the parent are also true for its child concepts. Not that is-a is a property of the concepts, so additional subsumption relationships may be defined using properties or the [subsumes](extension-codesystem-subsumes.html) extension.";
-      case PARTOF:
-        return "Child elements list the individual parts of a composite whole (e.g. body site).";
-      case CLASSIFIEDWITH:
-        return "Child concepts in the hierarchy may have only one parent, and there is a presumption that the code system is a \"closed world\" meaning all things must be in the hierarchy. This results in concepts such as \"not otherwise classified.\".";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case GROUPEDBY:
-        return "Grouped By";
-      case ISA:
-        return "Is-A";
-      case PARTOF:
-        return "Part Of";
-      case CLASSIFIEDWITH:
-        return "Classified With";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class CodeSystemHierarchyMeaningEnumFactory implements EnumFactory<CodeSystemHierarchyMeaning> {
-    public CodeSystemHierarchyMeaning fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("grouped-by".equals(codeString))
-        return CodeSystemHierarchyMeaning.GROUPEDBY;
-      if ("is-a".equals(codeString))
-        return CodeSystemHierarchyMeaning.ISA;
-      if ("part-of".equals(codeString))
-        return CodeSystemHierarchyMeaning.PARTOF;
-      if ("classified-with".equals(codeString))
-        return CodeSystemHierarchyMeaning.CLASSIFIEDWITH;
-      throw new IllegalArgumentException("Unknown CodeSystemHierarchyMeaning code '" + codeString + "'");
-    }
-
-    public Enumeration<CodeSystemHierarchyMeaning> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<CodeSystemHierarchyMeaning>(this, CodeSystemHierarchyMeaning.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<CodeSystemHierarchyMeaning>(this, CodeSystemHierarchyMeaning.NULL, code);
-      if ("grouped-by".equals(codeString))
-        return new Enumeration<CodeSystemHierarchyMeaning>(this, CodeSystemHierarchyMeaning.GROUPEDBY, code);
-      if ("is-a".equals(codeString))
-        return new Enumeration<CodeSystemHierarchyMeaning>(this, CodeSystemHierarchyMeaning.ISA, code);
-      if ("part-of".equals(codeString))
-        return new Enumeration<CodeSystemHierarchyMeaning>(this, CodeSystemHierarchyMeaning.PARTOF, code);
-      if ("classified-with".equals(codeString))
-        return new Enumeration<CodeSystemHierarchyMeaning>(this, CodeSystemHierarchyMeaning.CLASSIFIEDWITH, code);
-      throw new FHIRException("Unknown CodeSystemHierarchyMeaning code '" + codeString + "'");
-    }
-
-    public String toCode(CodeSystemHierarchyMeaning code) {
-       if (code == CodeSystemHierarchyMeaning.NULL)
-           return null;
-       if (code == CodeSystemHierarchyMeaning.GROUPEDBY)
-        return "grouped-by";
-      if (code == CodeSystemHierarchyMeaning.ISA)
-        return "is-a";
-      if (code == CodeSystemHierarchyMeaning.PARTOF)
-        return "part-of";
-      if (code == CodeSystemHierarchyMeaning.CLASSIFIEDWITH)
-        return "classified-with";
-      return "?";
-   }
-
-    public String toSystem(CodeSystemHierarchyMeaning code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum CodeSystemContentMode {
-    /**
-     * None of the concepts defined by the code system are included in the code
-     * system resource.
-     */
-    NOTPRESENT,
-    /**
-     * A few representative concepts are included in the code system resource. There
-     * is no useful intent in the subset choice and there's no process to make it
-     * workable: it's not intended to be workable.
-     */
-    EXAMPLE,
-    /**
-     * A subset of the code system concepts are included in the code system
-     * resource. This is a curated subset released for a specific purpose under the
-     * governance of the code system steward, and that the intent, bounds and
-     * consequences of the fragmentation are clearly defined in the fragment or the
-     * code system documentation. Fragments are also known as partitions.
-     */
-    FRAGMENT,
-    /**
-     * All the concepts defined by the code system are included in the code system
-     * resource.
-     */
-    COMPLETE,
-    /**
-     * The resource doesn't define any new concepts; it just provides additional
-     * designations and properties to another code system.
-     */
-    SUPPLEMENT,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static CodeSystemContentMode fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("not-present".equals(codeString))
-        return NOTPRESENT;
-      if ("example".equals(codeString))
-        return EXAMPLE;
-      if ("fragment".equals(codeString))
-        return FRAGMENT;
-      if ("complete".equals(codeString))
-        return COMPLETE;
-      if ("supplement".equals(codeString))
-        return SUPPLEMENT;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown CodeSystemContentMode code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case NOTPRESENT:
-        return "not-present";
-      case EXAMPLE:
-        return "example";
-      case FRAGMENT:
-        return "fragment";
-      case COMPLETE:
-        return "complete";
-      case SUPPLEMENT:
-        return "supplement";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case NOTPRESENT:
-        return "http://hl7.org/fhir/codesystem-content-mode";
-      case EXAMPLE:
-        return "http://hl7.org/fhir/codesystem-content-mode";
-      case FRAGMENT:
-        return "http://hl7.org/fhir/codesystem-content-mode";
-      case COMPLETE:
-        return "http://hl7.org/fhir/codesystem-content-mode";
-      case SUPPLEMENT:
-        return "http://hl7.org/fhir/codesystem-content-mode";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case NOTPRESENT:
-        return "None of the concepts defined by the code system are included in the code system resource.";
-      case EXAMPLE:
-        return "A few representative concepts are included in the code system resource. There is no useful intent in the subset choice and there's no process to make it workable: it's not intended to be workable.";
-      case FRAGMENT:
-        return "A subset of the code system concepts are included in the code system resource. This is a curated subset released for a specific purpose under the governance of the code system steward, and that the intent, bounds and consequences of the fragmentation are clearly defined in the fragment or the code system documentation. Fragments are also known as partitions.";
-      case COMPLETE:
-        return "All the concepts defined by the code system are included in the code system resource.";
-      case SUPPLEMENT:
-        return "The resource doesn't define any new concepts; it just provides additional designations and properties to another code system.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case NOTPRESENT:
-        return "Not Present";
-      case EXAMPLE:
-        return "Example";
-      case FRAGMENT:
-        return "Fragment";
-      case COMPLETE:
-        return "Complete";
-      case SUPPLEMENT:
-        return "Supplement";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class CodeSystemContentModeEnumFactory implements EnumFactory<CodeSystemContentMode> {
-    public CodeSystemContentMode fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("not-present".equals(codeString))
-        return CodeSystemContentMode.NOTPRESENT;
-      if ("example".equals(codeString))
-        return CodeSystemContentMode.EXAMPLE;
-      if ("fragment".equals(codeString))
-        return CodeSystemContentMode.FRAGMENT;
-      if ("complete".equals(codeString))
-        return CodeSystemContentMode.COMPLETE;
-      if ("supplement".equals(codeString))
-        return CodeSystemContentMode.SUPPLEMENT;
-      throw new IllegalArgumentException("Unknown CodeSystemContentMode code '" + codeString + "'");
-    }
-
-    public Enumeration<CodeSystemContentMode> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<CodeSystemContentMode>(this, CodeSystemContentMode.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<CodeSystemContentMode>(this, CodeSystemContentMode.NULL, code);
-      if ("not-present".equals(codeString))
-        return new Enumeration<CodeSystemContentMode>(this, CodeSystemContentMode.NOTPRESENT, code);
-      if ("example".equals(codeString))
-        return new Enumeration<CodeSystemContentMode>(this, CodeSystemContentMode.EXAMPLE, code);
-      if ("fragment".equals(codeString))
-        return new Enumeration<CodeSystemContentMode>(this, CodeSystemContentMode.FRAGMENT, code);
-      if ("complete".equals(codeString))
-        return new Enumeration<CodeSystemContentMode>(this, CodeSystemContentMode.COMPLETE, code);
-      if ("supplement".equals(codeString))
-        return new Enumeration<CodeSystemContentMode>(this, CodeSystemContentMode.SUPPLEMENT, code);
-      throw new FHIRException("Unknown CodeSystemContentMode code '" + codeString + "'");
-    }
-
-    public String toCode(CodeSystemContentMode code) {
-       if (code == CodeSystemContentMode.NULL)
-           return null;
-       if (code == CodeSystemContentMode.NOTPRESENT)
-        return "not-present";
-      if (code == CodeSystemContentMode.EXAMPLE)
-        return "example";
-      if (code == CodeSystemContentMode.FRAGMENT)
-        return "fragment";
-      if (code == CodeSystemContentMode.COMPLETE)
-        return "complete";
-      if (code == CodeSystemContentMode.SUPPLEMENT)
-        return "supplement";
-      return "?";
-   }
-
-    public String toSystem(CodeSystemContentMode code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum FilterOperator {
-    /**
-     * The specified property of the code equals the provided value.
-     */
-    EQUAL,
-    /**
-     * Includes all concept ids that have a transitive is-a relationship with the
-     * concept Id provided as the value, including the provided concept itself
-     * (include descendant codes and self).
-     */
-    ISA,
-    /**
-     * Includes all concept ids that have a transitive is-a relationship with the
-     * concept Id provided as the value, excluding the provided concept itself i.e.
-     * include descendant codes only).
-     */
-    DESCENDENTOF,
-    /**
-     * The specified property of the code does not have an is-a relationship with
-     * the provided value.
-     */
-    ISNOTA,
-    /**
-     * The specified property of the code matches the regex specified in the
-     * provided value.
-     */
-    REGEX,
-    /**
-     * The specified property of the code is in the set of codes or concepts
-     * specified in the provided value (comma separated list).
-     */
-    IN,
-    /**
-     * The specified property of the code is not in the set of codes or concepts
-     * specified in the provided value (comma separated list).
-     */
-    NOTIN,
-    /**
-     * Includes all concept ids that have a transitive is-a relationship from the
-     * concept Id provided as the value, including the provided concept itself (i.e.
-     * include ancestor codes and self).
-     */
-    GENERALIZES,
-    /**
-     * The specified property of the code has at least one value (if the specified
-     * value is true; if the specified value is false, then matches when the
-     * specified property of the code has no values).
-     */
-    EXISTS,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static FilterOperator fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("=".equals(codeString))
-        return EQUAL;
-      if ("is-a".equals(codeString))
-        return ISA;
-      if ("descendent-of".equals(codeString))
-        return DESCENDENTOF;
-      if ("is-not-a".equals(codeString))
-        return ISNOTA;
-      if ("regex".equals(codeString))
-        return REGEX;
-      if ("in".equals(codeString))
-        return IN;
-      if ("not-in".equals(codeString))
-        return NOTIN;
-      if ("generalizes".equals(codeString))
-        return GENERALIZES;
-      if ("exists".equals(codeString))
-        return EXISTS;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown FilterOperator code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case EQUAL:
-        return "=";
-      case ISA:
-        return "is-a";
-      case DESCENDENTOF:
-        return "descendent-of";
-      case ISNOTA:
-        return "is-not-a";
-      case REGEX:
-        return "regex";
-      case IN:
-        return "in";
-      case NOTIN:
-        return "not-in";
-      case GENERALIZES:
-        return "generalizes";
-      case EXISTS:
-        return "exists";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case EQUAL:
-        return "http://hl7.org/fhir/filter-operator";
-      case ISA:
-        return "http://hl7.org/fhir/filter-operator";
-      case DESCENDENTOF:
-        return "http://hl7.org/fhir/filter-operator";
-      case ISNOTA:
-        return "http://hl7.org/fhir/filter-operator";
-      case REGEX:
-        return "http://hl7.org/fhir/filter-operator";
-      case IN:
-        return "http://hl7.org/fhir/filter-operator";
-      case NOTIN:
-        return "http://hl7.org/fhir/filter-operator";
-      case GENERALIZES:
-        return "http://hl7.org/fhir/filter-operator";
-      case EXISTS:
-        return "http://hl7.org/fhir/filter-operator";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case EQUAL:
-        return "The specified property of the code equals the provided value.";
-      case ISA:
-        return "Includes all concept ids that have a transitive is-a relationship with the concept Id provided as the value, including the provided concept itself (include descendant codes and self).";
-      case DESCENDENTOF:
-        return "Includes all concept ids that have a transitive is-a relationship with the concept Id provided as the value, excluding the provided concept itself i.e. include descendant codes only).";
-      case ISNOTA:
-        return "The specified property of the code does not have an is-a relationship with the provided value.";
-      case REGEX:
-        return "The specified property of the code  matches the regex specified in the provided value.";
-      case IN:
-        return "The specified property of the code is in the set of codes or concepts specified in the provided value (comma separated list).";
-      case NOTIN:
-        return "The specified property of the code is not in the set of codes or concepts specified in the provided value (comma separated list).";
-      case GENERALIZES:
-        return "Includes all concept ids that have a transitive is-a relationship from the concept Id provided as the value, including the provided concept itself (i.e. include ancestor codes and self).";
-      case EXISTS:
-        return "The specified property of the code has at least one value (if the specified value is true; if the specified value is false, then matches when the specified property of the code has no values).";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case EQUAL:
-        return "Equals";
-      case ISA:
-        return "Is A (by subsumption)";
-      case DESCENDENTOF:
-        return "Descendent Of (by subsumption)";
-      case ISNOTA:
-        return "Not (Is A) (by subsumption)";
-      case REGEX:
-        return "Regular Expression";
-      case IN:
-        return "In Set";
-      case NOTIN:
-        return "Not in Set";
-      case GENERALIZES:
-        return "Generalizes (by Subsumption)";
-      case EXISTS:
-        return "Exists";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class FilterOperatorEnumFactory implements EnumFactory<FilterOperator> {
-    public FilterOperator fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("=".equals(codeString))
-        return FilterOperator.EQUAL;
-      if ("is-a".equals(codeString))
-        return FilterOperator.ISA;
-      if ("descendent-of".equals(codeString))
-        return FilterOperator.DESCENDENTOF;
-      if ("is-not-a".equals(codeString))
-        return FilterOperator.ISNOTA;
-      if ("regex".equals(codeString))
-        return FilterOperator.REGEX;
-      if ("in".equals(codeString))
-        return FilterOperator.IN;
-      if ("not-in".equals(codeString))
-        return FilterOperator.NOTIN;
-      if ("generalizes".equals(codeString))
-        return FilterOperator.GENERALIZES;
-      if ("exists".equals(codeString))
-        return FilterOperator.EXISTS;
-      throw new IllegalArgumentException("Unknown FilterOperator code '" + codeString + "'");
-    }
-
-    public Enumeration<FilterOperator> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<FilterOperator>(this, FilterOperator.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<FilterOperator>(this, FilterOperator.NULL, code);
-      if ("=".equals(codeString))
-        return new Enumeration<FilterOperator>(this, FilterOperator.EQUAL, code);
-      if ("is-a".equals(codeString))
-        return new Enumeration<FilterOperator>(this, FilterOperator.ISA, code);
-      if ("descendent-of".equals(codeString))
-        return new Enumeration<FilterOperator>(this, FilterOperator.DESCENDENTOF, code);
-      if ("is-not-a".equals(codeString))
-        return new Enumeration<FilterOperator>(this, FilterOperator.ISNOTA, code);
-      if ("regex".equals(codeString))
-        return new Enumeration<FilterOperator>(this, FilterOperator.REGEX, code);
-      if ("in".equals(codeString))
-        return new Enumeration<FilterOperator>(this, FilterOperator.IN, code);
-      if ("not-in".equals(codeString))
-        return new Enumeration<FilterOperator>(this, FilterOperator.NOTIN, code);
-      if ("generalizes".equals(codeString))
-        return new Enumeration<FilterOperator>(this, FilterOperator.GENERALIZES, code);
-      if ("exists".equals(codeString))
-        return new Enumeration<FilterOperator>(this, FilterOperator.EXISTS, code);
-      throw new FHIRException("Unknown FilterOperator code '" + codeString + "'");
-    }
-
-    public String toCode(FilterOperator code) {
-       if (code == FilterOperator.NULL)
-           return null;
-       if (code == FilterOperator.EQUAL)
-        return "=";
-      if (code == FilterOperator.ISA)
-        return "is-a";
-      if (code == FilterOperator.DESCENDENTOF)
-        return "descendent-of";
-      if (code == FilterOperator.ISNOTA)
-        return "is-not-a";
-      if (code == FilterOperator.REGEX)
-        return "regex";
-      if (code == FilterOperator.IN)
-        return "in";
-      if (code == FilterOperator.NOTIN)
-        return "not-in";
-      if (code == FilterOperator.GENERALIZES)
-        return "generalizes";
-      if (code == FilterOperator.EXISTS)
-        return "exists";
-      return "?";
-   }
-
-    public String toSystem(FilterOperator code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum PropertyType {
-    /**
-     * The property value is a code that identifies a concept defined in the code
-     * system.
-     */
-    CODE,
-    /**
-     * The property value is a code defined in an external code system. This may be
-     * used for translations, but is not the intent.
-     */
-    CODING,
-    /**
-     * The property value is a string.
-     */
-    STRING,
-    /**
-     * The property value is a string (often used to assign ranking values to
-     * concepts for supporting score assessments).
-     */
-    INTEGER,
-    /**
-     * The property value is a boolean true | false.
-     */
-    BOOLEAN,
-    /**
-     * The property is a date or a date + time.
-     */
-    DATETIME,
-    /**
-     * The property value is a decimal number.
-     */
-    DECIMAL,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static PropertyType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("code".equals(codeString))
-        return CODE;
-      if ("Coding".equals(codeString))
-        return CODING;
-      if ("string".equals(codeString))
-        return STRING;
-      if ("integer".equals(codeString))
-        return INTEGER;
-      if ("boolean".equals(codeString))
-        return BOOLEAN;
-      if ("dateTime".equals(codeString))
-        return DATETIME;
-      if ("decimal".equals(codeString))
-        return DECIMAL;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown PropertyType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case CODE:
-        return "code";
-      case CODING:
-        return "Coding";
-      case STRING:
-        return "string";
-      case INTEGER:
-        return "integer";
-      case BOOLEAN:
-        return "boolean";
-      case DATETIME:
-        return "dateTime";
-      case DECIMAL:
-        return "decimal";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case CODE:
-        return "http://hl7.org/fhir/concept-property-type";
-      case CODING:
-        return "http://hl7.org/fhir/concept-property-type";
-      case STRING:
-        return "http://hl7.org/fhir/concept-property-type";
-      case INTEGER:
-        return "http://hl7.org/fhir/concept-property-type";
-      case BOOLEAN:
-        return "http://hl7.org/fhir/concept-property-type";
-      case DATETIME:
-        return "http://hl7.org/fhir/concept-property-type";
-      case DECIMAL:
-        return "http://hl7.org/fhir/concept-property-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case CODE:
-        return "The property value is a code that identifies a concept defined in the code system.";
-      case CODING:
-        return "The property  value is a code defined in an external code system. This may be used for translations, but is not the intent.";
-      case STRING:
-        return "The property value is a string.";
-      case INTEGER:
-        return "The property value is a string (often used to assign ranking values to concepts for supporting score assessments).";
-      case BOOLEAN:
-        return "The property value is a boolean true | false.";
-      case DATETIME:
-        return "The property is a date or a date + time.";
-      case DECIMAL:
-        return "The property value is a decimal number.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case CODE:
-        return "code (internal reference)";
-      case CODING:
-        return "Coding (external reference)";
-      case STRING:
-        return "string";
-      case INTEGER:
-        return "integer";
-      case BOOLEAN:
-        return "boolean";
-      case DATETIME:
-        return "dateTime";
-      case DECIMAL:
-        return "decimal";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class PropertyTypeEnumFactory implements EnumFactory<PropertyType> {
-    public PropertyType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("code".equals(codeString))
-        return PropertyType.CODE;
-      if ("Coding".equals(codeString))
-        return PropertyType.CODING;
-      if ("string".equals(codeString))
-        return PropertyType.STRING;
-      if ("integer".equals(codeString))
-        return PropertyType.INTEGER;
-      if ("boolean".equals(codeString))
-        return PropertyType.BOOLEAN;
-      if ("dateTime".equals(codeString))
-        return PropertyType.DATETIME;
-      if ("decimal".equals(codeString))
-        return PropertyType.DECIMAL;
-      throw new IllegalArgumentException("Unknown PropertyType code '" + codeString + "'");
-    }
-
-    public Enumeration<PropertyType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<PropertyType>(this, PropertyType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<PropertyType>(this, PropertyType.NULL, code);
-      if ("code".equals(codeString))
-        return new Enumeration<PropertyType>(this, PropertyType.CODE, code);
-      if ("Coding".equals(codeString))
-        return new Enumeration<PropertyType>(this, PropertyType.CODING, code);
-      if ("string".equals(codeString))
-        return new Enumeration<PropertyType>(this, PropertyType.STRING, code);
-      if ("integer".equals(codeString))
-        return new Enumeration<PropertyType>(this, PropertyType.INTEGER, code);
-      if ("boolean".equals(codeString))
-        return new Enumeration<PropertyType>(this, PropertyType.BOOLEAN, code);
-      if ("dateTime".equals(codeString))
-        return new Enumeration<PropertyType>(this, PropertyType.DATETIME, code);
-      if ("decimal".equals(codeString))
-        return new Enumeration<PropertyType>(this, PropertyType.DECIMAL, code);
-      throw new FHIRException("Unknown PropertyType code '" + codeString + "'");
-    }
-
-    public String toCode(PropertyType code) {
-       if (code == PropertyType.NULL)
-           return null;
-       if (code == PropertyType.CODE)
-        return "code";
-      if (code == PropertyType.CODING)
-        return "Coding";
-      if (code == PropertyType.STRING)
-        return "string";
-      if (code == PropertyType.INTEGER)
-        return "integer";
-      if (code == PropertyType.BOOLEAN)
-        return "boolean";
-      if (code == PropertyType.DATETIME)
-        return "dateTime";
-      if (code == PropertyType.DECIMAL)
-        return "decimal";
-      return "?";
-   }
-
-    public String toSystem(PropertyType code) {
-      return code.getSystem();
-    }
-  }
 
   @Block()
   public static class CodeSystemFilterComponent extends BackboneElement implements IBaseBackboneElement {
@@ -946,10 +81,10 @@ public class CodeSystem extends MetadataResource {
      * A list of operators that can be used with the filter.
      */
     @Child(name = "operator", type = {
-        CodeType.class }, order = 3, min = 1, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
+      StringType.class }, order = 3, min = 1, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
     @Description(shortDefinition = "= | is-a | descendent-of | is-not-a | regex | in | not-in | generalizes | exists", formalDefinition = "A list of operators that can be used with the filter.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/filter-operator")
-    protected List<Enumeration<FilterOperator>> operator;
+    protected List<StringType> operator;
 
     /**
      * A description of what the value for the filter should be.
@@ -1087,16 +222,16 @@ public class CodeSystem extends MetadataResource {
      * @return {@link #operator} (A list of operators that can be used with the
      *         filter.)
      */
-    public List<Enumeration<FilterOperator>> getOperator() {
+    public List<StringType> getOperator() {
       if (this.operator == null)
-        this.operator = new ArrayList<Enumeration<FilterOperator>>();
+        this.operator = new ArrayList<StringType>();
       return this.operator;
     }
 
     /**
      * @return Returns a reference to <code>this</code> for easy method chaining
      */
-    public CodeSystemFilterComponent setOperator(List<Enumeration<FilterOperator>> theOperator) {
+    public CodeSystemFilterComponent setOperator(List<StringType> theOperator) {
       this.operator = theOperator;
       return this;
     }
@@ -1104,7 +239,7 @@ public class CodeSystem extends MetadataResource {
     public boolean hasOperator() {
       if (this.operator == null)
         return false;
-      for (Enumeration<FilterOperator> item : this.operator)
+      for (StringType item : this.operator)
         if (!item.isEmpty())
           return true;
       return false;
@@ -1114,10 +249,10 @@ public class CodeSystem extends MetadataResource {
      * @return {@link #operator} (A list of operators that can be used with the
      *         filter.)
      */
-    public Enumeration<FilterOperator> addOperatorElement() {// 2
-      Enumeration<FilterOperator> t = new Enumeration<FilterOperator>(new FilterOperatorEnumFactory());
+    public StringType addOperatorElement() {// 2
+      StringType t = new StringType();
       if (this.operator == null)
-        this.operator = new ArrayList<Enumeration<FilterOperator>>();
+        this.operator = new ArrayList<StringType>();
       this.operator.add(t);
       return t;
     }
@@ -1126,11 +261,11 @@ public class CodeSystem extends MetadataResource {
      * @param value {@link #operator} (A list of operators that can be used with the
      *              filter.)
      */
-    public CodeSystemFilterComponent addOperator(FilterOperator value) { // 1
-      Enumeration<FilterOperator> t = new Enumeration<FilterOperator>(new FilterOperatorEnumFactory());
+    public CodeSystemFilterComponent addOperator(String value) { // 1
+      StringType t = new StringType();
       t.setValue(value);
       if (this.operator == null)
-        this.operator = new ArrayList<Enumeration<FilterOperator>>();
+        this.operator = new ArrayList<StringType>();
       this.operator.add(t);
       return this;
     }
@@ -1139,10 +274,10 @@ public class CodeSystem extends MetadataResource {
      * @param value {@link #operator} (A list of operators that can be used with the
      *              filter.)
      */
-    public boolean hasOperator(FilterOperator value) {
+    public boolean hasOperator(String value) {
       if (this.operator == null)
         return false;
-      for (Enumeration<FilterOperator> v : this.operator)
+      for (StringType v : this.operator)
         if (v.getValue().equals(value)) // code
           return true;
       return false;
@@ -1205,7 +340,7 @@ public class CodeSystem extends MetadataResource {
           0, 1, code));
       children.add(
           new Property("description", "string", "A description of how or why the filter is used.", 0, 1, description));
-      children.add(new Property("operator", "code", "A list of operators that can be used with the filter.", 0,
+      children.add(new Property("operator", "string", "A list of operators that can be used with the filter.", 0,
           java.lang.Integer.MAX_VALUE, operator));
       children.add(
           new Property("value", "string", "A description of what the value for the filter should be.", 0, 1, value));
@@ -1222,7 +357,7 @@ public class CodeSystem extends MetadataResource {
         /* description */ return new Property("description", "string",
             "A description of how or why the filter is used.", 0, 1, description);
       case -500553564:
-        /* operator */ return new Property("operator", "code", "A list of operators that can be used with the filter.",
+        /* operator */ return new Property("operator", "string", "A list of operators that can be used with the filter.",
             0, java.lang.Integer.MAX_VALUE, operator);
       case 111972721:
         /* value */ return new Property("value", "string", "A description of what the value for the filter should be.",
@@ -1242,7 +377,7 @@ public class CodeSystem extends MetadataResource {
         /* description */ return this.description == null ? new Base[0] : new Base[] { this.description }; // StringType
       case -500553564:
         /* operator */ return this.operator == null ? new Base[0]
-            : this.operator.toArray(new Base[this.operator.size()]); // Enumeration<FilterOperator>
+            : this.operator.toArray(new Base[this.operator.size()]); // StringType
       case 111972721:
         /* value */ return this.value == null ? new Base[0] : new Base[] { this.value }; // StringType
       default:
@@ -1261,8 +396,7 @@ public class CodeSystem extends MetadataResource {
         this.description = castToString(value); // StringType
         return value;
       case -500553564: // operator
-        value = new FilterOperatorEnumFactory().fromType(castToCode(value));
-        this.getOperator().add((Enumeration) value); // Enumeration<FilterOperator>
+        this.getOperator().add(castToString(value)); // StringType
         return value;
       case 111972721: // value
         this.value = castToString(value); // StringType
@@ -1280,8 +414,7 @@ public class CodeSystem extends MetadataResource {
       } else if (name.equals("description")) {
         this.description = castToString(value); // StringType
       } else if (name.equals("operator")) {
-        value = new FilterOperatorEnumFactory().fromType(castToCode(value));
-        this.getOperator().add((Enumeration) value);
+        this.getOperator().add(castToString(value)); // StringType
       } else if (name.equals("value")) {
         this.value = castToString(value); // StringType
       } else
@@ -1296,7 +429,7 @@ public class CodeSystem extends MetadataResource {
       } else if (name.equals("description")) {
         this.description = null;
       } else if (name.equals("operator")) {
-        this.getOperator().remove((Enumeration) value);
+        this.getOperator().remove(castToString(value));
       } else if (name.equals("value")) {
         this.value = null;
       } else
@@ -1329,7 +462,7 @@ public class CodeSystem extends MetadataResource {
       case -1724546052:
         /* description */ return new String[] { "string" };
       case -500553564:
-        /* operator */ return new String[] { "code" };
+        /* operator */ return new String[] { "string" };
       case 111972721:
         /* value */ return new String[] { "string" };
       default:
@@ -1363,8 +496,8 @@ public class CodeSystem extends MetadataResource {
       dst.code = code == null ? null : code.copy();
       dst.description = description == null ? null : description.copy();
       if (operator != null) {
-        dst.operator = new ArrayList<Enumeration<FilterOperator>>();
-        for (Enumeration<FilterOperator> i : operator)
+        dst.operator = new ArrayList<StringType>();
+        for (StringType i : operator)
           dst.operator.add(i.copy());
       }
       ;
@@ -1437,10 +570,10 @@ public class CodeSystem extends MetadataResource {
      * The type of the property value. Properties of type "code" contain a code
      * defined by the code system (e.g. a reference to another defined concept).
      */
-    @Child(name = "type", type = { CodeType.class }, order = 4, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "type", type = { StringType.class }, order = 4, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "code | Coding | string | integer | boolean | dateTime | decimal", formalDefinition = "The type of the property value. Properties of type \"code\" contain a code defined by the code system (e.g. a reference to another defined concept).")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/concept-property-type")
-    protected Enumeration<PropertyType> type;
+    protected StringType type;
 
     private static final long serialVersionUID = -1810713373L;
 
@@ -1454,7 +587,7 @@ public class CodeSystem extends MetadataResource {
     /**
      * Constructor
      */
-    public PropertyComponent(CodeType code, Enumeration<PropertyType> type) {
+    public PropertyComponent(CodeType code, StringType type) {
       super();
       this.code = code;
       this.type = type;
@@ -1642,12 +775,12 @@ public class CodeSystem extends MetadataResource {
      *         value and extensions. The accessor "getType" gives direct access to
      *         the value
      */
-    public Enumeration<PropertyType> getTypeElement() {
+    public StringType getTypeElement() {
       if (this.type == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create PropertyComponent.type");
         else if (Configuration.doAutoCreate())
-          this.type = new Enumeration<PropertyType>(new PropertyTypeEnumFactory()); // bb
+          this.type = new StringType(); // bb
       return this.type;
     }
 
@@ -1666,7 +799,7 @@ public class CodeSystem extends MetadataResource {
      *              object with id, value and extensions. The accessor "getType"
      *              gives direct access to the value
      */
-    public PropertyComponent setTypeElement(Enumeration<PropertyType> value) {
+    public PropertyComponent setTypeElement(StringType value) {
       this.type = value;
       return this;
     }
@@ -1676,7 +809,7 @@ public class CodeSystem extends MetadataResource {
      *         code defined by the code system (e.g. a reference to another defined
      *         concept).
      */
-    public PropertyType getType() {
+    public String getType() {
       return this.type == null ? null : this.type.getValue();
     }
 
@@ -1685,9 +818,9 @@ public class CodeSystem extends MetadataResource {
      *              contain a code defined by the code system (e.g. a reference to
      *              another defined concept).
      */
-    public PropertyComponent setType(PropertyType value) {
+    public PropertyComponent setType(String value) {
       if (this.type == null)
-        this.type = new Enumeration<PropertyType>(new PropertyTypeEnumFactory());
+        this.type = new StringType();
       this.type.setValue(value);
       return this;
     }
@@ -1702,7 +835,7 @@ public class CodeSystem extends MetadataResource {
           0, 1, uri));
       children.add(new Property("description", "string",
           "A description of the property- why it is defined, and how its value might be used.", 0, 1, description));
-      children.add(new Property("type", "code",
+      children.add(new Property("type", "string",
           "The type of the property value. Properties of type \"code\" contain a code defined by the code system (e.g. a reference to another defined concept).",
           0, 1, type));
     }
@@ -1722,7 +855,7 @@ public class CodeSystem extends MetadataResource {
         /* description */ return new Property("description", "string",
             "A description of the property- why it is defined, and how its value might be used.", 0, 1, description);
       case 3575610:
-        /* type */ return new Property("type", "code",
+        /* type */ return new Property("type", "string",
             "The type of the property value. Properties of type \"code\" contain a code defined by the code system (e.g. a reference to another defined concept).",
             0, 1, type);
       default:
@@ -1741,7 +874,7 @@ public class CodeSystem extends MetadataResource {
       case -1724546052:
         /* description */ return this.description == null ? new Base[0] : new Base[] { this.description }; // StringType
       case 3575610:
-        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<PropertyType>
+        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
       default:
         return super.getProperty(hash, name, checkValid);
       }
@@ -1761,8 +894,7 @@ public class CodeSystem extends MetadataResource {
         this.description = castToString(value); // StringType
         return value;
       case 3575610: // type
-        value = new PropertyTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<PropertyType>
+        this.type = castToString(value); // StringType
         return value;
       default:
         return super.setProperty(hash, name, value);
@@ -1779,8 +911,7 @@ public class CodeSystem extends MetadataResource {
       } else if (name.equals("description")) {
         this.description = castToString(value); // StringType
       } else if (name.equals("type")) {
-        value = new PropertyTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<PropertyType>
+        this.type = castToString(value); // StringType
       } else
         return super.setProperty(name, value);
       return value;
@@ -1828,7 +959,7 @@ public class CodeSystem extends MetadataResource {
       case -1724546052:
         /* description */ return new String[] { "string" };
       case 3575610:
-        /* type */ return new String[] { "code" };
+        /* type */ return new String[] { "string" };
       default:
         return super.getTypesForProperty(hash, name);
       }
@@ -3396,10 +2527,10 @@ public class CodeSystem extends MetadataResource {
    * The meaning of the hierarchy of concepts as represented in this resource.
    */
   @Child(name = "hierarchyMeaning", type = {
-      CodeType.class }, order = 5, min = 0, max = 1, modifier = false, summary = true)
+      StringType.class }, order = 5, min = 0, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "grouped-by | is-a | part-of | classified-with", formalDefinition = "The meaning of the hierarchy of concepts as represented in this resource.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/codesystem-hierarchy-meaning")
-  protected Enumeration<CodeSystemHierarchyMeaning> hierarchyMeaning;
+  protected StringType hierarchyMeaning;
 
   /**
    * The code system defines a compositional (post-coordination) grammar.
@@ -3423,10 +2554,10 @@ public class CodeSystem extends MetadataResource {
    * The extent of the content of the code system (the concepts and codes it
    * defines) are represented in this resource instance.
    */
-  @Child(name = "content", type = { CodeType.class }, order = 8, min = 1, max = 1, modifier = false, summary = true)
+  @Child(name = "content", type = { StringType.class }, order = 8, min = 1, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "not-present | example | fragment | complete | supplement", formalDefinition = "The extent of the content of the code system (the concepts and codes it defines) are represented in this resource instance.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/codesystem-content-mode")
-  protected Enumeration<CodeSystemContentMode> content;
+  protected StringType content;
 
   /**
    * The canonical URL of the code system that this code system supplement is
@@ -3484,7 +2615,7 @@ public class CodeSystem extends MetadataResource {
   /**
    * Constructor
    */
-  public CodeSystem(Enumeration<PublicationStatus> status, Enumeration<CodeSystemContentMode> content) {
+  public CodeSystem(StringType status, StringType content) {
     super();
     this.status = status;
     this.content = content;
@@ -3833,12 +2964,12 @@ public class CodeSystem extends MetadataResource {
    *         id, value and extensions. The accessor "getStatus" gives direct
    *         access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create CodeSystem.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -3856,7 +2987,7 @@ public class CodeSystem extends MetadataResource {
    *              object with id, value and extensions. The accessor "getStatus"
    *              gives direct access to the value
    */
-  public CodeSystem setStatusElement(Enumeration<PublicationStatus> value) {
+  public CodeSystem setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -3865,7 +2996,7 @@ public class CodeSystem extends MetadataResource {
    * @return The date (and optionally time) when the code system resource was
    *         created or revised.
    */
-  public PublicationStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
@@ -3873,9 +3004,9 @@ public class CodeSystem extends MetadataResource {
    * @param value The date (and optionally time) when the code system resource was
    *              created or revised.
    */
-  public CodeSystem setStatus(PublicationStatus value) {
+  public CodeSystem setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -4524,13 +3655,12 @@ public class CodeSystem extends MetadataResource {
    *         id, value and extensions. The accessor "getHierarchyMeaning" gives
    *         direct access to the value
    */
-  public Enumeration<CodeSystemHierarchyMeaning> getHierarchyMeaningElement() {
+  public StringType getHierarchyMeaningElement() {
     if (this.hierarchyMeaning == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create CodeSystem.hierarchyMeaning");
       else if (Configuration.doAutoCreate())
-        this.hierarchyMeaning = new Enumeration<CodeSystemHierarchyMeaning>(
-            new CodeSystemHierarchyMeaningEnumFactory()); // bb
+        this.hierarchyMeaning = new StringType(); // bb
     return this.hierarchyMeaning;
   }
 
@@ -4548,7 +3678,7 @@ public class CodeSystem extends MetadataResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getHierarchyMeaning" gives direct access to the value
    */
-  public CodeSystem setHierarchyMeaningElement(Enumeration<CodeSystemHierarchyMeaning> value) {
+  public CodeSystem setHierarchyMeaningElement(StringType value) {
     this.hierarchyMeaning = value;
     return this;
   }
@@ -4557,7 +3687,7 @@ public class CodeSystem extends MetadataResource {
    * @return The meaning of the hierarchy of concepts as represented in this
    *         resource.
    */
-  public CodeSystemHierarchyMeaning getHierarchyMeaning() {
+  public String getHierarchyMeaning() {
     return this.hierarchyMeaning == null ? null : this.hierarchyMeaning.getValue();
   }
 
@@ -4565,13 +3695,12 @@ public class CodeSystem extends MetadataResource {
    * @param value The meaning of the hierarchy of concepts as represented in this
    *              resource.
    */
-  public CodeSystem setHierarchyMeaning(CodeSystemHierarchyMeaning value) {
+  public CodeSystem setHierarchyMeaning(String value) {
     if (value == null)
       this.hierarchyMeaning = null;
     else {
       if (this.hierarchyMeaning == null)
-        this.hierarchyMeaning = new Enumeration<CodeSystemHierarchyMeaning>(
-            new CodeSystemHierarchyMeaningEnumFactory());
+        this.hierarchyMeaning = new StringType();
       this.hierarchyMeaning.setValue(value);
     }
     return this;
@@ -4695,12 +3824,12 @@ public class CodeSystem extends MetadataResource {
    *         extensions. The accessor "getContent" gives direct access to the
    *         value
    */
-  public Enumeration<CodeSystemContentMode> getContentElement() {
+  public StringType getContentElement() {
     if (this.content == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create CodeSystem.content");
       else if (Configuration.doAutoCreate())
-        this.content = new Enumeration<CodeSystemContentMode>(new CodeSystemContentModeEnumFactory()); // bb
+        this.content = new StringType(); // bb
     return this.content;
   }
 
@@ -4719,7 +3848,7 @@ public class CodeSystem extends MetadataResource {
    *              value and extensions. The accessor "getContent" gives direct
    *              access to the value
    */
-  public CodeSystem setContentElement(Enumeration<CodeSystemContentMode> value) {
+  public CodeSystem setContentElement(StringType value) {
     this.content = value;
     return this;
   }
@@ -4728,7 +3857,7 @@ public class CodeSystem extends MetadataResource {
    * @return The extent of the content of the code system (the concepts and codes
    *         it defines) are represented in this resource instance.
    */
-  public CodeSystemContentMode getContent() {
+  public String getContent() {
     return this.content == null ? null : this.content.getValue();
   }
 
@@ -4736,9 +3865,9 @@ public class CodeSystem extends MetadataResource {
    * @param value The extent of the content of the code system (the concepts and
    *              codes it defines) are represented in this resource instance.
    */
-  public CodeSystem setContent(CodeSystemContentMode value) {
+  public CodeSystem setContent(String value) {
     if (this.content == null)
-      this.content = new Enumeration<CodeSystemContentMode>(new CodeSystemContentModeEnumFactory());
+      this.content = new StringType();
     this.content.setValue(value);
     return this;
   }
@@ -5041,7 +4170,7 @@ public class CodeSystem extends MetadataResource {
         0, 1, name));
     children.add(
         new Property("title", "string", "A short, descriptive, user-friendly title for the code system.", 0, 1, title));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The date (and optionally time) when the code system resource was created or revised.", 0, 1, status));
     children.add(new Property("experimental", "boolean",
         "A Boolean value to indicate that this code system is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
@@ -5073,14 +4202,14 @@ public class CodeSystem extends MetadataResource {
         caseSensitive));
     children.add(new Property("valueSet", "canonical(ValueSet)",
         "Canonical reference to the value set that contains the entire code system.", 0, 1, valueSet));
-    children.add(new Property("hierarchyMeaning", "code",
+    children.add(new Property("hierarchyMeaning", "string",
         "The meaning of the hierarchy of concepts as represented in this resource.", 0, 1, hierarchyMeaning));
     children.add(new Property("compositional", "boolean",
         "The code system defines a compositional (post-coordination) grammar.", 0, 1, compositional));
     children.add(new Property("versionNeeded", "boolean",
         "This flag is used to signify that the code system does not commit to concept permanence across versions. If true, a version must be specified when referencing this code system.",
         0, 1, versionNeeded));
-    children.add(new Property("content", "code",
+    children.add(new Property("content", "string",
         "The extent of the content of the code system (the concepts and codes it defines) are represented in this resource instance.",
         0, 1, content));
     children.add(new Property("supplements", "canonical(CodeSystem)",
@@ -5123,7 +4252,7 @@ public class CodeSystem extends MetadataResource {
       /* title */ return new Property("title", "string",
           "A short, descriptive, user-friendly title for the code system.", 0, 1, title);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The date (and optionally time) when the code system resource was created or revised.", 0, 1, status);
     case -404562712:
       /* experimental */ return new Property("experimental", "boolean",
@@ -5167,7 +4296,7 @@ public class CodeSystem extends MetadataResource {
       /* valueSet */ return new Property("valueSet", "canonical(ValueSet)",
           "Canonical reference to the value set that contains the entire code system.", 0, 1, valueSet);
     case 1913078280:
-      /* hierarchyMeaning */ return new Property("hierarchyMeaning", "code",
+      /* hierarchyMeaning */ return new Property("hierarchyMeaning", "string",
           "The meaning of the hierarchy of concepts as represented in this resource.", 0, 1, hierarchyMeaning);
     case 1248023381:
       /* compositional */ return new Property("compositional", "boolean",
@@ -5177,7 +4306,7 @@ public class CodeSystem extends MetadataResource {
           "This flag is used to signify that the code system does not commit to concept permanence across versions. If true, a version must be specified when referencing this code system.",
           0, 1, versionNeeded);
     case 951530617:
-      /* content */ return new Property("content", "code",
+      /* content */ return new Property("content", "string",
           "The extent of the content of the code system (the concepts and codes it defines) are represented in this resource instance.",
           0, 1, content);
     case -596951334:
@@ -5221,7 +4350,7 @@ public class CodeSystem extends MetadataResource {
     case 110371416:
       /* title */ return this.title == null ? new Base[0] : new Base[] { this.title }; // StringType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -404562712:
       /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
     case 3076014:
@@ -5247,13 +4376,13 @@ public class CodeSystem extends MetadataResource {
     case -1410174671:
       /* valueSet */ return this.valueSet == null ? new Base[0] : new Base[] { this.valueSet }; // CanonicalType
     case 1913078280:
-      /* hierarchyMeaning */ return this.hierarchyMeaning == null ? new Base[0] : new Base[] { this.hierarchyMeaning }; // Enumeration<CodeSystemHierarchyMeaning>
+      /* hierarchyMeaning */ return this.hierarchyMeaning == null ? new Base[0] : new Base[] { this.hierarchyMeaning }; // StringType
     case 1248023381:
       /* compositional */ return this.compositional == null ? new Base[0] : new Base[] { this.compositional }; // BooleanType
     case 617270957:
       /* versionNeeded */ return this.versionNeeded == null ? new Base[0] : new Base[] { this.versionNeeded }; // BooleanType
     case 951530617:
-      /* content */ return this.content == null ? new Base[0] : new Base[] { this.content }; // Enumeration<CodeSystemContentMode>
+      /* content */ return this.content == null ? new Base[0] : new Base[] { this.content }; // StringType
     case -596951334:
       /* supplements */ return this.supplements == null ? new Base[0] : new Base[] { this.supplements }; // CanonicalType
     case 94851343:
@@ -5289,8 +4418,7 @@ public class CodeSystem extends MetadataResource {
       this.title = castToString(value); // StringType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -404562712: // experimental
       this.experimental = castToBoolean(value); // BooleanType
@@ -5326,8 +4454,7 @@ public class CodeSystem extends MetadataResource {
       this.valueSet = castToCanonical(value); // CanonicalType
       return value;
     case 1913078280: // hierarchyMeaning
-      value = new CodeSystemHierarchyMeaningEnumFactory().fromType(castToCode(value));
-      this.hierarchyMeaning = (Enumeration) value; // Enumeration<CodeSystemHierarchyMeaning>
+      this.hierarchyMeaning = castToString(value); // StringType
       return value;
     case 1248023381: // compositional
       this.compositional = castToBoolean(value); // BooleanType
@@ -5336,8 +4463,7 @@ public class CodeSystem extends MetadataResource {
       this.versionNeeded = castToBoolean(value); // BooleanType
       return value;
     case 951530617: // content
-      value = new CodeSystemContentModeEnumFactory().fromType(castToCode(value));
-      this.content = (Enumeration) value; // Enumeration<CodeSystemContentMode>
+      this.content = castToString(value); // StringType
       return value;
     case -596951334: // supplements
       this.supplements = castToCanonical(value); // CanonicalType
@@ -5373,8 +4499,7 @@ public class CodeSystem extends MetadataResource {
     } else if (name.equals("title")) {
       this.title = castToString(value); // StringType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("date")) {
@@ -5398,15 +4523,13 @@ public class CodeSystem extends MetadataResource {
     } else if (name.equals("valueSet")) {
       this.valueSet = castToCanonical(value); // CanonicalType
     } else if (name.equals("hierarchyMeaning")) {
-      value = new CodeSystemHierarchyMeaningEnumFactory().fromType(castToCode(value));
-      this.hierarchyMeaning = (Enumeration) value; // Enumeration<CodeSystemHierarchyMeaning>
+      this.hierarchyMeaning = castToString(value); // StringType
     } else if (name.equals("compositional")) {
       this.compositional = castToBoolean(value); // BooleanType
     } else if (name.equals("versionNeeded")) {
       this.versionNeeded = castToBoolean(value); // BooleanType
     } else if (name.equals("content")) {
-      value = new CodeSystemContentModeEnumFactory().fromType(castToCode(value));
-      this.content = (Enumeration) value; // Enumeration<CodeSystemContentMode>
+      this.content = castToString(value); // StringType
     } else if (name.equals("supplements")) {
       this.supplements = castToCanonical(value); // CanonicalType
     } else if (name.equals("count")) {
@@ -5556,7 +4679,7 @@ public class CodeSystem extends MetadataResource {
     case 110371416:
       /* title */ return new String[] { "string" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -404562712:
       /* experimental */ return new String[] { "boolean" };
     case 3076014:
@@ -5580,13 +4703,13 @@ public class CodeSystem extends MetadataResource {
     case -1410174671:
       /* valueSet */ return new String[] { "canonical" };
     case 1913078280:
-      /* hierarchyMeaning */ return new String[] { "code" };
+      /* hierarchyMeaning */ return new String[] { "string" };
     case 1248023381:
       /* compositional */ return new String[] { "boolean" };
     case 617270957:
       /* versionNeeded */ return new String[] { "boolean" };
     case 951530617:
-      /* content */ return new String[] { "code" };
+      /* content */ return new String[] { "string" };
     case -596951334:
       /* supplements */ return new String[] { "canonical" };
     case 94851343:

@@ -62,8 +62,6 @@ import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
 import org.hl7.fhir.r4.model.Element;
 import org.hl7.fhir.r4.model.ElementDefinition;
-import org.hl7.fhir.r4.model.ElementDefinition.AggregationMode;
-import org.hl7.fhir.r4.model.ElementDefinition.DiscriminatorType;
 import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionBaseComponent;
 import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionBindingComponent;
 import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionConstraintComponent;
@@ -71,8 +69,6 @@ import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionExampleComponent
 import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionMappingComponent;
 import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionSlicingComponent;
 import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionSlicingDiscriminatorComponent;
-import org.hl7.fhir.r4.model.ElementDefinition.PropertyRepresentation;
-import org.hl7.fhir.r4.model.ElementDefinition.SlicingRules;
 import org.hl7.fhir.r4.model.ElementDefinition.TypeRefComponent;
 import org.hl7.fhir.r4.model.Enumeration;
 import org.hl7.fhir.r4.model.Enumerations.BindingStrength;
@@ -133,11 +129,11 @@ import org.hl7.fhir.utilities.xml.SchematronWriter.Section;
  * generateSpanningTable: generate the HTML for a table presentation of a
  * network of structures, starting at a nominated point * summarize: describe
  * the contents of a profile
- * 
+ *
  * note to maintainers: Do not make modifications to the snapshot generation
  * without first changing the snapshot generation test cases to demonstrate the
  * grounds for your change
- * 
+ *
  * @author Grahame
  *
  */
@@ -902,8 +898,8 @@ public class ProfileUtilities extends TranslatingUtilities {
               for (TypeSlice ts : typeList)
                 ed.addType().setCode(ts.type);
               ed.setSlicing(new ElementDefinitionSlicingComponent());
-              ed.getSlicing().addDiscriminator().setType(DiscriminatorType.TYPE).setPath("$this");
-              ed.getSlicing().setRules(SlicingRules.CLOSED);
+              ed.getSlicing().addDiscriminator().setType("TYPE").setPath("$this");
+              ed.getSlicing().setRules("CLOSED");
               ed.getSlicing().setOrdered(false);
               diffMatches.add(0, ed);
               differential.getElement().add(ndc, ed);
@@ -918,8 +914,8 @@ public class ProfileUtilities extends TranslatingUtilities {
               ElementDefinition ed = new ElementDefinition();
               ed.setPath(determineTypeSlicePath(diffMatches.get(0).getPath(), cpath));
               ed.setSlicing(new ElementDefinitionSlicingComponent());
-              ed.getSlicing().addDiscriminator().setType(DiscriminatorType.TYPE).setPath("$this");
-              ed.getSlicing().setRules(SlicingRules.CLOSED);
+              ed.getSlicing().addDiscriminator().setType("TYPE").setPath("$this");
+              ed.getSlicing().setRules("CLOSED");
               ed.getSlicing().setOrdered(false);
               diffMatches.add(0, ed);
               differential.getElement().add(ndc, ed);
@@ -929,7 +925,8 @@ public class ProfileUtilities extends TranslatingUtilities {
           int ndl = findEndOfElement(differential, ndc);
           // the first element is setting up the slicing
           if (diffMatches.get(0).getSlicing().hasRules())
-            if (diffMatches.get(0).getSlicing().getRules() != SlicingRules.CLOSED)
+            if (!"CLOSED".equalsIgnoreCase(
+              diffMatches.get(0).getSlicing().getRules()))
               throw new FHIRException(
                   "Error at path " + contextPathSrc + ": Type slicing with slicing.rules != closed");
           if (diffMatches.get(0).getSlicing().hasOrdered())
@@ -942,7 +939,7 @@ public class ProfileUtilities extends TranslatingUtilities {
             if (!"$this".equals(diffMatches.get(0).getSlicing().getDiscriminatorFirstRep().getPath()))
               throw new FHIRException(
                   "Error at path " + contextPathSrc + ": Type slicing with slicing.discriminator.path != '$this'");
-            if (diffMatches.get(0).getSlicing().getDiscriminatorFirstRep().getType() != DiscriminatorType.TYPE)
+            if (!"TYPE".equalsIgnoreCase(diffMatches.get(0).getSlicing().getDiscriminatorFirstRep().getType()))
               throw new FHIRException(
                   "Error at path " + contextPathSrc + ": Type slicing with slicing.discriminator.type != 'type'");
           }
@@ -977,8 +974,8 @@ public class ProfileUtilities extends TranslatingUtilities {
             throw new FHIRException("Did not find type root: " + diffMatches.get(0).getPath());
           // now set up slicing on the e (cause it was wiped by what we called.
           e.setSlicing(new ElementDefinitionSlicingComponent());
-          e.getSlicing().addDiscriminator().setType(DiscriminatorType.TYPE).setPath("$this");
-          e.getSlicing().setRules(SlicingRules.CLOSED);
+          e.getSlicing().addDiscriminator().setType("TYPE").setPath("$this");
+          e.getSlicing().setRules("CLOSED");
           e.getSlicing().setOrdered(false);
           start++;
           // now process the siblings, which should each be type constrained - and may
@@ -1113,7 +1110,7 @@ public class ProfileUtilities extends TranslatingUtilities {
           }
         } else {
           // first - check that the slicing is ok
-          boolean closed = currentBase.getSlicing().getRules() == SlicingRules.CLOSED;
+          boolean closed = "CLOSED".equalsIgnoreCase(currentBase.getSlicing().getRules());
           int diffpos = 0;
           boolean isExtension = cpath.endsWith(".extension") || cpath.endsWith(".modifierExtension");
           if (diffMatches.get(0).hasSlicing()) { // it might be null if the differential doesn't want to say anything
@@ -1540,7 +1537,7 @@ public class ProfileUtilities extends TranslatingUtilities {
       b.append(slice.getOrderedElement().asStringValue());
     b.append("/");
     if (slice.hasRules())
-      b.append(slice.getRules().toCode());
+      b.append(slice.getRules());
     b.append(")");
     if (slice.hasDescription()) {
       b.append(" \"");
@@ -1659,7 +1656,7 @@ public class ProfileUtilities extends TranslatingUtilities {
   /**
    * Finds internal references in an Element's Binding and StructureDefinition
    * references (in TypeRef) and bases them on the given url
-   * 
+   *
    * @param url     - the base url to use to turn internal references into
    *                absolute references
    * @param element - the Element to update
@@ -1776,9 +1773,9 @@ public class ProfileUtilities extends TranslatingUtilities {
     return c1.getType().equals(c2.getType()) && c1.getPath().equals(c2.getPath());
   }
 
-  private boolean ruleMatches(SlicingRules diff, SlicingRules base) {
-    return (diff == null) || (base == null) || (diff == base) || (base == SlicingRules.OPEN)
-        || ((diff == SlicingRules.OPENATEND && base == SlicingRules.CLOSED));
+  private boolean ruleMatches(String diff, String base) {
+    return (diff == null) || (base == null) || (diff == base) || (base == "OPEN")
+        || ((diff == "OPENATEND" && base == "CLOSED"));
   }
 
   private boolean isSlicedToOneOnly(ElementDefinition e) {
@@ -1787,9 +1784,9 @@ public class ProfileUtilities extends TranslatingUtilities {
 
   private ElementDefinitionSlicingComponent makeExtensionSlicing() {
     ElementDefinitionSlicingComponent slice = new ElementDefinitionSlicingComponent();
-    slice.addDiscriminator().setPath("url").setType(DiscriminatorType.VALUE);
+    slice.addDiscriminator().setPath("url").setType("VALUE");
     slice.setOrdered(false);
-    slice.setRules(SlicingRules.OPEN);
+    slice.setRules("OPEN");
     return slice;
   }
 
@@ -1826,7 +1823,7 @@ public class ProfileUtilities extends TranslatingUtilities {
          * out of order) in profile ... (looking for 'Bundle.entry') Not sure we have
          * enough information here to do the check properly. Might be better done when
          * we're sorting the profile?
-         * 
+         *
          * if (i != start && result.isEmpty() &&
          * !path.startsWith(context.getElement().get(start).getPath())) messages.add(new
          * ValidationMessage(Source.ProfileValidator, IssueType.VALUE,
@@ -1834,7 +1831,7 @@ public class ProfileUtilities extends TranslatingUtilities {
          * "Error: unknown element '"+context.getElement().get(start).getPath()
          * +"' (or it is out of order) in profile '"+url+"' (looking for '"+path+"')",
          * IssueSeverity.WARNING));
-         * 
+         *
          */
         result.add(context.getElement().get(i));
       }
@@ -2106,16 +2103,16 @@ public class ProfileUtilities extends TranslatingUtilities {
       if (derived.hasBinding()) {
         if (!base.hasBinding() || !Base.compareDeep(derived.getBinding(), base.getBinding(), false)) {
           if (base.hasBinding() && base.getBinding().getStrength() == BindingStrength.REQUIRED
-              && derived.getBinding().getStrength() != BindingStrength.REQUIRED)
+            && derived.getBinding().getStrength() != BindingStrength.REQUIRED)
             messages.add(new ValidationMessage(Source.ProfileValidator, ValidationMessage.IssueType.BUSINESSRULE,
-                pn + "." + derived.getPath(),
-                "illegal attempt to change the binding on " + derived.getPath() + " from "
-                    + base.getBinding().getStrength().toCode() + " to " + derived.getBinding().getStrength().toCode(),
-                ValidationMessage.IssueSeverity.ERROR));
+              pn + "." + derived.getPath(),
+              "illegal attempt to change the binding on " + derived.getPath() + " from "
+                + base.getBinding().getStrength().toCode() + " to " + derived.getBinding().getStrength().toCode(),
+              ValidationMessage.IssueSeverity.ERROR));
 //            throw new DefinitionException("StructureDefinition "+pn+" at "+derived.getPath()+": illegal attempt to change a binding from "+base.getBinding().getStrength().toCode()+" to "+derived.getBinding().getStrength().toCode());
           else if (base.hasBinding() && derived.hasBinding()
-              && base.getBinding().getStrength() == BindingStrength.REQUIRED && base.getBinding().hasValueSet()
-              && derived.getBinding().hasValueSet()) {
+            && base.getBinding().getStrength() == BindingStrength.REQUIRED && base.getBinding().hasValueSet()
+            && derived.getBinding().hasValueSet()) {
             ValueSet baseVs = context.fetchResource(ValueSet.class, base.getBinding().getValueSet());
             ValueSet contextVs = context.fetchResource(ValueSet.class, derived.getBinding().getValueSet());
             if (baseVs == null) {
@@ -2173,7 +2170,7 @@ public class ProfileUtilities extends TranslatingUtilities {
           if (base.hasType()) {
             for (TypeRefComponent ts : derived.getType()) {
 //              if (!ts.hasCode()) { // ommitted in the differential; copy it over....
-//                if (base.getType().size() > 1) 
+//                if (base.getType().size() > 1)
 //                  throw new DefinitionException("StructureDefinition "+pn+" at "+derived.getPath()+": constrained type code must be present if there are multiple types ("+base.typeSummary()+")");
 //                if (base.getType().get(0).getCode() != null)
 //                  ts.setCode(base.getType().get(0).getCode());
@@ -2486,8 +2483,8 @@ public class ProfileUtilities extends TranslatingUtilities {
         c.getPieces().add(checkForNoChange(ved.getBinding(), gen.new Piece(null, " (", null)));
         c.getPieces()
             .add(checkForNoChange(ved.getBinding(),
-                gen.new Piece(corePath + "terminologies.html#" + ved.getBinding().getStrength().toCode(),
-                    egt(ved.getBinding().getStrengthElement()), ved.getBinding().getStrength().getDefinition())));
+              gen.new Piece(corePath + "terminologies.html#" + ved.getBinding().getStrength().toCode(),
+                egt(ved.getBinding().getStrengthElement()), ved.getBinding().getStrength().getDefinition())));
         c.getPieces().add(gen.new Piece(null, ")", null));
       }
     }
@@ -2574,7 +2571,7 @@ public class ProfileUtilities extends TranslatingUtilities {
         if (t.getAggregation().size() > 0) {
           c.getPieces().add(gen.new Piece(corePath + "valueset-resource-aggregation-mode.html", " {", null));
           boolean firstA = true;
-          for (Enumeration<AggregationMode> a : t.getAggregation()) {
+          for (StringType a : t.getAggregation()) {
             if (firstA = true)
               firstA = false;
             else
@@ -2652,22 +2649,22 @@ public class ProfileUtilities extends TranslatingUtilities {
     return false;
   }
 
-  private String codeForAggregation(AggregationMode a) {
+  private String codeForAggregation(String a) {
     switch (a) {
-    case BUNDLED:
+    case "BUNDLED":
       return "b";
-    case CONTAINED:
+    case "CONTAINED":
       return "c";
-    case REFERENCED:
+    case "REFERENCED":
       return "r";
     default:
       return "?";
     }
   }
 
-  private String hintForAggregation(AggregationMode a) {
+  private String hintForAggregation(String a) {
     if (a != null)
-      return a.getDefinition();
+      return a;
     else
       return null;
   }
@@ -2700,7 +2697,7 @@ public class ProfileUtilities extends TranslatingUtilities {
       StructureDefinitionContextComponent ec = ext.getContext().get(i);
       if (i > 0)
         b.append(i < ext.getContext().size() - 1 ? ", " : " or ");
-      b.append(ec.getType().getDisplay());
+      b.append(ec.getType());
       b.append(" ");
       b.append(ec.getExpression());
     }
@@ -2901,7 +2898,7 @@ public class ProfileUtilities extends TranslatingUtilities {
       String ref = defPath == null ? null : defPath + element.getId();
       UnusedTracker used = new UnusedTracker();
       used.used = true;
-      if (logicalModel && element.hasRepresentation(PropertyRepresentation.XMLATTR))
+      if (logicalModel && element.hasRepresentation("XMLATTR"))
         s = "@" + s;
       Cell left = gen.new Cell(null, ref, s,
           (element.hasSliceName() ? translate("sd.table", "Slice") + " " + element.getSliceName() : "")
@@ -3262,9 +3259,9 @@ public class ProfileUtilities extends TranslatingUtilities {
   private boolean standardExtensionSlicing(ElementDefinition element) {
     String t = tail(element.getPath());
     return (t.equals("extension") || t.equals("modifierExtension"))
-        && element.getSlicing().getRules() != SlicingRules.CLOSED && element.getSlicing().getDiscriminator().size() == 1
+        && element.getSlicing().getRules() != "CLOSED" && element.getSlicing().getDiscriminator().size() == 1
         && element.getSlicing().getDiscriminator().get(0).getPath().equals("url")
-        && element.getSlicing().getDiscriminator().get(0).getType().equals(DiscriminatorType.VALUE);
+        && element.getSlicing().getDiscriminator().get(0).getType().equals("VALUE");
   }
 
   private Cell generateDescription(HierarchicalTableGenerator gen, Row row, ElementDefinition definition,
@@ -3865,22 +3862,22 @@ public class ProfileUtilities extends TranslatingUtilities {
   private String commas(List<ElementDefinitionSlicingDiscriminatorComponent> list) {
     CommaSeparatedStringBuilder c = new CommaSeparatedStringBuilder();
     for (ElementDefinitionSlicingDiscriminatorComponent id : list)
-      c.append(id.getType().toCode() + ":" + id.getPath());
+      c.append(id.getType() + ":" + id.getPath());
     return c.toString();
   }
 
-  private String describe(SlicingRules rules) {
+  private String describe(String rules) {
     if (rules == null)
       return translate("sd.table", "Unspecified");
     switch (rules) {
-    case CLOSED:
+    case "CLOSED":
       return translate("sd.table", "Closed");
-    case OPEN:
+    case "OPEN":
       return translate("sd.table", "Open");
-    case OPENATEND:
+    case "OPENATEND":
       return translate("sd.table", "Open At End");
     default:
-      return "??";
+      return translate("sd.table", rules);
     }
   }
 
@@ -3932,7 +3929,7 @@ public class ProfileUtilities extends TranslatingUtilities {
           "UsageContext");
     else
       return sd.getKind() == StructureDefinitionKind.COMPLEXTYPE
-          && sd.getDerivation() == TypeDerivationRule.SPECIALIZATION;
+        && sd.getDerivation() == TypeDerivationRule.SPECIALIZATION;
   }
 
   private boolean isConstrainedDataType(String value) {
@@ -4784,7 +4781,7 @@ public class ProfileUtilities extends TranslatingUtilities {
             if (slicer == null) {
               slicer = new ElementDefinition();
               slicer.setPath(edi.getPath());
-              slicer.getSlicing().setRules(SlicingRules.OPEN);
+              slicer.getSlicing().setRules("OPEN");
               sd.getDifferential().getElement().add(c, slicer);
               c++;
               ic++;
@@ -4823,13 +4820,13 @@ public class ProfileUtilities extends TranslatingUtilities {
     // now, the hard bit, how are they differentiated?
     // right now, we hard code this...
     if (slicer.getPath().endsWith(".extension") || slicer.getPath().endsWith(".modifierExtension"))
-      slicer.getSlicing().addDiscriminator().setType(DiscriminatorType.VALUE).setPath("url");
+      slicer.getSlicing().addDiscriminator().setType("VALUE").setPath("url");
     else if (slicer.getPath().equals("DiagnosticReport.result"))
-      slicer.getSlicing().addDiscriminator().setType(DiscriminatorType.VALUE).setPath("reference.code");
+      slicer.getSlicing().addDiscriminator().setType("VALUE").setPath("reference.code");
     else if (slicer.getPath().equals("Observation.related"))
-      slicer.getSlicing().addDiscriminator().setType(DiscriminatorType.VALUE).setPath("target.reference.code");
+      slicer.getSlicing().addDiscriminator().setType("VALUE").setPath("target.reference.code");
     else if (slicer.getPath().equals("Bundle.entry"))
-      slicer.getSlicing().addDiscriminator().setType(DiscriminatorType.VALUE).setPath("resource.@profile");
+      slicer.getSlicing().addDiscriminator().setType("VALUE").setPath("resource.@profile");
     else
       throw new Error("No slicing for " + slicer.getPath());
   }
@@ -5111,42 +5108,42 @@ public class ProfileUtilities extends TranslatingUtilities {
   public static ElementDefinitionSlicingDiscriminatorComponent interpretR2Discriminator(String discriminator,
       boolean isExists) {
     if (discriminator.endsWith("@pattern"))
-      return makeDiscriminator(DiscriminatorType.PATTERN,
+      return makeDiscriminator("PATTERN",
           discriminator.length() == 8 ? "" : discriminator.substring(0, discriminator.length() - 9));
     if (discriminator.endsWith("@profile"))
-      return makeDiscriminator(DiscriminatorType.PROFILE,
+      return makeDiscriminator("PROFILE",
           discriminator.length() == 8 ? "" : discriminator.substring(0, discriminator.length() - 9));
     if (discriminator.endsWith("@type"))
-      return makeDiscriminator(DiscriminatorType.TYPE,
+      return makeDiscriminator("TYPE",
           discriminator.length() == 5 ? "" : discriminator.substring(0, discriminator.length() - 6));
     if (discriminator.endsWith("@exists"))
-      return makeDiscriminator(DiscriminatorType.EXISTS,
+      return makeDiscriminator("EXISTS",
           discriminator.length() == 7 ? "" : discriminator.substring(0, discriminator.length() - 8));
     if (isExists)
-      return makeDiscriminator(DiscriminatorType.EXISTS, discriminator);
-    return new ElementDefinitionSlicingDiscriminatorComponent().setType(DiscriminatorType.VALUE).setPath(discriminator);
+      return makeDiscriminator("EXISTS", discriminator);
+    return new ElementDefinitionSlicingDiscriminatorComponent().setType("VALUE").setPath(discriminator);
   }
 
-  private static ElementDefinitionSlicingDiscriminatorComponent makeDiscriminator(DiscriminatorType dType, String str) {
+  private static ElementDefinitionSlicingDiscriminatorComponent makeDiscriminator(String dType, String str) {
     return new ElementDefinitionSlicingDiscriminatorComponent().setType(dType)
         .setPath(Utilities.noString(str) ? "$this" : str);
   }
 
   public static String buildR2Discriminator(ElementDefinitionSlicingDiscriminatorComponent t) throws FHIRException {
     switch (t.getType()) {
-    case PROFILE:
+    case "PROFILE":
       return t.getPath() + "/@profile";
-    case TYPE:
+    case "TYPE":
       return t.getPath() + "/@type";
-    case VALUE:
+    case "VALUE":
       return t.getPath();
-    case PATTERN:
+    case "PATTERN":
       return t.getPath();
-    case EXISTS:
+    case "EXISTS":
       return t.getPath(); // determination of value vs. exists is based on whether there's only 2 slices -
                           // one with minOccurs=1 and other with maxOccur=0
     default:
-      throw new FHIRException("Unable to represent " + t.getType().toCode() + ":" + t.getPath() + " in R2");
+      throw new FHIRException("Unable to represent " + t.getType() + ":" + t.getPath() + " in R2");
     }
   }
 

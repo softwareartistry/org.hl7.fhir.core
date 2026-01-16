@@ -325,7 +325,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeElement(t, "Contributor", name, element, index);
     if (element.hasTypeElement())
-      composeEnum(t, "Contributor", "type", element.getTypeElement(), -1);
+      composeString(t, "Contributor", "type", element.getTypeElement(), -1);
     if (element.hasNameElement())
       composeString(t, "Contributor", "name", element.getNameElement(), -1);
     for (int i = 0; i < element.getContact().size(); i++)
@@ -457,7 +457,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasPathElement())
       composeString(t, "DataRequirement", "path", element.getPathElement(), -1);
     if (element.hasDirectionElement())
-      composeEnum(t, "DataRequirement", "direction", element.getDirectionElement(), -1);
+      composeString(t, "DataRequirement", "direction", element.getDirectionElement(), -1);
   }
 
   protected void composeDosage(Complex parent, String parentType, String name, Dosage element, int index) {
@@ -1188,7 +1188,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasPathElement())
       composeString(t, "ElementDefinition", "path", element.getPathElement(), -1);
     for (int i = 0; i < element.getRepresentation().size(); i++)
-      composeEnum(t, "ElementDefinition", "representation", element.getRepresentation().get(i), i);
+      composeString(t, "ElementDefinition", "representation", element.getRepresentation().get(i), i);
     if (element.hasSliceNameElement())
       composeString(t, "ElementDefinition", "sliceName", element.getSliceNameElement(), -1);
     if (element.hasSliceIsConstrainingElement())
@@ -1279,7 +1279,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasOrderedElement())
       composeBoolean(t, "ElementDefinition", "ordered", element.getOrderedElement(), -1);
     if (element.hasRulesElement())
-      composeEnum(t, "ElementDefinition", "rules", element.getRulesElement(), -1);
+      composeString(t, "ElementDefinition", "rules", element.getRulesElement(), -1);
   }
 
   protected void composeElementDefinitionElementDefinitionSlicingDiscriminatorComponent(Complex parent,
@@ -1295,7 +1295,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeElement(t, "discriminator", name, element, index);
     if (element.hasTypeElement())
-      composeEnum(t, "ElementDefinition", "type", element.getTypeElement(), -1);
+      composeString(t, "ElementDefinition", "type", element.getTypeElement(), -1);
     if (element.hasPathElement())
       composeString(t, "ElementDefinition", "path", element.getPathElement(), -1);
   }
@@ -1337,9 +1337,9 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getTargetProfile().size(); i++)
       composeCanonical(t, "ElementDefinition", "targetProfile", element.getTargetProfile().get(i), i);
     for (int i = 0; i < element.getAggregation().size(); i++)
-      composeEnum(t, "ElementDefinition", "aggregation", element.getAggregation().get(i), i);
+      composeString(t, "ElementDefinition", "aggregation", element.getAggregation().get(i), i);
     if (element.hasVersioningElement())
-      composeEnum(t, "ElementDefinition", "versioning", element.getVersioningElement(), -1);
+      composeString(t, "ElementDefinition", "versioning", element.getVersioningElement(), -1);
   }
 
   protected void composeElementDefinitionElementDefinitionExampleComponent(Complex parent, String parentType,
@@ -1375,7 +1375,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasRequirementsElement())
       composeString(t, "ElementDefinition", "requirements", element.getRequirementsElement(), -1);
     if (element.hasSeverityElement())
-      composeEnum(t, "ElementDefinition", "severity", element.getSeverityElement(), -1);
+      composeString(t, "ElementDefinition", "severity", element.getSeverityElement(), -1);
     if (element.hasHumanElement())
       composeString(t, "ElementDefinition", "human", element.getHumanElement(), -1);
     if (element.hasExpressionElement())
@@ -1578,7 +1578,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasSubtitleElement())
       composeString(t, "ActivityDefinition", "subtitle", element.getSubtitleElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "ActivityDefinition", "status", element.getStatusElement(), -1);
+      composeString(t, "ActivityDefinition", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "ActivityDefinition", "experimental", element.getExperimentalElement(), -1);
     if (element.hasSubject())
@@ -1622,15 +1622,15 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getLibrary().size(); i++)
       composeCanonical(t, "ActivityDefinition", "library", element.getLibrary().get(i), i);
     if (element.hasKindElement())
-      composeEnum(t, "ActivityDefinition", "kind", element.getKindElement(), -1);
+      composeString(t, "ActivityDefinition", "kind", element.getKindElement(), -1);
     if (element.hasProfileElement())
       composeCanonical(t, "ActivityDefinition", "profile", element.getProfileElement(), -1);
     if (element.hasCode())
       composeCodeableConcept(t, "ActivityDefinition", "code", element.getCode(), -1);
     if (element.hasIntentElement())
-      composeEnum(t, "ActivityDefinition", "intent", element.getIntentElement(), -1);
+      composeString(t, "ActivityDefinition", "intent", element.getIntentElement(), -1);
     if (element.hasPriorityElement())
-      composeEnum(t, "ActivityDefinition", "priority", element.getPriorityElement(), -1);
+      composeString(t, "ActivityDefinition", "priority", element.getPriorityElement(), -1);
     if (element.hasDoNotPerformElement())
       composeBoolean(t, "ActivityDefinition", "doNotPerform", element.getDoNotPerformElement(), -1);
     if (element.hasTiming())
@@ -1675,7 +1675,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "participant", name, element, index);
     if (element.hasTypeElement())
-      composeEnum(t, "ActivityDefinition", "type", element.getTypeElement(), -1);
+      composeString(t, "ActivityDefinition", "type", element.getTypeElement(), -1);
     if (element.hasRole())
       composeCodeableConcept(t, "ActivityDefinition", "role", element.getRole(), -1);
   }
@@ -1986,13 +1986,13 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getSubtype().size(); i++)
       composeCoding(t, "AuditEvent", "subtype", element.getSubtype().get(i), i);
     if (element.hasActionElement())
-      composeEnum(t, "AuditEvent", "action", element.getActionElement(), -1);
+      composeString(t, "AuditEvent", "action", element.getActionElement(), -1);
     if (element.hasPeriod())
       composePeriod(t, "AuditEvent", "period", element.getPeriod(), -1);
     if (element.hasRecordedElement())
       composeInstant(t, "AuditEvent", "recorded", element.getRecordedElement(), -1);
     if (element.hasOutcomeElement())
-      composeEnum(t, "AuditEvent", "outcome", element.getOutcomeElement(), -1);
+      composeString(t, "AuditEvent", "outcome", element.getOutcomeElement(), -1);
     if (element.hasOutcomeDescElement())
       composeString(t, "AuditEvent", "outcomeDesc", element.getOutcomeDescElement(), -1);
     for (int i = 0; i < element.getPurposeOfEvent().size(); i++)
@@ -2054,7 +2054,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasAddressElement())
       composeString(t, "AuditEvent", "address", element.getAddressElement(), -1);
     if (element.hasTypeElement())
-      composeEnum(t, "AuditEvent", "type", element.getTypeElement(), -1);
+      composeString(t, "AuditEvent", "type", element.getTypeElement(), -1);
   }
 
   protected void composeAuditEventAuditEventSourceComponent(Complex parent, String parentType, String name,
@@ -2327,7 +2327,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasIdentifier())
       composeIdentifier(t, "Bundle", "identifier", element.getIdentifier(), -1);
     if (element.hasTypeElement())
-      composeEnum(t, "Bundle", "type", element.getTypeElement(), -1);
+      composeString(t, "Bundle", "type", element.getTypeElement(), -1);
     if (element.hasTimestampElement())
       composeInstant(t, "Bundle", "timestamp", element.getTimestampElement(), -1);
     if (element.hasTotalElement())
@@ -2394,7 +2394,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "search", name, element, index);
     if (element.hasModeElement())
-      composeEnum(t, "Bundle", "mode", element.getModeElement(), -1);
+      composeString(t, "Bundle", "mode", element.getModeElement(), -1);
     if (element.hasScoreElement())
       composeDecimal(t, "Bundle", "score", element.getScoreElement(), -1);
   }
@@ -2411,7 +2411,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "request", name, element, index);
     if (element.hasMethodElement())
-      composeEnum(t, "Bundle", "method", element.getMethodElement(), -1);
+      composeString(t, "Bundle", "method", element.getMethodElement(), -1);
     if (element.hasUrlElement())
       composeUri(t, "Bundle", "url", element.getUrlElement(), -1);
     if (element.hasIfNoneMatchElement())
@@ -2467,7 +2467,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasTitleElement())
       composeString(t, "CapabilityStatement", "title", element.getTitleElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "CapabilityStatement", "status", element.getStatusElement(), -1);
+      composeString(t, "CapabilityStatement", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "CapabilityStatement", "experimental", element.getExperimentalElement(), -1);
     if (element.hasDateElement())
@@ -2487,7 +2487,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasCopyrightElement())
       composeMarkdown(t, "CapabilityStatement", "copyright", element.getCopyrightElement(), -1);
     if (element.hasKindElement())
-      composeEnum(t, "CapabilityStatement", "kind", element.getKindElement(), -1);
+      composeString(t, "CapabilityStatement", "kind", element.getKindElement(), -1);
     for (int i = 0; i < element.getInstantiates().size(); i++)
       composeCanonical(t, "CapabilityStatement", "instantiates", element.getInstantiates().get(i), i);
     for (int i = 0; i < element.getImports().size(); i++)
@@ -2567,7 +2567,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "rest", name, element, index);
     if (element.hasModeElement())
-      composeEnum(t, "CapabilityStatement", "mode", element.getModeElement(), -1);
+      composeString(t, "CapabilityStatement", "mode", element.getModeElement(), -1);
     if (element.hasDocumentationElement())
       composeMarkdown(t, "CapabilityStatement", "documentation", element.getDocumentationElement(), -1);
     if (element.hasSecurity())
@@ -2631,7 +2631,7 @@ public class RdfParser extends RdfParserBase {
       composeCapabilityStatementResourceInteractionComponent(t, "CapabilityStatement", "interaction",
           element.getInteraction().get(i), i);
     if (element.hasVersioningElement())
-      composeEnum(t, "CapabilityStatement", "versioning", element.getVersioningElement(), -1);
+      composeString(t, "CapabilityStatement", "versioning", element.getVersioningElement(), -1);
     if (element.hasReadHistoryElement())
       composeBoolean(t, "CapabilityStatement", "readHistory", element.getReadHistoryElement(), -1);
     if (element.hasUpdateCreateElement())
@@ -2639,13 +2639,13 @@ public class RdfParser extends RdfParserBase {
     if (element.hasConditionalCreateElement())
       composeBoolean(t, "CapabilityStatement", "conditionalCreate", element.getConditionalCreateElement(), -1);
     if (element.hasConditionalReadElement())
-      composeEnum(t, "CapabilityStatement", "conditionalRead", element.getConditionalReadElement(), -1);
+      composeString(t, "CapabilityStatement", "conditionalRead", element.getConditionalReadElement(), -1);
     if (element.hasConditionalUpdateElement())
       composeBoolean(t, "CapabilityStatement", "conditionalUpdate", element.getConditionalUpdateElement(), -1);
     if (element.hasConditionalDeleteElement())
-      composeEnum(t, "CapabilityStatement", "conditionalDelete", element.getConditionalDeleteElement(), -1);
+      composeString(t, "CapabilityStatement", "conditionalDelete", element.getConditionalDeleteElement(), -1);
     for (int i = 0; i < element.getReferencePolicy().size(); i++)
-      composeEnum(t, "CapabilityStatement", "referencePolicy", element.getReferencePolicy().get(i), i);
+      composeString(t, "CapabilityStatement", "referencePolicy", element.getReferencePolicy().get(i), i);
     for (int i = 0; i < element.getSearchInclude().size(); i++)
       composeString(t, "CapabilityStatement", "searchInclude", element.getSearchInclude().get(i), i);
     for (int i = 0; i < element.getSearchRevInclude().size(); i++)
@@ -2670,7 +2670,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "interaction", name, element, index);
     if (element.hasCodeElement())
-      composeEnum(t, "CapabilityStatement", "code", element.getCodeElement(), -1);
+      composeString(t, "CapabilityStatement", "code", element.getCodeElement(), -1);
     if (element.hasDocumentationElement())
       composeMarkdown(t, "CapabilityStatement", "documentation", element.getDocumentationElement(), -1);
   }
@@ -2729,7 +2729,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "interaction", name, element, index);
     if (element.hasCodeElement())
-      composeEnum(t, "CapabilityStatement", "code", element.getCodeElement(), -1);
+      composeString(t, "CapabilityStatement", "code", element.getCodeElement(), -1);
     if (element.hasDocumentationElement())
       composeMarkdown(t, "CapabilityStatement", "documentation", element.getDocumentationElement(), -1);
   }
@@ -2788,7 +2788,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "supportedMessage", name, element, index);
     if (element.hasModeElement())
-      composeEnum(t, "CapabilityStatement", "mode", element.getModeElement(), -1);
+      composeString(t, "CapabilityStatement", "mode", element.getModeElement(), -1);
     if (element.hasDefinitionElement())
       composeCanonical(t, "CapabilityStatement", "definition", element.getDefinitionElement(), -1);
   }
@@ -2805,7 +2805,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "document", name, element, index);
     if (element.hasModeElement())
-      composeEnum(t, "CapabilityStatement", "mode", element.getModeElement(), -1);
+      composeString(t, "CapabilityStatement", "mode", element.getModeElement(), -1);
     if (element.hasDocumentationElement())
       composeMarkdown(t, "CapabilityStatement", "documentation", element.getDocumentationElement(), -1);
     if (element.hasProfileElement())
@@ -3022,7 +3022,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getClassification().size(); i++)
       composeCodeableConcept(t, "CatalogEntry", "classification", element.getClassification().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "CatalogEntry", "status", element.getStatusElement(), -1);
+      composeString(t, "CatalogEntry", "status", element.getStatusElement(), -1);
     if (element.hasValidityPeriod())
       composePeriod(t, "CatalogEntry", "validityPeriod", element.getValidityPeriod(), -1);
     if (element.hasValidToElement())
@@ -3074,7 +3074,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getDefinitionCanonical().size(); i++)
       composeCanonical(t, "ChargeItem", "definitionCanonical", element.getDefinitionCanonical().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "ChargeItem", "status", element.getStatusElement(), -1);
+      composeString(t, "ChargeItem", "status", element.getStatusElement(), -1);
     for (int i = 0; i < element.getPartOf().size(); i++)
       composeReference(t, "ChargeItem", "partOf", element.getPartOf().get(i), i);
     if (element.hasCode())
@@ -3164,7 +3164,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getReplaces().size(); i++)
       composeCanonical(t, "ChargeItemDefinition", "replaces", element.getReplaces().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "ChargeItemDefinition", "status", element.getStatusElement(), -1);
+      composeString(t, "ChargeItemDefinition", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "ChargeItemDefinition", "experimental", element.getExperimentalElement(), -1);
     if (element.hasDateElement())
@@ -3252,7 +3252,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "priceComponent", name, element, index);
     if (element.hasTypeElement())
-      composeEnum(t, "ChargeItemDefinition", "type", element.getTypeElement(), -1);
+      composeString(t, "ChargeItemDefinition", "type", element.getTypeElement(), -1);
     if (element.hasCode())
       composeCodeableConcept(t, "ChargeItemDefinition", "code", element.getCode(), -1);
     if (element.hasFactorElement())
@@ -4116,7 +4116,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasTitleElement())
       composeString(t, "CodeSystem", "title", element.getTitleElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "CodeSystem", "status", element.getStatusElement(), -1);
+      composeString(t, "CodeSystem", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "CodeSystem", "experimental", element.getExperimentalElement(), -1);
     if (element.hasDateElement())
@@ -4140,13 +4140,13 @@ public class RdfParser extends RdfParserBase {
     if (element.hasValueSetElement())
       composeCanonical(t, "CodeSystem", "valueSet", element.getValueSetElement(), -1);
     if (element.hasHierarchyMeaningElement())
-      composeEnum(t, "CodeSystem", "hierarchyMeaning", element.getHierarchyMeaningElement(), -1);
+      composeString(t, "CodeSystem", "hierarchyMeaning", element.getHierarchyMeaningElement(), -1);
     if (element.hasCompositionalElement())
       composeBoolean(t, "CodeSystem", "compositional", element.getCompositionalElement(), -1);
     if (element.hasVersionNeededElement())
       composeBoolean(t, "CodeSystem", "versionNeeded", element.getVersionNeededElement(), -1);
     if (element.hasContentElement())
-      composeEnum(t, "CodeSystem", "content", element.getContentElement(), -1);
+      composeString(t, "CodeSystem", "content", element.getContentElement(), -1);
     if (element.hasSupplementsElement())
       composeCanonical(t, "CodeSystem", "supplements", element.getSupplementsElement(), -1);
     if (element.hasCountElement())
@@ -4175,7 +4175,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasDescriptionElement())
       composeString(t, "CodeSystem", "description", element.getDescriptionElement(), -1);
     for (int i = 0; i < element.getOperator().size(); i++)
-      composeEnum(t, "CodeSystem", "operator", element.getOperator().get(i), i);
+      composeString(t, "CodeSystem", "operator", element.getOperator().get(i), i);
     if (element.hasValueElement())
       composeString(t, "CodeSystem", "value", element.getValueElement(), -1);
   }
@@ -4198,7 +4198,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasDescriptionElement())
       composeString(t, "CodeSystem", "description", element.getDescriptionElement(), -1);
     if (element.hasTypeElement())
-      composeEnum(t, "CodeSystem", "type", element.getTypeElement(), -1);
+      composeString(t, "CodeSystem", "type", element.getTypeElement(), -1);
   }
 
   protected void composeCodeSystemConceptDefinitionComponent(Complex parent, String parentType, String name,
@@ -4428,7 +4428,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasNameElement())
       composeString(t, "CompartmentDefinition", "name", element.getNameElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "CompartmentDefinition", "status", element.getStatusElement(), -1);
+      composeString(t, "CompartmentDefinition", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "CompartmentDefinition", "experimental", element.getExperimentalElement(), -1);
     if (element.hasDateElement())
@@ -4444,7 +4444,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasPurposeElement())
       composeMarkdown(t, "CompartmentDefinition", "purpose", element.getPurposeElement(), -1);
     if (element.hasCodeElement())
-      composeEnum(t, "CompartmentDefinition", "code", element.getCodeElement(), -1);
+      composeString(t, "CompartmentDefinition", "code", element.getCodeElement(), -1);
     if (element.hasSearchElement())
       composeBoolean(t, "CompartmentDefinition", "search", element.getSearchElement(), -1);
     for (int i = 0; i < element.getResource().size(); i++)
@@ -4622,7 +4622,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasTitleElement())
       composeString(t, "ConceptMap", "title", element.getTitleElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "ConceptMap", "status", element.getStatusElement(), -1);
+      composeString(t, "ConceptMap", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "ConceptMap", "experimental", element.getExperimentalElement(), -1);
     if (element.hasDateElement())
@@ -4709,7 +4709,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasDisplayElement())
       composeString(t, "ConceptMap", "display", element.getDisplayElement(), -1);
     if (element.hasEquivalenceElement())
-      composeEnum(t, "ConceptMap", "equivalence", element.getEquivalenceElement(), -1);
+      composeString(t, "ConceptMap", "equivalence", element.getEquivalenceElement(), -1);
     if (element.hasCommentElement())
       composeString(t, "ConceptMap", "comment", element.getCommentElement(), -1);
     for (int i = 0; i < element.getDependsOn().size(); i++)
@@ -4751,7 +4751,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "unmapped", name, element, index);
     if (element.hasModeElement())
-      composeEnum(t, "ConceptMap", "mode", element.getModeElement(), -1);
+      composeString(t, "ConceptMap", "mode", element.getModeElement(), -1);
     if (element.hasCodeElement())
       composeCode(t, "ConceptMap", "code", element.getCodeElement(), -1);
     if (element.hasDisplayElement())
@@ -5713,7 +5713,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasRequest())
       composeReference(t, "CoverageEligibilityResponse", "request", element.getRequest(), -1);
     if (element.hasOutcomeElement())
-      composeEnum(t, "CoverageEligibilityResponse", "outcome", element.getOutcomeElement(), -1);
+      composeString(t, "CoverageEligibilityResponse", "outcome", element.getOutcomeElement(), -1);
     if (element.hasDispositionElement())
       composeString(t, "CoverageEligibilityResponse", "disposition", element.getDispositionElement(), -1);
     if (element.hasInsurer())
@@ -6163,7 +6163,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasNameElement())
       composeString(t, "DeviceDefinition", "name", element.getNameElement(), -1);
     if (element.hasTypeElement())
-      composeEnum(t, "DeviceDefinition", "type", element.getTypeElement(), -1);
+      composeString(t, "DeviceDefinition", "type", element.getTypeElement(), -1);
   }
 
   protected void composeDeviceDefinitionDeviceDefinitionSpecializationComponent(Complex parent, String parentType,
@@ -6491,7 +6491,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "DocumentManifest", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "DocumentManifest", "status", element.getStatusElement(), -1);
+      composeString(t, "DocumentManifest", "status", element.getStatusElement(), -1);
     if (element.hasType())
       composeCodeableConcept(t, "DocumentManifest", "type", element.getType(), -1);
     if (element.hasSubject())
@@ -6546,7 +6546,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "DocumentReference", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "DocumentReference", "status", element.getStatusElement(), -1);
+      composeString(t, "DocumentReference", "status", element.getStatusElement(), -1);
     if (element.hasDocStatusElement())
       composeString(t, "DocumentReference", "docStatus", element.getDocStatusElement(), -1);
     if (element.hasType())
@@ -6661,7 +6661,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasTitleElement())
       composeString(t, "EffectEvidenceSynthesis", "title", element.getTitleElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "EffectEvidenceSynthesis", "status", element.getStatusElement(), -1);
+      composeString(t, "EffectEvidenceSynthesis", "status", element.getStatusElement(), -1);
     if (element.hasDateElement())
       composeDateTime(t, "EffectEvidenceSynthesis", "date", element.getDateElement(), -1);
     if (element.hasPublisherElement())
@@ -6758,7 +6758,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasDescriptionElement())
       composeString(t, "EffectEvidenceSynthesis", "description", element.getDescriptionElement(), -1);
     if (element.hasExposureStateElement())
-      composeEnum(t, "EffectEvidenceSynthesis", "exposureState", element.getExposureStateElement(), -1);
+      composeString(t, "EffectEvidenceSynthesis", "exposureState", element.getExposureStateElement(), -1);
     if (element.hasVariantState())
       composeCodeableConcept(t, "EffectEvidenceSynthesis", "variantState", element.getVariantState(), -1);
     if (element.hasRiskEvidenceSynthesis())
@@ -7117,7 +7117,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasRequest())
       composeReference(t, "EnrollmentResponse", "request", element.getRequest(), -1);
     if (element.hasOutcomeElement())
-      composeEnum(t, "EnrollmentResponse", "outcome", element.getOutcomeElement(), -1);
+      composeString(t, "EnrollmentResponse", "outcome", element.getOutcomeElement(), -1);
     if (element.hasDispositionElement())
       composeString(t, "EnrollmentResponse", "disposition", element.getDispositionElement(), -1);
     if (element.hasCreatedElement())
@@ -7226,7 +7226,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasSubtitleElement())
       composeString(t, "EventDefinition", "subtitle", element.getSubtitleElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "EventDefinition", "status", element.getStatusElement(), -1);
+      composeString(t, "EventDefinition", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "EventDefinition", "experimental", element.getExperimentalElement(), -1);
     if (element.hasSubject())
@@ -7296,7 +7296,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasSubtitleElement())
       composeString(t, "Evidence", "subtitle", element.getSubtitleElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "Evidence", "status", element.getStatusElement(), -1);
+      composeString(t, "Evidence", "status", element.getStatusElement(), -1);
     if (element.hasDateElement())
       composeDateTime(t, "Evidence", "date", element.getDateElement(), -1);
     if (element.hasPublisherElement())
@@ -7365,7 +7365,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasSubtitleElement())
       composeString(t, "EvidenceVariable", "subtitle", element.getSubtitleElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "EvidenceVariable", "status", element.getStatusElement(), -1);
+      composeString(t, "EvidenceVariable", "status", element.getStatusElement(), -1);
     if (element.hasDateElement())
       composeDateTime(t, "EvidenceVariable", "date", element.getDateElement(), -1);
     if (element.hasPublisherElement())
@@ -7401,7 +7401,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getRelatedArtifact().size(); i++)
       composeRelatedArtifact(t, "EvidenceVariable", "relatedArtifact", element.getRelatedArtifact().get(i), i);
     if (element.hasTypeElement())
-      composeEnum(t, "EvidenceVariable", "type", element.getTypeElement(), -1);
+      composeString(t, "EvidenceVariable", "type", element.getTypeElement(), -1);
     for (int i = 0; i < element.getCharacteristic().size(); i++)
       composeEvidenceVariableEvidenceVariableCharacteristicComponent(t, "EvidenceVariable", "characteristic",
           element.getCharacteristic().get(i), i);
@@ -7431,7 +7431,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasTimeFromStart())
       composeDuration(t, "EvidenceVariable", "timeFromStart", element.getTimeFromStart(), -1);
     if (element.hasGroupMeasureElement())
-      composeEnum(t, "EvidenceVariable", "groupMeasure", element.getGroupMeasureElement(), -1);
+      composeString(t, "EvidenceVariable", "groupMeasure", element.getGroupMeasureElement(), -1);
   }
 
   protected void composeExampleScenario(Complex parent, String parentType, String name, ExampleScenario element,
@@ -7454,7 +7454,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasNameElement())
       composeString(t, "ExampleScenario", "name", element.getNameElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "ExampleScenario", "status", element.getStatusElement(), -1);
+      composeString(t, "ExampleScenario", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "ExampleScenario", "experimental", element.getExperimentalElement(), -1);
     if (element.hasDateElement())
@@ -7497,7 +7497,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasActorIdElement())
       composeString(t, "ExampleScenario", "actorId", element.getActorIdElement(), -1);
     if (element.hasTypeElement())
-      composeEnum(t, "ExampleScenario", "type", element.getTypeElement(), -1);
+      composeString(t, "ExampleScenario", "type", element.getTypeElement(), -1);
     if (element.hasNameElement())
       composeString(t, "ExampleScenario", "name", element.getNameElement(), -1);
     if (element.hasDescriptionElement())
@@ -7518,7 +7518,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasResourceIdElement())
       composeString(t, "ExampleScenario", "resourceId", element.getResourceIdElement(), -1);
     if (element.hasResourceTypeElement())
-      composeEnum(t, "ExampleScenario", "resourceType", element.getResourceTypeElement(), -1);
+      composeString(t, "ExampleScenario", "resourceType", element.getResourceTypeElement(), -1);
     if (element.hasNameElement())
       composeString(t, "ExampleScenario", "name", element.getNameElement(), -1);
     if (element.hasDescriptionElement())
@@ -8281,7 +8281,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasNumberElement())
       composePositiveInt(t, "ExplanationOfBenefit", "number", element.getNumberElement(), -1);
     if (element.hasTypeElement())
-      composeEnum(t, "ExplanationOfBenefit", "type", element.getTypeElement(), -1);
+      composeString(t, "ExplanationOfBenefit", "type", element.getTypeElement(), -1);
     if (element.hasTextElement())
       composeString(t, "ExplanationOfBenefit", "text", element.getTextElement(), -1);
     if (element.hasLanguage())
@@ -8519,7 +8519,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasNameElement())
       composeString(t, "GraphDefinition", "name", element.getNameElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "GraphDefinition", "status", element.getStatusElement(), -1);
+      composeString(t, "GraphDefinition", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "GraphDefinition", "experimental", element.getExperimentalElement(), -1);
     if (element.hasDateElement())
@@ -8606,11 +8606,11 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "compartment", name, element, index);
     if (element.hasUseElement())
-      composeEnum(t, "GraphDefinition", "use", element.getUseElement(), -1);
+      composeString(t, "GraphDefinition", "use", element.getUseElement(), -1);
     if (element.hasCodeElement())
-      composeEnum(t, "GraphDefinition", "code", element.getCodeElement(), -1);
+      composeString(t, "GraphDefinition", "code", element.getCodeElement(), -1);
     if (element.hasRuleElement())
-      composeEnum(t, "GraphDefinition", "rule", element.getRuleElement(), -1);
+      composeString(t, "GraphDefinition", "rule", element.getRuleElement(), -1);
     if (element.hasExpressionElement())
       composeString(t, "GraphDefinition", "expression", element.getExpressionElement(), -1);
     if (element.hasDescriptionElement())
@@ -9275,7 +9275,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasTitleElement())
       composeString(t, "ImplementationGuide", "title", element.getTitleElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "ImplementationGuide", "status", element.getStatusElement(), -1);
+      composeString(t, "ImplementationGuide", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "ImplementationGuide", "experimental", element.getExperimentalElement(), -1);
     if (element.hasDateElement())
@@ -9295,9 +9295,9 @@ public class RdfParser extends RdfParserBase {
     if (element.hasPackageIdElement())
       composeId(t, "ImplementationGuide", "packageId", element.getPackageIdElement(), -1);
     if (element.hasLicenseElement())
-      composeEnum(t, "ImplementationGuide", "license", element.getLicenseElement(), -1);
+      composeString(t, "ImplementationGuide", "license", element.getLicenseElement(), -1);
     for (int i = 0; i < element.getFhirVersion().size(); i++)
-      composeEnum(t, "ImplementationGuide", "fhirVersion", element.getFhirVersion().get(i), i);
+      composeString(t, "ImplementationGuide", "fhirVersion", element.getFhirVersion().get(i), i);
     for (int i = 0; i < element.getDependsOn().size(); i++)
       composeImplementationGuideImplementationGuideDependsOnComponent(t, "ImplementationGuide", "dependsOn",
           element.getDependsOn().get(i), i);
@@ -9409,7 +9409,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasReference())
       composeReference(t, "ImplementationGuide", "reference", element.getReference(), -1);
     for (int i = 0; i < element.getFhirVersion().size(); i++)
-      composeEnum(t, "ImplementationGuide", "fhirVersion", element.getFhirVersion().get(i), i);
+      composeString(t, "ImplementationGuide", "fhirVersion", element.getFhirVersion().get(i), i);
     if (element.hasNameElement())
       composeString(t, "ImplementationGuide", "name", element.getNameElement(), -1);
     if (element.hasDescriptionElement())
@@ -9436,7 +9436,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasTitleElement())
       composeString(t, "ImplementationGuide", "title", element.getTitleElement(), -1);
     if (element.hasGenerationElement())
-      composeEnum(t, "ImplementationGuide", "generation", element.getGenerationElement(), -1);
+      composeString(t, "ImplementationGuide", "generation", element.getGenerationElement(), -1);
     for (int i = 0; i < element.getPage().size(); i++)
       composeImplementationGuideImplementationGuideDefinitionPageComponent(t, "ImplementationGuide", "page",
           element.getPage().get(i), i);
@@ -9556,7 +9556,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "InsurancePlan", "identifier", element.getIdentifier().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "InsurancePlan", "status", element.getStatusElement(), -1);
+      composeString(t, "InsurancePlan", "status", element.getStatusElement(), -1);
     for (int i = 0; i < element.getType().size(); i++)
       composeCodeableConcept(t, "InsurancePlan", "type", element.getType().get(i), i);
     if (element.hasNameElement())
@@ -9889,7 +9889,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasSubtitleElement())
       composeString(t, "Library", "subtitle", element.getSubtitleElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "Library", "status", element.getStatusElement(), -1);
+      composeString(t, "Library", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "Library", "experimental", element.getExperimentalElement(), -1);
     if (element.hasType())
@@ -10144,7 +10144,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasSubtitleElement())
       composeString(t, "Measure", "subtitle", element.getSubtitleElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "Measure", "status", element.getStatusElement(), -1);
+      composeString(t, "Measure", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "Measure", "experimental", element.getExperimentalElement(), -1);
     if (element.hasSubject())
@@ -12185,7 +12185,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getReplaces().size(); i++)
       composeCanonical(t, "MessageDefinition", "replaces", element.getReplaces().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "MessageDefinition", "status", element.getStatusElement(), -1);
+      composeString(t, "MessageDefinition", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "MessageDefinition", "experimental", element.getExperimentalElement(), -1);
     if (element.hasDateElement())
@@ -12216,7 +12216,7 @@ public class RdfParser extends RdfParserBase {
       composeMessageDefinitionMessageDefinitionFocusComponent(t, "MessageDefinition", "focus",
           element.getFocus().get(i), i);
     if (element.hasResponseRequiredElement())
-      composeEnum(t, "MessageDefinition", "responseRequired", element.getResponseRequiredElement(), -1);
+      composeString(t, "MessageDefinition", "responseRequired", element.getResponseRequiredElement(), -1);
     for (int i = 0; i < element.getAllowedResponse().size(); i++)
       composeMessageDefinitionMessageDefinitionAllowedResponseComponent(t, "MessageDefinition", "allowedResponse",
           element.getAllowedResponse().get(i), i);
@@ -12636,9 +12636,9 @@ public class RdfParser extends RdfParserBase {
     if (element.hasNameElement())
       composeString(t, "NamingSystem", "name", element.getNameElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "NamingSystem", "status", element.getStatusElement(), -1);
+      composeString(t, "NamingSystem", "status", element.getStatusElement(), -1);
     if (element.hasKindElement())
-      composeEnum(t, "NamingSystem", "kind", element.getKindElement(), -1);
+      composeString(t, "NamingSystem", "kind", element.getKindElement(), -1);
     if (element.hasDateElement())
       composeDateTime(t, "NamingSystem", "date", element.getDateElement(), -1);
     if (element.hasPublisherElement())
@@ -12673,7 +12673,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "uniqueId", name, element, index);
     if (element.hasTypeElement())
-      composeEnum(t, "NamingSystem", "type", element.getTypeElement(), -1);
+      composeString(t, "NamingSystem", "type", element.getTypeElement(), -1);
     if (element.hasValueElement())
       composeString(t, "NamingSystem", "value", element.getValueElement(), -1);
     if (element.hasPreferredElement())
@@ -12999,7 +12999,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getIdentifier().size(); i++)
       composeIdentifier(t, "ObservationDefinition", "identifier", element.getIdentifier().get(i), i);
     for (int i = 0; i < element.getPermittedDataType().size(); i++)
-      composeEnum(t, "ObservationDefinition", "permittedDataType", element.getPermittedDataType().get(i), i);
+      composeString(t, "ObservationDefinition", "permittedDataType", element.getPermittedDataType().get(i), i);
     if (element.hasMultipleResultsAllowedElement())
       composeBoolean(t, "ObservationDefinition", "multipleResultsAllowed", element.getMultipleResultsAllowedElement(),
           -1);
@@ -13058,7 +13058,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "qualifiedInterval", name, element, index);
     if (element.hasCategoryElement())
-      composeEnum(t, "ObservationDefinition", "category", element.getCategoryElement(), -1);
+      composeString(t, "ObservationDefinition", "category", element.getCategoryElement(), -1);
     if (element.hasRange())
       composeRange(t, "ObservationDefinition", "range", element.getRange(), -1);
     if (element.hasContext())
@@ -13066,7 +13066,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getAppliesTo().size(); i++)
       composeCodeableConcept(t, "ObservationDefinition", "appliesTo", element.getAppliesTo().get(i), i);
     if (element.hasGenderElement())
-      composeEnum(t, "ObservationDefinition", "gender", element.getGenderElement(), -1);
+      composeString(t, "ObservationDefinition", "gender", element.getGenderElement(), -1);
     if (element.hasAge())
       composeRange(t, "ObservationDefinition", "age", element.getAge(), -1);
     if (element.hasGestationalAge())
@@ -13095,9 +13095,9 @@ public class RdfParser extends RdfParserBase {
     if (element.hasTitleElement())
       composeString(t, "OperationDefinition", "title", element.getTitleElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "OperationDefinition", "status", element.getStatusElement(), -1);
+      composeString(t, "OperationDefinition", "status", element.getStatusElement(), -1);
     if (element.hasKindElement())
-      composeEnum(t, "OperationDefinition", "kind", element.getKindElement(), -1);
+      composeString(t, "OperationDefinition", "kind", element.getKindElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "OperationDefinition", "experimental", element.getExperimentalElement(), -1);
     if (element.hasDateElement())
@@ -13156,7 +13156,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasNameElement())
       composeCode(t, "OperationDefinition", "name", element.getNameElement(), -1);
     if (element.hasUseElement())
-      composeEnum(t, "OperationDefinition", "use", element.getUseElement(), -1);
+      composeString(t, "OperationDefinition", "use", element.getUseElement(), -1);
     if (element.hasMinElement())
       composeInteger(t, "OperationDefinition", "min", element.getMinElement(), -1);
     if (element.hasMaxElement())
@@ -13193,7 +13193,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "binding", name, element, index);
     if (element.hasStrengthElement())
-      composeEnum(t, "OperationDefinition", "strength", element.getStrengthElement(), -1);
+      composeString(t, "OperationDefinition", "strength", element.getStrengthElement(), -1);
     if (element.hasValueSetElement())
       composeCanonical(t, "OperationDefinition", "valueSet", element.getValueSetElement(), -1);
   }
@@ -13384,7 +13384,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getTelecom().size(); i++)
       composeContactPoint(t, "Patient", "telecom", element.getTelecom().get(i), i);
     if (element.hasGenderElement())
-      composeEnum(t, "Patient", "gender", element.getGenderElement(), -1);
+      composeString(t, "Patient", "gender", element.getGenderElement(), -1);
     if (element.hasBirthDateElement())
       composeDate(t, "Patient", "birthDate", element.getBirthDateElement(), -1);
     if (element.hasDeceased())
@@ -13429,7 +13429,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasAddress())
       composeAddress(t, "Patient", "address", element.getAddress(), -1);
     if (element.hasGenderElement())
-      composeEnum(t, "Patient", "gender", element.getGenderElement(), -1);
+      composeString(t, "Patient", "gender", element.getGenderElement(), -1);
     if (element.hasOrganization())
       composeReference(t, "Patient", "organization", element.getOrganization(), -1);
     if (element.hasPeriod())
@@ -13533,7 +13533,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasRequestor())
       composeReference(t, "PaymentReconciliation", "requestor", element.getRequestor(), -1);
     if (element.hasOutcomeElement())
-      composeEnum(t, "PaymentReconciliation", "outcome", element.getOutcomeElement(), -1);
+      composeString(t, "PaymentReconciliation", "outcome", element.getOutcomeElement(), -1);
     if (element.hasDispositionElement())
       composeString(t, "PaymentReconciliation", "disposition", element.getDispositionElement(), -1);
     if (element.hasPaymentDateElement())
@@ -13596,7 +13596,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "processNote", name, element, index);
     if (element.hasTypeElement())
-      composeEnum(t, "PaymentReconciliation", "type", element.getTypeElement(), -1);
+      composeString(t, "PaymentReconciliation", "type", element.getTypeElement(), -1);
     if (element.hasTextElement())
       composeString(t, "PaymentReconciliation", "text", element.getTextElement(), -1);
   }
@@ -13618,7 +13618,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getTelecom().size(); i++)
       composeContactPoint(t, "Person", "telecom", element.getTelecom().get(i), i);
     if (element.hasGenderElement())
-      composeEnum(t, "Person", "gender", element.getGenderElement(), -1);
+      composeString(t, "Person", "gender", element.getGenderElement(), -1);
     if (element.hasBirthDateElement())
       composeDate(t, "Person", "birthDate", element.getBirthDateElement(), -1);
     for (int i = 0; i < element.getAddress().size(); i++)
@@ -13676,7 +13676,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasType())
       composeCodeableConcept(t, "PlanDefinition", "type", element.getType(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "PlanDefinition", "status", element.getStatusElement(), -1);
+      composeString(t, "PlanDefinition", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "PlanDefinition", "experimental", element.getExperimentalElement(), -1);
     if (element.hasSubject())
@@ -13792,7 +13792,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasTextEquivalentElement())
       composeString(t, "PlanDefinition", "textEquivalent", element.getTextEquivalentElement(), -1);
     if (element.hasPriorityElement())
-      composeEnum(t, "PlanDefinition", "priority", element.getPriorityElement(), -1);
+      composeString(t, "PlanDefinition", "priority", element.getPriorityElement(), -1);
     for (int i = 0; i < element.getCode().size(); i++)
       composeCodeableConcept(t, "PlanDefinition", "code", element.getCode().get(i), i);
     for (int i = 0; i < element.getReason().size(); i++)
@@ -13823,15 +13823,15 @@ public class RdfParser extends RdfParserBase {
     if (element.hasType())
       composeCodeableConcept(t, "PlanDefinition", "type", element.getType(), -1);
     if (element.hasGroupingBehaviorElement())
-      composeEnum(t, "PlanDefinition", "groupingBehavior", element.getGroupingBehaviorElement(), -1);
+      composeString(t, "PlanDefinition", "groupingBehavior", element.getGroupingBehaviorElement(), -1);
     if (element.hasSelectionBehaviorElement())
-      composeEnum(t, "PlanDefinition", "selectionBehavior", element.getSelectionBehaviorElement(), -1);
+      composeString(t, "PlanDefinition", "selectionBehavior", element.getSelectionBehaviorElement(), -1);
     if (element.hasRequiredBehaviorElement())
-      composeEnum(t, "PlanDefinition", "requiredBehavior", element.getRequiredBehaviorElement(), -1);
+      composeString(t, "PlanDefinition", "requiredBehavior", element.getRequiredBehaviorElement(), -1);
     if (element.hasPrecheckBehaviorElement())
-      composeEnum(t, "PlanDefinition", "precheckBehavior", element.getPrecheckBehaviorElement(), -1);
+      composeString(t, "PlanDefinition", "precheckBehavior", element.getPrecheckBehaviorElement(), -1);
     if (element.hasCardinalityBehaviorElement())
-      composeEnum(t, "PlanDefinition", "cardinalityBehavior", element.getCardinalityBehaviorElement(), -1);
+      composeString(t, "PlanDefinition", "cardinalityBehavior", element.getCardinalityBehaviorElement(), -1);
     if (element.hasDefinition())
       composeType(t, "PlanDefinition", "definition", element.getDefinition(), -1);
     if (element.hasTransformElement())
@@ -13855,7 +13855,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "condition", name, element, index);
     if (element.hasKindElement())
-      composeEnum(t, "PlanDefinition", "kind", element.getKindElement(), -1);
+      composeString(t, "PlanDefinition", "kind", element.getKindElement(), -1);
     if (element.hasExpression())
       composeExpression(t, "PlanDefinition", "expression", element.getExpression(), -1);
   }
@@ -13874,7 +13874,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasActionIdElement())
       composeId(t, "PlanDefinition", "actionId", element.getActionIdElement(), -1);
     if (element.hasRelationshipElement())
-      composeEnum(t, "PlanDefinition", "relationship", element.getRelationshipElement(), -1);
+      composeString(t, "PlanDefinition", "relationship", element.getRelationshipElement(), -1);
     if (element.hasOffset())
       composeType(t, "PlanDefinition", "offset", element.getOffset(), -1);
   }
@@ -13891,7 +13891,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "participant", name, element, index);
     if (element.hasTypeElement())
-      composeEnum(t, "PlanDefinition", "type", element.getTypeElement(), -1);
+      composeString(t, "PlanDefinition", "type", element.getTypeElement(), -1);
     if (element.hasRole())
       composeCodeableConcept(t, "PlanDefinition", "role", element.getRole(), -1);
   }
@@ -13934,7 +13934,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getAddress().size(); i++)
       composeAddress(t, "Practitioner", "address", element.getAddress().get(i), i);
     if (element.hasGenderElement())
-      composeEnum(t, "Practitioner", "gender", element.getGenderElement(), -1);
+      composeString(t, "Practitioner", "gender", element.getGenderElement(), -1);
     if (element.hasBirthDateElement())
       composeDate(t, "Practitioner", "birthDate", element.getBirthDateElement(), -1);
     for (int i = 0; i < element.getPhoto().size(); i++)
@@ -14248,7 +14248,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getDerivedFrom().size(); i++)
       composeCanonical(t, "Questionnaire", "derivedFrom", element.getDerivedFrom().get(i), i);
     if (element.hasStatusElement())
-      composeEnum(t, "Questionnaire", "status", element.getStatusElement(), -1);
+      composeString(t, "Questionnaire", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "Questionnaire", "experimental", element.getExperimentalElement(), -1);
     for (int i = 0; i < element.getSubjectType().size(); i++)
@@ -14483,7 +14483,7 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getTelecom().size(); i++)
       composeContactPoint(t, "RelatedPerson", "telecom", element.getTelecom().get(i), i);
     if (element.hasGenderElement())
-      composeEnum(t, "RelatedPerson", "gender", element.getGenderElement(), -1);
+      composeString(t, "RelatedPerson", "gender", element.getGenderElement(), -1);
     if (element.hasBirthDateElement())
       composeDate(t, "RelatedPerson", "birthDate", element.getBirthDateElement(), -1);
     for (int i = 0; i < element.getAddress().size(); i++)
@@ -14677,7 +14677,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasSubtitleElement())
       composeString(t, "ResearchDefinition", "subtitle", element.getSubtitleElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "ResearchDefinition", "status", element.getStatusElement(), -1);
+      composeString(t, "ResearchDefinition", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "ResearchDefinition", "experimental", element.getExperimentalElement(), -1);
     if (element.hasSubject())
@@ -14758,7 +14758,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasSubtitleElement())
       composeString(t, "ResearchElementDefinition", "subtitle", element.getSubtitleElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "ResearchElementDefinition", "status", element.getStatusElement(), -1);
+      composeString(t, "ResearchElementDefinition", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "ResearchElementDefinition", "experimental", element.getExperimentalElement(), -1);
     if (element.hasSubject())
@@ -14804,9 +14804,9 @@ public class RdfParser extends RdfParserBase {
     for (int i = 0; i < element.getLibrary().size(); i++)
       composeCanonical(t, "ResearchElementDefinition", "library", element.getLibrary().get(i), i);
     if (element.hasTypeElement())
-      composeEnum(t, "ResearchElementDefinition", "type", element.getTypeElement(), -1);
+      composeString(t, "ResearchElementDefinition", "type", element.getTypeElement(), -1);
     if (element.hasVariableTypeElement())
-      composeEnum(t, "ResearchElementDefinition", "variableType", element.getVariableTypeElement(), -1);
+      composeString(t, "ResearchElementDefinition", "variableType", element.getVariableTypeElement(), -1);
     for (int i = 0; i < element.getCharacteristic().size(); i++)
       composeResearchElementDefinitionResearchElementDefinitionCharacteristicComponent(t, "ResearchElementDefinition",
           "characteristic", element.getCharacteristic().get(i), i);
@@ -14841,7 +14841,7 @@ public class RdfParser extends RdfParserBase {
       composeDuration(t, "ResearchElementDefinition", "studyEffectiveTimeFromStart",
           element.getStudyEffectiveTimeFromStart(), -1);
     if (element.hasStudyEffectiveGroupMeasureElement())
-      composeEnum(t, "ResearchElementDefinition", "studyEffectiveGroupMeasure",
+      composeString(t, "ResearchElementDefinition", "studyEffectiveGroupMeasure",
           element.getStudyEffectiveGroupMeasureElement(), -1);
     if (element.hasParticipantEffectiveDescriptionElement())
       composeString(t, "ResearchElementDefinition", "participantEffectiveDescription",
@@ -14852,7 +14852,7 @@ public class RdfParser extends RdfParserBase {
       composeDuration(t, "ResearchElementDefinition", "participantEffectiveTimeFromStart",
           element.getParticipantEffectiveTimeFromStart(), -1);
     if (element.hasParticipantEffectiveGroupMeasureElement())
-      composeEnum(t, "ResearchElementDefinition", "participantEffectiveGroupMeasure",
+      composeString(t, "ResearchElementDefinition", "participantEffectiveGroupMeasure",
           element.getParticipantEffectiveGroupMeasureElement(), -1);
   }
 
@@ -15078,7 +15078,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasTitleElement())
       composeString(t, "RiskEvidenceSynthesis", "title", element.getTitleElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "RiskEvidenceSynthesis", "status", element.getStatusElement(), -1);
+      composeString(t, "RiskEvidenceSynthesis", "status", element.getStatusElement(), -1);
     if (element.hasDateElement())
       composeDateTime(t, "RiskEvidenceSynthesis", "date", element.getDateElement(), -1);
     if (element.hasPublisherElement())
@@ -15292,7 +15292,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasDerivedFromElement())
       composeCanonical(t, "SearchParameter", "derivedFrom", element.getDerivedFromElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "SearchParameter", "status", element.getStatusElement(), -1);
+      composeString(t, "SearchParameter", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "SearchParameter", "experimental", element.getExperimentalElement(), -1);
     if (element.hasDateElement())
@@ -15727,7 +15727,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasTitleElement())
       composeString(t, "StructureDefinition", "title", element.getTitleElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "StructureDefinition", "status", element.getStatusElement(), -1);
+      composeString(t, "StructureDefinition", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "StructureDefinition", "experimental", element.getExperimentalElement(), -1);
     if (element.hasDateElement())
@@ -15865,7 +15865,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasTitleElement())
       composeString(t, "StructureMap", "title", element.getTitleElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "StructureMap", "status", element.getStatusElement(), -1);
+      composeString(t, "StructureMap", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "StructureMap", "experimental", element.getExperimentalElement(), -1);
     if (element.hasDateElement())
@@ -17365,7 +17365,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasTitleElement())
       composeString(t, "TerminologyCapabilities", "title", element.getTitleElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "TerminologyCapabilities", "status", element.getStatusElement(), -1);
+      composeString(t, "TerminologyCapabilities", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "TerminologyCapabilities", "experimental", element.getExperimentalElement(), -1);
     if (element.hasDateElement())
@@ -17385,7 +17385,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasCopyrightElement())
       composeMarkdown(t, "TerminologyCapabilities", "copyright", element.getCopyrightElement(), -1);
     if (element.hasKindElement())
-      composeEnum(t, "TerminologyCapabilities", "kind", element.getKindElement(), -1);
+      composeString(t, "TerminologyCapabilities", "kind", element.getKindElement(), -1);
     if (element.hasSoftware())
       composeTerminologyCapabilitiesTerminologyCapabilitiesSoftwareComponent(t, "TerminologyCapabilities", "software",
           element.getSoftware(), -1);
@@ -17401,7 +17401,7 @@ public class RdfParser extends RdfParserBase {
       composeTerminologyCapabilitiesTerminologyCapabilitiesExpansionComponent(t, "TerminologyCapabilities", "expansion",
           element.getExpansion(), -1);
     if (element.hasCodeSearchElement())
-      composeEnum(t, "TerminologyCapabilities", "codeSearch", element.getCodeSearchElement(), -1);
+      composeString(t, "TerminologyCapabilities", "codeSearch", element.getCodeSearchElement(), -1);
     if (element.hasValidateCode())
       composeTerminologyCapabilitiesTerminologyCapabilitiesValidateCodeComponent(t, "TerminologyCapabilities",
           "validateCode", element.getValidateCode(), -1);
@@ -17819,7 +17819,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasTitleElement())
       composeString(t, "TestScript", "title", element.getTitleElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "TestScript", "status", element.getStatusElement(), -1);
+      composeString(t, "TestScript", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "TestScript", "experimental", element.getExperimentalElement(), -1);
     if (element.hasDateElement())
@@ -18063,7 +18063,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasEncodeRequestUrlElement())
       composeBoolean(t, "TestScript", "encodeRequestUrl", element.getEncodeRequestUrlElement(), -1);
     if (element.hasMethodElement())
-      composeEnum(t, "TestScript", "method", element.getMethodElement(), -1);
+      composeString(t, "TestScript", "method", element.getMethodElement(), -1);
     if (element.hasOriginElement())
       composeInteger(t, "TestScript", "origin", element.getOriginElement(), -1);
     if (element.hasParamsElement())
@@ -18116,7 +18116,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasDescriptionElement())
       composeString(t, "TestScript", "description", element.getDescriptionElement(), -1);
     if (element.hasDirectionElement())
-      composeEnum(t, "TestScript", "direction", element.getDirectionElement(), -1);
+      composeString(t, "TestScript", "direction", element.getDirectionElement(), -1);
     if (element.hasCompareToSourceIdElement())
       composeString(t, "TestScript", "compareToSourceId", element.getCompareToSourceIdElement(), -1);
     if (element.hasCompareToSourceExpressionElement())
@@ -18134,17 +18134,17 @@ public class RdfParser extends RdfParserBase {
     if (element.hasNavigationLinksElement())
       composeBoolean(t, "TestScript", "navigationLinks", element.getNavigationLinksElement(), -1);
     if (element.hasOperatorElement())
-      composeEnum(t, "TestScript", "operator", element.getOperatorElement(), -1);
+      composeString(t, "TestScript", "operator", element.getOperatorElement(), -1);
     if (element.hasPathElement())
       composeString(t, "TestScript", "path", element.getPathElement(), -1);
     if (element.hasRequestMethodElement())
-      composeEnum(t, "TestScript", "requestMethod", element.getRequestMethodElement(), -1);
+      composeString(t, "TestScript", "requestMethod", element.getRequestMethodElement(), -1);
     if (element.hasRequestURLElement())
       composeString(t, "TestScript", "requestURL", element.getRequestURLElement(), -1);
     if (element.hasResourceElement())
       composeCode(t, "TestScript", "resource", element.getResourceElement(), -1);
     if (element.hasResponseElement())
-      composeEnum(t, "TestScript", "response", element.getResponseElement(), -1);
+      composeString(t, "TestScript", "response", element.getResponseElement(), -1);
     if (element.hasResponseCodeElement())
       composeString(t, "TestScript", "responseCode", element.getResponseCodeElement(), -1);
     if (element.hasSourceIdElement())
@@ -18244,7 +18244,7 @@ public class RdfParser extends RdfParserBase {
     if (element.hasTitleElement())
       composeString(t, "ValueSet", "title", element.getTitleElement(), -1);
     if (element.hasStatusElement())
-      composeEnum(t, "ValueSet", "status", element.getStatusElement(), -1);
+      composeString(t, "ValueSet", "status", element.getStatusElement(), -1);
     if (element.hasExperimentalElement())
       composeBoolean(t, "ValueSet", "experimental", element.getExperimentalElement(), -1);
     if (element.hasDateElement())

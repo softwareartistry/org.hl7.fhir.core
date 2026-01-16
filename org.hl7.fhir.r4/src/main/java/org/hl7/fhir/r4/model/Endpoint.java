@@ -263,8 +263,8 @@ public class Endpoint extends DomainResource {
   /**
    * @return active | suspended | error | off | test.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

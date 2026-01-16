@@ -269,8 +269,8 @@ public class Appointment extends DomainResource {
      *         results for a specific patient, and the patient is not required to be
      *         present.
      */
-    public StringType getRequired() {
-      return this.required == null ? null : this.required;
+    public String getRequired() {
+      return this.required == null ? null : this.required.getValue();
     }
 
     /**
@@ -325,8 +325,8 @@ public class Appointment extends DomainResource {
     /**
      * @return Participation status of the actor.
      */
-    public StringType getStatus() {
-      return this.status == null ? null : this.status;
+    public String getStatus() {
+      return this.status == null ? null : this.status.getValue();
     }
 
     /**
@@ -409,9 +409,9 @@ public class Appointment extends DomainResource {
       case 92645877:
         /* actor */ return this.actor == null ? new Base[0] : new Base[] { this.actor }; // Reference
       case -393139297:
-        /* required */ return this.required == null ? new Base[0] : new Base[] { this.required }; // Enumeration<ParticipantRequired>
+        /* required */ return this.required == null ? new Base[0] : new Base[] { this.required }; // StringType
       case -892481550:
-        /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<ParticipationStatus>
+        /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
       case -991726143:
         /* period */ return this.period == null ? new Base[0] : new Base[] { this.period }; // Period
       default:
@@ -430,10 +430,10 @@ public class Appointment extends DomainResource {
         this.actor = castToReference(value); // Reference
         return value;
       case -393139297: // required
-        this.required = castToString(value); // Enumeration<ParticipantRequired>
+        this.required = castToString(value); // StringType
         return value;
       case -892481550: // status
-        this.status = castToString(value); // Enumeration<ParticipationStatus>
+        this.status = castToString(value); // StringType
         return value;
       case -991726143: // period
         this.period = castToPeriod(value); // Period
@@ -451,9 +451,9 @@ public class Appointment extends DomainResource {
       } else if (name.equals("actor")) {
         this.actor = castToReference(value); // Reference
       } else if (name.equals("required")) {
-        this.required = castToString(value); // Enumeration<ParticipantRequired>
+        this.required = castToString(value); // StringType
       } else if (name.equals("status")) {
-        this.status = castToString(value); // Enumeration<ParticipationStatus>
+        this.status = castToString(value); // StringType
       } else if (name.equals("period")) {
         this.period = castToPeriod(value); // Period
       } else
@@ -946,8 +946,8 @@ public class Appointment extends DomainResource {
    *         their own participation status which indicates their involvement in
    *         the process, however this status indicates the shared status.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -2236,7 +2236,7 @@ public class Appointment extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<AppointmentStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 987811551:
       /* cancelationReason */ return this.cancelationReason == null ? new Base[0]
           : new Base[] { this.cancelationReason }; // CodeableConcept
@@ -2300,8 +2300,7 @@ public class Appointment extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-//      value = new AppointmentStatusEnumFactory().fromType(castToCode(value));
-      this.status = castToString(value); // Enumeration<AppointmentStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 987811551: // cancelationReason
       this.cancelationReason = castToCodeableConcept(value); // CodeableConcept
@@ -2374,8 +2373,7 @@ public class Appointment extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-//      value = new AppointmentStatusEnumFactory().fromType(castToCode(value));
-      this.status = castToString(value); // Enumeration<AppointmentStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("cancelationReason")) {
       this.cancelationReason = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("serviceCategory")) {

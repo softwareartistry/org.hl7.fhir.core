@@ -36,8 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -2339,7 +2337,7 @@ public class Measure extends MetadataResource {
   /**
    * Constructor
    */
-  public Measure(Enumeration<PublicationStatus> status) {
+  public Measure(StringType status) {
     super();
     this.status = status;
   }
@@ -2753,12 +2751,12 @@ public class Measure extends MetadataResource {
    *         value and extensions. The accessor "getStatus" gives direct access to
    *         the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Measure.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -2776,7 +2774,7 @@ public class Measure extends MetadataResource {
    *              with id, value and extensions. The accessor "getStatus" gives
    *              direct access to the value
    */
-  public Measure setStatusElement(Enumeration<PublicationStatus> value) {
+  public Measure setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -2785,7 +2783,7 @@ public class Measure extends MetadataResource {
    * @return The status of this measure. Enables tracking the life-cycle of the
    *         content.
    */
-  public PublicationStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
@@ -2793,9 +2791,9 @@ public class Measure extends MetadataResource {
    * @param value The status of this measure. Enables tracking the life-cycle of
    *              the content.
    */
-  public Measure setStatus(PublicationStatus value) {
+  public Measure setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -4689,7 +4687,7 @@ public class Measure extends MetadataResource {
     children.add(new Property("subtitle", "string",
         "An explanatory or alternate title for the measure giving additional information about its content.", 0, 1,
         subtitle));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of this measure. Enables tracking the life-cycle of the content.", 0, 1, status));
     children.add(new Property("experimental", "boolean",
         "A Boolean value to indicate that this measure is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
@@ -4816,7 +4814,7 @@ public class Measure extends MetadataResource {
           "An explanatory or alternate title for the measure giving additional information about its content.", 0, 1,
           subtitle);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of this measure. Enables tracking the life-cycle of the content.", 0, 1, status);
     case -404562712:
       /* experimental */ return new Property("experimental", "boolean",
@@ -4983,7 +4981,7 @@ public class Measure extends MetadataResource {
     case -2060497896:
       /* subtitle */ return this.subtitle == null ? new Base[0] : new Base[] { this.subtitle }; // StringType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -404562712:
       /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
     case -1867885268:
@@ -5087,8 +5085,7 @@ public class Measure extends MetadataResource {
       this.subtitle = castToString(value); // StringType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -404562712: // experimental
       this.experimental = castToBoolean(value); // BooleanType
@@ -5213,8 +5210,7 @@ public class Measure extends MetadataResource {
     } else if (name.equals("subtitle")) {
       this.subtitle = castToString(value); // StringType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("subject[x]")) {
@@ -5486,7 +5482,7 @@ public class Measure extends MetadataResource {
     case -2060497896:
       /* subtitle */ return new String[] { "string" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -404562712:
       /* experimental */ return new String[] { "boolean" };
     case -1867885268:

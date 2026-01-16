@@ -35,8 +35,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -3386,10 +3384,10 @@ public class InsurancePlan extends DomainResource {
   /**
    * The current state of the health insurance product.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 0, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 0, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "draft | active | retired | unknown", formalDefinition = "The current state of the health insurance product.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/publication-status")
-  protected Enumeration<PublicationStatus> status;
+  protected StringType status;
 
   /**
    * The kind of health insurance product.
@@ -3589,12 +3587,12 @@ public class InsurancePlan extends DomainResource {
    *         This is the underlying object with id, value and extensions. The
    *         accessor "getStatus" gives direct access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create InsurancePlan.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -3612,7 +3610,7 @@ public class InsurancePlan extends DomainResource {
    *              extensions. The accessor "getStatus" gives direct access to the
    *              value
    */
-  public InsurancePlan setStatusElement(Enumeration<PublicationStatus> value) {
+  public InsurancePlan setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -3620,19 +3618,19 @@ public class InsurancePlan extends DomainResource {
   /**
    * @return The current state of the health insurance product.
    */
-  public PublicationStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
   /**
    * @param value The current state of the health insurance product.
    */
-  public InsurancePlan setStatus(PublicationStatus value) {
+  public InsurancePlan setStatus(String value) {
     if (value == null)
       this.status = null;
     else {
       if (this.status == null)
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+        this.status = new StringType();
       this.status.setValue(value);
     }
     return this;
@@ -4293,7 +4291,7 @@ public class InsurancePlan extends DomainResource {
     children.add(new Property("identifier", "Identifier",
         "Business identifiers assigned to this health insurance product which remain constant as the resource is updated and propagates from server to server.",
         0, java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code", "The current state of the health insurance product.", 0, 1, status));
+    children.add(new Property("status", "string", "The current state of the health insurance product.", 0, 1, status));
     children.add(new Property("type", "CodeableConcept", "The kind of health insurance product.", 0,
         java.lang.Integer.MAX_VALUE, type));
     children.add(new Property("name", "string",
@@ -4332,7 +4330,7 @@ public class InsurancePlan extends DomainResource {
           "Business identifiers assigned to this health insurance product which remain constant as the resource is updated and propagates from server to server.",
           0, java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "The current state of the health insurance product.", 0, 1,
+      /* status */ return new Property("status", "string", "The current state of the health insurance product.", 0, 1,
           status);
     case 3575610:
       /* type */ return new Property("type", "CodeableConcept", "The kind of health insurance product.", 0,
@@ -4390,7 +4388,7 @@ public class InsurancePlan extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 3575610:
       /* type */ return this.type == null ? new Base[0] : this.type.toArray(new Base[this.type.size()]); // CodeableConcept
     case 3373707:
@@ -4429,8 +4427,7 @@ public class InsurancePlan extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 3575610: // type
       this.getType().add(castToCodeableConcept(value)); // CodeableConcept
@@ -4479,8 +4476,7 @@ public class InsurancePlan extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("type")) {
       this.getType().add(castToCodeableConcept(value));
     } else if (name.equals("name")) {
@@ -4588,7 +4584,7 @@ public class InsurancePlan extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 3575610:
       /* type */ return new String[] { "CodeableConcept" };
     case 3373707:

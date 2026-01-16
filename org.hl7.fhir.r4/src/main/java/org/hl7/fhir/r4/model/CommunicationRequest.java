@@ -809,8 +809,8 @@ public class CommunicationRequest extends DomainResource {
   /**
    * @return The status of the proposal or order.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -943,8 +943,8 @@ public class CommunicationRequest extends DomainResource {
    * @return Characterizes how quickly the proposed act must be initiated.
    *         Includes concepts such as stat, urgent, routine.
    */
-  public StringType getPriority() {
-    return this.priority == null ? null : this.priority;
+  public String getPriority() {
+    return this.priority == null ? null : this.priority.getValue();
   }
 
   /**
@@ -1903,13 +1903,13 @@ public class CommunicationRequest extends DomainResource {
     case -445338488:
       /* groupIdentifier */ return this.groupIdentifier == null ? new Base[0] : new Base[] { this.groupIdentifier }; // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<CommunicationRequestStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 2051346646:
       /* statusReason */ return this.statusReason == null ? new Base[0] : new Base[] { this.statusReason }; // CodeableConcept
     case 50511102:
       /* category */ return this.category == null ? new Base[0] : this.category.toArray(new Base[this.category.size()]); // CodeableConcept
     case -1165461084:
-      /* priority */ return this.priority == null ? new Base[0] : new Base[] { this.priority }; // Enumeration<CommunicationPriority>
+      /* priority */ return this.priority == null ? new Base[0] : new Base[] { this.priority }; // StringType
     case -1788508167:
       /* doNotPerform */ return this.doNotPerform == null ? new Base[0] : new Base[] { this.doNotPerform }; // BooleanType
     case -1078030475:
@@ -1963,7 +1963,7 @@ public class CommunicationRequest extends DomainResource {
       this.groupIdentifier = castToIdentifier(value); // Identifier
       return value;
     case -892481550: // status
-      this.status = castToString(value); // Enumeration<CommunicationRequestStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 2051346646: // statusReason
       this.statusReason = castToCodeableConcept(value); // CodeableConcept
@@ -1972,7 +1972,7 @@ public class CommunicationRequest extends DomainResource {
       this.getCategory().add(castToCodeableConcept(value)); // CodeableConcept
       return value;
     case -1165461084: // priority
-      this.priority = castToString(value); // Enumeration<CommunicationPriority>
+      this.priority = castToString(value); // StringType
       return value;
     case -1788508167: // doNotPerform
       this.doNotPerform = castToBoolean(value); // BooleanType
@@ -2033,13 +2033,13 @@ public class CommunicationRequest extends DomainResource {
     } else if (name.equals("groupIdentifier")) {
       this.groupIdentifier = castToIdentifier(value); // Identifier
     } else if (name.equals("status")) {
-      this.status = castToString(value); // Enumeration<CommunicationRequestStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("statusReason")) {
       this.statusReason = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("category")) {
       this.getCategory().add(castToCodeableConcept(value));
     } else if (name.equals("priority")) {
-      this.priority = castToString(value); // Enumeration<CommunicationPriority>
+      this.priority = castToString(value); // StringType
     } else if (name.equals("doNotPerform")) {
       this.doNotPerform = castToBoolean(value); // BooleanType
     } else if (name.equals("medium")) {

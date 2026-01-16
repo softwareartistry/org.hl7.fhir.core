@@ -38,8 +38,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -61,130 +59,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
     "studyType", "population", "exposure", "exposureAlternative", "outcome", "sampleSize", "resultsByExposure",
     "effectEstimate", "certainty" })
 public class EffectEvidenceSynthesis extends MetadataResource {
-
-  public enum ExposureState {
-    /**
-     * used when the results by exposure is describing the results for the primary
-     * exposure of interest.
-     */
-    EXPOSURE,
-    /**
-     * used when the results by exposure is describing the results for the
-     * alternative exposure state, control state or comparator state.
-     */
-    EXPOSUREALTERNATIVE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ExposureState fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("exposure".equals(codeString))
-        return EXPOSURE;
-      if ("exposure-alternative".equals(codeString))
-        return EXPOSUREALTERNATIVE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ExposureState code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case EXPOSURE:
-        return "exposure";
-      case EXPOSUREALTERNATIVE:
-        return "exposure-alternative";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case EXPOSURE:
-        return "http://hl7.org/fhir/exposure-state";
-      case EXPOSUREALTERNATIVE:
-        return "http://hl7.org/fhir/exposure-state";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case EXPOSURE:
-        return "used when the results by exposure is describing the results for the primary exposure of interest.";
-      case EXPOSUREALTERNATIVE:
-        return "used when the results by exposure is describing the results for the alternative exposure state, control state or comparator state.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case EXPOSURE:
-        return "Exposure";
-      case EXPOSUREALTERNATIVE:
-        return "Exposure Alternative";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ExposureStateEnumFactory implements EnumFactory<ExposureState> {
-    public ExposureState fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("exposure".equals(codeString))
-        return ExposureState.EXPOSURE;
-      if ("exposure-alternative".equals(codeString))
-        return ExposureState.EXPOSUREALTERNATIVE;
-      throw new IllegalArgumentException("Unknown ExposureState code '" + codeString + "'");
-    }
-
-    public Enumeration<ExposureState> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ExposureState>(this, ExposureState.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ExposureState>(this, ExposureState.NULL, code);
-      if ("exposure".equals(codeString))
-        return new Enumeration<ExposureState>(this, ExposureState.EXPOSURE, code);
-      if ("exposure-alternative".equals(codeString))
-        return new Enumeration<ExposureState>(this, ExposureState.EXPOSUREALTERNATIVE, code);
-      throw new FHIRException("Unknown ExposureState code '" + codeString + "'");
-    }
-
-    public String toCode(ExposureState code) {
-       if (code == ExposureState.NULL)
-           return null;
-       if (code == ExposureState.EXPOSURE)
-        return "exposure";
-      if (code == ExposureState.EXPOSUREALTERNATIVE)
-        return "exposure-alternative";
-      return "?";
-   }
-
-    public String toSystem(ExposureState code) {
-      return code.getSystem();
-    }
-  }
 
   @Block()
   public static class EffectEvidenceSynthesisSampleSizeComponent extends BackboneElement
@@ -571,10 +445,10 @@ public class EffectEvidenceSynthesis extends MetadataResource {
      * state.
      */
     @Child(name = "exposureState", type = {
-        CodeType.class }, order = 2, min = 0, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 2, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "exposure | exposure-alternative", formalDefinition = "Whether these results are for the exposure state or alternative exposure state.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/exposure-state")
-    protected Enumeration<ExposureState> exposureState;
+    protected StringType exposureState;
 
     /**
      * Used to define variant exposure states such as low-risk state.
@@ -676,12 +550,12 @@ public class EffectEvidenceSynthesis extends MetadataResource {
      *         with id, value and extensions. The accessor "getExposureState" gives
      *         direct access to the value
      */
-    public Enumeration<ExposureState> getExposureStateElement() {
+    public StringType getExposureStateElement() {
       if (this.exposureState == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create EffectEvidenceSynthesisResultsByExposureComponent.exposureState");
         else if (Configuration.doAutoCreate())
-          this.exposureState = new Enumeration<ExposureState>(new ExposureStateEnumFactory()); // bb
+          this.exposureState = new StringType(); // bb
       return this.exposureState;
     }
 
@@ -699,7 +573,7 @@ public class EffectEvidenceSynthesis extends MetadataResource {
      *              underlying object with id, value and extensions. The accessor
      *              "getExposureState" gives direct access to the value
      */
-    public EffectEvidenceSynthesisResultsByExposureComponent setExposureStateElement(Enumeration<ExposureState> value) {
+    public EffectEvidenceSynthesisResultsByExposureComponent setExposureStateElement(StringType value) {
       this.exposureState = value;
       return this;
     }
@@ -708,7 +582,7 @@ public class EffectEvidenceSynthesis extends MetadataResource {
      * @return Whether these results are for the exposure state or alternative
      *         exposure state.
      */
-    public ExposureState getExposureState() {
+    public String getExposureState() {
       return this.exposureState == null ? null : this.exposureState.getValue();
     }
 
@@ -716,12 +590,12 @@ public class EffectEvidenceSynthesis extends MetadataResource {
      * @param value Whether these results are for the exposure state or alternative
      *              exposure state.
      */
-    public EffectEvidenceSynthesisResultsByExposureComponent setExposureState(ExposureState value) {
+    public EffectEvidenceSynthesisResultsByExposureComponent setExposureState(String value) {
       if (value == null)
         this.exposureState = null;
       else {
         if (this.exposureState == null)
-          this.exposureState = new Enumeration<ExposureState>(new ExposureStateEnumFactory());
+          this.exposureState = new StringType();
         this.exposureState.setValue(value);
       }
       return this;
@@ -812,7 +686,7 @@ public class EffectEvidenceSynthesis extends MetadataResource {
       super.listChildren(children);
       children.add(new Property("description", "string", "Human-readable summary of results by exposure state.", 0, 1,
           description));
-      children.add(new Property("exposureState", "code",
+      children.add(new Property("exposureState", "string",
           "Whether these results are for the exposure state or alternative exposure state.", 0, 1, exposureState));
       children.add(new Property("variantState", "CodeableConcept",
           "Used to define variant exposure states such as low-risk state.", 0, 1, variantState));
@@ -827,7 +701,7 @@ public class EffectEvidenceSynthesis extends MetadataResource {
         /* description */ return new Property("description", "string",
             "Human-readable summary of results by exposure state.", 0, 1, description);
       case 422339530:
-        /* exposureState */ return new Property("exposureState", "code",
+        /* exposureState */ return new Property("exposureState", "string",
             "Whether these results are for the exposure state or alternative exposure state.", 0, 1, exposureState);
       case 1900629772:
         /* variantState */ return new Property("variantState", "CodeableConcept",
@@ -847,7 +721,7 @@ public class EffectEvidenceSynthesis extends MetadataResource {
       case -1724546052:
         /* description */ return this.description == null ? new Base[0] : new Base[] { this.description }; // StringType
       case 422339530:
-        /* exposureState */ return this.exposureState == null ? new Base[0] : new Base[] { this.exposureState }; // Enumeration<ExposureState>
+        /* exposureState */ return this.exposureState == null ? new Base[0] : new Base[] { this.exposureState }; // StringType
       case 1900629772:
         /* variantState */ return this.variantState == null ? new Base[0] : new Base[] { this.variantState }; // CodeableConcept
       case 109085678:
@@ -866,8 +740,7 @@ public class EffectEvidenceSynthesis extends MetadataResource {
         this.description = castToString(value); // StringType
         return value;
       case 422339530: // exposureState
-        value = new ExposureStateEnumFactory().fromType(castToCode(value));
-        this.exposureState = (Enumeration) value; // Enumeration<ExposureState>
+        this.exposureState = castToString(value); // StringType
         return value;
       case 1900629772: // variantState
         this.variantState = castToCodeableConcept(value); // CodeableConcept
@@ -886,8 +759,7 @@ public class EffectEvidenceSynthesis extends MetadataResource {
       if (name.equals("description")) {
         this.description = castToString(value); // StringType
       } else if (name.equals("exposureState")) {
-        value = new ExposureStateEnumFactory().fromType(castToCode(value));
-        this.exposureState = (Enumeration) value; // Enumeration<ExposureState>
+        this.exposureState = castToString(value); // StringType
       } else if (name.equals("variantState")) {
         this.variantState = castToCodeableConcept(value); // CodeableConcept
       } else if (name.equals("riskEvidenceSynthesis")) {
@@ -935,7 +807,7 @@ public class EffectEvidenceSynthesis extends MetadataResource {
       case -1724546052:
         /* description */ return new String[] { "string" };
       case 422339530:
-        /* exposureState */ return new String[] { "code" };
+        /* exposureState */ return new String[] { "string" };
       case 1900629772:
         /* variantState */ return new String[] { "CodeableConcept" };
       case 109085678:
@@ -3035,7 +2907,7 @@ public class EffectEvidenceSynthesis extends MetadataResource {
   /**
    * Constructor
    */
-  public EffectEvidenceSynthesis(Enumeration<PublicationStatus> status, Reference population, Reference exposure,
+  public EffectEvidenceSynthesis(StringType status, Reference population, Reference exposure,
       Reference exposureAlternative, Reference outcome) {
     super();
     this.status = status;
@@ -3391,12 +3263,12 @@ public class EffectEvidenceSynthesis extends MetadataResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create EffectEvidenceSynthesis.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -3414,7 +3286,7 @@ public class EffectEvidenceSynthesis extends MetadataResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getStatus" gives direct access to the value
    */
-  public EffectEvidenceSynthesis setStatusElement(Enumeration<PublicationStatus> value) {
+  public EffectEvidenceSynthesis setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -3423,7 +3295,7 @@ public class EffectEvidenceSynthesis extends MetadataResource {
    * @return The status of this effect evidence synthesis. Enables tracking the
    *         life-cycle of the content.
    */
-  public PublicationStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
@@ -3431,9 +3303,9 @@ public class EffectEvidenceSynthesis extends MetadataResource {
    * @param value The status of this effect evidence synthesis. Enables tracking
    *              the life-cycle of the content.
    */
-  public EffectEvidenceSynthesis setStatus(PublicationStatus value) {
+  public EffectEvidenceSynthesis setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -4864,7 +4736,7 @@ public class EffectEvidenceSynthesis extends MetadataResource {
         0, 1, name));
     children.add(new Property("title", "string",
         "A short, descriptive, user-friendly title for the effect evidence synthesis.", 0, 1, title));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of this effect evidence synthesis. Enables tracking the life-cycle of the content.", 0, 1, status));
     children.add(new Property("date", "dateTime",
         "The date  (and optionally time) when the effect evidence synthesis was published. The date must change when the business version changes and it must change if the status code changes. In addition, it should change when the substantive content of the effect evidence synthesis changes.",
@@ -4962,7 +4834,7 @@ public class EffectEvidenceSynthesis extends MetadataResource {
       /* title */ return new Property("title", "string",
           "A short, descriptive, user-friendly title for the effect evidence synthesis.", 0, 1, title);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of this effect evidence synthesis. Enables tracking the life-cycle of the content.", 0, 1,
           status);
     case 3076014:
@@ -5085,7 +4957,7 @@ public class EffectEvidenceSynthesis extends MetadataResource {
     case 110371416:
       /* title */ return this.title == null ? new Base[0] : new Base[] { this.title }; // StringType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 3076014:
       /* date */ return this.date == null ? new Base[0] : new Base[] { this.date }; // DateTimeType
     case 1447404028:
@@ -5172,8 +5044,7 @@ public class EffectEvidenceSynthesis extends MetadataResource {
       this.title = castToString(value); // StringType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 3076014: // date
       this.date = castToDateTime(value); // DateTimeType
@@ -5275,8 +5146,7 @@ public class EffectEvidenceSynthesis extends MetadataResource {
     } else if (name.equals("title")) {
       this.title = castToString(value); // StringType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("date")) {
       this.date = castToDateTime(value); // DateTimeType
     } else if (name.equals("publisher")) {
@@ -5498,7 +5368,7 @@ public class EffectEvidenceSynthesis extends MetadataResource {
     case 110371416:
       /* title */ return new String[] { "string" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 3076014:
       /* date */ return new String[] { "dateTime" };
     case 1447404028:

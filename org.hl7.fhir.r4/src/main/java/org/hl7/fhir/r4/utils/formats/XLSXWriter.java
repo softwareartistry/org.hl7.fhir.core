@@ -64,7 +64,6 @@ import org.hl7.fhir.r4.formats.XmlParser;
 import org.hl7.fhir.r4.model.CanonicalType;
 import org.hl7.fhir.r4.model.Coding;
 import org.hl7.fhir.r4.model.ElementDefinition;
-import org.hl7.fhir.r4.model.ElementDefinition.AggregationMode;
 import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionConstraintComponent;
 import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionMappingComponent;
 import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionSlicingDiscriminatorComponent;
@@ -233,7 +232,7 @@ public class XLSXWriter extends TextStreamWriter {
       addCell(row, i++, itemList(ed.getSlicing().getDiscriminator()));
       addCell(row, i++, ed.getSlicing().getDescription());
       addCell(row, i++, ed.getSlicing().getOrdered());
-      addCell(row, i++, ed.getSlicing().getRules() != null ? ed.getSlicing().getRules().toCode() : "");
+      addCell(row, i++, ed.getSlicing().getRules() != null ? ed.getSlicing().getRules() : "");
     } else {
       addCell(row, i++, "");
       addCell(row, i++, "");
@@ -296,7 +295,7 @@ public class XLSXWriter extends TextStreamWriter {
         val = c.getKey() + ":" + c.getHuman() + " {" + c.getExpression() + "}";
       } else if (o instanceof ElementDefinitionSlicingDiscriminatorComponent) {
         ElementDefinitionSlicingDiscriminatorComponent c = (ElementDefinitionSlicingDiscriminatorComponent) o;
-        val = c.getType().toCode() + ":" + c.getPath() + "}";
+        val = c.getType() + ":" + c.getPath() + "}";
 
       } else {
         val = o.toString();
@@ -310,10 +309,10 @@ public class XLSXWriter extends TextStreamWriter {
     return s.toString();
   }
 
-  private String aggList(List<org.hl7.fhir.r4.model.Enumeration<AggregationMode>> list) {
+  private String aggList(List<StringType> list) {
     CommaSeparatedStringBuilder b = new CommaSeparatedStringBuilder();
-    for (org.hl7.fhir.r4.model.Enumeration<AggregationMode> c : list)
-      b.append(c.getValue().toCode());
+    for (StringType c : list)
+      b.append(c.getValue());
     return b.toString();
   }
 

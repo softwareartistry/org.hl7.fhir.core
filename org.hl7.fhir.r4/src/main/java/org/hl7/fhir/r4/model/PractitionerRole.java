@@ -373,7 +373,7 @@ public class PractitionerRole extends DomainResource {
       switch (hash) {
       case 68050338:
         /* daysOfWeek */ return this.daysOfWeek == null ? new Base[0]
-            : this.daysOfWeek.toArray(new Base[this.daysOfWeek.size()]); // Enumeration<DaysOfWeek>
+            : this.daysOfWeek.toArray(new Base[this.daysOfWeek.size()]); // StringType
       case -1414913477:
         /* allDay */ return this.allDay == null ? new Base[0] : new Base[] { this.allDay }; // BooleanType
       case -1039453818:
@@ -427,7 +427,7 @@ public class PractitionerRole extends DomainResource {
   @Override
   public void removeChild(String name, Base value) throws FHIRException {
       if (name.equals("daysOfWeek")) {
-        this.getDaysOfWeek().remove((Enumeration) value);
+        this.getDaysOfWeek().remove(castToString(value));
       } else if (name.equals("allDay")) {
         this.allDay = null;
       } else if (name.equals("availableStartTime")) {

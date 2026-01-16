@@ -50,128 +50,6 @@ import ca.uhn.fhir.model.api.annotation.Description;
 @DatatypeDef(name = "DataRequirement")
 public class DataRequirement extends Type implements ICompositeType {
 
-  public enum SortDirection {
-    /**
-     * Sort by the value ascending, so that lower values appear first.
-     */
-    ASCENDING,
-    /**
-     * Sort by the value descending, so that lower values appear last.
-     */
-    DESCENDING,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static SortDirection fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("ascending".equals(codeString))
-        return ASCENDING;
-      if ("descending".equals(codeString))
-        return DESCENDING;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown SortDirection code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ASCENDING:
-        return "ascending";
-      case DESCENDING:
-        return "descending";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ASCENDING:
-        return "http://hl7.org/fhir/sort-direction";
-      case DESCENDING:
-        return "http://hl7.org/fhir/sort-direction";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ASCENDING:
-        return "Sort by the value ascending, so that lower values appear first.";
-      case DESCENDING:
-        return "Sort by the value descending, so that lower values appear last.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ASCENDING:
-        return "Ascending";
-      case DESCENDING:
-        return "Descending";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class SortDirectionEnumFactory implements EnumFactory<SortDirection> {
-    public SortDirection fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("ascending".equals(codeString))
-        return SortDirection.ASCENDING;
-      if ("descending".equals(codeString))
-        return SortDirection.DESCENDING;
-      throw new IllegalArgumentException("Unknown SortDirection code '" + codeString + "'");
-    }
-
-    public Enumeration<SortDirection> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<SortDirection>(this, SortDirection.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<SortDirection>(this, SortDirection.NULL, code);
-      if ("ascending".equals(codeString))
-        return new Enumeration<SortDirection>(this, SortDirection.ASCENDING, code);
-      if ("descending".equals(codeString))
-        return new Enumeration<SortDirection>(this, SortDirection.DESCENDING, code);
-      throw new FHIRException("Unknown SortDirection code '" + codeString + "'");
-    }
-
-    public String toCode(SortDirection code) {
-       if (code == SortDirection.NULL)
-           return null;
-       if (code == SortDirection.ASCENDING)
-        return "ascending";
-      if (code == SortDirection.DESCENDING)
-        return "descending";
-      return "?";
-   }
-
-    public String toSystem(SortDirection code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class DataRequirementCodeFilterComponent extends Element implements IBaseDatatypeElement {
     /**
@@ -1233,10 +1111,10 @@ public class DataRequirement extends Type implements ICompositeType {
     /**
      * The direction of the sort, ascending or descending.
      */
-    @Child(name = "direction", type = { CodeType.class }, order = 2, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "direction", type = { StringType.class }, order = 2, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "ascending | descending", formalDefinition = "The direction of the sort, ascending or descending.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/sort-direction")
-    protected Enumeration<SortDirection> direction;
+    protected StringType direction;
 
     private static final long serialVersionUID = -694498683L;
 
@@ -1250,7 +1128,7 @@ public class DataRequirement extends Type implements ICompositeType {
     /**
      * Constructor
      */
-    public DataRequirementSortComponent(StringType path, Enumeration<SortDirection> direction) {
+    public DataRequirementSortComponent(StringType path, StringType direction) {
       super();
       this.path = path;
       this.direction = direction;
@@ -1327,12 +1205,12 @@ public class DataRequirement extends Type implements ICompositeType {
      *         extensions. The accessor "getDirection" gives direct access to the
      *         value
      */
-    public Enumeration<SortDirection> getDirectionElement() {
+    public StringType getDirectionElement() {
       if (this.direction == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create DataRequirementSortComponent.direction");
         else if (Configuration.doAutoCreate())
-          this.direction = new Enumeration<SortDirection>(new SortDirectionEnumFactory()); // bb
+          this.direction = new StringType(); // bb
       return this.direction;
     }
 
@@ -1350,7 +1228,7 @@ public class DataRequirement extends Type implements ICompositeType {
      *              extensions. The accessor "getDirection" gives direct access to
      *              the value
      */
-    public DataRequirementSortComponent setDirectionElement(Enumeration<SortDirection> value) {
+    public DataRequirementSortComponent setDirectionElement(StringType value) {
       this.direction = value;
       return this;
     }
@@ -1358,16 +1236,16 @@ public class DataRequirement extends Type implements ICompositeType {
     /**
      * @return The direction of the sort, ascending or descending.
      */
-    public SortDirection getDirection() {
+    public String getDirection() {
       return this.direction == null ? null : this.direction.getValue();
     }
 
     /**
      * @param value The direction of the sort, ascending or descending.
      */
-    public DataRequirementSortComponent setDirection(SortDirection value) {
+    public DataRequirementSortComponent setDirection(String value) {
       if (this.direction == null)
-        this.direction = new Enumeration<SortDirection>(new SortDirectionEnumFactory());
+        this.direction = new StringType();
       this.direction.setValue(value);
       return this;
     }
@@ -1378,7 +1256,7 @@ public class DataRequirement extends Type implements ICompositeType {
           "The attribute of the sort. The specified path must be resolvable from the type of the required data. The path is allowed to contain qualifiers (.) to traverse sub-elements, as well as indexers ([x]) to traverse multiple-cardinality sub-elements. Note that the index must be an integer constant.",
           0, 1, path));
       children.add(
-          new Property("direction", "code", "The direction of the sort, ascending or descending.", 0, 1, direction));
+          new Property("direction", "string", "The direction of the sort, ascending or descending.", 0, 1, direction));
     }
 
     @Override
@@ -1389,7 +1267,7 @@ public class DataRequirement extends Type implements ICompositeType {
             "The attribute of the sort. The specified path must be resolvable from the type of the required data. The path is allowed to contain qualifiers (.) to traverse sub-elements, as well as indexers ([x]) to traverse multiple-cardinality sub-elements. Note that the index must be an integer constant.",
             0, 1, path);
       case -962590849:
-        /* direction */ return new Property("direction", "code", "The direction of the sort, ascending or descending.",
+        /* direction */ return new Property("direction", "string", "The direction of the sort, ascending or descending.",
             0, 1, direction);
       default:
         return super.getNamedProperty(_hash, _name, _checkValid);
@@ -1403,7 +1281,7 @@ public class DataRequirement extends Type implements ICompositeType {
       case 3433509:
         /* path */ return this.path == null ? new Base[0] : new Base[] { this.path }; // StringType
       case -962590849:
-        /* direction */ return this.direction == null ? new Base[0] : new Base[] { this.direction }; // Enumeration<SortDirection>
+        /* direction */ return this.direction == null ? new Base[0] : new Base[] { this.direction }; // StringType
       default:
         return super.getProperty(hash, name, checkValid);
       }
@@ -1417,8 +1295,7 @@ public class DataRequirement extends Type implements ICompositeType {
         this.path = castToString(value); // StringType
         return value;
       case -962590849: // direction
-        value = new SortDirectionEnumFactory().fromType(castToCode(value));
-        this.direction = (Enumeration) value; // Enumeration<SortDirection>
+        this.direction = castToString(value); // StringType
         return value;
       default:
         return super.setProperty(hash, name, value);
@@ -1431,8 +1308,7 @@ public class DataRequirement extends Type implements ICompositeType {
       if (name.equals("path")) {
         this.path = castToString(value); // StringType
       } else if (name.equals("direction")) {
-        value = new SortDirectionEnumFactory().fromType(castToCode(value));
-        this.direction = (Enumeration) value; // Enumeration<SortDirection>
+        this.direction = castToString(value); // StringType
       } else
         return super.setProperty(name, value);
       return value;
@@ -1468,7 +1344,7 @@ public class DataRequirement extends Type implements ICompositeType {
       case 3433509:
         /* path */ return new String[] { "string" };
       case -962590849:
-        /* direction */ return new String[] { "code" };
+        /* direction */ return new String[] { "string" };
       default:
         return super.getTypesForProperty(hash, name);
       }

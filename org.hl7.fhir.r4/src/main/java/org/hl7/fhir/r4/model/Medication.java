@@ -934,8 +934,8 @@ public class Medication extends DomainResource {
   /**
    * @return A code to indicate if the medication is in active use.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -1245,7 +1245,6 @@ public class Medication extends DomainResource {
       this.code = castToCodeableConcept(value); // CodeableConcept
       return value;
     case -892481550: // status
-//      value = new MedicationStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // StringType
       return value;
     case -1969347631: // manufacturer
@@ -1276,7 +1275,6 @@ public class Medication extends DomainResource {
     } else if (name.equals("code")) {
       this.code = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("status")) {
-//      value = new MedicationStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // StringType
     } else if (name.equals("manufacturer")) {
       this.manufacturer = castToReference(value); // Reference

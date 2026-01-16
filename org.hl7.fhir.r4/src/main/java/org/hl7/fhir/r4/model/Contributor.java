@@ -47,175 +47,13 @@ import ca.uhn.fhir.model.api.annotation.Description;
 @DatatypeDef(name = "Contributor")
 public class Contributor extends Type implements ICompositeType {
 
-  public enum ContributorType {
-    /**
-     * An author of the content of the module.
-     */
-    AUTHOR,
-    /**
-     * An editor of the content of the module.
-     */
-    EDITOR,
-    /**
-     * A reviewer of the content of the module.
-     */
-    REVIEWER,
-    /**
-     * An endorser of the content of the module.
-     */
-    ENDORSER,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ContributorType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("author".equals(codeString))
-        return AUTHOR;
-      if ("editor".equals(codeString))
-        return EDITOR;
-      if ("reviewer".equals(codeString))
-        return REVIEWER;
-      if ("endorser".equals(codeString))
-        return ENDORSER;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ContributorType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case AUTHOR:
-        return "author";
-      case EDITOR:
-        return "editor";
-      case REVIEWER:
-        return "reviewer";
-      case ENDORSER:
-        return "endorser";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case AUTHOR:
-        return "http://hl7.org/fhir/contributor-type";
-      case EDITOR:
-        return "http://hl7.org/fhir/contributor-type";
-      case REVIEWER:
-        return "http://hl7.org/fhir/contributor-type";
-      case ENDORSER:
-        return "http://hl7.org/fhir/contributor-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case AUTHOR:
-        return "An author of the content of the module.";
-      case EDITOR:
-        return "An editor of the content of the module.";
-      case REVIEWER:
-        return "A reviewer of the content of the module.";
-      case ENDORSER:
-        return "An endorser of the content of the module.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case AUTHOR:
-        return "Author";
-      case EDITOR:
-        return "Editor";
-      case REVIEWER:
-        return "Reviewer";
-      case ENDORSER:
-        return "Endorser";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ContributorTypeEnumFactory implements EnumFactory<ContributorType> {
-    public ContributorType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("author".equals(codeString))
-        return ContributorType.AUTHOR;
-      if ("editor".equals(codeString))
-        return ContributorType.EDITOR;
-      if ("reviewer".equals(codeString))
-        return ContributorType.REVIEWER;
-      if ("endorser".equals(codeString))
-        return ContributorType.ENDORSER;
-      throw new IllegalArgumentException("Unknown ContributorType code '" + codeString + "'");
-    }
-
-    public Enumeration<ContributorType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ContributorType>(this, ContributorType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ContributorType>(this, ContributorType.NULL, code);
-      if ("author".equals(codeString))
-        return new Enumeration<ContributorType>(this, ContributorType.AUTHOR, code);
-      if ("editor".equals(codeString))
-        return new Enumeration<ContributorType>(this, ContributorType.EDITOR, code);
-      if ("reviewer".equals(codeString))
-        return new Enumeration<ContributorType>(this, ContributorType.REVIEWER, code);
-      if ("endorser".equals(codeString))
-        return new Enumeration<ContributorType>(this, ContributorType.ENDORSER, code);
-      throw new FHIRException("Unknown ContributorType code '" + codeString + "'");
-    }
-
-    public String toCode(ContributorType code) {
-       if (code == ContributorType.NULL)
-           return null;
-       if (code == ContributorType.AUTHOR)
-        return "author";
-      if (code == ContributorType.EDITOR)
-        return "editor";
-      if (code == ContributorType.REVIEWER)
-        return "reviewer";
-      if (code == ContributorType.ENDORSER)
-        return "endorser";
-      return "?";
-   }
-
-    public String toSystem(ContributorType code) {
-      return code.getSystem();
-    }
-  }
-
   /**
    * The type of contributor.
    */
-  @Child(name = "type", type = { CodeType.class }, order = 0, min = 1, max = 1, modifier = false, summary = true)
+  @Child(name = "type", type = { StringType.class }, order = 0, min = 1, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "author | editor | reviewer | endorser", formalDefinition = "The type of contributor.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/contributor-type")
-  protected Enumeration<ContributorType> type;
+  protected StringType type;
 
   /**
    * The name of the individual or organization responsible for the contribution.
@@ -245,7 +83,7 @@ public class Contributor extends Type implements ICompositeType {
   /**
    * Constructor
    */
-  public Contributor(Enumeration<ContributorType> type, StringType name) {
+  public Contributor(StringType type, StringType name) {
     super();
     this.type = type;
     this.name = name;
@@ -256,12 +94,12 @@ public class Contributor extends Type implements ICompositeType {
    *         object with id, value and extensions. The accessor "getType" gives
    *         direct access to the value
    */
-  public Enumeration<ContributorType> getTypeElement() {
+  public StringType getTypeElement() {
     if (this.type == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Contributor.type");
       else if (Configuration.doAutoCreate())
-        this.type = new Enumeration<ContributorType>(new ContributorTypeEnumFactory()); // bb
+        this.type = new StringType(); // bb
     return this.type;
   }
 
@@ -278,7 +116,7 @@ public class Contributor extends Type implements ICompositeType {
    *              object with id, value and extensions. The accessor "getType"
    *              gives direct access to the value
    */
-  public Contributor setTypeElement(Enumeration<ContributorType> value) {
+  public Contributor setTypeElement(StringType value) {
     this.type = value;
     return this;
   }
@@ -286,16 +124,16 @@ public class Contributor extends Type implements ICompositeType {
   /**
    * @return The type of contributor.
    */
-  public ContributorType getType() {
+  public String getType() {
     return this.type == null ? null : this.type.getValue();
   }
 
   /**
    * @param value The type of contributor.
    */
-  public Contributor setType(ContributorType value) {
+  public Contributor setType(String value) {
     if (this.type == null)
-      this.type = new Enumeration<ContributorType>(new ContributorTypeEnumFactory());
+      this.type = new StringType();
     this.type.setValue(value);
     return this;
   }
@@ -410,7 +248,7 @@ public class Contributor extends Type implements ICompositeType {
 
   protected void listChildren(List<Property> children) {
     super.listChildren(children);
-    children.add(new Property("type", "code", "The type of contributor.", 0, 1, type));
+    children.add(new Property("type", "string", "The type of contributor.", 0, 1, type));
     children.add(new Property("name", "string",
         "The name of the individual or organization responsible for the contribution.", 0, 1, name));
     children.add(new Property("contact", "ContactDetail",
@@ -422,7 +260,7 @@ public class Contributor extends Type implements ICompositeType {
   public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
     switch (_hash) {
     case 3575610:
-      /* type */ return new Property("type", "code", "The type of contributor.", 0, 1, type);
+      /* type */ return new Property("type", "string", "The type of contributor.", 0, 1, type);
     case 3373707:
       /* name */ return new Property("name", "string",
           "The name of the individual or organization responsible for the contribution.", 0, 1, name);
@@ -440,7 +278,7 @@ public class Contributor extends Type implements ICompositeType {
   public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
     switch (hash) {
     case 3575610:
-      /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<ContributorType>
+      /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
     case 3373707:
       /* name */ return this.name == null ? new Base[0] : new Base[] { this.name }; // StringType
     case 951526432:
@@ -455,8 +293,7 @@ public class Contributor extends Type implements ICompositeType {
   public Base setProperty(int hash, String name, Base value) throws FHIRException {
     switch (hash) {
     case 3575610: // type
-      value = new ContributorTypeEnumFactory().fromType(castToCode(value));
-      this.type = (Enumeration) value; // Enumeration<ContributorType>
+      this.type = castToString(value); // StringType
       return value;
     case 3373707: // name
       this.name = castToString(value); // StringType
@@ -473,8 +310,7 @@ public class Contributor extends Type implements ICompositeType {
   @Override
   public Base setProperty(String name, Base value) throws FHIRException {
     if (name.equals("type")) {
-      value = new ContributorTypeEnumFactory().fromType(castToCode(value));
-      this.type = (Enumeration) value; // Enumeration<ContributorType>
+      this.type = castToString(value); // StringType
     } else if (name.equals("name")) {
       this.name = castToString(value); // StringType
     } else if (name.equals("contact")) {
@@ -516,7 +352,7 @@ public class Contributor extends Type implements ICompositeType {
   public String[] getTypesForProperty(int hash, String name) throws FHIRException {
     switch (hash) {
     case 3575610:
-      /* type */ return new String[] { "code" };
+      /* type */ return new String[] { "string" };
     case 3373707:
       /* name */ return new String[] { "string" };
     case 951526432:

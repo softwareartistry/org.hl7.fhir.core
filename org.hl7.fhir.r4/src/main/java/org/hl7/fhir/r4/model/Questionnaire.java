@@ -36,8 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -606,8 +604,8 @@ public class Questionnaire extends MetadataResource {
      *         grouping of other items or a particular type of data to be captured
      *         (string, integer, coded choice, etc.).
      */
-    public StringType getType() {
-      return this.type == null ? null : this.type;
+    public String getType() {
+      return this.type == null ? null : this.type.getValue();
     }
 
     /**
@@ -716,8 +714,8 @@ public class Questionnaire extends MetadataResource {
      * @return Controls how multiple enableWhen values are interpreted - whether all
      *         or any must be true.
      */
-    public StringType getEnableBehavior() {
-      return this.enableBehavior == null ? null : this.enableBehavior;
+    public String getEnableBehavior() {
+      return this.enableBehavior == null ? null : this.enableBehavior.getValue();
     }
 
     /**
@@ -1320,12 +1318,12 @@ public class Questionnaire extends MetadataResource {
       case 3556653:
         /* text */ return this.text == null ? new Base[0] : new Base[] { this.text }; // StringType
       case 3575610:
-        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<QuestionnaireItemType>
+        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
       case 1893321565:
         /* enableWhen */ return this.enableWhen == null ? new Base[0]
             : this.enableWhen.toArray(new Base[this.enableWhen.size()]); // QuestionnaireItemEnableWhenComponent
       case 1854802165:
-        /* enableBehavior */ return this.enableBehavior == null ? new Base[0] : new Base[] { this.enableBehavior }; // Enumeration<EnableWhenBehavior>
+        /* enableBehavior */ return this.enableBehavior == null ? new Base[0] : new Base[] { this.enableBehavior }; // StringType
       case -393139297:
         /* required */ return this.required == null ? new Base[0] : new Base[] { this.required }; // BooleanType
       case 1094288952:
@@ -1368,13 +1366,13 @@ public class Questionnaire extends MetadataResource {
         this.text = castToString(value); // StringType
         return value;
       case 3575610: // type
-        this.type = castToString(value); // Enumeration<QuestionnaireItemType>
+        this.type = castToString(value); // StringType
         return value;
       case 1893321565: // enableWhen
         this.getEnableWhen().add((QuestionnaireItemEnableWhenComponent) value); // QuestionnaireItemEnableWhenComponent
         return value;
       case 1854802165: // enableBehavior
-        this.enableBehavior = castToString(value); // Enumeration<EnableWhenBehavior>
+        this.enableBehavior = castToString(value); // StringType
         return value;
       case -393139297: // required
         this.required = castToBoolean(value); // BooleanType
@@ -1419,11 +1417,11 @@ public class Questionnaire extends MetadataResource {
       } else if (name.equals("text")) {
         this.text = castToString(value); // StringType
       } else if (name.equals("type")) {
-        this.type = castToString(value); // Enumeration<QuestionnaireItemType>
+        this.type = castToString(value); // StringType
       } else if (name.equals("enableWhen")) {
         this.getEnableWhen().add((QuestionnaireItemEnableWhenComponent) value);
       } else if (name.equals("enableBehavior")) {
-        this.enableBehavior = castToString(value); // Enumeration<EnableWhenBehavior>
+        this.enableBehavior = castToString(value); // StringType
       } else if (name.equals("required")) {
         this.required = castToBoolean(value); // BooleanType
       } else if (name.equals("repeats")) {
@@ -1839,8 +1837,8 @@ public class Questionnaire extends MetadataResource {
     /**
      * @return Specifies the criteria by which the question is enabled.
      */
-    public StringType getOperator() {
-      return this.operator == null ? null : this.operator;
+    public String getOperator() {
+      return this.operator == null ? null : this.operator.getValue();
     }
 
     /**
@@ -2145,7 +2143,7 @@ public class Questionnaire extends MetadataResource {
       case -1165870106:
         /* question */ return this.question == null ? new Base[0] : new Base[] { this.question }; // StringType
       case -500553564:
-        /* operator */ return this.operator == null ? new Base[0] : new Base[] { this.operator }; // Enumeration<QuestionnaireItemOperator>
+        /* operator */ return this.operator == null ? new Base[0] : new Base[] { this.operator }; // StringType
       case -1412808770:
         /* answer */ return this.answer == null ? new Base[0] : new Base[] { this.answer }; // Type
       default:
@@ -2161,7 +2159,7 @@ public class Questionnaire extends MetadataResource {
         this.question = castToString(value); // StringType
         return value;
       case -500553564: // operator
-        this.operator = castToString(value); // Enumeration<QuestionnaireItemOperator>
+        this.operator = castToString(value); // StringType
         return value;
       case -1412808770: // answer
         this.answer = castToType(value); // Type
@@ -2177,7 +2175,7 @@ public class Questionnaire extends MetadataResource {
       if (name.equals("question")) {
         this.question = castToString(value); // StringType
       } else if (name.equals("operator")) {
-        this.operator = castToString(value); // Enumeration<QuestionnaireItemOperator>
+        this.operator = castToString(value); // StringType
       } else if (name.equals("answer[x]")) {
         this.answer = castToType(value); // Type
       } else
@@ -3297,7 +3295,7 @@ public class Questionnaire extends MetadataResource {
   /**
    * Constructor
    */
-  public Questionnaire(Enumeration<PublicationStatus> status) {
+  public Questionnaire(StringType status) {
     super();
     this.status = status;
   }
@@ -3702,12 +3700,12 @@ public class Questionnaire extends MetadataResource {
    *         id, value and extensions. The accessor "getStatus" gives direct
    *         access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Questionnaire.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -3725,7 +3723,7 @@ public class Questionnaire extends MetadataResource {
    *              object with id, value and extensions. The accessor "getStatus"
    *              gives direct access to the value
    */
-  public Questionnaire setStatusElement(Enumeration<PublicationStatus> value) {
+  public Questionnaire setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -3734,7 +3732,7 @@ public class Questionnaire extends MetadataResource {
    * @return The status of this questionnaire. Enables tracking the life-cycle of
    *         the content.
    */
-  public PublicationStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
@@ -3742,9 +3740,9 @@ public class Questionnaire extends MetadataResource {
    * @param value The status of this questionnaire. Enables tracking the
    *              life-cycle of the content.
    */
-  public Questionnaire setStatus(PublicationStatus value) {
+  public Questionnaire setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -4619,7 +4617,7 @@ public class Questionnaire extends MetadataResource {
     children.add(new Property("derivedFrom", "canonical(Questionnaire)",
         "The URL of a Questionnaire that this Questionnaire is based on.", 0, java.lang.Integer.MAX_VALUE,
         derivedFrom));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of this questionnaire. Enables tracking the life-cycle of the content.", 0, 1, status));
     children.add(new Property("experimental", "boolean",
         "A Boolean value to indicate that this questionnaire is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
@@ -4693,7 +4691,7 @@ public class Questionnaire extends MetadataResource {
           "The URL of a Questionnaire that this Questionnaire is based on.", 0, java.lang.Integer.MAX_VALUE,
           derivedFrom);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of this questionnaire. Enables tracking the life-cycle of the content.", 0, 1, status);
     case -404562712:
       /* experimental */ return new Property("experimental", "boolean",
@@ -4777,7 +4775,7 @@ public class Questionnaire extends MetadataResource {
       /* derivedFrom */ return this.derivedFrom == null ? new Base[0]
           : this.derivedFrom.toArray(new Base[this.derivedFrom.size()]); // CanonicalType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -404562712:
       /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
     case -603200890:
@@ -4839,8 +4837,7 @@ public class Questionnaire extends MetadataResource {
       this.getDerivedFrom().add(castToCanonical(value)); // CanonicalType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -404562712: // experimental
       this.experimental = castToBoolean(value); // BooleanType
@@ -4908,8 +4905,7 @@ public class Questionnaire extends MetadataResource {
     } else if (name.equals("derivedFrom")) {
       this.getDerivedFrom().add(castToCanonical(value));
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("subjectType")) {
@@ -5065,7 +5061,7 @@ public class Questionnaire extends MetadataResource {
     case 1077922663:
       /* derivedFrom */ return new String[] { "canonical" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -404562712:
       /* experimental */ return new String[] { "boolean" };
     case -603200890:

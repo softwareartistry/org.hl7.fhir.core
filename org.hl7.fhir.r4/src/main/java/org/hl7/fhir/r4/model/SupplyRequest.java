@@ -635,8 +635,8 @@ public class SupplyRequest extends DomainResource {
   /**
    * @return Status of the supply request.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -719,8 +719,8 @@ public class SupplyRequest extends DomainResource {
    * @return Indicates how quickly this SupplyRequest should be addressed with
    *         respect to other requests.
    */
-  public StringType getPriority() {
-    return this.priority == null ? null : this.priority;
+  public String getPriority() {
+    return this.priority == null ? null : this.priority.getValue();
   }
 
   /**

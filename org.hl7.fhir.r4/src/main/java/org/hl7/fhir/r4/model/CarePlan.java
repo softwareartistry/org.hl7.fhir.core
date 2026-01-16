@@ -873,8 +873,8 @@ public class CarePlan extends DomainResource {
      *         CarePlan.activity.reference. For example, a MedicationRequest, a
      *         ServiceRequest, or a CommunicationRequest.
      */
-    public StringType getKind() {
-      return this.kind == null ? null : this.kind;
+    public String getKind() {
+      return this.kind == null ? null : this.kind.getValue();
     }
 
     /**
@@ -1268,8 +1268,8 @@ public class CarePlan extends DomainResource {
     /**
      * @return Identifies what progress is being made for the specific activity.
      */
-    public StringType getStatus() {
-      return this.status == null ? null : this.status;
+    public String getStatus() {
+      return this.status == null ? null : this.status.getValue();
     }
 
     /**
@@ -1884,7 +1884,7 @@ public class CarePlan extends DomainResource {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 3292052:
-        /* kind */ return this.kind == null ? new Base[0] : new Base[] { this.kind }; // Enumeration<CarePlanActivityKind>
+        /* kind */ return this.kind == null ? new Base[0] : new Base[] { this.kind }; // StringType
       case 8911915:
         /* instantiatesCanonical */ return this.instantiatesCanonical == null ? new Base[0]
             : this.instantiatesCanonical.toArray(new Base[this.instantiatesCanonical.size()]); // CanonicalType
@@ -1902,7 +1902,7 @@ public class CarePlan extends DomainResource {
       case 3178259:
         /* goal */ return this.goal == null ? new Base[0] : this.goal.toArray(new Base[this.goal.size()]); // Reference
       case -892481550:
-        /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<CarePlanActivityStatus>
+        /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
       case 2051346646:
         /* statusReason */ return this.statusReason == null ? new Base[0] : new Base[] { this.statusReason }; // CodeableConcept
       case -1788508167:
@@ -1932,7 +1932,7 @@ public class CarePlan extends DomainResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3292052: // kind
-        this.kind = castToString(value); // Enumeration<CarePlanActivityKind>
+        this.kind = castToString(value); // StringType
         return value;
       case 8911915: // instantiatesCanonical
         this.getInstantiatesCanonical().add(castToCanonical(value)); // CanonicalType
@@ -1953,8 +1953,7 @@ public class CarePlan extends DomainResource {
         this.getGoal().add(castToReference(value)); // Reference
         return value;
       case -892481550: // status
-//        value = new CarePlanActivityStatusEnumFactory().fromType(castToCode(value));
-        this.status = castToString(value); // Enumeration<CarePlanActivityStatus>
+        this.status = castToString(value); // StringType
         return value;
       case 2051346646: // statusReason
         this.statusReason = castToCodeableConcept(value); // CodeableConcept
@@ -1992,7 +1991,7 @@ public class CarePlan extends DomainResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("kind")) {
-        this.kind = castToString(value); // Enumeration<CarePlanActivityKind>
+        this.kind = castToString(value); // StringType
       } else if (name.equals("instantiatesCanonical")) {
         this.getInstantiatesCanonical().add(castToCanonical(value));
       } else if (name.equals("instantiatesUri")) {
@@ -2006,8 +2005,7 @@ public class CarePlan extends DomainResource {
       } else if (name.equals("goal")) {
         this.getGoal().add(castToReference(value));
       } else if (name.equals("status")) {
-//        value = new CarePlanActivityStatusEnumFactory().fromType(castToCode(value));
-        this.status = castToString(value); // Enumeration<CarePlanActivityStatus>
+        this.status = castToString(value); // StringType
       } else if (name.equals("statusReason")) {
         this.statusReason = castToCodeableConcept(value); // CodeableConcept
       } else if (name.equals("doNotPerform")) {
@@ -3005,8 +3003,8 @@ public class CarePlan extends DomainResource {
    * @return Indicates whether the plan is currently being acted upon, represents
    *         future intentions or is now a historical record.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -3059,8 +3057,8 @@ public class CarePlan extends DomainResource {
    * @return Indicates the level of authority/intentionality associated with the
    *         care plan and where the care plan fits into the workflow chain.
    */
-  public StringType getIntent() {
-    return this.intent == null ? null : this.intent;
+  public String getIntent() {
+    return this.intent == null ? null : this.intent.getValue();
   }
 
   /**
@@ -4049,9 +4047,9 @@ public class CarePlan extends DomainResource {
     case -995410646:
       /* partOf */ return this.partOf == null ? new Base[0] : this.partOf.toArray(new Base[this.partOf.size()]); // Reference
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<CarePlanStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -1183762788:
-      /* intent */ return this.intent == null ? new Base[0] : new Base[] { this.intent }; // Enumeration<CarePlanIntent>
+      /* intent */ return this.intent == null ? new Base[0] : new Base[] { this.intent }; // StringType
     case 50511102:
       /* category */ return this.category == null ? new Base[0] : this.category.toArray(new Base[this.category.size()]); // CodeableConcept
     case 110371416:
@@ -4113,12 +4111,10 @@ public class CarePlan extends DomainResource {
       this.getPartOf().add(castToReference(value)); // Reference
       return value;
     case -892481550: // status
-//      value = new CarePlanStatusEnumFactory().fromType(castToCode(value));
-      this.status = castToString(value); // Enumeration<CarePlanStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -1183762788: // intent
-//      value = new CarePlanIntentEnumFactory().fromType(castToCode(value));
-      this.intent = castToString(value); // Enumeration<CarePlanIntent>
+      this.intent = castToString(value); // StringType
       return value;
     case 50511102: // category
       this.getCategory().add(castToCodeableConcept(value)); // CodeableConcept
@@ -4186,11 +4182,9 @@ public class CarePlan extends DomainResource {
     } else if (name.equals("partOf")) {
       this.getPartOf().add(castToReference(value));
     } else if (name.equals("status")) {
-//      value = new CarePlanStatusEnumFactory().fromType(castToCode(value));
-      this.status = castToString(value); // Enumeration<CarePlanStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("intent")) {
-//      value = new CarePlanIntentEnumFactory().fromType(castToCode(value));
-      this.intent = castToString(value); // Enumeration<CarePlanIntent>
+      this.intent = castToString(value); // StringType
     } else if (name.equals("category")) {
       this.getCategory().add(castToCodeableConcept(value));
     } else if (name.equals("title")) {

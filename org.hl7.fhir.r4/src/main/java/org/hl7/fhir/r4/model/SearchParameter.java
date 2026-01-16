@@ -36,8 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.r4.model.Enumerations.SearchParamType;
 import org.hl7.fhir.r4.model.Enumerations.SearchParamTypeEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
@@ -55,8 +53,8 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
  */
 @ResourceDef(name = "SearchParameter", profile = "http://hl7.org/fhir/StructureDefinition/SearchParameter")
 @ChildOrder(names = { "url", "version", "name", "derivedFrom", "status", "experimental", "date", "publisher", "contact",
-    "description", "useContext", "jurisdiction", "purpose", "code", "base", "type", "expression", "xpath", "xpathUsage",
-    "target", "multipleOr", "multipleAnd", "comparator", "modifier", "chain", "component" })
+  "description", "useContext", "jurisdiction", "purpose", "code", "base", "type", "expression", "xpath", "xpathUsage",
+  "target", "multipleOr", "multipleAnd", "comparator", "modifier", "chain", "component" })
 public class SearchParameter extends MetadataResource {
 
   public enum XPathUsageType {
@@ -110,77 +108,77 @@ public class SearchParameter extends MetadataResource {
 
     public String toCode() {
       switch (this) {
-      case NORMAL:
-        return "normal";
-      case PHONETIC:
-        return "phonetic";
-      case NEARBY:
-        return "nearby";
-      case DISTANCE:
-        return "distance";
-      case OTHER:
-        return "other";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case NORMAL:
+          return "normal";
+        case PHONETIC:
+          return "phonetic";
+        case NEARBY:
+          return "nearby";
+        case DISTANCE:
+          return "distance";
+        case OTHER:
+          return "other";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getSystem() {
       switch (this) {
-      case NORMAL:
-        return "http://hl7.org/fhir/search-xpath-usage";
-      case PHONETIC:
-        return "http://hl7.org/fhir/search-xpath-usage";
-      case NEARBY:
-        return "http://hl7.org/fhir/search-xpath-usage";
-      case DISTANCE:
-        return "http://hl7.org/fhir/search-xpath-usage";
-      case OTHER:
-        return "http://hl7.org/fhir/search-xpath-usage";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case NORMAL:
+          return "http://hl7.org/fhir/search-xpath-usage";
+        case PHONETIC:
+          return "http://hl7.org/fhir/search-xpath-usage";
+        case NEARBY:
+          return "http://hl7.org/fhir/search-xpath-usage";
+        case DISTANCE:
+          return "http://hl7.org/fhir/search-xpath-usage";
+        case OTHER:
+          return "http://hl7.org/fhir/search-xpath-usage";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDefinition() {
       switch (this) {
-      case NORMAL:
-        return "The search parameter is derived directly from the selected nodes based on the type definitions.";
-      case PHONETIC:
-        return "The search parameter is derived by a phonetic transform from the selected nodes.";
-      case NEARBY:
-        return "The search parameter is based on a spatial transform of the selected nodes.";
-      case DISTANCE:
-        return "The search parameter is based on a spatial transform of the selected nodes, using physical distance from the middle.";
-      case OTHER:
-        return "The interpretation of the xpath statement is unknown (and can't be automated).";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case NORMAL:
+          return "The search parameter is derived directly from the selected nodes based on the type definitions.";
+        case PHONETIC:
+          return "The search parameter is derived by a phonetic transform from the selected nodes.";
+        case NEARBY:
+          return "The search parameter is based on a spatial transform of the selected nodes.";
+        case DISTANCE:
+          return "The search parameter is based on a spatial transform of the selected nodes, using physical distance from the middle.";
+        case OTHER:
+          return "The interpretation of the xpath statement is unknown (and can't be automated).";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDisplay() {
       switch (this) {
-      case NORMAL:
-        return "Normal";
-      case PHONETIC:
-        return "Phonetic";
-      case NEARBY:
-        return "Nearby";
-      case DISTANCE:
-        return "Distance";
-      case OTHER:
-        return "Other";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case NORMAL:
+          return "Normal";
+        case PHONETIC:
+          return "Phonetic";
+        case NEARBY:
+          return "Nearby";
+        case DISTANCE:
+          return "Distance";
+        case OTHER:
+          return "Other";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
   }
@@ -225,9 +223,9 @@ public class SearchParameter extends MetadataResource {
     }
 
     public String toCode(XPathUsageType code) {
-       if (code == XPathUsageType.NULL)
-           return null;
-       if (code == XPathUsageType.NORMAL)
+      if (code == XPathUsageType.NULL)
+        return null;
+      if (code == XPathUsageType.NORMAL)
         return "normal";
       if (code == XPathUsageType.PHONETIC)
         return "phonetic";
@@ -238,7 +236,7 @@ public class SearchParameter extends MetadataResource {
       if (code == XPathUsageType.OTHER)
         return "other";
       return "?";
-   }
+    }
 
     public String toSystem(XPathUsageType code) {
       return code.getSystem();
@@ -321,109 +319,109 @@ public class SearchParameter extends MetadataResource {
 
     public String toCode() {
       switch (this) {
-      case EQ:
-        return "eq";
-      case NE:
-        return "ne";
-      case GT:
-        return "gt";
-      case LT:
-        return "lt";
-      case GE:
-        return "ge";
-      case LE:
-        return "le";
-      case SA:
-        return "sa";
-      case EB:
-        return "eb";
-      case AP:
-        return "ap";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case EQ:
+          return "eq";
+        case NE:
+          return "ne";
+        case GT:
+          return "gt";
+        case LT:
+          return "lt";
+        case GE:
+          return "ge";
+        case LE:
+          return "le";
+        case SA:
+          return "sa";
+        case EB:
+          return "eb";
+        case AP:
+          return "ap";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getSystem() {
       switch (this) {
-      case EQ:
-        return "http://hl7.org/fhir/search-comparator";
-      case NE:
-        return "http://hl7.org/fhir/search-comparator";
-      case GT:
-        return "http://hl7.org/fhir/search-comparator";
-      case LT:
-        return "http://hl7.org/fhir/search-comparator";
-      case GE:
-        return "http://hl7.org/fhir/search-comparator";
-      case LE:
-        return "http://hl7.org/fhir/search-comparator";
-      case SA:
-        return "http://hl7.org/fhir/search-comparator";
-      case EB:
-        return "http://hl7.org/fhir/search-comparator";
-      case AP:
-        return "http://hl7.org/fhir/search-comparator";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case EQ:
+          return "http://hl7.org/fhir/search-comparator";
+        case NE:
+          return "http://hl7.org/fhir/search-comparator";
+        case GT:
+          return "http://hl7.org/fhir/search-comparator";
+        case LT:
+          return "http://hl7.org/fhir/search-comparator";
+        case GE:
+          return "http://hl7.org/fhir/search-comparator";
+        case LE:
+          return "http://hl7.org/fhir/search-comparator";
+        case SA:
+          return "http://hl7.org/fhir/search-comparator";
+        case EB:
+          return "http://hl7.org/fhir/search-comparator";
+        case AP:
+          return "http://hl7.org/fhir/search-comparator";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDefinition() {
       switch (this) {
-      case EQ:
-        return "the value for the parameter in the resource is equal to the provided value.";
-      case NE:
-        return "the value for the parameter in the resource is not equal to the provided value.";
-      case GT:
-        return "the value for the parameter in the resource is greater than the provided value.";
-      case LT:
-        return "the value for the parameter in the resource is less than the provided value.";
-      case GE:
-        return "the value for the parameter in the resource is greater or equal to the provided value.";
-      case LE:
-        return "the value for the parameter in the resource is less or equal to the provided value.";
-      case SA:
-        return "the value for the parameter in the resource starts after the provided value.";
-      case EB:
-        return "the value for the parameter in the resource ends before the provided value.";
-      case AP:
-        return "the value for the parameter in the resource is approximately the same to the provided value.";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case EQ:
+          return "the value for the parameter in the resource is equal to the provided value.";
+        case NE:
+          return "the value for the parameter in the resource is not equal to the provided value.";
+        case GT:
+          return "the value for the parameter in the resource is greater than the provided value.";
+        case LT:
+          return "the value for the parameter in the resource is less than the provided value.";
+        case GE:
+          return "the value for the parameter in the resource is greater or equal to the provided value.";
+        case LE:
+          return "the value for the parameter in the resource is less or equal to the provided value.";
+        case SA:
+          return "the value for the parameter in the resource starts after the provided value.";
+        case EB:
+          return "the value for the parameter in the resource ends before the provided value.";
+        case AP:
+          return "the value for the parameter in the resource is approximately the same to the provided value.";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDisplay() {
       switch (this) {
-      case EQ:
-        return "Equals";
-      case NE:
-        return "Not Equals";
-      case GT:
-        return "Greater Than";
-      case LT:
-        return "Less Than";
-      case GE:
-        return "Greater or Equals";
-      case LE:
-        return "Less of Equal";
-      case SA:
-        return "Starts After";
-      case EB:
-        return "Ends Before";
-      case AP:
-        return "Approximately";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case EQ:
+          return "Equals";
+        case NE:
+          return "Not Equals";
+        case GT:
+          return "Greater Than";
+        case LT:
+          return "Less Than";
+        case GE:
+          return "Greater or Equals";
+        case LE:
+          return "Less of Equal";
+        case SA:
+          return "Starts After";
+        case EB:
+          return "Ends Before";
+        case AP:
+          return "Approximately";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
   }
@@ -484,9 +482,9 @@ public class SearchParameter extends MetadataResource {
     }
 
     public String toCode(SearchComparator code) {
-       if (code == SearchComparator.NULL)
-           return null;
-       if (code == SearchComparator.EQ)
+      if (code == SearchComparator.NULL)
+        return null;
+      if (code == SearchComparator.EQ)
         return "eq";
       if (code == SearchComparator.NE)
         return "ne";
@@ -505,7 +503,7 @@ public class SearchParameter extends MetadataResource {
       if (code == SearchComparator.AP)
         return "ap";
       return "?";
-   }
+    }
 
     public String toSystem(SearchComparator code) {
       return code.getSystem();
@@ -615,133 +613,133 @@ public class SearchParameter extends MetadataResource {
 
     public String toCode() {
       switch (this) {
-      case MISSING:
-        return "missing";
-      case EXACT:
-        return "exact";
-      case CONTAINS:
-        return "contains";
-      case NOT:
-        return "not";
-      case TEXT:
-        return "text";
-      case IN:
-        return "in";
-      case NOTIN:
-        return "not-in";
-      case BELOW:
-        return "below";
-      case ABOVE:
-        return "above";
-      case TYPE:
-        return "type";
-      case IDENTIFIER:
-        return "identifier";
-      case OFTYPE:
-        return "ofType";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case MISSING:
+          return "missing";
+        case EXACT:
+          return "exact";
+        case CONTAINS:
+          return "contains";
+        case NOT:
+          return "not";
+        case TEXT:
+          return "text";
+        case IN:
+          return "in";
+        case NOTIN:
+          return "not-in";
+        case BELOW:
+          return "below";
+        case ABOVE:
+          return "above";
+        case TYPE:
+          return "type";
+        case IDENTIFIER:
+          return "identifier";
+        case OFTYPE:
+          return "ofType";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getSystem() {
       switch (this) {
-      case MISSING:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case EXACT:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case CONTAINS:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case NOT:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case TEXT:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case IN:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case NOTIN:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case BELOW:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case ABOVE:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case TYPE:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case IDENTIFIER:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case OFTYPE:
-        return "http://hl7.org/fhir/search-modifier-code";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case MISSING:
+          return "http://hl7.org/fhir/search-modifier-code";
+        case EXACT:
+          return "http://hl7.org/fhir/search-modifier-code";
+        case CONTAINS:
+          return "http://hl7.org/fhir/search-modifier-code";
+        case NOT:
+          return "http://hl7.org/fhir/search-modifier-code";
+        case TEXT:
+          return "http://hl7.org/fhir/search-modifier-code";
+        case IN:
+          return "http://hl7.org/fhir/search-modifier-code";
+        case NOTIN:
+          return "http://hl7.org/fhir/search-modifier-code";
+        case BELOW:
+          return "http://hl7.org/fhir/search-modifier-code";
+        case ABOVE:
+          return "http://hl7.org/fhir/search-modifier-code";
+        case TYPE:
+          return "http://hl7.org/fhir/search-modifier-code";
+        case IDENTIFIER:
+          return "http://hl7.org/fhir/search-modifier-code";
+        case OFTYPE:
+          return "http://hl7.org/fhir/search-modifier-code";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDefinition() {
       switch (this) {
-      case MISSING:
-        return "The search parameter returns resources that have a value or not.";
-      case EXACT:
-        return "The search parameter returns resources that have a value that exactly matches the supplied parameter (the whole string, including casing and accents).";
-      case CONTAINS:
-        return "The search parameter returns resources that include the supplied parameter value anywhere within the field being searched.";
-      case NOT:
-        return "The search parameter returns resources that do not contain a match.";
-      case TEXT:
-        return "The search parameter is processed as a string that searches text associated with the code/value - either CodeableConcept.text, Coding.display, or Identifier.type.text.";
-      case IN:
-        return "The search parameter is a URI (relative or absolute) that identifies a value set, and the search parameter tests whether the coding is in the specified value set.";
-      case NOTIN:
-        return "The search parameter is a URI (relative or absolute) that identifies a value set, and the search parameter tests whether the coding is not in the specified value set.";
-      case BELOW:
-        return "The search parameter tests whether the value in a resource is subsumed by the specified value (is-a, or hierarchical relationships).";
-      case ABOVE:
-        return "The search parameter tests whether the value in a resource subsumes the specified value (is-a, or hierarchical relationships).";
-      case TYPE:
-        return "The search parameter only applies to the Resource Type specified as a modifier (e.g. the modifier is not actually :type, but :Patient etc.).";
-      case IDENTIFIER:
-        return "The search parameter applies to the identifier on the resource, not the reference.";
-      case OFTYPE:
-        return "The search parameter has the format system|code|value, where the system and code refer to an Identifier.type.coding.system and .code, and match if any of the type codes match. All 3 parts must be present.";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case MISSING:
+          return "The search parameter returns resources that have a value or not.";
+        case EXACT:
+          return "The search parameter returns resources that have a value that exactly matches the supplied parameter (the whole string, including casing and accents).";
+        case CONTAINS:
+          return "The search parameter returns resources that include the supplied parameter value anywhere within the field being searched.";
+        case NOT:
+          return "The search parameter returns resources that do not contain a match.";
+        case TEXT:
+          return "The search parameter is processed as a string that searches text associated with the code/value - either CodeableConcept.text, Coding.display, or Identifier.type.text.";
+        case IN:
+          return "The search parameter is a URI (relative or absolute) that identifies a value set, and the search parameter tests whether the coding is in the specified value set.";
+        case NOTIN:
+          return "The search parameter is a URI (relative or absolute) that identifies a value set, and the search parameter tests whether the coding is not in the specified value set.";
+        case BELOW:
+          return "The search parameter tests whether the value in a resource is subsumed by the specified value (is-a, or hierarchical relationships).";
+        case ABOVE:
+          return "The search parameter tests whether the value in a resource subsumes the specified value (is-a, or hierarchical relationships).";
+        case TYPE:
+          return "The search parameter only applies to the Resource Type specified as a modifier (e.g. the modifier is not actually :type, but :Patient etc.).";
+        case IDENTIFIER:
+          return "The search parameter applies to the identifier on the resource, not the reference.";
+        case OFTYPE:
+          return "The search parameter has the format system|code|value, where the system and code refer to an Identifier.type.coding.system and .code, and match if any of the type codes match. All 3 parts must be present.";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDisplay() {
       switch (this) {
-      case MISSING:
-        return "Missing";
-      case EXACT:
-        return "Exact";
-      case CONTAINS:
-        return "Contains";
-      case NOT:
-        return "Not";
-      case TEXT:
-        return "Text";
-      case IN:
-        return "In";
-      case NOTIN:
-        return "Not In";
-      case BELOW:
-        return "Below";
-      case ABOVE:
-        return "Above";
-      case TYPE:
-        return "Type";
-      case IDENTIFIER:
-        return "Identifier";
-      case OFTYPE:
-        return "Of Type";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case MISSING:
+          return "Missing";
+        case EXACT:
+          return "Exact";
+        case CONTAINS:
+          return "Contains";
+        case NOT:
+          return "Not";
+        case TEXT:
+          return "Text";
+        case IN:
+          return "In";
+        case NOTIN:
+          return "Not In";
+        case BELOW:
+          return "Below";
+        case ABOVE:
+          return "Above";
+        case TYPE:
+          return "Type";
+        case IDENTIFIER:
+          return "Identifier";
+        case OFTYPE:
+          return "Of Type";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
   }
@@ -814,9 +812,9 @@ public class SearchParameter extends MetadataResource {
     }
 
     public String toCode(SearchModifierCode code) {
-       if (code == SearchModifierCode.NULL)
-           return null;
-       if (code == SearchModifierCode.MISSING)
+      if (code == SearchModifierCode.NULL)
+        return null;
+      if (code == SearchModifierCode.MISSING)
         return "missing";
       if (code == SearchModifierCode.EXACT)
         return "exact";
@@ -841,7 +839,7 @@ public class SearchParameter extends MetadataResource {
       if (code == SearchModifierCode.OFTYPE)
         return "ofType";
       return "?";
-   }
+    }
 
     public String toSystem(SearchModifierCode code) {
       return code.getSystem();
@@ -854,7 +852,7 @@ public class SearchParameter extends MetadataResource {
      * The definition of the search parameter that describes this part.
      */
     @Child(name = "definition", type = {
-        CanonicalType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
+      CanonicalType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "Defines how the part works", formalDefinition = "The definition of the search parameter that describes this part.")
     protected CanonicalType definition;
 
@@ -863,7 +861,7 @@ public class SearchParameter extends MetadataResource {
      * the output of the main SearchParameter.expression.
      */
     @Child(name = "expression", type = {
-        StringType.class }, order = 2, min = 1, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 2, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "Subexpression relative to main expression", formalDefinition = "A sub-expression that defines how to extract values for this component from the output of the main SearchParameter.expression.")
     protected StringType expression;
 
@@ -995,24 +993,24 @@ public class SearchParameter extends MetadataResource {
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
       children.add(new Property("definition", "canonical(SearchParameter)",
-          "The definition of the search parameter that describes this part.", 0, 1, definition));
+        "The definition of the search parameter that describes this part.", 0, 1, definition));
       children.add(new Property("expression", "string",
-          "A sub-expression that defines how to extract values for this component from the output of the main SearchParameter.expression.",
-          0, 1, expression));
+        "A sub-expression that defines how to extract values for this component from the output of the main SearchParameter.expression.",
+        0, 1, expression));
     }
 
     @Override
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
-      case -1014418093:
-        /* definition */ return new Property("definition", "canonical(SearchParameter)",
-            "The definition of the search parameter that describes this part.", 0, 1, definition);
-      case -1795452264:
-        /* expression */ return new Property("expression", "string",
-            "A sub-expression that defines how to extract values for this component from the output of the main SearchParameter.expression.",
-            0, 1, expression);
-      default:
-        return super.getNamedProperty(_hash, _name, _checkValid);
+        case -1014418093:
+          /* definition */ return new Property("definition", "canonical(SearchParameter)",
+          "The definition of the search parameter that describes this part.", 0, 1, definition);
+        case -1795452264:
+          /* expression */ return new Property("expression", "string",
+          "A sub-expression that defines how to extract values for this component from the output of the main SearchParameter.expression.",
+          0, 1, expression);
+        default:
+          return super.getNamedProperty(_hash, _name, _checkValid);
       }
 
     }
@@ -1020,12 +1018,12 @@ public class SearchParameter extends MetadataResource {
     @Override
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
-      case -1014418093:
-        /* definition */ return this.definition == null ? new Base[0] : new Base[] { this.definition }; // CanonicalType
-      case -1795452264:
-        /* expression */ return this.expression == null ? new Base[0] : new Base[] { this.expression }; // StringType
-      default:
-        return super.getProperty(hash, name, checkValid);
+        case -1014418093:
+          /* definition */ return this.definition == null ? new Base[0] : new Base[] { this.definition }; // CanonicalType
+        case -1795452264:
+          /* expression */ return this.expression == null ? new Base[0] : new Base[] { this.expression }; // StringType
+        default:
+          return super.getProperty(hash, name, checkValid);
       }
 
     }
@@ -1033,14 +1031,14 @@ public class SearchParameter extends MetadataResource {
     @Override
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
-      case -1014418093: // definition
-        this.definition = castToCanonical(value); // CanonicalType
-        return value;
-      case -1795452264: // expression
-        this.expression = castToString(value); // StringType
-        return value;
-      default:
-        return super.setProperty(hash, name, value);
+        case -1014418093: // definition
+          this.definition = castToCanonical(value); // CanonicalType
+          return value;
+        case -1795452264: // expression
+          this.expression = castToString(value); // StringType
+          return value;
+        default:
+          return super.setProperty(hash, name, value);
       }
 
     }
@@ -1056,26 +1054,26 @@ public class SearchParameter extends MetadataResource {
       return value;
     }
 
-  @Override
-  public void removeChild(String name, Base value) throws FHIRException {
+    @Override
+    public void removeChild(String name, Base value) throws FHIRException {
       if (name.equals("definition")) {
         this.definition = null;
       } else if (name.equals("expression")) {
         this.expression = null;
       } else
         super.removeChild(name, value);
-      
+
     }
 
     @Override
     public Base makeProperty(int hash, String name) throws FHIRException {
       switch (hash) {
-      case -1014418093:
-        return getDefinitionElement();
-      case -1795452264:
-        return getExpressionElement();
-      default:
-        return super.makeProperty(hash, name);
+        case -1014418093:
+          return getDefinitionElement();
+        case -1795452264:
+          return getExpressionElement();
+        default:
+          return super.makeProperty(hash, name);
       }
 
     }
@@ -1083,12 +1081,12 @@ public class SearchParameter extends MetadataResource {
     @Override
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
-      case -1014418093:
-        /* definition */ return new String[] { "canonical" };
-      case -1795452264:
-        /* expression */ return new String[] { "string" };
-      default:
-        return super.getTypesForProperty(hash, name);
+        case -1014418093:
+          /* definition */ return new String[] { "canonical" };
+        case -1795452264:
+          /* expression */ return new String[] { "string" };
+        default:
+          return super.getTypesForProperty(hash, name);
       }
 
     }
@@ -1154,7 +1152,7 @@ public class SearchParameter extends MetadataResource {
    * the underlying search parameter.
    */
   @Child(name = "derivedFrom", type = {
-      CanonicalType.class }, order = 0, min = 0, max = 1, modifier = false, summary = false)
+    CanonicalType.class }, order = 0, min = 0, max = 1, modifier = false, summary = false)
   @Description(shortDefinition = "Original definition for the search parameter", formalDefinition = "Where this search parameter is originally defined. If a derivedFrom is provided, then the details in the search parameter must be consistent with the definition from which it is defined. i.e. the parameter should have the same meaning, and (usually) the functionality should be a proper subset of the underlying search parameter.")
   protected CanonicalType derivedFrom;
 
@@ -1163,7 +1161,7 @@ public class SearchParameter extends MetadataResource {
    * designed as it has.
    */
   @Child(name = "purpose", type = {
-      MarkdownType.class }, order = 1, min = 0, max = 1, modifier = false, summary = false)
+    MarkdownType.class }, order = 1, min = 0, max = 1, modifier = false, summary = false)
   @Description(shortDefinition = "Why this search parameter is defined", formalDefinition = "Explanation of why this search parameter is needed and why it has been designed as it has.")
   protected MarkdownType purpose;
 
@@ -1179,7 +1177,7 @@ public class SearchParameter extends MetadataResource {
    * The base resource type(s) that this search parameter can be used against.
    */
   @Child(name = "base", type = {
-      CodeType.class }, order = 3, min = 1, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
+    CodeType.class }, order = 3, min = 1, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
   @Description(shortDefinition = "The resource type(s) this search parameter applies to", formalDefinition = "The base resource type(s) that this search parameter can be used against.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/resource-types")
   protected List<CodeType> base;
@@ -1198,7 +1196,7 @@ public class SearchParameter extends MetadataResource {
    * parameter.
    */
   @Child(name = "expression", type = {
-      StringType.class }, order = 5, min = 0, max = 1, modifier = false, summary = false)
+    StringType.class }, order = 5, min = 0, max = 1, modifier = false, summary = false)
   @Description(shortDefinition = "FHIRPath expression that extracts the values", formalDefinition = "A FHIRPath expression that returns a set of elements for the search parameter.")
   protected StringType expression;
 
@@ -1222,7 +1220,7 @@ public class SearchParameter extends MetadataResource {
    * Types of resource (if a resource is referenced).
    */
   @Child(name = "target", type = {
-      CodeType.class }, order = 8, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = false)
+    CodeType.class }, order = 8, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = false)
   @Description(shortDefinition = "Types of resource (if a resource reference)", formalDefinition = "Types of resource (if a resource is referenced).")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/resource-types")
   protected List<CodeType> target;
@@ -1233,7 +1231,7 @@ public class SearchParameter extends MetadataResource {
    * values match.
    */
   @Child(name = "multipleOr", type = {
-      BooleanType.class }, order = 9, min = 0, max = 1, modifier = false, summary = false)
+    BooleanType.class }, order = 9, min = 0, max = 1, modifier = false, summary = false)
   @Description(shortDefinition = "Allow multiple values per parameter (or)", formalDefinition = "Whether multiple values are allowed for each time the parameter exists. Values are separated by commas, and the parameter matches if any of the values match.")
   protected BooleanType multipleOr;
 
@@ -1242,7 +1240,7 @@ public class SearchParameter extends MetadataResource {
    * the same name. The search matches if all the parameters match.
    */
   @Child(name = "multipleAnd", type = {
-      BooleanType.class }, order = 10, min = 0, max = 1, modifier = false, summary = false)
+    BooleanType.class }, order = 10, min = 0, max = 1, modifier = false, summary = false)
   @Description(shortDefinition = "Allow multiple parameters (and)", formalDefinition = "Whether multiple parameters are allowed - e.g. more than one parameter with the same name. The search matches if all the parameters match.")
   protected BooleanType multipleAnd;
 
@@ -1250,7 +1248,7 @@ public class SearchParameter extends MetadataResource {
    * Comparators supported for the search parameter.
    */
   @Child(name = "comparator", type = {
-      CodeType.class }, order = 11, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = false)
+    CodeType.class }, order = 11, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = false)
   @Description(shortDefinition = "eq | ne | gt | lt | ge | le | sa | eb | ap", formalDefinition = "Comparators supported for the search parameter.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/search-comparator")
   protected List<Enumeration<SearchComparator>> comparator;
@@ -1259,7 +1257,7 @@ public class SearchParameter extends MetadataResource {
    * A modifier supported for the search parameter.
    */
   @Child(name = "modifier", type = {
-      CodeType.class }, order = 12, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = false)
+    CodeType.class }, order = 12, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = false)
   @Description(shortDefinition = "missing | exact | contains | not | text | in | not-in | below | above | type | identifier | ofType", formalDefinition = "A modifier supported for the search parameter.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/search-modifier-code")
   protected List<Enumeration<SearchModifierCode>> modifier;
@@ -1273,7 +1271,7 @@ public class SearchParameter extends MetadataResource {
    * parameter on the target resource type.
    */
   @Child(name = "chain", type = {
-      StringType.class }, order = 13, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = false)
+    StringType.class }, order = 13, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = false)
   @Description(shortDefinition = "Chained names supported", formalDefinition = "Contains the names of any search parameters which may be chained to the containing search parameter. Chained parameters may be added to search parameters of type reference and specify that resources will only be returned if they contain a reference to a resource which matches the chained parameter value. Values for this field should be drawn from SearchParameter.code for a parameter on the target resource type.")
   protected List<StringType> chain;
 
@@ -1296,8 +1294,8 @@ public class SearchParameter extends MetadataResource {
   /**
    * Constructor
    */
-  public SearchParameter(UriType url, StringType name, Enumeration<PublicationStatus> status, MarkdownType description,
-      CodeType code, Enumeration<SearchParamType> type) {
+  public SearchParameter(UriType url, StringType name, StringType status, MarkdownType description,
+                         CodeType code, Enumeration<SearchParamType> type) {
     super();
     this.url = url;
     this.name = name;
@@ -1597,12 +1595,12 @@ public class SearchParameter extends MetadataResource {
    *         object with id, value and extensions. The accessor "getStatus" gives
    *         direct access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create SearchParameter.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -1620,7 +1618,7 @@ public class SearchParameter extends MetadataResource {
    *              object with id, value and extensions. The accessor "getStatus"
    *              gives direct access to the value
    */
-  public SearchParameter setStatusElement(Enumeration<PublicationStatus> value) {
+  public SearchParameter setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1629,7 +1627,7 @@ public class SearchParameter extends MetadataResource {
    * @return The status of this search parameter. Enables tracking the life-cycle
    *         of the content.
    */
-  public PublicationStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
@@ -1637,9 +1635,9 @@ public class SearchParameter extends MetadataResource {
    * @param value The status of this search parameter. Enables tracking the
    *              life-cycle of the content.
    */
-  public SearchParameter setStatus(PublicationStatus value) {
+  public SearchParameter setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -2893,170 +2891,170 @@ public class SearchParameter extends MetadataResource {
   protected void listChildren(List<Property> children) {
     super.listChildren(children);
     children.add(new Property("url", "uri",
-        "An absolute URI that is used to identify this search parameter when it is referenced in a specification, model, design or an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at which an authoritative instance of this search parameter is (or will be) published. This URL can be the target of a canonical reference. It SHALL remain the same when the search parameter is stored on different servers.",
-        0, 1, url));
+      "An absolute URI that is used to identify this search parameter when it is referenced in a specification, model, design or an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at which an authoritative instance of this search parameter is (or will be) published. This URL can be the target of a canonical reference. It SHALL remain the same when the search parameter is stored on different servers.",
+      0, 1, url));
     children.add(new Property("version", "string",
-        "The identifier that is used to identify this version of the search parameter when it is referenced in a specification, model, design or instance. This is an arbitrary value managed by the search parameter author and is not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no expectation that versions can be placed in a lexicographical sequence.",
-        0, 1, version));
+      "The identifier that is used to identify this version of the search parameter when it is referenced in a specification, model, design or instance. This is an arbitrary value managed by the search parameter author and is not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no expectation that versions can be placed in a lexicographical sequence.",
+      0, 1, version));
     children.add(new Property("name", "string",
-        "A natural language name identifying the search parameter. This name should be usable as an identifier for the module by machine processing applications such as code generation.",
-        0, 1, name));
+      "A natural language name identifying the search parameter. This name should be usable as an identifier for the module by machine processing applications such as code generation.",
+      0, 1, name));
     children.add(new Property("derivedFrom", "canonical(SearchParameter)",
-        "Where this search parameter is originally defined. If a derivedFrom is provided, then the details in the search parameter must be consistent with the definition from which it is defined. i.e. the parameter should have the same meaning, and (usually) the functionality should be a proper subset of the underlying search parameter.",
-        0, 1, derivedFrom));
-    children.add(new Property("status", "code",
-        "The status of this search parameter. Enables tracking the life-cycle of the content.", 0, 1, status));
+      "Where this search parameter is originally defined. If a derivedFrom is provided, then the details in the search parameter must be consistent with the definition from which it is defined. i.e. the parameter should have the same meaning, and (usually) the functionality should be a proper subset of the underlying search parameter.",
+      0, 1, derivedFrom));
+    children.add(new Property("status", "string",
+      "The status of this search parameter. Enables tracking the life-cycle of the content.", 0, 1, status));
     children.add(new Property("experimental", "boolean",
-        "A Boolean value to indicate that this search parameter is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
-        0, 1, experimental));
+      "A Boolean value to indicate that this search parameter is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
+      0, 1, experimental));
     children.add(new Property("date", "dateTime",
-        "The date  (and optionally time) when the search parameter was published. The date must change when the business version changes and it must change if the status code changes. In addition, it should change when the substantive content of the search parameter changes.",
-        0, 1, date));
+      "The date  (and optionally time) when the search parameter was published. The date must change when the business version changes and it must change if the status code changes. In addition, it should change when the substantive content of the search parameter changes.",
+      0, 1, date));
     children.add(new Property("publisher", "string",
-        "The name of the organization or individual that published the search parameter.", 0, 1, publisher));
+      "The name of the organization or individual that published the search parameter.", 0, 1, publisher));
     children.add(new Property("contact", "ContactDetail",
-        "Contact details to assist a user in finding and communicating with the publisher.", 0,
-        java.lang.Integer.MAX_VALUE, contact));
+      "Contact details to assist a user in finding and communicating with the publisher.", 0,
+      java.lang.Integer.MAX_VALUE, contact));
     children.add(new Property("description", "markdown", "And how it used.", 0, 1, description));
     children.add(new Property("useContext", "UsageContext",
-        "The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be used to assist with indexing and searching for appropriate search parameter instances.",
-        0, java.lang.Integer.MAX_VALUE, useContext));
+      "The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be used to assist with indexing and searching for appropriate search parameter instances.",
+      0, java.lang.Integer.MAX_VALUE, useContext));
     children.add(new Property("jurisdiction", "CodeableConcept",
-        "A legal or geographic region in which the search parameter is intended to be used.", 0,
-        java.lang.Integer.MAX_VALUE, jurisdiction));
+      "A legal or geographic region in which the search parameter is intended to be used.", 0,
+      java.lang.Integer.MAX_VALUE, jurisdiction));
     children.add(new Property("purpose", "markdown",
-        "Explanation of why this search parameter is needed and why it has been designed as it has.", 0, 1, purpose));
+      "Explanation of why this search parameter is needed and why it has been designed as it has.", 0, 1, purpose));
     children.add(new Property("code", "code",
-        "The code used in the URL or the parameter name in a parameters resource for this search parameter.", 0, 1,
-        code));
+      "The code used in the URL or the parameter name in a parameters resource for this search parameter.", 0, 1,
+      code));
     children
-        .add(new Property("base", "code", "The base resource type(s) that this search parameter can be used against.",
-            0, java.lang.Integer.MAX_VALUE, base));
+      .add(new Property("base", "code", "The base resource type(s) that this search parameter can be used against.",
+        0, java.lang.Integer.MAX_VALUE, base));
     children.add(new Property("type", "code",
-        "The type of value that a search parameter may contain, and how the content is interpreted.", 0, 1, type));
+      "The type of value that a search parameter may contain, and how the content is interpreted.", 0, 1, type));
     children.add(new Property("expression", "string",
-        "A FHIRPath expression that returns a set of elements for the search parameter.", 0, 1, expression));
+      "A FHIRPath expression that returns a set of elements for the search parameter.", 0, 1, expression));
     children.add(new Property("xpath", "string",
-        "An XPath expression that returns a set of elements for the search parameter.", 0, 1, xpath));
+      "An XPath expression that returns a set of elements for the search parameter.", 0, 1, xpath));
     children.add(new Property("xpathUsage", "code",
-        "How the search parameter relates to the set of elements returned by evaluating the xpath query.", 0, 1,
-        xpathUsage));
+      "How the search parameter relates to the set of elements returned by evaluating the xpath query.", 0, 1,
+      xpathUsage));
     children.add(new Property("target", "code", "Types of resource (if a resource is referenced).", 0,
-        java.lang.Integer.MAX_VALUE, target));
+      java.lang.Integer.MAX_VALUE, target));
     children.add(new Property("multipleOr", "boolean",
-        "Whether multiple values are allowed for each time the parameter exists. Values are separated by commas, and the parameter matches if any of the values match.",
-        0, 1, multipleOr));
+      "Whether multiple values are allowed for each time the parameter exists. Values are separated by commas, and the parameter matches if any of the values match.",
+      0, 1, multipleOr));
     children.add(new Property("multipleAnd", "boolean",
-        "Whether multiple parameters are allowed - e.g. more than one parameter with the same name. The search matches if all the parameters match.",
-        0, 1, multipleAnd));
+      "Whether multiple parameters are allowed - e.g. more than one parameter with the same name. The search matches if all the parameters match.",
+      0, 1, multipleAnd));
     children.add(new Property("comparator", "code", "Comparators supported for the search parameter.", 0,
-        java.lang.Integer.MAX_VALUE, comparator));
+      java.lang.Integer.MAX_VALUE, comparator));
     children.add(new Property("modifier", "code", "A modifier supported for the search parameter.", 0,
-        java.lang.Integer.MAX_VALUE, modifier));
+      java.lang.Integer.MAX_VALUE, modifier));
     children.add(new Property("chain", "string",
-        "Contains the names of any search parameters which may be chained to the containing search parameter. Chained parameters may be added to search parameters of type reference and specify that resources will only be returned if they contain a reference to a resource which matches the chained parameter value. Values for this field should be drawn from SearchParameter.code for a parameter on the target resource type.",
-        0, java.lang.Integer.MAX_VALUE, chain));
+      "Contains the names of any search parameters which may be chained to the containing search parameter. Chained parameters may be added to search parameters of type reference and specify that resources will only be returned if they contain a reference to a resource which matches the chained parameter value. Values for this field should be drawn from SearchParameter.code for a parameter on the target resource type.",
+      0, java.lang.Integer.MAX_VALUE, chain));
     children.add(new Property("component", "", "Used to define the parts of a composite search parameter.", 0,
-        java.lang.Integer.MAX_VALUE, component));
+      java.lang.Integer.MAX_VALUE, component));
   }
 
   @Override
   public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
     switch (_hash) {
-    case 116079:
-      /* url */ return new Property("url", "uri",
-          "An absolute URI that is used to identify this search parameter when it is referenced in a specification, model, design or an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at which an authoritative instance of this search parameter is (or will be) published. This URL can be the target of a canonical reference. It SHALL remain the same when the search parameter is stored on different servers.",
-          0, 1, url);
-    case 351608024:
-      /* version */ return new Property("version", "string",
-          "The identifier that is used to identify this version of the search parameter when it is referenced in a specification, model, design or instance. This is an arbitrary value managed by the search parameter author and is not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no expectation that versions can be placed in a lexicographical sequence.",
-          0, 1, version);
-    case 3373707:
-      /* name */ return new Property("name", "string",
-          "A natural language name identifying the search parameter. This name should be usable as an identifier for the module by machine processing applications such as code generation.",
-          0, 1, name);
-    case 1077922663:
-      /* derivedFrom */ return new Property("derivedFrom", "canonical(SearchParameter)",
-          "Where this search parameter is originally defined. If a derivedFrom is provided, then the details in the search parameter must be consistent with the definition from which it is defined. i.e. the parameter should have the same meaning, and (usually) the functionality should be a proper subset of the underlying search parameter.",
-          0, 1, derivedFrom);
-    case -892481550:
-      /* status */ return new Property("status", "code",
-          "The status of this search parameter. Enables tracking the life-cycle of the content.", 0, 1, status);
-    case -404562712:
-      /* experimental */ return new Property("experimental", "boolean",
-          "A Boolean value to indicate that this search parameter is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
-          0, 1, experimental);
-    case 3076014:
-      /* date */ return new Property("date", "dateTime",
-          "The date  (and optionally time) when the search parameter was published. The date must change when the business version changes and it must change if the status code changes. In addition, it should change when the substantive content of the search parameter changes.",
-          0, 1, date);
-    case 1447404028:
-      /* publisher */ return new Property("publisher", "string",
-          "The name of the organization or individual that published the search parameter.", 0, 1, publisher);
-    case 951526432:
-      /* contact */ return new Property("contact", "ContactDetail",
-          "Contact details to assist a user in finding and communicating with the publisher.", 0,
-          java.lang.Integer.MAX_VALUE, contact);
-    case -1724546052:
-      /* description */ return new Property("description", "markdown", "And how it used.", 0, 1, description);
-    case -669707736:
-      /* useContext */ return new Property("useContext", "UsageContext",
-          "The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be used to assist with indexing and searching for appropriate search parameter instances.",
-          0, java.lang.Integer.MAX_VALUE, useContext);
-    case -507075711:
-      /* jurisdiction */ return new Property("jurisdiction", "CodeableConcept",
-          "A legal or geographic region in which the search parameter is intended to be used.", 0,
-          java.lang.Integer.MAX_VALUE, jurisdiction);
-    case -220463842:
-      /* purpose */ return new Property("purpose", "markdown",
-          "Explanation of why this search parameter is needed and why it has been designed as it has.", 0, 1, purpose);
-    case 3059181:
-      /* code */ return new Property("code", "code",
-          "The code used in the URL or the parameter name in a parameters resource for this search parameter.", 0, 1,
-          code);
-    case 3016401:
-      /* base */ return new Property("base", "code",
-          "The base resource type(s) that this search parameter can be used against.", 0, java.lang.Integer.MAX_VALUE,
-          base);
-    case 3575610:
-      /* type */ return new Property("type", "code",
-          "The type of value that a search parameter may contain, and how the content is interpreted.", 0, 1, type);
-    case -1795452264:
-      /* expression */ return new Property("expression", "string",
-          "A FHIRPath expression that returns a set of elements for the search parameter.", 0, 1, expression);
-    case 114256029:
-      /* xpath */ return new Property("xpath", "string",
-          "An XPath expression that returns a set of elements for the search parameter.", 0, 1, xpath);
-    case 1801322244:
-      /* xpathUsage */ return new Property("xpathUsage", "code",
-          "How the search parameter relates to the set of elements returned by evaluating the xpath query.", 0, 1,
-          xpathUsage);
-    case -880905839:
-      /* target */ return new Property("target", "code", "Types of resource (if a resource is referenced).", 0,
-          java.lang.Integer.MAX_VALUE, target);
-    case 1265069075:
-      /* multipleOr */ return new Property("multipleOr", "boolean",
-          "Whether multiple values are allowed for each time the parameter exists. Values are separated by commas, and the parameter matches if any of the values match.",
-          0, 1, multipleOr);
-    case 562422183:
-      /* multipleAnd */ return new Property("multipleAnd", "boolean",
-          "Whether multiple parameters are allowed - e.g. more than one parameter with the same name. The search matches if all the parameters match.",
-          0, 1, multipleAnd);
-    case -844673834:
-      /* comparator */ return new Property("comparator", "code", "Comparators supported for the search parameter.", 0,
-          java.lang.Integer.MAX_VALUE, comparator);
-    case -615513385:
-      /* modifier */ return new Property("modifier", "code", "A modifier supported for the search parameter.", 0,
-          java.lang.Integer.MAX_VALUE, modifier);
-    case 94623425:
-      /* chain */ return new Property("chain", "string",
-          "Contains the names of any search parameters which may be chained to the containing search parameter. Chained parameters may be added to search parameters of type reference and specify that resources will only be returned if they contain a reference to a resource which matches the chained parameter value. Values for this field should be drawn from SearchParameter.code for a parameter on the target resource type.",
-          0, java.lang.Integer.MAX_VALUE, chain);
-    case -1399907075:
-      /* component */ return new Property("component", "", "Used to define the parts of a composite search parameter.",
-          0, java.lang.Integer.MAX_VALUE, component);
-    default:
-      return super.getNamedProperty(_hash, _name, _checkValid);
+      case 116079:
+        /* url */ return new Property("url", "uri",
+        "An absolute URI that is used to identify this search parameter when it is referenced in a specification, model, design or an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at which an authoritative instance of this search parameter is (or will be) published. This URL can be the target of a canonical reference. It SHALL remain the same when the search parameter is stored on different servers.",
+        0, 1, url);
+      case 351608024:
+        /* version */ return new Property("version", "string",
+        "The identifier that is used to identify this version of the search parameter when it is referenced in a specification, model, design or instance. This is an arbitrary value managed by the search parameter author and is not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no expectation that versions can be placed in a lexicographical sequence.",
+        0, 1, version);
+      case 3373707:
+        /* name */ return new Property("name", "string",
+        "A natural language name identifying the search parameter. This name should be usable as an identifier for the module by machine processing applications such as code generation.",
+        0, 1, name);
+      case 1077922663:
+        /* derivedFrom */ return new Property("derivedFrom", "canonical(SearchParameter)",
+        "Where this search parameter is originally defined. If a derivedFrom is provided, then the details in the search parameter must be consistent with the definition from which it is defined. i.e. the parameter should have the same meaning, and (usually) the functionality should be a proper subset of the underlying search parameter.",
+        0, 1, derivedFrom);
+      case -892481550:
+        /* status */ return new Property("status", "string",
+        "The status of this search parameter. Enables tracking the life-cycle of the content.", 0, 1, status);
+      case -404562712:
+        /* experimental */ return new Property("experimental", "boolean",
+        "A Boolean value to indicate that this search parameter is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
+        0, 1, experimental);
+      case 3076014:
+        /* date */ return new Property("date", "dateTime",
+        "The date  (and optionally time) when the search parameter was published. The date must change when the business version changes and it must change if the status code changes. In addition, it should change when the substantive content of the search parameter changes.",
+        0, 1, date);
+      case 1447404028:
+        /* publisher */ return new Property("publisher", "string",
+        "The name of the organization or individual that published the search parameter.", 0, 1, publisher);
+      case 951526432:
+        /* contact */ return new Property("contact", "ContactDetail",
+        "Contact details to assist a user in finding and communicating with the publisher.", 0,
+        java.lang.Integer.MAX_VALUE, contact);
+      case -1724546052:
+        /* description */ return new Property("description", "markdown", "And how it used.", 0, 1, description);
+      case -669707736:
+        /* useContext */ return new Property("useContext", "UsageContext",
+        "The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be used to assist with indexing and searching for appropriate search parameter instances.",
+        0, java.lang.Integer.MAX_VALUE, useContext);
+      case -507075711:
+        /* jurisdiction */ return new Property("jurisdiction", "CodeableConcept",
+        "A legal or geographic region in which the search parameter is intended to be used.", 0,
+        java.lang.Integer.MAX_VALUE, jurisdiction);
+      case -220463842:
+        /* purpose */ return new Property("purpose", "markdown",
+        "Explanation of why this search parameter is needed and why it has been designed as it has.", 0, 1, purpose);
+      case 3059181:
+        /* code */ return new Property("code", "code",
+        "The code used in the URL or the parameter name in a parameters resource for this search parameter.", 0, 1,
+        code);
+      case 3016401:
+        /* base */ return new Property("base", "code",
+        "The base resource type(s) that this search parameter can be used against.", 0, java.lang.Integer.MAX_VALUE,
+        base);
+      case 3575610:
+        /* type */ return new Property("type", "code",
+        "The type of value that a search parameter may contain, and how the content is interpreted.", 0, 1, type);
+      case -1795452264:
+        /* expression */ return new Property("expression", "string",
+        "A FHIRPath expression that returns a set of elements for the search parameter.", 0, 1, expression);
+      case 114256029:
+        /* xpath */ return new Property("xpath", "string",
+        "An XPath expression that returns a set of elements for the search parameter.", 0, 1, xpath);
+      case 1801322244:
+        /* xpathUsage */ return new Property("xpathUsage", "code",
+        "How the search parameter relates to the set of elements returned by evaluating the xpath query.", 0, 1,
+        xpathUsage);
+      case -880905839:
+        /* target */ return new Property("target", "code", "Types of resource (if a resource is referenced).", 0,
+        java.lang.Integer.MAX_VALUE, target);
+      case 1265069075:
+        /* multipleOr */ return new Property("multipleOr", "boolean",
+        "Whether multiple values are allowed for each time the parameter exists. Values are separated by commas, and the parameter matches if any of the values match.",
+        0, 1, multipleOr);
+      case 562422183:
+        /* multipleAnd */ return new Property("multipleAnd", "boolean",
+        "Whether multiple parameters are allowed - e.g. more than one parameter with the same name. The search matches if all the parameters match.",
+        0, 1, multipleAnd);
+      case -844673834:
+        /* comparator */ return new Property("comparator", "code", "Comparators supported for the search parameter.", 0,
+        java.lang.Integer.MAX_VALUE, comparator);
+      case -615513385:
+        /* modifier */ return new Property("modifier", "code", "A modifier supported for the search parameter.", 0,
+        java.lang.Integer.MAX_VALUE, modifier);
+      case 94623425:
+        /* chain */ return new Property("chain", "string",
+        "Contains the names of any search parameters which may be chained to the containing search parameter. Chained parameters may be added to search parameters of type reference and specify that resources will only be returned if they contain a reference to a resource which matches the chained parameter value. Values for this field should be drawn from SearchParameter.code for a parameter on the target resource type.",
+        0, java.lang.Integer.MAX_VALUE, chain);
+      case -1399907075:
+        /* component */ return new Property("component", "", "Used to define the parts of a composite search parameter.",
+        0, java.lang.Integer.MAX_VALUE, component);
+      default:
+        return super.getNamedProperty(_hash, _name, _checkValid);
     }
 
   }
@@ -3064,64 +3062,64 @@ public class SearchParameter extends MetadataResource {
   @Override
   public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
     switch (hash) {
-    case 116079:
-      /* url */ return this.url == null ? new Base[0] : new Base[] { this.url }; // UriType
-    case 351608024:
-      /* version */ return this.version == null ? new Base[0] : new Base[] { this.version }; // StringType
-    case 3373707:
-      /* name */ return this.name == null ? new Base[0] : new Base[] { this.name }; // StringType
-    case 1077922663:
-      /* derivedFrom */ return this.derivedFrom == null ? new Base[0] : new Base[] { this.derivedFrom }; // CanonicalType
-    case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
-    case -404562712:
-      /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
-    case 3076014:
-      /* date */ return this.date == null ? new Base[0] : new Base[] { this.date }; // DateTimeType
-    case 1447404028:
-      /* publisher */ return this.publisher == null ? new Base[0] : new Base[] { this.publisher }; // StringType
-    case 951526432:
-      /* contact */ return this.contact == null ? new Base[0] : this.contact.toArray(new Base[this.contact.size()]); // ContactDetail
-    case -1724546052:
-      /* description */ return this.description == null ? new Base[0] : new Base[] { this.description }; // MarkdownType
-    case -669707736:
-      /* useContext */ return this.useContext == null ? new Base[0]
-          : this.useContext.toArray(new Base[this.useContext.size()]); // UsageContext
-    case -507075711:
-      /* jurisdiction */ return this.jurisdiction == null ? new Base[0]
-          : this.jurisdiction.toArray(new Base[this.jurisdiction.size()]); // CodeableConcept
-    case -220463842:
-      /* purpose */ return this.purpose == null ? new Base[0] : new Base[] { this.purpose }; // MarkdownType
-    case 3059181:
-      /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // CodeType
-    case 3016401:
-      /* base */ return this.base == null ? new Base[0] : this.base.toArray(new Base[this.base.size()]); // CodeType
-    case 3575610:
-      /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<SearchParamType>
-    case -1795452264:
-      /* expression */ return this.expression == null ? new Base[0] : new Base[] { this.expression }; // StringType
-    case 114256029:
-      /* xpath */ return this.xpath == null ? new Base[0] : new Base[] { this.xpath }; // StringType
-    case 1801322244:
-      /* xpathUsage */ return this.xpathUsage == null ? new Base[0] : new Base[] { this.xpathUsage }; // Enumeration<XPathUsageType>
-    case -880905839:
-      /* target */ return this.target == null ? new Base[0] : this.target.toArray(new Base[this.target.size()]); // CodeType
-    case 1265069075:
-      /* multipleOr */ return this.multipleOr == null ? new Base[0] : new Base[] { this.multipleOr }; // BooleanType
-    case 562422183:
-      /* multipleAnd */ return this.multipleAnd == null ? new Base[0] : new Base[] { this.multipleAnd }; // BooleanType
-    case -844673834:
-      /* comparator */ return this.comparator == null ? new Base[0]
-          : this.comparator.toArray(new Base[this.comparator.size()]); // Enumeration<SearchComparator>
-    case -615513385:
-      /* modifier */ return this.modifier == null ? new Base[0] : this.modifier.toArray(new Base[this.modifier.size()]); // Enumeration<SearchModifierCode>
-    case 94623425:
-      /* chain */ return this.chain == null ? new Base[0] : this.chain.toArray(new Base[this.chain.size()]); // StringType
-    case -1399907075:
-      /* component */ return this.component == null ? new Base[0]
-          : this.component.toArray(new Base[this.component.size()]); // SearchParameterComponentComponent
-    default:
-      return super.getProperty(hash, name, checkValid);
+      case 116079:
+        /* url */ return this.url == null ? new Base[0] : new Base[] { this.url }; // UriType
+      case 351608024:
+        /* version */ return this.version == null ? new Base[0] : new Base[] { this.version }; // StringType
+      case 3373707:
+        /* name */ return this.name == null ? new Base[0] : new Base[] { this.name }; // StringType
+      case 1077922663:
+        /* derivedFrom */ return this.derivedFrom == null ? new Base[0] : new Base[] { this.derivedFrom }; // CanonicalType
+      case -892481550:
+        /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      case -404562712:
+        /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
+      case 3076014:
+        /* date */ return this.date == null ? new Base[0] : new Base[] { this.date }; // DateTimeType
+      case 1447404028:
+        /* publisher */ return this.publisher == null ? new Base[0] : new Base[] { this.publisher }; // StringType
+      case 951526432:
+        /* contact */ return this.contact == null ? new Base[0] : this.contact.toArray(new Base[this.contact.size()]); // ContactDetail
+      case -1724546052:
+        /* description */ return this.description == null ? new Base[0] : new Base[] { this.description }; // MarkdownType
+      case -669707736:
+        /* useContext */ return this.useContext == null ? new Base[0]
+        : this.useContext.toArray(new Base[this.useContext.size()]); // UsageContext
+      case -507075711:
+        /* jurisdiction */ return this.jurisdiction == null ? new Base[0]
+        : this.jurisdiction.toArray(new Base[this.jurisdiction.size()]); // CodeableConcept
+      case -220463842:
+        /* purpose */ return this.purpose == null ? new Base[0] : new Base[] { this.purpose }; // MarkdownType
+      case 3059181:
+        /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // CodeType
+      case 3016401:
+        /* base */ return this.base == null ? new Base[0] : this.base.toArray(new Base[this.base.size()]); // CodeType
+      case 3575610:
+        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<SearchParamType>
+      case -1795452264:
+        /* expression */ return this.expression == null ? new Base[0] : new Base[] { this.expression }; // StringType
+      case 114256029:
+        /* xpath */ return this.xpath == null ? new Base[0] : new Base[] { this.xpath }; // StringType
+      case 1801322244:
+        /* xpathUsage */ return this.xpathUsage == null ? new Base[0] : new Base[] { this.xpathUsage }; // Enumeration<XPathUsageType>
+      case -880905839:
+        /* target */ return this.target == null ? new Base[0] : this.target.toArray(new Base[this.target.size()]); // CodeType
+      case 1265069075:
+        /* multipleOr */ return this.multipleOr == null ? new Base[0] : new Base[] { this.multipleOr }; // BooleanType
+      case 562422183:
+        /* multipleAnd */ return this.multipleAnd == null ? new Base[0] : new Base[] { this.multipleAnd }; // BooleanType
+      case -844673834:
+        /* comparator */ return this.comparator == null ? new Base[0]
+        : this.comparator.toArray(new Base[this.comparator.size()]); // Enumeration<SearchComparator>
+      case -615513385:
+        /* modifier */ return this.modifier == null ? new Base[0] : this.modifier.toArray(new Base[this.modifier.size()]); // Enumeration<SearchModifierCode>
+      case 94623425:
+        /* chain */ return this.chain == null ? new Base[0] : this.chain.toArray(new Base[this.chain.size()]); // StringType
+      case -1399907075:
+        /* component */ return this.component == null ? new Base[0]
+        : this.component.toArray(new Base[this.component.size()]); // SearchParameterComponentComponent
+      default:
+        return super.getProperty(hash, name, checkValid);
     }
 
   }
@@ -3129,91 +3127,90 @@ public class SearchParameter extends MetadataResource {
   @Override
   public Base setProperty(int hash, String name, Base value) throws FHIRException {
     switch (hash) {
-    case 116079: // url
-      this.url = castToUri(value); // UriType
-      return value;
-    case 351608024: // version
-      this.version = castToString(value); // StringType
-      return value;
-    case 3373707: // name
-      this.name = castToString(value); // StringType
-      return value;
-    case 1077922663: // derivedFrom
-      this.derivedFrom = castToCanonical(value); // CanonicalType
-      return value;
-    case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
-      return value;
-    case -404562712: // experimental
-      this.experimental = castToBoolean(value); // BooleanType
-      return value;
-    case 3076014: // date
-      this.date = castToDateTime(value); // DateTimeType
-      return value;
-    case 1447404028: // publisher
-      this.publisher = castToString(value); // StringType
-      return value;
-    case 951526432: // contact
-      this.getContact().add(castToContactDetail(value)); // ContactDetail
-      return value;
-    case -1724546052: // description
-      this.description = castToMarkdown(value); // MarkdownType
-      return value;
-    case -669707736: // useContext
-      this.getUseContext().add(castToUsageContext(value)); // UsageContext
-      return value;
-    case -507075711: // jurisdiction
-      this.getJurisdiction().add(castToCodeableConcept(value)); // CodeableConcept
-      return value;
-    case -220463842: // purpose
-      this.purpose = castToMarkdown(value); // MarkdownType
-      return value;
-    case 3059181: // code
-      this.code = castToCode(value); // CodeType
-      return value;
-    case 3016401: // base
-      this.getBase().add(castToCode(value)); // CodeType
-      return value;
-    case 3575610: // type
-      value = new SearchParamTypeEnumFactory().fromType(castToCode(value));
-      this.type = (Enumeration) value; // Enumeration<SearchParamType>
-      return value;
-    case -1795452264: // expression
-      this.expression = castToString(value); // StringType
-      return value;
-    case 114256029: // xpath
-      this.xpath = castToString(value); // StringType
-      return value;
-    case 1801322244: // xpathUsage
-      value = new XPathUsageTypeEnumFactory().fromType(castToCode(value));
-      this.xpathUsage = (Enumeration) value; // Enumeration<XPathUsageType>
-      return value;
-    case -880905839: // target
-      this.getTarget().add(castToCode(value)); // CodeType
-      return value;
-    case 1265069075: // multipleOr
-      this.multipleOr = castToBoolean(value); // BooleanType
-      return value;
-    case 562422183: // multipleAnd
-      this.multipleAnd = castToBoolean(value); // BooleanType
-      return value;
-    case -844673834: // comparator
-      value = new SearchComparatorEnumFactory().fromType(castToCode(value));
-      this.getComparator().add((Enumeration) value); // Enumeration<SearchComparator>
-      return value;
-    case -615513385: // modifier
-      value = new SearchModifierCodeEnumFactory().fromType(castToCode(value));
-      this.getModifier().add((Enumeration) value); // Enumeration<SearchModifierCode>
-      return value;
-    case 94623425: // chain
-      this.getChain().add(castToString(value)); // StringType
-      return value;
-    case -1399907075: // component
-      this.getComponent().add((SearchParameterComponentComponent) value); // SearchParameterComponentComponent
-      return value;
-    default:
-      return super.setProperty(hash, name, value);
+      case 116079: // url
+        this.url = castToUri(value); // UriType
+        return value;
+      case 351608024: // version
+        this.version = castToString(value); // StringType
+        return value;
+      case 3373707: // name
+        this.name = castToString(value); // StringType
+        return value;
+      case 1077922663: // derivedFrom
+        this.derivedFrom = castToCanonical(value); // CanonicalType
+        return value;
+      case -892481550: // status
+        this.status = castToString(value); // StringType
+        return value;
+      case -404562712: // experimental
+        this.experimental = castToBoolean(value); // BooleanType
+        return value;
+      case 3076014: // date
+        this.date = castToDateTime(value); // DateTimeType
+        return value;
+      case 1447404028: // publisher
+        this.publisher = castToString(value); // StringType
+        return value;
+      case 951526432: // contact
+        this.getContact().add(castToContactDetail(value)); // ContactDetail
+        return value;
+      case -1724546052: // description
+        this.description = castToMarkdown(value); // MarkdownType
+        return value;
+      case -669707736: // useContext
+        this.getUseContext().add(castToUsageContext(value)); // UsageContext
+        return value;
+      case -507075711: // jurisdiction
+        this.getJurisdiction().add(castToCodeableConcept(value)); // CodeableConcept
+        return value;
+      case -220463842: // purpose
+        this.purpose = castToMarkdown(value); // MarkdownType
+        return value;
+      case 3059181: // code
+        this.code = castToCode(value); // CodeType
+        return value;
+      case 3016401: // base
+        this.getBase().add(castToCode(value)); // CodeType
+        return value;
+      case 3575610: // type
+        value = new SearchParamTypeEnumFactory().fromType(castToCode(value));
+        this.type = (Enumeration) value; // Enumeration<SearchParamType>
+        return value;
+      case -1795452264: // expression
+        this.expression = castToString(value); // StringType
+        return value;
+      case 114256029: // xpath
+        this.xpath = castToString(value); // StringType
+        return value;
+      case 1801322244: // xpathUsage
+        value = new XPathUsageTypeEnumFactory().fromType(castToCode(value));
+        this.xpathUsage = (Enumeration) value; // Enumeration<XPathUsageType>
+        return value;
+      case -880905839: // target
+        this.getTarget().add(castToCode(value)); // CodeType
+        return value;
+      case 1265069075: // multipleOr
+        this.multipleOr = castToBoolean(value); // BooleanType
+        return value;
+      case 562422183: // multipleAnd
+        this.multipleAnd = castToBoolean(value); // BooleanType
+        return value;
+      case -844673834: // comparator
+        value = new SearchComparatorEnumFactory().fromType(castToCode(value));
+        this.getComparator().add((Enumeration) value); // Enumeration<SearchComparator>
+        return value;
+      case -615513385: // modifier
+        value = new SearchModifierCodeEnumFactory().fromType(castToCode(value));
+        this.getModifier().add((Enumeration) value); // Enumeration<SearchModifierCode>
+        return value;
+      case 94623425: // chain
+        this.getChain().add(castToString(value)); // StringType
+        return value;
+      case -1399907075: // component
+        this.getComponent().add((SearchParameterComponentComponent) value); // SearchParameterComponentComponent
+        return value;
+      default:
+        return super.setProperty(hash, name, value);
     }
 
   }
@@ -3229,8 +3226,7 @@ public class SearchParameter extends MetadataResource {
     } else if (name.equals("derivedFrom")) {
       this.derivedFrom = castToCanonical(value); // CanonicalType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("date")) {
@@ -3339,66 +3335,66 @@ public class SearchParameter extends MetadataResource {
       this.getComponent().remove((SearchParameterComponentComponent) value);
     } else
       super.removeChild(name, value);
-    
+
   }
 
   @Override
   public Base makeProperty(int hash, String name) throws FHIRException {
     switch (hash) {
-    case 116079:
-      return getUrlElement();
-    case 351608024:
-      return getVersionElement();
-    case 3373707:
-      return getNameElement();
-    case 1077922663:
-      return getDerivedFromElement();
-    case -892481550:
-      return getStatusElement();
-    case -404562712:
-      return getExperimentalElement();
-    case 3076014:
-      return getDateElement();
-    case 1447404028:
-      return getPublisherElement();
-    case 951526432:
-      return addContact();
-    case -1724546052:
-      return getDescriptionElement();
-    case -669707736:
-      return addUseContext();
-    case -507075711:
-      return addJurisdiction();
-    case -220463842:
-      return getPurposeElement();
-    case 3059181:
-      return getCodeElement();
-    case 3016401:
-      return addBaseElement();
-    case 3575610:
-      return getTypeElement();
-    case -1795452264:
-      return getExpressionElement();
-    case 114256029:
-      return getXpathElement();
-    case 1801322244:
-      return getXpathUsageElement();
-    case -880905839:
-      return addTargetElement();
-    case 1265069075:
-      return getMultipleOrElement();
-    case 562422183:
-      return getMultipleAndElement();
-    case -844673834:
-      return addComparatorElement();
-    case -615513385:
-      return addModifierElement();
-    case 94623425:
-      return addChainElement();
-    case -1399907075:
-      return addComponent();
-    default:
-      return super.makeProperty(hash, name);
+      case 116079:
+        return getUrlElement();
+      case 351608024:
+        return getVersionElement();
+      case 3373707:
+        return getNameElement();
+      case 1077922663:
+        return getDerivedFromElement();
+      case -892481550:
+        return getStatusElement();
+      case -404562712:
+        return getExperimentalElement();
+      case 3076014:
+        return getDateElement();
+      case 1447404028:
+        return getPublisherElement();
+      case 951526432:
+        return addContact();
+      case -1724546052:
+        return getDescriptionElement();
+      case -669707736:
+        return addUseContext();
+      case -507075711:
+        return addJurisdiction();
+      case -220463842:
+        return getPurposeElement();
+      case 3059181:
+        return getCodeElement();
+      case 3016401:
+        return addBaseElement();
+      case 3575610:
+        return getTypeElement();
+      case -1795452264:
+        return getExpressionElement();
+      case 114256029:
+        return getXpathElement();
+      case 1801322244:
+        return getXpathUsageElement();
+      case -880905839:
+        return addTargetElement();
+      case 1265069075:
+        return getMultipleOrElement();
+      case 562422183:
+        return getMultipleAndElement();
+      case -844673834:
+        return addComparatorElement();
+      case -615513385:
+        return addModifierElement();
+      case 94623425:
+        return addChainElement();
+      case -1399907075:
+        return addComponent();
+      default:
+        return super.makeProperty(hash, name);
     }
 
   }
@@ -3406,60 +3402,60 @@ public class SearchParameter extends MetadataResource {
   @Override
   public String[] getTypesForProperty(int hash, String name) throws FHIRException {
     switch (hash) {
-    case 116079:
-      /* url */ return new String[] { "uri" };
-    case 351608024:
-      /* version */ return new String[] { "string" };
-    case 3373707:
-      /* name */ return new String[] { "string" };
-    case 1077922663:
-      /* derivedFrom */ return new String[] { "canonical" };
-    case -892481550:
-      /* status */ return new String[] { "code" };
-    case -404562712:
-      /* experimental */ return new String[] { "boolean" };
-    case 3076014:
-      /* date */ return new String[] { "dateTime" };
-    case 1447404028:
-      /* publisher */ return new String[] { "string" };
-    case 951526432:
-      /* contact */ return new String[] { "ContactDetail" };
-    case -1724546052:
-      /* description */ return new String[] { "markdown" };
-    case -669707736:
-      /* useContext */ return new String[] { "UsageContext" };
-    case -507075711:
-      /* jurisdiction */ return new String[] { "CodeableConcept" };
-    case -220463842:
-      /* purpose */ return new String[] { "markdown" };
-    case 3059181:
-      /* code */ return new String[] { "code" };
-    case 3016401:
-      /* base */ return new String[] { "code" };
-    case 3575610:
-      /* type */ return new String[] { "code" };
-    case -1795452264:
-      /* expression */ return new String[] { "string" };
-    case 114256029:
-      /* xpath */ return new String[] { "string" };
-    case 1801322244:
-      /* xpathUsage */ return new String[] { "code" };
-    case -880905839:
-      /* target */ return new String[] { "code" };
-    case 1265069075:
-      /* multipleOr */ return new String[] { "boolean" };
-    case 562422183:
-      /* multipleAnd */ return new String[] { "boolean" };
-    case -844673834:
-      /* comparator */ return new String[] { "code" };
-    case -615513385:
-      /* modifier */ return new String[] { "code" };
-    case 94623425:
-      /* chain */ return new String[] { "string" };
-    case -1399907075:
-      /* component */ return new String[] {};
-    default:
-      return super.getTypesForProperty(hash, name);
+      case 116079:
+        /* url */ return new String[] { "uri" };
+      case 351608024:
+        /* version */ return new String[] { "string" };
+      case 3373707:
+        /* name */ return new String[] { "string" };
+      case 1077922663:
+        /* derivedFrom */ return new String[] { "canonical" };
+      case -892481550:
+        /* status */ return new String[] { "string" };
+      case -404562712:
+        /* experimental */ return new String[] { "boolean" };
+      case 3076014:
+        /* date */ return new String[] { "dateTime" };
+      case 1447404028:
+        /* publisher */ return new String[] { "string" };
+      case 951526432:
+        /* contact */ return new String[] { "ContactDetail" };
+      case -1724546052:
+        /* description */ return new String[] { "markdown" };
+      case -669707736:
+        /* useContext */ return new String[] { "UsageContext" };
+      case -507075711:
+        /* jurisdiction */ return new String[] { "CodeableConcept" };
+      case -220463842:
+        /* purpose */ return new String[] { "markdown" };
+      case 3059181:
+        /* code */ return new String[] { "code" };
+      case 3016401:
+        /* base */ return new String[] { "code" };
+      case 3575610:
+        /* type */ return new String[] { "code" };
+      case -1795452264:
+        /* expression */ return new String[] { "string" };
+      case 114256029:
+        /* xpath */ return new String[] { "string" };
+      case 1801322244:
+        /* xpathUsage */ return new String[] { "code" };
+      case -880905839:
+        /* target */ return new String[] { "code" };
+      case 1265069075:
+        /* multipleOr */ return new String[] { "boolean" };
+      case 562422183:
+        /* multipleAnd */ return new String[] { "boolean" };
+      case -844673834:
+        /* comparator */ return new String[] { "code" };
+      case -615513385:
+        /* modifier */ return new String[] { "code" };
+      case 94623425:
+        /* chain */ return new String[] { "string" };
+      case -1399907075:
+        /* component */ return new String[] {};
+      default:
+        return super.getTypesForProperty(hash, name);
     }
 
   }
@@ -3620,12 +3616,12 @@ public class SearchParameter extends MetadataResource {
       return false;
     SearchParameter o = (SearchParameter) other_;
     return compareDeep(derivedFrom, o.derivedFrom, true) && compareDeep(purpose, o.purpose, true)
-        && compareDeep(code, o.code, true) && compareDeep(base, o.base, true) && compareDeep(type, o.type, true)
-        && compareDeep(expression, o.expression, true) && compareDeep(xpath, o.xpath, true)
-        && compareDeep(xpathUsage, o.xpathUsage, true) && compareDeep(target, o.target, true)
-        && compareDeep(multipleOr, o.multipleOr, true) && compareDeep(multipleAnd, o.multipleAnd, true)
-        && compareDeep(comparator, o.comparator, true) && compareDeep(modifier, o.modifier, true)
-        && compareDeep(chain, o.chain, true) && compareDeep(component, o.component, true);
+      && compareDeep(code, o.code, true) && compareDeep(base, o.base, true) && compareDeep(type, o.type, true)
+      && compareDeep(expression, o.expression, true) && compareDeep(xpath, o.xpath, true)
+      && compareDeep(xpathUsage, o.xpathUsage, true) && compareDeep(target, o.target, true)
+      && compareDeep(multipleOr, o.multipleOr, true) && compareDeep(multipleAnd, o.multipleAnd, true)
+      && compareDeep(comparator, o.comparator, true) && compareDeep(modifier, o.modifier, true)
+      && compareDeep(chain, o.chain, true) && compareDeep(component, o.component, true);
   }
 
   @Override
@@ -3636,17 +3632,17 @@ public class SearchParameter extends MetadataResource {
       return false;
     SearchParameter o = (SearchParameter) other_;
     return compareValues(purpose, o.purpose, true) && compareValues(code, o.code, true)
-        && compareValues(base, o.base, true) && compareValues(type, o.type, true)
-        && compareValues(expression, o.expression, true) && compareValues(xpath, o.xpath, true)
-        && compareValues(xpathUsage, o.xpathUsage, true) && compareValues(target, o.target, true)
-        && compareValues(multipleOr, o.multipleOr, true) && compareValues(multipleAnd, o.multipleAnd, true)
-        && compareValues(comparator, o.comparator, true) && compareValues(modifier, o.modifier, true)
-        && compareValues(chain, o.chain, true);
+      && compareValues(base, o.base, true) && compareValues(type, o.type, true)
+      && compareValues(expression, o.expression, true) && compareValues(xpath, o.xpath, true)
+      && compareValues(xpathUsage, o.xpathUsage, true) && compareValues(target, o.target, true)
+      && compareValues(multipleOr, o.multipleOr, true) && compareValues(multipleAnd, o.multipleAnd, true)
+      && compareValues(comparator, o.comparator, true) && compareValues(modifier, o.modifier, true)
+      && compareValues(chain, o.chain, true);
   }
 
   public boolean isEmpty() {
     return super.isEmpty() && ca.uhn.fhir.util.ElementUtil.isEmpty(derivedFrom, purpose, code, base, type, expression,
-        xpath, xpathUsage, target, multipleOr, multipleAnd, comparator, modifier, chain, component);
+      xpath, xpathUsage, target, multipleOr, multipleAnd, comparator, modifier, chain, component);
   }
 
   @Override
@@ -3673,7 +3669,7 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.DateClientParam DATE = new ca.uhn.fhir.rest.gclient.DateClientParam(
-      SP_DATE);
+    SP_DATE);
 
   /**
    * Search parameter: <b>code</b>
@@ -3694,7 +3690,7 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.TokenClientParam CODE = new ca.uhn.fhir.rest.gclient.TokenClientParam(
-      SP_CODE);
+    SP_CODE);
 
   /**
    * Search parameter: <b>context-type-value</b>
@@ -3706,7 +3702,7 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   @SearchParamDefinition(name = "context-type-value", path = "SearchParameter.useContext", description = "A use context type and value assigned to the search parameter", type = "composite", compositeOf = {
-      "context-type", "context" })
+    "context-type", "context" })
   public static final String SP_CONTEXT_TYPE_VALUE = "context-type-value";
   /**
    * <b>Fluent Client</b> search parameter constant for <b>context-type-value</b>
@@ -3718,7 +3714,7 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.CompositeClientParam<ca.uhn.fhir.rest.gclient.TokenClientParam, ca.uhn.fhir.rest.gclient.TokenClientParam> CONTEXT_TYPE_VALUE = new ca.uhn.fhir.rest.gclient.CompositeClientParam<ca.uhn.fhir.rest.gclient.TokenClientParam, ca.uhn.fhir.rest.gclient.TokenClientParam>(
-      SP_CONTEXT_TYPE_VALUE);
+    SP_CONTEXT_TYPE_VALUE);
 
   /**
    * Search parameter: <b>jurisdiction</b>
@@ -3739,7 +3735,7 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.TokenClientParam JURISDICTION = new ca.uhn.fhir.rest.gclient.TokenClientParam(
-      SP_JURISDICTION);
+    SP_JURISDICTION);
 
   /**
    * Search parameter: <b>description</b>
@@ -3760,7 +3756,7 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.StringClientParam DESCRIPTION = new ca.uhn.fhir.rest.gclient.StringClientParam(
-      SP_DESCRIPTION);
+    SP_DESCRIPTION);
 
   /**
    * Search parameter: <b>derived-from</b>
@@ -3771,7 +3767,7 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   @SearchParamDefinition(name = "derived-from", path = "SearchParameter.derivedFrom", description = "Original definition for the search parameter", type = "reference", target = {
-      SearchParameter.class })
+    SearchParameter.class })
   public static final String SP_DERIVED_FROM = "derived-from";
   /**
    * <b>Fluent Client</b> search parameter constant for <b>derived-from</b>
@@ -3782,14 +3778,14 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.ReferenceClientParam DERIVED_FROM = new ca.uhn.fhir.rest.gclient.ReferenceClientParam(
-      SP_DERIVED_FROM);
+    SP_DERIVED_FROM);
 
   /**
    * Constant for fluent queries to be used to add include statements. Specifies
    * the path value of "<b>SearchParameter:derived-from</b>".
    */
   public static final ca.uhn.fhir.model.api.Include INCLUDE_DERIVED_FROM = new ca.uhn.fhir.model.api.Include(
-      "SearchParameter:derived-from").toLocked();
+    "SearchParameter:derived-from").toLocked();
 
   /**
    * Search parameter: <b>context-type</b>
@@ -3812,7 +3808,7 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.TokenClientParam CONTEXT_TYPE = new ca.uhn.fhir.rest.gclient.TokenClientParam(
-      SP_CONTEXT_TYPE);
+    SP_CONTEXT_TYPE);
 
   /**
    * Search parameter: <b>type</b>
@@ -3835,7 +3831,7 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.TokenClientParam TYPE = new ca.uhn.fhir.rest.gclient.TokenClientParam(
-      SP_TYPE);
+    SP_TYPE);
 
   /**
    * Search parameter: <b>version</b>
@@ -3856,7 +3852,7 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.TokenClientParam VERSION = new ca.uhn.fhir.rest.gclient.TokenClientParam(
-      SP_VERSION);
+    SP_VERSION);
 
   /**
    * Search parameter: <b>url</b>
@@ -3897,7 +3893,7 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.TokenClientParam TARGET = new ca.uhn.fhir.rest.gclient.TokenClientParam(
-      SP_TARGET);
+    SP_TARGET);
 
   /**
    * Search parameter: <b>context-quantity</b>
@@ -3922,7 +3918,7 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.QuantityClientParam CONTEXT_QUANTITY = new ca.uhn.fhir.rest.gclient.QuantityClientParam(
-      SP_CONTEXT_QUANTITY);
+    SP_CONTEXT_QUANTITY);
 
   /**
    * Search parameter: <b>component</b>
@@ -3933,7 +3929,7 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   @SearchParamDefinition(name = "component", path = "SearchParameter.component.definition", description = "Defines how the part works", type = "reference", target = {
-      SearchParameter.class })
+    SearchParameter.class })
   public static final String SP_COMPONENT = "component";
   /**
    * <b>Fluent Client</b> search parameter constant for <b>component</b>
@@ -3944,14 +3940,14 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.ReferenceClientParam COMPONENT = new ca.uhn.fhir.rest.gclient.ReferenceClientParam(
-      SP_COMPONENT);
+    SP_COMPONENT);
 
   /**
    * Constant for fluent queries to be used to add include statements. Specifies
    * the path value of "<b>SearchParameter:component</b>".
    */
   public static final ca.uhn.fhir.model.api.Include INCLUDE_COMPONENT = new ca.uhn.fhir.model.api.Include(
-      "SearchParameter:component").toLocked();
+    "SearchParameter:component").toLocked();
 
   /**
    * Search parameter: <b>name</b>
@@ -3972,7 +3968,7 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.StringClientParam NAME = new ca.uhn.fhir.rest.gclient.StringClientParam(
-      SP_NAME);
+    SP_NAME);
 
   /**
    * Search parameter: <b>context</b>
@@ -3993,7 +3989,7 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.TokenClientParam CONTEXT = new ca.uhn.fhir.rest.gclient.TokenClientParam(
-      SP_CONTEXT);
+    SP_CONTEXT);
 
   /**
    * Search parameter: <b>publisher</b>
@@ -4014,7 +4010,7 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.StringClientParam PUBLISHER = new ca.uhn.fhir.rest.gclient.StringClientParam(
-      SP_PUBLISHER);
+    SP_PUBLISHER);
 
   /**
    * Search parameter: <b>context-type-quantity</b>
@@ -4026,7 +4022,7 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   @SearchParamDefinition(name = "context-type-quantity", path = "SearchParameter.useContext", description = "A use context type and quantity- or range-based value assigned to the search parameter", type = "composite", compositeOf = {
-      "context-type", "context-quantity" })
+    "context-type", "context-quantity" })
   public static final String SP_CONTEXT_TYPE_QUANTITY = "context-type-quantity";
   /**
    * <b>Fluent Client</b> search parameter constant for
@@ -4039,7 +4035,7 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.CompositeClientParam<ca.uhn.fhir.rest.gclient.TokenClientParam, ca.uhn.fhir.rest.gclient.QuantityClientParam> CONTEXT_TYPE_QUANTITY = new ca.uhn.fhir.rest.gclient.CompositeClientParam<ca.uhn.fhir.rest.gclient.TokenClientParam, ca.uhn.fhir.rest.gclient.QuantityClientParam>(
-      SP_CONTEXT_TYPE_QUANTITY);
+    SP_CONTEXT_TYPE_QUANTITY);
 
   /**
    * Search parameter: <b>status</b>
@@ -4060,7 +4056,7 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.TokenClientParam STATUS = new ca.uhn.fhir.rest.gclient.TokenClientParam(
-      SP_STATUS);
+    SP_STATUS);
 
   /**
    * Search parameter: <b>base</b>
@@ -4081,6 +4077,6 @@ public class SearchParameter extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.TokenClientParam BASE = new ca.uhn.fhir.rest.gclient.TokenClientParam(
-      SP_BASE);
+    SP_BASE);
 
 }

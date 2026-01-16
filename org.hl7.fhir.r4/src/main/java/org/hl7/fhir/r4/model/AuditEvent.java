@@ -52,536 +52,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "AuditEvent", profile = "http://hl7.org/fhir/StructureDefinition/AuditEvent")
 public class AuditEvent extends DomainResource {
 
-  public enum AuditEventAction {
-    /**
-     * Create a new database object, such as placing an order.
-     */
-    C,
-    /**
-     * Display or print data, such as a doctor census.
-     */
-    R,
-    /**
-     * Update data, such as revise patient information.
-     */
-    U,
-    /**
-     * Delete items, such as a doctor master file record.
-     */
-    D,
-    /**
-     * Perform a system or application function such as log-on, program execution or
-     * use of an object's method, or perform a query/search operation.
-     */
-    E,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static AuditEventAction fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("C".equals(codeString))
-        return C;
-      if ("R".equals(codeString))
-        return R;
-      if ("U".equals(codeString))
-        return U;
-      if ("D".equals(codeString))
-        return D;
-      if ("E".equals(codeString))
-        return E;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown AuditEventAction code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case C:
-        return "C";
-      case R:
-        return "R";
-      case U:
-        return "U";
-      case D:
-        return "D";
-      case E:
-        return "E";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case C:
-        return "http://hl7.org/fhir/audit-event-action";
-      case R:
-        return "http://hl7.org/fhir/audit-event-action";
-      case U:
-        return "http://hl7.org/fhir/audit-event-action";
-      case D:
-        return "http://hl7.org/fhir/audit-event-action";
-      case E:
-        return "http://hl7.org/fhir/audit-event-action";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case C:
-        return "Create a new database object, such as placing an order.";
-      case R:
-        return "Display or print data, such as a doctor census.";
-      case U:
-        return "Update data, such as revise patient information.";
-      case D:
-        return "Delete items, such as a doctor master file record.";
-      case E:
-        return "Perform a system or application function such as log-on, program execution or use of an object's method, or perform a query/search operation.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case C:
-        return "Create";
-      case R:
-        return "Read/View/Print";
-      case U:
-        return "Update";
-      case D:
-        return "Delete";
-      case E:
-        return "Execute";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class AuditEventActionEnumFactory implements EnumFactory<AuditEventAction> {
-    public AuditEventAction fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("C".equals(codeString))
-        return AuditEventAction.C;
-      if ("R".equals(codeString))
-        return AuditEventAction.R;
-      if ("U".equals(codeString))
-        return AuditEventAction.U;
-      if ("D".equals(codeString))
-        return AuditEventAction.D;
-      if ("E".equals(codeString))
-        return AuditEventAction.E;
-      throw new IllegalArgumentException("Unknown AuditEventAction code '" + codeString + "'");
-    }
-
-    public Enumeration<AuditEventAction> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<AuditEventAction>(this, AuditEventAction.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<AuditEventAction>(this, AuditEventAction.NULL, code);
-      if ("C".equals(codeString))
-        return new Enumeration<AuditEventAction>(this, AuditEventAction.C, code);
-      if ("R".equals(codeString))
-        return new Enumeration<AuditEventAction>(this, AuditEventAction.R, code);
-      if ("U".equals(codeString))
-        return new Enumeration<AuditEventAction>(this, AuditEventAction.U, code);
-      if ("D".equals(codeString))
-        return new Enumeration<AuditEventAction>(this, AuditEventAction.D, code);
-      if ("E".equals(codeString))
-        return new Enumeration<AuditEventAction>(this, AuditEventAction.E, code);
-      throw new FHIRException("Unknown AuditEventAction code '" + codeString + "'");
-    }
-
-    public String toCode(AuditEventAction code) {
-       if (code == AuditEventAction.NULL)
-           return null;
-       if (code == AuditEventAction.C)
-        return "C";
-      if (code == AuditEventAction.R)
-        return "R";
-      if (code == AuditEventAction.U)
-        return "U";
-      if (code == AuditEventAction.D)
-        return "D";
-      if (code == AuditEventAction.E)
-        return "E";
-      return "?";
-   }
-
-    public String toSystem(AuditEventAction code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum AuditEventOutcome {
-    /**
-     * The operation completed successfully (whether with warnings or not).
-     */
-    _0,
-    /**
-     * The action was not successful due to some kind of minor failure (often
-     * equivalent to an HTTP 400 response).
-     */
-    _4,
-    /**
-     * The action was not successful due to some kind of unexpected error (often
-     * equivalent to an HTTP 500 response).
-     */
-    _8,
-    /**
-     * An error of such magnitude occurred that the system is no longer available
-     * for use (i.e. the system died).
-     */
-    _12,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static AuditEventOutcome fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("0".equals(codeString))
-        return _0;
-      if ("4".equals(codeString))
-        return _4;
-      if ("8".equals(codeString))
-        return _8;
-      if ("12".equals(codeString))
-        return _12;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown AuditEventOutcome code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case _0:
-        return "0";
-      case _4:
-        return "4";
-      case _8:
-        return "8";
-      case _12:
-        return "12";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case _0:
-        return "http://hl7.org/fhir/audit-event-outcome";
-      case _4:
-        return "http://hl7.org/fhir/audit-event-outcome";
-      case _8:
-        return "http://hl7.org/fhir/audit-event-outcome";
-      case _12:
-        return "http://hl7.org/fhir/audit-event-outcome";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case _0:
-        return "The operation completed successfully (whether with warnings or not).";
-      case _4:
-        return "The action was not successful due to some kind of minor failure (often equivalent to an HTTP 400 response).";
-      case _8:
-        return "The action was not successful due to some kind of unexpected error (often equivalent to an HTTP 500 response).";
-      case _12:
-        return "An error of such magnitude occurred that the system is no longer available for use (i.e. the system died).";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case _0:
-        return "Success";
-      case _4:
-        return "Minor failure";
-      case _8:
-        return "Serious failure";
-      case _12:
-        return "Major failure";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class AuditEventOutcomeEnumFactory implements EnumFactory<AuditEventOutcome> {
-    public AuditEventOutcome fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("0".equals(codeString))
-        return AuditEventOutcome._0;
-      if ("4".equals(codeString))
-        return AuditEventOutcome._4;
-      if ("8".equals(codeString))
-        return AuditEventOutcome._8;
-      if ("12".equals(codeString))
-        return AuditEventOutcome._12;
-      throw new IllegalArgumentException("Unknown AuditEventOutcome code '" + codeString + "'");
-    }
-
-    public Enumeration<AuditEventOutcome> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<AuditEventOutcome>(this, AuditEventOutcome.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<AuditEventOutcome>(this, AuditEventOutcome.NULL, code);
-      if ("0".equals(codeString))
-        return new Enumeration<AuditEventOutcome>(this, AuditEventOutcome._0, code);
-      if ("4".equals(codeString))
-        return new Enumeration<AuditEventOutcome>(this, AuditEventOutcome._4, code);
-      if ("8".equals(codeString))
-        return new Enumeration<AuditEventOutcome>(this, AuditEventOutcome._8, code);
-      if ("12".equals(codeString))
-        return new Enumeration<AuditEventOutcome>(this, AuditEventOutcome._12, code);
-      throw new FHIRException("Unknown AuditEventOutcome code '" + codeString + "'");
-    }
-
-    public String toCode(AuditEventOutcome code) {
-       if (code == AuditEventOutcome.NULL)
-           return null;
-       if (code == AuditEventOutcome._0)
-        return "0";
-      if (code == AuditEventOutcome._4)
-        return "4";
-      if (code == AuditEventOutcome._8)
-        return "8";
-      if (code == AuditEventOutcome._12)
-        return "12";
-      return "?";
-   }
-
-    public String toSystem(AuditEventOutcome code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum AuditEventAgentNetworkType {
-    /**
-     * The machine name, including DNS name.
-     */
-    _1,
-    /**
-     * The assigned Internet Protocol (IP) address.
-     */
-    _2,
-    /**
-     * The assigned telephone number.
-     */
-    _3,
-    /**
-     * The assigned email address.
-     */
-    _4,
-    /**
-     * URI (User directory, HTTP-PUT, ftp, etc.).
-     */
-    _5,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static AuditEventAgentNetworkType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("1".equals(codeString))
-        return _1;
-      if ("2".equals(codeString))
-        return _2;
-      if ("3".equals(codeString))
-        return _3;
-      if ("4".equals(codeString))
-        return _4;
-      if ("5".equals(codeString))
-        return _5;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown AuditEventAgentNetworkType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case _1:
-        return "1";
-      case _2:
-        return "2";
-      case _3:
-        return "3";
-      case _4:
-        return "4";
-      case _5:
-        return "5";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case _1:
-        return "http://hl7.org/fhir/network-type";
-      case _2:
-        return "http://hl7.org/fhir/network-type";
-      case _3:
-        return "http://hl7.org/fhir/network-type";
-      case _4:
-        return "http://hl7.org/fhir/network-type";
-      case _5:
-        return "http://hl7.org/fhir/network-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case _1:
-        return "The machine name, including DNS name.";
-      case _2:
-        return "The assigned Internet Protocol (IP) address.";
-      case _3:
-        return "The assigned telephone number.";
-      case _4:
-        return "The assigned email address.";
-      case _5:
-        return "URI (User directory, HTTP-PUT, ftp, etc.).";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case _1:
-        return "Machine Name";
-      case _2:
-        return "IP Address";
-      case _3:
-        return "Telephone Number";
-      case _4:
-        return "Email address";
-      case _5:
-        return "URI";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class AuditEventAgentNetworkTypeEnumFactory implements EnumFactory<AuditEventAgentNetworkType> {
-    public AuditEventAgentNetworkType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("1".equals(codeString))
-        return AuditEventAgentNetworkType._1;
-      if ("2".equals(codeString))
-        return AuditEventAgentNetworkType._2;
-      if ("3".equals(codeString))
-        return AuditEventAgentNetworkType._3;
-      if ("4".equals(codeString))
-        return AuditEventAgentNetworkType._4;
-      if ("5".equals(codeString))
-        return AuditEventAgentNetworkType._5;
-      throw new IllegalArgumentException("Unknown AuditEventAgentNetworkType code '" + codeString + "'");
-    }
-
-    public Enumeration<AuditEventAgentNetworkType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<AuditEventAgentNetworkType>(this, AuditEventAgentNetworkType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<AuditEventAgentNetworkType>(this, AuditEventAgentNetworkType.NULL, code);
-      if ("1".equals(codeString))
-        return new Enumeration<AuditEventAgentNetworkType>(this, AuditEventAgentNetworkType._1, code);
-      if ("2".equals(codeString))
-        return new Enumeration<AuditEventAgentNetworkType>(this, AuditEventAgentNetworkType._2, code);
-      if ("3".equals(codeString))
-        return new Enumeration<AuditEventAgentNetworkType>(this, AuditEventAgentNetworkType._3, code);
-      if ("4".equals(codeString))
-        return new Enumeration<AuditEventAgentNetworkType>(this, AuditEventAgentNetworkType._4, code);
-      if ("5".equals(codeString))
-        return new Enumeration<AuditEventAgentNetworkType>(this, AuditEventAgentNetworkType._5, code);
-      throw new FHIRException("Unknown AuditEventAgentNetworkType code '" + codeString + "'");
-    }
-
-    public String toCode(AuditEventAgentNetworkType code) {
-       if (code == AuditEventAgentNetworkType.NULL)
-           return null;
-       if (code == AuditEventAgentNetworkType._1)
-        return "1";
-      if (code == AuditEventAgentNetworkType._2)
-        return "2";
-      if (code == AuditEventAgentNetworkType._3)
-        return "3";
-      if (code == AuditEventAgentNetworkType._4)
-        return "4";
-      if (code == AuditEventAgentNetworkType._5)
-        return "5";
-      return "?";
-   }
-
-    public String toSystem(AuditEventAgentNetworkType code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class AuditEventAgentComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -1635,10 +1105,10 @@ public class AuditEvent extends DomainResource {
      * An identifier for the type of network access point that originated the audit
      * event.
      */
-    @Child(name = "type", type = { CodeType.class }, order = 2, min = 0, max = 1, modifier = false, summary = false)
+    @Child(name = "type", type = { StringType.class }, order = 2, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "The type of network access point", formalDefinition = "An identifier for the type of network access point that originated the audit event.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/network-type")
-    protected Enumeration<AuditEventAgentNetworkType> type;
+    protected StringType type;
 
     private static final long serialVersionUID = -160715924L;
 
@@ -1712,12 +1182,12 @@ public class AuditEvent extends DomainResource {
      *         id, value and extensions. The accessor "getType" gives direct access
      *         to the value
      */
-    public Enumeration<AuditEventAgentNetworkType> getTypeElement() {
+    public StringType getTypeElement() {
       if (this.type == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create AuditEventAgentNetworkComponent.type");
         else if (Configuration.doAutoCreate())
-          this.type = new Enumeration<AuditEventAgentNetworkType>(new AuditEventAgentNetworkTypeEnumFactory()); // bb
+          this.type = new StringType(); // bb
       return this.type;
     }
 
@@ -1735,7 +1205,7 @@ public class AuditEvent extends DomainResource {
      *              object with id, value and extensions. The accessor "getType"
      *              gives direct access to the value
      */
-    public AuditEventAgentNetworkComponent setTypeElement(Enumeration<AuditEventAgentNetworkType> value) {
+    public AuditEventAgentNetworkComponent setTypeElement(StringType value) {
       this.type = value;
       return this;
     }
@@ -1744,7 +1214,7 @@ public class AuditEvent extends DomainResource {
      * @return An identifier for the type of network access point that originated
      *         the audit event.
      */
-    public AuditEventAgentNetworkType getType() {
+    public String getType() {
       return this.type == null ? null : this.type.getValue();
     }
 
@@ -1752,12 +1222,12 @@ public class AuditEvent extends DomainResource {
      * @param value An identifier for the type of network access point that
      *              originated the audit event.
      */
-    public AuditEventAgentNetworkComponent setType(AuditEventAgentNetworkType value) {
+    public AuditEventAgentNetworkComponent setType(String value) {
       if (value == null)
         this.type = null;
       else {
         if (this.type == null)
-          this.type = new Enumeration<AuditEventAgentNetworkType>(new AuditEventAgentNetworkTypeEnumFactory());
+          this.type = new StringType();
         this.type.setValue(value);
       }
       return this;
@@ -1767,7 +1237,7 @@ public class AuditEvent extends DomainResource {
       super.listChildren(children);
       children.add(new Property("address", "string",
           "An identifier for the network access point of the user device for the audit event.", 0, 1, address));
-      children.add(new Property("type", "code",
+      children.add(new Property("type", "string",
           "An identifier for the type of network access point that originated the audit event.", 0, 1, type));
     }
 
@@ -1778,7 +1248,7 @@ public class AuditEvent extends DomainResource {
         /* address */ return new Property("address", "string",
             "An identifier for the network access point of the user device for the audit event.", 0, 1, address);
       case 3575610:
-        /* type */ return new Property("type", "code",
+        /* type */ return new Property("type", "string",
             "An identifier for the type of network access point that originated the audit event.", 0, 1, type);
       default:
         return super.getNamedProperty(_hash, _name, _checkValid);
@@ -1792,7 +1262,7 @@ public class AuditEvent extends DomainResource {
       case -1147692044:
         /* address */ return this.address == null ? new Base[0] : new Base[] { this.address }; // StringType
       case 3575610:
-        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<AuditEventAgentNetworkType>
+        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
       default:
         return super.getProperty(hash, name, checkValid);
       }
@@ -1806,8 +1276,7 @@ public class AuditEvent extends DomainResource {
         this.address = castToString(value); // StringType
         return value;
       case 3575610: // type
-        value = new AuditEventAgentNetworkTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<AuditEventAgentNetworkType>
+        this.type = castToString(value); // StringType
         return value;
       default:
         return super.setProperty(hash, name, value);
@@ -1820,8 +1289,7 @@ public class AuditEvent extends DomainResource {
       if (name.equals("address")) {
         this.address = castToString(value); // StringType
       } else if (name.equals("type")) {
-        value = new AuditEventAgentNetworkTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<AuditEventAgentNetworkType>
+        this.type = castToString(value); // StringType
       } else
         return super.setProperty(name, value);
       return value;
@@ -1857,7 +1325,7 @@ public class AuditEvent extends DomainResource {
       case -1147692044:
         /* address */ return new String[] { "string" };
       case 3575610:
-        /* type */ return new String[] { "code" };
+        /* type */ return new String[] { "string" };
       default:
         return super.getTypesForProperty(hash, name);
       }
@@ -3443,10 +2911,10 @@ public class AuditEvent extends DomainResource {
    * Indicator for type of action performed during the event that generated the
    * audit.
    */
-  @Child(name = "action", type = { CodeType.class }, order = 2, min = 0, max = 1, modifier = false, summary = true)
+  @Child(name = "action", type = { StringType.class }, order = 2, min = 0, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "Type of action performed during the event", formalDefinition = "Indicator for type of action performed during the event that generated the audit.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/audit-event-action")
-  protected Enumeration<AuditEventAction> action;
+  protected StringType action;
 
   /**
    * The period during which the activity occurred.
@@ -3465,10 +2933,10 @@ public class AuditEvent extends DomainResource {
   /**
    * Indicates whether the event succeeded or failed.
    */
-  @Child(name = "outcome", type = { CodeType.class }, order = 5, min = 0, max = 1, modifier = false, summary = true)
+  @Child(name = "outcome", type = { StringType.class }, order = 5, min = 0, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "Whether the event succeeded or failed", formalDefinition = "Indicates whether the event succeeded or failed.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/audit-event-outcome")
-  protected Enumeration<AuditEventOutcome> outcome;
+  protected StringType outcome;
 
   /**
    * A free text description of the outcome of the event.
@@ -3615,12 +3083,12 @@ public class AuditEvent extends DomainResource {
    *         id, value and extensions. The accessor "getAction" gives direct
    *         access to the value
    */
-  public Enumeration<AuditEventAction> getActionElement() {
+  public StringType getActionElement() {
     if (this.action == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create AuditEvent.action");
       else if (Configuration.doAutoCreate())
-        this.action = new Enumeration<AuditEventAction>(new AuditEventActionEnumFactory()); // bb
+        this.action = new StringType(); // bb
     return this.action;
   }
 
@@ -3638,7 +3106,7 @@ public class AuditEvent extends DomainResource {
    *              object with id, value and extensions. The accessor "getAction"
    *              gives direct access to the value
    */
-  public AuditEvent setActionElement(Enumeration<AuditEventAction> value) {
+  public AuditEvent setActionElement(StringType value) {
     this.action = value;
     return this;
   }
@@ -3647,7 +3115,7 @@ public class AuditEvent extends DomainResource {
    * @return Indicator for type of action performed during the event that
    *         generated the audit.
    */
-  public AuditEventAction getAction() {
+  public String getAction() {
     return this.action == null ? null : this.action.getValue();
   }
 
@@ -3655,12 +3123,12 @@ public class AuditEvent extends DomainResource {
    * @param value Indicator for type of action performed during the event that
    *              generated the audit.
    */
-  public AuditEvent setAction(AuditEventAction value) {
+  public AuditEvent setAction(String value) {
     if (value == null)
       this.action = null;
     else {
       if (this.action == null)
-        this.action = new Enumeration<AuditEventAction>(new AuditEventActionEnumFactory());
+        this.action = new StringType();
       this.action.setValue(value);
     }
     return this;
@@ -3744,12 +3212,12 @@ public class AuditEvent extends DomainResource {
    *         This is the underlying object with id, value and extensions. The
    *         accessor "getOutcome" gives direct access to the value
    */
-  public Enumeration<AuditEventOutcome> getOutcomeElement() {
+  public StringType getOutcomeElement() {
     if (this.outcome == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create AuditEvent.outcome");
       else if (Configuration.doAutoCreate())
-        this.outcome = new Enumeration<AuditEventOutcome>(new AuditEventOutcomeEnumFactory()); // bb
+        this.outcome = new StringType(); // bb
     return this.outcome;
   }
 
@@ -3767,7 +3235,7 @@ public class AuditEvent extends DomainResource {
    *              extensions. The accessor "getOutcome" gives direct access to the
    *              value
    */
-  public AuditEvent setOutcomeElement(Enumeration<AuditEventOutcome> value) {
+  public AuditEvent setOutcomeElement(StringType value) {
     this.outcome = value;
     return this;
   }
@@ -3775,19 +3243,19 @@ public class AuditEvent extends DomainResource {
   /**
    * @return Indicates whether the event succeeded or failed.
    */
-  public AuditEventOutcome getOutcome() {
+  public String getOutcome() {
     return this.outcome == null ? null : this.outcome.getValue();
   }
 
   /**
    * @param value Indicates whether the event succeeded or failed.
    */
-  public AuditEvent setOutcome(AuditEventOutcome value) {
+  public AuditEvent setOutcome(String value) {
     if (value == null)
       this.outcome = null;
     else {
       if (this.outcome == null)
-        this.outcome = new Enumeration<AuditEventOutcome>(new AuditEventOutcomeEnumFactory());
+        this.outcome = new StringType();
       this.outcome.setValue(value);
     }
     return this;
@@ -4043,11 +3511,11 @@ public class AuditEvent extends DomainResource {
         0, 1, type));
     children.add(new Property("subtype", "Coding", "Identifier for the category of event.", 0,
         java.lang.Integer.MAX_VALUE, subtype));
-    children.add(new Property("action", "code",
+    children.add(new Property("action", "string",
         "Indicator for type of action performed during the event that generated the audit.", 0, 1, action));
     children.add(new Property("period", "Period", "The period during which the activity occurred.", 0, 1, period));
     children.add(new Property("recorded", "instant", "The time when the event was recorded.", 0, 1, recorded));
-    children.add(new Property("outcome", "code", "Indicates whether the event succeeded or failed.", 0, 1, outcome));
+    children.add(new Property("outcome", "string", "Indicates whether the event succeeded or failed.", 0, 1, outcome));
     children.add(new Property("outcomeDesc", "string", "A free text description of the outcome of the event.", 0, 1,
         outcomeDesc));
     children.add(new Property("purposeOfEvent", "CodeableConcept",
@@ -4071,7 +3539,7 @@ public class AuditEvent extends DomainResource {
       /* subtype */ return new Property("subtype", "Coding", "Identifier for the category of event.", 0,
           java.lang.Integer.MAX_VALUE, subtype);
     case -1422950858:
-      /* action */ return new Property("action", "code",
+      /* action */ return new Property("action", "string",
           "Indicator for type of action performed during the event that generated the audit.", 0, 1, action);
     case -991726143:
       /* period */ return new Property("period", "Period", "The period during which the activity occurred.", 0, 1,
@@ -4080,7 +3548,7 @@ public class AuditEvent extends DomainResource {
       /* recorded */ return new Property("recorded", "instant", "The time when the event was recorded.", 0, 1,
           recorded);
     case -1106507950:
-      /* outcome */ return new Property("outcome", "code", "Indicates whether the event succeeded or failed.", 0, 1,
+      /* outcome */ return new Property("outcome", "string", "Indicates whether the event succeeded or failed.", 0, 1,
           outcome);
     case 1062502659:
       /* outcomeDesc */ return new Property("outcomeDesc", "string",
@@ -4112,13 +3580,13 @@ public class AuditEvent extends DomainResource {
     case -1867567750:
       /* subtype */ return this.subtype == null ? new Base[0] : this.subtype.toArray(new Base[this.subtype.size()]); // Coding
     case -1422950858:
-      /* action */ return this.action == null ? new Base[0] : new Base[] { this.action }; // Enumeration<AuditEventAction>
+      /* action */ return this.action == null ? new Base[0] : new Base[] { this.action }; // StringType
     case -991726143:
       /* period */ return this.period == null ? new Base[0] : new Base[] { this.period }; // Period
     case -799233872:
       /* recorded */ return this.recorded == null ? new Base[0] : new Base[] { this.recorded }; // InstantType
     case -1106507950:
-      /* outcome */ return this.outcome == null ? new Base[0] : new Base[] { this.outcome }; // Enumeration<AuditEventOutcome>
+      /* outcome */ return this.outcome == null ? new Base[0] : new Base[] { this.outcome }; // StringType
     case 1062502659:
       /* outcomeDesc */ return this.outcomeDesc == null ? new Base[0] : new Base[] { this.outcomeDesc }; // StringType
     case -341917691:
@@ -4146,8 +3614,7 @@ public class AuditEvent extends DomainResource {
       this.getSubtype().add(castToCoding(value)); // Coding
       return value;
     case -1422950858: // action
-      value = new AuditEventActionEnumFactory().fromType(castToCode(value));
-      this.action = (Enumeration) value; // Enumeration<AuditEventAction>
+      this.action = castToString(value); // StringType
       return value;
     case -991726143: // period
       this.period = castToPeriod(value); // Period
@@ -4156,8 +3623,7 @@ public class AuditEvent extends DomainResource {
       this.recorded = castToInstant(value); // InstantType
       return value;
     case -1106507950: // outcome
-      value = new AuditEventOutcomeEnumFactory().fromType(castToCode(value));
-      this.outcome = (Enumeration) value; // Enumeration<AuditEventOutcome>
+      this.outcome = castToString(value); // StringType
       return value;
     case 1062502659: // outcomeDesc
       this.outcomeDesc = castToString(value); // StringType
@@ -4187,15 +3653,13 @@ public class AuditEvent extends DomainResource {
     } else if (name.equals("subtype")) {
       this.getSubtype().add(castToCoding(value));
     } else if (name.equals("action")) {
-      value = new AuditEventActionEnumFactory().fromType(castToCode(value));
-      this.action = (Enumeration) value; // Enumeration<AuditEventAction>
+      this.action = castToString(value); // StringType
     } else if (name.equals("period")) {
       this.period = castToPeriod(value); // Period
     } else if (name.equals("recorded")) {
       this.recorded = castToInstant(value); // InstantType
     } else if (name.equals("outcome")) {
-      value = new AuditEventOutcomeEnumFactory().fromType(castToCode(value));
-      this.outcome = (Enumeration) value; // Enumeration<AuditEventOutcome>
+      this.outcome = castToString(value); // StringType
     } else if (name.equals("outcomeDesc")) {
       this.outcomeDesc = castToString(value); // StringType
     } else if (name.equals("purposeOfEvent")) {
@@ -4279,13 +3743,13 @@ public class AuditEvent extends DomainResource {
     case -1867567750:
       /* subtype */ return new String[] { "Coding" };
     case -1422950858:
-      /* action */ return new String[] { "code" };
+      /* action */ return new String[] { "string" };
     case -991726143:
       /* period */ return new String[] { "Period" };
     case -799233872:
       /* recorded */ return new String[] { "instant" };
     case -1106507950:
-      /* outcome */ return new String[] { "code" };
+      /* outcome */ return new String[] { "string" };
     case 1062502659:
       /* outcomeDesc */ return new String[] { "string" };
     case -341917691:

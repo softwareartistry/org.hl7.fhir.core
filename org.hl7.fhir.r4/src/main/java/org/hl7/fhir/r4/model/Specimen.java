@@ -2616,7 +2616,7 @@ public class Specimen extends DomainResource {
       /* accessionIdentifier */ return this.accessionIdentifier == null ? new Base[0]
           : new Base[] { this.accessionIdentifier }; // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<SpecimenStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 3575610:
       /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // CodeableConcept
     case -1867885268:

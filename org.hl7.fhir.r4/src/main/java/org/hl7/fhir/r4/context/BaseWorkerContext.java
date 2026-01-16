@@ -24,7 +24,6 @@ import org.hl7.fhir.r4.context.TerminologyCache.CacheToken;
 import org.hl7.fhir.r4.model.BooleanType;
 import org.hl7.fhir.r4.model.CapabilityStatement;
 import org.hl7.fhir.r4.model.CodeSystem;
-import org.hl7.fhir.r4.model.CodeSystem.CodeSystemContentMode;
 import org.hl7.fhir.r4.model.CodeSystem.ConceptDefinitionComponent;
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
@@ -35,7 +34,6 @@ import org.hl7.fhir.r4.model.ImplementationGuide;
 import org.hl7.fhir.r4.model.IntegerType;
 import org.hl7.fhir.r4.model.MetadataResource;
 import org.hl7.fhir.r4.model.NamingSystem;
-import org.hl7.fhir.r4.model.NamingSystem.NamingSystemIdentifierType;
 import org.hl7.fhir.r4.model.NamingSystem.NamingSystemUniqueIdComponent;
 import org.hl7.fhir.r4.model.OperationDefinition;
 import org.hl7.fhir.r4.model.Parameters;
@@ -321,7 +319,7 @@ public abstract class BaseWorkerContext extends I18nBase implements IWorkerConte
   @Override
   public boolean supportsSystem(String system) throws TerminologyServiceException {
     synchronized (lock) {
-      if (codeSystems.containsKey(system) && codeSystems.get(system).getContent() != CodeSystemContentMode.NOTPRESENT)
+      if (codeSystems.containsKey(system) && codeSystems.get(system).getContent() != "NOTPRESENT")
         return true;
       else if (supportedCodeSystems.contains(system))
         return true;
@@ -1126,7 +1124,7 @@ public abstract class BaseWorkerContext extends I18nBase implements IWorkerConte
 
   private String getUri(NamingSystem ns) {
     for (NamingSystemUniqueIdComponent id : ns.getUniqueId()) {
-      if (id.getType() == NamingSystemIdentifierType.URI)
+      if (id.getType() == "URI")
         return id.getValue();
     }
     return null;
@@ -1134,7 +1132,7 @@ public abstract class BaseWorkerContext extends I18nBase implements IWorkerConte
 
   private boolean hasOid(NamingSystem ns, String oid) {
     for (NamingSystemUniqueIdComponent id : ns.getUniqueId()) {
-      if (id.getType() == NamingSystemIdentifierType.OID && id.getValue().equals(oid))
+      if (id.getType() == "OID" && id.getValue().equals(oid))
         return true;
     }
     return false;

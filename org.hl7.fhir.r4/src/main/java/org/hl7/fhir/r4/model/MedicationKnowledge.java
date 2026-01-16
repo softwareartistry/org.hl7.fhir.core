@@ -5239,8 +5239,8 @@ public class MedicationKnowledge extends DomainResource {
    *         refers to the validity about the information of the medication and
    *         not to its medicinal properties.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -6527,7 +6527,6 @@ public class MedicationKnowledge extends DomainResource {
       this.code = castToCodeableConcept(value); // CodeableConcept
       return value;
     case -892481550: // status
-//      value = new MedicationKnowledgeStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // StringType
       return value;
     case -1969347631: // manufacturer
@@ -6601,7 +6600,6 @@ public class MedicationKnowledge extends DomainResource {
     if (name.equals("code")) {
       this.code = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("status")) {
-//      value = new MedicationKnowledgeStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // StringType
     } else if (name.equals("manufacturer")) {
       this.manufacturer = castToReference(value); // Reference

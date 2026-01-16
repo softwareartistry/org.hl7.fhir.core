@@ -34,7 +34,6 @@ import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.r4.context.IWorkerContext;
 import org.hl7.fhir.r4.model.CanonicalType;
 import org.hl7.fhir.r4.model.CodeSystem;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
 import org.hl7.fhir.r4.model.Identifier;
 import org.hl7.fhir.r4.model.Meta;
 import org.hl7.fhir.r4.model.UriType;
@@ -117,7 +116,7 @@ public class ValueSetUtilities {
       }
       if (status == StandardsStatus.NORMATIVE) {
         vs.setExperimental(false);
-        vs.setStatus(PublicationStatus.ACTIVE);
+        vs.setStatus("ACTIVE");
       }
     }
     if (fmm != null) {

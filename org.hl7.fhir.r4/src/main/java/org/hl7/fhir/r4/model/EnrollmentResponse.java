@@ -35,8 +35,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
-import org.hl7.fhir.r4.model.Enumerations.RemittanceOutcome;
-import org.hl7.fhir.r4.model.Enumerations.RemittanceOutcomeEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Child;
@@ -84,10 +82,10 @@ public class EnrollmentResponse extends DomainResource {
   /**
    * Processing status: error, complete.
    */
-  @Child(name = "outcome", type = { CodeType.class }, order = 3, min = 0, max = 1, modifier = false, summary = false)
+  @Child(name = "outcome", type = { StringType.class }, order = 3, min = 0, max = 1, modifier = false, summary = false)
   @Description(shortDefinition = "queued | complete | error | partial", formalDefinition = "Processing status: error, complete.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/remittance-outcome")
-  protected Enumeration<RemittanceOutcome> outcome;
+  protected StringType outcome;
 
   /**
    * A description of the status of the adjudication.
@@ -231,8 +229,8 @@ public class EnrollmentResponse extends DomainResource {
   /**
    * @return The status of the resource instance.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -304,12 +302,12 @@ public class EnrollmentResponse extends DomainResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getOutcome" gives direct access to the value
    */
-  public Enumeration<RemittanceOutcome> getOutcomeElement() {
+  public StringType getOutcomeElement() {
     if (this.outcome == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create EnrollmentResponse.outcome");
       else if (Configuration.doAutoCreate())
-        this.outcome = new Enumeration<RemittanceOutcome>(new RemittanceOutcomeEnumFactory()); // bb
+        this.outcome = new StringType(); // bb
     return this.outcome;
   }
 
@@ -326,7 +324,7 @@ public class EnrollmentResponse extends DomainResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getOutcome" gives direct access to the value
    */
-  public EnrollmentResponse setOutcomeElement(Enumeration<RemittanceOutcome> value) {
+  public EnrollmentResponse setOutcomeElement(StringType value) {
     this.outcome = value;
     return this;
   }
@@ -334,19 +332,19 @@ public class EnrollmentResponse extends DomainResource {
   /**
    * @return Processing status: error, complete.
    */
-  public RemittanceOutcome getOutcome() {
+  public String getOutcome() {
     return this.outcome == null ? null : this.outcome.getValue();
   }
 
   /**
    * @param value Processing status: error, complete.
    */
-  public EnrollmentResponse setOutcome(RemittanceOutcome value) {
+  public EnrollmentResponse setOutcome(String value) {
     if (value == null)
       this.outcome = null;
     else {
       if (this.outcome == null)
-        this.outcome = new Enumeration<RemittanceOutcome>(new RemittanceOutcomeEnumFactory());
+        this.outcome = new StringType();
       this.outcome.setValue(value);
     }
     return this;
@@ -571,7 +569,7 @@ public class EnrollmentResponse extends DomainResource {
     children.add(new Property("status", "string", "The status of the resource instance.", 0, 1, status));
     children.add(
         new Property("request", "Reference(EnrollmentRequest)", "Original request resource reference.", 0, 1, request));
-    children.add(new Property("outcome", "code", "Processing status: error, complete.", 0, 1, outcome));
+    children.add(new Property("outcome", "string", "Processing status: error, complete.", 0, 1, outcome));
     children.add(
         new Property("disposition", "string", "A description of the status of the adjudication.", 0, 1, disposition));
     children.add(new Property("created", "dateTime",
@@ -594,7 +592,7 @@ public class EnrollmentResponse extends DomainResource {
       /* request */ return new Property("request", "Reference(EnrollmentRequest)",
           "Original request resource reference.", 0, 1, request);
     case -1106507950:
-      /* outcome */ return new Property("outcome", "code", "Processing status: error, complete.", 0, 1, outcome);
+      /* outcome */ return new Property("outcome", "string", "Processing status: error, complete.", 0, 1, outcome);
     case 583380919:
       /* disposition */ return new Property("disposition", "string", "A description of the status of the adjudication.",
           0, 1, disposition);
@@ -625,7 +623,7 @@ public class EnrollmentResponse extends DomainResource {
     case 1095692943:
       /* request */ return this.request == null ? new Base[0] : new Base[] { this.request }; // Reference
     case -1106507950:
-      /* outcome */ return this.outcome == null ? new Base[0] : new Base[] { this.outcome }; // Enumeration<RemittanceOutcome>
+      /* outcome */ return this.outcome == null ? new Base[0] : new Base[] { this.outcome }; // StringType
     case 583380919:
       /* disposition */ return this.disposition == null ? new Base[0] : new Base[] { this.disposition }; // StringType
     case 1028554472:
@@ -653,8 +651,7 @@ public class EnrollmentResponse extends DomainResource {
       this.request = castToReference(value); // Reference
       return value;
     case -1106507950: // outcome
-      value = new RemittanceOutcomeEnumFactory().fromType(castToCode(value));
-      this.outcome = (Enumeration) value; // Enumeration<RemittanceOutcome>
+      this.outcome = castToString(value); // StringType
       return value;
     case 583380919: // disposition
       this.disposition = castToString(value); // StringType
@@ -683,8 +680,7 @@ public class EnrollmentResponse extends DomainResource {
     } else if (name.equals("request")) {
       this.request = castToReference(value); // Reference
     } else if (name.equals("outcome")) {
-      value = new RemittanceOutcomeEnumFactory().fromType(castToCode(value));
-      this.outcome = (Enumeration) value; // Enumeration<RemittanceOutcome>
+      this.outcome = castToString(value); // StringType
     } else if (name.equals("disposition")) {
       this.disposition = castToString(value); // StringType
     } else if (name.equals("created")) {
@@ -756,7 +752,7 @@ public class EnrollmentResponse extends DomainResource {
     case 1095692943:
       /* request */ return new String[] { "Reference" };
     case -1106507950:
-      /* outcome */ return new String[] { "code" };
+      /* outcome */ return new String[] { "string" };
     case 583380919:
       /* disposition */ return new String[] { "string" };
     case 1028554472:

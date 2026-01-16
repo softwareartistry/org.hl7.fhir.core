@@ -39,8 +39,6 @@ import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
 import org.hl7.fhir.instance.model.api.IBaseConformance;
 import org.hl7.fhir.r4.model.Enumerations.FHIRVersion;
 import org.hl7.fhir.r4.model.Enumerations.FHIRVersionEnumFactory;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.r4.model.Enumerations.SearchParamType;
 import org.hl7.fhir.r4.model.Enumerations.SearchParamTypeEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
@@ -63,1581 +61,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
     "description", "useContext", "jurisdiction", "purpose", "copyright", "kind", "instantiates", "imports", "software",
     "implementation", "fhirVersion", "format", "patchFormat", "implementationGuide", "rest", "messaging", "document" })
 public class CapabilityStatement extends MetadataResource implements IBaseConformance {
-
-  public enum CapabilityStatementKind {
-    /**
-     * The CapabilityStatement instance represents the present capabilities of a
-     * specific system instance. This is the kind returned by /metadata for a FHIR
-     * server end-point.
-     */
-    INSTANCE,
-    /**
-     * The CapabilityStatement instance represents the capabilities of a system or
-     * piece of software, independent of a particular installation.
-     */
-    CAPABILITY,
-    /**
-     * The CapabilityStatement instance represents a set of requirements for other
-     * systems to meet; e.g. as part of an implementation guide or 'request for
-     * proposal'.
-     */
-    REQUIREMENTS,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static CapabilityStatementKind fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("instance".equals(codeString))
-        return INSTANCE;
-      if ("capability".equals(codeString))
-        return CAPABILITY;
-      if ("requirements".equals(codeString))
-        return REQUIREMENTS;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown CapabilityStatementKind code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case INSTANCE:
-        return "instance";
-      case CAPABILITY:
-        return "capability";
-      case REQUIREMENTS:
-        return "requirements";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case INSTANCE:
-        return "http://hl7.org/fhir/capability-statement-kind";
-      case CAPABILITY:
-        return "http://hl7.org/fhir/capability-statement-kind";
-      case REQUIREMENTS:
-        return "http://hl7.org/fhir/capability-statement-kind";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case INSTANCE:
-        return "The CapabilityStatement instance represents the present capabilities of a specific system instance.  This is the kind returned by /metadata for a FHIR server end-point.";
-      case CAPABILITY:
-        return "The CapabilityStatement instance represents the capabilities of a system or piece of software, independent of a particular installation.";
-      case REQUIREMENTS:
-        return "The CapabilityStatement instance represents a set of requirements for other systems to meet; e.g. as part of an implementation guide or 'request for proposal'.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case INSTANCE:
-        return "Instance";
-      case CAPABILITY:
-        return "Capability";
-      case REQUIREMENTS:
-        return "Requirements";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class CapabilityStatementKindEnumFactory implements EnumFactory<CapabilityStatementKind> {
-    public CapabilityStatementKind fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("instance".equals(codeString))
-        return CapabilityStatementKind.INSTANCE;
-      if ("capability".equals(codeString))
-        return CapabilityStatementKind.CAPABILITY;
-      if ("requirements".equals(codeString))
-        return CapabilityStatementKind.REQUIREMENTS;
-      throw new IllegalArgumentException("Unknown CapabilityStatementKind code '" + codeString + "'");
-    }
-
-    public Enumeration<CapabilityStatementKind> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<CapabilityStatementKind>(this, CapabilityStatementKind.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<CapabilityStatementKind>(this, CapabilityStatementKind.NULL, code);
-      if ("instance".equals(codeString))
-        return new Enumeration<CapabilityStatementKind>(this, CapabilityStatementKind.INSTANCE, code);
-      if ("capability".equals(codeString))
-        return new Enumeration<CapabilityStatementKind>(this, CapabilityStatementKind.CAPABILITY, code);
-      if ("requirements".equals(codeString))
-        return new Enumeration<CapabilityStatementKind>(this, CapabilityStatementKind.REQUIREMENTS, code);
-      throw new FHIRException("Unknown CapabilityStatementKind code '" + codeString + "'");
-    }
-
-    public String toCode(CapabilityStatementKind code) {
-       if (code == CapabilityStatementKind.NULL)
-           return null;
-       if (code == CapabilityStatementKind.INSTANCE)
-        return "instance";
-      if (code == CapabilityStatementKind.CAPABILITY)
-        return "capability";
-      if (code == CapabilityStatementKind.REQUIREMENTS)
-        return "requirements";
-      return "?";
-   }
-
-    public String toSystem(CapabilityStatementKind code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum RestfulCapabilityMode {
-    /**
-     * The application acts as a client for this resource.
-     */
-    CLIENT,
-    /**
-     * The application acts as a server for this resource.
-     */
-    SERVER,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static RestfulCapabilityMode fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("client".equals(codeString))
-        return CLIENT;
-      if ("server".equals(codeString))
-        return SERVER;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown RestfulCapabilityMode code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case CLIENT:
-        return "client";
-      case SERVER:
-        return "server";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case CLIENT:
-        return "http://hl7.org/fhir/restful-capability-mode";
-      case SERVER:
-        return "http://hl7.org/fhir/restful-capability-mode";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case CLIENT:
-        return "The application acts as a client for this resource.";
-      case SERVER:
-        return "The application acts as a server for this resource.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case CLIENT:
-        return "Client";
-      case SERVER:
-        return "Server";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class RestfulCapabilityModeEnumFactory implements EnumFactory<RestfulCapabilityMode> {
-    public RestfulCapabilityMode fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("client".equals(codeString))
-        return RestfulCapabilityMode.CLIENT;
-      if ("server".equals(codeString))
-        return RestfulCapabilityMode.SERVER;
-      throw new IllegalArgumentException("Unknown RestfulCapabilityMode code '" + codeString + "'");
-    }
-
-    public Enumeration<RestfulCapabilityMode> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<RestfulCapabilityMode>(this, RestfulCapabilityMode.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<RestfulCapabilityMode>(this, RestfulCapabilityMode.NULL, code);
-      if ("client".equals(codeString))
-        return new Enumeration<RestfulCapabilityMode>(this, RestfulCapabilityMode.CLIENT, code);
-      if ("server".equals(codeString))
-        return new Enumeration<RestfulCapabilityMode>(this, RestfulCapabilityMode.SERVER, code);
-      throw new FHIRException("Unknown RestfulCapabilityMode code '" + codeString + "'");
-    }
-
-    public String toCode(RestfulCapabilityMode code) {
-       if (code == RestfulCapabilityMode.NULL)
-           return null;
-       if (code == RestfulCapabilityMode.CLIENT)
-        return "client";
-      if (code == RestfulCapabilityMode.SERVER)
-        return "server";
-      return "?";
-   }
-
-    public String toSystem(RestfulCapabilityMode code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum TypeRestfulInteraction {
-    /**
-     * null
-     */
-    READ,
-    /**
-     * null
-     */
-    VREAD,
-    /**
-     * null
-     */
-    UPDATE,
-    /**
-     * null
-     */
-    PATCH,
-    /**
-     * null
-     */
-    DELETE,
-    /**
-     * null
-     */
-    HISTORYINSTANCE,
-    /**
-     * null
-     */
-    HISTORYTYPE,
-    /**
-     * null
-     */
-    CREATE,
-    /**
-     * null
-     */
-    SEARCHTYPE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static TypeRestfulInteraction fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("read".equals(codeString))
-        return READ;
-      if ("vread".equals(codeString))
-        return VREAD;
-      if ("update".equals(codeString))
-        return UPDATE;
-      if ("patch".equals(codeString))
-        return PATCH;
-      if ("delete".equals(codeString))
-        return DELETE;
-      if ("history-instance".equals(codeString))
-        return HISTORYINSTANCE;
-      if ("history-type".equals(codeString))
-        return HISTORYTYPE;
-      if ("create".equals(codeString))
-        return CREATE;
-      if ("search-type".equals(codeString))
-        return SEARCHTYPE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown TypeRestfulInteraction code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case READ:
-        return "read";
-      case VREAD:
-        return "vread";
-      case UPDATE:
-        return "update";
-      case PATCH:
-        return "patch";
-      case DELETE:
-        return "delete";
-      case HISTORYINSTANCE:
-        return "history-instance";
-      case HISTORYTYPE:
-        return "history-type";
-      case CREATE:
-        return "create";
-      case SEARCHTYPE:
-        return "search-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case READ:
-        return "http://hl7.org/fhir/restful-interaction";
-      case VREAD:
-        return "http://hl7.org/fhir/restful-interaction";
-      case UPDATE:
-        return "http://hl7.org/fhir/restful-interaction";
-      case PATCH:
-        return "http://hl7.org/fhir/restful-interaction";
-      case DELETE:
-        return "http://hl7.org/fhir/restful-interaction";
-      case HISTORYINSTANCE:
-        return "http://hl7.org/fhir/restful-interaction";
-      case HISTORYTYPE:
-        return "http://hl7.org/fhir/restful-interaction";
-      case CREATE:
-        return "http://hl7.org/fhir/restful-interaction";
-      case SEARCHTYPE:
-        return "http://hl7.org/fhir/restful-interaction";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case READ:
-        return "";
-      case VREAD:
-        return "";
-      case UPDATE:
-        return "";
-      case PATCH:
-        return "";
-      case DELETE:
-        return "";
-      case HISTORYINSTANCE:
-        return "";
-      case HISTORYTYPE:
-        return "";
-      case CREATE:
-        return "";
-      case SEARCHTYPE:
-        return "";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case READ:
-        return "read";
-      case VREAD:
-        return "vread";
-      case UPDATE:
-        return "update";
-      case PATCH:
-        return "patch";
-      case DELETE:
-        return "delete";
-      case HISTORYINSTANCE:
-        return "history-instance";
-      case HISTORYTYPE:
-        return "history-type";
-      case CREATE:
-        return "create";
-      case SEARCHTYPE:
-        return "search-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class TypeRestfulInteractionEnumFactory implements EnumFactory<TypeRestfulInteraction> {
-    public TypeRestfulInteraction fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("read".equals(codeString))
-        return TypeRestfulInteraction.READ;
-      if ("vread".equals(codeString))
-        return TypeRestfulInteraction.VREAD;
-      if ("update".equals(codeString))
-        return TypeRestfulInteraction.UPDATE;
-      if ("patch".equals(codeString))
-        return TypeRestfulInteraction.PATCH;
-      if ("delete".equals(codeString))
-        return TypeRestfulInteraction.DELETE;
-      if ("history-instance".equals(codeString))
-        return TypeRestfulInteraction.HISTORYINSTANCE;
-      if ("history-type".equals(codeString))
-        return TypeRestfulInteraction.HISTORYTYPE;
-      if ("create".equals(codeString))
-        return TypeRestfulInteraction.CREATE;
-      if ("search-type".equals(codeString))
-        return TypeRestfulInteraction.SEARCHTYPE;
-      throw new IllegalArgumentException("Unknown TypeRestfulInteraction code '" + codeString + "'");
-    }
-
-    public Enumeration<TypeRestfulInteraction> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<TypeRestfulInteraction>(this, TypeRestfulInteraction.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<TypeRestfulInteraction>(this, TypeRestfulInteraction.NULL, code);
-      if ("read".equals(codeString))
-        return new Enumeration<TypeRestfulInteraction>(this, TypeRestfulInteraction.READ, code);
-      if ("vread".equals(codeString))
-        return new Enumeration<TypeRestfulInteraction>(this, TypeRestfulInteraction.VREAD, code);
-      if ("update".equals(codeString))
-        return new Enumeration<TypeRestfulInteraction>(this, TypeRestfulInteraction.UPDATE, code);
-      if ("patch".equals(codeString))
-        return new Enumeration<TypeRestfulInteraction>(this, TypeRestfulInteraction.PATCH, code);
-      if ("delete".equals(codeString))
-        return new Enumeration<TypeRestfulInteraction>(this, TypeRestfulInteraction.DELETE, code);
-      if ("history-instance".equals(codeString))
-        return new Enumeration<TypeRestfulInteraction>(this, TypeRestfulInteraction.HISTORYINSTANCE, code);
-      if ("history-type".equals(codeString))
-        return new Enumeration<TypeRestfulInteraction>(this, TypeRestfulInteraction.HISTORYTYPE, code);
-      if ("create".equals(codeString))
-        return new Enumeration<TypeRestfulInteraction>(this, TypeRestfulInteraction.CREATE, code);
-      if ("search-type".equals(codeString))
-        return new Enumeration<TypeRestfulInteraction>(this, TypeRestfulInteraction.SEARCHTYPE, code);
-      throw new FHIRException("Unknown TypeRestfulInteraction code '" + codeString + "'");
-    }
-
-    public String toCode(TypeRestfulInteraction code) {
-       if (code == TypeRestfulInteraction.NULL)
-           return null;
-       if (code == TypeRestfulInteraction.READ)
-        return "read";
-      if (code == TypeRestfulInteraction.VREAD)
-        return "vread";
-      if (code == TypeRestfulInteraction.UPDATE)
-        return "update";
-      if (code == TypeRestfulInteraction.PATCH)
-        return "patch";
-      if (code == TypeRestfulInteraction.DELETE)
-        return "delete";
-      if (code == TypeRestfulInteraction.HISTORYINSTANCE)
-        return "history-instance";
-      if (code == TypeRestfulInteraction.HISTORYTYPE)
-        return "history-type";
-      if (code == TypeRestfulInteraction.CREATE)
-        return "create";
-      if (code == TypeRestfulInteraction.SEARCHTYPE)
-        return "search-type";
-      return "?";
-   }
-
-    public String toSystem(TypeRestfulInteraction code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum ResourceVersionPolicy {
-    /**
-     * VersionId meta-property is not supported (server) or used (client).
-     */
-    NOVERSION,
-    /**
-     * VersionId meta-property is supported (server) or used (client).
-     */
-    VERSIONED,
-    /**
-     * VersionId must be correct for updates (server) or will be specified (If-match
-     * header) for updates (client).
-     */
-    VERSIONEDUPDATE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ResourceVersionPolicy fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("no-version".equals(codeString))
-        return NOVERSION;
-      if ("versioned".equals(codeString))
-        return VERSIONED;
-      if ("versioned-update".equals(codeString))
-        return VERSIONEDUPDATE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ResourceVersionPolicy code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case NOVERSION:
-        return "no-version";
-      case VERSIONED:
-        return "versioned";
-      case VERSIONEDUPDATE:
-        return "versioned-update";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case NOVERSION:
-        return "http://hl7.org/fhir/versioning-policy";
-      case VERSIONED:
-        return "http://hl7.org/fhir/versioning-policy";
-      case VERSIONEDUPDATE:
-        return "http://hl7.org/fhir/versioning-policy";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case NOVERSION:
-        return "VersionId meta-property is not supported (server) or used (client).";
-      case VERSIONED:
-        return "VersionId meta-property is supported (server) or used (client).";
-      case VERSIONEDUPDATE:
-        return "VersionId must be correct for updates (server) or will be specified (If-match header) for updates (client).";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case NOVERSION:
-        return "No VersionId Support";
-      case VERSIONED:
-        return "Versioned";
-      case VERSIONEDUPDATE:
-        return "VersionId tracked fully";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ResourceVersionPolicyEnumFactory implements EnumFactory<ResourceVersionPolicy> {
-    public ResourceVersionPolicy fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("no-version".equals(codeString))
-        return ResourceVersionPolicy.NOVERSION;
-      if ("versioned".equals(codeString))
-        return ResourceVersionPolicy.VERSIONED;
-      if ("versioned-update".equals(codeString))
-        return ResourceVersionPolicy.VERSIONEDUPDATE;
-      throw new IllegalArgumentException("Unknown ResourceVersionPolicy code '" + codeString + "'");
-    }
-
-    public Enumeration<ResourceVersionPolicy> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ResourceVersionPolicy>(this, ResourceVersionPolicy.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ResourceVersionPolicy>(this, ResourceVersionPolicy.NULL, code);
-      if ("no-version".equals(codeString))
-        return new Enumeration<ResourceVersionPolicy>(this, ResourceVersionPolicy.NOVERSION, code);
-      if ("versioned".equals(codeString))
-        return new Enumeration<ResourceVersionPolicy>(this, ResourceVersionPolicy.VERSIONED, code);
-      if ("versioned-update".equals(codeString))
-        return new Enumeration<ResourceVersionPolicy>(this, ResourceVersionPolicy.VERSIONEDUPDATE, code);
-      throw new FHIRException("Unknown ResourceVersionPolicy code '" + codeString + "'");
-    }
-
-    public String toCode(ResourceVersionPolicy code) {
-       if (code == ResourceVersionPolicy.NULL)
-           return null;
-       if (code == ResourceVersionPolicy.NOVERSION)
-        return "no-version";
-      if (code == ResourceVersionPolicy.VERSIONED)
-        return "versioned";
-      if (code == ResourceVersionPolicy.VERSIONEDUPDATE)
-        return "versioned-update";
-      return "?";
-   }
-
-    public String toSystem(ResourceVersionPolicy code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum ConditionalReadStatus {
-    /**
-     * No support for conditional reads.
-     */
-    NOTSUPPORTED,
-    /**
-     * Conditional reads are supported, but only with the If-Modified-Since HTTP
-     * Header.
-     */
-    MODIFIEDSINCE,
-    /**
-     * Conditional reads are supported, but only with the If-None-Match HTTP Header.
-     */
-    NOTMATCH,
-    /**
-     * Conditional reads are supported, with both If-Modified-Since and
-     * If-None-Match HTTP Headers.
-     */
-    FULLSUPPORT,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ConditionalReadStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("not-supported".equals(codeString))
-        return NOTSUPPORTED;
-      if ("modified-since".equals(codeString))
-        return MODIFIEDSINCE;
-      if ("not-match".equals(codeString))
-        return NOTMATCH;
-      if ("full-support".equals(codeString))
-        return FULLSUPPORT;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ConditionalReadStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case NOTSUPPORTED:
-        return "not-supported";
-      case MODIFIEDSINCE:
-        return "modified-since";
-      case NOTMATCH:
-        return "not-match";
-      case FULLSUPPORT:
-        return "full-support";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case NOTSUPPORTED:
-        return "http://hl7.org/fhir/conditional-read-status";
-      case MODIFIEDSINCE:
-        return "http://hl7.org/fhir/conditional-read-status";
-      case NOTMATCH:
-        return "http://hl7.org/fhir/conditional-read-status";
-      case FULLSUPPORT:
-        return "http://hl7.org/fhir/conditional-read-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case NOTSUPPORTED:
-        return "No support for conditional reads.";
-      case MODIFIEDSINCE:
-        return "Conditional reads are supported, but only with the If-Modified-Since HTTP Header.";
-      case NOTMATCH:
-        return "Conditional reads are supported, but only with the If-None-Match HTTP Header.";
-      case FULLSUPPORT:
-        return "Conditional reads are supported, with both If-Modified-Since and If-None-Match HTTP Headers.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case NOTSUPPORTED:
-        return "Not Supported";
-      case MODIFIEDSINCE:
-        return "If-Modified-Since";
-      case NOTMATCH:
-        return "If-None-Match";
-      case FULLSUPPORT:
-        return "Full Support";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ConditionalReadStatusEnumFactory implements EnumFactory<ConditionalReadStatus> {
-    public ConditionalReadStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("not-supported".equals(codeString))
-        return ConditionalReadStatus.NOTSUPPORTED;
-      if ("modified-since".equals(codeString))
-        return ConditionalReadStatus.MODIFIEDSINCE;
-      if ("not-match".equals(codeString))
-        return ConditionalReadStatus.NOTMATCH;
-      if ("full-support".equals(codeString))
-        return ConditionalReadStatus.FULLSUPPORT;
-      throw new IllegalArgumentException("Unknown ConditionalReadStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<ConditionalReadStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ConditionalReadStatus>(this, ConditionalReadStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ConditionalReadStatus>(this, ConditionalReadStatus.NULL, code);
-      if ("not-supported".equals(codeString))
-        return new Enumeration<ConditionalReadStatus>(this, ConditionalReadStatus.NOTSUPPORTED, code);
-      if ("modified-since".equals(codeString))
-        return new Enumeration<ConditionalReadStatus>(this, ConditionalReadStatus.MODIFIEDSINCE, code);
-      if ("not-match".equals(codeString))
-        return new Enumeration<ConditionalReadStatus>(this, ConditionalReadStatus.NOTMATCH, code);
-      if ("full-support".equals(codeString))
-        return new Enumeration<ConditionalReadStatus>(this, ConditionalReadStatus.FULLSUPPORT, code);
-      throw new FHIRException("Unknown ConditionalReadStatus code '" + codeString + "'");
-    }
-
-    public String toCode(ConditionalReadStatus code) {
-       if (code == ConditionalReadStatus.NULL)
-           return null;
-       if (code == ConditionalReadStatus.NOTSUPPORTED)
-        return "not-supported";
-      if (code == ConditionalReadStatus.MODIFIEDSINCE)
-        return "modified-since";
-      if (code == ConditionalReadStatus.NOTMATCH)
-        return "not-match";
-      if (code == ConditionalReadStatus.FULLSUPPORT)
-        return "full-support";
-      return "?";
-   }
-
-    public String toSystem(ConditionalReadStatus code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum ConditionalDeleteStatus {
-    /**
-     * No support for conditional deletes.
-     */
-    NOTSUPPORTED,
-    /**
-     * Conditional deletes are supported, but only single resources at a time.
-     */
-    SINGLE,
-    /**
-     * Conditional deletes are supported, and multiple resources can be deleted in a
-     * single interaction.
-     */
-    MULTIPLE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ConditionalDeleteStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("not-supported".equals(codeString))
-        return NOTSUPPORTED;
-      if ("single".equals(codeString))
-        return SINGLE;
-      if ("multiple".equals(codeString))
-        return MULTIPLE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ConditionalDeleteStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case NOTSUPPORTED:
-        return "not-supported";
-      case SINGLE:
-        return "single";
-      case MULTIPLE:
-        return "multiple";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case NOTSUPPORTED:
-        return "http://hl7.org/fhir/conditional-delete-status";
-      case SINGLE:
-        return "http://hl7.org/fhir/conditional-delete-status";
-      case MULTIPLE:
-        return "http://hl7.org/fhir/conditional-delete-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case NOTSUPPORTED:
-        return "No support for conditional deletes.";
-      case SINGLE:
-        return "Conditional deletes are supported, but only single resources at a time.";
-      case MULTIPLE:
-        return "Conditional deletes are supported, and multiple resources can be deleted in a single interaction.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case NOTSUPPORTED:
-        return "Not Supported";
-      case SINGLE:
-        return "Single Deletes Supported";
-      case MULTIPLE:
-        return "Multiple Deletes Supported";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ConditionalDeleteStatusEnumFactory implements EnumFactory<ConditionalDeleteStatus> {
-    public ConditionalDeleteStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("not-supported".equals(codeString))
-        return ConditionalDeleteStatus.NOTSUPPORTED;
-      if ("single".equals(codeString))
-        return ConditionalDeleteStatus.SINGLE;
-      if ("multiple".equals(codeString))
-        return ConditionalDeleteStatus.MULTIPLE;
-      throw new IllegalArgumentException("Unknown ConditionalDeleteStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<ConditionalDeleteStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ConditionalDeleteStatus>(this, ConditionalDeleteStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ConditionalDeleteStatus>(this, ConditionalDeleteStatus.NULL, code);
-      if ("not-supported".equals(codeString))
-        return new Enumeration<ConditionalDeleteStatus>(this, ConditionalDeleteStatus.NOTSUPPORTED, code);
-      if ("single".equals(codeString))
-        return new Enumeration<ConditionalDeleteStatus>(this, ConditionalDeleteStatus.SINGLE, code);
-      if ("multiple".equals(codeString))
-        return new Enumeration<ConditionalDeleteStatus>(this, ConditionalDeleteStatus.MULTIPLE, code);
-      throw new FHIRException("Unknown ConditionalDeleteStatus code '" + codeString + "'");
-    }
-
-    public String toCode(ConditionalDeleteStatus code) {
-       if (code == ConditionalDeleteStatus.NULL)
-           return null;
-       if (code == ConditionalDeleteStatus.NOTSUPPORTED)
-        return "not-supported";
-      if (code == ConditionalDeleteStatus.SINGLE)
-        return "single";
-      if (code == ConditionalDeleteStatus.MULTIPLE)
-        return "multiple";
-      return "?";
-   }
-
-    public String toSystem(ConditionalDeleteStatus code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum ReferenceHandlingPolicy {
-    /**
-     * The server supports and populates Literal references (i.e. using
-     * Reference.reference) where they are known (this code does not guarantee that
-     * all references are literal; see 'enforced').
-     */
-    LITERAL,
-    /**
-     * The server allows logical references (i.e. using Reference.identifier).
-     */
-    LOGICAL,
-    /**
-     * The server will attempt to resolve logical references to literal references -
-     * i.e. converting Reference.identifier to Reference.reference (if resolution
-     * fails, the server may still accept resources; see logical).
-     */
-    RESOLVES,
-    /**
-     * The server enforces that references have integrity - e.g. it ensures that
-     * references can always be resolved. This is typically the case for clinical
-     * record systems, but often not the case for middleware/proxy systems.
-     */
-    ENFORCED,
-    /**
-     * The server does not support references that point to other servers.
-     */
-    LOCAL,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ReferenceHandlingPolicy fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("literal".equals(codeString))
-        return LITERAL;
-      if ("logical".equals(codeString))
-        return LOGICAL;
-      if ("resolves".equals(codeString))
-        return RESOLVES;
-      if ("enforced".equals(codeString))
-        return ENFORCED;
-      if ("local".equals(codeString))
-        return LOCAL;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ReferenceHandlingPolicy code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case LITERAL:
-        return "literal";
-      case LOGICAL:
-        return "logical";
-      case RESOLVES:
-        return "resolves";
-      case ENFORCED:
-        return "enforced";
-      case LOCAL:
-        return "local";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case LITERAL:
-        return "http://hl7.org/fhir/reference-handling-policy";
-      case LOGICAL:
-        return "http://hl7.org/fhir/reference-handling-policy";
-      case RESOLVES:
-        return "http://hl7.org/fhir/reference-handling-policy";
-      case ENFORCED:
-        return "http://hl7.org/fhir/reference-handling-policy";
-      case LOCAL:
-        return "http://hl7.org/fhir/reference-handling-policy";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case LITERAL:
-        return "The server supports and populates Literal references (i.e. using Reference.reference) where they are known (this code does not guarantee that all references are literal; see 'enforced').";
-      case LOGICAL:
-        return "The server allows logical references (i.e. using Reference.identifier).";
-      case RESOLVES:
-        return "The server will attempt to resolve logical references to literal references - i.e. converting Reference.identifier to Reference.reference (if resolution fails, the server may still accept resources; see logical).";
-      case ENFORCED:
-        return "The server enforces that references have integrity - e.g. it ensures that references can always be resolved. This is typically the case for clinical record systems, but often not the case for middleware/proxy systems.";
-      case LOCAL:
-        return "The server does not support references that point to other servers.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case LITERAL:
-        return "Literal References";
-      case LOGICAL:
-        return "Logical References";
-      case RESOLVES:
-        return "Resolves References";
-      case ENFORCED:
-        return "Reference Integrity Enforced";
-      case LOCAL:
-        return "Local References Only";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ReferenceHandlingPolicyEnumFactory implements EnumFactory<ReferenceHandlingPolicy> {
-    public ReferenceHandlingPolicy fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("literal".equals(codeString))
-        return ReferenceHandlingPolicy.LITERAL;
-      if ("logical".equals(codeString))
-        return ReferenceHandlingPolicy.LOGICAL;
-      if ("resolves".equals(codeString))
-        return ReferenceHandlingPolicy.RESOLVES;
-      if ("enforced".equals(codeString))
-        return ReferenceHandlingPolicy.ENFORCED;
-      if ("local".equals(codeString))
-        return ReferenceHandlingPolicy.LOCAL;
-      throw new IllegalArgumentException("Unknown ReferenceHandlingPolicy code '" + codeString + "'");
-    }
-
-    public Enumeration<ReferenceHandlingPolicy> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ReferenceHandlingPolicy>(this, ReferenceHandlingPolicy.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ReferenceHandlingPolicy>(this, ReferenceHandlingPolicy.NULL, code);
-      if ("literal".equals(codeString))
-        return new Enumeration<ReferenceHandlingPolicy>(this, ReferenceHandlingPolicy.LITERAL, code);
-      if ("logical".equals(codeString))
-        return new Enumeration<ReferenceHandlingPolicy>(this, ReferenceHandlingPolicy.LOGICAL, code);
-      if ("resolves".equals(codeString))
-        return new Enumeration<ReferenceHandlingPolicy>(this, ReferenceHandlingPolicy.RESOLVES, code);
-      if ("enforced".equals(codeString))
-        return new Enumeration<ReferenceHandlingPolicy>(this, ReferenceHandlingPolicy.ENFORCED, code);
-      if ("local".equals(codeString))
-        return new Enumeration<ReferenceHandlingPolicy>(this, ReferenceHandlingPolicy.LOCAL, code);
-      throw new FHIRException("Unknown ReferenceHandlingPolicy code '" + codeString + "'");
-    }
-
-    public String toCode(ReferenceHandlingPolicy code) {
-       if (code == ReferenceHandlingPolicy.NULL)
-           return null;
-       if (code == ReferenceHandlingPolicy.LITERAL)
-        return "literal";
-      if (code == ReferenceHandlingPolicy.LOGICAL)
-        return "logical";
-      if (code == ReferenceHandlingPolicy.RESOLVES)
-        return "resolves";
-      if (code == ReferenceHandlingPolicy.ENFORCED)
-        return "enforced";
-      if (code == ReferenceHandlingPolicy.LOCAL)
-        return "local";
-      return "?";
-   }
-
-    public String toSystem(ReferenceHandlingPolicy code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum SystemRestfulInteraction {
-    /**
-     * null
-     */
-    TRANSACTION,
-    /**
-     * null
-     */
-    BATCH,
-    /**
-     * null
-     */
-    SEARCHSYSTEM,
-    /**
-     * null
-     */
-    HISTORYSYSTEM,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static SystemRestfulInteraction fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("transaction".equals(codeString))
-        return TRANSACTION;
-      if ("batch".equals(codeString))
-        return BATCH;
-      if ("search-system".equals(codeString))
-        return SEARCHSYSTEM;
-      if ("history-system".equals(codeString))
-        return HISTORYSYSTEM;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown SystemRestfulInteraction code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case TRANSACTION:
-        return "transaction";
-      case BATCH:
-        return "batch";
-      case SEARCHSYSTEM:
-        return "search-system";
-      case HISTORYSYSTEM:
-        return "history-system";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case TRANSACTION:
-        return "http://hl7.org/fhir/restful-interaction";
-      case BATCH:
-        return "http://hl7.org/fhir/restful-interaction";
-      case SEARCHSYSTEM:
-        return "http://hl7.org/fhir/restful-interaction";
-      case HISTORYSYSTEM:
-        return "http://hl7.org/fhir/restful-interaction";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case TRANSACTION:
-        return "";
-      case BATCH:
-        return "";
-      case SEARCHSYSTEM:
-        return "";
-      case HISTORYSYSTEM:
-        return "";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case TRANSACTION:
-        return "transaction";
-      case BATCH:
-        return "batch";
-      case SEARCHSYSTEM:
-        return "search-system";
-      case HISTORYSYSTEM:
-        return "history-system";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class SystemRestfulInteractionEnumFactory implements EnumFactory<SystemRestfulInteraction> {
-    public SystemRestfulInteraction fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("transaction".equals(codeString))
-        return SystemRestfulInteraction.TRANSACTION;
-      if ("batch".equals(codeString))
-        return SystemRestfulInteraction.BATCH;
-      if ("search-system".equals(codeString))
-        return SystemRestfulInteraction.SEARCHSYSTEM;
-      if ("history-system".equals(codeString))
-        return SystemRestfulInteraction.HISTORYSYSTEM;
-      throw new IllegalArgumentException("Unknown SystemRestfulInteraction code '" + codeString + "'");
-    }
-
-    public Enumeration<SystemRestfulInteraction> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<SystemRestfulInteraction>(this, SystemRestfulInteraction.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<SystemRestfulInteraction>(this, SystemRestfulInteraction.NULL, code);
-      if ("transaction".equals(codeString))
-        return new Enumeration<SystemRestfulInteraction>(this, SystemRestfulInteraction.TRANSACTION, code);
-      if ("batch".equals(codeString))
-        return new Enumeration<SystemRestfulInteraction>(this, SystemRestfulInteraction.BATCH, code);
-      if ("search-system".equals(codeString))
-        return new Enumeration<SystemRestfulInteraction>(this, SystemRestfulInteraction.SEARCHSYSTEM, code);
-      if ("history-system".equals(codeString))
-        return new Enumeration<SystemRestfulInteraction>(this, SystemRestfulInteraction.HISTORYSYSTEM, code);
-      throw new FHIRException("Unknown SystemRestfulInteraction code '" + codeString + "'");
-    }
-
-    public String toCode(SystemRestfulInteraction code) {
-       if (code == SystemRestfulInteraction.NULL)
-           return null;
-       if (code == SystemRestfulInteraction.TRANSACTION)
-        return "transaction";
-      if (code == SystemRestfulInteraction.BATCH)
-        return "batch";
-      if (code == SystemRestfulInteraction.SEARCHSYSTEM)
-        return "search-system";
-      if (code == SystemRestfulInteraction.HISTORYSYSTEM)
-        return "history-system";
-      return "?";
-   }
-
-    public String toSystem(SystemRestfulInteraction code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum EventCapabilityMode {
-    /**
-     * The application sends requests and receives responses.
-     */
-    SENDER,
-    /**
-     * The application receives requests and sends responses.
-     */
-    RECEIVER,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static EventCapabilityMode fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("sender".equals(codeString))
-        return SENDER;
-      if ("receiver".equals(codeString))
-        return RECEIVER;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown EventCapabilityMode code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case SENDER:
-        return "sender";
-      case RECEIVER:
-        return "receiver";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case SENDER:
-        return "http://hl7.org/fhir/event-capability-mode";
-      case RECEIVER:
-        return "http://hl7.org/fhir/event-capability-mode";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case SENDER:
-        return "The application sends requests and receives responses.";
-      case RECEIVER:
-        return "The application receives requests and sends responses.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case SENDER:
-        return "Sender";
-      case RECEIVER:
-        return "Receiver";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class EventCapabilityModeEnumFactory implements EnumFactory<EventCapabilityMode> {
-    public EventCapabilityMode fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("sender".equals(codeString))
-        return EventCapabilityMode.SENDER;
-      if ("receiver".equals(codeString))
-        return EventCapabilityMode.RECEIVER;
-      throw new IllegalArgumentException("Unknown EventCapabilityMode code '" + codeString + "'");
-    }
-
-    public Enumeration<EventCapabilityMode> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<EventCapabilityMode>(this, EventCapabilityMode.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<EventCapabilityMode>(this, EventCapabilityMode.NULL, code);
-      if ("sender".equals(codeString))
-        return new Enumeration<EventCapabilityMode>(this, EventCapabilityMode.SENDER, code);
-      if ("receiver".equals(codeString))
-        return new Enumeration<EventCapabilityMode>(this, EventCapabilityMode.RECEIVER, code);
-      throw new FHIRException("Unknown EventCapabilityMode code '" + codeString + "'");
-    }
-
-    public String toCode(EventCapabilityMode code) {
-       if (code == EventCapabilityMode.NULL)
-           return null;
-       if (code == EventCapabilityMode.SENDER)
-        return "sender";
-      if (code == EventCapabilityMode.RECEIVER)
-        return "receiver";
-      return "?";
-   }
-
-    public String toSystem(EventCapabilityMode code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum DocumentMode {
-    /**
-     * The application produces documents of the specified type.
-     */
-    PRODUCER,
-    /**
-     * The application consumes documents of the specified type.
-     */
-    CONSUMER,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static DocumentMode fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("producer".equals(codeString))
-        return PRODUCER;
-      if ("consumer".equals(codeString))
-        return CONSUMER;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown DocumentMode code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case PRODUCER:
-        return "producer";
-      case CONSUMER:
-        return "consumer";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case PRODUCER:
-        return "http://hl7.org/fhir/document-mode";
-      case CONSUMER:
-        return "http://hl7.org/fhir/document-mode";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case PRODUCER:
-        return "The application produces documents of the specified type.";
-      case CONSUMER:
-        return "The application consumes documents of the specified type.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case PRODUCER:
-        return "Producer";
-      case CONSUMER:
-        return "Consumer";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class DocumentModeEnumFactory implements EnumFactory<DocumentMode> {
-    public DocumentMode fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("producer".equals(codeString))
-        return DocumentMode.PRODUCER;
-      if ("consumer".equals(codeString))
-        return DocumentMode.CONSUMER;
-      throw new IllegalArgumentException("Unknown DocumentMode code '" + codeString + "'");
-    }
-
-    public Enumeration<DocumentMode> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<DocumentMode>(this, DocumentMode.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<DocumentMode>(this, DocumentMode.NULL, code);
-      if ("producer".equals(codeString))
-        return new Enumeration<DocumentMode>(this, DocumentMode.PRODUCER, code);
-      if ("consumer".equals(codeString))
-        return new Enumeration<DocumentMode>(this, DocumentMode.CONSUMER, code);
-      throw new FHIRException("Unknown DocumentMode code '" + codeString + "'");
-    }
-
-    public String toCode(DocumentMode code) {
-       if (code == DocumentMode.NULL)
-           return null;
-       if (code == DocumentMode.PRODUCER)
-        return "producer";
-      if (code == DocumentMode.CONSUMER)
-        return "consumer";
-      return "?";
-   }
-
-    public String toSystem(DocumentMode code) {
-      return code.getSystem();
-    }
-  }
 
   @Block()
   public static class CapabilityStatementSoftwareComponent extends BackboneElement implements IBaseBackboneElement {
@@ -2420,10 +843,10 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * Identifies whether this portion of the statement is describing the ability to
      * initiate or receive restful operations.
      */
-    @Child(name = "mode", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "mode", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "client | server", formalDefinition = "Identifies whether this portion of the statement is describing the ability to initiate or receive restful operations.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/restful-capability-mode")
-    protected Enumeration<RestfulCapabilityMode> mode;
+    protected StringType mode;
 
     /**
      * Information about the system's restful capabilities that apply across all
@@ -2499,7 +922,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     /**
      * Constructor
      */
-    public CapabilityStatementRestComponent(Enumeration<RestfulCapabilityMode> mode) {
+    public CapabilityStatementRestComponent(StringType mode) {
       super();
       this.mode = mode;
     }
@@ -2510,12 +933,12 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      *         This is the underlying object with id, value and extensions. The
      *         accessor "getMode" gives direct access to the value
      */
-    public Enumeration<RestfulCapabilityMode> getModeElement() {
+    public StringType getModeElement() {
       if (this.mode == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create CapabilityStatementRestComponent.mode");
         else if (Configuration.doAutoCreate())
-          this.mode = new Enumeration<RestfulCapabilityMode>(new RestfulCapabilityModeEnumFactory()); // bb
+          this.mode = new StringType(); // bb
       return this.mode;
     }
 
@@ -2534,7 +957,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      *              extensions. The accessor "getMode" gives direct access to the
      *              value
      */
-    public CapabilityStatementRestComponent setModeElement(Enumeration<RestfulCapabilityMode> value) {
+    public CapabilityStatementRestComponent setModeElement(StringType value) {
       this.mode = value;
       return this;
     }
@@ -2543,7 +966,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * @return Identifies whether this portion of the statement is describing the
      *         ability to initiate or receive restful operations.
      */
-    public RestfulCapabilityMode getMode() {
+    public String getMode() {
       return this.mode == null ? null : this.mode.getValue();
     }
 
@@ -2551,9 +974,9 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * @param value Identifies whether this portion of the statement is describing
      *              the ability to initiate or receive restful operations.
      */
-    public CapabilityStatementRestComponent setMode(RestfulCapabilityMode value) {
+    public CapabilityStatementRestComponent setMode(String value) {
       if (this.mode == null)
-        this.mode = new Enumeration<RestfulCapabilityMode>(new RestfulCapabilityModeEnumFactory());
+        this.mode = new StringType();
       this.mode.setValue(value);
       return this;
     }
@@ -2939,7 +1362,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("mode", "code",
+      children.add(new Property("mode", "string",
           "Identifies whether this portion of the statement is describing the ability to initiate or receive restful operations.",
           0, 1, mode));
       children.add(new Property("documentation", "markdown",
@@ -2968,7 +1391,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 3357091:
-        /* mode */ return new Property("mode", "code",
+        /* mode */ return new Property("mode", "string",
             "Identifies whether this portion of the statement is describing the ability to initiate or receive restful operations.",
             0, 1, mode);
       case 1587405498:
@@ -3009,7 +1432,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 3357091:
-        /* mode */ return this.mode == null ? new Base[0] : new Base[] { this.mode }; // Enumeration<RestfulCapabilityMode>
+        /* mode */ return this.mode == null ? new Base[0] : new Base[] { this.mode }; // StringType
       case 1587405498:
         /* documentation */ return this.documentation == null ? new Base[0] : new Base[] { this.documentation }; // MarkdownType
       case 949122880:
@@ -3039,8 +1462,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3357091: // mode
-        value = new RestfulCapabilityModeEnumFactory().fromType(castToCode(value));
-        this.mode = (Enumeration) value; // Enumeration<RestfulCapabilityMode>
+        this.mode = castToString(value); // StringType
         return value;
       case 1587405498: // documentation
         this.documentation = castToMarkdown(value); // MarkdownType
@@ -3072,8 +1494,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("mode")) {
-        value = new RestfulCapabilityModeEnumFactory().fromType(castToCode(value));
-        this.mode = (Enumeration) value; // Enumeration<RestfulCapabilityMode>
+        this.mode = castToString(value); // StringType
       } else if (name.equals("documentation")) {
         this.documentation = castToMarkdown(value); // MarkdownType
       } else if (name.equals("security")) {
@@ -3709,10 +2130,10 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * for version integrity in the API.
      */
     @Child(name = "versioning", type = {
-        CodeType.class }, order = 6, min = 0, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 6, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "no-version | versioned | versioned-update", formalDefinition = "This field is set to no-version to specify that the system does not support (server) or use (client) versioning for this resource type. If this has some other value, the server must at least correctly track and populate the versionId meta-property on resources. If the value is 'versioned-update', then the server supports all the versioning features, including using e-tags for version integrity in the API.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/versioning-policy")
-    protected Enumeration<ResourceVersionPolicy> versioning;
+    protected StringType versioning;
 
     /**
      * A flag for whether the server is able to return past versions as part of the
@@ -3746,10 +2167,10 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * A code that indicates how the server supports conditional read.
      */
     @Child(name = "conditionalRead", type = {
-        CodeType.class }, order = 10, min = 0, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 10, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "not-supported | modified-since | not-match | full-support", formalDefinition = "A code that indicates how the server supports conditional read.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/conditional-read-status")
-    protected Enumeration<ConditionalReadStatus> conditionalRead;
+    protected StringType conditionalRead;
 
     /**
      * A flag that indicates that the server supports conditional update.
@@ -3763,19 +2184,19 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * A code that indicates how the server supports conditional delete.
      */
     @Child(name = "conditionalDelete", type = {
-        CodeType.class }, order = 12, min = 0, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 12, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "not-supported | single | multiple - how conditional delete is supported", formalDefinition = "A code that indicates how the server supports conditional delete.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/conditional-delete-status")
-    protected Enumeration<ConditionalDeleteStatus> conditionalDelete;
+    protected StringType conditionalDelete;
 
     /**
      * A set of flags that defines how references are supported.
      */
     @Child(name = "referencePolicy", type = {
-        CodeType.class }, order = 13, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = false)
+      StringType.class }, order = 13, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = false)
     @Description(shortDefinition = "literal | logical | resolves | enforced | local", formalDefinition = "A set of flags that defines how references are supported.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/reference-handling-policy")
-    protected List<Enumeration<ReferenceHandlingPolicy>> referencePolicy;
+    protected List<StringType> referencePolicy;
 
     /**
      * A list of _include values supported by the server.
@@ -4160,12 +2581,12 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      *         id, value and extensions. The accessor "getVersioning" gives direct
      *         access to the value
      */
-    public Enumeration<ResourceVersionPolicy> getVersioningElement() {
+    public StringType getVersioningElement() {
       if (this.versioning == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create CapabilityStatementRestResourceComponent.versioning");
         else if (Configuration.doAutoCreate())
-          this.versioning = new Enumeration<ResourceVersionPolicy>(new ResourceVersionPolicyEnumFactory()); // bb
+          this.versioning = new StringType(); // bb
       return this.versioning;
     }
 
@@ -4189,7 +2610,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      *              extensions. The accessor "getVersioning" gives direct access to
      *              the value
      */
-    public CapabilityStatementRestResourceComponent setVersioningElement(Enumeration<ResourceVersionPolicy> value) {
+    public CapabilityStatementRestResourceComponent setVersioningElement(StringType value) {
       this.versioning = value;
       return this;
     }
@@ -4203,7 +2624,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      *         versioning features, including using e-tags for version integrity in
      *         the API.
      */
-    public ResourceVersionPolicy getVersioning() {
+    public String getVersioning() {
       return this.versioning == null ? null : this.versioning.getValue();
     }
 
@@ -4216,12 +2637,12 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      *              server supports all the versioning features, including using
      *              e-tags for version integrity in the API.
      */
-    public CapabilityStatementRestResourceComponent setVersioning(ResourceVersionPolicy value) {
+    public CapabilityStatementRestResourceComponent setVersioning(String value) {
       if (value == null)
         this.versioning = null;
       else {
         if (this.versioning == null)
-          this.versioning = new Enumeration<ResourceVersionPolicy>(new ResourceVersionPolicyEnumFactory());
+          this.versioning = new StringType();
         this.versioning.setValue(value);
       }
       return this;
@@ -4405,12 +2826,12 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      *         value and extensions. The accessor "getConditionalRead" gives direct
      *         access to the value
      */
-    public Enumeration<ConditionalReadStatus> getConditionalReadElement() {
+    public StringType getConditionalReadElement() {
       if (this.conditionalRead == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create CapabilityStatementRestResourceComponent.conditionalRead");
         else if (Configuration.doAutoCreate())
-          this.conditionalRead = new Enumeration<ConditionalReadStatus>(new ConditionalReadStatusEnumFactory()); // bb
+          this.conditionalRead = new StringType(); // bb
       return this.conditionalRead;
     }
 
@@ -4429,7 +2850,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      *              gives direct access to the value
      */
     public CapabilityStatementRestResourceComponent setConditionalReadElement(
-        Enumeration<ConditionalReadStatus> value) {
+      StringType value) {
       this.conditionalRead = value;
       return this;
     }
@@ -4437,19 +2858,19 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     /**
      * @return A code that indicates how the server supports conditional read.
      */
-    public ConditionalReadStatus getConditionalRead() {
+    public String getConditionalRead() {
       return this.conditionalRead == null ? null : this.conditionalRead.getValue();
     }
 
     /**
      * @param value A code that indicates how the server supports conditional read.
      */
-    public CapabilityStatementRestResourceComponent setConditionalRead(ConditionalReadStatus value) {
+    public CapabilityStatementRestResourceComponent setConditionalRead(String value) {
       if (value == null)
         this.conditionalRead = null;
       else {
         if (this.conditionalRead == null)
-          this.conditionalRead = new Enumeration<ConditionalReadStatus>(new ConditionalReadStatusEnumFactory());
+          this.conditionalRead = new StringType();
         this.conditionalRead.setValue(value);
       }
       return this;
@@ -4514,12 +2935,12 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      *         value and extensions. The accessor "getConditionalDelete" gives
      *         direct access to the value
      */
-    public Enumeration<ConditionalDeleteStatus> getConditionalDeleteElement() {
+    public StringType getConditionalDeleteElement() {
       if (this.conditionalDelete == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create CapabilityStatementRestResourceComponent.conditionalDelete");
         else if (Configuration.doAutoCreate())
-          this.conditionalDelete = new Enumeration<ConditionalDeleteStatus>(new ConditionalDeleteStatusEnumFactory()); // bb
+          this.conditionalDelete = new StringType(); // bb
       return this.conditionalDelete;
     }
 
@@ -4538,7 +2959,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      *              "getConditionalDelete" gives direct access to the value
      */
     public CapabilityStatementRestResourceComponent setConditionalDeleteElement(
-        Enumeration<ConditionalDeleteStatus> value) {
+      StringType value) {
       this.conditionalDelete = value;
       return this;
     }
@@ -4546,7 +2967,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     /**
      * @return A code that indicates how the server supports conditional delete.
      */
-    public ConditionalDeleteStatus getConditionalDelete() {
+    public String getConditionalDelete() {
       return this.conditionalDelete == null ? null : this.conditionalDelete.getValue();
     }
 
@@ -4554,12 +2975,12 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * @param value A code that indicates how the server supports conditional
      *              delete.
      */
-    public CapabilityStatementRestResourceComponent setConditionalDelete(ConditionalDeleteStatus value) {
+    public CapabilityStatementRestResourceComponent setConditionalDelete(String value) {
       if (value == null)
         this.conditionalDelete = null;
       else {
         if (this.conditionalDelete == null)
-          this.conditionalDelete = new Enumeration<ConditionalDeleteStatus>(new ConditionalDeleteStatusEnumFactory());
+          this.conditionalDelete = new StringType();
         this.conditionalDelete.setValue(value);
       }
       return this;
@@ -4569,9 +2990,9 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * @return {@link #referencePolicy} (A set of flags that defines how references
      *         are supported.)
      */
-    public List<Enumeration<ReferenceHandlingPolicy>> getReferencePolicy() {
+    public List<StringType> getReferencePolicy() {
       if (this.referencePolicy == null)
-        this.referencePolicy = new ArrayList<Enumeration<ReferenceHandlingPolicy>>();
+        this.referencePolicy = new ArrayList<StringType>();
       return this.referencePolicy;
     }
 
@@ -4579,7 +3000,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * @return Returns a reference to <code>this</code> for easy method chaining
      */
     public CapabilityStatementRestResourceComponent setReferencePolicy(
-        List<Enumeration<ReferenceHandlingPolicy>> theReferencePolicy) {
+        List<StringType> theReferencePolicy) {
       this.referencePolicy = theReferencePolicy;
       return this;
     }
@@ -4587,7 +3008,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     public boolean hasReferencePolicy() {
       if (this.referencePolicy == null)
         return false;
-      for (Enumeration<ReferenceHandlingPolicy> item : this.referencePolicy)
+      for (StringType item : this.referencePolicy)
         if (!item.isEmpty())
           return true;
       return false;
@@ -4597,11 +3018,10 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * @return {@link #referencePolicy} (A set of flags that defines how references
      *         are supported.)
      */
-    public Enumeration<ReferenceHandlingPolicy> addReferencePolicyElement() {// 2
-      Enumeration<ReferenceHandlingPolicy> t = new Enumeration<ReferenceHandlingPolicy>(
-          new ReferenceHandlingPolicyEnumFactory());
+    public StringType addReferencePolicyElement() {// 2
+      StringType t = new StringType();
       if (this.referencePolicy == null)
-        this.referencePolicy = new ArrayList<Enumeration<ReferenceHandlingPolicy>>();
+        this.referencePolicy = new ArrayList<StringType>();
       this.referencePolicy.add(t);
       return t;
     }
@@ -4610,12 +3030,11 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * @param value {@link #referencePolicy} (A set of flags that defines how
      *              references are supported.)
      */
-    public CapabilityStatementRestResourceComponent addReferencePolicy(ReferenceHandlingPolicy value) { // 1
-      Enumeration<ReferenceHandlingPolicy> t = new Enumeration<ReferenceHandlingPolicy>(
-          new ReferenceHandlingPolicyEnumFactory());
+    public CapabilityStatementRestResourceComponent addReferencePolicy(String value) { // 1
+      StringType t = new StringType();
       t.setValue(value);
       if (this.referencePolicy == null)
-        this.referencePolicy = new ArrayList<Enumeration<ReferenceHandlingPolicy>>();
+        this.referencePolicy = new ArrayList<StringType>();
       this.referencePolicy.add(t);
       return this;
     }
@@ -4624,10 +3043,10 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * @param value {@link #referencePolicy} (A set of flags that defines how
      *              references are supported.)
      */
-    public boolean hasReferencePolicy(ReferenceHandlingPolicy value) {
+    public boolean hasReferencePolicy(String value) {
       if (this.referencePolicy == null)
         return false;
-      for (Enumeration<ReferenceHandlingPolicy> v : this.referencePolicy)
+      for (StringType v : this.referencePolicy)
         if (v.getValue().equals(value)) // code
           return true;
       return false;
@@ -4892,7 +3311,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
           "Additional information about the resource type used by the system.", 0, 1, documentation));
       children.add(new Property("interaction", "", "Identifies a restful operation supported by the solution.", 0,
           java.lang.Integer.MAX_VALUE, interaction));
-      children.add(new Property("versioning", "code",
+      children.add(new Property("versioning", "string",
           "This field is set to no-version to specify that the system does not support (server) or use (client) versioning for this resource type. If this has some other value, the server must at least correctly track and populate the versionId meta-property on resources. If the value is 'versioned-update', then the server supports all the versioning features, including using e-tags for version integrity in the API.",
           0, 1, versioning));
       children.add(new Property("readHistory", "boolean",
@@ -4903,13 +3322,13 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
           0, 1, updateCreate));
       children.add(new Property("conditionalCreate", "boolean",
           "A flag that indicates that the server supports conditional create.", 0, 1, conditionalCreate));
-      children.add(new Property("conditionalRead", "code",
+      children.add(new Property("conditionalRead", "string",
           "A code that indicates how the server supports conditional read.", 0, 1, conditionalRead));
       children.add(new Property("conditionalUpdate", "boolean",
           "A flag that indicates that the server supports conditional update.", 0, 1, conditionalUpdate));
-      children.add(new Property("conditionalDelete", "code",
+      children.add(new Property("conditionalDelete", "string",
           "A code that indicates how the server supports conditional delete.", 0, 1, conditionalDelete));
-      children.add(new Property("referencePolicy", "code", "A set of flags that defines how references are supported.",
+      children.add(new Property("referencePolicy", "string", "A set of flags that defines how references are supported.",
           0, java.lang.Integer.MAX_VALUE, referencePolicy));
       children.add(new Property("searchInclude", "string", "A list of _include values supported by the server.", 0,
           java.lang.Integer.MAX_VALUE, searchInclude));
@@ -4945,7 +3364,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
         /* interaction */ return new Property("interaction", "",
             "Identifies a restful operation supported by the solution.", 0, java.lang.Integer.MAX_VALUE, interaction);
       case -670487542:
-        /* versioning */ return new Property("versioning", "code",
+        /* versioning */ return new Property("versioning", "string",
             "This field is set to no-version to specify that the system does not support (server) or use (client) versioning for this resource type. If this has some other value, the server must at least correctly track and populate the versionId meta-property on resources. If the value is 'versioned-update', then the server supports all the versioning features, including using e-tags for version integrity in the API.",
             0, 1, versioning);
       case 187518494:
@@ -4960,16 +3379,16 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
         /* conditionalCreate */ return new Property("conditionalCreate", "boolean",
             "A flag that indicates that the server supports conditional create.", 0, 1, conditionalCreate);
       case 822786364:
-        /* conditionalRead */ return new Property("conditionalRead", "code",
+        /* conditionalRead */ return new Property("conditionalRead", "string",
             "A code that indicates how the server supports conditional read.", 0, 1, conditionalRead);
       case 519849711:
         /* conditionalUpdate */ return new Property("conditionalUpdate", "boolean",
             "A flag that indicates that the server supports conditional update.", 0, 1, conditionalUpdate);
       case 23237585:
-        /* conditionalDelete */ return new Property("conditionalDelete", "code",
+        /* conditionalDelete */ return new Property("conditionalDelete", "string",
             "A code that indicates how the server supports conditional delete.", 0, 1, conditionalDelete);
       case 796257373:
-        /* referencePolicy */ return new Property("referencePolicy", "code",
+        /* referencePolicy */ return new Property("referencePolicy", "string",
             "A set of flags that defines how references are supported.", 0, java.lang.Integer.MAX_VALUE,
             referencePolicy);
       case -1035904544:
@@ -5009,7 +3428,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
         /* interaction */ return this.interaction == null ? new Base[0]
             : this.interaction.toArray(new Base[this.interaction.size()]); // ResourceInteractionComponent
       case -670487542:
-        /* versioning */ return this.versioning == null ? new Base[0] : new Base[] { this.versioning }; // Enumeration<ResourceVersionPolicy>
+        /* versioning */ return this.versioning == null ? new Base[0] : new Base[] { this.versioning }; // StringType
       case 187518494:
         /* readHistory */ return this.readHistory == null ? new Base[0] : new Base[] { this.readHistory }; // BooleanType
       case -1400550619:
@@ -5018,16 +3437,16 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
         /* conditionalCreate */ return this.conditionalCreate == null ? new Base[0]
             : new Base[] { this.conditionalCreate }; // BooleanType
       case 822786364:
-        /* conditionalRead */ return this.conditionalRead == null ? new Base[0] : new Base[] { this.conditionalRead }; // Enumeration<ConditionalReadStatus>
+        /* conditionalRead */ return this.conditionalRead == null ? new Base[0] : new Base[] { this.conditionalRead }; // StringType
       case 519849711:
         /* conditionalUpdate */ return this.conditionalUpdate == null ? new Base[0]
             : new Base[] { this.conditionalUpdate }; // BooleanType
       case 23237585:
         /* conditionalDelete */ return this.conditionalDelete == null ? new Base[0]
-            : new Base[] { this.conditionalDelete }; // Enumeration<ConditionalDeleteStatus>
+            : new Base[] { this.conditionalDelete }; // StringType
       case 796257373:
         /* referencePolicy */ return this.referencePolicy == null ? new Base[0]
-            : this.referencePolicy.toArray(new Base[this.referencePolicy.size()]); // Enumeration<ReferenceHandlingPolicy>
+            : this.referencePolicy.toArray(new Base[this.referencePolicy.size()]); // StringType
       case -1035904544:
         /* searchInclude */ return this.searchInclude == null ? new Base[0]
             : this.searchInclude.toArray(new Base[this.searchInclude.size()]); // StringType
@@ -5065,8 +3484,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
         this.getInteraction().add((ResourceInteractionComponent) value); // ResourceInteractionComponent
         return value;
       case -670487542: // versioning
-        value = new ResourceVersionPolicyEnumFactory().fromType(castToCode(value));
-        this.versioning = (Enumeration) value; // Enumeration<ResourceVersionPolicy>
+        this.versioning = castToString(value); // StringType
         return value;
       case 187518494: // readHistory
         this.readHistory = castToBoolean(value); // BooleanType
@@ -5078,19 +3496,16 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
         this.conditionalCreate = castToBoolean(value); // BooleanType
         return value;
       case 822786364: // conditionalRead
-        value = new ConditionalReadStatusEnumFactory().fromType(castToCode(value));
-        this.conditionalRead = (Enumeration) value; // Enumeration<ConditionalReadStatus>
+        this.conditionalRead = castToString(value); // StringType
         return value;
       case 519849711: // conditionalUpdate
         this.conditionalUpdate = castToBoolean(value); // BooleanType
         return value;
       case 23237585: // conditionalDelete
-        value = new ConditionalDeleteStatusEnumFactory().fromType(castToCode(value));
-        this.conditionalDelete = (Enumeration) value; // Enumeration<ConditionalDeleteStatus>
+        this.conditionalDelete = castToString(value); // StringType
         return value;
       case 796257373: // referencePolicy
-        value = new ReferenceHandlingPolicyEnumFactory().fromType(castToCode(value));
-        this.getReferencePolicy().add((Enumeration) value); // Enumeration<ReferenceHandlingPolicy>
+        this.getReferencePolicy().add(castToString(value)); // StringType
         return value;
       case -1035904544: // searchInclude
         this.getSearchInclude().add(castToString(value)); // StringType
@@ -5123,8 +3538,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
       } else if (name.equals("interaction")) {
         this.getInteraction().add((ResourceInteractionComponent) value);
       } else if (name.equals("versioning")) {
-        value = new ResourceVersionPolicyEnumFactory().fromType(castToCode(value));
-        this.versioning = (Enumeration) value; // Enumeration<ResourceVersionPolicy>
+        this.versioning = castToString(value); // StringType
       } else if (name.equals("readHistory")) {
         this.readHistory = castToBoolean(value); // BooleanType
       } else if (name.equals("updateCreate")) {
@@ -5132,16 +3546,13 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
       } else if (name.equals("conditionalCreate")) {
         this.conditionalCreate = castToBoolean(value); // BooleanType
       } else if (name.equals("conditionalRead")) {
-        value = new ConditionalReadStatusEnumFactory().fromType(castToCode(value));
-        this.conditionalRead = (Enumeration) value; // Enumeration<ConditionalReadStatus>
+        this.conditionalRead = castToString(value); // StringType
       } else if (name.equals("conditionalUpdate")) {
         this.conditionalUpdate = castToBoolean(value); // BooleanType
       } else if (name.equals("conditionalDelete")) {
-        value = new ConditionalDeleteStatusEnumFactory().fromType(castToCode(value));
-        this.conditionalDelete = (Enumeration) value; // Enumeration<ConditionalDeleteStatus>
+        this.conditionalDelete = castToString(value); // StringType
       } else if (name.equals("referencePolicy")) {
-        value = new ReferenceHandlingPolicyEnumFactory().fromType(castToCode(value));
-        this.getReferencePolicy().add((Enumeration) value);
+        this.getReferencePolicy().add(castToString(value)); // StringType
       } else if (name.equals("searchInclude")) {
         this.getSearchInclude().add(castToString(value));
       } else if (name.equals("searchRevInclude")) {
@@ -5253,7 +3664,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
       case 1844104722:
         /* interaction */ return new String[] {};
       case -670487542:
-        /* versioning */ return new String[] { "code" };
+        /* versioning */ return new String[] { "string" };
       case 187518494:
         /* readHistory */ return new String[] { "boolean" };
       case -1400550619:
@@ -5261,13 +3672,13 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
       case 6401826:
         /* conditionalCreate */ return new String[] { "boolean" };
       case 822786364:
-        /* conditionalRead */ return new String[] { "code" };
+        /* conditionalRead */ return new String[] { "string" };
       case 519849711:
         /* conditionalUpdate */ return new String[] { "boolean" };
       case 23237585:
-        /* conditionalDelete */ return new String[] { "code" };
+        /* conditionalDelete */ return new String[] { "string" };
       case 796257373:
-        /* referencePolicy */ return new String[] { "code" };
+        /* referencePolicy */ return new String[] { "string" };
       case -1035904544:
         /* searchInclude */ return new String[] { "string" };
       case -2123884979:
@@ -5353,8 +3764,8 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
       dst.conditionalUpdate = conditionalUpdate == null ? null : conditionalUpdate.copy();
       dst.conditionalDelete = conditionalDelete == null ? null : conditionalDelete.copy();
       if (referencePolicy != null) {
-        dst.referencePolicy = new ArrayList<Enumeration<ReferenceHandlingPolicy>>();
-        for (Enumeration<ReferenceHandlingPolicy> i : referencePolicy)
+        dst.referencePolicy = new ArrayList<StringType>();
+        for (StringType i : referencePolicy)
           dst.referencePolicy.add(i.copy());
       }
       ;
@@ -5442,10 +3853,10 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     /**
      * Coded identifier of the operation, supported by the system resource.
      */
-    @Child(name = "code", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
+    @Child(name = "code", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "read | vread | update | patch | delete | history-instance | history-type | create | search-type", formalDefinition = "Coded identifier of the operation, supported by the system resource.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/type-restful-interaction")
-    protected Enumeration<TypeRestfulInteraction> code;
+    protected StringType code;
 
     /**
      * Guidance specific to the implementation of this operation, such as 'delete is
@@ -5469,7 +3880,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     /**
      * Constructor
      */
-    public ResourceInteractionComponent(Enumeration<TypeRestfulInteraction> code) {
+    public ResourceInteractionComponent(StringType code) {
       super();
       this.code = code;
     }
@@ -5479,12 +3890,12 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      *         system resource.). This is the underlying object with id, value and
      *         extensions. The accessor "getCode" gives direct access to the value
      */
-    public Enumeration<TypeRestfulInteraction> getCodeElement() {
+    public StringType getCodeElement() {
       if (this.code == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create ResourceInteractionComponent.code");
         else if (Configuration.doAutoCreate())
-          this.code = new Enumeration<TypeRestfulInteraction>(new TypeRestfulInteractionEnumFactory()); // bb
+          this.code = new StringType(); // bb
       return this.code;
     }
 
@@ -5502,7 +3913,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      *              value and extensions. The accessor "getCode" gives direct access
      *              to the value
      */
-    public ResourceInteractionComponent setCodeElement(Enumeration<TypeRestfulInteraction> value) {
+    public ResourceInteractionComponent setCodeElement(StringType value) {
       this.code = value;
       return this;
     }
@@ -5510,7 +3921,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     /**
      * @return Coded identifier of the operation, supported by the system resource.
      */
-    public TypeRestfulInteraction getCode() {
+    public String getCode() {
       return this.code == null ? null : this.code.getValue();
     }
 
@@ -5518,9 +3929,9 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * @param value Coded identifier of the operation, supported by the system
      *              resource.
      */
-    public ResourceInteractionComponent setCode(TypeRestfulInteraction value) {
+    public ResourceInteractionComponent setCode(String value) {
       if (this.code == null)
-        this.code = new Enumeration<TypeRestfulInteraction>(new TypeRestfulInteractionEnumFactory());
+        this.code = new StringType();
       this.code.setValue(value);
       return this;
     }
@@ -5592,7 +4003,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("code", "code", "Coded identifier of the operation, supported by the system resource.",
+      children.add(new Property("code", "string", "Coded identifier of the operation, supported by the system resource.",
           0, 1, code));
       children.add(new Property("documentation", "markdown",
           "Guidance specific to the implementation of this operation, such as 'delete is a logical delete' or 'updates are only allowed with version id' or 'creates permitted from pre-authorized certificates only'.",
@@ -5603,7 +4014,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 3059181:
-        /* code */ return new Property("code", "code",
+        /* code */ return new Property("code", "string",
             "Coded identifier of the operation, supported by the system resource.", 0, 1, code);
       case 1587405498:
         /* documentation */ return new Property("documentation", "markdown",
@@ -5619,7 +4030,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 3059181:
-        /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // Enumeration<TypeRestfulInteraction>
+        /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // StringType
       case 1587405498:
         /* documentation */ return this.documentation == null ? new Base[0] : new Base[] { this.documentation }; // MarkdownType
       default:
@@ -5632,8 +4043,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3059181: // code
-        value = new TypeRestfulInteractionEnumFactory().fromType(castToCode(value));
-        this.code = (Enumeration) value; // Enumeration<TypeRestfulInteraction>
+        this.code = castToString(value); // StringType
         return value;
       case 1587405498: // documentation
         this.documentation = castToMarkdown(value); // MarkdownType
@@ -5647,8 +4057,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("code")) {
-        value = new TypeRestfulInteractionEnumFactory().fromType(castToCode(value));
-        this.code = (Enumeration) value; // Enumeration<TypeRestfulInteraction>
+        this.code = castToString(value); // StringType
       } else if (name.equals("documentation")) {
         this.documentation = castToMarkdown(value); // MarkdownType
       } else
@@ -5684,7 +4093,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 3059181:
-        /* code */ return new String[] { "code" };
+        /* code */ return new String[] { "string" };
       case 1587405498:
         /* documentation */ return new String[] { "markdown" };
       default:
@@ -6686,10 +5095,10 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     /**
      * A coded identifier of the operation, supported by the system.
      */
-    @Child(name = "code", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
+    @Child(name = "code", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "transaction | batch | search-system | history-system", formalDefinition = "A coded identifier of the operation, supported by the system.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/system-restful-interaction")
-    protected Enumeration<SystemRestfulInteraction> code;
+    protected StringType code;
 
     /**
      * Guidance specific to the implementation of this operation, such as
@@ -6713,7 +5122,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     /**
      * Constructor
      */
-    public SystemInteractionComponent(Enumeration<SystemRestfulInteraction> code) {
+    public SystemInteractionComponent(StringType code) {
       super();
       this.code = code;
     }
@@ -6723,12 +5132,12 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      *         system.). This is the underlying object with id, value and
      *         extensions. The accessor "getCode" gives direct access to the value
      */
-    public Enumeration<SystemRestfulInteraction> getCodeElement() {
+    public StringType getCodeElement() {
       if (this.code == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create SystemInteractionComponent.code");
         else if (Configuration.doAutoCreate())
-          this.code = new Enumeration<SystemRestfulInteraction>(new SystemRestfulInteractionEnumFactory()); // bb
+          this.code = new StringType(); // bb
       return this.code;
     }
 
@@ -6746,7 +5155,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      *              extensions. The accessor "getCode" gives direct access to the
      *              value
      */
-    public SystemInteractionComponent setCodeElement(Enumeration<SystemRestfulInteraction> value) {
+    public SystemInteractionComponent setCodeElement(StringType value) {
       this.code = value;
       return this;
     }
@@ -6754,16 +5163,16 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     /**
      * @return A coded identifier of the operation, supported by the system.
      */
-    public SystemRestfulInteraction getCode() {
+    public String getCode() {
       return this.code == null ? null : this.code.getValue();
     }
 
     /**
      * @param value A coded identifier of the operation, supported by the system.
      */
-    public SystemInteractionComponent setCode(SystemRestfulInteraction value) {
+    public SystemInteractionComponent setCode(String value) {
       if (this.code == null)
-        this.code = new Enumeration<SystemRestfulInteraction>(new SystemRestfulInteractionEnumFactory());
+        this.code = new StringType();
       this.code.setValue(value);
       return this;
     }
@@ -6833,7 +5242,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
       children.add(
-          new Property("code", "code", "A coded identifier of the operation, supported by the system.", 0, 1, code));
+          new Property("code", "string", "A coded identifier of the operation, supported by the system.", 0, 1, code));
       children.add(new Property("documentation", "markdown",
           "Guidance specific to the implementation of this operation, such as limitations on the kind of transactions allowed, or information about system wide search is implemented.",
           0, 1, documentation));
@@ -6843,7 +5252,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 3059181:
-        /* code */ return new Property("code", "code", "A coded identifier of the operation, supported by the system.",
+        /* code */ return new Property("code", "string", "A coded identifier of the operation, supported by the system.",
             0, 1, code);
       case 1587405498:
         /* documentation */ return new Property("documentation", "markdown",
@@ -6859,7 +5268,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 3059181:
-        /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // Enumeration<SystemRestfulInteraction>
+        /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // StringType
       case 1587405498:
         /* documentation */ return this.documentation == null ? new Base[0] : new Base[] { this.documentation }; // MarkdownType
       default:
@@ -6872,8 +5281,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3059181: // code
-        value = new SystemRestfulInteractionEnumFactory().fromType(castToCode(value));
-        this.code = (Enumeration) value; // Enumeration<SystemRestfulInteraction>
+        this.code = castToString(value); // StringType
         return value;
       case 1587405498: // documentation
         this.documentation = castToMarkdown(value); // MarkdownType
@@ -6887,8 +5295,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("code")) {
-        value = new SystemRestfulInteractionEnumFactory().fromType(castToCode(value));
-        this.code = (Enumeration) value; // Enumeration<SystemRestfulInteraction>
+        this.code = castToString(value); // StringType
       } else if (name.equals("documentation")) {
         this.documentation = castToMarkdown(value); // MarkdownType
       } else
@@ -6924,7 +5331,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 3059181:
-        /* code */ return new String[] { "code" };
+        /* code */ return new String[] { "string" };
       case 1587405498:
         /* documentation */ return new String[] { "markdown" };
       default:
@@ -7765,10 +6172,10 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * The mode of this event declaration - whether application is sender or
      * receiver.
      */
-    @Child(name = "mode", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "mode", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "sender | receiver", formalDefinition = "The mode of this event declaration - whether application is sender or receiver.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/event-capability-mode")
-    protected Enumeration<EventCapabilityMode> mode;
+    protected StringType mode;
 
     /**
      * Points to a message definition that identifies the messaging event, message
@@ -7791,7 +6198,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     /**
      * Constructor
      */
-    public CapabilityStatementMessagingSupportedMessageComponent(Enumeration<EventCapabilityMode> mode,
+    public CapabilityStatementMessagingSupportedMessageComponent(StringType mode,
         CanonicalType definition) {
       super();
       this.mode = mode;
@@ -7804,12 +6211,12 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      *         with id, value and extensions. The accessor "getMode" gives direct
      *         access to the value
      */
-    public Enumeration<EventCapabilityMode> getModeElement() {
+    public StringType getModeElement() {
       if (this.mode == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create CapabilityStatementMessagingSupportedMessageComponent.mode");
         else if (Configuration.doAutoCreate())
-          this.mode = new Enumeration<EventCapabilityMode>(new EventCapabilityModeEnumFactory()); // bb
+          this.mode = new StringType(); // bb
       return this.mode;
     }
 
@@ -7828,7 +6235,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      *              gives direct access to the value
      */
     public CapabilityStatementMessagingSupportedMessageComponent setModeElement(
-        Enumeration<EventCapabilityMode> value) {
+      StringType value) {
       this.mode = value;
       return this;
     }
@@ -7837,7 +6244,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * @return The mode of this event declaration - whether application is sender or
      *         receiver.
      */
-    public EventCapabilityMode getMode() {
+    public String getMode() {
       return this.mode == null ? null : this.mode.getValue();
     }
 
@@ -7845,9 +6252,9 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * @param value The mode of this event declaration - whether application is
      *              sender or receiver.
      */
-    public CapabilityStatementMessagingSupportedMessageComponent setMode(EventCapabilityMode value) {
+    public CapabilityStatementMessagingSupportedMessageComponent setMode(String value) {
       if (this.mode == null)
-        this.mode = new Enumeration<EventCapabilityMode>(new EventCapabilityModeEnumFactory());
+        this.mode = new StringType();
       this.mode.setValue(value);
       return this;
     }
@@ -7908,7 +6315,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("mode", "code",
+      children.add(new Property("mode", "string",
           "The mode of this event declaration - whether application is sender or receiver.", 0, 1, mode));
       children.add(new Property("definition", "canonical(MessageDefinition)",
           "Points to a message definition that identifies the messaging event, message structure, allowed responses, etc.",
@@ -7919,7 +6326,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 3357091:
-        /* mode */ return new Property("mode", "code",
+        /* mode */ return new Property("mode", "string",
             "The mode of this event declaration - whether application is sender or receiver.", 0, 1, mode);
       case -1014418093:
         /* definition */ return new Property("definition", "canonical(MessageDefinition)",
@@ -7935,7 +6342,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 3357091:
-        /* mode */ return this.mode == null ? new Base[0] : new Base[] { this.mode }; // Enumeration<EventCapabilityMode>
+        /* mode */ return this.mode == null ? new Base[0] : new Base[] { this.mode }; // StringType
       case -1014418093:
         /* definition */ return this.definition == null ? new Base[0] : new Base[] { this.definition }; // CanonicalType
       default:
@@ -7948,8 +6355,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3357091: // mode
-        value = new EventCapabilityModeEnumFactory().fromType(castToCode(value));
-        this.mode = (Enumeration) value; // Enumeration<EventCapabilityMode>
+        this.mode = castToString(value); // StringType
         return value;
       case -1014418093: // definition
         this.definition = castToCanonical(value); // CanonicalType
@@ -7963,8 +6369,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("mode")) {
-        value = new EventCapabilityModeEnumFactory().fromType(castToCode(value));
-        this.mode = (Enumeration) value; // Enumeration<EventCapabilityMode>
+        this.mode = castToString(value); // StringType
       } else if (name.equals("definition")) {
         this.definition = castToCanonical(value); // CanonicalType
       } else
@@ -8000,7 +6405,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 3357091:
-        /* mode */ return new String[] { "code" };
+        /* mode */ return new String[] { "string" };
       case -1014418093:
         /* definition */ return new String[] { "canonical" };
       default:
@@ -8068,10 +6473,10 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * Mode of this document declaration - whether an application is a producer or
      * consumer.
      */
-    @Child(name = "mode", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "mode", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "producer | consumer", formalDefinition = "Mode of this document declaration - whether an application is a producer or consumer.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/document-mode")
-    protected Enumeration<DocumentMode> mode;
+    protected StringType mode;
 
     /**
      * A description of how the application supports or uses the specified document
@@ -8104,7 +6509,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     /**
      * Constructor
      */
-    public CapabilityStatementDocumentComponent(Enumeration<DocumentMode> mode, CanonicalType profile) {
+    public CapabilityStatementDocumentComponent(StringType mode, CanonicalType profile) {
       super();
       this.mode = mode;
       this.profile = profile;
@@ -8116,12 +6521,12 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      *         object with id, value and extensions. The accessor "getMode" gives
      *         direct access to the value
      */
-    public Enumeration<DocumentMode> getModeElement() {
+    public StringType getModeElement() {
       if (this.mode == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create CapabilityStatementDocumentComponent.mode");
         else if (Configuration.doAutoCreate())
-          this.mode = new Enumeration<DocumentMode>(new DocumentModeEnumFactory()); // bb
+          this.mode = new StringType(); // bb
       return this.mode;
     }
 
@@ -8139,7 +6544,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      *              object with id, value and extensions. The accessor "getMode"
      *              gives direct access to the value
      */
-    public CapabilityStatementDocumentComponent setModeElement(Enumeration<DocumentMode> value) {
+    public CapabilityStatementDocumentComponent setModeElement(StringType value) {
       this.mode = value;
       return this;
     }
@@ -8148,7 +6553,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * @return Mode of this document declaration - whether an application is a
      *         producer or consumer.
      */
-    public DocumentMode getMode() {
+    public String getMode() {
       return this.mode == null ? null : this.mode.getValue();
     }
 
@@ -8156,9 +6561,9 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
      * @param value Mode of this document declaration - whether an application is a
      *              producer or consumer.
      */
-    public CapabilityStatementDocumentComponent setMode(DocumentMode value) {
+    public CapabilityStatementDocumentComponent setMode(String value) {
       if (this.mode == null)
-        this.mode = new Enumeration<DocumentMode>(new DocumentModeEnumFactory());
+        this.mode = new StringType();
       this.mode.setValue(value);
       return this;
     }
@@ -8280,7 +6685,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("mode", "code",
+      children.add(new Property("mode", "string",
           "Mode of this document declaration - whether an application is a producer or consumer.", 0, 1, mode));
       children.add(new Property("documentation", "markdown",
           "A description of how the application supports or uses the specified document profile.  For example, when documents are created, what action is taken with consumed documents, etc.",
@@ -8294,7 +6699,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 3357091:
-        /* mode */ return new Property("mode", "code",
+        /* mode */ return new Property("mode", "string",
             "Mode of this document declaration - whether an application is a producer or consumer.", 0, 1, mode);
       case 1587405498:
         /* documentation */ return new Property("documentation", "markdown",
@@ -8314,7 +6719,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 3357091:
-        /* mode */ return this.mode == null ? new Base[0] : new Base[] { this.mode }; // Enumeration<DocumentMode>
+        /* mode */ return this.mode == null ? new Base[0] : new Base[] { this.mode }; // StringType
       case 1587405498:
         /* documentation */ return this.documentation == null ? new Base[0] : new Base[] { this.documentation }; // MarkdownType
       case -309425751:
@@ -8329,8 +6734,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3357091: // mode
-        value = new DocumentModeEnumFactory().fromType(castToCode(value));
-        this.mode = (Enumeration) value; // Enumeration<DocumentMode>
+        this.mode = castToString(value); // StringType
         return value;
       case 1587405498: // documentation
         this.documentation = castToMarkdown(value); // MarkdownType
@@ -8347,8 +6751,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("mode")) {
-        value = new DocumentModeEnumFactory().fromType(castToCode(value));
-        this.mode = (Enumeration) value; // Enumeration<DocumentMode>
+        this.mode = castToString(value); // StringType
       } else if (name.equals("documentation")) {
         this.documentation = castToMarkdown(value); // MarkdownType
       } else if (name.equals("profile")) {
@@ -8390,7 +6793,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 3357091:
-        /* mode */ return new String[] { "code" };
+        /* mode */ return new String[] { "string" };
       case 1587405498:
         /* documentation */ return new String[] { "markdown" };
       case -309425751:
@@ -8482,10 +6885,10 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
    * running instance of software, a particular product (kind, not instance of
    * software) or a class of implementation (e.g. a desired purchase).
    */
-  @Child(name = "kind", type = { CodeType.class }, order = 2, min = 1, max = 1, modifier = false, summary = true)
+  @Child(name = "kind", type = { StringType.class }, order = 2, min = 1, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "instance | capability | requirements", formalDefinition = "The way that this statement is intended to be used, to describe an actual running instance of software, a particular product (kind, not instance of software) or a class of implementation (e.g. a desired purchase).")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/capability-statement-kind")
-  protected Enumeration<CapabilityStatementKind> kind;
+  protected StringType kind;
 
   /**
    * Reference to a canonical URL of another CapabilityStatement that this
@@ -8601,8 +7004,8 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
   /**
    * Constructor
    */
-  public CapabilityStatement(Enumeration<PublicationStatus> status, DateTimeType date,
-      Enumeration<CapabilityStatementKind> kind, Enumeration<FHIRVersion> fhirVersion) {
+  public CapabilityStatement(StringType status, DateTimeType date,
+                             StringType kind, Enumeration<FHIRVersion> fhirVersion) {
     super();
     this.status = status;
     this.date = date;
@@ -8896,12 +7299,12 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
    *         object with id, value and extensions. The accessor "getStatus" gives
    *         direct access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create CapabilityStatement.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -8919,7 +7322,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
    *              underlying object with id, value and extensions. The accessor
    *              "getStatus" gives direct access to the value
    */
-  public CapabilityStatement setStatusElement(Enumeration<PublicationStatus> value) {
+  public CapabilityStatement setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -8928,7 +7331,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
    * @return The status of this capability statement. Enables tracking the
    *         life-cycle of the content.
    */
-  public PublicationStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
@@ -8936,9 +7339,9 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
    * @param value The status of this capability statement. Enables tracking the
    *              life-cycle of the content.
    */
-  public CapabilityStatement setStatus(PublicationStatus value) {
+  public CapabilityStatement setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -9491,12 +7894,12 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
    *         desired purchase).). This is the underlying object with id, value and
    *         extensions. The accessor "getKind" gives direct access to the value
    */
-  public Enumeration<CapabilityStatementKind> getKindElement() {
+  public StringType getKindElement() {
     if (this.kind == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create CapabilityStatement.kind");
       else if (Configuration.doAutoCreate())
-        this.kind = new Enumeration<CapabilityStatementKind>(new CapabilityStatementKindEnumFactory()); // bb
+        this.kind = new StringType(); // bb
     return this.kind;
   }
 
@@ -9516,7 +7919,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
    *              underlying object with id, value and extensions. The accessor
    *              "getKind" gives direct access to the value
    */
-  public CapabilityStatement setKindElement(Enumeration<CapabilityStatementKind> value) {
+  public CapabilityStatement setKindElement(StringType value) {
     this.kind = value;
     return this;
   }
@@ -9527,7 +7930,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
    *         instance of software) or a class of implementation (e.g. a desired
    *         purchase).
    */
-  public CapabilityStatementKind getKind() {
+  public String getKind() {
     return this.kind == null ? null : this.kind.getValue();
   }
 
@@ -9537,9 +7940,9 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
    *              (kind, not instance of software) or a class of implementation
    *              (e.g. a desired purchase).
    */
-  public CapabilityStatement setKind(CapabilityStatementKind value) {
+  public CapabilityStatement setKind(String value) {
     if (this.kind == null)
-      this.kind = new Enumeration<CapabilityStatementKind>(new CapabilityStatementKindEnumFactory());
+      this.kind = new StringType();
     this.kind.setValue(value);
     return this;
   }
@@ -10199,7 +8602,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
         0, 1, name));
     children.add(new Property("title", "string",
         "A short, descriptive, user-friendly title for the capability statement.", 0, 1, title));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of this capability statement. Enables tracking the life-cycle of the content.", 0, 1, status));
     children.add(new Property("experimental", "boolean",
         "A Boolean value to indicate that this capability statement is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
@@ -10227,7 +8630,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     children.add(new Property("copyright", "markdown",
         "A copyright statement relating to the capability statement and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the capability statement.",
         0, 1, copyright));
-    children.add(new Property("kind", "code",
+    children.add(new Property("kind", "string",
         "The way that this statement is intended to be used, to describe an actual running instance of software, a particular product (kind, not instance of software) or a class of implementation (e.g. a desired purchase).",
         0, 1, kind));
     children.add(new Property("instantiates", "canonical(CapabilityStatement)",
@@ -10280,7 +8683,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
       /* title */ return new Property("title", "string",
           "A short, descriptive, user-friendly title for the capability statement.", 0, 1, title);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of this capability statement. Enables tracking the life-cycle of the content.", 0, 1, status);
     case -404562712:
       /* experimental */ return new Property("experimental", "boolean",
@@ -10318,7 +8721,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
           "A copyright statement relating to the capability statement and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the capability statement.",
           0, 1, copyright);
     case 3292052:
-      /* kind */ return new Property("kind", "code",
+      /* kind */ return new Property("kind", "string",
           "The way that this statement is intended to be used, to describe an actual running instance of software, a particular product (kind, not instance of software) or a class of implementation (e.g. a desired purchase).",
           0, 1, kind);
     case -246883639:
@@ -10380,7 +8783,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     case 110371416:
       /* title */ return this.title == null ? new Base[0] : new Base[] { this.title }; // StringType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -404562712:
       /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
     case 3076014:
@@ -10402,7 +8805,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     case 1522889671:
       /* copyright */ return this.copyright == null ? new Base[0] : new Base[] { this.copyright }; // MarkdownType
     case 3292052:
-      /* kind */ return this.kind == null ? new Base[0] : new Base[] { this.kind }; // Enumeration<CapabilityStatementKind>
+      /* kind */ return this.kind == null ? new Base[0] : new Base[] { this.kind }; // StringType
     case -246883639:
       /* instantiates */ return this.instantiates == null ? new Base[0]
           : this.instantiates.toArray(new Base[this.instantiates.size()]); // CanonicalType
@@ -10451,8 +8854,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
       this.title = castToString(value); // StringType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -404562712: // experimental
       this.experimental = castToBoolean(value); // BooleanType
@@ -10482,8 +8884,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
       this.copyright = castToMarkdown(value); // MarkdownType
       return value;
     case 3292052: // kind
-      value = new CapabilityStatementKindEnumFactory().fromType(castToCode(value));
-      this.kind = (Enumeration) value; // Enumeration<CapabilityStatementKind>
+      this.kind = castToString(value); // StringType
       return value;
     case -246883639: // instantiates
       this.getInstantiates().add(castToCanonical(value)); // CanonicalType
@@ -10536,8 +8937,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     } else if (name.equals("title")) {
       this.title = castToString(value); // StringType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("date")) {
@@ -10557,8 +8957,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     } else if (name.equals("copyright")) {
       this.copyright = castToMarkdown(value); // MarkdownType
     } else if (name.equals("kind")) {
-      value = new CapabilityStatementKindEnumFactory().fromType(castToCode(value));
-      this.kind = (Enumeration) value; // Enumeration<CapabilityStatementKind>
+      this.kind = castToString(value); // StringType
     } else if (name.equals("instantiates")) {
       this.getInstantiates().add(castToCanonical(value));
     } else if (name.equals("imports")) {
@@ -10719,7 +9118,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     case 110371416:
       /* title */ return new String[] { "string" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -404562712:
       /* experimental */ return new String[] { "boolean" };
     case 3076014:
@@ -10739,7 +9138,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     case 1522889671:
       /* copyright */ return new String[] { "markdown" };
     case 3292052:
-      /* kind */ return new String[] { "code" };
+      /* kind */ return new String[] { "string" };
     case -246883639:
       /* instantiates */ return new String[] { "canonical" };
     case 1926037870:
@@ -10749,7 +9148,7 @@ public class CapabilityStatement extends MetadataResource implements IBaseConfor
     case 1683336114:
       /* implementation */ return new String[] {};
     case 461006061:
-      /* fhirVersion */ return new String[] { "code" };
+      /* fhirVersion */ return new String[] { "string" };
     case -1268779017:
       /* format */ return new String[] { "code" };
     case 172338783:

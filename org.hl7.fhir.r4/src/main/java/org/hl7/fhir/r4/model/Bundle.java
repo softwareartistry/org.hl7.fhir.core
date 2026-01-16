@@ -53,621 +53,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
 @ResourceDef(name = "Bundle", profile = "http://hl7.org/fhir/StructureDefinition/Bundle")
 public class Bundle extends Resource implements IBaseBundle {
 
-  public enum BundleType {
-    /**
-     * The bundle is a document. The first resource is a Composition.
-     */
-    DOCUMENT,
-    /**
-     * The bundle is a message. The first resource is a MessageHeader.
-     */
-    MESSAGE,
-    /**
-     * The bundle is a transaction - intended to be processed by a server as an
-     * atomic commit.
-     */
-    TRANSACTION,
-    /**
-     * The bundle is a transaction response. Because the response is a transaction
-     * response, the transaction has succeeded, and all responses are error free.
-     */
-    TRANSACTIONRESPONSE,
-    /**
-     * The bundle is a set of actions - intended to be processed by a server as a
-     * group of independent actions.
-     */
-    BATCH,
-    /**
-     * The bundle is a batch response. Note that as a batch, some responses may
-     * indicate failure and others success.
-     */
-    BATCHRESPONSE,
-    /**
-     * The bundle is a list of resources from a history interaction on a server.
-     */
-    HISTORY,
-    /**
-     * The bundle is a list of resources returned as a result of a search/query
-     * interaction, operation, or message.
-     */
-    SEARCHSET,
-    /**
-     * The bundle is a set of resources collected into a single package for ease of
-     * distribution that imposes no processing obligations or behavioral rules
-     * beyond persistence.
-     */
-    COLLECTION,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static BundleType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("document".equals(codeString))
-        return DOCUMENT;
-      if ("message".equals(codeString))
-        return MESSAGE;
-      if ("transaction".equals(codeString))
-        return TRANSACTION;
-      if ("transaction-response".equals(codeString))
-        return TRANSACTIONRESPONSE;
-      if ("batch".equals(codeString))
-        return BATCH;
-      if ("batch-response".equals(codeString))
-        return BATCHRESPONSE;
-      if ("history".equals(codeString))
-        return HISTORY;
-      if ("searchset".equals(codeString))
-        return SEARCHSET;
-      if ("collection".equals(codeString))
-        return COLLECTION;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown BundleType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case DOCUMENT:
-        return "document";
-      case MESSAGE:
-        return "message";
-      case TRANSACTION:
-        return "transaction";
-      case TRANSACTIONRESPONSE:
-        return "transaction-response";
-      case BATCH:
-        return "batch";
-      case BATCHRESPONSE:
-        return "batch-response";
-      case HISTORY:
-        return "history";
-      case SEARCHSET:
-        return "searchset";
-      case COLLECTION:
-        return "collection";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case DOCUMENT:
-        return "http://hl7.org/fhir/bundle-type";
-      case MESSAGE:
-        return "http://hl7.org/fhir/bundle-type";
-      case TRANSACTION:
-        return "http://hl7.org/fhir/bundle-type";
-      case TRANSACTIONRESPONSE:
-        return "http://hl7.org/fhir/bundle-type";
-      case BATCH:
-        return "http://hl7.org/fhir/bundle-type";
-      case BATCHRESPONSE:
-        return "http://hl7.org/fhir/bundle-type";
-      case HISTORY:
-        return "http://hl7.org/fhir/bundle-type";
-      case SEARCHSET:
-        return "http://hl7.org/fhir/bundle-type";
-      case COLLECTION:
-        return "http://hl7.org/fhir/bundle-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case DOCUMENT:
-        return "The bundle is a document. The first resource is a Composition.";
-      case MESSAGE:
-        return "The bundle is a message. The first resource is a MessageHeader.";
-      case TRANSACTION:
-        return "The bundle is a transaction - intended to be processed by a server as an atomic commit.";
-      case TRANSACTIONRESPONSE:
-        return "The bundle is a transaction response. Because the response is a transaction response, the transaction has succeeded, and all responses are error free.";
-      case BATCH:
-        return "The bundle is a set of actions - intended to be processed by a server as a group of independent actions.";
-      case BATCHRESPONSE:
-        return "The bundle is a batch response. Note that as a batch, some responses may indicate failure and others success.";
-      case HISTORY:
-        return "The bundle is a list of resources from a history interaction on a server.";
-      case SEARCHSET:
-        return "The bundle is a list of resources returned as a result of a search/query interaction, operation, or message.";
-      case COLLECTION:
-        return "The bundle is a set of resources collected into a single package for ease of distribution that imposes no processing obligations or behavioral rules beyond persistence.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case DOCUMENT:
-        return "Document";
-      case MESSAGE:
-        return "Message";
-      case TRANSACTION:
-        return "Transaction";
-      case TRANSACTIONRESPONSE:
-        return "Transaction Response";
-      case BATCH:
-        return "Batch";
-      case BATCHRESPONSE:
-        return "Batch Response";
-      case HISTORY:
-        return "History List";
-      case SEARCHSET:
-        return "Search Results";
-      case COLLECTION:
-        return "Collection";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class BundleTypeEnumFactory implements EnumFactory<BundleType> {
-    public BundleType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("document".equals(codeString))
-        return BundleType.DOCUMENT;
-      if ("message".equals(codeString))
-        return BundleType.MESSAGE;
-      if ("transaction".equals(codeString))
-        return BundleType.TRANSACTION;
-      if ("transaction-response".equals(codeString))
-        return BundleType.TRANSACTIONRESPONSE;
-      if ("batch".equals(codeString))
-        return BundleType.BATCH;
-      if ("batch-response".equals(codeString))
-        return BundleType.BATCHRESPONSE;
-      if ("history".equals(codeString))
-        return BundleType.HISTORY;
-      if ("searchset".equals(codeString))
-        return BundleType.SEARCHSET;
-      if ("collection".equals(codeString))
-        return BundleType.COLLECTION;
-      throw new IllegalArgumentException("Unknown BundleType code '" + codeString + "'");
-    }
-
-    public Enumeration<BundleType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<BundleType>(this, BundleType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<BundleType>(this, BundleType.NULL, code);
-      if ("document".equals(codeString))
-        return new Enumeration<BundleType>(this, BundleType.DOCUMENT, code);
-      if ("message".equals(codeString))
-        return new Enumeration<BundleType>(this, BundleType.MESSAGE, code);
-      if ("transaction".equals(codeString))
-        return new Enumeration<BundleType>(this, BundleType.TRANSACTION, code);
-      if ("transaction-response".equals(codeString))
-        return new Enumeration<BundleType>(this, BundleType.TRANSACTIONRESPONSE, code);
-      if ("batch".equals(codeString))
-        return new Enumeration<BundleType>(this, BundleType.BATCH, code);
-      if ("batch-response".equals(codeString))
-        return new Enumeration<BundleType>(this, BundleType.BATCHRESPONSE, code);
-      if ("history".equals(codeString))
-        return new Enumeration<BundleType>(this, BundleType.HISTORY, code);
-      if ("searchset".equals(codeString))
-        return new Enumeration<BundleType>(this, BundleType.SEARCHSET, code);
-      if ("collection".equals(codeString))
-        return new Enumeration<BundleType>(this, BundleType.COLLECTION, code);
-      throw new FHIRException("Unknown BundleType code '" + codeString + "'");
-    }
-
-    public String toCode(BundleType code) {
-       if (code == BundleType.NULL)
-           return null;
-       if (code == BundleType.DOCUMENT)
-        return "document";
-      if (code == BundleType.MESSAGE)
-        return "message";
-      if (code == BundleType.TRANSACTION)
-        return "transaction";
-      if (code == BundleType.TRANSACTIONRESPONSE)
-        return "transaction-response";
-      if (code == BundleType.BATCH)
-        return "batch";
-      if (code == BundleType.BATCHRESPONSE)
-        return "batch-response";
-      if (code == BundleType.HISTORY)
-        return "history";
-      if (code == BundleType.SEARCHSET)
-        return "searchset";
-      if (code == BundleType.COLLECTION)
-        return "collection";
-      return "?";
-   }
-
-    public String toSystem(BundleType code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum SearchEntryMode {
-    /**
-     * This resource matched the search specification.
-     */
-    MATCH,
-    /**
-     * This resource is returned because it is referred to from another resource in
-     * the search set.
-     */
-    INCLUDE,
-    /**
-     * An OperationOutcome that provides additional information about the processing
-     * of a search.
-     */
-    OUTCOME,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static SearchEntryMode fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("match".equals(codeString))
-        return MATCH;
-      if ("include".equals(codeString))
-        return INCLUDE;
-      if ("outcome".equals(codeString))
-        return OUTCOME;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown SearchEntryMode code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case MATCH:
-        return "match";
-      case INCLUDE:
-        return "include";
-      case OUTCOME:
-        return "outcome";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case MATCH:
-        return "http://hl7.org/fhir/search-entry-mode";
-      case INCLUDE:
-        return "http://hl7.org/fhir/search-entry-mode";
-      case OUTCOME:
-        return "http://hl7.org/fhir/search-entry-mode";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case MATCH:
-        return "This resource matched the search specification.";
-      case INCLUDE:
-        return "This resource is returned because it is referred to from another resource in the search set.";
-      case OUTCOME:
-        return "An OperationOutcome that provides additional information about the processing of a search.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case MATCH:
-        return "Match";
-      case INCLUDE:
-        return "Include";
-      case OUTCOME:
-        return "Outcome";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class SearchEntryModeEnumFactory implements EnumFactory<SearchEntryMode> {
-    public SearchEntryMode fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("match".equals(codeString))
-        return SearchEntryMode.MATCH;
-      if ("include".equals(codeString))
-        return SearchEntryMode.INCLUDE;
-      if ("outcome".equals(codeString))
-        return SearchEntryMode.OUTCOME;
-      throw new IllegalArgumentException("Unknown SearchEntryMode code '" + codeString + "'");
-    }
-
-    public Enumeration<SearchEntryMode> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<SearchEntryMode>(this, SearchEntryMode.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<SearchEntryMode>(this, SearchEntryMode.NULL, code);
-      if ("match".equals(codeString))
-        return new Enumeration<SearchEntryMode>(this, SearchEntryMode.MATCH, code);
-      if ("include".equals(codeString))
-        return new Enumeration<SearchEntryMode>(this, SearchEntryMode.INCLUDE, code);
-      if ("outcome".equals(codeString))
-        return new Enumeration<SearchEntryMode>(this, SearchEntryMode.OUTCOME, code);
-      throw new FHIRException("Unknown SearchEntryMode code '" + codeString + "'");
-    }
-
-    public String toCode(SearchEntryMode code) {
-       if (code == SearchEntryMode.NULL)
-           return null;
-       if (code == SearchEntryMode.MATCH)
-        return "match";
-      if (code == SearchEntryMode.INCLUDE)
-        return "include";
-      if (code == SearchEntryMode.OUTCOME)
-        return "outcome";
-      return "?";
-   }
-
-    public String toSystem(SearchEntryMode code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum HTTPVerb {
-    /**
-     * HTTP GET Command.
-     */
-    GET,
-    /**
-     * HTTP HEAD Command.
-     */
-    HEAD,
-    /**
-     * HTTP POST Command.
-     */
-    POST,
-    /**
-     * HTTP PUT Command.
-     */
-    PUT,
-    /**
-     * HTTP DELETE Command.
-     */
-    DELETE,
-    /**
-     * HTTP PATCH Command.
-     */
-    PATCH,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static HTTPVerb fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("GET".equals(codeString))
-        return GET;
-      if ("HEAD".equals(codeString))
-        return HEAD;
-      if ("POST".equals(codeString))
-        return POST;
-      if ("PUT".equals(codeString))
-        return PUT;
-      if ("DELETE".equals(codeString))
-        return DELETE;
-      if ("PATCH".equals(codeString))
-        return PATCH;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown HTTPVerb code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case GET:
-        return "GET";
-      case HEAD:
-        return "HEAD";
-      case POST:
-        return "POST";
-      case PUT:
-        return "PUT";
-      case DELETE:
-        return "DELETE";
-      case PATCH:
-        return "PATCH";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case GET:
-        return "http://hl7.org/fhir/http-verb";
-      case HEAD:
-        return "http://hl7.org/fhir/http-verb";
-      case POST:
-        return "http://hl7.org/fhir/http-verb";
-      case PUT:
-        return "http://hl7.org/fhir/http-verb";
-      case DELETE:
-        return "http://hl7.org/fhir/http-verb";
-      case PATCH:
-        return "http://hl7.org/fhir/http-verb";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case GET:
-        return "HTTP GET Command.";
-      case HEAD:
-        return "HTTP HEAD Command.";
-      case POST:
-        return "HTTP POST Command.";
-      case PUT:
-        return "HTTP PUT Command.";
-      case DELETE:
-        return "HTTP DELETE Command.";
-      case PATCH:
-        return "HTTP PATCH Command.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case GET:
-        return "GET";
-      case HEAD:
-        return "HEAD";
-      case POST:
-        return "POST";
-      case PUT:
-        return "PUT";
-      case DELETE:
-        return "DELETE";
-      case PATCH:
-        return "PATCH";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class HTTPVerbEnumFactory implements EnumFactory<HTTPVerb> {
-    public HTTPVerb fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("GET".equals(codeString))
-        return HTTPVerb.GET;
-      if ("HEAD".equals(codeString))
-        return HTTPVerb.HEAD;
-      if ("POST".equals(codeString))
-        return HTTPVerb.POST;
-      if ("PUT".equals(codeString))
-        return HTTPVerb.PUT;
-      if ("DELETE".equals(codeString))
-        return HTTPVerb.DELETE;
-      if ("PATCH".equals(codeString))
-        return HTTPVerb.PATCH;
-      throw new IllegalArgumentException("Unknown HTTPVerb code '" + codeString + "'");
-    }
-
-    public Enumeration<HTTPVerb> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<HTTPVerb>(this, HTTPVerb.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<HTTPVerb>(this, HTTPVerb.NULL, code);
-      if ("GET".equals(codeString))
-        return new Enumeration<HTTPVerb>(this, HTTPVerb.GET, code);
-      if ("HEAD".equals(codeString))
-        return new Enumeration<HTTPVerb>(this, HTTPVerb.HEAD, code);
-      if ("POST".equals(codeString))
-        return new Enumeration<HTTPVerb>(this, HTTPVerb.POST, code);
-      if ("PUT".equals(codeString))
-        return new Enumeration<HTTPVerb>(this, HTTPVerb.PUT, code);
-      if ("DELETE".equals(codeString))
-        return new Enumeration<HTTPVerb>(this, HTTPVerb.DELETE, code);
-      if ("PATCH".equals(codeString))
-        return new Enumeration<HTTPVerb>(this, HTTPVerb.PATCH, code);
-      throw new FHIRException("Unknown HTTPVerb code '" + codeString + "'");
-    }
-
-    public String toCode(HTTPVerb code) {
-       if (code == HTTPVerb.NULL)
-           return null;
-       if (code == HTTPVerb.GET)
-        return "GET";
-      if (code == HTTPVerb.HEAD)
-        return "HEAD";
-      if (code == HTTPVerb.POST)
-        return "POST";
-      if (code == HTTPVerb.PUT)
-        return "PUT";
-      if (code == HTTPVerb.DELETE)
-        return "DELETE";
-      if (code == HTTPVerb.PATCH)
-        return "PATCH";
-      return "?";
-   }
-
-    public String toSystem(HTTPVerb code) {
-      return code.getSystem();
-    }
-  }
-
   @Block()
   public static class BundleLinkComponent extends BackboneElement implements IBaseBackboneElement {
     /**
@@ -1586,10 +971,10 @@ public class Bundle extends Resource implements IBaseBundle {
      * because of an _include requirement, or to convey information or warning
      * information about the search process.
      */
-    @Child(name = "mode", type = { CodeType.class }, order = 1, min = 0, max = 1, modifier = false, summary = true)
+    @Child(name = "mode", type = { StringType.class }, order = 1, min = 0, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "match | include | outcome - why this is in the result set", formalDefinition = "Why this entry is in the result set - whether it's included as a match or because of an _include requirement, or to convey information or warning information about the search process.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/search-entry-mode")
-    protected Enumeration<SearchEntryMode> mode;
+    protected StringType mode;
 
     /**
      * When searching, the server's search ranking score for the entry.
@@ -1614,12 +999,12 @@ public class Bundle extends Resource implements IBaseBundle {
      *         This is the underlying object with id, value and extensions. The
      *         accessor "getMode" gives direct access to the value
      */
-    public Enumeration<SearchEntryMode> getModeElement() {
+    public StringType getModeElement() {
       if (this.mode == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create BundleEntrySearchComponent.mode");
         else if (Configuration.doAutoCreate())
-          this.mode = new Enumeration<SearchEntryMode>(new SearchEntryModeEnumFactory()); // bb
+          this.mode = new StringType(); // bb
       return this.mode;
     }
 
@@ -1639,7 +1024,7 @@ public class Bundle extends Resource implements IBaseBundle {
      *              extensions. The accessor "getMode" gives direct access to the
      *              value
      */
-    public BundleEntrySearchComponent setModeElement(Enumeration<SearchEntryMode> value) {
+    public BundleEntrySearchComponent setModeElement(StringType value) {
       this.mode = value;
       return this;
     }
@@ -1649,7 +1034,7 @@ public class Bundle extends Resource implements IBaseBundle {
      *         match or because of an _include requirement, or to convey information
      *         or warning information about the search process.
      */
-    public SearchEntryMode getMode() {
+    public String getMode() {
       return this.mode == null ? null : this.mode.getValue();
     }
 
@@ -1658,12 +1043,12 @@ public class Bundle extends Resource implements IBaseBundle {
      *              match or because of an _include requirement, or to convey
      *              information or warning information about the search process.
      */
-    public BundleEntrySearchComponent setMode(SearchEntryMode value) {
+    public BundleEntrySearchComponent setMode(String value) {
       if (value == null)
         this.mode = null;
       else {
         if (this.mode == null)
-          this.mode = new Enumeration<SearchEntryMode>(new SearchEntryModeEnumFactory());
+          this.mode = new StringType();
         this.mode.setValue(value);
       }
       return this;
@@ -1743,7 +1128,7 @@ public class Bundle extends Resource implements IBaseBundle {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("mode", "code",
+      children.add(new Property("mode", "string",
           "Why this entry is in the result set - whether it's included as a match or because of an _include requirement, or to convey information or warning information about the search process.",
           0, 1, mode));
       children.add(new Property("score", "decimal", "When searching, the server's search ranking score for the entry.",
@@ -1754,7 +1139,7 @@ public class Bundle extends Resource implements IBaseBundle {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 3357091:
-        /* mode */ return new Property("mode", "code",
+        /* mode */ return new Property("mode", "string",
             "Why this entry is in the result set - whether it's included as a match or because of an _include requirement, or to convey information or warning information about the search process.",
             0, 1, mode);
       case 109264530:
@@ -1770,7 +1155,7 @@ public class Bundle extends Resource implements IBaseBundle {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 3357091:
-        /* mode */ return this.mode == null ? new Base[0] : new Base[] { this.mode }; // Enumeration<SearchEntryMode>
+        /* mode */ return this.mode == null ? new Base[0] : new Base[] { this.mode }; // StringType
       case 109264530:
         /* score */ return this.score == null ? new Base[0] : new Base[] { this.score }; // DecimalType
       default:
@@ -1783,8 +1168,7 @@ public class Bundle extends Resource implements IBaseBundle {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3357091: // mode
-        value = new SearchEntryModeEnumFactory().fromType(castToCode(value));
-        this.mode = (Enumeration) value; // Enumeration<SearchEntryMode>
+        this.mode = castToString(value); // StringType
         return value;
       case 109264530: // score
         this.score = castToDecimal(value); // DecimalType
@@ -1798,8 +1182,7 @@ public class Bundle extends Resource implements IBaseBundle {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("mode")) {
-        value = new SearchEntryModeEnumFactory().fromType(castToCode(value));
-        this.mode = (Enumeration) value; // Enumeration<SearchEntryMode>
+        this.mode = castToString(value); // StringType
       } else if (name.equals("score")) {
         this.score = castToDecimal(value); // DecimalType
       } else
@@ -1835,7 +1218,7 @@ public class Bundle extends Resource implements IBaseBundle {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 3357091:
-        /* mode */ return new String[] { "code" };
+        /* mode */ return new String[] { "string" };
       case 109264530:
         /* score */ return new String[] { "decimal" };
       default:
@@ -1903,10 +1286,10 @@ public class Bundle extends Resource implements IBaseBundle {
      * In a transaction or batch, this is the HTTP action to be executed for this
      * entry. In a history bundle, this indicates the HTTP action that occurred.
      */
-    @Child(name = "method", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "method", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "GET | HEAD | POST | PUT | DELETE | PATCH", formalDefinition = "In a transaction or batch, this is the HTTP action to be executed for this entry. In a history bundle, this indicates the HTTP action that occurred.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/http-verb")
-    protected Enumeration<HTTPVerb> method;
+    protected StringType method;
 
     /**
      * The URL for this entry, relative to the root (the address to which the
@@ -1965,7 +1348,7 @@ public class Bundle extends Resource implements IBaseBundle {
     /**
      * Constructor
      */
-    public BundleEntryRequestComponent(Enumeration<HTTPVerb> method, UriType url) {
+    public BundleEntryRequestComponent(StringType method, UriType url) {
       super();
       this.method = method;
       this.url = url;
@@ -1978,12 +1361,12 @@ public class Bundle extends Resource implements IBaseBundle {
      *         id, value and extensions. The accessor "getMethod" gives direct
      *         access to the value
      */
-    public Enumeration<HTTPVerb> getMethodElement() {
+    public StringType getMethodElement() {
       if (this.method == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create BundleEntryRequestComponent.method");
         else if (Configuration.doAutoCreate())
-          this.method = new Enumeration<HTTPVerb>(new HTTPVerbEnumFactory()); // bb
+          this.method = new StringType(); // bb
       return this.method;
     }
 
@@ -2002,7 +1385,7 @@ public class Bundle extends Resource implements IBaseBundle {
      *              underlying object with id, value and extensions. The accessor
      *              "getMethod" gives direct access to the value
      */
-    public BundleEntryRequestComponent setMethodElement(Enumeration<HTTPVerb> value) {
+    public BundleEntryRequestComponent setMethodElement(StringType value) {
       this.method = value;
       return this;
     }
@@ -2012,7 +1395,7 @@ public class Bundle extends Resource implements IBaseBundle {
      *         this entry. In a history bundle, this indicates the HTTP action that
      *         occurred.
      */
-    public HTTPVerb getMethod() {
+    public String getMethod() {
       return this.method == null ? null : this.method.getValue();
     }
 
@@ -2021,9 +1404,9 @@ public class Bundle extends Resource implements IBaseBundle {
      *              executed for this entry. In a history bundle, this indicates the
      *              HTTP action that occurred.
      */
-    public BundleEntryRequestComponent setMethod(HTTPVerb value) {
+    public BundleEntryRequestComponent setMethod(String value) {
       if (this.method == null)
-        this.method = new Enumeration<HTTPVerb>(new HTTPVerbEnumFactory());
+        this.method = new StringType();
       this.method.setValue(value);
       return this;
     }
@@ -2330,7 +1713,7 @@ public class Bundle extends Resource implements IBaseBundle {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("method", "code",
+      children.add(new Property("method", "string",
           "In a transaction or batch, this is the HTTP action to be executed for this entry. In a history bundle, this indicates the HTTP action that occurred.",
           0, 1, method));
       children.add(new Property("url", "uri",
@@ -2353,7 +1736,7 @@ public class Bundle extends Resource implements IBaseBundle {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case -1077554975:
-        /* method */ return new Property("method", "code",
+        /* method */ return new Property("method", "string",
             "In a transaction or batch, this is the HTTP action to be executed for this entry. In a history bundle, this indicates the HTTP action that occurred.",
             0, 1, method);
       case 116079:
@@ -2385,7 +1768,7 @@ public class Bundle extends Resource implements IBaseBundle {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case -1077554975:
-        /* method */ return this.method == null ? new Base[0] : new Base[] { this.method }; // Enumeration<HTTPVerb>
+        /* method */ return this.method == null ? new Base[0] : new Base[] { this.method }; // StringType
       case 116079:
         /* url */ return this.url == null ? new Base[0] : new Base[] { this.url }; // UriType
       case 171868368:
@@ -2406,8 +1789,7 @@ public class Bundle extends Resource implements IBaseBundle {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case -1077554975: // method
-        value = new HTTPVerbEnumFactory().fromType(castToCode(value));
-        this.method = (Enumeration) value; // Enumeration<HTTPVerb>
+        this.method = castToString(value); // StringType
         return value;
       case 116079: // url
         this.url = castToUri(value); // UriType
@@ -2433,8 +1815,7 @@ public class Bundle extends Resource implements IBaseBundle {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("method")) {
-        value = new HTTPVerbEnumFactory().fromType(castToCode(value));
-        this.method = (Enumeration) value; // Enumeration<HTTPVerb>
+        this.method = castToString(value); // StringType
       } else if (name.equals("url")) {
         this.url = castToUri(value); // UriType
       } else if (name.equals("ifNoneMatch")) {
@@ -2494,7 +1875,7 @@ public class Bundle extends Resource implements IBaseBundle {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case -1077554975:
-        /* method */ return new String[] { "code" };
+        /* method */ return new String[] { "string" };
       case 116079:
         /* url */ return new String[] { "uri" };
       case 171868368:
@@ -3138,10 +2519,10 @@ public class Bundle extends Resource implements IBaseBundle {
   /**
    * Indicates the purpose of this bundle - how it is intended to be used.
    */
-  @Child(name = "type", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
+  @Child(name = "type", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection", formalDefinition = "Indicates the purpose of this bundle - how it is intended to be used.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/bundle-type")
-  protected Enumeration<BundleType> type;
+  protected StringType type;
 
   /**
    * The date/time that the bundle was assembled - i.e. when the resources were
@@ -3197,7 +2578,7 @@ public class Bundle extends Resource implements IBaseBundle {
   /**
    * Constructor
    */
-  public Bundle(Enumeration<BundleType> type) {
+  public Bundle(StringType type) {
     super();
     this.type = type;
   }
@@ -3234,12 +2615,12 @@ public class Bundle extends Resource implements IBaseBundle {
    *         and extensions. The accessor "getType" gives direct access to the
    *         value
    */
-  public Enumeration<BundleType> getTypeElement() {
+  public StringType getTypeElement() {
     if (this.type == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Bundle.type");
       else if (Configuration.doAutoCreate())
-        this.type = new Enumeration<BundleType>(new BundleTypeEnumFactory()); // bb
+        this.type = new StringType(); // bb
     return this.type;
   }
 
@@ -3257,7 +2638,7 @@ public class Bundle extends Resource implements IBaseBundle {
    *              value and extensions. The accessor "getType" gives direct access
    *              to the value
    */
-  public Bundle setTypeElement(Enumeration<BundleType> value) {
+  public Bundle setTypeElement(StringType value) {
     this.type = value;
     return this;
   }
@@ -3265,7 +2646,7 @@ public class Bundle extends Resource implements IBaseBundle {
   /**
    * @return Indicates the purpose of this bundle - how it is intended to be used.
    */
-  public BundleType getType() {
+  public String getType() {
     return this.type == null ? null : this.type.getValue();
   }
 
@@ -3273,9 +2654,9 @@ public class Bundle extends Resource implements IBaseBundle {
    * @param value Indicates the purpose of this bundle - how it is intended to be
    *              used.
    */
-  public Bundle setType(BundleType value) {
+  public Bundle setType(String value) {
     if (this.type == null)
-      this.type = new Enumeration<BundleType>(new BundleTypeEnumFactory());
+      this.type = new StringType();
     this.type.setValue(value);
     return this;
   }
@@ -3594,7 +2975,7 @@ public class Bundle extends Resource implements IBaseBundle {
     children.add(new Property("identifier", "Identifier",
         "A persistent identifier for the bundle that won't change as a bundle is copied from server to server.", 0, 1,
         identifier));
-    children.add(new Property("type", "code", "Indicates the purpose of this bundle - how it is intended to be used.",
+    children.add(new Property("type", "string", "Indicates the purpose of this bundle - how it is intended to be used.",
         0, 1, type));
     children.add(new Property("timestamp", "instant",
         "The date/time that the bundle was assembled - i.e. when the resources were placed in the bundle.", 0, 1,
@@ -3619,7 +3000,7 @@ public class Bundle extends Resource implements IBaseBundle {
           "A persistent identifier for the bundle that won't change as a bundle is copied from server to server.", 0, 1,
           identifier);
     case 3575610:
-      /* type */ return new Property("type", "code",
+      /* type */ return new Property("type", "string",
           "Indicates the purpose of this bundle - how it is intended to be used.", 0, 1, type);
     case 55126294:
       /* timestamp */ return new Property("timestamp", "instant",
@@ -3651,7 +3032,7 @@ public class Bundle extends Resource implements IBaseBundle {
     case -1618432855:
       /* identifier */ return this.identifier == null ? new Base[0] : new Base[] { this.identifier }; // Identifier
     case 3575610:
-      /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<BundleType>
+      /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
     case 55126294:
       /* timestamp */ return this.timestamp == null ? new Base[0] : new Base[] { this.timestamp }; // InstantType
     case 110549828:
@@ -3675,8 +3056,7 @@ public class Bundle extends Resource implements IBaseBundle {
       this.identifier = castToIdentifier(value); // Identifier
       return value;
     case 3575610: // type
-      value = new BundleTypeEnumFactory().fromType(castToCode(value));
-      this.type = (Enumeration) value; // Enumeration<BundleType>
+      this.type = castToString(value); // StringType
       return value;
     case 55126294: // timestamp
       this.timestamp = castToInstant(value); // InstantType
@@ -3704,8 +3084,7 @@ public class Bundle extends Resource implements IBaseBundle {
     if (name.equals("identifier")) {
       this.identifier = castToIdentifier(value); // Identifier
     } else if (name.equals("type")) {
-      value = new BundleTypeEnumFactory().fromType(castToCode(value));
-      this.type = (Enumeration) value; // Enumeration<BundleType>
+      this.type = castToString(value); // StringType
     } else if (name.equals("timestamp")) {
       this.timestamp = castToInstant(value); // InstantType
     } else if (name.equals("total")) {
@@ -3771,7 +3150,7 @@ public class Bundle extends Resource implements IBaseBundle {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case 3575610:
-      /* type */ return new String[] { "code" };
+      /* type */ return new String[] { "string" };
     case 55126294:
       /* timestamp */ return new String[] { "instant" };
     case 110549828:

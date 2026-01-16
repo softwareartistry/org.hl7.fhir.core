@@ -676,7 +676,7 @@ public class PECodeGenerator {
       w(fields, "  @Min(\""+min+"\") @Max(\""+(max == Integer.MAX_VALUE ? "*" : max) +"\")"+(" @Doco(\""+Utilities.escapeJava(shortDoco)+"\")"));
       if (ed != null) {
         if (ed.hasBinding() && ed.getBinding().hasValueSet()) {
-          w(fields, "  @BindingStrength(\""+ed.getBinding().getStrength().toCode()+"\") @ValueSet(\""+ed.getBinding().getValueSet()+"\")");
+          w(fields, "  @BindingStrength(\""+ed.getBinding().getStrength()+"\") @ValueSet(\""+ed.getBinding().getValueSet()+"\")");
         }
         if (ed.getMustSupport()) {
           w(fields, "  @MustSupport(true)");          

@@ -1239,8 +1239,8 @@ public class MedicationDispense extends DomainResource {
   /**
    * @return A code specifying the state of the set of dispense events.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -2533,7 +2533,6 @@ public class MedicationDispense extends DomainResource {
       this.getPartOf().add(castToReference(value)); // Reference
       return value;
     case -892481550: // status
-//      value = new MedicationDispenseStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // StringType
       return value;
     case 2051346646: // statusReason
@@ -2612,7 +2611,6 @@ public class MedicationDispense extends DomainResource {
     } else if (name.equals("partOf")) {
       this.getPartOf().add(castToReference(value));
     } else if (name.equals("status")) {
-//      value = new MedicationDispenseStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // StringType
     } else if (name.equals("statusReason[x]")) {
       this.statusReason = castToType(value); // Type

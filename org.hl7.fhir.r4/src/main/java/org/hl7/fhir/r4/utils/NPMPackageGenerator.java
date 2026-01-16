@@ -43,7 +43,6 @@ import org.apache.commons.compress.compressors.gzip.GzipCompressorOutputStream;
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.r4.model.*;
 import org.hl7.fhir.r4.model.Enumeration;
-import org.hl7.fhir.r4.model.Enumerations.FHIRVersion;
 import org.hl7.fhir.r4.model.ImplementationGuide.ImplementationGuideDependsOnComponent;
 import org.hl7.fhir.utilities.CommaSeparatedStringBuilder;
 import org.hl7.fhir.utilities.FileUtilities;
@@ -104,7 +103,7 @@ public class NPMPackageGenerator {
     this.destFile = destFile;
     start();
     List<String> fhirVersion = new ArrayList<>();
-    for (Enumeration<FHIRVersion> v : ig.getFhirVersion())
+    for (StringType v : ig.getFhirVersion())
       fhirVersion.add(v.asStringValue());
     buildPackageJson(canonical, kind, url, genDate, ig, fhirVersion);
   }
@@ -167,7 +166,7 @@ public class NPMPackageGenerator {
     npm.addProperty("tools-version", ToolsVersion.TOOLS_VERSION);
     npm.addProperty("type", kind.getCode());
     if (ig.hasLicense())
-      npm.addProperty("license", ig.getLicense().toCode());
+      npm.addProperty("license", ig.getLicense());
     npm.addProperty("canonical", canonical);
     npm.addProperty("url", web);
     if (ig.hasTitle())

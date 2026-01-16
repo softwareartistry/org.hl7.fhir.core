@@ -36,8 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -57,168 +55,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
     "publisher", "contact", "description", "useContext", "jurisdiction", "purpose", "copyright", "base", "parent",
     "event[x]", "category", "focus", "responseRequired", "allowedResponse", "graph" })
 public class MessageDefinition extends MetadataResource {
-
-  public enum MessageheaderResponseRequest {
-    /**
-     * initiator expects a response for this message.
-     */
-    ALWAYS,
-    /**
-     * initiator expects a response only if in error.
-     */
-    ONERROR,
-    /**
-     * initiator does not expect a response.
-     */
-    NEVER,
-    /**
-     * initiator expects a response only if successful.
-     */
-    ONSUCCESS,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static MessageheaderResponseRequest fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("always".equals(codeString))
-        return ALWAYS;
-      if ("on-error".equals(codeString))
-        return ONERROR;
-      if ("never".equals(codeString))
-        return NEVER;
-      if ("on-success".equals(codeString))
-        return ONSUCCESS;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown MessageheaderResponseRequest code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ALWAYS:
-        return "always";
-      case ONERROR:
-        return "on-error";
-      case NEVER:
-        return "never";
-      case ONSUCCESS:
-        return "on-success";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ALWAYS:
-        return "http://hl7.org/fhir/messageheader-response-request";
-      case ONERROR:
-        return "http://hl7.org/fhir/messageheader-response-request";
-      case NEVER:
-        return "http://hl7.org/fhir/messageheader-response-request";
-      case ONSUCCESS:
-        return "http://hl7.org/fhir/messageheader-response-request";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ALWAYS:
-        return "initiator expects a response for this message.";
-      case ONERROR:
-        return "initiator expects a response only if in error.";
-      case NEVER:
-        return "initiator does not expect a response.";
-      case ONSUCCESS:
-        return "initiator expects a response only if successful.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ALWAYS:
-        return "Always";
-      case ONERROR:
-        return "Error/reject conditions only";
-      case NEVER:
-        return "Never";
-      case ONSUCCESS:
-        return "Successful completion only";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class MessageheaderResponseRequestEnumFactory implements EnumFactory<MessageheaderResponseRequest> {
-    public MessageheaderResponseRequest fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("always".equals(codeString))
-        return MessageheaderResponseRequest.ALWAYS;
-      if ("on-error".equals(codeString))
-        return MessageheaderResponseRequest.ONERROR;
-      if ("never".equals(codeString))
-        return MessageheaderResponseRequest.NEVER;
-      if ("on-success".equals(codeString))
-        return MessageheaderResponseRequest.ONSUCCESS;
-      throw new IllegalArgumentException("Unknown MessageheaderResponseRequest code '" + codeString + "'");
-    }
-
-    public Enumeration<MessageheaderResponseRequest> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<MessageheaderResponseRequest>(this, MessageheaderResponseRequest.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<MessageheaderResponseRequest>(this, MessageheaderResponseRequest.NULL, code);
-      if ("always".equals(codeString))
-        return new Enumeration<MessageheaderResponseRequest>(this, MessageheaderResponseRequest.ALWAYS, code);
-      if ("on-error".equals(codeString))
-        return new Enumeration<MessageheaderResponseRequest>(this, MessageheaderResponseRequest.ONERROR, code);
-      if ("never".equals(codeString))
-        return new Enumeration<MessageheaderResponseRequest>(this, MessageheaderResponseRequest.NEVER, code);
-      if ("on-success".equals(codeString))
-        return new Enumeration<MessageheaderResponseRequest>(this, MessageheaderResponseRequest.ONSUCCESS, code);
-      throw new FHIRException("Unknown MessageheaderResponseRequest code '" + codeString + "'");
-    }
-
-    public String toCode(MessageheaderResponseRequest code) {
-       if (code == MessageheaderResponseRequest.NULL)
-           return null;
-       if (code == MessageheaderResponseRequest.ALWAYS)
-        return "always";
-      if (code == MessageheaderResponseRequest.ONERROR)
-        return "on-error";
-      if (code == MessageheaderResponseRequest.NEVER)
-        return "never";
-      if (code == MessageheaderResponseRequest.ONSUCCESS)
-        return "on-success";
-      return "?";
-   }
-
-    public String toSystem(MessageheaderResponseRequest code) {
-      return code.getSystem();
-    }
-  }
 
   @Block()
   public static class MessageDefinitionFocusComponent extends BackboneElement implements IBaseBackboneElement {
@@ -1088,10 +924,10 @@ public class MessageDefinition extends MetadataResource {
    * upon error or success, or never.
    */
   @Child(name = "responseRequired", type = {
-      CodeType.class }, order = 9, min = 0, max = 1, modifier = false, summary = false)
+    StringType.class }, order = 9, min = 0, max = 1, modifier = false, summary = false)
   @Description(shortDefinition = "always | on-error | never | on-success", formalDefinition = "Declare at a message definition level whether a response is required or only upon error or success, or never.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/messageheader-response-request")
-  protected Enumeration<MessageheaderResponseRequest> responseRequired;
+  protected StringType responseRequired;
 
   /**
    * Indicates what types of messages may be sent as an application-level response
@@ -1125,7 +961,7 @@ public class MessageDefinition extends MetadataResource {
   /**
    * Constructor
    */
-  public MessageDefinition(Enumeration<PublicationStatus> status, DateTimeType date, Type event) {
+  public MessageDefinition(StringType status, DateTimeType date, Type event) {
     super();
     this.status = status;
     this.date = date;
@@ -1515,12 +1351,12 @@ public class MessageDefinition extends MetadataResource {
    *         object with id, value and extensions. The accessor "getStatus" gives
    *         direct access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create MessageDefinition.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -1538,7 +1374,7 @@ public class MessageDefinition extends MetadataResource {
    *              object with id, value and extensions. The accessor "getStatus"
    *              gives direct access to the value
    */
-  public MessageDefinition setStatusElement(Enumeration<PublicationStatus> value) {
+  public MessageDefinition setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -1547,7 +1383,7 @@ public class MessageDefinition extends MetadataResource {
    * @return The status of this message definition. Enables tracking the
    *         life-cycle of the content.
    */
-  public PublicationStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
@@ -1555,9 +1391,9 @@ public class MessageDefinition extends MetadataResource {
    * @param value The status of this message definition. Enables tracking the
    *              life-cycle of the content.
    */
-  public MessageDefinition setStatus(PublicationStatus value) {
+  public MessageDefinition setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -2301,8 +2137,8 @@ public class MessageDefinition extends MetadataResource {
   /**
    * @return The impact of the content of the message.
    */
-  public StringType getCategory() {
-    return this.category == null ? null : this.category;
+  public String getCategory() {
+    return this.category == null ? null : this.category.getValue();
   }
 
   /**
@@ -2381,13 +2217,12 @@ public class MessageDefinition extends MetadataResource {
    *         never.). This is the underlying object with id, value and extensions.
    *         The accessor "getResponseRequired" gives direct access to the value
    */
-  public Enumeration<MessageheaderResponseRequest> getResponseRequiredElement() {
+  public StringType getResponseRequiredElement() {
     if (this.responseRequired == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create MessageDefinition.responseRequired");
       else if (Configuration.doAutoCreate())
-        this.responseRequired = new Enumeration<MessageheaderResponseRequest>(
-            new MessageheaderResponseRequestEnumFactory()); // bb
+        this.responseRequired = new StringType(); // bb
     return this.responseRequired;
   }
 
@@ -2406,7 +2241,7 @@ public class MessageDefinition extends MetadataResource {
    *              extensions. The accessor "getResponseRequired" gives direct
    *              access to the value
    */
-  public MessageDefinition setResponseRequiredElement(Enumeration<MessageheaderResponseRequest> value) {
+  public MessageDefinition setResponseRequiredElement(StringType value) {
     this.responseRequired = value;
     return this;
   }
@@ -2415,7 +2250,7 @@ public class MessageDefinition extends MetadataResource {
    * @return Declare at a message definition level whether a response is required
    *         or only upon error or success, or never.
    */
-  public MessageheaderResponseRequest getResponseRequired() {
+  public String getResponseRequired() {
     return this.responseRequired == null ? null : this.responseRequired.getValue();
   }
 
@@ -2423,13 +2258,12 @@ public class MessageDefinition extends MetadataResource {
    * @param value Declare at a message definition level whether a response is
    *              required or only upon error or success, or never.
    */
-  public MessageDefinition setResponseRequired(MessageheaderResponseRequest value) {
+  public MessageDefinition setResponseRequired(String value) {
     if (value == null)
       this.responseRequired = null;
     else {
       if (this.responseRequired == null)
-        this.responseRequired = new Enumeration<MessageheaderResponseRequest>(
-            new MessageheaderResponseRequestEnumFactory());
+        this.responseRequired = new StringType();
       this.responseRequired.setValue(value);
     }
     return this;
@@ -2587,7 +2421,7 @@ public class MessageDefinition extends MetadataResource {
         "A short, descriptive, user-friendly title for the message definition.", 0, 1, title));
     children.add(new Property("replaces", "canonical(MessageDefinition)",
         "A MessageDefinition that is superseded by this definition.", 0, java.lang.Integer.MAX_VALUE, replaces));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of this message definition. Enables tracking the life-cycle of the content.", 0, 1, status));
     children.add(new Property("experimental", "boolean",
         "A Boolean value to indicate that this message definition is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
@@ -2624,7 +2458,7 @@ public class MessageDefinition extends MetadataResource {
     children.add(new Property("focus", "",
         "Identifies the resource (or resources) that are being addressed by the event.  For example, the Encounter for an admit message or two Account records for a merge.",
         0, java.lang.Integer.MAX_VALUE, focus));
-    children.add(new Property("responseRequired", "code",
+    children.add(new Property("responseRequired", "string",
         "Declare at a message definition level whether a response is required or only upon error or success, or never.",
         0, 1, responseRequired));
     children.add(new Property("allowedResponse", "",
@@ -2661,7 +2495,7 @@ public class MessageDefinition extends MetadataResource {
       /* replaces */ return new Property("replaces", "canonical(MessageDefinition)",
           "A MessageDefinition that is superseded by this definition.", 0, java.lang.Integer.MAX_VALUE, replaces);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of this message definition. Enables tracking the life-cycle of the content.", 0, 1, status);
     case -404562712:
       /* experimental */ return new Property("experimental", "boolean",
@@ -2725,7 +2559,7 @@ public class MessageDefinition extends MetadataResource {
           "Identifies the resource (or resources) that are being addressed by the event.  For example, the Encounter for an admit message or two Account records for a merge.",
           0, java.lang.Integer.MAX_VALUE, focus);
     case 791597824:
-      /* responseRequired */ return new Property("responseRequired", "code",
+      /* responseRequired */ return new Property("responseRequired", "string",
           "Declare at a message definition level whether a response is required or only upon error or success, or never.",
           0, 1, responseRequired);
     case -1130933751:
@@ -2759,7 +2593,7 @@ public class MessageDefinition extends MetadataResource {
     case -430332865:
       /* replaces */ return this.replaces == null ? new Base[0] : this.replaces.toArray(new Base[this.replaces.size()]); // CanonicalType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -404562712:
       /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
     case 3076014:
@@ -2825,8 +2659,7 @@ public class MessageDefinition extends MetadataResource {
       this.getReplaces().add(castToCanonical(value)); // CanonicalType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -404562712: // experimental
       this.experimental = castToBoolean(value); // BooleanType
@@ -2872,8 +2705,7 @@ public class MessageDefinition extends MetadataResource {
       this.getFocus().add((MessageDefinitionFocusComponent) value); // MessageDefinitionFocusComponent
       return value;
     case 791597824: // responseRequired
-      value = new MessageheaderResponseRequestEnumFactory().fromType(castToCode(value));
-      this.responseRequired = (Enumeration) value; // Enumeration<MessageheaderResponseRequest>
+      this.responseRequired = castToString(value); // StringType
       return value;
     case -1130933751: // allowedResponse
       this.getAllowedResponse().add((MessageDefinitionAllowedResponseComponent) value); // MessageDefinitionAllowedResponseComponent
@@ -2902,8 +2734,7 @@ public class MessageDefinition extends MetadataResource {
     } else if (name.equals("replaces")) {
       this.getReplaces().add(castToCanonical(value));
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("date")) {
@@ -2929,13 +2760,11 @@ public class MessageDefinition extends MetadataResource {
     } else if (name.equals("event[x]")) {
       this.event = castToType(value); // Type
     } else if (name.equals("category")) {
-//      value = new MessageSignificanceCategoryEnumFactory().fromType(castToCode(value));
       this.category = castToString(value); // StringType
     } else if (name.equals("focus")) {
       this.getFocus().add((MessageDefinitionFocusComponent) value);
     } else if (name.equals("responseRequired")) {
-      value = new MessageheaderResponseRequestEnumFactory().fromType(castToCode(value));
-      this.responseRequired = (Enumeration) value; // Enumeration<MessageheaderResponseRequest>
+      this.responseRequired = castToString(value); // StringType
     } else if (name.equals("allowedResponse")) {
       this.getAllowedResponse().add((MessageDefinitionAllowedResponseComponent) value);
     } else if (name.equals("graph")) {
@@ -3075,7 +2904,7 @@ public class MessageDefinition extends MetadataResource {
     case -430332865:
       /* replaces */ return new String[] { "canonical" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -404562712:
       /* experimental */ return new String[] { "boolean" };
     case 3076014:
@@ -3105,7 +2934,7 @@ public class MessageDefinition extends MetadataResource {
     case 97604824:
       /* focus */ return new String[] {};
     case 791597824:
-      /* responseRequired */ return new String[] { "code" };
+      /* responseRequired */ return new String[] { "string" };
     case -1130933751:
       /* allowedResponse */ return new String[] {};
     case 98615630:

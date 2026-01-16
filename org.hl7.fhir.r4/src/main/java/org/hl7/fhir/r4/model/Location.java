@@ -872,7 +872,7 @@ public class Location extends DomainResource {
   @Override
   public void removeChild(String name, Base value) throws FHIRException {
       if (name.equals("daysOfWeek")) {
-        this.getDaysOfWeek().remove((Enumeration) value);
+        this.getDaysOfWeek().remove(castToString(value));
       } else if (name.equals("allDay")) {
         this.allDay = null;
       } else if (name.equals("openingTime")) {
@@ -1254,8 +1254,8 @@ public class Location extends DomainResource {
    *         not the current value which may be covered by the operationStatus, or
    *         by a schedule/slots if they are configured for the location.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -1522,8 +1522,8 @@ public class Location extends DomainResource {
    * @return Indicates whether a resource instance represents a specific location
    *         or a class of locations.
    */
-  public StringType getMode() {
-    return this.mode == null ? null : this.mode;
+  public String getMode() {
+    return this.mode == null ? null : this.mode.getValue();
   }
 
   /**
@@ -2129,7 +2129,7 @@ public class Location extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<LocationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -2103166364:
       /* operationalStatus */ return this.operationalStatus == null ? new Base[0]
           : new Base[] { this.operationalStatus }; // Coding
@@ -2140,7 +2140,7 @@ public class Location extends DomainResource {
     case -1724546052:
       /* description */ return this.description == null ? new Base[0] : new Base[] { this.description }; // StringType
     case 3357091:
-      /* mode */ return this.mode == null ? new Base[0] : new Base[] { this.mode }; // Enumeration<LocationMode>
+      /* mode */ return this.mode == null ? new Base[0] : new Base[] { this.mode }; // StringType
     case 3575610:
       /* type */ return this.type == null ? new Base[0] : this.type.toArray(new Base[this.type.size()]); // CodeableConcept
     case -1429363305:
@@ -2177,7 +2177,6 @@ public class Location extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-//      value = new LocationStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // StringType
       return value;
     case -2103166364: // operationalStatus
@@ -2193,7 +2192,6 @@ public class Location extends DomainResource {
       this.description = castToString(value); // StringType
       return value;
     case 3357091: // mode
-//      value = new LocationModeEnumFactory().fromType(castToCode(value));
       this.mode = castToString(value); // StringType
       return value;
     case 3575610: // type
@@ -2237,7 +2235,6 @@ public class Location extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-//      value = new LocationStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); //StringType
     } else if (name.equals("operationalStatus")) {
       this.operationalStatus = castToCoding(value); // Coding
@@ -2248,7 +2245,6 @@ public class Location extends DomainResource {
     } else if (name.equals("description")) {
       this.description = castToString(value); // StringType
     } else if (name.equals("mode")) {
-//      value = new LocationModeEnumFactory().fromType(castToCode(value));
       this.mode = castToString(value); // StringType
     } else if (name.equals("type")) {
       this.getType().add(castToCodeableConcept(value));

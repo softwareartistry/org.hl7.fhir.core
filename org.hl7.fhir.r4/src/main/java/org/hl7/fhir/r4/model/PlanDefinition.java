@@ -36,8 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -59,1489 +57,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
     "copyright", "approvalDate", "lastReviewDate", "effectivePeriod", "topic", "author", "editor", "reviewer",
     "endorser", "relatedArtifact", "library", "goal", "action" })
 public class PlanDefinition extends MetadataResource {
-
-  public enum RequestPriority {
-    /**
-     * The request has normal priority.
-     */
-    ROUTINE,
-    /**
-     * The request should be actioned promptly - higher priority than routine.
-     */
-    URGENT,
-    /**
-     * The request should be actioned as soon as possible - higher priority than
-     * urgent.
-     */
-    ASAP,
-    /**
-     * The request should be actioned immediately - highest possible priority. E.g.
-     * an emergency.
-     */
-    STAT,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static RequestPriority fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("routine".equals(codeString))
-        return ROUTINE;
-      if ("urgent".equals(codeString))
-        return URGENT;
-      if ("asap".equals(codeString))
-        return ASAP;
-      if ("stat".equals(codeString))
-        return STAT;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown RequestPriority code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ROUTINE:
-        return "routine";
-      case URGENT:
-        return "urgent";
-      case ASAP:
-        return "asap";
-      case STAT:
-        return "stat";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ROUTINE:
-        return "http://hl7.org/fhir/request-priority";
-      case URGENT:
-        return "http://hl7.org/fhir/request-priority";
-      case ASAP:
-        return "http://hl7.org/fhir/request-priority";
-      case STAT:
-        return "http://hl7.org/fhir/request-priority";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ROUTINE:
-        return "The request has normal priority.";
-      case URGENT:
-        return "The request should be actioned promptly - higher priority than routine.";
-      case ASAP:
-        return "The request should be actioned as soon as possible - higher priority than urgent.";
-      case STAT:
-        return "The request should be actioned immediately - highest possible priority.  E.g. an emergency.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ROUTINE:
-        return "Routine";
-      case URGENT:
-        return "Urgent";
-      case ASAP:
-        return "ASAP";
-      case STAT:
-        return "STAT";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class RequestPriorityEnumFactory implements EnumFactory<RequestPriority> {
-    public RequestPriority fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("routine".equals(codeString))
-        return RequestPriority.ROUTINE;
-      if ("urgent".equals(codeString))
-        return RequestPriority.URGENT;
-      if ("asap".equals(codeString))
-        return RequestPriority.ASAP;
-      if ("stat".equals(codeString))
-        return RequestPriority.STAT;
-      throw new IllegalArgumentException("Unknown RequestPriority code '" + codeString + "'");
-    }
-
-    public Enumeration<RequestPriority> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<RequestPriority>(this, RequestPriority.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<RequestPriority>(this, RequestPriority.NULL, code);
-      if ("routine".equals(codeString))
-        return new Enumeration<RequestPriority>(this, RequestPriority.ROUTINE, code);
-      if ("urgent".equals(codeString))
-        return new Enumeration<RequestPriority>(this, RequestPriority.URGENT, code);
-      if ("asap".equals(codeString))
-        return new Enumeration<RequestPriority>(this, RequestPriority.ASAP, code);
-      if ("stat".equals(codeString))
-        return new Enumeration<RequestPriority>(this, RequestPriority.STAT, code);
-      throw new FHIRException("Unknown RequestPriority code '" + codeString + "'");
-    }
-
-    public String toCode(RequestPriority code) {
-       if (code == RequestPriority.NULL)
-           return null;
-       if (code == RequestPriority.ROUTINE)
-        return "routine";
-      if (code == RequestPriority.URGENT)
-        return "urgent";
-      if (code == RequestPriority.ASAP)
-        return "asap";
-      if (code == RequestPriority.STAT)
-        return "stat";
-      return "?";
-   }
-
-    public String toSystem(RequestPriority code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum ActionConditionKind {
-    /**
-     * The condition describes whether or not a given action is applicable.
-     */
-    APPLICABILITY,
-    /**
-     * The condition is a starting condition for the action.
-     */
-    START,
-    /**
-     * The condition is a stop, or exit condition for the action.
-     */
-    STOP,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ActionConditionKind fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("applicability".equals(codeString))
-        return APPLICABILITY;
-      if ("start".equals(codeString))
-        return START;
-      if ("stop".equals(codeString))
-        return STOP;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ActionConditionKind code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case APPLICABILITY:
-        return "applicability";
-      case START:
-        return "start";
-      case STOP:
-        return "stop";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case APPLICABILITY:
-        return "http://hl7.org/fhir/action-condition-kind";
-      case START:
-        return "http://hl7.org/fhir/action-condition-kind";
-      case STOP:
-        return "http://hl7.org/fhir/action-condition-kind";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case APPLICABILITY:
-        return "The condition describes whether or not a given action is applicable.";
-      case START:
-        return "The condition is a starting condition for the action.";
-      case STOP:
-        return "The condition is a stop, or exit condition for the action.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case APPLICABILITY:
-        return "Applicability";
-      case START:
-        return "Start";
-      case STOP:
-        return "Stop";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ActionConditionKindEnumFactory implements EnumFactory<ActionConditionKind> {
-    public ActionConditionKind fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("applicability".equals(codeString))
-        return ActionConditionKind.APPLICABILITY;
-      if ("start".equals(codeString))
-        return ActionConditionKind.START;
-      if ("stop".equals(codeString))
-        return ActionConditionKind.STOP;
-      throw new IllegalArgumentException("Unknown ActionConditionKind code '" + codeString + "'");
-    }
-
-    public Enumeration<ActionConditionKind> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ActionConditionKind>(this, ActionConditionKind.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ActionConditionKind>(this, ActionConditionKind.NULL, code);
-      if ("applicability".equals(codeString))
-        return new Enumeration<ActionConditionKind>(this, ActionConditionKind.APPLICABILITY, code);
-      if ("start".equals(codeString))
-        return new Enumeration<ActionConditionKind>(this, ActionConditionKind.START, code);
-      if ("stop".equals(codeString))
-        return new Enumeration<ActionConditionKind>(this, ActionConditionKind.STOP, code);
-      throw new FHIRException("Unknown ActionConditionKind code '" + codeString + "'");
-    }
-
-    public String toCode(ActionConditionKind code) {
-       if (code == ActionConditionKind.NULL)
-           return null;
-       if (code == ActionConditionKind.APPLICABILITY)
-        return "applicability";
-      if (code == ActionConditionKind.START)
-        return "start";
-      if (code == ActionConditionKind.STOP)
-        return "stop";
-      return "?";
-   }
-
-    public String toSystem(ActionConditionKind code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum ActionRelationshipType {
-    /**
-     * The action must be performed before the start of the related action.
-     */
-    BEFORESTART,
-    /**
-     * The action must be performed before the related action.
-     */
-    BEFORE,
-    /**
-     * The action must be performed before the end of the related action.
-     */
-    BEFOREEND,
-    /**
-     * The action must be performed concurrent with the start of the related action.
-     */
-    CONCURRENTWITHSTART,
-    /**
-     * The action must be performed concurrent with the related action.
-     */
-    CONCURRENT,
-    /**
-     * The action must be performed concurrent with the end of the related action.
-     */
-    CONCURRENTWITHEND,
-    /**
-     * The action must be performed after the start of the related action.
-     */
-    AFTERSTART,
-    /**
-     * The action must be performed after the related action.
-     */
-    AFTER,
-    /**
-     * The action must be performed after the end of the related action.
-     */
-    AFTEREND,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ActionRelationshipType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("before-start".equals(codeString))
-        return BEFORESTART;
-      if ("before".equals(codeString))
-        return BEFORE;
-      if ("before-end".equals(codeString))
-        return BEFOREEND;
-      if ("concurrent-with-start".equals(codeString))
-        return CONCURRENTWITHSTART;
-      if ("concurrent".equals(codeString))
-        return CONCURRENT;
-      if ("concurrent-with-end".equals(codeString))
-        return CONCURRENTWITHEND;
-      if ("after-start".equals(codeString))
-        return AFTERSTART;
-      if ("after".equals(codeString))
-        return AFTER;
-      if ("after-end".equals(codeString))
-        return AFTEREND;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ActionRelationshipType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case BEFORESTART:
-        return "before-start";
-      case BEFORE:
-        return "before";
-      case BEFOREEND:
-        return "before-end";
-      case CONCURRENTWITHSTART:
-        return "concurrent-with-start";
-      case CONCURRENT:
-        return "concurrent";
-      case CONCURRENTWITHEND:
-        return "concurrent-with-end";
-      case AFTERSTART:
-        return "after-start";
-      case AFTER:
-        return "after";
-      case AFTEREND:
-        return "after-end";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case BEFORESTART:
-        return "http://hl7.org/fhir/action-relationship-type";
-      case BEFORE:
-        return "http://hl7.org/fhir/action-relationship-type";
-      case BEFOREEND:
-        return "http://hl7.org/fhir/action-relationship-type";
-      case CONCURRENTWITHSTART:
-        return "http://hl7.org/fhir/action-relationship-type";
-      case CONCURRENT:
-        return "http://hl7.org/fhir/action-relationship-type";
-      case CONCURRENTWITHEND:
-        return "http://hl7.org/fhir/action-relationship-type";
-      case AFTERSTART:
-        return "http://hl7.org/fhir/action-relationship-type";
-      case AFTER:
-        return "http://hl7.org/fhir/action-relationship-type";
-      case AFTEREND:
-        return "http://hl7.org/fhir/action-relationship-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case BEFORESTART:
-        return "The action must be performed before the start of the related action.";
-      case BEFORE:
-        return "The action must be performed before the related action.";
-      case BEFOREEND:
-        return "The action must be performed before the end of the related action.";
-      case CONCURRENTWITHSTART:
-        return "The action must be performed concurrent with the start of the related action.";
-      case CONCURRENT:
-        return "The action must be performed concurrent with the related action.";
-      case CONCURRENTWITHEND:
-        return "The action must be performed concurrent with the end of the related action.";
-      case AFTERSTART:
-        return "The action must be performed after the start of the related action.";
-      case AFTER:
-        return "The action must be performed after the related action.";
-      case AFTEREND:
-        return "The action must be performed after the end of the related action.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case BEFORESTART:
-        return "Before Start";
-      case BEFORE:
-        return "Before";
-      case BEFOREEND:
-        return "Before End";
-      case CONCURRENTWITHSTART:
-        return "Concurrent With Start";
-      case CONCURRENT:
-        return "Concurrent";
-      case CONCURRENTWITHEND:
-        return "Concurrent With End";
-      case AFTERSTART:
-        return "After Start";
-      case AFTER:
-        return "After";
-      case AFTEREND:
-        return "After End";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ActionRelationshipTypeEnumFactory implements EnumFactory<ActionRelationshipType> {
-    public ActionRelationshipType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("before-start".equals(codeString))
-        return ActionRelationshipType.BEFORESTART;
-      if ("before".equals(codeString))
-        return ActionRelationshipType.BEFORE;
-      if ("before-end".equals(codeString))
-        return ActionRelationshipType.BEFOREEND;
-      if ("concurrent-with-start".equals(codeString))
-        return ActionRelationshipType.CONCURRENTWITHSTART;
-      if ("concurrent".equals(codeString))
-        return ActionRelationshipType.CONCURRENT;
-      if ("concurrent-with-end".equals(codeString))
-        return ActionRelationshipType.CONCURRENTWITHEND;
-      if ("after-start".equals(codeString))
-        return ActionRelationshipType.AFTERSTART;
-      if ("after".equals(codeString))
-        return ActionRelationshipType.AFTER;
-      if ("after-end".equals(codeString))
-        return ActionRelationshipType.AFTEREND;
-      throw new IllegalArgumentException("Unknown ActionRelationshipType code '" + codeString + "'");
-    }
-
-    public Enumeration<ActionRelationshipType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ActionRelationshipType>(this, ActionRelationshipType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ActionRelationshipType>(this, ActionRelationshipType.NULL, code);
-      if ("before-start".equals(codeString))
-        return new Enumeration<ActionRelationshipType>(this, ActionRelationshipType.BEFORESTART, code);
-      if ("before".equals(codeString))
-        return new Enumeration<ActionRelationshipType>(this, ActionRelationshipType.BEFORE, code);
-      if ("before-end".equals(codeString))
-        return new Enumeration<ActionRelationshipType>(this, ActionRelationshipType.BEFOREEND, code);
-      if ("concurrent-with-start".equals(codeString))
-        return new Enumeration<ActionRelationshipType>(this, ActionRelationshipType.CONCURRENTWITHSTART, code);
-      if ("concurrent".equals(codeString))
-        return new Enumeration<ActionRelationshipType>(this, ActionRelationshipType.CONCURRENT, code);
-      if ("concurrent-with-end".equals(codeString))
-        return new Enumeration<ActionRelationshipType>(this, ActionRelationshipType.CONCURRENTWITHEND, code);
-      if ("after-start".equals(codeString))
-        return new Enumeration<ActionRelationshipType>(this, ActionRelationshipType.AFTERSTART, code);
-      if ("after".equals(codeString))
-        return new Enumeration<ActionRelationshipType>(this, ActionRelationshipType.AFTER, code);
-      if ("after-end".equals(codeString))
-        return new Enumeration<ActionRelationshipType>(this, ActionRelationshipType.AFTEREND, code);
-      throw new FHIRException("Unknown ActionRelationshipType code '" + codeString + "'");
-    }
-
-    public String toCode(ActionRelationshipType code) {
-       if (code == ActionRelationshipType.NULL)
-           return null;
-       if (code == ActionRelationshipType.BEFORESTART)
-        return "before-start";
-      if (code == ActionRelationshipType.BEFORE)
-        return "before";
-      if (code == ActionRelationshipType.BEFOREEND)
-        return "before-end";
-      if (code == ActionRelationshipType.CONCURRENTWITHSTART)
-        return "concurrent-with-start";
-      if (code == ActionRelationshipType.CONCURRENT)
-        return "concurrent";
-      if (code == ActionRelationshipType.CONCURRENTWITHEND)
-        return "concurrent-with-end";
-      if (code == ActionRelationshipType.AFTERSTART)
-        return "after-start";
-      if (code == ActionRelationshipType.AFTER)
-        return "after";
-      if (code == ActionRelationshipType.AFTEREND)
-        return "after-end";
-      return "?";
-   }
-
-    public String toSystem(ActionRelationshipType code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum ActionParticipantType {
-    /**
-     * The participant is the patient under evaluation.
-     */
-    PATIENT,
-    /**
-     * The participant is a practitioner involved in the patient's care.
-     */
-    PRACTITIONER,
-    /**
-     * The participant is a person related to the patient.
-     */
-    RELATEDPERSON,
-    /**
-     * The participant is a system or device used in the care of the patient.
-     */
-    DEVICE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ActionParticipantType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("patient".equals(codeString))
-        return PATIENT;
-      if ("practitioner".equals(codeString))
-        return PRACTITIONER;
-      if ("related-person".equals(codeString))
-        return RELATEDPERSON;
-      if ("device".equals(codeString))
-        return DEVICE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ActionParticipantType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case PATIENT:
-        return "patient";
-      case PRACTITIONER:
-        return "practitioner";
-      case RELATEDPERSON:
-        return "related-person";
-      case DEVICE:
-        return "device";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case PATIENT:
-        return "http://hl7.org/fhir/action-participant-type";
-      case PRACTITIONER:
-        return "http://hl7.org/fhir/action-participant-type";
-      case RELATEDPERSON:
-        return "http://hl7.org/fhir/action-participant-type";
-      case DEVICE:
-        return "http://hl7.org/fhir/action-participant-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case PATIENT:
-        return "The participant is the patient under evaluation.";
-      case PRACTITIONER:
-        return "The participant is a practitioner involved in the patient's care.";
-      case RELATEDPERSON:
-        return "The participant is a person related to the patient.";
-      case DEVICE:
-        return "The participant is a system or device used in the care of the patient.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case PATIENT:
-        return "Patient";
-      case PRACTITIONER:
-        return "Practitioner";
-      case RELATEDPERSON:
-        return "Related Person";
-      case DEVICE:
-        return "Device";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ActionParticipantTypeEnumFactory implements EnumFactory<ActionParticipantType> {
-    public ActionParticipantType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("patient".equals(codeString))
-        return ActionParticipantType.PATIENT;
-      if ("practitioner".equals(codeString))
-        return ActionParticipantType.PRACTITIONER;
-      if ("related-person".equals(codeString))
-        return ActionParticipantType.RELATEDPERSON;
-      if ("device".equals(codeString))
-        return ActionParticipantType.DEVICE;
-      throw new IllegalArgumentException("Unknown ActionParticipantType code '" + codeString + "'");
-    }
-
-    public Enumeration<ActionParticipantType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ActionParticipantType>(this, ActionParticipantType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ActionParticipantType>(this, ActionParticipantType.NULL, code);
-      if ("patient".equals(codeString))
-        return new Enumeration<ActionParticipantType>(this, ActionParticipantType.PATIENT, code);
-      if ("practitioner".equals(codeString))
-        return new Enumeration<ActionParticipantType>(this, ActionParticipantType.PRACTITIONER, code);
-      if ("related-person".equals(codeString))
-        return new Enumeration<ActionParticipantType>(this, ActionParticipantType.RELATEDPERSON, code);
-      if ("device".equals(codeString))
-        return new Enumeration<ActionParticipantType>(this, ActionParticipantType.DEVICE, code);
-      throw new FHIRException("Unknown ActionParticipantType code '" + codeString + "'");
-    }
-
-    public String toCode(ActionParticipantType code) {
-       if (code == ActionParticipantType.NULL)
-           return null;
-       if (code == ActionParticipantType.PATIENT)
-        return "patient";
-      if (code == ActionParticipantType.PRACTITIONER)
-        return "practitioner";
-      if (code == ActionParticipantType.RELATEDPERSON)
-        return "related-person";
-      if (code == ActionParticipantType.DEVICE)
-        return "device";
-      return "?";
-   }
-
-    public String toSystem(ActionParticipantType code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum ActionGroupingBehavior {
-    /**
-     * Any group marked with this behavior should be displayed as a visual group to
-     * the end user.
-     */
-    VISUALGROUP,
-    /**
-     * A group with this behavior logically groups its sub-elements, and may be
-     * shown as a visual group to the end user, but it is not required to do so.
-     */
-    LOGICALGROUP,
-    /**
-     * A group of related alternative actions is a sentence group if the target
-     * referenced by the action is the same in all the actions and each action
-     * simply constitutes a different variation on how to specify the details for
-     * the target. For example, two actions that could be in a SentenceGroup are
-     * "aspirin, 500 mg, 2 times per day" and "aspirin, 300 mg, 3 times per day". In
-     * both cases, aspirin is the target referenced by the action, and the two
-     * actions represent different options for how aspirin might be ordered for the
-     * patient. Note that a SentenceGroup would almost always have an associated
-     * selection behavior of "AtMostOne", unless it's a required action, in which
-     * case, it would be "ExactlyOne".
-     */
-    SENTENCEGROUP,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ActionGroupingBehavior fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("visual-group".equals(codeString))
-        return VISUALGROUP;
-      if ("logical-group".equals(codeString))
-        return LOGICALGROUP;
-      if ("sentence-group".equals(codeString))
-        return SENTENCEGROUP;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ActionGroupingBehavior code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case VISUALGROUP:
-        return "visual-group";
-      case LOGICALGROUP:
-        return "logical-group";
-      case SENTENCEGROUP:
-        return "sentence-group";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case VISUALGROUP:
-        return "http://hl7.org/fhir/action-grouping-behavior";
-      case LOGICALGROUP:
-        return "http://hl7.org/fhir/action-grouping-behavior";
-      case SENTENCEGROUP:
-        return "http://hl7.org/fhir/action-grouping-behavior";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case VISUALGROUP:
-        return "Any group marked with this behavior should be displayed as a visual group to the end user.";
-      case LOGICALGROUP:
-        return "A group with this behavior logically groups its sub-elements, and may be shown as a visual group to the end user, but it is not required to do so.";
-      case SENTENCEGROUP:
-        return "A group of related alternative actions is a sentence group if the target referenced by the action is the same in all the actions and each action simply constitutes a different variation on how to specify the details for the target. For example, two actions that could be in a SentenceGroup are \"aspirin, 500 mg, 2 times per day\" and \"aspirin, 300 mg, 3 times per day\". In both cases, aspirin is the target referenced by the action, and the two actions represent different options for how aspirin might be ordered for the patient. Note that a SentenceGroup would almost always have an associated selection behavior of \"AtMostOne\", unless it's a required action, in which case, it would be \"ExactlyOne\".";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case VISUALGROUP:
-        return "Visual Group";
-      case LOGICALGROUP:
-        return "Logical Group";
-      case SENTENCEGROUP:
-        return "Sentence Group";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ActionGroupingBehaviorEnumFactory implements EnumFactory<ActionGroupingBehavior> {
-    public ActionGroupingBehavior fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("visual-group".equals(codeString))
-        return ActionGroupingBehavior.VISUALGROUP;
-      if ("logical-group".equals(codeString))
-        return ActionGroupingBehavior.LOGICALGROUP;
-      if ("sentence-group".equals(codeString))
-        return ActionGroupingBehavior.SENTENCEGROUP;
-      throw new IllegalArgumentException("Unknown ActionGroupingBehavior code '" + codeString + "'");
-    }
-
-    public Enumeration<ActionGroupingBehavior> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ActionGroupingBehavior>(this, ActionGroupingBehavior.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ActionGroupingBehavior>(this, ActionGroupingBehavior.NULL, code);
-      if ("visual-group".equals(codeString))
-        return new Enumeration<ActionGroupingBehavior>(this, ActionGroupingBehavior.VISUALGROUP, code);
-      if ("logical-group".equals(codeString))
-        return new Enumeration<ActionGroupingBehavior>(this, ActionGroupingBehavior.LOGICALGROUP, code);
-      if ("sentence-group".equals(codeString))
-        return new Enumeration<ActionGroupingBehavior>(this, ActionGroupingBehavior.SENTENCEGROUP, code);
-      throw new FHIRException("Unknown ActionGroupingBehavior code '" + codeString + "'");
-    }
-
-    public String toCode(ActionGroupingBehavior code) {
-       if (code == ActionGroupingBehavior.NULL)
-           return null;
-       if (code == ActionGroupingBehavior.VISUALGROUP)
-        return "visual-group";
-      if (code == ActionGroupingBehavior.LOGICALGROUP)
-        return "logical-group";
-      if (code == ActionGroupingBehavior.SENTENCEGROUP)
-        return "sentence-group";
-      return "?";
-   }
-
-    public String toSystem(ActionGroupingBehavior code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum ActionSelectionBehavior {
-    /**
-     * Any number of the actions in the group may be chosen, from zero to all.
-     */
-    ANY,
-    /**
-     * All the actions in the group must be selected as a single unit.
-     */
-    ALL,
-    /**
-     * All the actions in the group are meant to be chosen as a single unit: either
-     * all must be selected by the end user, or none may be selected.
-     */
-    ALLORNONE,
-    /**
-     * The end user must choose one and only one of the selectable actions in the
-     * group. The user SHALL NOT choose none of the actions in the group.
-     */
-    EXACTLYONE,
-    /**
-     * The end user may choose zero or at most one of the actions in the group.
-     */
-    ATMOSTONE,
-    /**
-     * The end user must choose a minimum of one, and as many additional as desired.
-     */
-    ONEORMORE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ActionSelectionBehavior fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("any".equals(codeString))
-        return ANY;
-      if ("all".equals(codeString))
-        return ALL;
-      if ("all-or-none".equals(codeString))
-        return ALLORNONE;
-      if ("exactly-one".equals(codeString))
-        return EXACTLYONE;
-      if ("at-most-one".equals(codeString))
-        return ATMOSTONE;
-      if ("one-or-more".equals(codeString))
-        return ONEORMORE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ActionSelectionBehavior code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case ANY:
-        return "any";
-      case ALL:
-        return "all";
-      case ALLORNONE:
-        return "all-or-none";
-      case EXACTLYONE:
-        return "exactly-one";
-      case ATMOSTONE:
-        return "at-most-one";
-      case ONEORMORE:
-        return "one-or-more";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case ANY:
-        return "http://hl7.org/fhir/action-selection-behavior";
-      case ALL:
-        return "http://hl7.org/fhir/action-selection-behavior";
-      case ALLORNONE:
-        return "http://hl7.org/fhir/action-selection-behavior";
-      case EXACTLYONE:
-        return "http://hl7.org/fhir/action-selection-behavior";
-      case ATMOSTONE:
-        return "http://hl7.org/fhir/action-selection-behavior";
-      case ONEORMORE:
-        return "http://hl7.org/fhir/action-selection-behavior";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case ANY:
-        return "Any number of the actions in the group may be chosen, from zero to all.";
-      case ALL:
-        return "All the actions in the group must be selected as a single unit.";
-      case ALLORNONE:
-        return "All the actions in the group are meant to be chosen as a single unit: either all must be selected by the end user, or none may be selected.";
-      case EXACTLYONE:
-        return "The end user must choose one and only one of the selectable actions in the group. The user SHALL NOT choose none of the actions in the group.";
-      case ATMOSTONE:
-        return "The end user may choose zero or at most one of the actions in the group.";
-      case ONEORMORE:
-        return "The end user must choose a minimum of one, and as many additional as desired.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case ANY:
-        return "Any";
-      case ALL:
-        return "All";
-      case ALLORNONE:
-        return "All Or None";
-      case EXACTLYONE:
-        return "Exactly One";
-      case ATMOSTONE:
-        return "At Most One";
-      case ONEORMORE:
-        return "One Or More";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ActionSelectionBehaviorEnumFactory implements EnumFactory<ActionSelectionBehavior> {
-    public ActionSelectionBehavior fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("any".equals(codeString))
-        return ActionSelectionBehavior.ANY;
-      if ("all".equals(codeString))
-        return ActionSelectionBehavior.ALL;
-      if ("all-or-none".equals(codeString))
-        return ActionSelectionBehavior.ALLORNONE;
-      if ("exactly-one".equals(codeString))
-        return ActionSelectionBehavior.EXACTLYONE;
-      if ("at-most-one".equals(codeString))
-        return ActionSelectionBehavior.ATMOSTONE;
-      if ("one-or-more".equals(codeString))
-        return ActionSelectionBehavior.ONEORMORE;
-      throw new IllegalArgumentException("Unknown ActionSelectionBehavior code '" + codeString + "'");
-    }
-
-    public Enumeration<ActionSelectionBehavior> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ActionSelectionBehavior>(this, ActionSelectionBehavior.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ActionSelectionBehavior>(this, ActionSelectionBehavior.NULL, code);
-      if ("any".equals(codeString))
-        return new Enumeration<ActionSelectionBehavior>(this, ActionSelectionBehavior.ANY, code);
-      if ("all".equals(codeString))
-        return new Enumeration<ActionSelectionBehavior>(this, ActionSelectionBehavior.ALL, code);
-      if ("all-or-none".equals(codeString))
-        return new Enumeration<ActionSelectionBehavior>(this, ActionSelectionBehavior.ALLORNONE, code);
-      if ("exactly-one".equals(codeString))
-        return new Enumeration<ActionSelectionBehavior>(this, ActionSelectionBehavior.EXACTLYONE, code);
-      if ("at-most-one".equals(codeString))
-        return new Enumeration<ActionSelectionBehavior>(this, ActionSelectionBehavior.ATMOSTONE, code);
-      if ("one-or-more".equals(codeString))
-        return new Enumeration<ActionSelectionBehavior>(this, ActionSelectionBehavior.ONEORMORE, code);
-      throw new FHIRException("Unknown ActionSelectionBehavior code '" + codeString + "'");
-    }
-
-    public String toCode(ActionSelectionBehavior code) {
-       if (code == ActionSelectionBehavior.NULL)
-           return null;
-       if (code == ActionSelectionBehavior.ANY)
-        return "any";
-      if (code == ActionSelectionBehavior.ALL)
-        return "all";
-      if (code == ActionSelectionBehavior.ALLORNONE)
-        return "all-or-none";
-      if (code == ActionSelectionBehavior.EXACTLYONE)
-        return "exactly-one";
-      if (code == ActionSelectionBehavior.ATMOSTONE)
-        return "at-most-one";
-      if (code == ActionSelectionBehavior.ONEORMORE)
-        return "one-or-more";
-      return "?";
-   }
-
-    public String toSystem(ActionSelectionBehavior code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum ActionRequiredBehavior {
-    /**
-     * An action with this behavior must be included in the actions processed by the
-     * end user; the end user SHALL NOT choose not to include this action.
-     */
-    MUST,
-    /**
-     * An action with this behavior may be included in the set of actions processed
-     * by the end user.
-     */
-    COULD,
-    /**
-     * An action with this behavior must be included in the set of actions processed
-     * by the end user, unless the end user provides documentation as to why the
-     * action was not included.
-     */
-    MUSTUNLESSDOCUMENTED,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ActionRequiredBehavior fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("must".equals(codeString))
-        return MUST;
-      if ("could".equals(codeString))
-        return COULD;
-      if ("must-unless-documented".equals(codeString))
-        return MUSTUNLESSDOCUMENTED;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ActionRequiredBehavior code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case MUST:
-        return "must";
-      case COULD:
-        return "could";
-      case MUSTUNLESSDOCUMENTED:
-        return "must-unless-documented";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case MUST:
-        return "http://hl7.org/fhir/action-required-behavior";
-      case COULD:
-        return "http://hl7.org/fhir/action-required-behavior";
-      case MUSTUNLESSDOCUMENTED:
-        return "http://hl7.org/fhir/action-required-behavior";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case MUST:
-        return "An action with this behavior must be included in the actions processed by the end user; the end user SHALL NOT choose not to include this action.";
-      case COULD:
-        return "An action with this behavior may be included in the set of actions processed by the end user.";
-      case MUSTUNLESSDOCUMENTED:
-        return "An action with this behavior must be included in the set of actions processed by the end user, unless the end user provides documentation as to why the action was not included.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case MUST:
-        return "Must";
-      case COULD:
-        return "Could";
-      case MUSTUNLESSDOCUMENTED:
-        return "Must Unless Documented";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ActionRequiredBehaviorEnumFactory implements EnumFactory<ActionRequiredBehavior> {
-    public ActionRequiredBehavior fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("must".equals(codeString))
-        return ActionRequiredBehavior.MUST;
-      if ("could".equals(codeString))
-        return ActionRequiredBehavior.COULD;
-      if ("must-unless-documented".equals(codeString))
-        return ActionRequiredBehavior.MUSTUNLESSDOCUMENTED;
-      throw new IllegalArgumentException("Unknown ActionRequiredBehavior code '" + codeString + "'");
-    }
-
-    public Enumeration<ActionRequiredBehavior> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ActionRequiredBehavior>(this, ActionRequiredBehavior.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ActionRequiredBehavior>(this, ActionRequiredBehavior.NULL, code);
-      if ("must".equals(codeString))
-        return new Enumeration<ActionRequiredBehavior>(this, ActionRequiredBehavior.MUST, code);
-      if ("could".equals(codeString))
-        return new Enumeration<ActionRequiredBehavior>(this, ActionRequiredBehavior.COULD, code);
-      if ("must-unless-documented".equals(codeString))
-        return new Enumeration<ActionRequiredBehavior>(this, ActionRequiredBehavior.MUSTUNLESSDOCUMENTED, code);
-      throw new FHIRException("Unknown ActionRequiredBehavior code '" + codeString + "'");
-    }
-
-    public String toCode(ActionRequiredBehavior code) {
-       if (code == ActionRequiredBehavior.NULL)
-           return null;
-       if (code == ActionRequiredBehavior.MUST)
-        return "must";
-      if (code == ActionRequiredBehavior.COULD)
-        return "could";
-      if (code == ActionRequiredBehavior.MUSTUNLESSDOCUMENTED)
-        return "must-unless-documented";
-      return "?";
-   }
-
-    public String toSystem(ActionRequiredBehavior code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum ActionPrecheckBehavior {
-    /**
-     * An action with this behavior is one of the most frequent action that is, or
-     * should be, included by an end user, for the particular context in which the
-     * action occurs. The system displaying the action to the end user should
-     * consider "pre-checking" such an action as a convenience for the user.
-     */
-    YES,
-    /**
-     * An action with this behavior is one of the less frequent actions included by
-     * the end user, for the particular context in which the action occurs. The
-     * system displaying the actions to the end user would typically not "pre-check"
-     * such an action.
-     */
-    NO,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ActionPrecheckBehavior fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("yes".equals(codeString))
-        return YES;
-      if ("no".equals(codeString))
-        return NO;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ActionPrecheckBehavior code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case YES:
-        return "yes";
-      case NO:
-        return "no";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case YES:
-        return "http://hl7.org/fhir/action-precheck-behavior";
-      case NO:
-        return "http://hl7.org/fhir/action-precheck-behavior";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case YES:
-        return "An action with this behavior is one of the most frequent action that is, or should be, included by an end user, for the particular context in which the action occurs. The system displaying the action to the end user should consider \"pre-checking\" such an action as a convenience for the user.";
-      case NO:
-        return "An action with this behavior is one of the less frequent actions included by the end user, for the particular context in which the action occurs. The system displaying the actions to the end user would typically not \"pre-check\" such an action.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case YES:
-        return "Yes";
-      case NO:
-        return "No";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ActionPrecheckBehaviorEnumFactory implements EnumFactory<ActionPrecheckBehavior> {
-    public ActionPrecheckBehavior fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("yes".equals(codeString))
-        return ActionPrecheckBehavior.YES;
-      if ("no".equals(codeString))
-        return ActionPrecheckBehavior.NO;
-      throw new IllegalArgumentException("Unknown ActionPrecheckBehavior code '" + codeString + "'");
-    }
-
-    public Enumeration<ActionPrecheckBehavior> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ActionPrecheckBehavior>(this, ActionPrecheckBehavior.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ActionPrecheckBehavior>(this, ActionPrecheckBehavior.NULL, code);
-      if ("yes".equals(codeString))
-        return new Enumeration<ActionPrecheckBehavior>(this, ActionPrecheckBehavior.YES, code);
-      if ("no".equals(codeString))
-        return new Enumeration<ActionPrecheckBehavior>(this, ActionPrecheckBehavior.NO, code);
-      throw new FHIRException("Unknown ActionPrecheckBehavior code '" + codeString + "'");
-    }
-
-    public String toCode(ActionPrecheckBehavior code) {
-       if (code == ActionPrecheckBehavior.NULL)
-           return null;
-       if (code == ActionPrecheckBehavior.YES)
-        return "yes";
-      if (code == ActionPrecheckBehavior.NO)
-        return "no";
-      return "?";
-   }
-
-    public String toSystem(ActionPrecheckBehavior code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum ActionCardinalityBehavior {
-    /**
-     * The action may only be selected one time.
-     */
-    SINGLE,
-    /**
-     * The action may be selected multiple times.
-     */
-    MULTIPLE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ActionCardinalityBehavior fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("single".equals(codeString))
-        return SINGLE;
-      if ("multiple".equals(codeString))
-        return MULTIPLE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ActionCardinalityBehavior code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case SINGLE:
-        return "single";
-      case MULTIPLE:
-        return "multiple";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case SINGLE:
-        return "http://hl7.org/fhir/action-cardinality-behavior";
-      case MULTIPLE:
-        return "http://hl7.org/fhir/action-cardinality-behavior";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case SINGLE:
-        return "The action may only be selected one time.";
-      case MULTIPLE:
-        return "The action may be selected multiple times.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case SINGLE:
-        return "Single";
-      case MULTIPLE:
-        return "Multiple";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ActionCardinalityBehaviorEnumFactory implements EnumFactory<ActionCardinalityBehavior> {
-    public ActionCardinalityBehavior fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("single".equals(codeString))
-        return ActionCardinalityBehavior.SINGLE;
-      if ("multiple".equals(codeString))
-        return ActionCardinalityBehavior.MULTIPLE;
-      throw new IllegalArgumentException("Unknown ActionCardinalityBehavior code '" + codeString + "'");
-    }
-
-    public Enumeration<ActionCardinalityBehavior> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ActionCardinalityBehavior>(this, ActionCardinalityBehavior.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ActionCardinalityBehavior>(this, ActionCardinalityBehavior.NULL, code);
-      if ("single".equals(codeString))
-        return new Enumeration<ActionCardinalityBehavior>(this, ActionCardinalityBehavior.SINGLE, code);
-      if ("multiple".equals(codeString))
-        return new Enumeration<ActionCardinalityBehavior>(this, ActionCardinalityBehavior.MULTIPLE, code);
-      throw new FHIRException("Unknown ActionCardinalityBehavior code '" + codeString + "'");
-    }
-
-    public String toCode(ActionCardinalityBehavior code) {
-       if (code == ActionCardinalityBehavior.NULL)
-           return null;
-       if (code == ActionCardinalityBehavior.SINGLE)
-        return "single";
-      if (code == ActionCardinalityBehavior.MULTIPLE)
-        return "multiple";
-      return "?";
-   }
-
-    public String toSystem(ActionCardinalityBehavior code) {
-      return code.getSystem();
-    }
-  }
 
   @Block()
   public static class PlanDefinitionGoalComponent extends BackboneElement implements IBaseBackboneElement {
@@ -2627,10 +1142,10 @@ public class PlanDefinition extends MetadataResource {
      * Indicates how quickly the action should be addressed with respect to other
      * actions.
      */
-    @Child(name = "priority", type = { CodeType.class }, order = 5, min = 0, max = 1, modifier = false, summary = false)
+    @Child(name = "priority", type = { StringType.class }, order = 5, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "routine | urgent | asap | stat", formalDefinition = "Indicates how quickly the action should be addressed with respect to other actions.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/request-priority")
-    protected Enumeration<RequestPriority> priority;
+    protected StringType priority;
 
     /**
      * A code that provides meaning for the action or action group. For example, a
@@ -2746,28 +1261,28 @@ public class PlanDefinition extends MetadataResource {
      * Defines the grouping behavior for the action and its children.
      */
     @Child(name = "groupingBehavior", type = {
-        CodeType.class }, order = 19, min = 0, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 19, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "visual-group | logical-group | sentence-group", formalDefinition = "Defines the grouping behavior for the action and its children.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/action-grouping-behavior")
-    protected Enumeration<ActionGroupingBehavior> groupingBehavior;
+    protected StringType groupingBehavior;
 
     /**
      * Defines the selection behavior for the action and its children.
      */
     @Child(name = "selectionBehavior", type = {
-        CodeType.class }, order = 20, min = 0, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 20, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "any | all | all-or-none | exactly-one | at-most-one | one-or-more", formalDefinition = "Defines the selection behavior for the action and its children.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/action-selection-behavior")
-    protected Enumeration<ActionSelectionBehavior> selectionBehavior;
+    protected StringType selectionBehavior;
 
     /**
      * Defines the required behavior for the action.
      */
     @Child(name = "requiredBehavior", type = {
-        CodeType.class }, order = 21, min = 0, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 21, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "must | could | must-unless-documented", formalDefinition = "Defines the required behavior for the action.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/action-required-behavior")
-    protected Enumeration<ActionRequiredBehavior> requiredBehavior;
+    protected StringType requiredBehavior;
 
     /**
      * Defines whether the action should usually be preselected.
@@ -2776,16 +1291,16 @@ public class PlanDefinition extends MetadataResource {
         CodeType.class }, order = 22, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "yes | no", formalDefinition = "Defines whether the action should usually be preselected.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/action-precheck-behavior")
-    protected Enumeration<ActionPrecheckBehavior> precheckBehavior;
+    protected StringType precheckBehavior;
 
     /**
      * Defines whether the action can be selected multiple times.
      */
     @Child(name = "cardinalityBehavior", type = {
-        CodeType.class }, order = 23, min = 0, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 23, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "single | multiple", formalDefinition = "Defines whether the action can be selected multiple times.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/action-cardinality-behavior")
-    protected Enumeration<ActionCardinalityBehavior> cardinalityBehavior;
+    protected StringType cardinalityBehavior;
 
     /**
      * A reference to an ActivityDefinition that describes the action to be taken in
@@ -3071,12 +1586,12 @@ public class PlanDefinition extends MetadataResource {
      *         object with id, value and extensions. The accessor "getPriority"
      *         gives direct access to the value
      */
-    public Enumeration<RequestPriority> getPriorityElement() {
+    public StringType getPriorityElement() {
       if (this.priority == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create PlanDefinitionActionComponent.priority");
         else if (Configuration.doAutoCreate())
-          this.priority = new Enumeration<RequestPriority>(new RequestPriorityEnumFactory()); // bb
+          this.priority = new StringType(); // bb
       return this.priority;
     }
 
@@ -3094,7 +1609,7 @@ public class PlanDefinition extends MetadataResource {
      *              underlying object with id, value and extensions. The accessor
      *              "getPriority" gives direct access to the value
      */
-    public PlanDefinitionActionComponent setPriorityElement(Enumeration<RequestPriority> value) {
+    public PlanDefinitionActionComponent setPriorityElement(StringType value) {
       this.priority = value;
       return this;
     }
@@ -3103,7 +1618,7 @@ public class PlanDefinition extends MetadataResource {
      * @return Indicates how quickly the action should be addressed with respect to
      *         other actions.
      */
-    public RequestPriority getPriority() {
+    public String getPriority() {
       return this.priority == null ? null : this.priority.getValue();
     }
 
@@ -3111,12 +1626,12 @@ public class PlanDefinition extends MetadataResource {
      * @param value Indicates how quickly the action should be addressed with
      *              respect to other actions.
      */
-    public PlanDefinitionActionComponent setPriority(RequestPriority value) {
+    public PlanDefinitionActionComponent setPriority(String value) {
       if (value == null)
         this.priority = null;
       else {
         if (this.priority == null)
-          this.priority = new Enumeration<RequestPriority>(new RequestPriorityEnumFactory());
+          this.priority = new StringType();
         this.priority.setValue(value);
       }
       return this;
@@ -3903,12 +2418,12 @@ public class PlanDefinition extends MetadataResource {
      *         value and extensions. The accessor "getGroupingBehavior" gives direct
      *         access to the value
      */
-    public Enumeration<ActionGroupingBehavior> getGroupingBehaviorElement() {
+    public StringType getGroupingBehaviorElement() {
       if (this.groupingBehavior == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create PlanDefinitionActionComponent.groupingBehavior");
         else if (Configuration.doAutoCreate())
-          this.groupingBehavior = new Enumeration<ActionGroupingBehavior>(new ActionGroupingBehaviorEnumFactory()); // bb
+          this.groupingBehavior = new StringType(); // bb
       return this.groupingBehavior;
     }
 
@@ -3926,7 +2441,7 @@ public class PlanDefinition extends MetadataResource {
      *              id, value and extensions. The accessor "getGroupingBehavior"
      *              gives direct access to the value
      */
-    public PlanDefinitionActionComponent setGroupingBehaviorElement(Enumeration<ActionGroupingBehavior> value) {
+    public PlanDefinitionActionComponent setGroupingBehaviorElement(StringType value) {
       this.groupingBehavior = value;
       return this;
     }
@@ -3934,19 +2449,19 @@ public class PlanDefinition extends MetadataResource {
     /**
      * @return Defines the grouping behavior for the action and its children.
      */
-    public ActionGroupingBehavior getGroupingBehavior() {
+    public String getGroupingBehavior() {
       return this.groupingBehavior == null ? null : this.groupingBehavior.getValue();
     }
 
     /**
      * @param value Defines the grouping behavior for the action and its children.
      */
-    public PlanDefinitionActionComponent setGroupingBehavior(ActionGroupingBehavior value) {
+    public PlanDefinitionActionComponent setGroupingBehavior(String value) {
       if (value == null)
         this.groupingBehavior = null;
       else {
         if (this.groupingBehavior == null)
-          this.groupingBehavior = new Enumeration<ActionGroupingBehavior>(new ActionGroupingBehaviorEnumFactory());
+          this.groupingBehavior = new StringType();
         this.groupingBehavior.setValue(value);
       }
       return this;
@@ -3958,12 +2473,12 @@ public class PlanDefinition extends MetadataResource {
      *         value and extensions. The accessor "getSelectionBehavior" gives
      *         direct access to the value
      */
-    public Enumeration<ActionSelectionBehavior> getSelectionBehaviorElement() {
+    public StringType getSelectionBehaviorElement() {
       if (this.selectionBehavior == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create PlanDefinitionActionComponent.selectionBehavior");
         else if (Configuration.doAutoCreate())
-          this.selectionBehavior = new Enumeration<ActionSelectionBehavior>(new ActionSelectionBehaviorEnumFactory()); // bb
+          this.selectionBehavior = new StringType(); // bb
       return this.selectionBehavior;
     }
 
@@ -3981,7 +2496,7 @@ public class PlanDefinition extends MetadataResource {
      *              with id, value and extensions. The accessor
      *              "getSelectionBehavior" gives direct access to the value
      */
-    public PlanDefinitionActionComponent setSelectionBehaviorElement(Enumeration<ActionSelectionBehavior> value) {
+    public PlanDefinitionActionComponent setSelectionBehaviorElement(StringType value) {
       this.selectionBehavior = value;
       return this;
     }
@@ -3989,19 +2504,19 @@ public class PlanDefinition extends MetadataResource {
     /**
      * @return Defines the selection behavior for the action and its children.
      */
-    public ActionSelectionBehavior getSelectionBehavior() {
+    public String getSelectionBehavior() {
       return this.selectionBehavior == null ? null : this.selectionBehavior.getValue();
     }
 
     /**
      * @param value Defines the selection behavior for the action and its children.
      */
-    public PlanDefinitionActionComponent setSelectionBehavior(ActionSelectionBehavior value) {
+    public PlanDefinitionActionComponent setSelectionBehavior(String value) {
       if (value == null)
         this.selectionBehavior = null;
       else {
         if (this.selectionBehavior == null)
-          this.selectionBehavior = new Enumeration<ActionSelectionBehavior>(new ActionSelectionBehaviorEnumFactory());
+          this.selectionBehavior = new StringType();
         this.selectionBehavior.setValue(value);
       }
       return this;
@@ -4013,12 +2528,12 @@ public class PlanDefinition extends MetadataResource {
      *         extensions. The accessor "getRequiredBehavior" gives direct access to
      *         the value
      */
-    public Enumeration<ActionRequiredBehavior> getRequiredBehaviorElement() {
+    public StringType getRequiredBehaviorElement() {
       if (this.requiredBehavior == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create PlanDefinitionActionComponent.requiredBehavior");
         else if (Configuration.doAutoCreate())
-          this.requiredBehavior = new Enumeration<ActionRequiredBehavior>(new ActionRequiredBehaviorEnumFactory()); // bb
+          this.requiredBehavior = new StringType(); // bb
       return this.requiredBehavior;
     }
 
@@ -4036,7 +2551,7 @@ public class PlanDefinition extends MetadataResource {
      *              extensions. The accessor "getRequiredBehavior" gives direct
      *              access to the value
      */
-    public PlanDefinitionActionComponent setRequiredBehaviorElement(Enumeration<ActionRequiredBehavior> value) {
+    public PlanDefinitionActionComponent setRequiredBehaviorElement(StringType value) {
       this.requiredBehavior = value;
       return this;
     }
@@ -4044,19 +2559,19 @@ public class PlanDefinition extends MetadataResource {
     /**
      * @return Defines the required behavior for the action.
      */
-    public ActionRequiredBehavior getRequiredBehavior() {
+    public String getRequiredBehavior() {
       return this.requiredBehavior == null ? null : this.requiredBehavior.getValue();
     }
 
     /**
      * @param value Defines the required behavior for the action.
      */
-    public PlanDefinitionActionComponent setRequiredBehavior(ActionRequiredBehavior value) {
+    public PlanDefinitionActionComponent setRequiredBehavior(String value) {
       if (value == null)
         this.requiredBehavior = null;
       else {
         if (this.requiredBehavior == null)
-          this.requiredBehavior = new Enumeration<ActionRequiredBehavior>(new ActionRequiredBehaviorEnumFactory());
+          this.requiredBehavior = new StringType();
         this.requiredBehavior.setValue(value);
       }
       return this;
@@ -4068,12 +2583,12 @@ public class PlanDefinition extends MetadataResource {
      *         extensions. The accessor "getPrecheckBehavior" gives direct access to
      *         the value
      */
-    public Enumeration<ActionPrecheckBehavior> getPrecheckBehaviorElement() {
+    public StringType getPrecheckBehaviorElement() {
       if (this.precheckBehavior == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create PlanDefinitionActionComponent.precheckBehavior");
         else if (Configuration.doAutoCreate())
-          this.precheckBehavior = new Enumeration<ActionPrecheckBehavior>(new ActionPrecheckBehaviorEnumFactory()); // bb
+          this.precheckBehavior = new StringType(); // bb
       return this.precheckBehavior;
     }
 
@@ -4091,7 +2606,7 @@ public class PlanDefinition extends MetadataResource {
      *              value and extensions. The accessor "getPrecheckBehavior" gives
      *              direct access to the value
      */
-    public PlanDefinitionActionComponent setPrecheckBehaviorElement(Enumeration<ActionPrecheckBehavior> value) {
+    public PlanDefinitionActionComponent setPrecheckBehaviorElement(StringType value) {
       this.precheckBehavior = value;
       return this;
     }
@@ -4099,19 +2614,19 @@ public class PlanDefinition extends MetadataResource {
     /**
      * @return Defines whether the action should usually be preselected.
      */
-    public ActionPrecheckBehavior getPrecheckBehavior() {
+    public String getPrecheckBehavior() {
       return this.precheckBehavior == null ? null : this.precheckBehavior.getValue();
     }
 
     /**
      * @param value Defines whether the action should usually be preselected.
      */
-    public PlanDefinitionActionComponent setPrecheckBehavior(ActionPrecheckBehavior value) {
+    public PlanDefinitionActionComponent setPrecheckBehavior(String value) {
       if (value == null)
         this.precheckBehavior = null;
       else {
         if (this.precheckBehavior == null)
-          this.precheckBehavior = new Enumeration<ActionPrecheckBehavior>(new ActionPrecheckBehaviorEnumFactory());
+          this.precheckBehavior = new StringType();
         this.precheckBehavior.setValue(value);
       }
       return this;
@@ -4123,13 +2638,12 @@ public class PlanDefinition extends MetadataResource {
      *         value and extensions. The accessor "getCardinalityBehavior" gives
      *         direct access to the value
      */
-    public Enumeration<ActionCardinalityBehavior> getCardinalityBehaviorElement() {
+    public StringType getCardinalityBehaviorElement() {
       if (this.cardinalityBehavior == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create PlanDefinitionActionComponent.cardinalityBehavior");
         else if (Configuration.doAutoCreate())
-          this.cardinalityBehavior = new Enumeration<ActionCardinalityBehavior>(
-              new ActionCardinalityBehaviorEnumFactory()); // bb
+          this.cardinalityBehavior = new StringType(); // bb
       return this.cardinalityBehavior;
     }
 
@@ -4147,7 +2661,7 @@ public class PlanDefinition extends MetadataResource {
      *              id, value and extensions. The accessor "getCardinalityBehavior"
      *              gives direct access to the value
      */
-    public PlanDefinitionActionComponent setCardinalityBehaviorElement(Enumeration<ActionCardinalityBehavior> value) {
+    public PlanDefinitionActionComponent setCardinalityBehaviorElement(StringType value) {
       this.cardinalityBehavior = value;
       return this;
     }
@@ -4155,20 +2669,19 @@ public class PlanDefinition extends MetadataResource {
     /**
      * @return Defines whether the action can be selected multiple times.
      */
-    public ActionCardinalityBehavior getCardinalityBehavior() {
+    public String getCardinalityBehavior() {
       return this.cardinalityBehavior == null ? null : this.cardinalityBehavior.getValue();
     }
 
     /**
      * @param value Defines whether the action can be selected multiple times.
      */
-    public PlanDefinitionActionComponent setCardinalityBehavior(ActionCardinalityBehavior value) {
+    public PlanDefinitionActionComponent setCardinalityBehavior(String value) {
       if (value == null)
         this.cardinalityBehavior = null;
       else {
         if (this.cardinalityBehavior == null)
-          this.cardinalityBehavior = new Enumeration<ActionCardinalityBehavior>(
-              new ActionCardinalityBehaviorEnumFactory());
+          this.cardinalityBehavior = new StringType();
         this.cardinalityBehavior.setValue(value);
       }
       return this;
@@ -4423,7 +2936,7 @@ public class PlanDefinition extends MetadataResource {
       children.add(new Property("textEquivalent", "string",
           "A text equivalent of the action to be performed. This provides a human-interpretable description of the action when the definition is consumed by a system that might not be capable of interpreting it dynamically.",
           0, 1, textEquivalent));
-      children.add(new Property("priority", "code",
+      children.add(new Property("priority", "string",
           "Indicates how quickly the action should be addressed with respect to other actions.", 0, 1, priority));
       children.add(new Property("code", "CodeableConcept",
           "A code that provides meaning for the action or action group. For example, a section may have a LOINC code for the section of a documentation template.",
@@ -4458,15 +2971,15 @@ public class PlanDefinition extends MetadataResource {
               0, java.lang.Integer.MAX_VALUE, participant));
       children.add(new Property("type", "CodeableConcept", "The type of action to perform (create, update, remove).", 0,
           1, type));
-      children.add(new Property("groupingBehavior", "code",
+      children.add(new Property("groupingBehavior", "string",
           "Defines the grouping behavior for the action and its children.", 0, 1, groupingBehavior));
-      children.add(new Property("selectionBehavior", "code",
+      children.add(new Property("selectionBehavior", "string",
           "Defines the selection behavior for the action and its children.", 0, 1, selectionBehavior));
-      children.add(new Property("requiredBehavior", "code", "Defines the required behavior for the action.", 0, 1,
+      children.add(new Property("requiredBehavior", "string", "Defines the required behavior for the action.", 0, 1,
           requiredBehavior));
-      children.add(new Property("precheckBehavior", "code", "Defines whether the action should usually be preselected.",
+      children.add(new Property("precheckBehavior", "string", "Defines whether the action should usually be preselected.",
           0, 1, precheckBehavior));
-      children.add(new Property("cardinalityBehavior", "code",
+      children.add(new Property("cardinalityBehavior", "string",
           "Defines whether the action can be selected multiple times.", 0, 1, cardinalityBehavior));
       children.add(new Property("definition[x]", "canonical(ActivityDefinition|PlanDefinition|Questionnaire)|uri",
           "A reference to an ActivityDefinition that describes the action to be taken in detail, or a PlanDefinition that describes a series of actions to be taken.",
@@ -4497,7 +3010,7 @@ public class PlanDefinition extends MetadataResource {
             "A text equivalent of the action to be performed. This provides a human-interpretable description of the action when the definition is consumed by a system that might not be capable of interpreting it dynamically.",
             0, 1, textEquivalent);
       case -1165461084:
-        /* priority */ return new Property("priority", "code",
+        /* priority */ return new Property("priority", "string",
             "Indicates how quickly the action should be addressed with respect to other actions.", 0, 1, priority);
       case 3059181:
         /* code */ return new Property("code", "CodeableConcept",
@@ -4579,19 +3092,19 @@ public class PlanDefinition extends MetadataResource {
         /* type */ return new Property("type", "CodeableConcept",
             "The type of action to perform (create, update, remove).", 0, 1, type);
       case 586678389:
-        /* groupingBehavior */ return new Property("groupingBehavior", "code",
+        /* groupingBehavior */ return new Property("groupingBehavior", "string",
             "Defines the grouping behavior for the action and its children.", 0, 1, groupingBehavior);
       case 168639486:
-        /* selectionBehavior */ return new Property("selectionBehavior", "code",
+        /* selectionBehavior */ return new Property("selectionBehavior", "string",
             "Defines the selection behavior for the action and its children.", 0, 1, selectionBehavior);
       case -1163906287:
-        /* requiredBehavior */ return new Property("requiredBehavior", "code",
+        /* requiredBehavior */ return new Property("requiredBehavior", "string",
             "Defines the required behavior for the action.", 0, 1, requiredBehavior);
       case -1174249033:
-        /* precheckBehavior */ return new Property("precheckBehavior", "code",
+        /* precheckBehavior */ return new Property("precheckBehavior", "string",
             "Defines whether the action should usually be preselected.", 0, 1, precheckBehavior);
       case -922577408:
-        /* cardinalityBehavior */ return new Property("cardinalityBehavior", "code",
+        /* cardinalityBehavior */ return new Property("cardinalityBehavior", "string",
             "Defines whether the action can be selected multiple times.", 0, 1, cardinalityBehavior);
       case -1139422643:
         /* definition[x] */ return new Property("definition[x]",
@@ -4643,7 +3156,7 @@ public class PlanDefinition extends MetadataResource {
       case -900391049:
         /* textEquivalent */ return this.textEquivalent == null ? new Base[0] : new Base[] { this.textEquivalent }; // StringType
       case -1165461084:
-        /* priority */ return this.priority == null ? new Base[0] : new Base[] { this.priority }; // Enumeration<RequestPriority>
+        /* priority */ return this.priority == null ? new Base[0] : new Base[] { this.priority }; // StringType
       case 3059181:
         /* code */ return this.code == null ? new Base[0] : this.code.toArray(new Base[this.code.size()]); // CodeableConcept
       case -934964668:
@@ -4676,19 +3189,19 @@ public class PlanDefinition extends MetadataResource {
         /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // CodeableConcept
       case 586678389:
         /* groupingBehavior */ return this.groupingBehavior == null ? new Base[0]
-            : new Base[] { this.groupingBehavior }; // Enumeration<ActionGroupingBehavior>
+            : new Base[] { this.groupingBehavior }; // StringType
       case 168639486:
         /* selectionBehavior */ return this.selectionBehavior == null ? new Base[0]
-            : new Base[] { this.selectionBehavior }; // Enumeration<ActionSelectionBehavior>
+            : new Base[] { this.selectionBehavior }; // StringType
       case -1163906287:
         /* requiredBehavior */ return this.requiredBehavior == null ? new Base[0]
-            : new Base[] { this.requiredBehavior }; // Enumeration<ActionRequiredBehavior>
+            : new Base[] { this.requiredBehavior }; // StringType
       case -1174249033:
         /* precheckBehavior */ return this.precheckBehavior == null ? new Base[0]
-            : new Base[] { this.precheckBehavior }; // Enumeration<ActionPrecheckBehavior>
+            : new Base[] { this.precheckBehavior }; // StringType
       case -922577408:
         /* cardinalityBehavior */ return this.cardinalityBehavior == null ? new Base[0]
-            : new Base[] { this.cardinalityBehavior }; // Enumeration<ActionCardinalityBehavior>
+            : new Base[] { this.cardinalityBehavior }; // StringType
       case -1014418093:
         /* definition */ return this.definition == null ? new Base[0] : new Base[] { this.definition }; // Type
       case 1052666732:
@@ -4720,8 +3233,7 @@ public class PlanDefinition extends MetadataResource {
         this.textEquivalent = castToString(value); // StringType
         return value;
       case -1165461084: // priority
-        value = new RequestPriorityEnumFactory().fromType(castToCode(value));
-        this.priority = (Enumeration) value; // Enumeration<RequestPriority>
+        this.priority = castToString(value); // StringType
         return value;
       case 3059181: // code
         this.getCode().add(castToCodeableConcept(value)); // CodeableConcept
@@ -4763,24 +3275,19 @@ public class PlanDefinition extends MetadataResource {
         this.type = castToCodeableConcept(value); // CodeableConcept
         return value;
       case 586678389: // groupingBehavior
-        value = new ActionGroupingBehaviorEnumFactory().fromType(castToCode(value));
-        this.groupingBehavior = (Enumeration) value; // Enumeration<ActionGroupingBehavior>
+        this.groupingBehavior = castToString(value); // StringType
         return value;
       case 168639486: // selectionBehavior
-        value = new ActionSelectionBehaviorEnumFactory().fromType(castToCode(value));
-        this.selectionBehavior = (Enumeration) value; // Enumeration<ActionSelectionBehavior>
+        this.selectionBehavior = castToString(value); // StringType
         return value;
       case -1163906287: // requiredBehavior
-        value = new ActionRequiredBehaviorEnumFactory().fromType(castToCode(value));
-        this.requiredBehavior = (Enumeration) value; // Enumeration<ActionRequiredBehavior>
+        this.requiredBehavior = castToString(value); // StringType
         return value;
       case -1174249033: // precheckBehavior
-        value = new ActionPrecheckBehaviorEnumFactory().fromType(castToCode(value));
-        this.precheckBehavior = (Enumeration) value; // Enumeration<ActionPrecheckBehavior>
+        this.precheckBehavior = castToString(value); // StringType
         return value;
       case -922577408: // cardinalityBehavior
-        value = new ActionCardinalityBehaviorEnumFactory().fromType(castToCode(value));
-        this.cardinalityBehavior = (Enumeration) value; // Enumeration<ActionCardinalityBehavior>
+        this.cardinalityBehavior = castToString(value); // StringType
         return value;
       case -1014418093: // definition
         this.definition = castToType(value); // Type
@@ -4811,8 +3318,7 @@ public class PlanDefinition extends MetadataResource {
       } else if (name.equals("textEquivalent")) {
         this.textEquivalent = castToString(value); // StringType
       } else if (name.equals("priority")) {
-        value = new RequestPriorityEnumFactory().fromType(castToCode(value));
-        this.priority = (Enumeration) value; // Enumeration<RequestPriority>
+        this.priority = castToString(value); // StringType
       } else if (name.equals("code")) {
         this.getCode().add(castToCodeableConcept(value));
       } else if (name.equals("reason")) {
@@ -4840,20 +3346,15 @@ public class PlanDefinition extends MetadataResource {
       } else if (name.equals("type")) {
         this.type = castToCodeableConcept(value); // CodeableConcept
       } else if (name.equals("groupingBehavior")) {
-        value = new ActionGroupingBehaviorEnumFactory().fromType(castToCode(value));
-        this.groupingBehavior = (Enumeration) value; // Enumeration<ActionGroupingBehavior>
+        this.groupingBehavior = castToString(value); // StringType
       } else if (name.equals("selectionBehavior")) {
-        value = new ActionSelectionBehaviorEnumFactory().fromType(castToCode(value));
-        this.selectionBehavior = (Enumeration) value; // Enumeration<ActionSelectionBehavior>
+        this.selectionBehavior = castToString(value); // StringType
       } else if (name.equals("requiredBehavior")) {
-        value = new ActionRequiredBehaviorEnumFactory().fromType(castToCode(value));
-        this.requiredBehavior = (Enumeration) value; // Enumeration<ActionRequiredBehavior>
+        this.requiredBehavior = castToString(value); // StringType
       } else if (name.equals("precheckBehavior")) {
-        value = new ActionPrecheckBehaviorEnumFactory().fromType(castToCode(value));
-        this.precheckBehavior = (Enumeration) value; // Enumeration<ActionPrecheckBehavior>
+        this.precheckBehavior = castToString(value); // StringType
       } else if (name.equals("cardinalityBehavior")) {
-        value = new ActionCardinalityBehaviorEnumFactory().fromType(castToCode(value));
-        this.cardinalityBehavior = (Enumeration) value; // Enumeration<ActionCardinalityBehavior>
+        this.cardinalityBehavior = castToString(value); // StringType
       } else if (name.equals("definition[x]")) {
         this.definition = castToType(value); // Type
       } else if (name.equals("transform")) {
@@ -5009,7 +3510,7 @@ public class PlanDefinition extends MetadataResource {
       case -900391049:
         /* textEquivalent */ return new String[] { "string" };
       case -1165461084:
-        /* priority */ return new String[] { "code" };
+        /* priority */ return new String[] { "string" };
       case 3059181:
         /* code */ return new String[] { "CodeableConcept" };
       case -934964668:
@@ -5037,15 +3538,15 @@ public class PlanDefinition extends MetadataResource {
       case 3575610:
         /* type */ return new String[] { "CodeableConcept" };
       case 586678389:
-        /* groupingBehavior */ return new String[] { "code" };
+        /* groupingBehavior */ return new String[] { "string" };
       case 168639486:
-        /* selectionBehavior */ return new String[] { "code" };
+        /* selectionBehavior */ return new String[] { "string" };
       case -1163906287:
-        /* requiredBehavior */ return new String[] { "code" };
+        /* requiredBehavior */ return new String[] { "string" };
       case -1174249033:
-        /* precheckBehavior */ return new String[] { "code" };
+        /* precheckBehavior */ return new String[] { "string" };
       case -922577408:
-        /* cardinalityBehavior */ return new String[] { "code" };
+        /* cardinalityBehavior */ return new String[] { "string" };
       case -1014418093:
         /* definition */ return new String[] { "canonical", "uri" };
       case 1052666732:
@@ -5301,10 +3802,10 @@ public class PlanDefinition extends MetadataResource {
     /**
      * The kind of condition.
      */
-    @Child(name = "kind", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
+    @Child(name = "kind", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "applicability | start | stop", formalDefinition = "The kind of condition.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/action-condition-kind")
-    protected Enumeration<ActionConditionKind> kind;
+    protected StringType kind;
 
     /**
      * An expression that returns true or false, indicating whether the condition is
@@ -5327,7 +3828,7 @@ public class PlanDefinition extends MetadataResource {
     /**
      * Constructor
      */
-    public PlanDefinitionActionConditionComponent(Enumeration<ActionConditionKind> kind) {
+    public PlanDefinitionActionConditionComponent(StringType kind) {
       super();
       this.kind = kind;
     }
@@ -5337,12 +3838,12 @@ public class PlanDefinition extends MetadataResource {
      *         with id, value and extensions. The accessor "getKind" gives direct
      *         access to the value
      */
-    public Enumeration<ActionConditionKind> getKindElement() {
+    public StringType getKindElement() {
       if (this.kind == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create PlanDefinitionActionConditionComponent.kind");
         else if (Configuration.doAutoCreate())
-          this.kind = new Enumeration<ActionConditionKind>(new ActionConditionKindEnumFactory()); // bb
+          this.kind = new StringType(); // bb
       return this.kind;
     }
 
@@ -5359,7 +3860,7 @@ public class PlanDefinition extends MetadataResource {
      *              object with id, value and extensions. The accessor "getKind"
      *              gives direct access to the value
      */
-    public PlanDefinitionActionConditionComponent setKindElement(Enumeration<ActionConditionKind> value) {
+    public PlanDefinitionActionConditionComponent setKindElement(StringType value) {
       this.kind = value;
       return this;
     }
@@ -5367,16 +3868,16 @@ public class PlanDefinition extends MetadataResource {
     /**
      * @return The kind of condition.
      */
-    public ActionConditionKind getKind() {
+    public String getKind() {
       return this.kind == null ? null : this.kind.getValue();
     }
 
     /**
      * @param value The kind of condition.
      */
-    public PlanDefinitionActionConditionComponent setKind(ActionConditionKind value) {
+    public PlanDefinitionActionConditionComponent setKind(String value) {
       if (this.kind == null)
-        this.kind = new Enumeration<ActionConditionKind>(new ActionConditionKindEnumFactory());
+        this.kind = new StringType();
       this.kind.setValue(value);
       return this;
     }
@@ -5409,7 +3910,7 @@ public class PlanDefinition extends MetadataResource {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("kind", "code", "The kind of condition.", 0, 1, kind));
+      children.add(new Property("kind", "string", "The kind of condition.", 0, 1, kind));
       children.add(new Property("expression", "Expression",
           "An expression that returns true or false, indicating whether the condition is satisfied.", 0, 1,
           expression));
@@ -5419,7 +3920,7 @@ public class PlanDefinition extends MetadataResource {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 3292052:
-        /* kind */ return new Property("kind", "code", "The kind of condition.", 0, 1, kind);
+        /* kind */ return new Property("kind", "string", "The kind of condition.", 0, 1, kind);
       case -1795452264:
         /* expression */ return new Property("expression", "Expression",
             "An expression that returns true or false, indicating whether the condition is satisfied.", 0, 1,
@@ -5434,7 +3935,7 @@ public class PlanDefinition extends MetadataResource {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 3292052:
-        /* kind */ return this.kind == null ? new Base[0] : new Base[] { this.kind }; // Enumeration<ActionConditionKind>
+        /* kind */ return this.kind == null ? new Base[0] : new Base[] { this.kind }; // StringType
       case -1795452264:
         /* expression */ return this.expression == null ? new Base[0] : new Base[] { this.expression }; // Expression
       default:
@@ -5447,8 +3948,7 @@ public class PlanDefinition extends MetadataResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3292052: // kind
-        value = new ActionConditionKindEnumFactory().fromType(castToCode(value));
-        this.kind = (Enumeration) value; // Enumeration<ActionConditionKind>
+        this.kind = castToString(value); // StringType
         return value;
       case -1795452264: // expression
         this.expression = castToExpression(value); // Expression
@@ -5462,8 +3962,7 @@ public class PlanDefinition extends MetadataResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("kind")) {
-        value = new ActionConditionKindEnumFactory().fromType(castToCode(value));
-        this.kind = (Enumeration) value; // Enumeration<ActionConditionKind>
+        this.kind = castToString(value); // StringType
       } else if (name.equals("expression")) {
         this.expression = castToExpression(value); // Expression
       } else
@@ -5499,7 +3998,7 @@ public class PlanDefinition extends MetadataResource {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 3292052:
-        /* kind */ return new String[] { "code" };
+        /* kind */ return new String[] { "string" };
       case -1795452264:
         /* expression */ return new String[] { "Expression" };
       default:
@@ -5576,10 +4075,10 @@ public class PlanDefinition extends MetadataResource {
      * The relationship of this action to the related action.
      */
     @Child(name = "relationship", type = {
-        CodeType.class }, order = 2, min = 1, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 2, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "before-start | before | before-end | concurrent-with-start | concurrent | concurrent-with-end | after-start | after | after-end", formalDefinition = "The relationship of this action to the related action.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/action-relationship-type")
-    protected Enumeration<ActionRelationshipType> relationship;
+    protected StringType relationship;
 
     /**
      * A duration or range of durations to apply to the relationship. For example,
@@ -5603,7 +4102,7 @@ public class PlanDefinition extends MetadataResource {
      * Constructor
      */
     public PlanDefinitionActionRelatedActionComponent(IdType actionId,
-        Enumeration<ActionRelationshipType> relationship) {
+                                                      StringType relationship) {
       super();
       this.actionId = actionId;
       this.relationship = relationship;
@@ -5664,12 +4163,12 @@ public class PlanDefinition extends MetadataResource {
      *         extensions. The accessor "getRelationship" gives direct access to the
      *         value
      */
-    public Enumeration<ActionRelationshipType> getRelationshipElement() {
+    public StringType getRelationshipElement() {
       if (this.relationship == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create PlanDefinitionActionRelatedActionComponent.relationship");
         else if (Configuration.doAutoCreate())
-          this.relationship = new Enumeration<ActionRelationshipType>(new ActionRelationshipTypeEnumFactory()); // bb
+          this.relationship = new StringType(); // bb
       return this.relationship;
     }
 
@@ -5688,7 +4187,7 @@ public class PlanDefinition extends MetadataResource {
      *              access to the value
      */
     public PlanDefinitionActionRelatedActionComponent setRelationshipElement(
-        Enumeration<ActionRelationshipType> value) {
+      StringType value) {
       this.relationship = value;
       return this;
     }
@@ -5696,16 +4195,16 @@ public class PlanDefinition extends MetadataResource {
     /**
      * @return The relationship of this action to the related action.
      */
-    public ActionRelationshipType getRelationship() {
+    public String getRelationship() {
       return this.relationship == null ? null : this.relationship.getValue();
     }
 
     /**
      * @param value The relationship of this action to the related action.
      */
-    public PlanDefinitionActionRelatedActionComponent setRelationship(ActionRelationshipType value) {
+    public PlanDefinitionActionRelatedActionComponent setRelationship(String value) {
       if (this.relationship == null)
-        this.relationship = new Enumeration<ActionRelationshipType>(new ActionRelationshipTypeEnumFactory());
+        this.relationship = new StringType();
       this.relationship.setValue(value);
       return this;
     }
@@ -5770,7 +4269,7 @@ public class PlanDefinition extends MetadataResource {
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
       children.add(new Property("actionId", "id", "The element id of the related action.", 0, 1, actionId));
-      children.add(new Property("relationship", "code", "The relationship of this action to the related action.", 0, 1,
+      children.add(new Property("relationship", "string", "The relationship of this action to the related action.", 0, 1,
           relationship));
       children.add(new Property("offset[x]", "Duration|Range",
           "A duration or range of durations to apply to the relationship. For example, 30-60 minutes before.", 0, 1,
@@ -5783,7 +4282,7 @@ public class PlanDefinition extends MetadataResource {
       case -1656172047:
         /* actionId */ return new Property("actionId", "id", "The element id of the related action.", 0, 1, actionId);
       case -261851592:
-        /* relationship */ return new Property("relationship", "code",
+        /* relationship */ return new Property("relationship", "string",
             "The relationship of this action to the related action.", 0, 1, relationship);
       case -1960684787:
         /* offset[x] */ return new Property("offset[x]", "Duration|Range",
@@ -5813,7 +4312,7 @@ public class PlanDefinition extends MetadataResource {
       case -1656172047:
         /* actionId */ return this.actionId == null ? new Base[0] : new Base[] { this.actionId }; // IdType
       case -261851592:
-        /* relationship */ return this.relationship == null ? new Base[0] : new Base[] { this.relationship }; // Enumeration<ActionRelationshipType>
+        /* relationship */ return this.relationship == null ? new Base[0] : new Base[] { this.relationship }; // StringType
       case -1019779949:
         /* offset */ return this.offset == null ? new Base[0] : new Base[] { this.offset }; // Type
       default:
@@ -5829,8 +4328,7 @@ public class PlanDefinition extends MetadataResource {
         this.actionId = castToId(value); // IdType
         return value;
       case -261851592: // relationship
-        value = new ActionRelationshipTypeEnumFactory().fromType(castToCode(value));
-        this.relationship = (Enumeration) value; // Enumeration<ActionRelationshipType>
+        this.relationship = castToString(value); // StringType
         return value;
       case -1019779949: // offset
         this.offset = castToType(value); // Type
@@ -5846,8 +4344,7 @@ public class PlanDefinition extends MetadataResource {
       if (name.equals("actionId")) {
         this.actionId = castToId(value); // IdType
       } else if (name.equals("relationship")) {
-        value = new ActionRelationshipTypeEnumFactory().fromType(castToCode(value));
-        this.relationship = (Enumeration) value; // Enumeration<ActionRelationshipType>
+        this.relationship = castToString(value); // StringType
       } else if (name.equals("offset[x]")) {
         this.offset = castToType(value); // Type
       } else
@@ -5891,7 +4388,7 @@ public class PlanDefinition extends MetadataResource {
       case -1656172047:
         /* actionId */ return new String[] { "id" };
       case -261851592:
-        /* relationship */ return new String[] { "code" };
+        /* relationship */ return new String[] { "string" };
       case -1019779949:
         /* offset */ return new String[] { "Duration", "Range" };
       default:
@@ -5966,10 +4463,10 @@ public class PlanDefinition extends MetadataResource {
     /**
      * The type of participant in the action.
      */
-    @Child(name = "type", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
+    @Child(name = "type", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "patient | practitioner | related-person | device", formalDefinition = "The type of participant in the action.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/action-participant-type")
-    protected Enumeration<ActionParticipantType> type;
+    protected StringType type;
 
     /**
      * The role the participant should play in performing the described action.
@@ -5992,7 +4489,7 @@ public class PlanDefinition extends MetadataResource {
     /**
      * Constructor
      */
-    public PlanDefinitionActionParticipantComponent(Enumeration<ActionParticipantType> type) {
+    public PlanDefinitionActionParticipantComponent(StringType type) {
       super();
       this.type = type;
     }
@@ -6002,12 +4499,12 @@ public class PlanDefinition extends MetadataResource {
      *         underlying object with id, value and extensions. The accessor
      *         "getType" gives direct access to the value
      */
-    public Enumeration<ActionParticipantType> getTypeElement() {
+    public StringType getTypeElement() {
       if (this.type == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create PlanDefinitionActionParticipantComponent.type");
         else if (Configuration.doAutoCreate())
-          this.type = new Enumeration<ActionParticipantType>(new ActionParticipantTypeEnumFactory()); // bb
+          this.type = new StringType(); // bb
       return this.type;
     }
 
@@ -6024,7 +4521,7 @@ public class PlanDefinition extends MetadataResource {
      *              the underlying object with id, value and extensions. The
      *              accessor "getType" gives direct access to the value
      */
-    public PlanDefinitionActionParticipantComponent setTypeElement(Enumeration<ActionParticipantType> value) {
+    public PlanDefinitionActionParticipantComponent setTypeElement(StringType value) {
       this.type = value;
       return this;
     }
@@ -6032,16 +4529,16 @@ public class PlanDefinition extends MetadataResource {
     /**
      * @return The type of participant in the action.
      */
-    public ActionParticipantType getType() {
+    public String getType() {
       return this.type == null ? null : this.type.getValue();
     }
 
     /**
      * @param value The type of participant in the action.
      */
-    public PlanDefinitionActionParticipantComponent setType(ActionParticipantType value) {
+    public PlanDefinitionActionParticipantComponent setType(String value) {
       if (this.type == null)
-        this.type = new Enumeration<ActionParticipantType>(new ActionParticipantTypeEnumFactory());
+        this.type = new StringType();
       this.type.setValue(value);
       return this;
     }
@@ -6074,7 +4571,7 @@ public class PlanDefinition extends MetadataResource {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("type", "code", "The type of participant in the action.", 0, 1, type));
+      children.add(new Property("type", "string", "The type of participant in the action.", 0, 1, type));
       children.add(new Property("role", "CodeableConcept",
           "The role the participant should play in performing the described action.", 0, 1, role));
     }
@@ -6083,7 +4580,7 @@ public class PlanDefinition extends MetadataResource {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 3575610:
-        /* type */ return new Property("type", "code", "The type of participant in the action.", 0, 1, type);
+        /* type */ return new Property("type", "string", "The type of participant in the action.", 0, 1, type);
       case 3506294:
         /* role */ return new Property("role", "CodeableConcept",
             "The role the participant should play in performing the described action.", 0, 1, role);
@@ -6097,7 +4594,7 @@ public class PlanDefinition extends MetadataResource {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 3575610:
-        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<ActionParticipantType>
+        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
       case 3506294:
         /* role */ return this.role == null ? new Base[0] : new Base[] { this.role }; // CodeableConcept
       default:
@@ -6110,8 +4607,7 @@ public class PlanDefinition extends MetadataResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3575610: // type
-        value = new ActionParticipantTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<ActionParticipantType>
+        this.type = castToString(value); // StringType
         return value;
       case 3506294: // role
         this.role = castToCodeableConcept(value); // CodeableConcept
@@ -6125,8 +4621,7 @@ public class PlanDefinition extends MetadataResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("type")) {
-        value = new ActionParticipantTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<ActionParticipantType>
+        this.type = castToString(value); // StringType
       } else if (name.equals("role")) {
         this.role = castToCodeableConcept(value); // CodeableConcept
       } else
@@ -6162,7 +4657,7 @@ public class PlanDefinition extends MetadataResource {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 3575610:
-        /* type */ return new String[] { "code" };
+        /* type */ return new String[] { "string" };
       case 3506294:
         /* role */ return new String[] { "CodeableConcept" };
       default:
@@ -6712,7 +5207,7 @@ public class PlanDefinition extends MetadataResource {
   /**
    * Constructor
    */
-  public PlanDefinition(Enumeration<PublicationStatus> status) {
+  public PlanDefinition(StringType status) {
     super();
     this.status = status;
   }
@@ -7159,12 +5654,12 @@ public class PlanDefinition extends MetadataResource {
    *         id, value and extensions. The accessor "getStatus" gives direct
    *         access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create PlanDefinition.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -7182,7 +5677,7 @@ public class PlanDefinition extends MetadataResource {
    *              object with id, value and extensions. The accessor "getStatus"
    *              gives direct access to the value
    */
-  public PlanDefinition setStatusElement(Enumeration<PublicationStatus> value) {
+  public PlanDefinition setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -7191,7 +5686,7 @@ public class PlanDefinition extends MetadataResource {
    * @return The status of this plan definition. Enables tracking the life-cycle
    *         of the content.
    */
-  public PublicationStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
@@ -7199,9 +5694,9 @@ public class PlanDefinition extends MetadataResource {
    * @param value The status of this plan definition. Enables tracking the
    *              life-cycle of the content.
    */
-  public PlanDefinition setStatus(PublicationStatus value) {
+  public PlanDefinition setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -8529,7 +7024,7 @@ public class PlanDefinition extends MetadataResource {
     children.add(new Property("type", "CodeableConcept",
         "A high-level category for the plan definition that distinguishes the kinds of systems that would be interested in the plan definition.",
         0, 1, type));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of this plan definition. Enables tracking the life-cycle of the content.", 0, 1, status));
     children.add(new Property("experimental", "boolean",
         "A Boolean value to indicate that this plan definition is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
@@ -8628,7 +7123,7 @@ public class PlanDefinition extends MetadataResource {
           "A high-level category for the plan definition that distinguishes the kinds of systems that would be interested in the plan definition.",
           0, 1, type);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of this plan definition. Enables tracking the life-cycle of the content.", 0, 1, status);
     case -404562712:
       /* experimental */ return new Property("experimental", "boolean",
@@ -8751,7 +7246,7 @@ public class PlanDefinition extends MetadataResource {
     case 3575610:
       /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // CodeableConcept
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -404562712:
       /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
     case -1867885268:
@@ -8832,8 +7327,7 @@ public class PlanDefinition extends MetadataResource {
       this.type = castToCodeableConcept(value); // CodeableConcept
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -404562712: // experimental
       this.experimental = castToBoolean(value); // BooleanType
@@ -8927,8 +7421,7 @@ public class PlanDefinition extends MetadataResource {
     } else if (name.equals("type")) {
       this.type = castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("subject[x]")) {
@@ -9140,7 +7633,7 @@ public class PlanDefinition extends MetadataResource {
     case 3575610:
       /* type */ return new String[] { "CodeableConcept" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -404562712:
       /* experimental */ return new String[] { "boolean" };
     case -1867885268:

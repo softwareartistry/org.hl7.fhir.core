@@ -244,8 +244,8 @@ public class VisionPrescription extends DomainResource {
     /**
      * @return The eye for which the lens specification applies.
      */
-    public StringType getEye() {
-      return this.eye == null ? null : this.eye;
+    public String getEye() {
+      return this.eye == null ? null : this.eye.getValue();
     }
 
     /**
@@ -1069,7 +1069,7 @@ public class VisionPrescription extends DomainResource {
       case -309474065:
         /* product */ return this.product == null ? new Base[0] : new Base[] { this.product }; // CodeableConcept
       case 100913:
-        /* eye */ return this.eye == null ? new Base[0] : new Base[] { this.eye }; // Enumeration<VisionEyes>
+        /* eye */ return this.eye == null ? new Base[0] : new Base[] { this.eye }; // StringType
       case -895981619:
         /* sphere */ return this.sphere == null ? new Base[0] : new Base[] { this.sphere }; // DecimalType
       case -349378602:
@@ -1107,8 +1107,7 @@ public class VisionPrescription extends DomainResource {
         this.product = castToCodeableConcept(value); // CodeableConcept
         return value;
       case 100913: // eye
-//        value = new VisionEyesEnumFactory().fromType(castToCode(value));
-        this.eye = castToString(value) ; // Enumeration<VisionEyes>
+        this.eye = castToString(value) ; // StringType
         return value;
       case -895981619: // sphere
         this.sphere = castToDecimal(value); // DecimalType
@@ -1157,8 +1156,7 @@ public class VisionPrescription extends DomainResource {
       if (name.equals("product")) {
         this.product = castToCodeableConcept(value); // CodeableConcept
       } else if (name.equals("eye")) {
-//        value = new VisionEyesEnumFactory().fromType(castToCode(value));
-        this.eye =  castToString(value) ; // Enumeration<VisionEyes>
+        this.eye =  castToString(value) ; // StringType
       } else if (name.equals("sphere")) {
         this.sphere = castToDecimal(value); // DecimalType
       } else if (name.equals("cylinder")) {
@@ -1551,8 +1549,8 @@ public class VisionPrescription extends DomainResource {
     /**
      * @return The relative base, or reference lens edge, for the prism.
      */
-    public StringType getBase() {
-      return this.base == null ? null : this.base;
+    public String getBase() {
+      return this.base == null ? null : this.base.getValue();
     }
 
     /**
@@ -1594,7 +1592,7 @@ public class VisionPrescription extends DomainResource {
       case -1413853096:
         /* amount */ return this.amount == null ? new Base[0] : new Base[] { this.amount }; // DecimalType
       case 3016401:
-        /* base */ return this.base == null ? new Base[0] : new Base[] { this.base }; // Enumeration<VisionBase>
+        /* base */ return this.base == null ? new Base[0] : new Base[] { this.base }; // StringType
       default:
         return super.getProperty(hash, name, checkValid);
       }
@@ -1608,8 +1606,7 @@ public class VisionPrescription extends DomainResource {
         this.amount = castToDecimal(value); // DecimalType
         return value;
       case 3016401: // base
-//        value = new VisionBaseEnumFactory().fromType(castToCode(value));
-        this.base =  castToString(value) ; // Enumeration<VisionBase>
+        this.base =  castToString(value) ; // StringType
         return value;
       default:
         return super.setProperty(hash, name, value);
@@ -1622,8 +1619,7 @@ public class VisionPrescription extends DomainResource {
       if (name.equals("amount")) {
         this.amount = castToDecimal(value); // DecimalType
       } else if (name.equals("base")) {
-//        value = new VisionBaseEnumFactory().fromType(castToCode(value));
-        this.base =  castToString(value) ; // Enumeration<VisionBase>
+        this.base =  castToString(value) ; // StringType
       } else
         return super.setProperty(name, value);
       return value;
@@ -1913,8 +1909,8 @@ public class VisionPrescription extends DomainResource {
   /**
    * @return The status of the resource instance.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -2302,7 +2298,7 @@ public class VisionPrescription extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<VisionStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 1028554472:
       /* created */ return this.created == null ? new Base[0] : new Base[] { this.created }; // DateTimeType
     case -791418107:
@@ -2329,8 +2325,7 @@ public class VisionPrescription extends DomainResource {
       this.getIdentifier().add(castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-//      value = new VisionStatusEnumFactory().fromType(castToCode(value));
-      this.status =  castToString(value) ; // Enumeration<VisionStatus>
+      this.status =  castToString(value) ; // StringType
       return value;
     case 1028554472: // created
       this.created = castToDateTime(value); // DateTimeType
@@ -2361,8 +2356,7 @@ public class VisionPrescription extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(castToIdentifier(value));
     } else if (name.equals("status")) {
-//      value = new VisionStatusEnumFactory().fromType(castToCode(value));
-      this.status =  castToString(value) ; // Enumeration<VisionStatus>
+      this.status =  castToString(value) ; // StringType
     } else if (name.equals("created")) {
       this.created = castToDateTime(value); // DateTimeType
     } else if (name.equals("patient")) {

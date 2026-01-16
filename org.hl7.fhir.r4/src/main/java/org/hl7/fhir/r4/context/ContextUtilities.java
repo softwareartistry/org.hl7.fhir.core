@@ -19,7 +19,6 @@ import org.hl7.fhir.r4.model.ElementDefinition;
 import org.hl7.fhir.r4.model.CodeSystem.ConceptDefinitionComponent;
 import org.hl7.fhir.r4.model.CodeSystem.ConceptPropertyComponent;
 import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionBindingComponent;
-import org.hl7.fhir.r4.model.NamingSystem.NamingSystemIdentifierType;
 import org.hl7.fhir.r4.model.NamingSystem.NamingSystemUniqueIdComponent;
 import org.hl7.fhir.r4.model.Resource;
 import org.hl7.fhir.r4.model.StructureDefinition.StructureDefinitionKind;
@@ -117,7 +116,7 @@ public class ContextUtilities implements ProfileKnowledgeProvider {
 
   private String getUri(NamingSystem ns) {
     for (NamingSystemUniqueIdComponent id : ns.getUniqueId()) {
-      if (id.getType() == NamingSystemIdentifierType.URI)
+      if (id.getType() == "URI")
         return id.getValue();
     }
     return null;
@@ -125,7 +124,7 @@ public class ContextUtilities implements ProfileKnowledgeProvider {
 
   private boolean hasOid(NamingSystem ns, String oid) {
     for (NamingSystemUniqueIdComponent id : ns.getUniqueId()) {
-      if (id.getType() == NamingSystemIdentifierType.OID && id.getValue().equals(oid))
+      if (id.getType() == "OID" && id.getValue().equals(oid))
         return true;
     }
     return false;
@@ -150,8 +149,8 @@ public class ContextUtilities implements ProfileKnowledgeProvider {
   public Set<String> getTypeNameSet() {
     Set<String> result = new HashSet<String>();
     for (StructureDefinition sd : context.fetchResourcesByType(StructureDefinition.class)) {
-      if (sd.getKind() != StructureDefinitionKind.LOGICAL && sd.getDerivation() == TypeDerivationRule.SPECIALIZATION && 
-          VersionUtilities.versionMatches(context.getVersion(), sd.getFhirVersion().toCode())) {
+      if (sd.getKind() != StructureDefinitionKind.LOGICAL && sd.getDerivation() == TypeDerivationRule.SPECIALIZATION &&
+        VersionUtilities.versionMatches(context.getVersion(), sd.getFhirVersion().toCode())) {
         result.add(sd.getName());
       }
     }

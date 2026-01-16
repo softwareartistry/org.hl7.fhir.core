@@ -39,7 +39,6 @@ import org.hl7.fhir.r4.context.IWorkerContext;
 import org.hl7.fhir.r4.fhirpath.TypeDetails;
 import org.hl7.fhir.r4.formats.FormatUtilities;
 import org.hl7.fhir.r4.model.ElementDefinition;
-import org.hl7.fhir.r4.model.ElementDefinition.PropertyRepresentation;
 import org.hl7.fhir.r4.model.ElementDefinition.TypeRefComponent;
 import org.hl7.fhir.r4.model.StructureDefinition;
 import org.hl7.fhir.r4.model.StructureDefinition.StructureDefinitionKind;
@@ -183,7 +182,7 @@ public class Property {
   public boolean isResource() {
     if (definition.getType().size() > 0)
       return definition.getType().size() == 1 && ("Resource".equals(definition.getType().get(0).getCode())
-          || "DomainResource".equals(definition.getType().get(0).getCode()));
+        || "DomainResource".equals(definition.getType().get(0).getCode()));
     else
       return !definition.getPath().contains(".") && structure.getKind() == StructureDefinitionKind.RESOURCE;
   }
@@ -232,10 +231,10 @@ public class Property {
     if (!hasType(name))
       return false;
     StructureDefinition sd = context.fetchResource(StructureDefinition.class,
-        structure.getUrl().substring(0, structure.getUrl().lastIndexOf("/") + 1) + getType(name));
+      structure.getUrl().substring(0, structure.getUrl().lastIndexOf("/") + 1) + getType(name));
     if (sd == null)
       sd = context.fetchResource(StructureDefinition.class,
-          ProfileUtilities.sdNs(getType(name), context.getOverrideVersionNs()));
+        ProfileUtilities.sdNs(getType(name), context.getOverrideVersionNs()));
     if (sd != null && sd.getKind() == StructureDefinitionKind.PRIMITIVETYPE)
       return true;
     if (sd == null || sd.getKind() != StructureDefinitionKind.LOGICAL)
@@ -283,7 +282,7 @@ public class Property {
         }
         if (!all) {
           // ok, it's polymorphic
-          if (ed.hasRepresentation(PropertyRepresentation.TYPEATTR)) {
+          if (ed.hasRepresentation("TYPEATTR")) {
             t = statedType;
             if (t == null && ToolingExtensions.hasExtension(ed,
                 "http://hl7.org/fhir/StructureDefinition/elementdefinition-defaulttype"))

@@ -71,7 +71,6 @@ import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
 import org.hl7.fhir.r4.model.ConceptMap;
 import org.hl7.fhir.r4.model.ConceptMap.ConceptMapGroupComponent;
-import org.hl7.fhir.r4.model.ConceptMap.ConceptMapGroupUnmappedMode;
 import org.hl7.fhir.r4.model.ConceptMap.SourceElementComponent;
 import org.hl7.fhir.r4.model.ConceptMap.TargetElementComponent;
 import org.hl7.fhir.r4.model.Constants;
@@ -82,9 +81,7 @@ import org.hl7.fhir.r4.model.ElementDefinition;
 import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionMappingComponent;
 import org.hl7.fhir.r4.model.ElementDefinition.TypeRefComponent;
 import org.hl7.fhir.r4.model.Enumeration;
-import org.hl7.fhir.r4.model.Enumerations.ConceptMapEquivalence;
 import org.hl7.fhir.r4.model.Enumerations.FHIRVersion;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
 import org.hl7.fhir.r4.model.IdType;
 import org.hl7.fhir.r4.model.IntegerType;
 import org.hl7.fhir.r4.model.Narrative;
@@ -353,7 +350,7 @@ public class StructureMapUtilities {
         b.append("  unmapped for ");
         b.append(prefixesSrc.get(cg.getSource()));
         b.append(" = ");
-        b.append(cg.getUnmapped().getMode().toCode());
+        b.append(cg.getUnmapped().getMode());
         b.append("\r\n");
       }
     }
@@ -388,27 +385,31 @@ public class StructureMapUtilities {
     b.append("}\r\n\r\n");
   }
 
-  private static Object getChar(ConceptMapEquivalence equivalence) {
-    switch (equivalence) {
-    case RELATEDTO:
+  private static Object getChar(String equivalence) {
+    if (equivalence == null) {
+      return "??";
+    }
+
+    switch (equivalence.toUpperCase()) {
+    case "RELATEDTO":
       return "-";
-    case EQUAL:
+    case "EQUAL":
       return "=";
-    case EQUIVALENT:
+    case "EQUIVALENT":
       return "==";
-    case DISJOINT:
+    case "DISJOINT":
       return "!=";
-    case UNMATCHED:
+    case "UNMATCHED":
       return "--";
-    case WIDER:
+    case "WIDER":
       return "<=";
-    case SUBSUMES:
+    case "SUBSUMES":
       return "<-";
-    case NARROWER:
+    case "NARROWER":
       return ">=";
-    case SPECIALIZES:
+    case "SPECIALIZES":
       return ">-";
-    case INEXACT:
+    case "INEXACT":
       return "~";
     default:
       return "??";
@@ -426,7 +427,7 @@ public class StructureMapUtilities {
         b.append(" ");
       }
       b.append("as ");
-      b.append(s.getMode().toCode());
+      b.append(s.getMode());
       b.append("\r\n");
       renderDoco(b, s.getDocumentation());
     }
@@ -460,7 +461,7 @@ public class StructureMapUtilities {
         first = false;
       else
         b.append(", ");
-      b.append(gi.getMode().toCode());
+      b.append(gi.getMode());
       b.append(" ");
       b.append(gi.getName());
       if (gi.hasType()) {
@@ -642,7 +643,7 @@ public class StructureMapUtilities {
 
     if (rs.hasListMode()) {
       b.append(" ");
-      b.append(rs.getListMode().toCode());
+      b.append(rs.getListMode());
     }
     if (rs.hasDefaultValue()) {
       b.append(" default ");
@@ -699,7 +700,7 @@ public class StructureMapUtilities {
         b.append("\"" + ((StringType) rt.getParameter().get(1).getValue()).asStringValue() + "\"");
         b.append(")");
       } else {
-        b.append(rt.getTransform().toCode());
+        b.append(rt.getTransform());
         b.append("(");
         boolean first = true;
         for (StructureMapGroupRuleTargetParameterComponent rtp : rt.getParameter()) {
@@ -800,7 +801,7 @@ public class StructureMapUtilities {
     if (id.startsWith("#"))
       throw lexer.error("Concept Map identifier must start with #");
     map.setId(id);
-    map.setStatus(PublicationStatus.DRAFT); // todo: how to add this to the text format
+    map.setStatus("DRAFT"); // todo: how to add this to the text format
     result.getContained().add(map);
     lexer.token("{");
     lexer.skipComments();
@@ -824,7 +825,7 @@ public class StructureMapUtilities {
       lexer.token("=");
       String v = lexer.take();
       if (v.equals("provided")) {
-        g.getUnmapped().setMode(ConceptMapGroupUnmappedMode.PROVIDED);
+        g.getUnmapped().setMode("PROVIDED");
       } else
         throw lexer.error("Only unmapped mode PROVIDED is supported at this time");
     }
@@ -832,8 +833,8 @@ public class StructureMapUtilities {
       String srcs = readPrefix(prefixes, lexer);
       lexer.token(":");
       String sc = lexer.getCurrent().startsWith("\"") ? lexer.readConstant("code") : lexer.take();
-      ConceptMapEquivalence eq = readEquivalence(lexer);
-      String tgts = (eq != ConceptMapEquivalence.UNMATCHED) ? readPrefix(prefixes, lexer) : "";
+      String eq = readEquivalence(lexer);
+      String tgts = (eq != "UNMATCHED") ? readPrefix(prefixes, lexer) : "";
       ConceptMapGroupComponent g = getGroup(map, srcs, tgts);
       SourceElementComponent e = g.addElement();
       e.setCode(sc);
@@ -841,7 +842,7 @@ public class StructureMapUtilities {
         e.setCode(lexer.processConstant(e.getCode()));
       TargetElementComponent tgt = e.addTarget();
       tgt.setEquivalence(eq);
-      if (tgt.getEquivalence() != ConceptMapEquivalence.UNMATCHED) {
+      if (tgt.getEquivalence() != "UNMATCHED") {
         lexer.token(":");
         tgt.setCode(lexer.take());
         if (tgt.getCode().startsWith("\""))
@@ -875,28 +876,28 @@ public class StructureMapUtilities {
     return prefixes.get(prefix);
   }
 
-  private ConceptMapEquivalence readEquivalence(FHIRLexer lexer) throws FHIRLexerException {
+  private String readEquivalence(FHIRLexer lexer) throws FHIRLexerException {
     String token = lexer.take();
     if (token.equals("-"))
-      return ConceptMapEquivalence.RELATEDTO;
+      return "RELATEDTO";
     if (token.equals("="))
-      return ConceptMapEquivalence.EQUAL;
+      return "EQUAL";
     if (token.equals("=="))
-      return ConceptMapEquivalence.EQUIVALENT;
+      return "EQUIVALENT";
     if (token.equals("!="))
-      return ConceptMapEquivalence.DISJOINT;
+      return "DISJOINT";
     if (token.equals("--"))
-      return ConceptMapEquivalence.UNMATCHED;
+      return "UNMATCHED";
     if (token.equals("<="))
-      return ConceptMapEquivalence.WIDER;
+      return "WIDER";
     if (token.equals("<-"))
-      return ConceptMapEquivalence.SUBSUMES;
+      return "SUBSUMES";
     if (token.equals(">="))
-      return ConceptMapEquivalence.NARROWER;
+      return "NARROWER";
     if (token.equals(">-"))
-      return ConceptMapEquivalence.SPECIALIZES;
+      return "SPECIALIZES";
     if (token.equals("~"))
-      return ConceptMapEquivalence.INEXACT;
+      return "INEXACT";
     throw lexer.error("Unknown equivalence token '" + token + "'");
   }
 
@@ -2228,8 +2229,8 @@ public class StructureMapUtilities {
           message = "Concept map " + su + " found no translation for " + src.getCode();
         else {
           for (TargetElementComponent tgt : list.get(0).comp.getTarget()) {
-            if (tgt.getEquivalence() == null || EnumSet.of(ConceptMapEquivalence.EQUAL, ConceptMapEquivalence.RELATEDTO,
-                ConceptMapEquivalence.EQUIVALENT, ConceptMapEquivalence.WIDER).contains(tgt.getEquivalence())) {
+            if (tgt.getEquivalence() == null || Set.of("EQUAL", "RELATEDTO",
+                "EQUIVALENT", "WIDER").contains(tgt.getEquivalence())) {
               if (done) {
                 message = "Concept map " + su + " found multiple matches for " + src.getCode();
                 done = false;
@@ -2237,7 +2238,7 @@ public class StructureMapUtilities {
                 done = true;
                 outcome = new Coding().setCode(tgt.getCode()).setSystem(list.get(0).group.getTarget());
               }
-            } else if (tgt.getEquivalence() == ConceptMapEquivalence.UNMATCHED) {
+            } else if (tgt.getEquivalence() == "UNMATCHED") {
               done = true;
             }
           }
@@ -3090,7 +3091,7 @@ public class StructureMapUtilities {
     StructureMap map = parse(b.toString(), sd.getUrl());
     map.setId(tail(map.getUrl()));
     if (!map.hasStatus())
-      map.setStatus(PublicationStatus.DRAFT);
+      map.setStatus("DRAFT");
     map.getText().setStatus(NarrativeStatus.GENERATED);
     map.getText().setDiv(new XhtmlNode(NodeType.Element, "div"));
     map.getText().getDiv().addTag("pre").addText(render(map));

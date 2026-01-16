@@ -36,8 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -57,350 +55,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
     "lastReviewDate", "effectivePeriod", "topic", "author", "editor", "reviewer", "endorser", "relatedArtifact", "type",
     "characteristic" })
 public class EvidenceVariable extends MetadataResource {
-
-  public enum EvidenceVariableType {
-    /**
-     * The variable is dichotomous, such as present or absent.
-     */
-    DICHOTOMOUS,
-    /**
-     * The variable is a continuous result such as a quantity.
-     */
-    CONTINUOUS,
-    /**
-     * The variable is described narratively rather than quantitatively.
-     */
-    DESCRIPTIVE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static EvidenceVariableType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("dichotomous".equals(codeString))
-        return DICHOTOMOUS;
-      if ("continuous".equals(codeString))
-        return CONTINUOUS;
-      if ("descriptive".equals(codeString))
-        return DESCRIPTIVE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown EvidenceVariableType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case DICHOTOMOUS:
-        return "dichotomous";
-      case CONTINUOUS:
-        return "continuous";
-      case DESCRIPTIVE:
-        return "descriptive";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case DICHOTOMOUS:
-        return "http://hl7.org/fhir/variable-type";
-      case CONTINUOUS:
-        return "http://hl7.org/fhir/variable-type";
-      case DESCRIPTIVE:
-        return "http://hl7.org/fhir/variable-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case DICHOTOMOUS:
-        return "The variable is dichotomous, such as present or absent.";
-      case CONTINUOUS:
-        return "The variable is a continuous result such as a quantity.";
-      case DESCRIPTIVE:
-        return "The variable is described narratively rather than quantitatively.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case DICHOTOMOUS:
-        return "Dichotomous";
-      case CONTINUOUS:
-        return "Continuous";
-      case DESCRIPTIVE:
-        return "Descriptive";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class EvidenceVariableTypeEnumFactory implements EnumFactory<EvidenceVariableType> {
-    public EvidenceVariableType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("dichotomous".equals(codeString))
-        return EvidenceVariableType.DICHOTOMOUS;
-      if ("continuous".equals(codeString))
-        return EvidenceVariableType.CONTINUOUS;
-      if ("descriptive".equals(codeString))
-        return EvidenceVariableType.DESCRIPTIVE;
-      throw new IllegalArgumentException("Unknown EvidenceVariableType code '" + codeString + "'");
-    }
-
-    public Enumeration<EvidenceVariableType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<EvidenceVariableType>(this, EvidenceVariableType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<EvidenceVariableType>(this, EvidenceVariableType.NULL, code);
-      if ("dichotomous".equals(codeString))
-        return new Enumeration<EvidenceVariableType>(this, EvidenceVariableType.DICHOTOMOUS, code);
-      if ("continuous".equals(codeString))
-        return new Enumeration<EvidenceVariableType>(this, EvidenceVariableType.CONTINUOUS, code);
-      if ("descriptive".equals(codeString))
-        return new Enumeration<EvidenceVariableType>(this, EvidenceVariableType.DESCRIPTIVE, code);
-      throw new FHIRException("Unknown EvidenceVariableType code '" + codeString + "'");
-    }
-
-    public String toCode(EvidenceVariableType code) {
-       if (code == EvidenceVariableType.NULL)
-           return null;
-       if (code == EvidenceVariableType.DICHOTOMOUS)
-        return "dichotomous";
-      if (code == EvidenceVariableType.CONTINUOUS)
-        return "continuous";
-      if (code == EvidenceVariableType.DESCRIPTIVE)
-        return "descriptive";
-      return "?";
-   }
-
-    public String toSystem(EvidenceVariableType code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum GroupMeasure {
-    /**
-     * Aggregated using Mean of participant values.
-     */
-    MEAN,
-    /**
-     * Aggregated using Median of participant values.
-     */
-    MEDIAN,
-    /**
-     * Aggregated using Mean of study mean values.
-     */
-    MEANOFMEAN,
-    /**
-     * Aggregated using Mean of study median values.
-     */
-    MEANOFMEDIAN,
-    /**
-     * Aggregated using Median of study mean values.
-     */
-    MEDIANOFMEAN,
-    /**
-     * Aggregated using Median of study median values.
-     */
-    MEDIANOFMEDIAN,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static GroupMeasure fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("mean".equals(codeString))
-        return MEAN;
-      if ("median".equals(codeString))
-        return MEDIAN;
-      if ("mean-of-mean".equals(codeString))
-        return MEANOFMEAN;
-      if ("mean-of-median".equals(codeString))
-        return MEANOFMEDIAN;
-      if ("median-of-mean".equals(codeString))
-        return MEDIANOFMEAN;
-      if ("median-of-median".equals(codeString))
-        return MEDIANOFMEDIAN;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown GroupMeasure code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case MEAN:
-        return "mean";
-      case MEDIAN:
-        return "median";
-      case MEANOFMEAN:
-        return "mean-of-mean";
-      case MEANOFMEDIAN:
-        return "mean-of-median";
-      case MEDIANOFMEAN:
-        return "median-of-mean";
-      case MEDIANOFMEDIAN:
-        return "median-of-median";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case MEAN:
-        return "http://hl7.org/fhir/group-measure";
-      case MEDIAN:
-        return "http://hl7.org/fhir/group-measure";
-      case MEANOFMEAN:
-        return "http://hl7.org/fhir/group-measure";
-      case MEANOFMEDIAN:
-        return "http://hl7.org/fhir/group-measure";
-      case MEDIANOFMEAN:
-        return "http://hl7.org/fhir/group-measure";
-      case MEDIANOFMEDIAN:
-        return "http://hl7.org/fhir/group-measure";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case MEAN:
-        return "Aggregated using Mean of participant values.";
-      case MEDIAN:
-        return "Aggregated using Median of participant values.";
-      case MEANOFMEAN:
-        return "Aggregated using Mean of study mean values.";
-      case MEANOFMEDIAN:
-        return "Aggregated using Mean of study median values.";
-      case MEDIANOFMEAN:
-        return "Aggregated using Median of study mean values.";
-      case MEDIANOFMEDIAN:
-        return "Aggregated using Median of study median values.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case MEAN:
-        return "Mean";
-      case MEDIAN:
-        return "Median";
-      case MEANOFMEAN:
-        return "Mean of Study Means";
-      case MEANOFMEDIAN:
-        return "Mean of Study Medins";
-      case MEDIANOFMEAN:
-        return "Median of Study Means";
-      case MEDIANOFMEDIAN:
-        return "Median of Study Medians";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class GroupMeasureEnumFactory implements EnumFactory<GroupMeasure> {
-    public GroupMeasure fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("mean".equals(codeString))
-        return GroupMeasure.MEAN;
-      if ("median".equals(codeString))
-        return GroupMeasure.MEDIAN;
-      if ("mean-of-mean".equals(codeString))
-        return GroupMeasure.MEANOFMEAN;
-      if ("mean-of-median".equals(codeString))
-        return GroupMeasure.MEANOFMEDIAN;
-      if ("median-of-mean".equals(codeString))
-        return GroupMeasure.MEDIANOFMEAN;
-      if ("median-of-median".equals(codeString))
-        return GroupMeasure.MEDIANOFMEDIAN;
-      throw new IllegalArgumentException("Unknown GroupMeasure code '" + codeString + "'");
-    }
-
-    public Enumeration<GroupMeasure> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<GroupMeasure>(this, GroupMeasure.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<GroupMeasure>(this, GroupMeasure.NULL, code);
-      if ("mean".equals(codeString))
-        return new Enumeration<GroupMeasure>(this, GroupMeasure.MEAN, code);
-      if ("median".equals(codeString))
-        return new Enumeration<GroupMeasure>(this, GroupMeasure.MEDIAN, code);
-      if ("mean-of-mean".equals(codeString))
-        return new Enumeration<GroupMeasure>(this, GroupMeasure.MEANOFMEAN, code);
-      if ("mean-of-median".equals(codeString))
-        return new Enumeration<GroupMeasure>(this, GroupMeasure.MEANOFMEDIAN, code);
-      if ("median-of-mean".equals(codeString))
-        return new Enumeration<GroupMeasure>(this, GroupMeasure.MEDIANOFMEAN, code);
-      if ("median-of-median".equals(codeString))
-        return new Enumeration<GroupMeasure>(this, GroupMeasure.MEDIANOFMEDIAN, code);
-      throw new FHIRException("Unknown GroupMeasure code '" + codeString + "'");
-    }
-
-    public String toCode(GroupMeasure code) {
-       if (code == GroupMeasure.NULL)
-           return null;
-       if (code == GroupMeasure.MEAN)
-        return "mean";
-      if (code == GroupMeasure.MEDIAN)
-        return "median";
-      if (code == GroupMeasure.MEANOFMEAN)
-        return "mean-of-mean";
-      if (code == GroupMeasure.MEANOFMEDIAN)
-        return "mean-of-median";
-      if (code == GroupMeasure.MEDIANOFMEAN)
-        return "median-of-mean";
-      if (code == GroupMeasure.MEDIANOFMEDIAN)
-        return "median-of-median";
-      return "?";
-   }
-
-    public String toSystem(GroupMeasure code) {
-      return code.getSystem();
-    }
-  }
 
   @Block()
   public static class EvidenceVariableCharacteristicComponent extends BackboneElement implements IBaseBackboneElement {
@@ -461,10 +115,10 @@ public class EvidenceVariable extends MetadataResource {
      * Indicates how elements are aggregated within the study effective period.
      */
     @Child(name = "groupMeasure", type = {
-        CodeType.class }, order = 7, min = 0, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 7, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "mean | median | mean-of-mean | mean-of-median | median-of-mean | median-of-median", formalDefinition = "Indicates how elements are aggregated within the study effective period.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/group-measure")
-    protected Enumeration<GroupMeasure> groupMeasure;
+    protected StringType groupMeasure;
 
     private static final long serialVersionUID = 1901961318L;
 
@@ -926,12 +580,12 @@ public class EvidenceVariable extends MetadataResource {
      *         value and extensions. The accessor "getGroupMeasure" gives direct
      *         access to the value
      */
-    public Enumeration<GroupMeasure> getGroupMeasureElement() {
+    public StringType getGroupMeasureElement() {
       if (this.groupMeasure == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create EvidenceVariableCharacteristicComponent.groupMeasure");
         else if (Configuration.doAutoCreate())
-          this.groupMeasure = new Enumeration<GroupMeasure>(new GroupMeasureEnumFactory()); // bb
+          this.groupMeasure = new StringType(); // bb
       return this.groupMeasure;
     }
 
@@ -949,7 +603,7 @@ public class EvidenceVariable extends MetadataResource {
      *              object with id, value and extensions. The accessor
      *              "getGroupMeasure" gives direct access to the value
      */
-    public EvidenceVariableCharacteristicComponent setGroupMeasureElement(Enumeration<GroupMeasure> value) {
+    public EvidenceVariableCharacteristicComponent setGroupMeasureElement(StringType value) {
       this.groupMeasure = value;
       return this;
     }
@@ -958,7 +612,7 @@ public class EvidenceVariable extends MetadataResource {
      * @return Indicates how elements are aggregated within the study effective
      *         period.
      */
-    public GroupMeasure getGroupMeasure() {
+    public String getGroupMeasure() {
       return this.groupMeasure == null ? null : this.groupMeasure.getValue();
     }
 
@@ -966,12 +620,12 @@ public class EvidenceVariable extends MetadataResource {
      * @param value Indicates how elements are aggregated within the study effective
      *              period.
      */
-    public EvidenceVariableCharacteristicComponent setGroupMeasure(GroupMeasure value) {
+    public EvidenceVariableCharacteristicComponent setGroupMeasure(String value) {
       if (value == null)
         this.groupMeasure = null;
       else {
         if (this.groupMeasure == null)
-          this.groupMeasure = new Enumeration<GroupMeasure>(new GroupMeasureEnumFactory());
+          this.groupMeasure = new StringType();
         this.groupMeasure.setValue(value);
       }
       return this;
@@ -995,7 +649,7 @@ public class EvidenceVariable extends MetadataResource {
           "Indicates what effective period the study covers.", 0, 1, participantEffective));
       children.add(new Property("timeFromStart", "Duration", "Indicates duration from the participant's study entry.",
           0, 1, timeFromStart));
-      children.add(new Property("groupMeasure", "code",
+      children.add(new Property("groupMeasure", "string",
           "Indicates how elements are aggregated within the study effective period.", 0, 1, groupMeasure));
     }
 
@@ -1079,7 +733,7 @@ public class EvidenceVariable extends MetadataResource {
         /* timeFromStart */ return new Property("timeFromStart", "Duration",
             "Indicates duration from the participant's study entry.", 0, 1, timeFromStart);
       case 588892639:
-        /* groupMeasure */ return new Property("groupMeasure", "code",
+        /* groupMeasure */ return new Property("groupMeasure", "string",
             "Indicates how elements are aggregated within the study effective period.", 0, 1, groupMeasure);
       default:
         return super.getNamedProperty(_hash, _name, _checkValid);
@@ -1105,7 +759,7 @@ public class EvidenceVariable extends MetadataResource {
       case 2100140683:
         /* timeFromStart */ return this.timeFromStart == null ? new Base[0] : new Base[] { this.timeFromStart }; // Duration
       case 588892639:
-        /* groupMeasure */ return this.groupMeasure == null ? new Base[0] : new Base[] { this.groupMeasure }; // Enumeration<GroupMeasure>
+        /* groupMeasure */ return this.groupMeasure == null ? new Base[0] : new Base[] { this.groupMeasure }; // StringType
       default:
         return super.getProperty(hash, name, checkValid);
       }
@@ -1134,8 +788,7 @@ public class EvidenceVariable extends MetadataResource {
         this.timeFromStart = castToDuration(value); // Duration
         return value;
       case 588892639: // groupMeasure
-        value = new GroupMeasureEnumFactory().fromType(castToCode(value));
-        this.groupMeasure = (Enumeration) value; // Enumeration<GroupMeasure>
+        this.groupMeasure = castToString(value); // StringType
         return value;
       default:
         return super.setProperty(hash, name, value);
@@ -1158,8 +811,7 @@ public class EvidenceVariable extends MetadataResource {
       } else if (name.equals("timeFromStart")) {
         this.timeFromStart = castToDuration(value); // Duration
       } else if (name.equals("groupMeasure")) {
-        value = new GroupMeasureEnumFactory().fromType(castToCode(value));
-        this.groupMeasure = (Enumeration) value; // Enumeration<GroupMeasure>
+        this.groupMeasure = castToString(value); // StringType
       } else
         return super.setProperty(name, value);
       return value;
@@ -1230,7 +882,7 @@ public class EvidenceVariable extends MetadataResource {
       case 2100140683:
         /* timeFromStart */ return new String[] { "Duration" };
       case 588892639:
-        /* groupMeasure */ return new String[] { "code" };
+        /* groupMeasure */ return new String[] { "string" };
       default:
         return super.getTypesForProperty(hash, name);
       }
@@ -1473,10 +1125,10 @@ public class EvidenceVariable extends MetadataResource {
   /**
    * The type of evidence element, a population, an exposure, or an outcome.
    */
-  @Child(name = "type", type = { CodeType.class }, order = 14, min = 0, max = 1, modifier = false, summary = true)
+  @Child(name = "type", type = { StringType.class }, order = 14, min = 0, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "dichotomous | continuous | descriptive", formalDefinition = "The type of evidence element, a population, an exposure, or an outcome.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/variable-type")
-  protected Enumeration<EvidenceVariableType> type;
+  protected StringType type;
 
   /**
    * A characteristic that defines the members of the evidence element. Multiple
@@ -1498,7 +1150,7 @@ public class EvidenceVariable extends MetadataResource {
   /**
    * Constructor
    */
-  public EvidenceVariable(Enumeration<PublicationStatus> status) {
+  public EvidenceVariable(StringType status) {
     super();
     this.status = status;
   }
@@ -1977,12 +1629,12 @@ public class EvidenceVariable extends MetadataResource {
    *         object with id, value and extensions. The accessor "getStatus" gives
    *         direct access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create EvidenceVariable.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -2000,7 +1652,7 @@ public class EvidenceVariable extends MetadataResource {
    *              object with id, value and extensions. The accessor "getStatus"
    *              gives direct access to the value
    */
-  public EvidenceVariable setStatusElement(Enumeration<PublicationStatus> value) {
+  public EvidenceVariable setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -2009,7 +1661,7 @@ public class EvidenceVariable extends MetadataResource {
    * @return The status of this evidence variable. Enables tracking the life-cycle
    *         of the content.
    */
-  public PublicationStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
@@ -2017,9 +1669,9 @@ public class EvidenceVariable extends MetadataResource {
    * @param value The status of this evidence variable. Enables tracking the
    *              life-cycle of the content.
    */
-  public EvidenceVariable setStatus(PublicationStatus value) {
+  public EvidenceVariable setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -2979,12 +2631,12 @@ public class EvidenceVariable extends MetadataResource {
    *         value and extensions. The accessor "getType" gives direct access to
    *         the value
    */
-  public Enumeration<EvidenceVariableType> getTypeElement() {
+  public StringType getTypeElement() {
     if (this.type == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create EvidenceVariable.type");
       else if (Configuration.doAutoCreate())
-        this.type = new Enumeration<EvidenceVariableType>(new EvidenceVariableTypeEnumFactory()); // bb
+        this.type = new StringType(); // bb
     return this.type;
   }
 
@@ -3002,7 +2654,7 @@ public class EvidenceVariable extends MetadataResource {
    *              id, value and extensions. The accessor "getType" gives direct
    *              access to the value
    */
-  public EvidenceVariable setTypeElement(Enumeration<EvidenceVariableType> value) {
+  public EvidenceVariable setTypeElement(StringType value) {
     this.type = value;
     return this;
   }
@@ -3011,7 +2663,7 @@ public class EvidenceVariable extends MetadataResource {
    * @return The type of evidence element, a population, an exposure, or an
    *         outcome.
    */
-  public EvidenceVariableType getType() {
+  public String getType() {
     return this.type == null ? null : this.type.getValue();
   }
 
@@ -3019,12 +2671,12 @@ public class EvidenceVariable extends MetadataResource {
    * @param value The type of evidence element, a population, an exposure, or an
    *              outcome.
    */
-  public EvidenceVariable setType(EvidenceVariableType value) {
+  public EvidenceVariable setType(String value) {
     if (value == null)
       this.type = null;
     else {
       if (this.type == null)
-        this.type = new Enumeration<EvidenceVariableType>(new EvidenceVariableTypeEnumFactory());
+        this.type = new StringType();
       this.type.setValue(value);
     }
     return this;
@@ -3108,7 +2760,7 @@ public class EvidenceVariable extends MetadataResource {
     children.add(new Property("subtitle", "string",
         "An explanatory or alternate title for the EvidenceVariable giving additional information about its content.",
         0, 1, subtitle));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of this evidence variable. Enables tracking the life-cycle of the content.", 0, 1, status));
     children.add(new Property("date", "dateTime",
         "The date  (and optionally time) when the evidence variable was published. The date must change when the business version changes and it must change if the status code changes. In addition, it should change when the substantive content of the evidence variable changes.",
@@ -3160,7 +2812,7 @@ public class EvidenceVariable extends MetadataResource {
     children.add(new Property("relatedArtifact", "RelatedArtifact",
         "Related artifacts such as additional documentation, justification, or bibliographic references.", 0,
         java.lang.Integer.MAX_VALUE, relatedArtifact));
-    children.add(new Property("type", "code", "The type of evidence element, a population, an exposure, or an outcome.",
+    children.add(new Property("type", "string", "The type of evidence element, a population, an exposure, or an outcome.",
         0, 1, type));
     children.add(new Property("characteristic", "",
         "A characteristic that defines the members of the evidence element. Multiple characteristics are applied with \"and\" semantics.",
@@ -3198,7 +2850,7 @@ public class EvidenceVariable extends MetadataResource {
           "An explanatory or alternate title for the EvidenceVariable giving additional information about its content.",
           0, 1, subtitle);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of this evidence variable. Enables tracking the life-cycle of the content.", 0, 1, status);
     case 3076014:
       /* date */ return new Property("date", "dateTime",
@@ -3268,7 +2920,7 @@ public class EvidenceVariable extends MetadataResource {
           "Related artifacts such as additional documentation, justification, or bibliographic references.", 0,
           java.lang.Integer.MAX_VALUE, relatedArtifact);
     case 3575610:
-      /* type */ return new Property("type", "code",
+      /* type */ return new Property("type", "string",
           "The type of evidence element, a population, an exposure, or an outcome.", 0, 1, type);
     case 366313883:
       /* characteristic */ return new Property("characteristic", "",
@@ -3299,7 +2951,7 @@ public class EvidenceVariable extends MetadataResource {
     case -2060497896:
       /* subtitle */ return this.subtitle == null ? new Base[0] : new Base[] { this.subtitle }; // StringType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 3076014:
       /* date */ return this.date == null ? new Base[0] : new Base[] { this.date }; // DateTimeType
     case 1447404028:
@@ -3338,7 +2990,7 @@ public class EvidenceVariable extends MetadataResource {
       /* relatedArtifact */ return this.relatedArtifact == null ? new Base[0]
           : this.relatedArtifact.toArray(new Base[this.relatedArtifact.size()]); // RelatedArtifact
     case 3575610:
-      /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<EvidenceVariableType>
+      /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
     case 366313883:
       /* characteristic */ return this.characteristic == null ? new Base[0]
           : this.characteristic.toArray(new Base[this.characteristic.size()]); // EvidenceVariableCharacteristicComponent
@@ -3373,8 +3025,7 @@ public class EvidenceVariable extends MetadataResource {
       this.subtitle = castToString(value); // StringType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case 3076014: // date
       this.date = castToDateTime(value); // DateTimeType
@@ -3428,8 +3079,7 @@ public class EvidenceVariable extends MetadataResource {
       this.getRelatedArtifact().add(castToRelatedArtifact(value)); // RelatedArtifact
       return value;
     case 3575610: // type
-      value = new EvidenceVariableTypeEnumFactory().fromType(castToCode(value));
-      this.type = (Enumeration) value; // Enumeration<EvidenceVariableType>
+      this.type = castToString(value); // StringType
       return value;
     case 366313883: // characteristic
       this.getCharacteristic().add((EvidenceVariableCharacteristicComponent) value); // EvidenceVariableCharacteristicComponent
@@ -3457,8 +3107,7 @@ public class EvidenceVariable extends MetadataResource {
     } else if (name.equals("subtitle")) {
       this.subtitle = castToString(value); // StringType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("date")) {
       this.date = castToDateTime(value); // DateTimeType
     } else if (name.equals("publisher")) {
@@ -3494,8 +3143,7 @@ public class EvidenceVariable extends MetadataResource {
     } else if (name.equals("relatedArtifact")) {
       this.getRelatedArtifact().add(castToRelatedArtifact(value));
     } else if (name.equals("type")) {
-      value = new EvidenceVariableTypeEnumFactory().fromType(castToCode(value));
-      this.type = (Enumeration) value; // Enumeration<EvidenceVariableType>
+      this.type = castToString(value); // StringType
     } else if (name.equals("characteristic")) {
       this.getCharacteristic().add((EvidenceVariableCharacteristicComponent) value);
     } else
@@ -3645,7 +3293,7 @@ public class EvidenceVariable extends MetadataResource {
     case -2060497896:
       /* subtitle */ return new String[] { "string" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 3076014:
       /* date */ return new String[] { "dateTime" };
     case 1447404028:
@@ -3681,7 +3329,7 @@ public class EvidenceVariable extends MetadataResource {
     case 666807069:
       /* relatedArtifact */ return new String[] { "RelatedArtifact" };
     case 3575610:
-      /* type */ return new String[] { "code" };
+      /* type */ return new String[] { "string" };
     case 366313883:
       /* characteristic */ return new String[] {};
     default:

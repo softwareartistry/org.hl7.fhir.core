@@ -38,8 +38,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -62,218 +60,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
     "approvalDate", "lastReviewDate", "effectivePeriod", "code", "instance", "applicability", "propertyGroup" })
 public class ChargeItemDefinition extends MetadataResource {
 
-  public enum ChargeItemDefinitionPriceComponentType {
-    /**
-     * the amount is the base price used for calculating the total price before
-     * applying surcharges, discount or taxes.
-     */
-    BASE,
-    /**
-     * the amount is a surcharge applied on the base price.
-     */
-    SURCHARGE,
-    /**
-     * the amount is a deduction applied on the base price.
-     */
-    DEDUCTION,
-    /**
-     * the amount is a discount applied on the base price.
-     */
-    DISCOUNT,
-    /**
-     * the amount is the tax component of the total price.
-     */
-    TAX,
-    /**
-     * the amount is of informational character, it has not been applied in the
-     * calculation of the total price.
-     */
-    INFORMATIONAL,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ChargeItemDefinitionPriceComponentType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("base".equals(codeString))
-        return BASE;
-      if ("surcharge".equals(codeString))
-        return SURCHARGE;
-      if ("deduction".equals(codeString))
-        return DEDUCTION;
-      if ("discount".equals(codeString))
-        return DISCOUNT;
-      if ("tax".equals(codeString))
-        return TAX;
-      if ("informational".equals(codeString))
-        return INFORMATIONAL;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ChargeItemDefinitionPriceComponentType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case BASE:
-        return "base";
-      case SURCHARGE:
-        return "surcharge";
-      case DEDUCTION:
-        return "deduction";
-      case DISCOUNT:
-        return "discount";
-      case TAX:
-        return "tax";
-      case INFORMATIONAL:
-        return "informational";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case BASE:
-        return "http://hl7.org/fhir/invoice-priceComponentType";
-      case SURCHARGE:
-        return "http://hl7.org/fhir/invoice-priceComponentType";
-      case DEDUCTION:
-        return "http://hl7.org/fhir/invoice-priceComponentType";
-      case DISCOUNT:
-        return "http://hl7.org/fhir/invoice-priceComponentType";
-      case TAX:
-        return "http://hl7.org/fhir/invoice-priceComponentType";
-      case INFORMATIONAL:
-        return "http://hl7.org/fhir/invoice-priceComponentType";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case BASE:
-        return "the amount is the base price used for calculating the total price before applying surcharges, discount or taxes.";
-      case SURCHARGE:
-        return "the amount is a surcharge applied on the base price.";
-      case DEDUCTION:
-        return "the amount is a deduction applied on the base price.";
-      case DISCOUNT:
-        return "the amount is a discount applied on the base price.";
-      case TAX:
-        return "the amount is the tax component of the total price.";
-      case INFORMATIONAL:
-        return "the amount is of informational character, it has not been applied in the calculation of the total price.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case BASE:
-        return "base price";
-      case SURCHARGE:
-        return "surcharge";
-      case DEDUCTION:
-        return "deduction";
-      case DISCOUNT:
-        return "discount";
-      case TAX:
-        return "tax";
-      case INFORMATIONAL:
-        return "informational";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ChargeItemDefinitionPriceComponentTypeEnumFactory
-      implements EnumFactory<ChargeItemDefinitionPriceComponentType> {
-    public ChargeItemDefinitionPriceComponentType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("base".equals(codeString))
-        return ChargeItemDefinitionPriceComponentType.BASE;
-      if ("surcharge".equals(codeString))
-        return ChargeItemDefinitionPriceComponentType.SURCHARGE;
-      if ("deduction".equals(codeString))
-        return ChargeItemDefinitionPriceComponentType.DEDUCTION;
-      if ("discount".equals(codeString))
-        return ChargeItemDefinitionPriceComponentType.DISCOUNT;
-      if ("tax".equals(codeString))
-        return ChargeItemDefinitionPriceComponentType.TAX;
-      if ("informational".equals(codeString))
-        return ChargeItemDefinitionPriceComponentType.INFORMATIONAL;
-      throw new IllegalArgumentException("Unknown ChargeItemDefinitionPriceComponentType code '" + codeString + "'");
-    }
-
-    public Enumeration<ChargeItemDefinitionPriceComponentType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ChargeItemDefinitionPriceComponentType>(this,
-            ChargeItemDefinitionPriceComponentType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ChargeItemDefinitionPriceComponentType>(this,
-            ChargeItemDefinitionPriceComponentType.NULL, code);
-      if ("base".equals(codeString))
-        return new Enumeration<ChargeItemDefinitionPriceComponentType>(this,
-            ChargeItemDefinitionPriceComponentType.BASE, code);
-      if ("surcharge".equals(codeString))
-        return new Enumeration<ChargeItemDefinitionPriceComponentType>(this,
-            ChargeItemDefinitionPriceComponentType.SURCHARGE, code);
-      if ("deduction".equals(codeString))
-        return new Enumeration<ChargeItemDefinitionPriceComponentType>(this,
-            ChargeItemDefinitionPriceComponentType.DEDUCTION, code);
-      if ("discount".equals(codeString))
-        return new Enumeration<ChargeItemDefinitionPriceComponentType>(this,
-            ChargeItemDefinitionPriceComponentType.DISCOUNT, code);
-      if ("tax".equals(codeString))
-        return new Enumeration<ChargeItemDefinitionPriceComponentType>(this, ChargeItemDefinitionPriceComponentType.TAX,
-            code);
-      if ("informational".equals(codeString))
-        return new Enumeration<ChargeItemDefinitionPriceComponentType>(this,
-            ChargeItemDefinitionPriceComponentType.INFORMATIONAL, code);
-      throw new FHIRException("Unknown ChargeItemDefinitionPriceComponentType code '" + codeString + "'");
-    }
-
-    public String toCode(ChargeItemDefinitionPriceComponentType code) {
-       if (code == ChargeItemDefinitionPriceComponentType.NULL)
-           return null;
-       if (code == ChargeItemDefinitionPriceComponentType.BASE)
-        return "base";
-      if (code == ChargeItemDefinitionPriceComponentType.SURCHARGE)
-        return "surcharge";
-      if (code == ChargeItemDefinitionPriceComponentType.DEDUCTION)
-        return "deduction";
-      if (code == ChargeItemDefinitionPriceComponentType.DISCOUNT)
-        return "discount";
-      if (code == ChargeItemDefinitionPriceComponentType.TAX)
-        return "tax";
-      if (code == ChargeItemDefinitionPriceComponentType.INFORMATIONAL)
-        return "informational";
-      return "?";
-   }
-
-    public String toSystem(ChargeItemDefinitionPriceComponentType code) {
-      return code.getSystem();
-    }
-  }
 
   @Block()
   public static class ChargeItemDefinitionApplicabilityComponent extends BackboneElement
@@ -1008,10 +794,10 @@ public class ChargeItemDefinition extends MetadataResource {
     /**
      * This code identifies the type of the component.
      */
-    @Child(name = "type", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
+    @Child(name = "type", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "base | surcharge | deduction | discount | tax | informational", formalDefinition = "This code identifies the type of the component.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/invoice-priceComponentType")
-    protected Enumeration<ChargeItemDefinitionPriceComponentType> type;
+    protected StringType type;
 
     /**
      * A code that identifies the component. Codes may be used to differentiate
@@ -1050,8 +836,7 @@ public class ChargeItemDefinition extends MetadataResource {
     /**
      * Constructor
      */
-    public ChargeItemDefinitionPropertyGroupPriceComponentComponent(
-        Enumeration<ChargeItemDefinitionPriceComponentType> type) {
+    public ChargeItemDefinitionPropertyGroupPriceComponentComponent(StringType type) {
       super();
       this.type = type;
     }
@@ -1061,13 +846,12 @@ public class ChargeItemDefinition extends MetadataResource {
      *         is the underlying object with id, value and extensions. The accessor
      *         "getType" gives direct access to the value
      */
-    public Enumeration<ChargeItemDefinitionPriceComponentType> getTypeElement() {
+    public StringType getTypeElement() {
       if (this.type == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create ChargeItemDefinitionPropertyGroupPriceComponentComponent.type");
         else if (Configuration.doAutoCreate())
-          this.type = new Enumeration<ChargeItemDefinitionPriceComponentType>(
-              new ChargeItemDefinitionPriceComponentTypeEnumFactory()); // bb
+          this.type = new StringType(); // bb
       return this.type;
     }
 
@@ -1084,8 +868,7 @@ public class ChargeItemDefinition extends MetadataResource {
      *              This is the underlying object with id, value and extensions. The
      *              accessor "getType" gives direct access to the value
      */
-    public ChargeItemDefinitionPropertyGroupPriceComponentComponent setTypeElement(
-        Enumeration<ChargeItemDefinitionPriceComponentType> value) {
+    public ChargeItemDefinitionPropertyGroupPriceComponentComponent setTypeElement(StringType value) {
       this.type = value;
       return this;
     }
@@ -1093,7 +876,7 @@ public class ChargeItemDefinition extends MetadataResource {
     /**
      * @return This code identifies the type of the component.
      */
-    public ChargeItemDefinitionPriceComponentType getType() {
+    public String getType() {
       return this.type == null ? null : this.type.getValue();
     }
 
@@ -1101,10 +884,9 @@ public class ChargeItemDefinition extends MetadataResource {
      * @param value This code identifies the type of the component.
      */
     public ChargeItemDefinitionPropertyGroupPriceComponentComponent setType(
-        ChargeItemDefinitionPriceComponentType value) {
+        String value) {
       if (this.type == null)
-        this.type = new Enumeration<ChargeItemDefinitionPriceComponentType>(
-            new ChargeItemDefinitionPriceComponentTypeEnumFactory());
+        this.type = new StringType();
       this.type.setValue(value);
       return this;
     }
@@ -1240,7 +1022,7 @@ public class ChargeItemDefinition extends MetadataResource {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("type", "code", "This code identifies the type of the component.", 0, 1, type));
+      children.add(new Property("type", "string", "This code identifies the type of the component.", 0, 1, type));
       children.add(new Property("code", "CodeableConcept",
           "A code that identifies the component. Codes may be used to differentiate between kinds of taxes, surcharges, discounts etc.",
           0, 1, code));
@@ -1253,7 +1035,7 @@ public class ChargeItemDefinition extends MetadataResource {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 3575610:
-        /* type */ return new Property("type", "code", "This code identifies the type of the component.", 0, 1, type);
+        /* type */ return new Property("type", "string", "This code identifies the type of the component.", 0, 1, type);
       case 3059181:
         /* code */ return new Property("code", "CodeableConcept",
             "A code that identifies the component. Codes may be used to differentiate between kinds of taxes, surcharges, discounts etc.",
@@ -1273,7 +1055,7 @@ public class ChargeItemDefinition extends MetadataResource {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 3575610:
-        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<ChargeItemDefinitionPriceComponentType>
+        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
       case 3059181:
         /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // CodeableConcept
       case -1282148017:
@@ -1290,8 +1072,7 @@ public class ChargeItemDefinition extends MetadataResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3575610: // type
-        value = new ChargeItemDefinitionPriceComponentTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<ChargeItemDefinitionPriceComponentType>
+        this.type = castToString(value); // StringType
         return value;
       case 3059181: // code
         this.code = castToCodeableConcept(value); // CodeableConcept
@@ -1311,8 +1092,7 @@ public class ChargeItemDefinition extends MetadataResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("type")) {
-        value = new ChargeItemDefinitionPriceComponentTypeEnumFactory().fromType(castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<ChargeItemDefinitionPriceComponentType>
+        this.type = castToString(value); // StringType
       } else if (name.equals("code")) {
         this.code = castToCodeableConcept(value); // CodeableConcept
       } else if (name.equals("factor")) {
@@ -1360,7 +1140,7 @@ public class ChargeItemDefinition extends MetadataResource {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 3575610:
-        /* type */ return new String[] { "code" };
+        /* type */ return new String[] { "string" };
       case 3059181:
         /* code */ return new String[] { "CodeableConcept" };
       case -1282148017:
@@ -1560,7 +1340,7 @@ public class ChargeItemDefinition extends MetadataResource {
   /**
    * Constructor
    */
-  public ChargeItemDefinition(UriType url, Enumeration<PublicationStatus> status) {
+  public ChargeItemDefinition(UriType url, StringType status) {
     super();
     this.url = url;
     this.status = status;
@@ -2064,12 +1844,12 @@ public class ChargeItemDefinition extends MetadataResource {
    *         This is the underlying object with id, value and extensions. The
    *         accessor "getStatus" gives direct access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create ChargeItemDefinition.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -2087,7 +1867,7 @@ public class ChargeItemDefinition extends MetadataResource {
    *              value and extensions. The accessor "getStatus" gives direct
    *              access to the value
    */
-  public ChargeItemDefinition setStatusElement(Enumeration<PublicationStatus> value) {
+  public ChargeItemDefinition setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -2095,16 +1875,16 @@ public class ChargeItemDefinition extends MetadataResource {
   /**
    * @return The current state of the ChargeItemDefinition.
    */
-  public PublicationStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
   /**
    * @param value The current state of the ChargeItemDefinition.
    */
-  public ChargeItemDefinition setStatus(PublicationStatus value) {
+  public ChargeItemDefinition setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -2947,7 +2727,7 @@ public class ChargeItemDefinition extends MetadataResource {
     children.add(new Property("replaces", "canonical(ChargeItemDefinition)",
         "As new versions of a protocol or guideline are defined, allows identification of what versions are replaced by a new instance.",
         0, java.lang.Integer.MAX_VALUE, replaces));
-    children.add(new Property("status", "code", "The current state of the ChargeItemDefinition.", 0, 1, status));
+    children.add(new Property("status", "string", "The current state of the ChargeItemDefinition.", 0, 1, status));
     children.add(new Property("experimental", "boolean",
         "A Boolean value to indicate that this charge item definition is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
         0, 1, experimental));
@@ -3024,7 +2804,7 @@ public class ChargeItemDefinition extends MetadataResource {
           "As new versions of a protocol or guideline are defined, allows identification of what versions are replaced by a new instance.",
           0, java.lang.Integer.MAX_VALUE, replaces);
     case -892481550:
-      /* status */ return new Property("status", "code", "The current state of the ChargeItemDefinition.", 0, 1,
+      /* status */ return new Property("status", "string", "The current state of the ChargeItemDefinition.", 0, 1,
           status);
     case -404562712:
       /* experimental */ return new Property("experimental", "boolean",
@@ -3110,7 +2890,7 @@ public class ChargeItemDefinition extends MetadataResource {
     case -430332865:
       /* replaces */ return this.replaces == null ? new Base[0] : this.replaces.toArray(new Base[this.replaces.size()]); // CanonicalType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -404562712:
       /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
     case 3076014:
@@ -3176,8 +2956,7 @@ public class ChargeItemDefinition extends MetadataResource {
       this.getReplaces().add(castToCanonical(value)); // CanonicalType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -404562712: // experimental
       this.experimental = castToBoolean(value); // BooleanType
@@ -3247,8 +3026,7 @@ public class ChargeItemDefinition extends MetadataResource {
     } else if (name.equals("replaces")) {
       this.getReplaces().add(castToCanonical(value));
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("date")) {
@@ -3410,7 +3188,7 @@ public class ChargeItemDefinition extends MetadataResource {
     case -430332865:
       /* replaces */ return new String[] { "canonical" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -404562712:
       /* experimental */ return new String[] { "boolean" };
     case 3076014:

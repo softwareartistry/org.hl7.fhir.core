@@ -36,8 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 import org.hl7.fhir.utilities.Utilities;
 
 import ca.uhn.fhir.model.api.annotation.Block;
@@ -58,494 +56,6 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
     "author", "editor", "reviewer", "endorser", "relatedArtifact", "library", "type", "variableType",
     "characteristic" })
 public class ResearchElementDefinition extends MetadataResource {
-
-  public enum ResearchElementType {
-    /**
-     * The element defines the population that forms the basis for research.
-     */
-    POPULATION,
-    /**
-     * The element defines an exposure within the population that is being
-     * researched.
-     */
-    EXPOSURE,
-    /**
-     * The element defines an outcome within the population that is being
-     * researched.
-     */
-    OUTCOME,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ResearchElementType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("population".equals(codeString))
-        return POPULATION;
-      if ("exposure".equals(codeString))
-        return EXPOSURE;
-      if ("outcome".equals(codeString))
-        return OUTCOME;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ResearchElementType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case POPULATION:
-        return "population";
-      case EXPOSURE:
-        return "exposure";
-      case OUTCOME:
-        return "outcome";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case POPULATION:
-        return "http://hl7.org/fhir/research-element-type";
-      case EXPOSURE:
-        return "http://hl7.org/fhir/research-element-type";
-      case OUTCOME:
-        return "http://hl7.org/fhir/research-element-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case POPULATION:
-        return "The element defines the population that forms the basis for research.";
-      case EXPOSURE:
-        return "The element defines an exposure within the population that is being researched.";
-      case OUTCOME:
-        return "The element defines an outcome within the population that is being researched.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case POPULATION:
-        return "Population";
-      case EXPOSURE:
-        return "Exposure";
-      case OUTCOME:
-        return "Outcome";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ResearchElementTypeEnumFactory implements EnumFactory<ResearchElementType> {
-    public ResearchElementType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("population".equals(codeString))
-        return ResearchElementType.POPULATION;
-      if ("exposure".equals(codeString))
-        return ResearchElementType.EXPOSURE;
-      if ("outcome".equals(codeString))
-        return ResearchElementType.OUTCOME;
-      throw new IllegalArgumentException("Unknown ResearchElementType code '" + codeString + "'");
-    }
-
-    public Enumeration<ResearchElementType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ResearchElementType>(this, ResearchElementType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ResearchElementType>(this, ResearchElementType.NULL, code);
-      if ("population".equals(codeString))
-        return new Enumeration<ResearchElementType>(this, ResearchElementType.POPULATION, code);
-      if ("exposure".equals(codeString))
-        return new Enumeration<ResearchElementType>(this, ResearchElementType.EXPOSURE, code);
-      if ("outcome".equals(codeString))
-        return new Enumeration<ResearchElementType>(this, ResearchElementType.OUTCOME, code);
-      throw new FHIRException("Unknown ResearchElementType code '" + codeString + "'");
-    }
-
-    public String toCode(ResearchElementType code) {
-       if (code == ResearchElementType.NULL)
-           return null;
-       if (code == ResearchElementType.POPULATION)
-        return "population";
-      if (code == ResearchElementType.EXPOSURE)
-        return "exposure";
-      if (code == ResearchElementType.OUTCOME)
-        return "outcome";
-      return "?";
-   }
-
-    public String toSystem(ResearchElementType code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum VariableType {
-    /**
-     * The variable is dichotomous, such as present or absent.
-     */
-    DICHOTOMOUS,
-    /**
-     * The variable is a continuous result such as a quantity.
-     */
-    CONTINUOUS,
-    /**
-     * The variable is described narratively rather than quantitatively.
-     */
-    DESCRIPTIVE,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static VariableType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("dichotomous".equals(codeString))
-        return DICHOTOMOUS;
-      if ("continuous".equals(codeString))
-        return CONTINUOUS;
-      if ("descriptive".equals(codeString))
-        return DESCRIPTIVE;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown VariableType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case DICHOTOMOUS:
-        return "dichotomous";
-      case CONTINUOUS:
-        return "continuous";
-      case DESCRIPTIVE:
-        return "descriptive";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case DICHOTOMOUS:
-        return "http://hl7.org/fhir/variable-type";
-      case CONTINUOUS:
-        return "http://hl7.org/fhir/variable-type";
-      case DESCRIPTIVE:
-        return "http://hl7.org/fhir/variable-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case DICHOTOMOUS:
-        return "The variable is dichotomous, such as present or absent.";
-      case CONTINUOUS:
-        return "The variable is a continuous result such as a quantity.";
-      case DESCRIPTIVE:
-        return "The variable is described narratively rather than quantitatively.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case DICHOTOMOUS:
-        return "Dichotomous";
-      case CONTINUOUS:
-        return "Continuous";
-      case DESCRIPTIVE:
-        return "Descriptive";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class VariableTypeEnumFactory implements EnumFactory<VariableType> {
-    public VariableType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("dichotomous".equals(codeString))
-        return VariableType.DICHOTOMOUS;
-      if ("continuous".equals(codeString))
-        return VariableType.CONTINUOUS;
-      if ("descriptive".equals(codeString))
-        return VariableType.DESCRIPTIVE;
-      throw new IllegalArgumentException("Unknown VariableType code '" + codeString + "'");
-    }
-
-    public Enumeration<VariableType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<VariableType>(this, VariableType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<VariableType>(this, VariableType.NULL, code);
-      if ("dichotomous".equals(codeString))
-        return new Enumeration<VariableType>(this, VariableType.DICHOTOMOUS, code);
-      if ("continuous".equals(codeString))
-        return new Enumeration<VariableType>(this, VariableType.CONTINUOUS, code);
-      if ("descriptive".equals(codeString))
-        return new Enumeration<VariableType>(this, VariableType.DESCRIPTIVE, code);
-      throw new FHIRException("Unknown VariableType code '" + codeString + "'");
-    }
-
-    public String toCode(VariableType code) {
-       if (code == VariableType.NULL)
-           return null;
-       if (code == VariableType.DICHOTOMOUS)
-        return "dichotomous";
-      if (code == VariableType.CONTINUOUS)
-        return "continuous";
-      if (code == VariableType.DESCRIPTIVE)
-        return "descriptive";
-      return "?";
-   }
-
-    public String toSystem(VariableType code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum GroupMeasure {
-    /**
-     * Aggregated using Mean of participant values.
-     */
-    MEAN,
-    /**
-     * Aggregated using Median of participant values.
-     */
-    MEDIAN,
-    /**
-     * Aggregated using Mean of study mean values.
-     */
-    MEANOFMEAN,
-    /**
-     * Aggregated using Mean of study median values.
-     */
-    MEANOFMEDIAN,
-    /**
-     * Aggregated using Median of study mean values.
-     */
-    MEDIANOFMEAN,
-    /**
-     * Aggregated using Median of study median values.
-     */
-    MEDIANOFMEDIAN,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static GroupMeasure fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("mean".equals(codeString))
-        return MEAN;
-      if ("median".equals(codeString))
-        return MEDIAN;
-      if ("mean-of-mean".equals(codeString))
-        return MEANOFMEAN;
-      if ("mean-of-median".equals(codeString))
-        return MEANOFMEDIAN;
-      if ("median-of-mean".equals(codeString))
-        return MEDIANOFMEAN;
-      if ("median-of-median".equals(codeString))
-        return MEDIANOFMEDIAN;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown GroupMeasure code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case MEAN:
-        return "mean";
-      case MEDIAN:
-        return "median";
-      case MEANOFMEAN:
-        return "mean-of-mean";
-      case MEANOFMEDIAN:
-        return "mean-of-median";
-      case MEDIANOFMEAN:
-        return "median-of-mean";
-      case MEDIANOFMEDIAN:
-        return "median-of-median";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case MEAN:
-        return "http://hl7.org/fhir/group-measure";
-      case MEDIAN:
-        return "http://hl7.org/fhir/group-measure";
-      case MEANOFMEAN:
-        return "http://hl7.org/fhir/group-measure";
-      case MEANOFMEDIAN:
-        return "http://hl7.org/fhir/group-measure";
-      case MEDIANOFMEAN:
-        return "http://hl7.org/fhir/group-measure";
-      case MEDIANOFMEDIAN:
-        return "http://hl7.org/fhir/group-measure";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case MEAN:
-        return "Aggregated using Mean of participant values.";
-      case MEDIAN:
-        return "Aggregated using Median of participant values.";
-      case MEANOFMEAN:
-        return "Aggregated using Mean of study mean values.";
-      case MEANOFMEDIAN:
-        return "Aggregated using Mean of study median values.";
-      case MEDIANOFMEAN:
-        return "Aggregated using Median of study mean values.";
-      case MEDIANOFMEDIAN:
-        return "Aggregated using Median of study median values.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case MEAN:
-        return "Mean";
-      case MEDIAN:
-        return "Median";
-      case MEANOFMEAN:
-        return "Mean of Study Means";
-      case MEANOFMEDIAN:
-        return "Mean of Study Medins";
-      case MEDIANOFMEAN:
-        return "Median of Study Means";
-      case MEDIANOFMEDIAN:
-        return "Median of Study Medians";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class GroupMeasureEnumFactory implements EnumFactory<GroupMeasure> {
-    public GroupMeasure fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("mean".equals(codeString))
-        return GroupMeasure.MEAN;
-      if ("median".equals(codeString))
-        return GroupMeasure.MEDIAN;
-      if ("mean-of-mean".equals(codeString))
-        return GroupMeasure.MEANOFMEAN;
-      if ("mean-of-median".equals(codeString))
-        return GroupMeasure.MEANOFMEDIAN;
-      if ("median-of-mean".equals(codeString))
-        return GroupMeasure.MEDIANOFMEAN;
-      if ("median-of-median".equals(codeString))
-        return GroupMeasure.MEDIANOFMEDIAN;
-      throw new IllegalArgumentException("Unknown GroupMeasure code '" + codeString + "'");
-    }
-
-    public Enumeration<GroupMeasure> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<GroupMeasure>(this, GroupMeasure.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<GroupMeasure>(this, GroupMeasure.NULL, code);
-      if ("mean".equals(codeString))
-        return new Enumeration<GroupMeasure>(this, GroupMeasure.MEAN, code);
-      if ("median".equals(codeString))
-        return new Enumeration<GroupMeasure>(this, GroupMeasure.MEDIAN, code);
-      if ("mean-of-mean".equals(codeString))
-        return new Enumeration<GroupMeasure>(this, GroupMeasure.MEANOFMEAN, code);
-      if ("mean-of-median".equals(codeString))
-        return new Enumeration<GroupMeasure>(this, GroupMeasure.MEANOFMEDIAN, code);
-      if ("median-of-mean".equals(codeString))
-        return new Enumeration<GroupMeasure>(this, GroupMeasure.MEDIANOFMEAN, code);
-      if ("median-of-median".equals(codeString))
-        return new Enumeration<GroupMeasure>(this, GroupMeasure.MEDIANOFMEDIAN, code);
-      throw new FHIRException("Unknown GroupMeasure code '" + codeString + "'");
-    }
-
-    public String toCode(GroupMeasure code) {
-       if (code == GroupMeasure.NULL)
-           return null;
-       if (code == GroupMeasure.MEAN)
-        return "mean";
-      if (code == GroupMeasure.MEDIAN)
-        return "median";
-      if (code == GroupMeasure.MEANOFMEAN)
-        return "mean-of-mean";
-      if (code == GroupMeasure.MEANOFMEDIAN)
-        return "mean-of-median";
-      if (code == GroupMeasure.MEDIANOFMEAN)
-        return "median-of-mean";
-      if (code == GroupMeasure.MEDIANOFMEDIAN)
-        return "median-of-median";
-      return "?";
-   }
-
-    public String toSystem(GroupMeasure code) {
-      return code.getSystem();
-    }
-  }
 
   @Block()
   public static class ResearchElementDefinitionCharacteristicComponent extends BackboneElement
@@ -615,10 +125,10 @@ public class ResearchElementDefinition extends MetadataResource {
      * Indicates how elements are aggregated within the study effective period.
      */
     @Child(name = "studyEffectiveGroupMeasure", type = {
-        CodeType.class }, order = 8, min = 0, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 8, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "mean | median | mean-of-mean | mean-of-median | median-of-mean | median-of-median", formalDefinition = "Indicates how elements are aggregated within the study effective period.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/group-measure")
-    protected Enumeration<GroupMeasure> studyEffectiveGroupMeasure;
+    protected StringType studyEffectiveGroupMeasure;
 
     /**
      * A narrative description of the time period the study covers.
@@ -648,10 +158,10 @@ public class ResearchElementDefinition extends MetadataResource {
      * Indicates how elements are aggregated within the study effective period.
      */
     @Child(name = "participantEffectiveGroupMeasure", type = {
-        CodeType.class }, order = 12, min = 0, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 12, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "mean | median | mean-of-mean | mean-of-median | median-of-mean | median-of-median", formalDefinition = "Indicates how elements are aggregated within the study effective period.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/group-measure")
-    protected Enumeration<GroupMeasure> participantEffectiveGroupMeasure;
+    protected StringType participantEffectiveGroupMeasure;
 
     private static final long serialVersionUID = -1102952665L;
 
@@ -1096,13 +606,13 @@ public class ResearchElementDefinition extends MetadataResource {
      *         underlying object with id, value and extensions. The accessor
      *         "getStudyEffectiveGroupMeasure" gives direct access to the value
      */
-    public Enumeration<GroupMeasure> getStudyEffectiveGroupMeasureElement() {
+    public StringType getStudyEffectiveGroupMeasureElement() {
       if (this.studyEffectiveGroupMeasure == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error(
               "Attempt to auto-create ResearchElementDefinitionCharacteristicComponent.studyEffectiveGroupMeasure");
         else if (Configuration.doAutoCreate())
-          this.studyEffectiveGroupMeasure = new Enumeration<GroupMeasure>(new GroupMeasureEnumFactory()); // bb
+          this.studyEffectiveGroupMeasure = new StringType(); // bb
       return this.studyEffectiveGroupMeasure;
     }
 
@@ -1121,7 +631,7 @@ public class ResearchElementDefinition extends MetadataResource {
      *              "getStudyEffectiveGroupMeasure" gives direct access to the value
      */
     public ResearchElementDefinitionCharacteristicComponent setStudyEffectiveGroupMeasureElement(
-        Enumeration<GroupMeasure> value) {
+      StringType value) {
       this.studyEffectiveGroupMeasure = value;
       return this;
     }
@@ -1130,7 +640,7 @@ public class ResearchElementDefinition extends MetadataResource {
      * @return Indicates how elements are aggregated within the study effective
      *         period.
      */
-    public GroupMeasure getStudyEffectiveGroupMeasure() {
+    public String getStudyEffectiveGroupMeasure() {
       return this.studyEffectiveGroupMeasure == null ? null : this.studyEffectiveGroupMeasure.getValue();
     }
 
@@ -1138,12 +648,12 @@ public class ResearchElementDefinition extends MetadataResource {
      * @param value Indicates how elements are aggregated within the study effective
      *              period.
      */
-    public ResearchElementDefinitionCharacteristicComponent setStudyEffectiveGroupMeasure(GroupMeasure value) {
+    public ResearchElementDefinitionCharacteristicComponent setStudyEffectiveGroupMeasure(String value) {
       if (value == null)
         this.studyEffectiveGroupMeasure = null;
       else {
         if (this.studyEffectiveGroupMeasure == null)
-          this.studyEffectiveGroupMeasure = new Enumeration<GroupMeasure>(new GroupMeasureEnumFactory());
+          this.studyEffectiveGroupMeasure = new StringType();
         this.studyEffectiveGroupMeasure.setValue(value);
       }
       return this;
@@ -1334,13 +844,13 @@ public class ResearchElementDefinition extends MetadataResource {
      *         "getParticipantEffectiveGroupMeasure" gives direct access to the
      *         value
      */
-    public Enumeration<GroupMeasure> getParticipantEffectiveGroupMeasureElement() {
+    public StringType getParticipantEffectiveGroupMeasureElement() {
       if (this.participantEffectiveGroupMeasure == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error(
               "Attempt to auto-create ResearchElementDefinitionCharacteristicComponent.participantEffectiveGroupMeasure");
         else if (Configuration.doAutoCreate())
-          this.participantEffectiveGroupMeasure = new Enumeration<GroupMeasure>(new GroupMeasureEnumFactory()); // bb
+          this.participantEffectiveGroupMeasure = new StringType(); // bb
       return this.participantEffectiveGroupMeasure;
     }
 
@@ -1360,7 +870,7 @@ public class ResearchElementDefinition extends MetadataResource {
      *              access to the value
      */
     public ResearchElementDefinitionCharacteristicComponent setParticipantEffectiveGroupMeasureElement(
-        Enumeration<GroupMeasure> value) {
+      StringType value) {
       this.participantEffectiveGroupMeasure = value;
       return this;
     }
@@ -1369,7 +879,7 @@ public class ResearchElementDefinition extends MetadataResource {
      * @return Indicates how elements are aggregated within the study effective
      *         period.
      */
-    public GroupMeasure getParticipantEffectiveGroupMeasure() {
+    public String getParticipantEffectiveGroupMeasure() {
       return this.participantEffectiveGroupMeasure == null ? null : this.participantEffectiveGroupMeasure.getValue();
     }
 
@@ -1377,12 +887,12 @@ public class ResearchElementDefinition extends MetadataResource {
      * @param value Indicates how elements are aggregated within the study effective
      *              period.
      */
-    public ResearchElementDefinitionCharacteristicComponent setParticipantEffectiveGroupMeasure(GroupMeasure value) {
+    public ResearchElementDefinitionCharacteristicComponent setParticipantEffectiveGroupMeasure(String value) {
       if (value == null)
         this.participantEffectiveGroupMeasure = null;
       else {
         if (this.participantEffectiveGroupMeasure == null)
-          this.participantEffectiveGroupMeasure = new Enumeration<GroupMeasure>(new GroupMeasureEnumFactory());
+          this.participantEffectiveGroupMeasure = new StringType();
         this.participantEffectiveGroupMeasure.setValue(value);
       }
       return this;
@@ -1406,7 +916,7 @@ public class ResearchElementDefinition extends MetadataResource {
           "Indicates what effective period the study covers.", 0, 1, studyEffective));
       children.add(new Property("studyEffectiveTimeFromStart", "Duration",
           "Indicates duration from the study initiation.", 0, 1, studyEffectiveTimeFromStart));
-      children.add(new Property("studyEffectiveGroupMeasure", "code",
+      children.add(new Property("studyEffectiveGroupMeasure", "string",
           "Indicates how elements are aggregated within the study effective period.", 0, 1,
           studyEffectiveGroupMeasure));
       children.add(new Property("participantEffectiveDescription", "string",
@@ -1415,7 +925,7 @@ public class ResearchElementDefinition extends MetadataResource {
           "Indicates what effective period the study covers.", 0, 1, participantEffective));
       children.add(new Property("participantEffectiveTimeFromStart", "Duration",
           "Indicates duration from the participant's study entry.", 0, 1, participantEffectiveTimeFromStart));
-      children.add(new Property("participantEffectiveGroupMeasure", "code",
+      children.add(new Property("participantEffectiveGroupMeasure", "string",
           "Indicates how elements are aggregated within the study effective period.", 0, 1,
           participantEffectiveGroupMeasure));
     }
@@ -1488,7 +998,7 @@ public class ResearchElementDefinition extends MetadataResource {
         /* studyEffectiveTimeFromStart */ return new Property("studyEffectiveTimeFromStart", "Duration",
             "Indicates duration from the study initiation.", 0, 1, studyEffectiveTimeFromStart);
       case 1284435677:
-        /* studyEffectiveGroupMeasure */ return new Property("studyEffectiveGroupMeasure", "code",
+        /* studyEffectiveGroupMeasure */ return new Property("studyEffectiveGroupMeasure", "string",
             "Indicates how elements are aggregated within the study effective period.", 0, 1,
             studyEffectiveGroupMeasure);
       case 1333186472:
@@ -1520,7 +1030,7 @@ public class ResearchElementDefinition extends MetadataResource {
         /* participantEffectiveTimeFromStart */ return new Property("participantEffectiveTimeFromStart", "Duration",
             "Indicates duration from the participant's study entry.", 0, 1, participantEffectiveTimeFromStart);
       case 889320371:
-        /* participantEffectiveGroupMeasure */ return new Property("participantEffectiveGroupMeasure", "code",
+        /* participantEffectiveGroupMeasure */ return new Property("participantEffectiveGroupMeasure", "string",
             "Indicates how elements are aggregated within the study effective period.", 0, 1,
             participantEffectiveGroupMeasure);
       default:
@@ -1551,7 +1061,7 @@ public class ResearchElementDefinition extends MetadataResource {
             : new Base[] { this.studyEffectiveTimeFromStart }; // Duration
       case 1284435677:
         /* studyEffectiveGroupMeasure */ return this.studyEffectiveGroupMeasure == null ? new Base[0]
-            : new Base[] { this.studyEffectiveGroupMeasure }; // Enumeration<GroupMeasure>
+            : new Base[] { this.studyEffectiveGroupMeasure }; // StringType
       case 1333186472:
         /* participantEffectiveDescription */ return this.participantEffectiveDescription == null ? new Base[0]
             : new Base[] { this.participantEffectiveDescription }; // StringType
@@ -1563,7 +1073,7 @@ public class ResearchElementDefinition extends MetadataResource {
             : new Base[] { this.participantEffectiveTimeFromStart }; // Duration
       case 889320371:
         /* participantEffectiveGroupMeasure */ return this.participantEffectiveGroupMeasure == null ? new Base[0]
-            : new Base[] { this.participantEffectiveGroupMeasure }; // Enumeration<GroupMeasure>
+            : new Base[] { this.participantEffectiveGroupMeasure }; // StringType
       default:
         return super.getProperty(hash, name, checkValid);
       }
@@ -1595,8 +1105,7 @@ public class ResearchElementDefinition extends MetadataResource {
         this.studyEffectiveTimeFromStart = castToDuration(value); // Duration
         return value;
       case 1284435677: // studyEffectiveGroupMeasure
-        value = new GroupMeasureEnumFactory().fromType(castToCode(value));
-        this.studyEffectiveGroupMeasure = (Enumeration) value; // Enumeration<GroupMeasure>
+        this.studyEffectiveGroupMeasure = castToString(value); // StringType
         return value;
       case 1333186472: // participantEffectiveDescription
         this.participantEffectiveDescription = castToString(value); // StringType
@@ -1608,8 +1117,7 @@ public class ResearchElementDefinition extends MetadataResource {
         this.participantEffectiveTimeFromStart = castToDuration(value); // Duration
         return value;
       case 889320371: // participantEffectiveGroupMeasure
-        value = new GroupMeasureEnumFactory().fromType(castToCode(value));
-        this.participantEffectiveGroupMeasure = (Enumeration) value; // Enumeration<GroupMeasure>
+        this.participantEffectiveGroupMeasure = castToString(value); // StringType
         return value;
       default:
         return super.setProperty(hash, name, value);
@@ -1634,8 +1142,7 @@ public class ResearchElementDefinition extends MetadataResource {
       } else if (name.equals("studyEffectiveTimeFromStart")) {
         this.studyEffectiveTimeFromStart = castToDuration(value); // Duration
       } else if (name.equals("studyEffectiveGroupMeasure")) {
-        value = new GroupMeasureEnumFactory().fromType(castToCode(value));
-        this.studyEffectiveGroupMeasure = (Enumeration) value; // Enumeration<GroupMeasure>
+        this.studyEffectiveGroupMeasure = castToString(value); // StringType
       } else if (name.equals("participantEffectiveDescription")) {
         this.participantEffectiveDescription = castToString(value); // StringType
       } else if (name.equals("participantEffective[x]")) {
@@ -1643,8 +1150,7 @@ public class ResearchElementDefinition extends MetadataResource {
       } else if (name.equals("participantEffectiveTimeFromStart")) {
         this.participantEffectiveTimeFromStart = castToDuration(value); // Duration
       } else if (name.equals("participantEffectiveGroupMeasure")) {
-        value = new GroupMeasureEnumFactory().fromType(castToCode(value));
-        this.participantEffectiveGroupMeasure = (Enumeration) value; // Enumeration<GroupMeasure>
+        this.participantEffectiveGroupMeasure = castToString(value); // StringType
       } else
         return super.setProperty(name, value);
       return value;
@@ -1738,7 +1244,7 @@ public class ResearchElementDefinition extends MetadataResource {
       case -2107828915:
         /* studyEffectiveTimeFromStart */ return new String[] { "Duration" };
       case 1284435677:
-        /* studyEffectiveGroupMeasure */ return new String[] { "code" };
+        /* studyEffectiveGroupMeasure */ return new String[] { "string" };
       case 1333186472:
         /* participantEffectiveDescription */ return new String[] { "string" };
       case 1376306100:
@@ -1746,7 +1252,7 @@ public class ResearchElementDefinition extends MetadataResource {
       case -1471501513:
         /* participantEffectiveTimeFromStart */ return new String[] { "Duration" };
       case 889320371:
-        /* participantEffectiveGroupMeasure */ return new String[] { "code" };
+        /* participantEffectiveGroupMeasure */ return new String[] { "string" };
       default:
         return super.getTypesForProperty(hash, name);
       }
@@ -2065,19 +1571,19 @@ public class ResearchElementDefinition extends MetadataResource {
   /**
    * The type of research element, a population, an exposure, or an outcome.
    */
-  @Child(name = "type", type = { CodeType.class }, order = 18, min = 1, max = 1, modifier = false, summary = true)
+  @Child(name = "type", type = { StringType.class }, order = 18, min = 1, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "population | exposure | outcome", formalDefinition = "The type of research element, a population, an exposure, or an outcome.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/research-element-type")
-  protected Enumeration<ResearchElementType> type;
+  protected StringType type;
 
   /**
    * The type of the outcome (e.g. Dichotomous, Continuous, or Descriptive).
    */
   @Child(name = "variableType", type = {
-      CodeType.class }, order = 19, min = 0, max = 1, modifier = false, summary = false)
+    StringType.class }, order = 19, min = 0, max = 1, modifier = false, summary = false)
   @Description(shortDefinition = "dichotomous | continuous | descriptive", formalDefinition = "The type of the outcome (e.g. Dichotomous, Continuous, or Descriptive).")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/variable-type")
-  protected Enumeration<VariableType> variableType;
+  protected StringType variableType;
 
   /**
    * A characteristic that defines the members of the research element. Multiple
@@ -2099,7 +1605,7 @@ public class ResearchElementDefinition extends MetadataResource {
   /**
    * Constructor
    */
-  public ResearchElementDefinition(Enumeration<PublicationStatus> status, Enumeration<ResearchElementType> type) {
+  public ResearchElementDefinition(StringType status, StringType type) {
     super();
     this.status = status;
     this.type = type;
@@ -2590,12 +2096,12 @@ public class ResearchElementDefinition extends MetadataResource {
    *         underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create ResearchElementDefinition.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -2613,7 +2119,7 @@ public class ResearchElementDefinition extends MetadataResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getStatus" gives direct access to the value
    */
-  public ResearchElementDefinition setStatusElement(Enumeration<PublicationStatus> value) {
+  public ResearchElementDefinition setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -2622,7 +2128,7 @@ public class ResearchElementDefinition extends MetadataResource {
    * @return The status of this research element definition. Enables tracking the
    *         life-cycle of the content.
    */
-  public PublicationStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
@@ -2630,9 +2136,9 @@ public class ResearchElementDefinition extends MetadataResource {
    * @param value The status of this research element definition. Enables tracking
    *              the life-cycle of the content.
    */
-  public ResearchElementDefinition setStatus(PublicationStatus value) {
+  public ResearchElementDefinition setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -3911,12 +3417,12 @@ public class ResearchElementDefinition extends MetadataResource {
    *         value and extensions. The accessor "getType" gives direct access to
    *         the value
    */
-  public Enumeration<ResearchElementType> getTypeElement() {
+  public StringType getTypeElement() {
     if (this.type == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create ResearchElementDefinition.type");
       else if (Configuration.doAutoCreate())
-        this.type = new Enumeration<ResearchElementType>(new ResearchElementTypeEnumFactory()); // bb
+        this.type = new StringType(); // bb
     return this.type;
   }
 
@@ -3934,7 +3440,7 @@ public class ResearchElementDefinition extends MetadataResource {
    *              id, value and extensions. The accessor "getType" gives direct
    *              access to the value
    */
-  public ResearchElementDefinition setTypeElement(Enumeration<ResearchElementType> value) {
+  public ResearchElementDefinition setTypeElement(StringType value) {
     this.type = value;
     return this;
   }
@@ -3943,7 +3449,7 @@ public class ResearchElementDefinition extends MetadataResource {
    * @return The type of research element, a population, an exposure, or an
    *         outcome.
    */
-  public ResearchElementType getType() {
+  public String getType() {
     return this.type == null ? null : this.type.getValue();
   }
 
@@ -3951,9 +3457,9 @@ public class ResearchElementDefinition extends MetadataResource {
    * @param value The type of research element, a population, an exposure, or an
    *              outcome.
    */
-  public ResearchElementDefinition setType(ResearchElementType value) {
+  public ResearchElementDefinition setType(String value) {
     if (this.type == null)
-      this.type = new Enumeration<ResearchElementType>(new ResearchElementTypeEnumFactory());
+      this.type = new StringType();
     this.type.setValue(value);
     return this;
   }
@@ -3964,12 +3470,12 @@ public class ResearchElementDefinition extends MetadataResource {
    *         value and extensions. The accessor "getVariableType" gives direct
    *         access to the value
    */
-  public Enumeration<VariableType> getVariableTypeElement() {
+  public StringType getVariableTypeElement() {
     if (this.variableType == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create ResearchElementDefinition.variableType");
       else if (Configuration.doAutoCreate())
-        this.variableType = new Enumeration<VariableType>(new VariableTypeEnumFactory()); // bb
+        this.variableType = new StringType(); // bb
     return this.variableType;
   }
 
@@ -3987,7 +3493,7 @@ public class ResearchElementDefinition extends MetadataResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getVariableType" gives direct access to the value
    */
-  public ResearchElementDefinition setVariableTypeElement(Enumeration<VariableType> value) {
+  public ResearchElementDefinition setVariableTypeElement(StringType value) {
     this.variableType = value;
     return this;
   }
@@ -3996,7 +3502,7 @@ public class ResearchElementDefinition extends MetadataResource {
    * @return The type of the outcome (e.g. Dichotomous, Continuous, or
    *         Descriptive).
    */
-  public VariableType getVariableType() {
+  public String getVariableType() {
     return this.variableType == null ? null : this.variableType.getValue();
   }
 
@@ -4004,12 +3510,12 @@ public class ResearchElementDefinition extends MetadataResource {
    * @param value The type of the outcome (e.g. Dichotomous, Continuous, or
    *              Descriptive).
    */
-  public ResearchElementDefinition setVariableType(VariableType value) {
+  public ResearchElementDefinition setVariableType(String value) {
     if (value == null)
       this.variableType = null;
     else {
       if (this.variableType == null)
-        this.variableType = new Enumeration<VariableType>(new VariableTypeEnumFactory());
+        this.variableType = new StringType();
       this.variableType.setValue(value);
     }
     return this;
@@ -4094,7 +3600,7 @@ public class ResearchElementDefinition extends MetadataResource {
     children.add(new Property("subtitle", "string",
         "An explanatory or alternate title for the ResearchElementDefinition giving additional information about its content.",
         0, 1, subtitle));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "The status of this research element definition. Enables tracking the life-cycle of the content.", 0, 1,
         status));
     children.add(new Property("experimental", "boolean",
@@ -4162,9 +3668,9 @@ public class ResearchElementDefinition extends MetadataResource {
     children.add(new Property("library", "canonical(Library)",
         "A reference to a Library resource containing the formal logic used by the ResearchElementDefinition.", 0,
         java.lang.Integer.MAX_VALUE, library));
-    children.add(new Property("type", "code", "The type of research element, a population, an exposure, or an outcome.",
+    children.add(new Property("type", "string", "The type of research element, a population, an exposure, or an outcome.",
         0, 1, type));
-    children.add(new Property("variableType", "code",
+    children.add(new Property("variableType", "string",
         "The type of the outcome (e.g. Dichotomous, Continuous, or Descriptive).", 0, 1, variableType));
     children.add(new Property("characteristic", "",
         "A characteristic that defines the members of the research element. Multiple characteristics are applied with \"and\" semantics.",
@@ -4202,7 +3708,7 @@ public class ResearchElementDefinition extends MetadataResource {
           "An explanatory or alternate title for the ResearchElementDefinition giving additional information about its content.",
           0, 1, subtitle);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "The status of this research element definition. Enables tracking the life-cycle of the content.", 0, 1,
           status);
     case -404562712:
@@ -4306,10 +3812,10 @@ public class ResearchElementDefinition extends MetadataResource {
           "A reference to a Library resource containing the formal logic used by the ResearchElementDefinition.", 0,
           java.lang.Integer.MAX_VALUE, library);
     case 3575610:
-      /* type */ return new Property("type", "code",
+      /* type */ return new Property("type", "string",
           "The type of research element, a population, an exposure, or an outcome.", 0, 1, type);
     case -372820010:
-      /* variableType */ return new Property("variableType", "code",
+      /* variableType */ return new Property("variableType", "string",
           "The type of the outcome (e.g. Dichotomous, Continuous, or Descriptive).", 0, 1, variableType);
     case 366313883:
       /* characteristic */ return new Property("characteristic", "",
@@ -4340,7 +3846,7 @@ public class ResearchElementDefinition extends MetadataResource {
     case -2060497896:
       /* subtitle */ return this.subtitle == null ? new Base[0] : new Base[] { this.subtitle }; // StringType
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -404562712:
       /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
     case -1867885268:
@@ -4389,9 +3895,9 @@ public class ResearchElementDefinition extends MetadataResource {
     case 166208699:
       /* library */ return this.library == null ? new Base[0] : this.library.toArray(new Base[this.library.size()]); // CanonicalType
     case 3575610:
-      /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<ResearchElementType>
+      /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
     case -372820010:
-      /* variableType */ return this.variableType == null ? new Base[0] : new Base[] { this.variableType }; // Enumeration<VariableType>
+      /* variableType */ return this.variableType == null ? new Base[0] : new Base[] { this.variableType }; // StringType
     case 366313883:
       /* characteristic */ return this.characteristic == null ? new Base[0]
           : this.characteristic.toArray(new Base[this.characteristic.size()]); // ResearchElementDefinitionCharacteristicComponent
@@ -4426,8 +3932,7 @@ public class ResearchElementDefinition extends MetadataResource {
       this.subtitle = castToString(value); // StringType
       return value;
     case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
       return value;
     case -404562712: // experimental
       this.experimental = castToBoolean(value); // BooleanType
@@ -4496,12 +4001,10 @@ public class ResearchElementDefinition extends MetadataResource {
       this.getLibrary().add(castToCanonical(value)); // CanonicalType
       return value;
     case 3575610: // type
-      value = new ResearchElementTypeEnumFactory().fromType(castToCode(value));
-      this.type = (Enumeration) value; // Enumeration<ResearchElementType>
+      this.type = castToString(value); // StringType
       return value;
     case -372820010: // variableType
-      value = new VariableTypeEnumFactory().fromType(castToCode(value));
-      this.variableType = (Enumeration) value; // Enumeration<VariableType>
+      this.variableType = castToString(value); // StringType
       return value;
     case 366313883: // characteristic
       this.getCharacteristic().add((ResearchElementDefinitionCharacteristicComponent) value); // ResearchElementDefinitionCharacteristicComponent
@@ -4529,8 +4032,7 @@ public class ResearchElementDefinition extends MetadataResource {
     } else if (name.equals("subtitle")) {
       this.subtitle = castToString(value); // StringType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("subject[x]")) {
@@ -4576,11 +4078,9 @@ public class ResearchElementDefinition extends MetadataResource {
     } else if (name.equals("library")) {
       this.getLibrary().add(castToCanonical(value));
     } else if (name.equals("type")) {
-      value = new ResearchElementTypeEnumFactory().fromType(castToCode(value));
-      this.type = (Enumeration) value; // Enumeration<ResearchElementType>
+      this.type = castToString(value); // StringType
     } else if (name.equals("variableType")) {
-      value = new VariableTypeEnumFactory().fromType(castToCode(value));
-      this.variableType = (Enumeration) value; // Enumeration<VariableType>
+      this.variableType = castToString(value); // StringType
     } else if (name.equals("characteristic")) {
       this.getCharacteristic().add((ResearchElementDefinitionCharacteristicComponent) value);
     } else
@@ -4756,7 +4256,7 @@ public class ResearchElementDefinition extends MetadataResource {
     case -2060497896:
       /* subtitle */ return new String[] { "string" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -404562712:
       /* experimental */ return new String[] { "boolean" };
     case -1867885268:
@@ -4802,9 +4302,9 @@ public class ResearchElementDefinition extends MetadataResource {
     case 166208699:
       /* library */ return new String[] { "canonical" };
     case 3575610:
-      /* type */ return new String[] { "code" };
+      /* type */ return new String[] { "string" };
     case -372820010:
-      /* variableType */ return new String[] { "code" };
+      /* variableType */ return new String[] { "string" };
     case 366313883:
       /* characteristic */ return new String[] {};
     default:

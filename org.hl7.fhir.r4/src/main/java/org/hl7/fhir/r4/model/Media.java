@@ -497,8 +497,8 @@ public class Media extends DomainResource {
   /**
    * @return The current state of the {{title}}.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**
@@ -1572,7 +1572,6 @@ public class Media extends DomainResource {
       this.getPartOf().add(castToReference(value)); // Reference
       return value;
     case -892481550: // status
-//      value = new MediaStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); //StringType
       return value;
     case 3575610: // type
@@ -1644,7 +1643,6 @@ public class Media extends DomainResource {
     } else if (name.equals("partOf")) {
       this.getPartOf().add(castToReference(value));
     } else if (name.equals("status")) {
-//      value = new MediaStatusEnumFactory().fromType(castToCode(value));
       this.status = castToString(value); // StringType
     } else if (name.equals("type")) {
       this.type = castToCodeableConcept(value); // CodeableConcept

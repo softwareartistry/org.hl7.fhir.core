@@ -36,8 +36,6 @@ import java.util.List;
 
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatusEnumFactory;
 // added from java-adornments.txt:
 import org.hl7.fhir.r4.utils.StructureMapUtilities;
 import org.hl7.fhir.utilities.Utilities;
@@ -56,7 +54,7 @@ import ca.uhn.fhir.model.api.annotation.SearchParamDefinition;
  */
 @ResourceDef(name = "StructureMap", profile = "http://hl7.org/fhir/StructureDefinition/StructureMap")
 @ChildOrder(names = { "url", "identifier", "version", "name", "title", "status", "experimental", "date", "publisher",
-    "contact", "description", "useContext", "jurisdiction", "purpose", "copyright", "structure", "import", "group" })
+  "contact", "description", "useContext", "jurisdiction", "purpose", "copyright", "structure", "import", "group" })
 public class StructureMap extends MetadataResource {
 
   public enum StructureMapModelMode {
@@ -104,69 +102,69 @@ public class StructureMap extends MetadataResource {
 
     public String toCode() {
       switch (this) {
-      case SOURCE:
-        return "source";
-      case QUERIED:
-        return "queried";
-      case TARGET:
-        return "target";
-      case PRODUCED:
-        return "produced";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case SOURCE:
+          return "source";
+        case QUERIED:
+          return "queried";
+        case TARGET:
+          return "target";
+        case PRODUCED:
+          return "produced";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getSystem() {
       switch (this) {
-      case SOURCE:
-        return "http://hl7.org/fhir/map-model-mode";
-      case QUERIED:
-        return "http://hl7.org/fhir/map-model-mode";
-      case TARGET:
-        return "http://hl7.org/fhir/map-model-mode";
-      case PRODUCED:
-        return "http://hl7.org/fhir/map-model-mode";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case SOURCE:
+          return "http://hl7.org/fhir/map-model-mode";
+        case QUERIED:
+          return "http://hl7.org/fhir/map-model-mode";
+        case TARGET:
+          return "http://hl7.org/fhir/map-model-mode";
+        case PRODUCED:
+          return "http://hl7.org/fhir/map-model-mode";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDefinition() {
       switch (this) {
-      case SOURCE:
-        return "This structure describes an instance passed to the mapping engine that is used a source of data.";
-      case QUERIED:
-        return "This structure describes an instance that the mapping engine may ask for that is used a source of data.";
-      case TARGET:
-        return "This structure describes an instance passed to the mapping engine that is used a target of data.";
-      case PRODUCED:
-        return "This structure describes an instance that the mapping engine may ask to create that is used a target of data.";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case SOURCE:
+          return "This structure describes an instance passed to the mapping engine that is used a source of data.";
+        case QUERIED:
+          return "This structure describes an instance that the mapping engine may ask for that is used a source of data.";
+        case TARGET:
+          return "This structure describes an instance passed to the mapping engine that is used a target of data.";
+        case PRODUCED:
+          return "This structure describes an instance that the mapping engine may ask to create that is used a target of data.";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDisplay() {
       switch (this) {
-      case SOURCE:
-        return "Source Structure Definition";
-      case QUERIED:
-        return "Queried Structure Definition";
-      case TARGET:
-        return "Target Structure Definition";
-      case PRODUCED:
-        return "Produced Structure Definition";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case SOURCE:
+          return "Source Structure Definition";
+        case QUERIED:
+          return "Queried Structure Definition";
+        case TARGET:
+          return "Target Structure Definition";
+        case PRODUCED:
+          return "Produced Structure Definition";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
   }
@@ -207,9 +205,9 @@ public class StructureMap extends MetadataResource {
     }
 
     public String toCode(StructureMapModelMode code) {
-       if (code == StructureMapModelMode.NULL)
-           return null;
-       if (code == StructureMapModelMode.SOURCE)
+      if (code == StructureMapModelMode.NULL)
+        return null;
+      if (code == StructureMapModelMode.SOURCE)
         return "source";
       if (code == StructureMapModelMode.QUERIED)
         return "queried";
@@ -218,7 +216,7 @@ public class StructureMap extends MetadataResource {
       if (code == StructureMapModelMode.PRODUCED)
         return "produced";
       return "?";
-   }
+    }
 
     public String toSystem(StructureMapModelMode code) {
       return code.getSystem();
@@ -261,61 +259,61 @@ public class StructureMap extends MetadataResource {
 
     public String toCode() {
       switch (this) {
-      case NONE:
-        return "none";
-      case TYPES:
-        return "types";
-      case TYPEANDTYPES:
-        return "type-and-types";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case NONE:
+          return "none";
+        case TYPES:
+          return "types";
+        case TYPEANDTYPES:
+          return "type-and-types";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getSystem() {
       switch (this) {
-      case NONE:
-        return "http://hl7.org/fhir/map-group-type-mode";
-      case TYPES:
-        return "http://hl7.org/fhir/map-group-type-mode";
-      case TYPEANDTYPES:
-        return "http://hl7.org/fhir/map-group-type-mode";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case NONE:
+          return "http://hl7.org/fhir/map-group-type-mode";
+        case TYPES:
+          return "http://hl7.org/fhir/map-group-type-mode";
+        case TYPEANDTYPES:
+          return "http://hl7.org/fhir/map-group-type-mode";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDefinition() {
       switch (this) {
-      case NONE:
-        return "This group is not a default group for the types.";
-      case TYPES:
-        return "This group is a default mapping group for the specified types and for the primary source type.";
-      case TYPEANDTYPES:
-        return "This group is a default mapping group for the specified types.";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case NONE:
+          return "This group is not a default group for the types.";
+        case TYPES:
+          return "This group is a default mapping group for the specified types and for the primary source type.";
+        case TYPEANDTYPES:
+          return "This group is a default mapping group for the specified types.";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDisplay() {
       switch (this) {
-      case NONE:
-        return "Not a Default";
-      case TYPES:
-        return "Default for Type Combination";
-      case TYPEANDTYPES:
-        return "Default for type + combination";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case NONE:
+          return "Not a Default";
+        case TYPES:
+          return "Default for Type Combination";
+        case TYPEANDTYPES:
+          return "Default for type + combination";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
   }
@@ -352,16 +350,16 @@ public class StructureMap extends MetadataResource {
     }
 
     public String toCode(StructureMapGroupTypeMode code) {
-       if (code == StructureMapGroupTypeMode.NULL)
-           return null;
-       if (code == StructureMapGroupTypeMode.NONE)
+      if (code == StructureMapGroupTypeMode.NULL)
+        return null;
+      if (code == StructureMapGroupTypeMode.NONE)
         return "none";
       if (code == StructureMapGroupTypeMode.TYPES)
         return "types";
       if (code == StructureMapGroupTypeMode.TYPEANDTYPES)
         return "type-and-types";
       return "?";
-   }
+    }
 
     public String toSystem(StructureMapGroupTypeMode code) {
       return code.getSystem();
@@ -397,53 +395,53 @@ public class StructureMap extends MetadataResource {
 
     public String toCode() {
       switch (this) {
-      case SOURCE:
-        return "source";
-      case TARGET:
-        return "target";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case SOURCE:
+          return "source";
+        case TARGET:
+          return "target";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getSystem() {
       switch (this) {
-      case SOURCE:
-        return "http://hl7.org/fhir/map-input-mode";
-      case TARGET:
-        return "http://hl7.org/fhir/map-input-mode";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case SOURCE:
+          return "http://hl7.org/fhir/map-input-mode";
+        case TARGET:
+          return "http://hl7.org/fhir/map-input-mode";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDefinition() {
       switch (this) {
-      case SOURCE:
-        return "Names an input instance used a source for mapping.";
-      case TARGET:
-        return "Names an instance that is being populated.";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case SOURCE:
+          return "Names an input instance used a source for mapping.";
+        case TARGET:
+          return "Names an instance that is being populated.";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDisplay() {
       switch (this) {
-      case SOURCE:
-        return "Source Instance";
-      case TARGET:
-        return "Target Instance";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case SOURCE:
+          return "Source Instance";
+        case TARGET:
+          return "Target Instance";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
   }
@@ -476,14 +474,14 @@ public class StructureMap extends MetadataResource {
     }
 
     public String toCode(StructureMapInputMode code) {
-       if (code == StructureMapInputMode.NULL)
-           return null;
-       if (code == StructureMapInputMode.SOURCE)
+      if (code == StructureMapInputMode.NULL)
+        return null;
+      if (code == StructureMapInputMode.SOURCE)
         return "source";
       if (code == StructureMapInputMode.TARGET)
         return "target";
       return "?";
-   }
+    }
 
     public String toSystem(StructureMapInputMode code) {
       return code.getSystem();
@@ -537,77 +535,77 @@ public class StructureMap extends MetadataResource {
 
     public String toCode() {
       switch (this) {
-      case FIRST:
-        return "first";
-      case NOTFIRST:
-        return "not_first";
-      case LAST:
-        return "last";
-      case NOTLAST:
-        return "not_last";
-      case ONLYONE:
-        return "only_one";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case FIRST:
+          return "first";
+        case NOTFIRST:
+          return "not_first";
+        case LAST:
+          return "last";
+        case NOTLAST:
+          return "not_last";
+        case ONLYONE:
+          return "only_one";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getSystem() {
       switch (this) {
-      case FIRST:
-        return "http://hl7.org/fhir/map-source-list-mode";
-      case NOTFIRST:
-        return "http://hl7.org/fhir/map-source-list-mode";
-      case LAST:
-        return "http://hl7.org/fhir/map-source-list-mode";
-      case NOTLAST:
-        return "http://hl7.org/fhir/map-source-list-mode";
-      case ONLYONE:
-        return "http://hl7.org/fhir/map-source-list-mode";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case FIRST:
+          return "http://hl7.org/fhir/map-source-list-mode";
+        case NOTFIRST:
+          return "http://hl7.org/fhir/map-source-list-mode";
+        case LAST:
+          return "http://hl7.org/fhir/map-source-list-mode";
+        case NOTLAST:
+          return "http://hl7.org/fhir/map-source-list-mode";
+        case ONLYONE:
+          return "http://hl7.org/fhir/map-source-list-mode";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDefinition() {
       switch (this) {
-      case FIRST:
-        return "Only process this rule for the first in the list.";
-      case NOTFIRST:
-        return "Process this rule for all but the first.";
-      case LAST:
-        return "Only process this rule for the last in the list.";
-      case NOTLAST:
-        return "Process this rule for all but the last.";
-      case ONLYONE:
-        return "Only process this rule is there is only item.";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case FIRST:
+          return "Only process this rule for the first in the list.";
+        case NOTFIRST:
+          return "Process this rule for all but the first.";
+        case LAST:
+          return "Only process this rule for the last in the list.";
+        case NOTLAST:
+          return "Process this rule for all but the last.";
+        case ONLYONE:
+          return "Only process this rule is there is only item.";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDisplay() {
       switch (this) {
-      case FIRST:
-        return "First";
-      case NOTFIRST:
-        return "All but the first";
-      case LAST:
-        return "Last";
-      case NOTLAST:
-        return "All but the last";
-      case ONLYONE:
-        return "Enforce only one";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case FIRST:
+          return "First";
+        case NOTFIRST:
+          return "All but the first";
+        case LAST:
+          return "Last";
+        case NOTLAST:
+          return "All but the last";
+        case ONLYONE:
+          return "Enforce only one";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
   }
@@ -652,9 +650,9 @@ public class StructureMap extends MetadataResource {
     }
 
     public String toCode(StructureMapSourceListMode code) {
-       if (code == StructureMapSourceListMode.NULL)
-           return null;
-       if (code == StructureMapSourceListMode.FIRST)
+      if (code == StructureMapSourceListMode.NULL)
+        return null;
+      if (code == StructureMapSourceListMode.FIRST)
         return "first";
       if (code == StructureMapSourceListMode.NOTFIRST)
         return "not_first";
@@ -665,7 +663,7 @@ public class StructureMap extends MetadataResource {
       if (code == StructureMapSourceListMode.ONLYONE)
         return "only_one";
       return "?";
-   }
+    }
 
     public String toSystem(StructureMapSourceListMode code) {
       return code.getSystem();
@@ -701,53 +699,53 @@ public class StructureMap extends MetadataResource {
 
     public String toCode() {
       switch (this) {
-      case TYPE:
-        return "type";
-      case VARIABLE:
-        return "variable";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case TYPE:
+          return "type";
+        case VARIABLE:
+          return "variable";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getSystem() {
       switch (this) {
-      case TYPE:
-        return "http://hl7.org/fhir/map-context-type";
-      case VARIABLE:
-        return "http://hl7.org/fhir/map-context-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case TYPE:
+          return "http://hl7.org/fhir/map-context-type";
+        case VARIABLE:
+          return "http://hl7.org/fhir/map-context-type";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDefinition() {
       switch (this) {
-      case TYPE:
-        return "The context specifies a type.";
-      case VARIABLE:
-        return "The context specifies a variable.";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case TYPE:
+          return "The context specifies a type.";
+        case VARIABLE:
+          return "The context specifies a variable.";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDisplay() {
       switch (this) {
-      case TYPE:
-        return "Type";
-      case VARIABLE:
-        return "Variable";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case TYPE:
+          return "Type";
+        case VARIABLE:
+          return "Variable";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
   }
@@ -780,14 +778,14 @@ public class StructureMap extends MetadataResource {
     }
 
     public String toCode(StructureMapContextType code) {
-       if (code == StructureMapContextType.NULL)
-           return null;
-       if (code == StructureMapContextType.TYPE)
+      if (code == StructureMapContextType.NULL)
+        return null;
+      if (code == StructureMapContextType.TYPE)
         return "type";
       if (code == StructureMapContextType.VARIABLE)
         return "variable";
       return "?";
-   }
+    }
 
     public String toSystem(StructureMapContextType code) {
       return code.getSystem();
@@ -840,69 +838,69 @@ public class StructureMap extends MetadataResource {
 
     public String toCode() {
       switch (this) {
-      case FIRST:
-        return "first";
-      case SHARE:
-        return "share";
-      case LAST:
-        return "last";
-      case COLLATE:
-        return "collate";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case FIRST:
+          return "first";
+        case SHARE:
+          return "share";
+        case LAST:
+          return "last";
+        case COLLATE:
+          return "collate";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getSystem() {
       switch (this) {
-      case FIRST:
-        return "http://hl7.org/fhir/map-target-list-mode";
-      case SHARE:
-        return "http://hl7.org/fhir/map-target-list-mode";
-      case LAST:
-        return "http://hl7.org/fhir/map-target-list-mode";
-      case COLLATE:
-        return "http://hl7.org/fhir/map-target-list-mode";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case FIRST:
+          return "http://hl7.org/fhir/map-target-list-mode";
+        case SHARE:
+          return "http://hl7.org/fhir/map-target-list-mode";
+        case LAST:
+          return "http://hl7.org/fhir/map-target-list-mode";
+        case COLLATE:
+          return "http://hl7.org/fhir/map-target-list-mode";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDefinition() {
       switch (this) {
-      case FIRST:
-        return "when the target list is being assembled, the items for this rule go first. If more than one rule defines a first item (for a given instance of mapping) then this is an error.";
-      case SHARE:
-        return "the target instance is shared with the target instances generated by another rule (up to the first common n items, then create new ones).";
-      case LAST:
-        return "when the target list is being assembled, the items for this rule go last. If more than one rule defines a last item (for a given instance of mapping) then this is an error.";
-      case COLLATE:
-        return "re-use the first item in the list, and keep adding content to it.";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case FIRST:
+          return "when the target list is being assembled, the items for this rule go first. If more than one rule defines a first item (for a given instance of mapping) then this is an error.";
+        case SHARE:
+          return "the target instance is shared with the target instances generated by another rule (up to the first common n items, then create new ones).";
+        case LAST:
+          return "when the target list is being assembled, the items for this rule go last. If more than one rule defines a last item (for a given instance of mapping) then this is an error.";
+        case COLLATE:
+          return "re-use the first item in the list, and keep adding content to it.";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDisplay() {
       switch (this) {
-      case FIRST:
-        return "First";
-      case SHARE:
-        return "Share";
-      case LAST:
-        return "Last";
-      case COLLATE:
-        return "Collate";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case FIRST:
+          return "First";
+        case SHARE:
+          return "Share";
+        case LAST:
+          return "Last";
+        case COLLATE:
+          return "Collate";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
   }
@@ -943,9 +941,9 @@ public class StructureMap extends MetadataResource {
     }
 
     public String toCode(StructureMapTargetListMode code) {
-       if (code == StructureMapTargetListMode.NULL)
-           return null;
-       if (code == StructureMapTargetListMode.FIRST)
+      if (code == StructureMapTargetListMode.NULL)
+        return null;
+      if (code == StructureMapTargetListMode.FIRST)
         return "first";
       if (code == StructureMapTargetListMode.SHARE)
         return "share";
@@ -954,7 +952,7 @@ public class StructureMap extends MetadataResource {
       if (code == StructureMapTargetListMode.COLLATE)
         return "collate";
       return "?";
-   }
+    }
 
     public String toSystem(StructureMapTargetListMode code) {
       return code.getSystem();
@@ -1090,173 +1088,173 @@ public class StructureMap extends MetadataResource {
 
     public String toCode() {
       switch (this) {
-      case CREATE:
-        return "create";
-      case COPY:
-        return "copy";
-      case TRUNCATE:
-        return "truncate";
-      case ESCAPE:
-        return "escape";
-      case CAST:
-        return "cast";
-      case APPEND:
-        return "append";
-      case TRANSLATE:
-        return "translate";
-      case REFERENCE:
-        return "reference";
-      case DATEOP:
-        return "dateOp";
-      case UUID:
-        return "uuid";
-      case POINTER:
-        return "pointer";
-      case EVALUATE:
-        return "evaluate";
-      case CC:
-        return "cc";
-      case C:
-        return "c";
-      case QTY:
-        return "qty";
-      case ID:
-        return "id";
-      case CP:
-        return "cp";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case CREATE:
+          return "create";
+        case COPY:
+          return "copy";
+        case TRUNCATE:
+          return "truncate";
+        case ESCAPE:
+          return "escape";
+        case CAST:
+          return "cast";
+        case APPEND:
+          return "append";
+        case TRANSLATE:
+          return "translate";
+        case REFERENCE:
+          return "reference";
+        case DATEOP:
+          return "dateOp";
+        case UUID:
+          return "uuid";
+        case POINTER:
+          return "pointer";
+        case EVALUATE:
+          return "evaluate";
+        case CC:
+          return "cc";
+        case C:
+          return "c";
+        case QTY:
+          return "qty";
+        case ID:
+          return "id";
+        case CP:
+          return "cp";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getSystem() {
       switch (this) {
-      case CREATE:
-        return "http://hl7.org/fhir/map-transform";
-      case COPY:
-        return "http://hl7.org/fhir/map-transform";
-      case TRUNCATE:
-        return "http://hl7.org/fhir/map-transform";
-      case ESCAPE:
-        return "http://hl7.org/fhir/map-transform";
-      case CAST:
-        return "http://hl7.org/fhir/map-transform";
-      case APPEND:
-        return "http://hl7.org/fhir/map-transform";
-      case TRANSLATE:
-        return "http://hl7.org/fhir/map-transform";
-      case REFERENCE:
-        return "http://hl7.org/fhir/map-transform";
-      case DATEOP:
-        return "http://hl7.org/fhir/map-transform";
-      case UUID:
-        return "http://hl7.org/fhir/map-transform";
-      case POINTER:
-        return "http://hl7.org/fhir/map-transform";
-      case EVALUATE:
-        return "http://hl7.org/fhir/map-transform";
-      case CC:
-        return "http://hl7.org/fhir/map-transform";
-      case C:
-        return "http://hl7.org/fhir/map-transform";
-      case QTY:
-        return "http://hl7.org/fhir/map-transform";
-      case ID:
-        return "http://hl7.org/fhir/map-transform";
-      case CP:
-        return "http://hl7.org/fhir/map-transform";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case CREATE:
+          return "http://hl7.org/fhir/map-transform";
+        case COPY:
+          return "http://hl7.org/fhir/map-transform";
+        case TRUNCATE:
+          return "http://hl7.org/fhir/map-transform";
+        case ESCAPE:
+          return "http://hl7.org/fhir/map-transform";
+        case CAST:
+          return "http://hl7.org/fhir/map-transform";
+        case APPEND:
+          return "http://hl7.org/fhir/map-transform";
+        case TRANSLATE:
+          return "http://hl7.org/fhir/map-transform";
+        case REFERENCE:
+          return "http://hl7.org/fhir/map-transform";
+        case DATEOP:
+          return "http://hl7.org/fhir/map-transform";
+        case UUID:
+          return "http://hl7.org/fhir/map-transform";
+        case POINTER:
+          return "http://hl7.org/fhir/map-transform";
+        case EVALUATE:
+          return "http://hl7.org/fhir/map-transform";
+        case CC:
+          return "http://hl7.org/fhir/map-transform";
+        case C:
+          return "http://hl7.org/fhir/map-transform";
+        case QTY:
+          return "http://hl7.org/fhir/map-transform";
+        case ID:
+          return "http://hl7.org/fhir/map-transform";
+        case CP:
+          return "http://hl7.org/fhir/map-transform";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDefinition() {
       switch (this) {
-      case CREATE:
-        return "create(type : string) - type is passed through to the application on the standard API, and must be known by it.";
-      case COPY:
-        return "copy(source).";
-      case TRUNCATE:
-        return "truncate(source, length) - source must be stringy type.";
-      case ESCAPE:
-        return "escape(source, fmt1, fmt2) - change source from one kind of escaping to another (plain, java, xml, json). note that this is for when the string itself is escaped.";
-      case CAST:
-        return "cast(source, type?) - case source from one type to another. target type can be left as implicit if there is one and only one target type known.";
-      case APPEND:
-        return "append(source...) - source is element or string.";
-      case TRANSLATE:
-        return "translate(source, uri_of_map) - use the translate operation.";
-      case REFERENCE:
-        return "reference(source : object) - return a string that references the provided tree properly.";
-      case DATEOP:
-        return "Perform a date operation. *Parameters to be documented*.";
-      case UUID:
-        return "Generate a random UUID (in lowercase). No Parameters.";
-      case POINTER:
-        return "Return the appropriate string to put in a reference that refers to the resource provided as a parameter.";
-      case EVALUATE:
-        return "Execute the supplied FHIRPath expression and use the value returned by that.";
-      case CC:
-        return "Create a CodeableConcept. Parameters = (text) or (system. Code[, display]).";
-      case C:
-        return "Create a Coding. Parameters = (system. Code[, display]).";
-      case QTY:
-        return "Create a quantity. Parameters = (text) or (value, unit, [system, code]) where text is the natural representation e.g. [comparator]value[space]unit.";
-      case ID:
-        return "Create an identifier. Parameters = (system, value[, type]) where type is a code from the identifier type value set.";
-      case CP:
-        return "Create a contact details. Parameters = (value) or (system, value). If no system is provided, the system should be inferred from the content of the value.";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case CREATE:
+          return "create(type : string) - type is passed through to the application on the standard API, and must be known by it.";
+        case COPY:
+          return "copy(source).";
+        case TRUNCATE:
+          return "truncate(source, length) - source must be stringy type.";
+        case ESCAPE:
+          return "escape(source, fmt1, fmt2) - change source from one kind of escaping to another (plain, java, xml, json). note that this is for when the string itself is escaped.";
+        case CAST:
+          return "cast(source, type?) - case source from one type to another. target type can be left as implicit if there is one and only one target type known.";
+        case APPEND:
+          return "append(source...) - source is element or string.";
+        case TRANSLATE:
+          return "translate(source, uri_of_map) - use the translate operation.";
+        case REFERENCE:
+          return "reference(source : object) - return a string that references the provided tree properly.";
+        case DATEOP:
+          return "Perform a date operation. *Parameters to be documented*.";
+        case UUID:
+          return "Generate a random UUID (in lowercase). No Parameters.";
+        case POINTER:
+          return "Return the appropriate string to put in a reference that refers to the resource provided as a parameter.";
+        case EVALUATE:
+          return "Execute the supplied FHIRPath expression and use the value returned by that.";
+        case CC:
+          return "Create a CodeableConcept. Parameters = (text) or (system. Code[, display]).";
+        case C:
+          return "Create a Coding. Parameters = (system. Code[, display]).";
+        case QTY:
+          return "Create a quantity. Parameters = (text) or (value, unit, [system, code]) where text is the natural representation e.g. [comparator]value[space]unit.";
+        case ID:
+          return "Create an identifier. Parameters = (system, value[, type]) where type is a code from the identifier type value set.";
+        case CP:
+          return "Create a contact details. Parameters = (value) or (system, value). If no system is provided, the system should be inferred from the content of the value.";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
 
     public String getDisplay() {
       switch (this) {
-      case CREATE:
-        return "create";
-      case COPY:
-        return "copy";
-      case TRUNCATE:
-        return "truncate";
-      case ESCAPE:
-        return "escape";
-      case CAST:
-        return "cast";
-      case APPEND:
-        return "append";
-      case TRANSLATE:
-        return "translate";
-      case REFERENCE:
-        return "reference";
-      case DATEOP:
-        return "dateOp";
-      case UUID:
-        return "uuid";
-      case POINTER:
-        return "pointer";
-      case EVALUATE:
-        return "evaluate";
-      case CC:
-        return "cc";
-      case C:
-        return "c";
-      case QTY:
-        return "qty";
-      case ID:
-        return "id";
-      case CP:
-        return "cp";
-      case NULL:
-        return null;
-      default:
-        return "?";
+        case CREATE:
+          return "create";
+        case COPY:
+          return "copy";
+        case TRUNCATE:
+          return "truncate";
+        case ESCAPE:
+          return "escape";
+        case CAST:
+          return "cast";
+        case APPEND:
+          return "append";
+        case TRANSLATE:
+          return "translate";
+        case REFERENCE:
+          return "reference";
+        case DATEOP:
+          return "dateOp";
+        case UUID:
+          return "uuid";
+        case POINTER:
+          return "pointer";
+        case EVALUATE:
+          return "evaluate";
+        case CC:
+          return "cc";
+        case C:
+          return "c";
+        case QTY:
+          return "qty";
+        case ID:
+          return "id";
+        case CP:
+          return "cp";
+        case NULL:
+          return null;
+        default:
+          return "?";
       }
     }
   }
@@ -1349,9 +1347,9 @@ public class StructureMap extends MetadataResource {
     }
 
     public String toCode(StructureMapTransform code) {
-       if (code == StructureMapTransform.NULL)
-           return null;
-       if (code == StructureMapTransform.CREATE)
+      if (code == StructureMapTransform.NULL)
+        return null;
+      if (code == StructureMapTransform.CREATE)
         return "create";
       if (code == StructureMapTransform.COPY)
         return "copy";
@@ -1386,7 +1384,7 @@ public class StructureMap extends MetadataResource {
       if (code == StructureMapTransform.CP)
         return "cp";
       return "?";
-   }
+    }
 
     public String toSystem(StructureMapTransform code) {
       return code.getSystem();
@@ -1421,7 +1419,7 @@ public class StructureMap extends MetadataResource {
      * Documentation that describes how the structure is used in the mapping.
      */
     @Child(name = "documentation", type = {
-        StringType.class }, order = 4, min = 0, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 4, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "Documentation on use of structure", formalDefinition = "Documentation that describes how the structure is used in the mapping.")
     protected StringType documentation;
 
@@ -1655,29 +1653,29 @@ public class StructureMap extends MetadataResource {
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
       children.add(new Property("url", "canonical(StructureDefinition)", "The canonical reference to the structure.", 0,
-          1, url));
+        1, url));
       children.add(new Property("mode", "code", "How the referenced structure is used in this mapping.", 0, 1, mode));
       children.add(new Property("alias", "string", "The name used for this type in the map.", 0, 1, alias));
       children.add(new Property("documentation", "string",
-          "Documentation that describes how the structure is used in the mapping.", 0, 1, documentation));
+        "Documentation that describes how the structure is used in the mapping.", 0, 1, documentation));
     }
 
     @Override
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
-      case 116079:
-        /* url */ return new Property("url", "canonical(StructureDefinition)",
-            "The canonical reference to the structure.", 0, 1, url);
-      case 3357091:
-        /* mode */ return new Property("mode", "code", "How the referenced structure is used in this mapping.", 0, 1,
-            mode);
-      case 92902992:
-        /* alias */ return new Property("alias", "string", "The name used for this type in the map.", 0, 1, alias);
-      case 1587405498:
-        /* documentation */ return new Property("documentation", "string",
-            "Documentation that describes how the structure is used in the mapping.", 0, 1, documentation);
-      default:
-        return super.getNamedProperty(_hash, _name, _checkValid);
+        case 116079:
+          /* url */ return new Property("url", "canonical(StructureDefinition)",
+          "The canonical reference to the structure.", 0, 1, url);
+        case 3357091:
+          /* mode */ return new Property("mode", "code", "How the referenced structure is used in this mapping.", 0, 1,
+          mode);
+        case 92902992:
+          /* alias */ return new Property("alias", "string", "The name used for this type in the map.", 0, 1, alias);
+        case 1587405498:
+          /* documentation */ return new Property("documentation", "string",
+          "Documentation that describes how the structure is used in the mapping.", 0, 1, documentation);
+        default:
+          return super.getNamedProperty(_hash, _name, _checkValid);
       }
 
     }
@@ -1685,16 +1683,16 @@ public class StructureMap extends MetadataResource {
     @Override
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
-      case 116079:
-        /* url */ return this.url == null ? new Base[0] : new Base[] { this.url }; // CanonicalType
-      case 3357091:
-        /* mode */ return this.mode == null ? new Base[0] : new Base[] { this.mode }; // Enumeration<StructureMapModelMode>
-      case 92902992:
-        /* alias */ return this.alias == null ? new Base[0] : new Base[] { this.alias }; // StringType
-      case 1587405498:
-        /* documentation */ return this.documentation == null ? new Base[0] : new Base[] { this.documentation }; // StringType
-      default:
-        return super.getProperty(hash, name, checkValid);
+        case 116079:
+          /* url */ return this.url == null ? new Base[0] : new Base[] { this.url }; // CanonicalType
+        case 3357091:
+          /* mode */ return this.mode == null ? new Base[0] : new Base[] { this.mode }; // Enumeration<StructureMapModelMode>
+        case 92902992:
+          /* alias */ return this.alias == null ? new Base[0] : new Base[] { this.alias }; // StringType
+        case 1587405498:
+          /* documentation */ return this.documentation == null ? new Base[0] : new Base[] { this.documentation }; // StringType
+        default:
+          return super.getProperty(hash, name, checkValid);
       }
 
     }
@@ -1702,21 +1700,21 @@ public class StructureMap extends MetadataResource {
     @Override
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
-      case 116079: // url
-        this.url = castToCanonical(value); // CanonicalType
-        return value;
-      case 3357091: // mode
-        value = new StructureMapModelModeEnumFactory().fromType(castToCode(value));
-        this.mode = (Enumeration) value; // Enumeration<StructureMapModelMode>
-        return value;
-      case 92902992: // alias
-        this.alias = castToString(value); // StringType
-        return value;
-      case 1587405498: // documentation
-        this.documentation = castToString(value); // StringType
-        return value;
-      default:
-        return super.setProperty(hash, name, value);
+        case 116079: // url
+          this.url = castToCanonical(value); // CanonicalType
+          return value;
+        case 3357091: // mode
+          value = new StructureMapModelModeEnumFactory().fromType(castToCode(value));
+          this.mode = (Enumeration) value; // Enumeration<StructureMapModelMode>
+          return value;
+        case 92902992: // alias
+          this.alias = castToString(value); // StringType
+          return value;
+        case 1587405498: // documentation
+          this.documentation = castToString(value); // StringType
+          return value;
+        default:
+          return super.setProperty(hash, name, value);
       }
 
     }
@@ -1737,8 +1735,8 @@ public class StructureMap extends MetadataResource {
       return value;
     }
 
-  @Override
-  public void removeChild(String name, Base value) throws FHIRException {
+    @Override
+    public void removeChild(String name, Base value) throws FHIRException {
       if (name.equals("url")) {
         this.url = null;
       } else if (name.equals("mode")) {
@@ -1749,22 +1747,22 @@ public class StructureMap extends MetadataResource {
         this.documentation = null;
       } else
         super.removeChild(name, value);
-      
+
     }
 
     @Override
     public Base makeProperty(int hash, String name) throws FHIRException {
       switch (hash) {
-      case 116079:
-        return getUrlElement();
-      case 3357091:
-        return getModeElement();
-      case 92902992:
-        return getAliasElement();
-      case 1587405498:
-        return getDocumentationElement();
-      default:
-        return super.makeProperty(hash, name);
+        case 116079:
+          return getUrlElement();
+        case 3357091:
+          return getModeElement();
+        case 92902992:
+          return getAliasElement();
+        case 1587405498:
+          return getDocumentationElement();
+        default:
+          return super.makeProperty(hash, name);
       }
 
     }
@@ -1772,16 +1770,16 @@ public class StructureMap extends MetadataResource {
     @Override
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
-      case 116079:
-        /* url */ return new String[] { "canonical" };
-      case 3357091:
-        /* mode */ return new String[] { "code" };
-      case 92902992:
-        /* alias */ return new String[] { "string" };
-      case 1587405498:
-        /* documentation */ return new String[] { "string" };
-      default:
-        return super.getTypesForProperty(hash, name);
+        case 116079:
+          /* url */ return new String[] { "canonical" };
+        case 3357091:
+          /* mode */ return new String[] { "code" };
+        case 92902992:
+          /* alias */ return new String[] { "string" };
+        case 1587405498:
+          /* documentation */ return new String[] { "string" };
+        default:
+          return super.getTypesForProperty(hash, name);
       }
 
     }
@@ -1822,7 +1820,7 @@ public class StructureMap extends MetadataResource {
         return false;
       StructureMapStructureComponent o = (StructureMapStructureComponent) other_;
       return compareDeep(url, o.url, true) && compareDeep(mode, o.mode, true) && compareDeep(alias, o.alias, true)
-          && compareDeep(documentation, o.documentation, true);
+        && compareDeep(documentation, o.documentation, true);
     }
 
     @Override
@@ -1833,7 +1831,7 @@ public class StructureMap extends MetadataResource {
         return false;
       StructureMapStructureComponent o = (StructureMapStructureComponent) other_;
       return compareValues(mode, o.mode, true) && compareValues(alias, o.alias, true)
-          && compareValues(documentation, o.documentation, true);
+        && compareValues(documentation, o.documentation, true);
     }
 
     public boolean isEmpty() {
@@ -1877,7 +1875,7 @@ public class StructureMap extends MetadataResource {
      * and the types of mappings within it.
      */
     @Child(name = "documentation", type = {
-        StringType.class }, order = 4, min = 0, max = 1, modifier = false, summary = true)
+      StringType.class }, order = 4, min = 0, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "Additional description/explanation for group", formalDefinition = "Additional supporting documentation that explains the purpose of the group and the types of mappings within it.")
     protected StringType documentation;
 
@@ -2242,47 +2240,47 @@ public class StructureMap extends MetadataResource {
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
       children.add(
-          new Property("name", "id", "A unique name for the group for the convenience of human readers.", 0, 1, name));
+        new Property("name", "id", "A unique name for the group for the convenience of human readers.", 0, 1, name));
       children.add(new Property("extends", "id", "Another group that this group adds rules to.", 0, 1, extends_));
       children.add(new Property("typeMode", "code",
-          "If this is the default rule set to apply for the source type or this combination of types.", 0, 1,
-          typeMode));
+        "If this is the default rule set to apply for the source type or this combination of types.", 0, 1,
+        typeMode));
       children.add(new Property("documentation", "string",
-          "Additional supporting documentation that explains the purpose of the group and the types of mappings within it.",
-          0, 1, documentation));
+        "Additional supporting documentation that explains the purpose of the group and the types of mappings within it.",
+        0, 1, documentation));
       children.add(new Property("input", "",
-          "A name assigned to an instance of data. The instance must be provided when the mapping is invoked.", 0,
-          java.lang.Integer.MAX_VALUE, input));
+        "A name assigned to an instance of data. The instance must be provided when the mapping is invoked.", 0,
+        java.lang.Integer.MAX_VALUE, input));
       children
-          .add(new Property("rule", "", "Transform Rule from source to target.", 0, java.lang.Integer.MAX_VALUE, rule));
+        .add(new Property("rule", "", "Transform Rule from source to target.", 0, java.lang.Integer.MAX_VALUE, rule));
     }
 
     @Override
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
-      case 3373707:
-        /* name */ return new Property("name", "id",
-            "A unique name for the group for the convenience of human readers.", 0, 1, name);
-      case -1305664359:
-        /* extends */ return new Property("extends", "id", "Another group that this group adds rules to.", 0, 1,
-            extends_);
-      case -676524035:
-        /* typeMode */ return new Property("typeMode", "code",
-            "If this is the default rule set to apply for the source type or this combination of types.", 0, 1,
-            typeMode);
-      case 1587405498:
-        /* documentation */ return new Property("documentation", "string",
-            "Additional supporting documentation that explains the purpose of the group and the types of mappings within it.",
-            0, 1, documentation);
-      case 100358090:
-        /* input */ return new Property("input", "",
-            "A name assigned to an instance of data. The instance must be provided when the mapping is invoked.", 0,
-            java.lang.Integer.MAX_VALUE, input);
-      case 3512060:
-        /* rule */ return new Property("rule", "", "Transform Rule from source to target.", 0,
-            java.lang.Integer.MAX_VALUE, rule);
-      default:
-        return super.getNamedProperty(_hash, _name, _checkValid);
+        case 3373707:
+          /* name */ return new Property("name", "id",
+          "A unique name for the group for the convenience of human readers.", 0, 1, name);
+        case -1305664359:
+          /* extends */ return new Property("extends", "id", "Another group that this group adds rules to.", 0, 1,
+          extends_);
+        case -676524035:
+          /* typeMode */ return new Property("typeMode", "code",
+          "If this is the default rule set to apply for the source type or this combination of types.", 0, 1,
+          typeMode);
+        case 1587405498:
+          /* documentation */ return new Property("documentation", "string",
+          "Additional supporting documentation that explains the purpose of the group and the types of mappings within it.",
+          0, 1, documentation);
+        case 100358090:
+          /* input */ return new Property("input", "",
+          "A name assigned to an instance of data. The instance must be provided when the mapping is invoked.", 0,
+          java.lang.Integer.MAX_VALUE, input);
+        case 3512060:
+          /* rule */ return new Property("rule", "", "Transform Rule from source to target.", 0,
+          java.lang.Integer.MAX_VALUE, rule);
+        default:
+          return super.getNamedProperty(_hash, _name, _checkValid);
       }
 
     }
@@ -2290,20 +2288,20 @@ public class StructureMap extends MetadataResource {
     @Override
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
-      case 3373707:
-        /* name */ return this.name == null ? new Base[0] : new Base[] { this.name }; // IdType
-      case -1305664359:
-        /* extends */ return this.extends_ == null ? new Base[0] : new Base[] { this.extends_ }; // IdType
-      case -676524035:
-        /* typeMode */ return this.typeMode == null ? new Base[0] : new Base[] { this.typeMode }; // Enumeration<StructureMapGroupTypeMode>
-      case 1587405498:
-        /* documentation */ return this.documentation == null ? new Base[0] : new Base[] { this.documentation }; // StringType
-      case 100358090:
-        /* input */ return this.input == null ? new Base[0] : this.input.toArray(new Base[this.input.size()]); // StructureMapGroupInputComponent
-      case 3512060:
-        /* rule */ return this.rule == null ? new Base[0] : this.rule.toArray(new Base[this.rule.size()]); // StructureMapGroupRuleComponent
-      default:
-        return super.getProperty(hash, name, checkValid);
+        case 3373707:
+          /* name */ return this.name == null ? new Base[0] : new Base[] { this.name }; // IdType
+        case -1305664359:
+          /* extends */ return this.extends_ == null ? new Base[0] : new Base[] { this.extends_ }; // IdType
+        case -676524035:
+          /* typeMode */ return this.typeMode == null ? new Base[0] : new Base[] { this.typeMode }; // Enumeration<StructureMapGroupTypeMode>
+        case 1587405498:
+          /* documentation */ return this.documentation == null ? new Base[0] : new Base[] { this.documentation }; // StringType
+        case 100358090:
+          /* input */ return this.input == null ? new Base[0] : this.input.toArray(new Base[this.input.size()]); // StructureMapGroupInputComponent
+        case 3512060:
+          /* rule */ return this.rule == null ? new Base[0] : this.rule.toArray(new Base[this.rule.size()]); // StructureMapGroupRuleComponent
+        default:
+          return super.getProperty(hash, name, checkValid);
       }
 
     }
@@ -2311,27 +2309,27 @@ public class StructureMap extends MetadataResource {
     @Override
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
-      case 3373707: // name
-        this.name = castToId(value); // IdType
-        return value;
-      case -1305664359: // extends
-        this.extends_ = castToId(value); // IdType
-        return value;
-      case -676524035: // typeMode
-        value = new StructureMapGroupTypeModeEnumFactory().fromType(castToCode(value));
-        this.typeMode = (Enumeration) value; // Enumeration<StructureMapGroupTypeMode>
-        return value;
-      case 1587405498: // documentation
-        this.documentation = castToString(value); // StringType
-        return value;
-      case 100358090: // input
-        this.getInput().add((StructureMapGroupInputComponent) value); // StructureMapGroupInputComponent
-        return value;
-      case 3512060: // rule
-        this.getRule().add((StructureMapGroupRuleComponent) value); // StructureMapGroupRuleComponent
-        return value;
-      default:
-        return super.setProperty(hash, name, value);
+        case 3373707: // name
+          this.name = castToId(value); // IdType
+          return value;
+        case -1305664359: // extends
+          this.extends_ = castToId(value); // IdType
+          return value;
+        case -676524035: // typeMode
+          value = new StructureMapGroupTypeModeEnumFactory().fromType(castToCode(value));
+          this.typeMode = (Enumeration) value; // Enumeration<StructureMapGroupTypeMode>
+          return value;
+        case 1587405498: // documentation
+          this.documentation = castToString(value); // StringType
+          return value;
+        case 100358090: // input
+          this.getInput().add((StructureMapGroupInputComponent) value); // StructureMapGroupInputComponent
+          return value;
+        case 3512060: // rule
+          this.getRule().add((StructureMapGroupRuleComponent) value); // StructureMapGroupRuleComponent
+          return value;
+        default:
+          return super.setProperty(hash, name, value);
       }
 
     }
@@ -2356,8 +2354,8 @@ public class StructureMap extends MetadataResource {
       return value;
     }
 
-  @Override
-  public void removeChild(String name, Base value) throws FHIRException {
+    @Override
+    public void removeChild(String name, Base value) throws FHIRException {
       if (name.equals("name")) {
         this.name = null;
       } else if (name.equals("extends")) {
@@ -2372,26 +2370,26 @@ public class StructureMap extends MetadataResource {
         this.getRule().remove((StructureMapGroupRuleComponent) value);
       } else
         super.removeChild(name, value);
-      
+
     }
 
     @Override
     public Base makeProperty(int hash, String name) throws FHIRException {
       switch (hash) {
-      case 3373707:
-        return getNameElement();
-      case -1305664359:
-        return getExtendsElement();
-      case -676524035:
-        return getTypeModeElement();
-      case 1587405498:
-        return getDocumentationElement();
-      case 100358090:
-        return addInput();
-      case 3512060:
-        return addRule();
-      default:
-        return super.makeProperty(hash, name);
+        case 3373707:
+          return getNameElement();
+        case -1305664359:
+          return getExtendsElement();
+        case -676524035:
+          return getTypeModeElement();
+        case 1587405498:
+          return getDocumentationElement();
+        case 100358090:
+          return addInput();
+        case 3512060:
+          return addRule();
+        default:
+          return super.makeProperty(hash, name);
       }
 
     }
@@ -2399,20 +2397,20 @@ public class StructureMap extends MetadataResource {
     @Override
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
-      case 3373707:
-        /* name */ return new String[] { "id" };
-      case -1305664359:
-        /* extends */ return new String[] { "id" };
-      case -676524035:
-        /* typeMode */ return new String[] { "code" };
-      case 1587405498:
-        /* documentation */ return new String[] { "string" };
-      case 100358090:
-        /* input */ return new String[] {};
-      case 3512060:
-        /* rule */ return new String[] {};
-      default:
-        return super.getTypesForProperty(hash, name);
+        case 3373707:
+          /* name */ return new String[] { "id" };
+        case -1305664359:
+          /* extends */ return new String[] { "id" };
+        case -676524035:
+          /* typeMode */ return new String[] { "code" };
+        case 1587405498:
+          /* documentation */ return new String[] { "string" };
+        case 100358090:
+          /* input */ return new String[] {};
+        case 3512060:
+          /* rule */ return new String[] {};
+        default:
+          return super.getTypesForProperty(hash, name);
       }
 
     }
@@ -2469,8 +2467,8 @@ public class StructureMap extends MetadataResource {
         return false;
       StructureMapGroupComponent o = (StructureMapGroupComponent) other_;
       return compareDeep(name, o.name, true) && compareDeep(extends_, o.extends_, true)
-          && compareDeep(typeMode, o.typeMode, true) && compareDeep(documentation, o.documentation, true)
-          && compareDeep(input, o.input, true) && compareDeep(rule, o.rule, true);
+        && compareDeep(typeMode, o.typeMode, true) && compareDeep(documentation, o.documentation, true)
+        && compareDeep(input, o.input, true) && compareDeep(rule, o.rule, true);
     }
 
     @Override
@@ -2481,12 +2479,12 @@ public class StructureMap extends MetadataResource {
         return false;
       StructureMapGroupComponent o = (StructureMapGroupComponent) other_;
       return compareValues(name, o.name, true) && compareValues(extends_, o.extends_, true)
-          && compareValues(typeMode, o.typeMode, true) && compareValues(documentation, o.documentation, true);
+        && compareValues(typeMode, o.typeMode, true) && compareValues(documentation, o.documentation, true);
     }
 
     public boolean isEmpty() {
       return super.isEmpty()
-          && ca.uhn.fhir.util.ElementUtil.isEmpty(name, extends_, typeMode, documentation, input, rule);
+        && ca.uhn.fhir.util.ElementUtil.isEmpty(name, extends_, typeMode, documentation, input, rule);
     }
 
     public String fhirType() {
@@ -2531,7 +2529,7 @@ public class StructureMap extends MetadataResource {
      * Documentation for this instance of data.
      */
     @Child(name = "documentation", type = {
-        StringType.class }, order = 4, min = 0, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 4, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "Documentation for this instance of data", formalDefinition = "Documentation for this instance of data.")
     protected StringType documentation;
 
@@ -2764,23 +2762,23 @@ public class StructureMap extends MetadataResource {
       children.add(new Property("type", "string", "Type for this instance of data.", 0, 1, type));
       children.add(new Property("mode", "code", "Mode for this instance of data.", 0, 1, mode));
       children.add(
-          new Property("documentation", "string", "Documentation for this instance of data.", 0, 1, documentation));
+        new Property("documentation", "string", "Documentation for this instance of data.", 0, 1, documentation));
     }
 
     @Override
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
-      case 3373707:
-        /* name */ return new Property("name", "id", "Name for this instance of data.", 0, 1, name);
-      case 3575610:
-        /* type */ return new Property("type", "string", "Type for this instance of data.", 0, 1, type);
-      case 3357091:
-        /* mode */ return new Property("mode", "code", "Mode for this instance of data.", 0, 1, mode);
-      case 1587405498:
-        /* documentation */ return new Property("documentation", "string", "Documentation for this instance of data.",
-            0, 1, documentation);
-      default:
-        return super.getNamedProperty(_hash, _name, _checkValid);
+        case 3373707:
+          /* name */ return new Property("name", "id", "Name for this instance of data.", 0, 1, name);
+        case 3575610:
+          /* type */ return new Property("type", "string", "Type for this instance of data.", 0, 1, type);
+        case 3357091:
+          /* mode */ return new Property("mode", "code", "Mode for this instance of data.", 0, 1, mode);
+        case 1587405498:
+          /* documentation */ return new Property("documentation", "string", "Documentation for this instance of data.",
+          0, 1, documentation);
+        default:
+          return super.getNamedProperty(_hash, _name, _checkValid);
       }
 
     }
@@ -2788,16 +2786,16 @@ public class StructureMap extends MetadataResource {
     @Override
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
-      case 3373707:
-        /* name */ return this.name == null ? new Base[0] : new Base[] { this.name }; // IdType
-      case 3575610:
-        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
-      case 3357091:
-        /* mode */ return this.mode == null ? new Base[0] : new Base[] { this.mode }; // Enumeration<StructureMapInputMode>
-      case 1587405498:
-        /* documentation */ return this.documentation == null ? new Base[0] : new Base[] { this.documentation }; // StringType
-      default:
-        return super.getProperty(hash, name, checkValid);
+        case 3373707:
+          /* name */ return this.name == null ? new Base[0] : new Base[] { this.name }; // IdType
+        case 3575610:
+          /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
+        case 3357091:
+          /* mode */ return this.mode == null ? new Base[0] : new Base[] { this.mode }; // Enumeration<StructureMapInputMode>
+        case 1587405498:
+          /* documentation */ return this.documentation == null ? new Base[0] : new Base[] { this.documentation }; // StringType
+        default:
+          return super.getProperty(hash, name, checkValid);
       }
 
     }
@@ -2805,21 +2803,21 @@ public class StructureMap extends MetadataResource {
     @Override
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
-      case 3373707: // name
-        this.name = castToId(value); // IdType
-        return value;
-      case 3575610: // type
-        this.type = castToString(value); // StringType
-        return value;
-      case 3357091: // mode
-        value = new StructureMapInputModeEnumFactory().fromType(castToCode(value));
-        this.mode = (Enumeration) value; // Enumeration<StructureMapInputMode>
-        return value;
-      case 1587405498: // documentation
-        this.documentation = castToString(value); // StringType
-        return value;
-      default:
-        return super.setProperty(hash, name, value);
+        case 3373707: // name
+          this.name = castToId(value); // IdType
+          return value;
+        case 3575610: // type
+          this.type = castToString(value); // StringType
+          return value;
+        case 3357091: // mode
+          value = new StructureMapInputModeEnumFactory().fromType(castToCode(value));
+          this.mode = (Enumeration) value; // Enumeration<StructureMapInputMode>
+          return value;
+        case 1587405498: // documentation
+          this.documentation = castToString(value); // StringType
+          return value;
+        default:
+          return super.setProperty(hash, name, value);
       }
 
     }
@@ -2840,8 +2838,8 @@ public class StructureMap extends MetadataResource {
       return value;
     }
 
-  @Override
-  public void removeChild(String name, Base value) throws FHIRException {
+    @Override
+    public void removeChild(String name, Base value) throws FHIRException {
       if (name.equals("name")) {
         this.name = null;
       } else if (name.equals("type")) {
@@ -2852,22 +2850,22 @@ public class StructureMap extends MetadataResource {
         this.documentation = null;
       } else
         super.removeChild(name, value);
-      
+
     }
 
     @Override
     public Base makeProperty(int hash, String name) throws FHIRException {
       switch (hash) {
-      case 3373707:
-        return getNameElement();
-      case 3575610:
-        return getTypeElement();
-      case 3357091:
-        return getModeElement();
-      case 1587405498:
-        return getDocumentationElement();
-      default:
-        return super.makeProperty(hash, name);
+        case 3373707:
+          return getNameElement();
+        case 3575610:
+          return getTypeElement();
+        case 3357091:
+          return getModeElement();
+        case 1587405498:
+          return getDocumentationElement();
+        default:
+          return super.makeProperty(hash, name);
       }
 
     }
@@ -2875,16 +2873,16 @@ public class StructureMap extends MetadataResource {
     @Override
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
-      case 3373707:
-        /* name */ return new String[] { "id" };
-      case 3575610:
-        /* type */ return new String[] { "string" };
-      case 3357091:
-        /* mode */ return new String[] { "code" };
-      case 1587405498:
-        /* documentation */ return new String[] { "string" };
-      default:
-        return super.getTypesForProperty(hash, name);
+        case 3373707:
+          /* name */ return new String[] { "id" };
+        case 3575610:
+          /* type */ return new String[] { "string" };
+        case 3357091:
+          /* mode */ return new String[] { "code" };
+        case 1587405498:
+          /* documentation */ return new String[] { "string" };
+        default:
+          return super.getTypesForProperty(hash, name);
       }
 
     }
@@ -2925,7 +2923,7 @@ public class StructureMap extends MetadataResource {
         return false;
       StructureMapGroupInputComponent o = (StructureMapGroupInputComponent) other_;
       return compareDeep(name, o.name, true) && compareDeep(type, o.type, true) && compareDeep(mode, o.mode, true)
-          && compareDeep(documentation, o.documentation, true);
+        && compareDeep(documentation, o.documentation, true);
     }
 
     @Override
@@ -2936,7 +2934,7 @@ public class StructureMap extends MetadataResource {
         return false;
       StructureMapGroupInputComponent o = (StructureMapGroupInputComponent) other_;
       return compareValues(name, o.name, true) && compareValues(type, o.type, true) && compareValues(mode, o.mode, true)
-          && compareValues(documentation, o.documentation, true);
+        && compareValues(documentation, o.documentation, true);
     }
 
     public boolean isEmpty() {
@@ -2977,7 +2975,7 @@ public class StructureMap extends MetadataResource {
      * Rules contained in this rule.
      */
     @Child(name = "rule", type = {
-        StructureMapGroupRuleComponent.class }, order = 4, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
+      StructureMapGroupRuleComponent.class }, order = 4, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
     @Description(shortDefinition = "Rules contained in this rule", formalDefinition = "Rules contained in this rule.")
     protected List<StructureMapGroupRuleComponent> rule;
 
@@ -2992,7 +2990,7 @@ public class StructureMap extends MetadataResource {
      * Documentation for this instance of data.
      */
     @Child(name = "documentation", type = {
-        StringType.class }, order = 6, min = 0, max = 1, modifier = false, summary = false)
+      StringType.class }, order = 6, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "Documentation for this instance of data", formalDefinition = "Documentation for this instance of data.")
     protected StringType documentation;
 
@@ -3338,37 +3336,37 @@ public class StructureMap extends MetadataResource {
       children.add(new Property("name", "id", "Name of the rule for internal references.", 0, 1, name));
       children.add(new Property("source", "", "Source inputs to the mapping.", 0, java.lang.Integer.MAX_VALUE, source));
       children.add(new Property("target", "", "Content to create because of this mapping rule.", 0,
-          java.lang.Integer.MAX_VALUE, target));
+        java.lang.Integer.MAX_VALUE, target));
       children.add(new Property("rule", "@StructureMap.group.rule", "Rules contained in this rule.", 0,
-          java.lang.Integer.MAX_VALUE, rule));
+        java.lang.Integer.MAX_VALUE, rule));
       children.add(new Property("dependent", "", "Which other rules to apply in the context of this rule.", 0,
-          java.lang.Integer.MAX_VALUE, dependent));
+        java.lang.Integer.MAX_VALUE, dependent));
       children.add(
-          new Property("documentation", "string", "Documentation for this instance of data.", 0, 1, documentation));
+        new Property("documentation", "string", "Documentation for this instance of data.", 0, 1, documentation));
     }
 
     @Override
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
-      case 3373707:
-        /* name */ return new Property("name", "id", "Name of the rule for internal references.", 0, 1, name);
-      case -896505829:
-        /* source */ return new Property("source", "", "Source inputs to the mapping.", 0, java.lang.Integer.MAX_VALUE,
-            source);
-      case -880905839:
-        /* target */ return new Property("target", "", "Content to create because of this mapping rule.", 0,
-            java.lang.Integer.MAX_VALUE, target);
-      case 3512060:
-        /* rule */ return new Property("rule", "@StructureMap.group.rule", "Rules contained in this rule.", 0,
-            java.lang.Integer.MAX_VALUE, rule);
-      case -1109226753:
-        /* dependent */ return new Property("dependent", "", "Which other rules to apply in the context of this rule.",
-            0, java.lang.Integer.MAX_VALUE, dependent);
-      case 1587405498:
-        /* documentation */ return new Property("documentation", "string", "Documentation for this instance of data.",
-            0, 1, documentation);
-      default:
-        return super.getNamedProperty(_hash, _name, _checkValid);
+        case 3373707:
+          /* name */ return new Property("name", "id", "Name of the rule for internal references.", 0, 1, name);
+        case -896505829:
+          /* source */ return new Property("source", "", "Source inputs to the mapping.", 0, java.lang.Integer.MAX_VALUE,
+          source);
+        case -880905839:
+          /* target */ return new Property("target", "", "Content to create because of this mapping rule.", 0,
+          java.lang.Integer.MAX_VALUE, target);
+        case 3512060:
+          /* rule */ return new Property("rule", "@StructureMap.group.rule", "Rules contained in this rule.", 0,
+          java.lang.Integer.MAX_VALUE, rule);
+        case -1109226753:
+          /* dependent */ return new Property("dependent", "", "Which other rules to apply in the context of this rule.",
+          0, java.lang.Integer.MAX_VALUE, dependent);
+        case 1587405498:
+          /* documentation */ return new Property("documentation", "string", "Documentation for this instance of data.",
+          0, 1, documentation);
+        default:
+          return super.getNamedProperty(_hash, _name, _checkValid);
       }
 
     }
@@ -3376,21 +3374,21 @@ public class StructureMap extends MetadataResource {
     @Override
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
-      case 3373707:
-        /* name */ return this.name == null ? new Base[0] : new Base[] { this.name }; // IdType
-      case -896505829:
-        /* source */ return this.source == null ? new Base[0] : this.source.toArray(new Base[this.source.size()]); // StructureMapGroupRuleSourceComponent
-      case -880905839:
-        /* target */ return this.target == null ? new Base[0] : this.target.toArray(new Base[this.target.size()]); // StructureMapGroupRuleTargetComponent
-      case 3512060:
-        /* rule */ return this.rule == null ? new Base[0] : this.rule.toArray(new Base[this.rule.size()]); // StructureMapGroupRuleComponent
-      case -1109226753:
-        /* dependent */ return this.dependent == null ? new Base[0]
-            : this.dependent.toArray(new Base[this.dependent.size()]); // StructureMapGroupRuleDependentComponent
-      case 1587405498:
-        /* documentation */ return this.documentation == null ? new Base[0] : new Base[] { this.documentation }; // StringType
-      default:
-        return super.getProperty(hash, name, checkValid);
+        case 3373707:
+          /* name */ return this.name == null ? new Base[0] : new Base[] { this.name }; // IdType
+        case -896505829:
+          /* source */ return this.source == null ? new Base[0] : this.source.toArray(new Base[this.source.size()]); // StructureMapGroupRuleSourceComponent
+        case -880905839:
+          /* target */ return this.target == null ? new Base[0] : this.target.toArray(new Base[this.target.size()]); // StructureMapGroupRuleTargetComponent
+        case 3512060:
+          /* rule */ return this.rule == null ? new Base[0] : this.rule.toArray(new Base[this.rule.size()]); // StructureMapGroupRuleComponent
+        case -1109226753:
+          /* dependent */ return this.dependent == null ? new Base[0]
+          : this.dependent.toArray(new Base[this.dependent.size()]); // StructureMapGroupRuleDependentComponent
+        case 1587405498:
+          /* documentation */ return this.documentation == null ? new Base[0] : new Base[] { this.documentation }; // StringType
+        default:
+          return super.getProperty(hash, name, checkValid);
       }
 
     }
@@ -3398,26 +3396,26 @@ public class StructureMap extends MetadataResource {
     @Override
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
-      case 3373707: // name
-        this.name = castToId(value); // IdType
-        return value;
-      case -896505829: // source
-        this.getSource().add((StructureMapGroupRuleSourceComponent) value); // StructureMapGroupRuleSourceComponent
-        return value;
-      case -880905839: // target
-        this.getTarget().add((StructureMapGroupRuleTargetComponent) value); // StructureMapGroupRuleTargetComponent
-        return value;
-      case 3512060: // rule
-        this.getRule().add((StructureMapGroupRuleComponent) value); // StructureMapGroupRuleComponent
-        return value;
-      case -1109226753: // dependent
-        this.getDependent().add((StructureMapGroupRuleDependentComponent) value); // StructureMapGroupRuleDependentComponent
-        return value;
-      case 1587405498: // documentation
-        this.documentation = castToString(value); // StringType
-        return value;
-      default:
-        return super.setProperty(hash, name, value);
+        case 3373707: // name
+          this.name = castToId(value); // IdType
+          return value;
+        case -896505829: // source
+          this.getSource().add((StructureMapGroupRuleSourceComponent) value); // StructureMapGroupRuleSourceComponent
+          return value;
+        case -880905839: // target
+          this.getTarget().add((StructureMapGroupRuleTargetComponent) value); // StructureMapGroupRuleTargetComponent
+          return value;
+        case 3512060: // rule
+          this.getRule().add((StructureMapGroupRuleComponent) value); // StructureMapGroupRuleComponent
+          return value;
+        case -1109226753: // dependent
+          this.getDependent().add((StructureMapGroupRuleDependentComponent) value); // StructureMapGroupRuleDependentComponent
+          return value;
+        case 1587405498: // documentation
+          this.documentation = castToString(value); // StringType
+          return value;
+        default:
+          return super.setProperty(hash, name, value);
       }
 
     }
@@ -3441,8 +3439,8 @@ public class StructureMap extends MetadataResource {
       return value;
     }
 
-  @Override
-  public void removeChild(String name, Base value) throws FHIRException {
+    @Override
+    public void removeChild(String name, Base value) throws FHIRException {
       if (name.equals("name")) {
         this.name = null;
       } else if (name.equals("source")) {
@@ -3457,26 +3455,26 @@ public class StructureMap extends MetadataResource {
         this.documentation = null;
       } else
         super.removeChild(name, value);
-      
+
     }
 
     @Override
     public Base makeProperty(int hash, String name) throws FHIRException {
       switch (hash) {
-      case 3373707:
-        return getNameElement();
-      case -896505829:
-        return addSource();
-      case -880905839:
-        return addTarget();
-      case 3512060:
-        return addRule();
-      case -1109226753:
-        return addDependent();
-      case 1587405498:
-        return getDocumentationElement();
-      default:
-        return super.makeProperty(hash, name);
+        case 3373707:
+          return getNameElement();
+        case -896505829:
+          return addSource();
+        case -880905839:
+          return addTarget();
+        case 3512060:
+          return addRule();
+        case -1109226753:
+          return addDependent();
+        case 1587405498:
+          return getDocumentationElement();
+        default:
+          return super.makeProperty(hash, name);
       }
 
     }
@@ -3484,20 +3482,20 @@ public class StructureMap extends MetadataResource {
     @Override
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
-      case 3373707:
-        /* name */ return new String[] { "id" };
-      case -896505829:
-        /* source */ return new String[] {};
-      case -880905839:
-        /* target */ return new String[] {};
-      case 3512060:
-        /* rule */ return new String[] { "@StructureMap.group.rule" };
-      case -1109226753:
-        /* dependent */ return new String[] {};
-      case 1587405498:
-        /* documentation */ return new String[] { "string" };
-      default:
-        return super.getTypesForProperty(hash, name);
+        case 3373707:
+          /* name */ return new String[] { "id" };
+        case -896505829:
+          /* source */ return new String[] {};
+        case -880905839:
+          /* target */ return new String[] {};
+        case 3512060:
+          /* rule */ return new String[] { "@StructureMap.group.rule" };
+        case -1109226753:
+          /* dependent */ return new String[] {};
+        case 1587405498:
+          /* documentation */ return new String[] { "string" };
+        default:
+          return super.getTypesForProperty(hash, name);
       }
 
     }
@@ -3564,8 +3562,8 @@ public class StructureMap extends MetadataResource {
         return false;
       StructureMapGroupRuleComponent o = (StructureMapGroupRuleComponent) other_;
       return compareDeep(name, o.name, true) && compareDeep(source, o.source, true)
-          && compareDeep(target, o.target, true) && compareDeep(rule, o.rule, true)
-          && compareDeep(dependent, o.dependent, true) && compareDeep(documentation, o.documentation, true);
+        && compareDeep(target, o.target, true) && compareDeep(rule, o.rule, true)
+        && compareDeep(dependent, o.dependent, true) && compareDeep(documentation, o.documentation, true);
     }
 
     @Override
@@ -3580,7 +3578,7 @@ public class StructureMap extends MetadataResource {
 
     public boolean isEmpty() {
       return super.isEmpty()
-          && ca.uhn.fhir.util.ElementUtil.isEmpty(name, source, target, rule, dependent, documentation);
+        && ca.uhn.fhir.util.ElementUtil.isEmpty(name, source, target, rule, dependent, documentation);
     }
 
     public String fhirType() {
@@ -3664,7 +3662,7 @@ public class StructureMap extends MetadataResource {
      * FHIRPath expression - must be true or the rule does not apply.
      */
     @Child(name = "condition", type = {
-        StringType.class }, order = 9, min = 0, max = 1, modifier = false, summary = true)
+      StringType.class }, order = 9, min = 0, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "FHIRPath expression  - must be true or the rule does not apply", formalDefinition = "FHIRPath expression  - must be true or the rule does not apply.")
     protected StringType condition;
 
@@ -3681,7 +3679,7 @@ public class StructureMap extends MetadataResource {
      * when content matching the source rule is found.
      */
     @Child(name = "logMessage", type = {
-        StringType.class }, order = 11, min = 0, max = 1, modifier = false, summary = true)
+      StringType.class }, order = 11, min = 0, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "Message to put in log if source exists (FHIRPath)", formalDefinition = "A FHIRPath expression which specifies a message to put in the transform log when content matching the source rule is found.")
     protected StringType logMessage;
 
@@ -4282,181 +4280,181 @@ public class StructureMap extends MetadataResource {
       super.listChildren(children);
       children.add(new Property("context", "id", "Type or variable this rule applies to.", 0, 1, context));
       children.add(new Property("min", "integer",
-          "Specified minimum cardinality for the element. This is optional; if present, it acts an implicit check on the input content.",
-          0, 1, min));
+        "Specified minimum cardinality for the element. This is optional; if present, it acts an implicit check on the input content.",
+        0, 1, min));
       children.add(new Property("max", "string",
-          "Specified maximum cardinality for the element - a number or a \"*\". This is optional; if present, it acts an implicit check on the input content (* just serves as documentation; it's the default value).",
-          0, 1, max));
+        "Specified maximum cardinality for the element - a number or a \"*\". This is optional; if present, it acts an implicit check on the input content (* just serves as documentation; it's the default value).",
+        0, 1, max));
       children.add(new Property("type", "string",
-          "Specified type for the element. This works as a condition on the mapping - use for polymorphic elements.", 0,
-          1, type));
+        "Specified type for the element. This works as a condition on the mapping - use for polymorphic elements.", 0,
+        1, type));
       children.add(new Property("defaultValue[x]", "*",
-          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue));
+        "A value to use if there is no existing value in the source object.", 0, 1, defaultValue));
       children.add(new Property("element", "string", "Optional field for this source.", 0, 1, element));
       children.add(new Property("listMode", "code", "How to handle the list mode for this element.", 0, 1, listMode));
       children.add(new Property("variable", "id", "Named context for field, if a field is specified.", 0, 1, variable));
       children.add(new Property("condition", "string",
-          "FHIRPath expression  - must be true or the rule does not apply.", 0, 1, condition));
+        "FHIRPath expression  - must be true or the rule does not apply.", 0, 1, condition));
       children.add(new Property("check", "string",
-          "FHIRPath expression  - must be true or the mapping engine throws an error instead of completing.", 0, 1,
-          check));
+        "FHIRPath expression  - must be true or the mapping engine throws an error instead of completing.", 0, 1,
+        check));
       children.add(new Property("logMessage", "string",
-          "A FHIRPath expression which specifies a message to put in the transform log when content matching the source rule is found.",
-          0, 1, logMessage));
+        "A FHIRPath expression which specifies a message to put in the transform log when content matching the source rule is found.",
+        0, 1, logMessage));
     }
 
     @Override
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
-      case 951530927:
-        /* context */ return new Property("context", "id", "Type or variable this rule applies to.", 0, 1, context);
-      case 108114:
-        /* min */ return new Property("min", "integer",
-            "Specified minimum cardinality for the element. This is optional; if present, it acts an implicit check on the input content.",
-            0, 1, min);
-      case 107876:
-        /* max */ return new Property("max", "string",
-            "Specified maximum cardinality for the element - a number or a \"*\". This is optional; if present, it acts an implicit check on the input content (* just serves as documentation; it's the default value).",
-            0, 1, max);
-      case 3575610:
-        /* type */ return new Property("type", "string",
-            "Specified type for the element. This works as a condition on the mapping - use for polymorphic elements.",
-            0, 1, type);
-      case 587922128:
-        /* defaultValue[x] */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -659125328:
-        /* defaultValue */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case 1470297600:
-        /* defaultValueBase64Binary */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case 600437336:
-        /* defaultValueBoolean */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case 264593188:
-        /* defaultValueCanonical */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case 1044993469:
-        /* defaultValueCode */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case 1045010302:
-        /* defaultValueDate */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case 1220374379:
-        /* defaultValueDateTime */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case 2077989249:
-        /* defaultValueDecimal */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -2059245333:
-        /* defaultValueId */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -1801671663:
-        /* defaultValueInstant */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -1801189522:
-        /* defaultValueInteger */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -325436225:
-        /* defaultValueMarkdown */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case 587910138:
-        /* defaultValueOid */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -737344154:
-        /* defaultValuePositiveInt */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -320515103:
-        /* defaultValueString */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case 1045494429:
-        /* defaultValueTime */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case 539117290:
-        /* defaultValueUnsignedInt */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case 587916188:
-        /* defaultValueUri */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case 587916191:
-        /* defaultValueUrl */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case 1045535627:
-        /* defaultValueUuid */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -611966428:
-        /* defaultValueAddress */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -1851689217:
-        /* defaultValueAnnotation */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case 2034820339:
-        /* defaultValueAttachment */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -410434095:
-        /* defaultValueCodeableConcept */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -783616198:
-        /* defaultValueCoding */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -344740576:
-        /* defaultValueContactPoint */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -975393912:
-        /* defaultValueHumanName */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -1915078535:
-        /* defaultValueIdentifier */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -420255343:
-        /* defaultValuePeriod */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -1857379237:
-        /* defaultValueQuantity */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -1951495315:
-        /* defaultValueRange */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -1951489477:
-        /* defaultValueRatio */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -1488914053:
-        /* defaultValueReference */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -449641228:
-        /* defaultValueSampledData */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case 509825768:
-        /* defaultValueSignature */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -302193638:
-        /* defaultValueTiming */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -754548089:
-        /* defaultValueDosage */ return new Property("defaultValue[x]", "*",
-            "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
-      case -1662836996:
-        /* element */ return new Property("element", "string", "Optional field for this source.", 0, 1, element);
-      case 1345445729:
-        /* listMode */ return new Property("listMode", "code", "How to handle the list mode for this element.", 0, 1,
-            listMode);
-      case -1249586564:
-        /* variable */ return new Property("variable", "id", "Named context for field, if a field is specified.", 0, 1,
-            variable);
-      case -861311717:
-        /* condition */ return new Property("condition", "string",
-            "FHIRPath expression  - must be true or the rule does not apply.", 0, 1, condition);
-      case 94627080:
-        /* check */ return new Property("check", "string",
-            "FHIRPath expression  - must be true or the mapping engine throws an error instead of completing.", 0, 1,
-            check);
-      case -1067155421:
-        /* logMessage */ return new Property("logMessage", "string",
-            "A FHIRPath expression which specifies a message to put in the transform log when content matching the source rule is found.",
-            0, 1, logMessage);
-      default:
-        return super.getNamedProperty(_hash, _name, _checkValid);
+        case 951530927:
+          /* context */ return new Property("context", "id", "Type or variable this rule applies to.", 0, 1, context);
+        case 108114:
+          /* min */ return new Property("min", "integer",
+          "Specified minimum cardinality for the element. This is optional; if present, it acts an implicit check on the input content.",
+          0, 1, min);
+        case 107876:
+          /* max */ return new Property("max", "string",
+          "Specified maximum cardinality for the element - a number or a \"*\". This is optional; if present, it acts an implicit check on the input content (* just serves as documentation; it's the default value).",
+          0, 1, max);
+        case 3575610:
+          /* type */ return new Property("type", "string",
+          "Specified type for the element. This works as a condition on the mapping - use for polymorphic elements.",
+          0, 1, type);
+        case 587922128:
+          /* defaultValue[x] */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -659125328:
+          /* defaultValue */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case 1470297600:
+          /* defaultValueBase64Binary */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case 600437336:
+          /* defaultValueBoolean */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case 264593188:
+          /* defaultValueCanonical */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case 1044993469:
+          /* defaultValueCode */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case 1045010302:
+          /* defaultValueDate */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case 1220374379:
+          /* defaultValueDateTime */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case 2077989249:
+          /* defaultValueDecimal */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -2059245333:
+          /* defaultValueId */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -1801671663:
+          /* defaultValueInstant */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -1801189522:
+          /* defaultValueInteger */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -325436225:
+          /* defaultValueMarkdown */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case 587910138:
+          /* defaultValueOid */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -737344154:
+          /* defaultValuePositiveInt */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -320515103:
+          /* defaultValueString */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case 1045494429:
+          /* defaultValueTime */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case 539117290:
+          /* defaultValueUnsignedInt */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case 587916188:
+          /* defaultValueUri */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case 587916191:
+          /* defaultValueUrl */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case 1045535627:
+          /* defaultValueUuid */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -611966428:
+          /* defaultValueAddress */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -1851689217:
+          /* defaultValueAnnotation */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case 2034820339:
+          /* defaultValueAttachment */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -410434095:
+          /* defaultValueCodeableConcept */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -783616198:
+          /* defaultValueCoding */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -344740576:
+          /* defaultValueContactPoint */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -975393912:
+          /* defaultValueHumanName */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -1915078535:
+          /* defaultValueIdentifier */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -420255343:
+          /* defaultValuePeriod */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -1857379237:
+          /* defaultValueQuantity */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -1951495315:
+          /* defaultValueRange */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -1951489477:
+          /* defaultValueRatio */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -1488914053:
+          /* defaultValueReference */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -449641228:
+          /* defaultValueSampledData */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case 509825768:
+          /* defaultValueSignature */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -302193638:
+          /* defaultValueTiming */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -754548089:
+          /* defaultValueDosage */ return new Property("defaultValue[x]", "*",
+          "A value to use if there is no existing value in the source object.", 0, 1, defaultValue);
+        case -1662836996:
+          /* element */ return new Property("element", "string", "Optional field for this source.", 0, 1, element);
+        case 1345445729:
+          /* listMode */ return new Property("listMode", "code", "How to handle the list mode for this element.", 0, 1,
+          listMode);
+        case -1249586564:
+          /* variable */ return new Property("variable", "id", "Named context for field, if a field is specified.", 0, 1,
+          variable);
+        case -861311717:
+          /* condition */ return new Property("condition", "string",
+          "FHIRPath expression  - must be true or the rule does not apply.", 0, 1, condition);
+        case 94627080:
+          /* check */ return new Property("check", "string",
+          "FHIRPath expression  - must be true or the mapping engine throws an error instead of completing.", 0, 1,
+          check);
+        case -1067155421:
+          /* logMessage */ return new Property("logMessage", "string",
+          "A FHIRPath expression which specifies a message to put in the transform log when content matching the source rule is found.",
+          0, 1, logMessage);
+        default:
+          return super.getNamedProperty(_hash, _name, _checkValid);
       }
 
     }
@@ -4464,30 +4462,30 @@ public class StructureMap extends MetadataResource {
     @Override
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
-      case 951530927:
-        /* context */ return this.context == null ? new Base[0] : new Base[] { this.context }; // IdType
-      case 108114:
-        /* min */ return this.min == null ? new Base[0] : new Base[] { this.min }; // IntegerType
-      case 107876:
-        /* max */ return this.max == null ? new Base[0] : new Base[] { this.max }; // StringType
-      case 3575610:
-        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
-      case -659125328:
-        /* defaultValue */ return this.defaultValue == null ? new Base[0] : new Base[] { this.defaultValue }; // org.hl7.fhir.r4.model.Type
-      case -1662836996:
-        /* element */ return this.element == null ? new Base[0] : new Base[] { this.element }; // StringType
-      case 1345445729:
-        /* listMode */ return this.listMode == null ? new Base[0] : new Base[] { this.listMode }; // Enumeration<StructureMapSourceListMode>
-      case -1249586564:
-        /* variable */ return this.variable == null ? new Base[0] : new Base[] { this.variable }; // IdType
-      case -861311717:
-        /* condition */ return this.condition == null ? new Base[0] : new Base[] { this.condition }; // StringType
-      case 94627080:
-        /* check */ return this.check == null ? new Base[0] : new Base[] { this.check }; // StringType
-      case -1067155421:
-        /* logMessage */ return this.logMessage == null ? new Base[0] : new Base[] { this.logMessage }; // StringType
-      default:
-        return super.getProperty(hash, name, checkValid);
+        case 951530927:
+          /* context */ return this.context == null ? new Base[0] : new Base[] { this.context }; // IdType
+        case 108114:
+          /* min */ return this.min == null ? new Base[0] : new Base[] { this.min }; // IntegerType
+        case 107876:
+          /* max */ return this.max == null ? new Base[0] : new Base[] { this.max }; // StringType
+        case 3575610:
+          /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
+        case -659125328:
+          /* defaultValue */ return this.defaultValue == null ? new Base[0] : new Base[] { this.defaultValue }; // org.hl7.fhir.r4.model.Type
+        case -1662836996:
+          /* element */ return this.element == null ? new Base[0] : new Base[] { this.element }; // StringType
+        case 1345445729:
+          /* listMode */ return this.listMode == null ? new Base[0] : new Base[] { this.listMode }; // Enumeration<StructureMapSourceListMode>
+        case -1249586564:
+          /* variable */ return this.variable == null ? new Base[0] : new Base[] { this.variable }; // IdType
+        case -861311717:
+          /* condition */ return this.condition == null ? new Base[0] : new Base[] { this.condition }; // StringType
+        case 94627080:
+          /* check */ return this.check == null ? new Base[0] : new Base[] { this.check }; // StringType
+        case -1067155421:
+          /* logMessage */ return this.logMessage == null ? new Base[0] : new Base[] { this.logMessage }; // StringType
+        default:
+          return super.getProperty(hash, name, checkValid);
       }
 
     }
@@ -4495,42 +4493,42 @@ public class StructureMap extends MetadataResource {
     @Override
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
-      case 951530927: // context
-        this.context = castToId(value); // IdType
-        return value;
-      case 108114: // min
-        this.min = castToInteger(value); // IntegerType
-        return value;
-      case 107876: // max
-        this.max = castToString(value); // StringType
-        return value;
-      case 3575610: // type
-        this.type = castToString(value); // StringType
-        return value;
-      case -659125328: // defaultValue
-        this.defaultValue = castToType(value); // org.hl7.fhir.r4.model.Type
-        return value;
-      case -1662836996: // element
-        this.element = castToString(value); // StringType
-        return value;
-      case 1345445729: // listMode
-        value = new StructureMapSourceListModeEnumFactory().fromType(castToCode(value));
-        this.listMode = (Enumeration) value; // Enumeration<StructureMapSourceListMode>
-        return value;
-      case -1249586564: // variable
-        this.variable = castToId(value); // IdType
-        return value;
-      case -861311717: // condition
-        this.condition = castToString(value); // StringType
-        return value;
-      case 94627080: // check
-        this.check = castToString(value); // StringType
-        return value;
-      case -1067155421: // logMessage
-        this.logMessage = castToString(value); // StringType
-        return value;
-      default:
-        return super.setProperty(hash, name, value);
+        case 951530927: // context
+          this.context = castToId(value); // IdType
+          return value;
+        case 108114: // min
+          this.min = castToInteger(value); // IntegerType
+          return value;
+        case 107876: // max
+          this.max = castToString(value); // StringType
+          return value;
+        case 3575610: // type
+          this.type = castToString(value); // StringType
+          return value;
+        case -659125328: // defaultValue
+          this.defaultValue = castToType(value); // org.hl7.fhir.r4.model.Type
+          return value;
+        case -1662836996: // element
+          this.element = castToString(value); // StringType
+          return value;
+        case 1345445729: // listMode
+          value = new StructureMapSourceListModeEnumFactory().fromType(castToCode(value));
+          this.listMode = (Enumeration) value; // Enumeration<StructureMapSourceListMode>
+          return value;
+        case -1249586564: // variable
+          this.variable = castToId(value); // IdType
+          return value;
+        case -861311717: // condition
+          this.condition = castToString(value); // StringType
+          return value;
+        case 94627080: // check
+          this.check = castToString(value); // StringType
+          return value;
+        case -1067155421: // logMessage
+          this.logMessage = castToString(value); // StringType
+          return value;
+        default:
+          return super.setProperty(hash, name, value);
       }
 
     }
@@ -4565,8 +4563,8 @@ public class StructureMap extends MetadataResource {
       return value;
     }
 
-  @Override
-  public void removeChild(String name, Base value) throws FHIRException {
+    @Override
+    public void removeChild(String name, Base value) throws FHIRException {
       if (name.equals("context")) {
         this.context = null;
       } else if (name.equals("min")) {
@@ -4591,38 +4589,38 @@ public class StructureMap extends MetadataResource {
         this.logMessage = null;
       } else
         super.removeChild(name, value);
-      
+
     }
 
     @Override
     public Base makeProperty(int hash, String name) throws FHIRException {
       switch (hash) {
-      case 951530927:
-        return getContextElement();
-      case 108114:
-        return getMinElement();
-      case 107876:
-        return getMaxElement();
-      case 3575610:
-        return getTypeElement();
-      case 587922128:
-        return getDefaultValue();
-      case -659125328:
-        return getDefaultValue();
-      case -1662836996:
-        return getElementElement();
-      case 1345445729:
-        return getListModeElement();
-      case -1249586564:
-        return getVariableElement();
-      case -861311717:
-        return getConditionElement();
-      case 94627080:
-        return getCheckElement();
-      case -1067155421:
-        return getLogMessageElement();
-      default:
-        return super.makeProperty(hash, name);
+        case 951530927:
+          return getContextElement();
+        case 108114:
+          return getMinElement();
+        case 107876:
+          return getMaxElement();
+        case 3575610:
+          return getTypeElement();
+        case 587922128:
+          return getDefaultValue();
+        case -659125328:
+          return getDefaultValue();
+        case -1662836996:
+          return getElementElement();
+        case 1345445729:
+          return getListModeElement();
+        case -1249586564:
+          return getVariableElement();
+        case -861311717:
+          return getConditionElement();
+        case 94627080:
+          return getCheckElement();
+        case -1067155421:
+          return getLogMessageElement();
+        default:
+          return super.makeProperty(hash, name);
       }
 
     }
@@ -4630,30 +4628,30 @@ public class StructureMap extends MetadataResource {
     @Override
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
-      case 951530927:
-        /* context */ return new String[] { "id" };
-      case 108114:
-        /* min */ return new String[] { "integer" };
-      case 107876:
-        /* max */ return new String[] { "string" };
-      case 3575610:
-        /* type */ return new String[] { "string" };
-      case -659125328:
-        /* defaultValue */ return new String[] { "*" };
-      case -1662836996:
-        /* element */ return new String[] { "string" };
-      case 1345445729:
-        /* listMode */ return new String[] { "code" };
-      case -1249586564:
-        /* variable */ return new String[] { "id" };
-      case -861311717:
-        /* condition */ return new String[] { "string" };
-      case 94627080:
-        /* check */ return new String[] { "string" };
-      case -1067155421:
-        /* logMessage */ return new String[] { "string" };
-      default:
-        return super.getTypesForProperty(hash, name);
+        case 951530927:
+          /* context */ return new String[] { "id" };
+        case 108114:
+          /* min */ return new String[] { "integer" };
+        case 107876:
+          /* max */ return new String[] { "string" };
+        case 3575610:
+          /* type */ return new String[] { "string" };
+        case -659125328:
+          /* defaultValue */ return new String[] { "*" };
+        case -1662836996:
+          /* element */ return new String[] { "string" };
+        case 1345445729:
+          /* listMode */ return new String[] { "code" };
+        case -1249586564:
+          /* variable */ return new String[] { "id" };
+        case -861311717:
+          /* condition */ return new String[] { "string" };
+        case 94627080:
+          /* check */ return new String[] { "string" };
+        case -1067155421:
+          /* logMessage */ return new String[] { "string" };
+        default:
+          return super.getTypesForProperty(hash, name);
       }
 
     }
@@ -4863,10 +4861,10 @@ public class StructureMap extends MetadataResource {
         return false;
       StructureMapGroupRuleSourceComponent o = (StructureMapGroupRuleSourceComponent) other_;
       return compareDeep(context, o.context, true) && compareDeep(min, o.min, true) && compareDeep(max, o.max, true)
-          && compareDeep(type, o.type, true) && compareDeep(defaultValue, o.defaultValue, true)
-          && compareDeep(element, o.element, true) && compareDeep(listMode, o.listMode, true)
-          && compareDeep(variable, o.variable, true) && compareDeep(condition, o.condition, true)
-          && compareDeep(check, o.check, true) && compareDeep(logMessage, o.logMessage, true);
+        && compareDeep(type, o.type, true) && compareDeep(defaultValue, o.defaultValue, true)
+        && compareDeep(element, o.element, true) && compareDeep(listMode, o.listMode, true)
+        && compareDeep(variable, o.variable, true) && compareDeep(condition, o.condition, true)
+        && compareDeep(check, o.check, true) && compareDeep(logMessage, o.logMessage, true);
     }
 
     @Override
@@ -4877,15 +4875,15 @@ public class StructureMap extends MetadataResource {
         return false;
       StructureMapGroupRuleSourceComponent o = (StructureMapGroupRuleSourceComponent) other_;
       return compareValues(context, o.context, true) && compareValues(min, o.min, true)
-          && compareValues(max, o.max, true) && compareValues(type, o.type, true)
-          && compareValues(element, o.element, true) && compareValues(listMode, o.listMode, true)
-          && compareValues(variable, o.variable, true) && compareValues(condition, o.condition, true)
-          && compareValues(check, o.check, true) && compareValues(logMessage, o.logMessage, true);
+        && compareValues(max, o.max, true) && compareValues(type, o.type, true)
+        && compareValues(element, o.element, true) && compareValues(listMode, o.listMode, true)
+        && compareValues(variable, o.variable, true) && compareValues(condition, o.condition, true)
+        && compareValues(check, o.check, true) && compareValues(logMessage, o.logMessage, true);
     }
 
     public boolean isEmpty() {
       return super.isEmpty() && ca.uhn.fhir.util.ElementUtil.isEmpty(context, min, max, type, defaultValue, element,
-          listMode, variable, condition, check, logMessage);
+        listMode, variable, condition, check, logMessage);
     }
 
     public String fhirType() {
@@ -4915,7 +4913,7 @@ public class StructureMap extends MetadataResource {
      * How to interpret the context.
      */
     @Child(name = "contextType", type = {
-        CodeType.class }, order = 2, min = 0, max = 1, modifier = false, summary = true)
+      CodeType.class }, order = 2, min = 0, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "type | variable", formalDefinition = "How to interpret the context.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/map-context-type")
     protected Enumeration<StructureMapContextType> contextType;
@@ -4938,7 +4936,7 @@ public class StructureMap extends MetadataResource {
      * If field is a list, how to manage the list.
      */
     @Child(name = "listMode", type = {
-        CodeType.class }, order = 5, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
+      CodeType.class }, order = 5, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
     @Description(shortDefinition = "first | share | last | collate", formalDefinition = "If field is a list, how to manage the list.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/map-target-list-mode")
     protected List<Enumeration<StructureMapTargetListMode>> listMode;
@@ -5219,7 +5217,7 @@ public class StructureMap extends MetadataResource {
      */
     public Enumeration<StructureMapTargetListMode> addListModeElement() {// 2
       Enumeration<StructureMapTargetListMode> t = new Enumeration<StructureMapTargetListMode>(
-          new StructureMapTargetListModeEnumFactory());
+        new StructureMapTargetListModeEnumFactory());
       if (this.listMode == null)
         this.listMode = new ArrayList<Enumeration<StructureMapTargetListMode>>();
       this.listMode.add(t);
@@ -5231,7 +5229,7 @@ public class StructureMap extends MetadataResource {
      */
     public StructureMapGroupRuleTargetComponent addListMode(StructureMapTargetListMode value) { // 1
       Enumeration<StructureMapTargetListMode> t = new Enumeration<StructureMapTargetListMode>(
-          new StructureMapTargetListModeEnumFactory());
+        new StructureMapTargetListModeEnumFactory());
       t.setValue(value);
       if (this.listMode == null)
         this.listMode = new ArrayList<Enumeration<StructureMapTargetListMode>>();
@@ -5371,7 +5369,7 @@ public class StructureMap extends MetadataResource {
      * @return Returns a reference to <code>this</code> for easy method chaining
      */
     public StructureMapGroupRuleTargetComponent setParameter(
-        List<StructureMapGroupRuleTargetParameterComponent> theParameter) {
+      List<StructureMapGroupRuleTargetParameterComponent> theParameter) {
       this.parameter = theParameter;
       return this;
     }
@@ -5419,42 +5417,42 @@ public class StructureMap extends MetadataResource {
       children.add(new Property("contextType", "code", "How to interpret the context.", 0, 1, contextType));
       children.add(new Property("element", "string", "Field to create in the context.", 0, 1, element));
       children.add(new Property("variable", "id", "Named context for field, if desired, and a field is specified.", 0,
-          1, variable));
+        1, variable));
       children.add(new Property("listMode", "code", "If field is a list, how to manage the list.", 0,
-          java.lang.Integer.MAX_VALUE, listMode));
+        java.lang.Integer.MAX_VALUE, listMode));
       children
-          .add(new Property("listRuleId", "id", "Internal rule reference for shared list items.", 0, 1, listRuleId));
+        .add(new Property("listRuleId", "id", "Internal rule reference for shared list items.", 0, 1, listRuleId));
       children.add(new Property("transform", "code", "How the data is copied / created.", 0, 1, transform));
       children.add(
-          new Property("parameter", "", "Parameters to the transform.", 0, java.lang.Integer.MAX_VALUE, parameter));
+        new Property("parameter", "", "Parameters to the transform.", 0, java.lang.Integer.MAX_VALUE, parameter));
     }
 
     @Override
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
-      case 951530927:
-        /* context */ return new Property("context", "id", "Type or variable this rule applies to.", 0, 1, context);
-      case -102839927:
-        /* contextType */ return new Property("contextType", "code", "How to interpret the context.", 0, 1,
-            contextType);
-      case -1662836996:
-        /* element */ return new Property("element", "string", "Field to create in the context.", 0, 1, element);
-      case -1249586564:
-        /* variable */ return new Property("variable", "id",
-            "Named context for field, if desired, and a field is specified.", 0, 1, variable);
-      case 1345445729:
-        /* listMode */ return new Property("listMode", "code", "If field is a list, how to manage the list.", 0,
-            java.lang.Integer.MAX_VALUE, listMode);
-      case 337117045:
-        /* listRuleId */ return new Property("listRuleId", "id", "Internal rule reference for shared list items.", 0, 1,
-            listRuleId);
-      case 1052666732:
-        /* transform */ return new Property("transform", "code", "How the data is copied / created.", 0, 1, transform);
-      case 1954460585:
-        /* parameter */ return new Property("parameter", "", "Parameters to the transform.", 0,
-            java.lang.Integer.MAX_VALUE, parameter);
-      default:
-        return super.getNamedProperty(_hash, _name, _checkValid);
+        case 951530927:
+          /* context */ return new Property("context", "id", "Type or variable this rule applies to.", 0, 1, context);
+        case -102839927:
+          /* contextType */ return new Property("contextType", "code", "How to interpret the context.", 0, 1,
+          contextType);
+        case -1662836996:
+          /* element */ return new Property("element", "string", "Field to create in the context.", 0, 1, element);
+        case -1249586564:
+          /* variable */ return new Property("variable", "id",
+          "Named context for field, if desired, and a field is specified.", 0, 1, variable);
+        case 1345445729:
+          /* listMode */ return new Property("listMode", "code", "If field is a list, how to manage the list.", 0,
+          java.lang.Integer.MAX_VALUE, listMode);
+        case 337117045:
+          /* listRuleId */ return new Property("listRuleId", "id", "Internal rule reference for shared list items.", 0, 1,
+          listRuleId);
+        case 1052666732:
+          /* transform */ return new Property("transform", "code", "How the data is copied / created.", 0, 1, transform);
+        case 1954460585:
+          /* parameter */ return new Property("parameter", "", "Parameters to the transform.", 0,
+          java.lang.Integer.MAX_VALUE, parameter);
+        default:
+          return super.getNamedProperty(_hash, _name, _checkValid);
       }
 
     }
@@ -5462,26 +5460,26 @@ public class StructureMap extends MetadataResource {
     @Override
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
-      case 951530927:
-        /* context */ return this.context == null ? new Base[0] : new Base[] { this.context }; // IdType
-      case -102839927:
-        /* contextType */ return this.contextType == null ? new Base[0] : new Base[] { this.contextType }; // Enumeration<StructureMapContextType>
-      case -1662836996:
-        /* element */ return this.element == null ? new Base[0] : new Base[] { this.element }; // StringType
-      case -1249586564:
-        /* variable */ return this.variable == null ? new Base[0] : new Base[] { this.variable }; // IdType
-      case 1345445729:
-        /* listMode */ return this.listMode == null ? new Base[0]
-            : this.listMode.toArray(new Base[this.listMode.size()]); // Enumeration<StructureMapTargetListMode>
-      case 337117045:
-        /* listRuleId */ return this.listRuleId == null ? new Base[0] : new Base[] { this.listRuleId }; // IdType
-      case 1052666732:
-        /* transform */ return this.transform == null ? new Base[0] : new Base[] { this.transform }; // Enumeration<StructureMapTransform>
-      case 1954460585:
-        /* parameter */ return this.parameter == null ? new Base[0]
-            : this.parameter.toArray(new Base[this.parameter.size()]); // StructureMapGroupRuleTargetParameterComponent
-      default:
-        return super.getProperty(hash, name, checkValid);
+        case 951530927:
+          /* context */ return this.context == null ? new Base[0] : new Base[] { this.context }; // IdType
+        case -102839927:
+          /* contextType */ return this.contextType == null ? new Base[0] : new Base[] { this.contextType }; // Enumeration<StructureMapContextType>
+        case -1662836996:
+          /* element */ return this.element == null ? new Base[0] : new Base[] { this.element }; // StringType
+        case -1249586564:
+          /* variable */ return this.variable == null ? new Base[0] : new Base[] { this.variable }; // IdType
+        case 1345445729:
+          /* listMode */ return this.listMode == null ? new Base[0]
+          : this.listMode.toArray(new Base[this.listMode.size()]); // Enumeration<StructureMapTargetListMode>
+        case 337117045:
+          /* listRuleId */ return this.listRuleId == null ? new Base[0] : new Base[] { this.listRuleId }; // IdType
+        case 1052666732:
+          /* transform */ return this.transform == null ? new Base[0] : new Base[] { this.transform }; // Enumeration<StructureMapTransform>
+        case 1954460585:
+          /* parameter */ return this.parameter == null ? new Base[0]
+          : this.parameter.toArray(new Base[this.parameter.size()]); // StructureMapGroupRuleTargetParameterComponent
+        default:
+          return super.getProperty(hash, name, checkValid);
       }
 
     }
@@ -5489,35 +5487,35 @@ public class StructureMap extends MetadataResource {
     @Override
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
-      case 951530927: // context
-        this.context = castToId(value); // IdType
-        return value;
-      case -102839927: // contextType
-        value = new StructureMapContextTypeEnumFactory().fromType(castToCode(value));
-        this.contextType = (Enumeration) value; // Enumeration<StructureMapContextType>
-        return value;
-      case -1662836996: // element
-        this.element = castToString(value); // StringType
-        return value;
-      case -1249586564: // variable
-        this.variable = castToId(value); // IdType
-        return value;
-      case 1345445729: // listMode
-        value = new StructureMapTargetListModeEnumFactory().fromType(castToCode(value));
-        this.getListMode().add((Enumeration) value); // Enumeration<StructureMapTargetListMode>
-        return value;
-      case 337117045: // listRuleId
-        this.listRuleId = castToId(value); // IdType
-        return value;
-      case 1052666732: // transform
-        value = new StructureMapTransformEnumFactory().fromType(castToCode(value));
-        this.transform = (Enumeration) value; // Enumeration<StructureMapTransform>
-        return value;
-      case 1954460585: // parameter
-        this.getParameter().add((StructureMapGroupRuleTargetParameterComponent) value); // StructureMapGroupRuleTargetParameterComponent
-        return value;
-      default:
-        return super.setProperty(hash, name, value);
+        case 951530927: // context
+          this.context = castToId(value); // IdType
+          return value;
+        case -102839927: // contextType
+          value = new StructureMapContextTypeEnumFactory().fromType(castToCode(value));
+          this.contextType = (Enumeration) value; // Enumeration<StructureMapContextType>
+          return value;
+        case -1662836996: // element
+          this.element = castToString(value); // StringType
+          return value;
+        case -1249586564: // variable
+          this.variable = castToId(value); // IdType
+          return value;
+        case 1345445729: // listMode
+          value = new StructureMapTargetListModeEnumFactory().fromType(castToCode(value));
+          this.getListMode().add((Enumeration) value); // Enumeration<StructureMapTargetListMode>
+          return value;
+        case 337117045: // listRuleId
+          this.listRuleId = castToId(value); // IdType
+          return value;
+        case 1052666732: // transform
+          value = new StructureMapTransformEnumFactory().fromType(castToCode(value));
+          this.transform = (Enumeration) value; // Enumeration<StructureMapTransform>
+          return value;
+        case 1954460585: // parameter
+          this.getParameter().add((StructureMapGroupRuleTargetParameterComponent) value); // StructureMapGroupRuleTargetParameterComponent
+          return value;
+        default:
+          return super.setProperty(hash, name, value);
       }
 
     }
@@ -5548,8 +5546,8 @@ public class StructureMap extends MetadataResource {
       return value;
     }
 
-  @Override
-  public void removeChild(String name, Base value) throws FHIRException {
+    @Override
+    public void removeChild(String name, Base value) throws FHIRException {
       if (name.equals("context")) {
         this.context = null;
       } else if (name.equals("contextType")) {
@@ -5568,30 +5566,30 @@ public class StructureMap extends MetadataResource {
         this.getParameter().remove((StructureMapGroupRuleTargetParameterComponent) value);
       } else
         super.removeChild(name, value);
-      
+
     }
 
     @Override
     public Base makeProperty(int hash, String name) throws FHIRException {
       switch (hash) {
-      case 951530927:
-        return getContextElement();
-      case -102839927:
-        return getContextTypeElement();
-      case -1662836996:
-        return getElementElement();
-      case -1249586564:
-        return getVariableElement();
-      case 1345445729:
-        return addListModeElement();
-      case 337117045:
-        return getListRuleIdElement();
-      case 1052666732:
-        return getTransformElement();
-      case 1954460585:
-        return addParameter();
-      default:
-        return super.makeProperty(hash, name);
+        case 951530927:
+          return getContextElement();
+        case -102839927:
+          return getContextTypeElement();
+        case -1662836996:
+          return getElementElement();
+        case -1249586564:
+          return getVariableElement();
+        case 1345445729:
+          return addListModeElement();
+        case 337117045:
+          return getListRuleIdElement();
+        case 1052666732:
+          return getTransformElement();
+        case 1954460585:
+          return addParameter();
+        default:
+          return super.makeProperty(hash, name);
       }
 
     }
@@ -5599,24 +5597,24 @@ public class StructureMap extends MetadataResource {
     @Override
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
-      case 951530927:
-        /* context */ return new String[] { "id" };
-      case -102839927:
-        /* contextType */ return new String[] { "code" };
-      case -1662836996:
-        /* element */ return new String[] { "string" };
-      case -1249586564:
-        /* variable */ return new String[] { "id" };
-      case 1345445729:
-        /* listMode */ return new String[] { "code" };
-      case 337117045:
-        /* listRuleId */ return new String[] { "id" };
-      case 1052666732:
-        /* transform */ return new String[] { "code" };
-      case 1954460585:
-        /* parameter */ return new String[] {};
-      default:
-        return super.getTypesForProperty(hash, name);
+        case 951530927:
+          /* context */ return new String[] { "id" };
+        case -102839927:
+          /* contextType */ return new String[] { "code" };
+        case -1662836996:
+          /* element */ return new String[] { "string" };
+        case -1249586564:
+          /* variable */ return new String[] { "id" };
+        case 1345445729:
+          /* listMode */ return new String[] { "code" };
+        case 337117045:
+          /* listRuleId */ return new String[] { "id" };
+        case 1052666732:
+          /* transform */ return new String[] { "code" };
+        case 1954460585:
+          /* parameter */ return new String[] {};
+        default:
+          return super.getTypesForProperty(hash, name);
       }
 
     }
@@ -5679,9 +5677,9 @@ public class StructureMap extends MetadataResource {
         return false;
       StructureMapGroupRuleTargetComponent o = (StructureMapGroupRuleTargetComponent) other_;
       return compareDeep(context, o.context, true) && compareDeep(contextType, o.contextType, true)
-          && compareDeep(element, o.element, true) && compareDeep(variable, o.variable, true)
-          && compareDeep(listMode, o.listMode, true) && compareDeep(listRuleId, o.listRuleId, true)
-          && compareDeep(transform, o.transform, true) && compareDeep(parameter, o.parameter, true);
+        && compareDeep(element, o.element, true) && compareDeep(variable, o.variable, true)
+        && compareDeep(listMode, o.listMode, true) && compareDeep(listRuleId, o.listRuleId, true)
+        && compareDeep(transform, o.transform, true) && compareDeep(parameter, o.parameter, true);
     }
 
     @Override
@@ -5692,14 +5690,14 @@ public class StructureMap extends MetadataResource {
         return false;
       StructureMapGroupRuleTargetComponent o = (StructureMapGroupRuleTargetComponent) other_;
       return compareValues(context, o.context, true) && compareValues(contextType, o.contextType, true)
-          && compareValues(element, o.element, true) && compareValues(variable, o.variable, true)
-          && compareValues(listMode, o.listMode, true) && compareValues(listRuleId, o.listRuleId, true)
-          && compareValues(transform, o.transform, true);
+        && compareValues(element, o.element, true) && compareValues(variable, o.variable, true)
+        && compareValues(listMode, o.listMode, true) && compareValues(listRuleId, o.listRuleId, true)
+        && compareValues(transform, o.transform, true);
     }
 
     public boolean isEmpty() {
       return super.isEmpty() && ca.uhn.fhir.util.ElementUtil.isEmpty(context, contextType, element, variable, listMode,
-          listRuleId, transform, parameter);
+        listRuleId, transform, parameter);
     }
 
     public String fhirType() {
@@ -5718,12 +5716,12 @@ public class StructureMap extends MetadataResource {
 
   @Block()
   public static class StructureMapGroupRuleTargetParameterComponent extends BackboneElement
-      implements IBaseBackboneElement {
+    implements IBaseBackboneElement {
     /**
      * Parameter value - variable or literal.
      */
     @Child(name = "value", type = { IdType.class, StringType.class, BooleanType.class, IntegerType.class,
-        DecimalType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
+      DecimalType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "Parameter value - variable or literal", formalDefinition = "Parameter value - variable or literal.")
     protected Type value;
 
@@ -5759,12 +5757,12 @@ public class StructureMap extends MetadataResource {
         this.value = new IdType();
       if (!(this.value instanceof IdType))
         throw new FHIRException(
-            "Type mismatch: the type IdType was expected, but " + this.value.getClass().getName() + " was encountered");
+          "Type mismatch: the type IdType was expected, but " + this.value.getClass().getName() + " was encountered");
       return (IdType) this.value;
     }
 
     public boolean hasValueIdType() {
-        return this.value instanceof IdType;
+      return this.value instanceof IdType;
     }
 
     /**
@@ -5775,12 +5773,12 @@ public class StructureMap extends MetadataResource {
         this.value = new StringType();
       if (!(this.value instanceof StringType))
         throw new FHIRException("Type mismatch: the type StringType was expected, but "
-            + this.value.getClass().getName() + " was encountered");
+          + this.value.getClass().getName() + " was encountered");
       return (StringType) this.value;
     }
 
     public boolean hasValueStringType() {
-        return this.value instanceof StringType;
+      return this.value instanceof StringType;
     }
 
     /**
@@ -5791,12 +5789,12 @@ public class StructureMap extends MetadataResource {
         this.value = new BooleanType();
       if (!(this.value instanceof BooleanType))
         throw new FHIRException("Type mismatch: the type BooleanType was expected, but "
-            + this.value.getClass().getName() + " was encountered");
+          + this.value.getClass().getName() + " was encountered");
       return (BooleanType) this.value;
     }
 
     public boolean hasValueBooleanType() {
-        return this.value instanceof BooleanType;
+      return this.value instanceof BooleanType;
     }
 
     /**
@@ -5807,12 +5805,12 @@ public class StructureMap extends MetadataResource {
         this.value = new IntegerType();
       if (!(this.value instanceof IntegerType))
         throw new FHIRException("Type mismatch: the type IntegerType was expected, but "
-            + this.value.getClass().getName() + " was encountered");
+          + this.value.getClass().getName() + " was encountered");
       return (IntegerType) this.value;
     }
 
     public boolean hasValueIntegerType() {
-        return this.value instanceof IntegerType;
+      return this.value instanceof IntegerType;
     }
 
     /**
@@ -5823,12 +5821,12 @@ public class StructureMap extends MetadataResource {
         this.value = new DecimalType();
       if (!(this.value instanceof DecimalType))
         throw new FHIRException("Type mismatch: the type DecimalType was expected, but "
-            + this.value.getClass().getName() + " was encountered");
+          + this.value.getClass().getName() + " was encountered");
       return (DecimalType) this.value;
     }
 
     public boolean hasValueDecimalType() {
-        return this.value instanceof DecimalType;
+      return this.value instanceof DecimalType;
     }
 
     public boolean hasValue() {
@@ -5840,9 +5838,9 @@ public class StructureMap extends MetadataResource {
      */
     public StructureMapGroupRuleTargetParameterComponent setValue(Type value) {
       if (value != null && !(value instanceof IdType || value instanceof StringType || value instanceof BooleanType
-          || value instanceof IntegerType || value instanceof DecimalType))
+        || value instanceof IntegerType || value instanceof DecimalType))
         throw new Error(
-            "Not the right type for StructureMap.group.rule.target.parameter.value[x]: " + value.fhirType());
+          "Not the right type for StructureMap.group.rule.target.parameter.value[x]: " + value.fhirType());
       this.value = value;
       return this;
     }
@@ -5850,35 +5848,35 @@ public class StructureMap extends MetadataResource {
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
       children.add(new Property("value[x]", "id|string|boolean|integer|decimal",
-          "Parameter value - variable or literal.", 0, 1, value));
+        "Parameter value - variable or literal.", 0, 1, value));
     }
 
     @Override
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
-      case -1410166417:
-        /* value[x] */ return new Property("value[x]", "id|string|boolean|integer|decimal",
-            "Parameter value - variable or literal.", 0, 1, value);
-      case 111972721:
-        /* value */ return new Property("value[x]", "id|string|boolean|integer|decimal",
-            "Parameter value - variable or literal.", 0, 1, value);
-      case 231604844:
-        /* valueId */ return new Property("value[x]", "id|string|boolean|integer|decimal",
-            "Parameter value - variable or literal.", 0, 1, value);
-      case -1424603934:
-        /* valueString */ return new Property("value[x]", "id|string|boolean|integer|decimal",
-            "Parameter value - variable or literal.", 0, 1, value);
-      case 733421943:
-        /* valueBoolean */ return new Property("value[x]", "id|string|boolean|integer|decimal",
-            "Parameter value - variable or literal.", 0, 1, value);
-      case -1668204915:
-        /* valueInteger */ return new Property("value[x]", "id|string|boolean|integer|decimal",
-            "Parameter value - variable or literal.", 0, 1, value);
-      case -2083993440:
-        /* valueDecimal */ return new Property("value[x]", "id|string|boolean|integer|decimal",
-            "Parameter value - variable or literal.", 0, 1, value);
-      default:
-        return super.getNamedProperty(_hash, _name, _checkValid);
+        case -1410166417:
+          /* value[x] */ return new Property("value[x]", "id|string|boolean|integer|decimal",
+          "Parameter value - variable or literal.", 0, 1, value);
+        case 111972721:
+          /* value */ return new Property("value[x]", "id|string|boolean|integer|decimal",
+          "Parameter value - variable or literal.", 0, 1, value);
+        case 231604844:
+          /* valueId */ return new Property("value[x]", "id|string|boolean|integer|decimal",
+          "Parameter value - variable or literal.", 0, 1, value);
+        case -1424603934:
+          /* valueString */ return new Property("value[x]", "id|string|boolean|integer|decimal",
+          "Parameter value - variable or literal.", 0, 1, value);
+        case 733421943:
+          /* valueBoolean */ return new Property("value[x]", "id|string|boolean|integer|decimal",
+          "Parameter value - variable or literal.", 0, 1, value);
+        case -1668204915:
+          /* valueInteger */ return new Property("value[x]", "id|string|boolean|integer|decimal",
+          "Parameter value - variable or literal.", 0, 1, value);
+        case -2083993440:
+          /* valueDecimal */ return new Property("value[x]", "id|string|boolean|integer|decimal",
+          "Parameter value - variable or literal.", 0, 1, value);
+        default:
+          return super.getNamedProperty(_hash, _name, _checkValid);
       }
 
     }
@@ -5886,10 +5884,10 @@ public class StructureMap extends MetadataResource {
     @Override
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
-      case 111972721:
-        /* value */ return this.value == null ? new Base[0] : new Base[] { this.value }; // Type
-      default:
-        return super.getProperty(hash, name, checkValid);
+        case 111972721:
+          /* value */ return this.value == null ? new Base[0] : new Base[] { this.value }; // Type
+        default:
+          return super.getProperty(hash, name, checkValid);
       }
 
     }
@@ -5897,11 +5895,11 @@ public class StructureMap extends MetadataResource {
     @Override
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
-      case 111972721: // value
-        this.value = castToType(value); // Type
-        return value;
-      default:
-        return super.setProperty(hash, name, value);
+        case 111972721: // value
+          this.value = castToType(value); // Type
+          return value;
+        default:
+          return super.setProperty(hash, name, value);
       }
 
     }
@@ -5915,24 +5913,24 @@ public class StructureMap extends MetadataResource {
       return value;
     }
 
-  @Override
-  public void removeChild(String name, Base value) throws FHIRException {
+    @Override
+    public void removeChild(String name, Base value) throws FHIRException {
       if (name.equals("value[x]")) {
         this.value = null;
       } else
         super.removeChild(name, value);
-      
+
     }
 
     @Override
     public Base makeProperty(int hash, String name) throws FHIRException {
       switch (hash) {
-      case -1410166417:
-        return getValue();
-      case 111972721:
-        return getValue();
-      default:
-        return super.makeProperty(hash, name);
+        case -1410166417:
+          return getValue();
+        case 111972721:
+          return getValue();
+        default:
+          return super.makeProperty(hash, name);
       }
 
     }
@@ -5940,10 +5938,10 @@ public class StructureMap extends MetadataResource {
     @Override
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
-      case 111972721:
-        /* value */ return new String[] { "id", "string", "boolean", "integer", "decimal" };
-      default:
-        return super.getTypesForProperty(hash, name);
+        case 111972721:
+          /* value */ return new String[] { "id", "string", "boolean", "integer", "decimal" };
+        default:
+          return super.getTypesForProperty(hash, name);
       }
 
     }
@@ -6031,7 +6029,7 @@ public class StructureMap extends MetadataResource {
      * Variable to pass to the rule or group.
      */
     @Child(name = "variable", type = {
-        StringType.class }, order = 2, min = 1, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
+      StringType.class }, order = 2, min = 1, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
     @Description(shortDefinition = "Variable to pass to the rule or group", formalDefinition = "Variable to pass to the rule or group.")
     protected List<StringType> variable;
 
@@ -6166,19 +6164,19 @@ public class StructureMap extends MetadataResource {
       super.listChildren(children);
       children.add(new Property("name", "id", "Name of a rule or group to apply.", 0, 1, name));
       children.add(new Property("variable", "string", "Variable to pass to the rule or group.", 0,
-          java.lang.Integer.MAX_VALUE, variable));
+        java.lang.Integer.MAX_VALUE, variable));
     }
 
     @Override
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
-      case 3373707:
-        /* name */ return new Property("name", "id", "Name of a rule or group to apply.", 0, 1, name);
-      case -1249586564:
-        /* variable */ return new Property("variable", "string", "Variable to pass to the rule or group.", 0,
-            java.lang.Integer.MAX_VALUE, variable);
-      default:
-        return super.getNamedProperty(_hash, _name, _checkValid);
+        case 3373707:
+          /* name */ return new Property("name", "id", "Name of a rule or group to apply.", 0, 1, name);
+        case -1249586564:
+          /* variable */ return new Property("variable", "string", "Variable to pass to the rule or group.", 0,
+          java.lang.Integer.MAX_VALUE, variable);
+        default:
+          return super.getNamedProperty(_hash, _name, _checkValid);
       }
 
     }
@@ -6186,13 +6184,13 @@ public class StructureMap extends MetadataResource {
     @Override
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
-      case 3373707:
-        /* name */ return this.name == null ? new Base[0] : new Base[] { this.name }; // IdType
-      case -1249586564:
-        /* variable */ return this.variable == null ? new Base[0]
-            : this.variable.toArray(new Base[this.variable.size()]); // StringType
-      default:
-        return super.getProperty(hash, name, checkValid);
+        case 3373707:
+          /* name */ return this.name == null ? new Base[0] : new Base[] { this.name }; // IdType
+        case -1249586564:
+          /* variable */ return this.variable == null ? new Base[0]
+          : this.variable.toArray(new Base[this.variable.size()]); // StringType
+        default:
+          return super.getProperty(hash, name, checkValid);
       }
 
     }
@@ -6200,14 +6198,14 @@ public class StructureMap extends MetadataResource {
     @Override
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
-      case 3373707: // name
-        this.name = castToId(value); // IdType
-        return value;
-      case -1249586564: // variable
-        this.getVariable().add(castToString(value)); // StringType
-        return value;
-      default:
-        return super.setProperty(hash, name, value);
+        case 3373707: // name
+          this.name = castToId(value); // IdType
+          return value;
+        case -1249586564: // variable
+          this.getVariable().add(castToString(value)); // StringType
+          return value;
+        default:
+          return super.setProperty(hash, name, value);
       }
 
     }
@@ -6223,26 +6221,26 @@ public class StructureMap extends MetadataResource {
       return value;
     }
 
-  @Override
-  public void removeChild(String name, Base value) throws FHIRException {
+    @Override
+    public void removeChild(String name, Base value) throws FHIRException {
       if (name.equals("name")) {
         this.name = null;
       } else if (name.equals("variable")) {
         this.getVariable().remove(castToString(value));
       } else
         super.removeChild(name, value);
-      
+
     }
 
     @Override
     public Base makeProperty(int hash, String name) throws FHIRException {
       switch (hash) {
-      case 3373707:
-        return getNameElement();
-      case -1249586564:
-        return addVariableElement();
-      default:
-        return super.makeProperty(hash, name);
+        case 3373707:
+          return getNameElement();
+        case -1249586564:
+          return addVariableElement();
+        default:
+          return super.makeProperty(hash, name);
       }
 
     }
@@ -6250,12 +6248,12 @@ public class StructureMap extends MetadataResource {
     @Override
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
-      case 3373707:
-        /* name */ return new String[] { "id" };
-      case -1249586564:
-        /* variable */ return new String[] { "string" };
-      default:
-        return super.getTypesForProperty(hash, name);
+        case 3373707:
+          /* name */ return new String[] { "id" };
+        case -1249586564:
+          /* variable */ return new String[] { "string" };
+        default:
+          return super.getTypesForProperty(hash, name);
       }
 
     }
@@ -6324,7 +6322,7 @@ public class StructureMap extends MetadataResource {
    * or an instance.
    */
   @Child(name = "identifier", type = {
-      Identifier.class }, order = 0, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
+    Identifier.class }, order = 0, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
   @Description(shortDefinition = "Additional identifier for the structure map", formalDefinition = "A formal identifier that is used to identify this structure map when it is represented in other formats, or referenced in a specification, model, design or an instance.")
   protected List<Identifier> identifier;
 
@@ -6333,7 +6331,7 @@ public class StructureMap extends MetadataResource {
    * as it has.
    */
   @Child(name = "purpose", type = {
-      MarkdownType.class }, order = 1, min = 0, max = 1, modifier = false, summary = false)
+    MarkdownType.class }, order = 1, min = 0, max = 1, modifier = false, summary = false)
   @Description(shortDefinition = "Why this structure map is defined", formalDefinition = "Explanation of why this structure map is needed and why it has been designed as it has.")
   protected MarkdownType purpose;
 
@@ -6343,7 +6341,7 @@ public class StructureMap extends MetadataResource {
    * publishing of the structure map.
    */
   @Child(name = "copyright", type = {
-      MarkdownType.class }, order = 2, min = 0, max = 1, modifier = false, summary = false)
+    MarkdownType.class }, order = 2, min = 0, max = 1, modifier = false, summary = false)
   @Description(shortDefinition = "Use and/or publishing restrictions", formalDefinition = "A copyright statement relating to the structure map and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the structure map.")
   protected MarkdownType copyright;
 
@@ -6359,7 +6357,7 @@ public class StructureMap extends MetadataResource {
    * Other maps used by this map (canonical URLs).
    */
   @Child(name = "import", type = {
-      CanonicalType.class }, order = 4, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
+    CanonicalType.class }, order = 4, min = 0, max = Child.MAX_UNLIMITED, modifier = false, summary = true)
   @Description(shortDefinition = "Other maps used by this map (canonical URLs)", formalDefinition = "Other maps used by this map (canonical URLs).")
   protected List<CanonicalType> import_;
 
@@ -6383,7 +6381,7 @@ public class StructureMap extends MetadataResource {
   /**
    * Constructor
    */
-  public StructureMap(UriType url, StringType name, Enumeration<PublicationStatus> status) {
+  public StructureMap(UriType url, StringType name, StringType status) {
     super();
     this.url = url;
     this.name = name;
@@ -6716,12 +6714,12 @@ public class StructureMap extends MetadataResource {
    *         id, value and extensions. The accessor "getStatus" gives direct
    *         access to the value
    */
-  public Enumeration<PublicationStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create StructureMap.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -6739,7 +6737,7 @@ public class StructureMap extends MetadataResource {
    *              object with id, value and extensions. The accessor "getStatus"
    *              gives direct access to the value
    */
-  public StructureMap setStatusElement(Enumeration<PublicationStatus> value) {
+  public StructureMap setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -6748,7 +6746,7 @@ public class StructureMap extends MetadataResource {
    * @return The status of this structure map. Enables tracking the life-cycle of
    *         the content.
    */
-  public PublicationStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
@@ -6756,9 +6754,9 @@ public class StructureMap extends MetadataResource {
    * @param value The status of this structure map. Enables tracking the
    *              life-cycle of the content.
    */
-  public StructureMap setStatus(PublicationStatus value) {
+  public StructureMap setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<PublicationStatus>(new PublicationStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -7466,128 +7464,128 @@ public class StructureMap extends MetadataResource {
   protected void listChildren(List<Property> children) {
     super.listChildren(children);
     children.add(new Property("url", "uri",
-        "An absolute URI that is used to identify this structure map when it is referenced in a specification, model, design or an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at which an authoritative instance of this structure map is (or will be) published. This URL can be the target of a canonical reference. It SHALL remain the same when the structure map is stored on different servers.",
-        0, 1, url));
+      "An absolute URI that is used to identify this structure map when it is referenced in a specification, model, design or an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at which an authoritative instance of this structure map is (or will be) published. This URL can be the target of a canonical reference. It SHALL remain the same when the structure map is stored on different servers.",
+      0, 1, url));
     children.add(new Property("identifier", "Identifier",
-        "A formal identifier that is used to identify this structure map when it is represented in other formats, or referenced in a specification, model, design or an instance.",
-        0, java.lang.Integer.MAX_VALUE, identifier));
+      "A formal identifier that is used to identify this structure map when it is represented in other formats, or referenced in a specification, model, design or an instance.",
+      0, java.lang.Integer.MAX_VALUE, identifier));
     children.add(new Property("version", "string",
-        "The identifier that is used to identify this version of the structure map when it is referenced in a specification, model, design or instance. This is an arbitrary value managed by the structure map author and is not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no expectation that versions can be placed in a lexicographical sequence.",
-        0, 1, version));
+      "The identifier that is used to identify this version of the structure map when it is referenced in a specification, model, design or instance. This is an arbitrary value managed by the structure map author and is not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no expectation that versions can be placed in a lexicographical sequence.",
+      0, 1, version));
     children.add(new Property("name", "string",
-        "A natural language name identifying the structure map. This name should be usable as an identifier for the module by machine processing applications such as code generation.",
-        0, 1, name));
+      "A natural language name identifying the structure map. This name should be usable as an identifier for the module by machine processing applications such as code generation.",
+      0, 1, name));
     children.add(new Property("title", "string", "A short, descriptive, user-friendly title for the structure map.", 0,
-        1, title));
-    children.add(new Property("status", "code",
-        "The status of this structure map. Enables tracking the life-cycle of the content.", 0, 1, status));
+      1, title));
+    children.add(new Property("status", "string",
+      "The status of this structure map. Enables tracking the life-cycle of the content.", 0, 1, status));
     children.add(new Property("experimental", "boolean",
-        "A Boolean value to indicate that this structure map is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
-        0, 1, experimental));
+      "A Boolean value to indicate that this structure map is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
+      0, 1, experimental));
     children.add(new Property("date", "dateTime",
-        "The date  (and optionally time) when the structure map was published. The date must change when the business version changes and it must change if the status code changes. In addition, it should change when the substantive content of the structure map changes.",
-        0, 1, date));
+      "The date  (and optionally time) when the structure map was published. The date must change when the business version changes and it must change if the status code changes. In addition, it should change when the substantive content of the structure map changes.",
+      0, 1, date));
     children.add(new Property("publisher", "string",
-        "The name of the organization or individual that published the structure map.", 0, 1, publisher));
+      "The name of the organization or individual that published the structure map.", 0, 1, publisher));
     children.add(new Property("contact", "ContactDetail",
-        "Contact details to assist a user in finding and communicating with the publisher.", 0,
-        java.lang.Integer.MAX_VALUE, contact));
+      "Contact details to assist a user in finding and communicating with the publisher.", 0,
+      java.lang.Integer.MAX_VALUE, contact));
     children.add(new Property("description", "markdown",
-        "A free text natural language description of the structure map from a consumer's perspective.", 0, 1,
-        description));
+      "A free text natural language description of the structure map from a consumer's perspective.", 0, 1,
+      description));
     children.add(new Property("useContext", "UsageContext",
-        "The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be used to assist with indexing and searching for appropriate structure map instances.",
-        0, java.lang.Integer.MAX_VALUE, useContext));
+      "The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be used to assist with indexing and searching for appropriate structure map instances.",
+      0, java.lang.Integer.MAX_VALUE, useContext));
     children.add(new Property("jurisdiction", "CodeableConcept",
-        "A legal or geographic region in which the structure map is intended to be used.", 0,
-        java.lang.Integer.MAX_VALUE, jurisdiction));
+      "A legal or geographic region in which the structure map is intended to be used.", 0,
+      java.lang.Integer.MAX_VALUE, jurisdiction));
     children.add(new Property("purpose", "markdown",
-        "Explanation of why this structure map is needed and why it has been designed as it has.", 0, 1, purpose));
+      "Explanation of why this structure map is needed and why it has been designed as it has.", 0, 1, purpose));
     children.add(new Property("copyright", "markdown",
-        "A copyright statement relating to the structure map and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the structure map.",
-        0, 1, copyright));
+      "A copyright statement relating to the structure map and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the structure map.",
+      0, 1, copyright));
     children.add(new Property("structure", "",
-        "A structure definition used by this map. The structure definition may describe instances that are converted, or the instances that are produced.",
-        0, java.lang.Integer.MAX_VALUE, structure));
+      "A structure definition used by this map. The structure definition may describe instances that are converted, or the instances that are produced.",
+      0, java.lang.Integer.MAX_VALUE, structure));
     children.add(new Property("import", "canonical(StructureMap)", "Other maps used by this map (canonical URLs).", 0,
-        java.lang.Integer.MAX_VALUE, import_));
+      java.lang.Integer.MAX_VALUE, import_));
     children.add(
-        new Property("group", "", "Organizes the mapping into manageable chunks for human review/ease of maintenance.",
-            0, java.lang.Integer.MAX_VALUE, group));
+      new Property("group", "", "Organizes the mapping into manageable chunks for human review/ease of maintenance.",
+        0, java.lang.Integer.MAX_VALUE, group));
   }
 
   @Override
   public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
     switch (_hash) {
-    case 116079:
-      /* url */ return new Property("url", "uri",
-          "An absolute URI that is used to identify this structure map when it is referenced in a specification, model, design or an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at which an authoritative instance of this structure map is (or will be) published. This URL can be the target of a canonical reference. It SHALL remain the same when the structure map is stored on different servers.",
-          0, 1, url);
-    case -1618432855:
-      /* identifier */ return new Property("identifier", "Identifier",
-          "A formal identifier that is used to identify this structure map when it is represented in other formats, or referenced in a specification, model, design or an instance.",
-          0, java.lang.Integer.MAX_VALUE, identifier);
-    case 351608024:
-      /* version */ return new Property("version", "string",
-          "The identifier that is used to identify this version of the structure map when it is referenced in a specification, model, design or instance. This is an arbitrary value managed by the structure map author and is not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no expectation that versions can be placed in a lexicographical sequence.",
-          0, 1, version);
-    case 3373707:
-      /* name */ return new Property("name", "string",
-          "A natural language name identifying the structure map. This name should be usable as an identifier for the module by machine processing applications such as code generation.",
-          0, 1, name);
-    case 110371416:
-      /* title */ return new Property("title", "string",
-          "A short, descriptive, user-friendly title for the structure map.", 0, 1, title);
-    case -892481550:
-      /* status */ return new Property("status", "code",
-          "The status of this structure map. Enables tracking the life-cycle of the content.", 0, 1, status);
-    case -404562712:
-      /* experimental */ return new Property("experimental", "boolean",
-          "A Boolean value to indicate that this structure map is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
-          0, 1, experimental);
-    case 3076014:
-      /* date */ return new Property("date", "dateTime",
-          "The date  (and optionally time) when the structure map was published. The date must change when the business version changes and it must change if the status code changes. In addition, it should change when the substantive content of the structure map changes.",
-          0, 1, date);
-    case 1447404028:
-      /* publisher */ return new Property("publisher", "string",
-          "The name of the organization or individual that published the structure map.", 0, 1, publisher);
-    case 951526432:
-      /* contact */ return new Property("contact", "ContactDetail",
-          "Contact details to assist a user in finding and communicating with the publisher.", 0,
-          java.lang.Integer.MAX_VALUE, contact);
-    case -1724546052:
-      /* description */ return new Property("description", "markdown",
-          "A free text natural language description of the structure map from a consumer's perspective.", 0, 1,
-          description);
-    case -669707736:
-      /* useContext */ return new Property("useContext", "UsageContext",
-          "The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be used to assist with indexing and searching for appropriate structure map instances.",
-          0, java.lang.Integer.MAX_VALUE, useContext);
-    case -507075711:
-      /* jurisdiction */ return new Property("jurisdiction", "CodeableConcept",
-          "A legal or geographic region in which the structure map is intended to be used.", 0,
-          java.lang.Integer.MAX_VALUE, jurisdiction);
-    case -220463842:
-      /* purpose */ return new Property("purpose", "markdown",
-          "Explanation of why this structure map is needed and why it has been designed as it has.", 0, 1, purpose);
-    case 1522889671:
-      /* copyright */ return new Property("copyright", "markdown",
-          "A copyright statement relating to the structure map and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the structure map.",
-          0, 1, copyright);
-    case 144518515:
-      /* structure */ return new Property("structure", "",
-          "A structure definition used by this map. The structure definition may describe instances that are converted, or the instances that are produced.",
-          0, java.lang.Integer.MAX_VALUE, structure);
-    case -1184795739:
-      /* import */ return new Property("import", "canonical(StructureMap)",
-          "Other maps used by this map (canonical URLs).", 0, java.lang.Integer.MAX_VALUE, import_);
-    case 98629247:
-      /* group */ return new Property("group", "",
-          "Organizes the mapping into manageable chunks for human review/ease of maintenance.", 0,
-          java.lang.Integer.MAX_VALUE, group);
-    default:
-      return super.getNamedProperty(_hash, _name, _checkValid);
+      case 116079:
+        /* url */ return new Property("url", "uri",
+        "An absolute URI that is used to identify this structure map when it is referenced in a specification, model, design or an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at which an authoritative instance of this structure map is (or will be) published. This URL can be the target of a canonical reference. It SHALL remain the same when the structure map is stored on different servers.",
+        0, 1, url);
+      case -1618432855:
+        /* identifier */ return new Property("identifier", "Identifier",
+        "A formal identifier that is used to identify this structure map when it is represented in other formats, or referenced in a specification, model, design or an instance.",
+        0, java.lang.Integer.MAX_VALUE, identifier);
+      case 351608024:
+        /* version */ return new Property("version", "string",
+        "The identifier that is used to identify this version of the structure map when it is referenced in a specification, model, design or instance. This is an arbitrary value managed by the structure map author and is not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no expectation that versions can be placed in a lexicographical sequence.",
+        0, 1, version);
+      case 3373707:
+        /* name */ return new Property("name", "string",
+        "A natural language name identifying the structure map. This name should be usable as an identifier for the module by machine processing applications such as code generation.",
+        0, 1, name);
+      case 110371416:
+        /* title */ return new Property("title", "string",
+        "A short, descriptive, user-friendly title for the structure map.", 0, 1, title);
+      case -892481550:
+        /* status */ return new Property("status", "string",
+        "The status of this structure map. Enables tracking the life-cycle of the content.", 0, 1, status);
+      case -404562712:
+        /* experimental */ return new Property("experimental", "boolean",
+        "A Boolean value to indicate that this structure map is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
+        0, 1, experimental);
+      case 3076014:
+        /* date */ return new Property("date", "dateTime",
+        "The date  (and optionally time) when the structure map was published. The date must change when the business version changes and it must change if the status code changes. In addition, it should change when the substantive content of the structure map changes.",
+        0, 1, date);
+      case 1447404028:
+        /* publisher */ return new Property("publisher", "string",
+        "The name of the organization or individual that published the structure map.", 0, 1, publisher);
+      case 951526432:
+        /* contact */ return new Property("contact", "ContactDetail",
+        "Contact details to assist a user in finding and communicating with the publisher.", 0,
+        java.lang.Integer.MAX_VALUE, contact);
+      case -1724546052:
+        /* description */ return new Property("description", "markdown",
+        "A free text natural language description of the structure map from a consumer's perspective.", 0, 1,
+        description);
+      case -669707736:
+        /* useContext */ return new Property("useContext", "UsageContext",
+        "The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be used to assist with indexing and searching for appropriate structure map instances.",
+        0, java.lang.Integer.MAX_VALUE, useContext);
+      case -507075711:
+        /* jurisdiction */ return new Property("jurisdiction", "CodeableConcept",
+        "A legal or geographic region in which the structure map is intended to be used.", 0,
+        java.lang.Integer.MAX_VALUE, jurisdiction);
+      case -220463842:
+        /* purpose */ return new Property("purpose", "markdown",
+        "Explanation of why this structure map is needed and why it has been designed as it has.", 0, 1, purpose);
+      case 1522889671:
+        /* copyright */ return new Property("copyright", "markdown",
+        "A copyright statement relating to the structure map and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the structure map.",
+        0, 1, copyright);
+      case 144518515:
+        /* structure */ return new Property("structure", "",
+        "A structure definition used by this map. The structure definition may describe instances that are converted, or the instances that are produced.",
+        0, java.lang.Integer.MAX_VALUE, structure);
+      case -1184795739:
+        /* import */ return new Property("import", "canonical(StructureMap)",
+        "Other maps used by this map (canonical URLs).", 0, java.lang.Integer.MAX_VALUE, import_);
+      case 98629247:
+        /* group */ return new Property("group", "",
+        "Organizes the mapping into manageable chunks for human review/ease of maintenance.", 0,
+        java.lang.Integer.MAX_VALUE, group);
+      default:
+        return super.getNamedProperty(_hash, _name, _checkValid);
     }
 
   }
@@ -7595,48 +7593,48 @@ public class StructureMap extends MetadataResource {
   @Override
   public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
     switch (hash) {
-    case 116079:
-      /* url */ return this.url == null ? new Base[0] : new Base[] { this.url }; // UriType
-    case -1618432855:
-      /* identifier */ return this.identifier == null ? new Base[0]
-          : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
-    case 351608024:
-      /* version */ return this.version == null ? new Base[0] : new Base[] { this.version }; // StringType
-    case 3373707:
-      /* name */ return this.name == null ? new Base[0] : new Base[] { this.name }; // StringType
-    case 110371416:
-      /* title */ return this.title == null ? new Base[0] : new Base[] { this.title }; // StringType
-    case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<PublicationStatus>
-    case -404562712:
-      /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
-    case 3076014:
-      /* date */ return this.date == null ? new Base[0] : new Base[] { this.date }; // DateTimeType
-    case 1447404028:
-      /* publisher */ return this.publisher == null ? new Base[0] : new Base[] { this.publisher }; // StringType
-    case 951526432:
-      /* contact */ return this.contact == null ? new Base[0] : this.contact.toArray(new Base[this.contact.size()]); // ContactDetail
-    case -1724546052:
-      /* description */ return this.description == null ? new Base[0] : new Base[] { this.description }; // MarkdownType
-    case -669707736:
-      /* useContext */ return this.useContext == null ? new Base[0]
-          : this.useContext.toArray(new Base[this.useContext.size()]); // UsageContext
-    case -507075711:
-      /* jurisdiction */ return this.jurisdiction == null ? new Base[0]
-          : this.jurisdiction.toArray(new Base[this.jurisdiction.size()]); // CodeableConcept
-    case -220463842:
-      /* purpose */ return this.purpose == null ? new Base[0] : new Base[] { this.purpose }; // MarkdownType
-    case 1522889671:
-      /* copyright */ return this.copyright == null ? new Base[0] : new Base[] { this.copyright }; // MarkdownType
-    case 144518515:
-      /* structure */ return this.structure == null ? new Base[0]
-          : this.structure.toArray(new Base[this.structure.size()]); // StructureMapStructureComponent
-    case -1184795739:
-      /* import */ return this.import_ == null ? new Base[0] : this.import_.toArray(new Base[this.import_.size()]); // CanonicalType
-    case 98629247:
-      /* group */ return this.group == null ? new Base[0] : this.group.toArray(new Base[this.group.size()]); // StructureMapGroupComponent
-    default:
-      return super.getProperty(hash, name, checkValid);
+      case 116079:
+        /* url */ return this.url == null ? new Base[0] : new Base[] { this.url }; // UriType
+      case -1618432855:
+        /* identifier */ return this.identifier == null ? new Base[0]
+        : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
+      case 351608024:
+        /* version */ return this.version == null ? new Base[0] : new Base[] { this.version }; // StringType
+      case 3373707:
+        /* name */ return this.name == null ? new Base[0] : new Base[] { this.name }; // StringType
+      case 110371416:
+        /* title */ return this.title == null ? new Base[0] : new Base[] { this.title }; // StringType
+      case -892481550:
+        /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
+      case -404562712:
+        /* experimental */ return this.experimental == null ? new Base[0] : new Base[] { this.experimental }; // BooleanType
+      case 3076014:
+        /* date */ return this.date == null ? new Base[0] : new Base[] { this.date }; // DateTimeType
+      case 1447404028:
+        /* publisher */ return this.publisher == null ? new Base[0] : new Base[] { this.publisher }; // StringType
+      case 951526432:
+        /* contact */ return this.contact == null ? new Base[0] : this.contact.toArray(new Base[this.contact.size()]); // ContactDetail
+      case -1724546052:
+        /* description */ return this.description == null ? new Base[0] : new Base[] { this.description }; // MarkdownType
+      case -669707736:
+        /* useContext */ return this.useContext == null ? new Base[0]
+        : this.useContext.toArray(new Base[this.useContext.size()]); // UsageContext
+      case -507075711:
+        /* jurisdiction */ return this.jurisdiction == null ? new Base[0]
+        : this.jurisdiction.toArray(new Base[this.jurisdiction.size()]); // CodeableConcept
+      case -220463842:
+        /* purpose */ return this.purpose == null ? new Base[0] : new Base[] { this.purpose }; // MarkdownType
+      case 1522889671:
+        /* copyright */ return this.copyright == null ? new Base[0] : new Base[] { this.copyright }; // MarkdownType
+      case 144518515:
+        /* structure */ return this.structure == null ? new Base[0]
+        : this.structure.toArray(new Base[this.structure.size()]); // StructureMapStructureComponent
+      case -1184795739:
+        /* import */ return this.import_ == null ? new Base[0] : this.import_.toArray(new Base[this.import_.size()]); // CanonicalType
+      case 98629247:
+        /* group */ return this.group == null ? new Base[0] : this.group.toArray(new Base[this.group.size()]); // StructureMapGroupComponent
+      default:
+        return super.getProperty(hash, name, checkValid);
     }
 
   }
@@ -7644,63 +7642,62 @@ public class StructureMap extends MetadataResource {
   @Override
   public Base setProperty(int hash, String name, Base value) throws FHIRException {
     switch (hash) {
-    case 116079: // url
-      this.url = castToUri(value); // UriType
-      return value;
-    case -1618432855: // identifier
-      this.getIdentifier().add(castToIdentifier(value)); // Identifier
-      return value;
-    case 351608024: // version
-      this.version = castToString(value); // StringType
-      return value;
-    case 3373707: // name
-      this.name = castToString(value); // StringType
-      return value;
-    case 110371416: // title
-      this.title = castToString(value); // StringType
-      return value;
-    case -892481550: // status
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
-      return value;
-    case -404562712: // experimental
-      this.experimental = castToBoolean(value); // BooleanType
-      return value;
-    case 3076014: // date
-      this.date = castToDateTime(value); // DateTimeType
-      return value;
-    case 1447404028: // publisher
-      this.publisher = castToString(value); // StringType
-      return value;
-    case 951526432: // contact
-      this.getContact().add(castToContactDetail(value)); // ContactDetail
-      return value;
-    case -1724546052: // description
-      this.description = castToMarkdown(value); // MarkdownType
-      return value;
-    case -669707736: // useContext
-      this.getUseContext().add(castToUsageContext(value)); // UsageContext
-      return value;
-    case -507075711: // jurisdiction
-      this.getJurisdiction().add(castToCodeableConcept(value)); // CodeableConcept
-      return value;
-    case -220463842: // purpose
-      this.purpose = castToMarkdown(value); // MarkdownType
-      return value;
-    case 1522889671: // copyright
-      this.copyright = castToMarkdown(value); // MarkdownType
-      return value;
-    case 144518515: // structure
-      this.getStructure().add((StructureMapStructureComponent) value); // StructureMapStructureComponent
-      return value;
-    case -1184795739: // import
-      this.getImport().add(castToCanonical(value)); // CanonicalType
-      return value;
-    case 98629247: // group
-      this.getGroup().add((StructureMapGroupComponent) value); // StructureMapGroupComponent
-      return value;
-    default:
-      return super.setProperty(hash, name, value);
+      case 116079: // url
+        this.url = castToUri(value); // UriType
+        return value;
+      case -1618432855: // identifier
+        this.getIdentifier().add(castToIdentifier(value)); // Identifier
+        return value;
+      case 351608024: // version
+        this.version = castToString(value); // StringType
+        return value;
+      case 3373707: // name
+        this.name = castToString(value); // StringType
+        return value;
+      case 110371416: // title
+        this.title = castToString(value); // StringType
+        return value;
+      case -892481550: // status
+        this.status = castToString(value); // StringType
+        return value;
+      case -404562712: // experimental
+        this.experimental = castToBoolean(value); // BooleanType
+        return value;
+      case 3076014: // date
+        this.date = castToDateTime(value); // DateTimeType
+        return value;
+      case 1447404028: // publisher
+        this.publisher = castToString(value); // StringType
+        return value;
+      case 951526432: // contact
+        this.getContact().add(castToContactDetail(value)); // ContactDetail
+        return value;
+      case -1724546052: // description
+        this.description = castToMarkdown(value); // MarkdownType
+        return value;
+      case -669707736: // useContext
+        this.getUseContext().add(castToUsageContext(value)); // UsageContext
+        return value;
+      case -507075711: // jurisdiction
+        this.getJurisdiction().add(castToCodeableConcept(value)); // CodeableConcept
+        return value;
+      case -220463842: // purpose
+        this.purpose = castToMarkdown(value); // MarkdownType
+        return value;
+      case 1522889671: // copyright
+        this.copyright = castToMarkdown(value); // MarkdownType
+        return value;
+      case 144518515: // structure
+        this.getStructure().add((StructureMapStructureComponent) value); // StructureMapStructureComponent
+        return value;
+      case -1184795739: // import
+        this.getImport().add(castToCanonical(value)); // CanonicalType
+        return value;
+      case 98629247: // group
+        this.getGroup().add((StructureMapGroupComponent) value); // StructureMapGroupComponent
+        return value;
+      default:
+        return super.setProperty(hash, name, value);
     }
 
   }
@@ -7718,8 +7715,7 @@ public class StructureMap extends MetadataResource {
     } else if (name.equals("title")) {
       this.title = castToString(value); // StringType
     } else if (name.equals("status")) {
-      value = new PublicationStatusEnumFactory().fromType(castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<PublicationStatus>
+      this.status = castToString(value); // StringType
     } else if (name.equals("experimental")) {
       this.experimental = castToBoolean(value); // BooleanType
     } else if (name.equals("date")) {
@@ -7789,50 +7785,50 @@ public class StructureMap extends MetadataResource {
       this.getGroup().remove((StructureMapGroupComponent) value);
     } else
       super.removeChild(name, value);
-    
+
   }
 
   @Override
   public Base makeProperty(int hash, String name) throws FHIRException {
     switch (hash) {
-    case 116079:
-      return getUrlElement();
-    case -1618432855:
-      return addIdentifier();
-    case 351608024:
-      return getVersionElement();
-    case 3373707:
-      return getNameElement();
-    case 110371416:
-      return getTitleElement();
-    case -892481550:
-      return getStatusElement();
-    case -404562712:
-      return getExperimentalElement();
-    case 3076014:
-      return getDateElement();
-    case 1447404028:
-      return getPublisherElement();
-    case 951526432:
-      return addContact();
-    case -1724546052:
-      return getDescriptionElement();
-    case -669707736:
-      return addUseContext();
-    case -507075711:
-      return addJurisdiction();
-    case -220463842:
-      return getPurposeElement();
-    case 1522889671:
-      return getCopyrightElement();
-    case 144518515:
-      return addStructure();
-    case -1184795739:
-      return addImportElement();
-    case 98629247:
-      return addGroup();
-    default:
-      return super.makeProperty(hash, name);
+      case 116079:
+        return getUrlElement();
+      case -1618432855:
+        return addIdentifier();
+      case 351608024:
+        return getVersionElement();
+      case 3373707:
+        return getNameElement();
+      case 110371416:
+        return getTitleElement();
+      case -892481550:
+        return getStatusElement();
+      case -404562712:
+        return getExperimentalElement();
+      case 3076014:
+        return getDateElement();
+      case 1447404028:
+        return getPublisherElement();
+      case 951526432:
+        return addContact();
+      case -1724546052:
+        return getDescriptionElement();
+      case -669707736:
+        return addUseContext();
+      case -507075711:
+        return addJurisdiction();
+      case -220463842:
+        return getPurposeElement();
+      case 1522889671:
+        return getCopyrightElement();
+      case 144518515:
+        return addStructure();
+      case -1184795739:
+        return addImportElement();
+      case 98629247:
+        return addGroup();
+      default:
+        return super.makeProperty(hash, name);
     }
 
   }
@@ -7840,44 +7836,44 @@ public class StructureMap extends MetadataResource {
   @Override
   public String[] getTypesForProperty(int hash, String name) throws FHIRException {
     switch (hash) {
-    case 116079:
-      /* url */ return new String[] { "uri" };
-    case -1618432855:
-      /* identifier */ return new String[] { "Identifier" };
-    case 351608024:
-      /* version */ return new String[] { "string" };
-    case 3373707:
-      /* name */ return new String[] { "string" };
-    case 110371416:
-      /* title */ return new String[] { "string" };
-    case -892481550:
-      /* status */ return new String[] { "code" };
-    case -404562712:
-      /* experimental */ return new String[] { "boolean" };
-    case 3076014:
-      /* date */ return new String[] { "dateTime" };
-    case 1447404028:
-      /* publisher */ return new String[] { "string" };
-    case 951526432:
-      /* contact */ return new String[] { "ContactDetail" };
-    case -1724546052:
-      /* description */ return new String[] { "markdown" };
-    case -669707736:
-      /* useContext */ return new String[] { "UsageContext" };
-    case -507075711:
-      /* jurisdiction */ return new String[] { "CodeableConcept" };
-    case -220463842:
-      /* purpose */ return new String[] { "markdown" };
-    case 1522889671:
-      /* copyright */ return new String[] { "markdown" };
-    case 144518515:
-      /* structure */ return new String[] {};
-    case -1184795739:
-      /* import */ return new String[] { "canonical" };
-    case 98629247:
-      /* group */ return new String[] {};
-    default:
-      return super.getTypesForProperty(hash, name);
+      case 116079:
+        /* url */ return new String[] { "uri" };
+      case -1618432855:
+        /* identifier */ return new String[] { "Identifier" };
+      case 351608024:
+        /* version */ return new String[] { "string" };
+      case 3373707:
+        /* name */ return new String[] { "string" };
+      case 110371416:
+        /* title */ return new String[] { "string" };
+      case -892481550:
+        /* status */ return new String[] { "string" };
+      case -404562712:
+        /* experimental */ return new String[] { "boolean" };
+      case 3076014:
+        /* date */ return new String[] { "dateTime" };
+      case 1447404028:
+        /* publisher */ return new String[] { "string" };
+      case 951526432:
+        /* contact */ return new String[] { "ContactDetail" };
+      case -1724546052:
+        /* description */ return new String[] { "markdown" };
+      case -669707736:
+        /* useContext */ return new String[] { "UsageContext" };
+      case -507075711:
+        /* jurisdiction */ return new String[] { "CodeableConcept" };
+      case -220463842:
+        /* purpose */ return new String[] { "markdown" };
+      case 1522889671:
+        /* copyright */ return new String[] { "markdown" };
+      case 144518515:
+        /* structure */ return new String[] {};
+      case -1184795739:
+        /* import */ return new String[] { "canonical" };
+      case 98629247:
+        /* group */ return new String[] {};
+      default:
+        return super.getTypesForProperty(hash, name);
     }
 
   }
@@ -8004,8 +8000,8 @@ public class StructureMap extends MetadataResource {
       return false;
     StructureMap o = (StructureMap) other_;
     return compareDeep(identifier, o.identifier, true) && compareDeep(purpose, o.purpose, true)
-        && compareDeep(copyright, o.copyright, true) && compareDeep(structure, o.structure, true)
-        && compareDeep(import_, o.import_, true) && compareDeep(group, o.group, true);
+      && compareDeep(copyright, o.copyright, true) && compareDeep(structure, o.structure, true)
+      && compareDeep(import_, o.import_, true) && compareDeep(group, o.group, true);
   }
 
   @Override
@@ -8020,7 +8016,7 @@ public class StructureMap extends MetadataResource {
 
   public boolean isEmpty() {
     return super.isEmpty()
-        && ca.uhn.fhir.util.ElementUtil.isEmpty(identifier, purpose, copyright, structure, import_, group);
+      && ca.uhn.fhir.util.ElementUtil.isEmpty(identifier, purpose, copyright, structure, import_, group);
   }
 
   @Override
@@ -8047,7 +8043,7 @@ public class StructureMap extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.DateClientParam DATE = new ca.uhn.fhir.rest.gclient.DateClientParam(
-      SP_DATE);
+    SP_DATE);
 
   /**
    * Search parameter: <b>identifier</b>
@@ -8068,7 +8064,7 @@ public class StructureMap extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.TokenClientParam IDENTIFIER = new ca.uhn.fhir.rest.gclient.TokenClientParam(
-      SP_IDENTIFIER);
+    SP_IDENTIFIER);
 
   /**
    * Search parameter: <b>context-type-value</b>
@@ -8080,7 +8076,7 @@ public class StructureMap extends MetadataResource {
    * </p>
    */
   @SearchParamDefinition(name = "context-type-value", path = "StructureMap.useContext", description = "A use context type and value assigned to the structure map", type = "composite", compositeOf = {
-      "context-type", "context" })
+    "context-type", "context" })
   public static final String SP_CONTEXT_TYPE_VALUE = "context-type-value";
   /**
    * <b>Fluent Client</b> search parameter constant for <b>context-type-value</b>
@@ -8092,7 +8088,7 @@ public class StructureMap extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.CompositeClientParam<ca.uhn.fhir.rest.gclient.TokenClientParam, ca.uhn.fhir.rest.gclient.TokenClientParam> CONTEXT_TYPE_VALUE = new ca.uhn.fhir.rest.gclient.CompositeClientParam<ca.uhn.fhir.rest.gclient.TokenClientParam, ca.uhn.fhir.rest.gclient.TokenClientParam>(
-      SP_CONTEXT_TYPE_VALUE);
+    SP_CONTEXT_TYPE_VALUE);
 
   /**
    * Search parameter: <b>jurisdiction</b>
@@ -8113,7 +8109,7 @@ public class StructureMap extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.TokenClientParam JURISDICTION = new ca.uhn.fhir.rest.gclient.TokenClientParam(
-      SP_JURISDICTION);
+    SP_JURISDICTION);
 
   /**
    * Search parameter: <b>description</b>
@@ -8134,7 +8130,7 @@ public class StructureMap extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.StringClientParam DESCRIPTION = new ca.uhn.fhir.rest.gclient.StringClientParam(
-      SP_DESCRIPTION);
+    SP_DESCRIPTION);
 
   /**
    * Search parameter: <b>context-type</b>
@@ -8155,7 +8151,7 @@ public class StructureMap extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.TokenClientParam CONTEXT_TYPE = new ca.uhn.fhir.rest.gclient.TokenClientParam(
-      SP_CONTEXT_TYPE);
+    SP_CONTEXT_TYPE);
 
   /**
    * Search parameter: <b>title</b>
@@ -8176,7 +8172,7 @@ public class StructureMap extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.StringClientParam TITLE = new ca.uhn.fhir.rest.gclient.StringClientParam(
-      SP_TITLE);
+    SP_TITLE);
 
   /**
    * Search parameter: <b>version</b>
@@ -8197,7 +8193,7 @@ public class StructureMap extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.TokenClientParam VERSION = new ca.uhn.fhir.rest.gclient.TokenClientParam(
-      SP_VERSION);
+    SP_VERSION);
 
   /**
    * Search parameter: <b>url</b>
@@ -8242,7 +8238,7 @@ public class StructureMap extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.QuantityClientParam CONTEXT_QUANTITY = new ca.uhn.fhir.rest.gclient.QuantityClientParam(
-      SP_CONTEXT_QUANTITY);
+    SP_CONTEXT_QUANTITY);
 
   /**
    * Search parameter: <b>name</b>
@@ -8263,7 +8259,7 @@ public class StructureMap extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.StringClientParam NAME = new ca.uhn.fhir.rest.gclient.StringClientParam(
-      SP_NAME);
+    SP_NAME);
 
   /**
    * Search parameter: <b>context</b>
@@ -8284,7 +8280,7 @@ public class StructureMap extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.TokenClientParam CONTEXT = new ca.uhn.fhir.rest.gclient.TokenClientParam(
-      SP_CONTEXT);
+    SP_CONTEXT);
 
   /**
    * Search parameter: <b>publisher</b>
@@ -8305,7 +8301,7 @@ public class StructureMap extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.StringClientParam PUBLISHER = new ca.uhn.fhir.rest.gclient.StringClientParam(
-      SP_PUBLISHER);
+    SP_PUBLISHER);
 
   /**
    * Search parameter: <b>context-type-quantity</b>
@@ -8317,7 +8313,7 @@ public class StructureMap extends MetadataResource {
    * </p>
    */
   @SearchParamDefinition(name = "context-type-quantity", path = "StructureMap.useContext", description = "A use context type and quantity- or range-based value assigned to the structure map", type = "composite", compositeOf = {
-      "context-type", "context-quantity" })
+    "context-type", "context-quantity" })
   public static final String SP_CONTEXT_TYPE_QUANTITY = "context-type-quantity";
   /**
    * <b>Fluent Client</b> search parameter constant for
@@ -8330,7 +8326,7 @@ public class StructureMap extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.CompositeClientParam<ca.uhn.fhir.rest.gclient.TokenClientParam, ca.uhn.fhir.rest.gclient.QuantityClientParam> CONTEXT_TYPE_QUANTITY = new ca.uhn.fhir.rest.gclient.CompositeClientParam<ca.uhn.fhir.rest.gclient.TokenClientParam, ca.uhn.fhir.rest.gclient.QuantityClientParam>(
-      SP_CONTEXT_TYPE_QUANTITY);
+    SP_CONTEXT_TYPE_QUANTITY);
 
   /**
    * Search parameter: <b>status</b>
@@ -8351,7 +8347,7 @@ public class StructureMap extends MetadataResource {
    * </p>
    */
   public static final ca.uhn.fhir.rest.gclient.TokenClientParam STATUS = new ca.uhn.fhir.rest.gclient.TokenClientParam(
-      SP_STATUS);
+    SP_STATUS);
 
 // added from java-adornments.txt:
 

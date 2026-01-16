@@ -903,8 +903,8 @@ public class Goal extends DomainResource {
   /**
    * @return The state of the goal throughout its lifecycle.
    */
-  public StringType getLifecycleStatus() {
-    return this.lifecycleStatus == null ? null : this.lifecycleStatus;
+  public String getLifecycleStatus() {
+    return this.lifecycleStatus == null ? null : this.lifecycleStatus.getValue();
   }
 
   /**

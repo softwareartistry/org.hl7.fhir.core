@@ -121,8 +121,8 @@ public class EpisodeOfCare extends DomainResource {
     /**
      * @return planned | waitlist | active | onhold | finished | cancelled.
      */
-    public StringType getStatus() {
-      return this.status == null ? null : this.status;
+    public String getStatus() {
+      return this.status == null ? null : this.status.getValue();
     }
 
     /**
@@ -920,8 +920,8 @@ public class EpisodeOfCare extends DomainResource {
   /**
    * @return planned | waitlist | active | onhold | finished | cancelled.
    */
-  public StringType getStatus() {
-    return this.status == null ? null : this.status;
+  public String getStatus() {
+    return this.status == null ? null : this.status.getValue();
   }
 
   /**

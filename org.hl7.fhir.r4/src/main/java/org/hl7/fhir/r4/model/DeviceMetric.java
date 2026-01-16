@@ -118,8 +118,8 @@ public class DeviceMetric extends DomainResource {
     /**
      * @return Describes the type of the calibration method.
      */
-    public StringType getType() {
-      return this.type == null ? null : this.type;
+    public String getType() {
+      return this.type == null ? null : this.type.getValue();
     }
 
     /**
@@ -171,8 +171,8 @@ public class DeviceMetric extends DomainResource {
     /**
      * @return Describes the state of the calibration.
      */
-    public StringType getState() {
-      return this.state == null ? null : this.state;
+    public String getState() {
+      return this.state == null ? null : this.state.getValue();
     }
 
     /**
@@ -829,8 +829,8 @@ public class DeviceMetric extends DomainResource {
    * @return Indicates current operational state of the device. For example: On,
    *         Off, Standby, etc.
    */
-  public StringType getOperationalStatus() {
-    return this.operationalStatus == null ? null : this.operationalStatus;
+  public String getOperationalStatus() {
+    return this.operationalStatus == null ? null : this.operationalStatus.getValue();
   }
 
   /**
@@ -896,8 +896,8 @@ public class DeviceMetric extends DomainResource {
    *         example; the parameters are displayed in different characteristic
    *         colors, such as HR-blue, BP-green, and PR and SpO2- magenta.
    */
-  public StringType getColor() {
-    return this.color == null ? null : this.color;
+  public String getColor() {
+    return this.color == null ? null : this.color.getValue();
   }
 
   /**
@@ -960,8 +960,8 @@ public class DeviceMetric extends DomainResource {
    *         DeviceMetric can be for example a setting, measurement, or
    *         calculation.
    */
-  public StringType getCategory() {
-    return this.category == null ? null : this.category;
+  public String getCategory() {
+    return this.category == null ? null : this.category.getValue();
   }
 
   /**

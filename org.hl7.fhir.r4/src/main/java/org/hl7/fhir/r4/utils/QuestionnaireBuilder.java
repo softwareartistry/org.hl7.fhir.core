@@ -24,7 +24,6 @@ import org.hl7.fhir.r4.model.ElementDefinition.ElementDefinitionBindingComponent
 import org.hl7.fhir.r4.model.ElementDefinition.TypeRefComponent;
 import org.hl7.fhir.r4.model.Enumeration;
 import org.hl7.fhir.r4.model.Enumerations.BindingStrength;
-import org.hl7.fhir.r4.model.Enumerations.PublicationStatus;
 import org.hl7.fhir.r4.model.Factory;
 import org.hl7.fhir.r4.model.IntegerType;
 import org.hl7.fhir.r4.model.Quantity;
@@ -429,7 +428,7 @@ public class QuestionnaireBuilder {
     ValueSet vs = new ValueSet();
     vs.setName("Type options for " + path);
     vs.setDescription(vs.present());
-    vs.setStatus(PublicationStatus.ACTIVE);
+    vs.setStatus("ACTIVE");
     vs.setExpansion(new ValueSetExpansionComponent());
     vs.getExpansion().setIdentifier(Factory.createUUID());
     vs.getExpansion().setTimestampElement(DateTimeType.now());
