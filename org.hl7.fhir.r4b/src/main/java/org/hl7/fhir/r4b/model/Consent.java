@@ -34,7 +34,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hl7.fhir.utilities.Utilities;
-import org.hl7.fhir.r4b.model.Enumerations.*;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.ICompositeType;
@@ -53,496 +52,6 @@ import ca.uhn.fhir.model.api.annotation.Block;
  */
 @ResourceDef(name = "Consent", profile = "http://hl7.org/fhir/StructureDefinition/Consent")
 public class Consent extends DomainResource {
-
-  public enum ConsentDataMeaning {
-    /**
-     * The consent applies directly to the instance of the resource.
-     */
-    INSTANCE,
-    /**
-     * The consent applies directly to the instance of the resource and instances it
-     * refers to.
-     */
-    RELATED,
-    /**
-     * The consent applies directly to the instance of the resource and instances
-     * that refer to it.
-     */
-    DEPENDENTS,
-    /**
-     * The consent applies to instances of resources that are authored by.
-     */
-    AUTHOREDBY,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ConsentDataMeaning fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("instance".equals(codeString))
-        return INSTANCE;
-      if ("related".equals(codeString))
-        return RELATED;
-      if ("dependents".equals(codeString))
-        return DEPENDENTS;
-      if ("authoredby".equals(codeString))
-        return AUTHOREDBY;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ConsentDataMeaning code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case INSTANCE:
-        return "instance";
-      case RELATED:
-        return "related";
-      case DEPENDENTS:
-        return "dependents";
-      case AUTHOREDBY:
-        return "authoredby";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case INSTANCE:
-        return "http://hl7.org/fhir/consent-data-meaning";
-      case RELATED:
-        return "http://hl7.org/fhir/consent-data-meaning";
-      case DEPENDENTS:
-        return "http://hl7.org/fhir/consent-data-meaning";
-      case AUTHOREDBY:
-        return "http://hl7.org/fhir/consent-data-meaning";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case INSTANCE:
-        return "The consent applies directly to the instance of the resource.";
-      case RELATED:
-        return "The consent applies directly to the instance of the resource and instances it refers to.";
-      case DEPENDENTS:
-        return "The consent applies directly to the instance of the resource and instances that refer to it.";
-      case AUTHOREDBY:
-        return "The consent applies to instances of resources that are authored by.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case INSTANCE:
-        return "Instance";
-      case RELATED:
-        return "Related";
-      case DEPENDENTS:
-        return "Dependents";
-      case AUTHOREDBY:
-        return "AuthoredBy";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ConsentDataMeaningEnumFactory implements EnumFactory<ConsentDataMeaning> {
-    public ConsentDataMeaning fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("instance".equals(codeString))
-        return ConsentDataMeaning.INSTANCE;
-      if ("related".equals(codeString))
-        return ConsentDataMeaning.RELATED;
-      if ("dependents".equals(codeString))
-        return ConsentDataMeaning.DEPENDENTS;
-      if ("authoredby".equals(codeString))
-        return ConsentDataMeaning.AUTHOREDBY;
-      throw new IllegalArgumentException("Unknown ConsentDataMeaning code '" + codeString + "'");
-    }
-
-    public Enumeration<ConsentDataMeaning> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ConsentDataMeaning>(this, ConsentDataMeaning.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ConsentDataMeaning>(this, ConsentDataMeaning.NULL, code);
-      if ("instance".equals(codeString))
-        return new Enumeration<ConsentDataMeaning>(this, ConsentDataMeaning.INSTANCE, code);
-      if ("related".equals(codeString))
-        return new Enumeration<ConsentDataMeaning>(this, ConsentDataMeaning.RELATED, code);
-      if ("dependents".equals(codeString))
-        return new Enumeration<ConsentDataMeaning>(this, ConsentDataMeaning.DEPENDENTS, code);
-      if ("authoredby".equals(codeString))
-        return new Enumeration<ConsentDataMeaning>(this, ConsentDataMeaning.AUTHOREDBY, code);
-      throw new FHIRException("Unknown ConsentDataMeaning code '" + codeString + "'");
-    }
-
-    public String toCode(ConsentDataMeaning code) {
-       if (code == ConsentDataMeaning.NULL)
-           return null;
-       if (code == ConsentDataMeaning.INSTANCE)
-        return "instance";
-      if (code == ConsentDataMeaning.RELATED)
-        return "related";
-      if (code == ConsentDataMeaning.DEPENDENTS)
-        return "dependents";
-      if (code == ConsentDataMeaning.AUTHOREDBY)
-        return "authoredby";
-      return "?";
-   }
-
-    public String toSystem(ConsentDataMeaning code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum ConsentProvisionType {
-    /**
-     * Consent is denied for actions meeting these rules.
-     */
-    DENY,
-    /**
-     * Consent is provided for actions meeting these rules.
-     */
-    PERMIT,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ConsentProvisionType fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("deny".equals(codeString))
-        return DENY;
-      if ("permit".equals(codeString))
-        return PERMIT;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ConsentProvisionType code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case DENY:
-        return "deny";
-      case PERMIT:
-        return "permit";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case DENY:
-        return "http://hl7.org/fhir/consent-provision-type";
-      case PERMIT:
-        return "http://hl7.org/fhir/consent-provision-type";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case DENY:
-        return "Consent is denied for actions meeting these rules.";
-      case PERMIT:
-        return "Consent is provided for actions meeting these rules.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case DENY:
-        return "Opt Out";
-      case PERMIT:
-        return "Opt In";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ConsentProvisionTypeEnumFactory implements EnumFactory<ConsentProvisionType> {
-    public ConsentProvisionType fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("deny".equals(codeString))
-        return ConsentProvisionType.DENY;
-      if ("permit".equals(codeString))
-        return ConsentProvisionType.PERMIT;
-      throw new IllegalArgumentException("Unknown ConsentProvisionType code '" + codeString + "'");
-    }
-
-    public Enumeration<ConsentProvisionType> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ConsentProvisionType>(this, ConsentProvisionType.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ConsentProvisionType>(this, ConsentProvisionType.NULL, code);
-      if ("deny".equals(codeString))
-        return new Enumeration<ConsentProvisionType>(this, ConsentProvisionType.DENY, code);
-      if ("permit".equals(codeString))
-        return new Enumeration<ConsentProvisionType>(this, ConsentProvisionType.PERMIT, code);
-      throw new FHIRException("Unknown ConsentProvisionType code '" + codeString + "'");
-    }
-
-    public String toCode(ConsentProvisionType code) {
-       if (code == ConsentProvisionType.NULL)
-           return null;
-       if (code == ConsentProvisionType.DENY)
-        return "deny";
-      if (code == ConsentProvisionType.PERMIT)
-        return "permit";
-      return "?";
-   }
-
-    public String toSystem(ConsentProvisionType code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum ConsentState {
-    /**
-     * The consent is in development or awaiting use but is not yet intended to be
-     * acted upon.
-     */
-    DRAFT,
-    /**
-     * The consent has been proposed but not yet agreed to by all parties. The
-     * negotiation stage.
-     */
-    PROPOSED,
-    /**
-     * The consent is to be followed and enforced.
-     */
-    ACTIVE,
-    /**
-     * The consent has been rejected by one or more of the parties.
-     */
-    REJECTED,
-    /**
-     * The consent is terminated or replaced.
-     */
-    INACTIVE,
-    /**
-     * The consent was created wrongly (e.g. wrong patient) and should be ignored.
-     */
-    ENTEREDINERROR,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static ConsentState fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("draft".equals(codeString))
-        return DRAFT;
-      if ("proposed".equals(codeString))
-        return PROPOSED;
-      if ("active".equals(codeString))
-        return ACTIVE;
-      if ("rejected".equals(codeString))
-        return REJECTED;
-      if ("inactive".equals(codeString))
-        return INACTIVE;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown ConsentState code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case DRAFT:
-        return "draft";
-      case PROPOSED:
-        return "proposed";
-      case ACTIVE:
-        return "active";
-      case REJECTED:
-        return "rejected";
-      case INACTIVE:
-        return "inactive";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case DRAFT:
-        return "http://hl7.org/fhir/consent-state-codes";
-      case PROPOSED:
-        return "http://hl7.org/fhir/consent-state-codes";
-      case ACTIVE:
-        return "http://hl7.org/fhir/consent-state-codes";
-      case REJECTED:
-        return "http://hl7.org/fhir/consent-state-codes";
-      case INACTIVE:
-        return "http://hl7.org/fhir/consent-state-codes";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/consent-state-codes";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case DRAFT:
-        return "The consent is in development or awaiting use but is not yet intended to be acted upon.";
-      case PROPOSED:
-        return "The consent has been proposed but not yet agreed to by all parties. The negotiation stage.";
-      case ACTIVE:
-        return "The consent is to be followed and enforced.";
-      case REJECTED:
-        return "The consent has been rejected by one or more of the parties.";
-      case INACTIVE:
-        return "The consent is terminated or replaced.";
-      case ENTEREDINERROR:
-        return "The consent was created wrongly (e.g. wrong patient) and should be ignored.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case DRAFT:
-        return "Pending";
-      case PROPOSED:
-        return "Proposed";
-      case ACTIVE:
-        return "Active";
-      case REJECTED:
-        return "Rejected";
-      case INACTIVE:
-        return "Inactive";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class ConsentStateEnumFactory implements EnumFactory<ConsentState> {
-    public ConsentState fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("draft".equals(codeString))
-        return ConsentState.DRAFT;
-      if ("proposed".equals(codeString))
-        return ConsentState.PROPOSED;
-      if ("active".equals(codeString))
-        return ConsentState.ACTIVE;
-      if ("rejected".equals(codeString))
-        return ConsentState.REJECTED;
-      if ("inactive".equals(codeString))
-        return ConsentState.INACTIVE;
-      if ("entered-in-error".equals(codeString))
-        return ConsentState.ENTEREDINERROR;
-      throw new IllegalArgumentException("Unknown ConsentState code '" + codeString + "'");
-    }
-
-    public Enumeration<ConsentState> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<ConsentState>(this, ConsentState.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<ConsentState>(this, ConsentState.NULL, code);
-      if ("draft".equals(codeString))
-        return new Enumeration<ConsentState>(this, ConsentState.DRAFT, code);
-      if ("proposed".equals(codeString))
-        return new Enumeration<ConsentState>(this, ConsentState.PROPOSED, code);
-      if ("active".equals(codeString))
-        return new Enumeration<ConsentState>(this, ConsentState.ACTIVE, code);
-      if ("rejected".equals(codeString))
-        return new Enumeration<ConsentState>(this, ConsentState.REJECTED, code);
-      if ("inactive".equals(codeString))
-        return new Enumeration<ConsentState>(this, ConsentState.INACTIVE, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<ConsentState>(this, ConsentState.ENTEREDINERROR, code);
-      throw new FHIRException("Unknown ConsentState code '" + codeString + "'");
-    }
-
-    public String toCode(ConsentState code) {
-       if (code == ConsentState.NULL)
-           return null;
-       if (code == ConsentState.DRAFT)
-        return "draft";
-      if (code == ConsentState.PROPOSED)
-        return "proposed";
-      if (code == ConsentState.ACTIVE)
-        return "active";
-      if (code == ConsentState.REJECTED)
-        return "rejected";
-      if (code == ConsentState.INACTIVE)
-        return "inactive";
-      if (code == ConsentState.ENTEREDINERROR)
-        return "entered-in-error";
-      return "?";
-   }
-
-    public String toSystem(ConsentState code) {
-      return code.getSystem();
-    }
-  }
 
   @Block()
   public static class ConsentPolicyComponent extends BackboneElement implements IBaseBackboneElement {
@@ -1201,10 +710,10 @@ public class Consent extends DomainResource {
      * Action to take - permit or deny - when the rule conditions are met. Not
      * permitted in root rule, required in all nested rules.
      */
-    @Child(name = "type", type = { CodeType.class }, order = 1, min = 0, max = 1, modifier = false, summary = true)
+    @Child(name = "type", type = { StringType.class }, order = 1, min = 0, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "deny | permit", formalDefinition = "Action  to take - permit or deny - when the rule conditions are met.  Not permitted in root rule, required in all nested rules.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/consent-provision-type")
-    protected Enumeration<ConsentProvisionType> type;
+    protected StringType type;
 
     /**
      * The timeframe in this rule is valid.
@@ -1308,12 +817,12 @@ public class Consent extends DomainResource {
      *         nested rules.). This is the underlying object with id, value and
      *         extensions. The accessor "getType" gives direct access to the value
      */
-    public Enumeration<ConsentProvisionType> getTypeElement() {
+    public StringType getTypeElement() {
       if (this.type == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create ProvisionComponent.type");
         else if (Configuration.doAutoCreate())
-          this.type = new Enumeration<ConsentProvisionType>(new ConsentProvisionTypeEnumFactory()); // bb
+          this.type = new StringType(); // bb
       return this.type;
     }
 
@@ -1332,7 +841,7 @@ public class Consent extends DomainResource {
      *              extensions. The accessor "getType" gives direct access to the
      *              value
      */
-    public ProvisionComponent setTypeElement(Enumeration<ConsentProvisionType> value) {
+    public ProvisionComponent setTypeElement(StringType value) {
       this.type = value;
       return this;
     }
@@ -1341,7 +850,7 @@ public class Consent extends DomainResource {
      * @return Action to take - permit or deny - when the rule conditions are met.
      *         Not permitted in root rule, required in all nested rules.
      */
-    public ConsentProvisionType getType() {
+    public String getType() {
       return this.type == null ? null : this.type.getValue();
     }
 
@@ -1349,12 +858,12 @@ public class Consent extends DomainResource {
      * @param value Action to take - permit or deny - when the rule conditions are
      *              met. Not permitted in root rule, required in all nested rules.
      */
-    public ProvisionComponent setType(ConsentProvisionType value) {
-      if (value == null)
+    public ProvisionComponent setType(String value) {
+      if (Utilities.noString(value)) {
         this.type = null;
-      else {
+      } else {
         if (this.type == null)
-          this.type = new Enumeration<ConsentProvisionType>(new ConsentProvisionTypeEnumFactory());
+          this.type = new StringType();
         this.type.setValue(value);
       }
       return this;
@@ -1856,7 +1365,7 @@ public class Consent extends DomainResource {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("type", "code",
+      children.add(new Property("type", "string",
           "Action  to take - permit or deny - when the rule conditions are met.  Not permitted in root rule, required in all nested rules.",
           0, 1, type));
       children.add(new Property("period", "Period", "The timeframe in this rule is valid.", 0, 1, period));
@@ -1890,7 +1399,7 @@ public class Consent extends DomainResource {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 3575610:
-        /* type */ return new Property("type", "code",
+        /* type */ return new Property("type", "string",
             "Action  to take - permit or deny - when the rule conditions are met.  Not permitted in root rule, required in all nested rules.",
             0, 1, type);
       case -991726143:
@@ -1938,7 +1447,7 @@ public class Consent extends DomainResource {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 3575610:
-        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // Enumeration<ConsentProvisionType>
+        /* type */ return this.type == null ? new Base[0] : new Base[] { this.type }; // StringType
       case -991726143:
         /* period */ return this.period == null ? new Base[0] : new Base[] { this.period }; // Period
       case 92645877:
@@ -1971,8 +1480,7 @@ public class Consent extends DomainResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3575610: // type
-        value = new ConsentProvisionTypeEnumFactory().fromType(TypeConvertor.castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<ConsentProvisionType>
+        this.type = TypeConvertor.castToString(value); // StringType
         return value;
       case -991726143: // period
         this.period = TypeConvertor.castToPeriod(value); // Period
@@ -2013,8 +1521,7 @@ public class Consent extends DomainResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("type")) {
-        value = new ConsentProvisionTypeEnumFactory().fromType(TypeConvertor.castToCode(value));
-        this.type = (Enumeration) value; // Enumeration<ConsentProvisionType>
+        this.type = TypeConvertor.castToString(value); // StringType
       } else if (name.equals("period")) {
         this.period = TypeConvertor.castToPeriod(value); // Period
       } else if (name.equals("actor")) {
@@ -2104,7 +1611,7 @@ public class Consent extends DomainResource {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 3575610:
-        /* type */ return new String[] { "code" };
+        /* type */ return new String[] { "string" };
       case -991726143:
         /* period */ return new String[] { "Period" };
       case 92645877:
@@ -2516,10 +2023,10 @@ public class Consent extends DomainResource {
     /**
      * How the resource reference is interpreted when testing consent restrictions.
      */
-    @Child(name = "meaning", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
+    @Child(name = "meaning", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = false, summary = true)
     @Description(shortDefinition = "instance | related | dependents | authoredby", formalDefinition = "How the resource reference is interpreted when testing consent restrictions.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/consent-data-meaning")
-    protected Enumeration<ConsentDataMeaning> meaning;
+    protected StringType meaning;
 
     /**
      * A reference to a specific resource that defines which resources are covered
@@ -2542,7 +2049,7 @@ public class Consent extends DomainResource {
     /**
      * Constructor
      */
-    public ProvisionDataComponent(ConsentDataMeaning meaning, Reference reference) {
+    public ProvisionDataComponent(String meaning, Reference reference) {
       super();
       this.setMeaning(meaning);
       this.setReference(reference);
@@ -2554,12 +2061,12 @@ public class Consent extends DomainResource {
      *         id, value and extensions. The accessor "getMeaning" gives direct
      *         access to the value
      */
-    public Enumeration<ConsentDataMeaning> getMeaningElement() {
+    public StringType getMeaningElement() {
       if (this.meaning == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create ProvisionDataComponent.meaning");
         else if (Configuration.doAutoCreate())
-          this.meaning = new Enumeration<ConsentDataMeaning>(new ConsentDataMeaningEnumFactory()); // bb
+          this.meaning = new StringType(); // bb
       return this.meaning;
     }
 
@@ -2577,7 +2084,7 @@ public class Consent extends DomainResource {
      *              with id, value and extensions. The accessor "getMeaning" gives
      *              direct access to the value
      */
-    public ProvisionDataComponent setMeaningElement(Enumeration<ConsentDataMeaning> value) {
+    public ProvisionDataComponent setMeaningElement(StringType value) {
       this.meaning = value;
       return this;
     }
@@ -2586,7 +2093,7 @@ public class Consent extends DomainResource {
      * @return How the resource reference is interpreted when testing consent
      *         restrictions.
      */
-    public ConsentDataMeaning getMeaning() {
+    public String getMeaning() {
       return this.meaning == null ? null : this.meaning.getValue();
     }
 
@@ -2594,10 +2101,14 @@ public class Consent extends DomainResource {
      * @param value How the resource reference is interpreted when testing consent
      *              restrictions.
      */
-    public ProvisionDataComponent setMeaning(ConsentDataMeaning value) {
-      if (this.meaning == null)
-        this.meaning = new Enumeration<ConsentDataMeaning>(new ConsentDataMeaningEnumFactory());
-      this.meaning.setValue(value);
+    public ProvisionDataComponent setMeaning(String value) {
+      if (Utilities.noString(value)) {
+        this.meaning = null;
+      } else {
+        if (this.meaning == null)
+          this.meaning = new StringType();
+        this.meaning.setValue(value);
+      }
       return this;
     }
 
@@ -2629,7 +2140,7 @@ public class Consent extends DomainResource {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("meaning", "code",
+      children.add(new Property("meaning", "string",
           "How the resource reference is interpreted when testing consent restrictions.", 0, 1, meaning));
       children.add(new Property("reference", "Reference(Any)",
           "A reference to a specific resource that defines which resources are covered by this consent.", 0, 1,
@@ -2640,7 +2151,7 @@ public class Consent extends DomainResource {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 938160637:
-        /* meaning */ return new Property("meaning", "code",
+        /* meaning */ return new Property("meaning", "string",
             "How the resource reference is interpreted when testing consent restrictions.", 0, 1, meaning);
       case -925155509:
         /* reference */ return new Property("reference", "Reference(Any)",
@@ -2656,7 +2167,7 @@ public class Consent extends DomainResource {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 938160637:
-        /* meaning */ return this.meaning == null ? new Base[0] : new Base[] { this.meaning }; // Enumeration<ConsentDataMeaning>
+        /* meaning */ return this.meaning == null ? new Base[0] : new Base[] { this.meaning }; // StringType
       case -925155509:
         /* reference */ return this.reference == null ? new Base[0] : new Base[] { this.reference }; // Reference
       default:
@@ -2669,8 +2180,7 @@ public class Consent extends DomainResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 938160637: // meaning
-        value = new ConsentDataMeaningEnumFactory().fromType(TypeConvertor.castToCode(value));
-        this.meaning = (Enumeration) value; // Enumeration<ConsentDataMeaning>
+        this.meaning = TypeConvertor.castToString(value); // StringType
         return value;
       case -925155509: // reference
         this.reference = TypeConvertor.castToReference(value); // Reference
@@ -2684,8 +2194,7 @@ public class Consent extends DomainResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("meaning")) {
-        value = new ConsentDataMeaningEnumFactory().fromType(TypeConvertor.castToCode(value));
-        this.meaning = (Enumeration) value; // Enumeration<ConsentDataMeaning>
+        this.meaning = TypeConvertor.castToString(value); // StringType
       } else if (name.equals("reference")) {
         this.reference = TypeConvertor.castToReference(value); // Reference
       } else
@@ -2721,7 +2230,7 @@ public class Consent extends DomainResource {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 938160637:
-        /* meaning */ return new String[] { "code" };
+        /* meaning */ return new String[] { "string" };
       case -925155509:
         /* reference */ return new String[] { "Reference" };
       default:
@@ -2795,10 +2304,10 @@ public class Consent extends DomainResource {
   /**
    * Indicates the current state of this consent.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 1, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "draft | proposed | active | rejected | inactive | entered-in-error", formalDefinition = "Indicates the current state of this consent.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/consent-state-codes")
-  protected Enumeration<ConsentState> status;
+  protected StringType status;
 
   /**
    * A selector of the type of consent being presented: ADR, Privacy, Treatment,
@@ -2911,7 +2420,7 @@ public class Consent extends DomainResource {
   /**
    * Constructor
    */
-  public Consent(ConsentState status, CodeableConcept scope, CodeableConcept category) {
+  public Consent(String status, CodeableConcept scope, CodeableConcept category) {
     super();
     this.setStatus(status);
     this.setScope(scope);
@@ -2978,12 +2487,12 @@ public class Consent extends DomainResource {
    *         is the underlying object with id, value and extensions. The accessor
    *         "getStatus" gives direct access to the value
    */
-  public Enumeration<ConsentState> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create Consent.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<ConsentState>(new ConsentStateEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -3000,7 +2509,7 @@ public class Consent extends DomainResource {
    *              This is the underlying object with id, value and extensions. The
    *              accessor "getStatus" gives direct access to the value
    */
-  public Consent setStatusElement(Enumeration<ConsentState> value) {
+  public Consent setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -3008,17 +2517,21 @@ public class Consent extends DomainResource {
   /**
    * @return Indicates the current state of this consent.
    */
-  public ConsentState getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
   /**
    * @param value Indicates the current state of this consent.
    */
-  public Consent setStatus(ConsentState value) {
-    if (this.status == null)
-      this.status = new Enumeration<ConsentState>(new ConsentStateEnumFactory());
-    this.status.setValue(value);
+  public Consent setStatus(String value) {
+    if (Utilities.noString(value)) {
+      this.status = null;
+    } else {
+      if (this.status == null)
+        this.status = new StringType();
+      this.status.setValue(value);
+    }
     return this;
   }
 
@@ -3534,7 +3047,7 @@ public class Consent extends DomainResource {
     super.listChildren(children);
     children.add(new Property("identifier", "Identifier", "Unique identifier for this copy of the Consent Statement.",
         0, java.lang.Integer.MAX_VALUE, identifier));
-    children.add(new Property("status", "code", "Indicates the current state of this consent.", 0, 1, status));
+    children.add(new Property("status", "string", "Indicates the current state of this consent.", 0, 1, status));
     children.add(new Property("scope", "CodeableConcept",
         "A selector of the type of consent being presented: ADR, Privacy, Treatment, Research.  This list is now extensible.",
         0, 1, scope));
@@ -3576,7 +3089,7 @@ public class Consent extends DomainResource {
       /* identifier */ return new Property("identifier", "Identifier",
           "Unique identifier for this copy of the Consent Statement.", 0, java.lang.Integer.MAX_VALUE, identifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "Indicates the current state of this consent.", 0, 1, status);
+      /* status */ return new Property("status", "string", "Indicates the current state of this consent.", 0, 1, status);
     case 109264468:
       /* scope */ return new Property("scope", "CodeableConcept",
           "A selector of the type of consent being presented: ADR, Privacy, Treatment, Research.  This list is now extensible.",
@@ -3647,7 +3160,7 @@ public class Consent extends DomainResource {
       /* identifier */ return this.identifier == null ? new Base[0]
           : this.identifier.toArray(new Base[this.identifier.size()]); // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<ConsentState>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case 109264468:
       /* scope */ return this.scope == null ? new Base[0] : new Base[] { this.scope }; // CodeableConcept
     case 50511102:
@@ -3686,8 +3199,7 @@ public class Consent extends DomainResource {
       this.getIdentifier().add(TypeConvertor.castToIdentifier(value)); // Identifier
       return value;
     case -892481550: // status
-      value = new ConsentStateEnumFactory().fromType(TypeConvertor.castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ConsentState>
+      this.status = TypeConvertor.castToString(value); // StringType
       return value;
     case 109264468: // scope
       this.scope = TypeConvertor.castToCodeableConcept(value); // CodeableConcept
@@ -3733,8 +3245,7 @@ public class Consent extends DomainResource {
     if (name.equals("identifier")) {
       this.getIdentifier().add(TypeConvertor.castToIdentifier(value));
     } else if (name.equals("status")) {
-      value = new ConsentStateEnumFactory().fromType(TypeConvertor.castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<ConsentState>
+      this.status = TypeConvertor.castToString(value); // StringType
     } else if (name.equals("scope")) {
       this.scope = TypeConvertor.castToCodeableConcept(value); // CodeableConcept
     } else if (name.equals("category")) {
@@ -3838,7 +3349,7 @@ public class Consent extends DomainResource {
     case -1618432855:
       /* identifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case 109264468:
       /* scope */ return new String[] { "CodeableConcept" };
     case 50511102:
