@@ -9013,13 +9013,13 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "DeviceRequest", "groupIdentifier", element.getGroupIdentifier(), -1);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "DeviceRequest", "status", element.getStatusElement(), -1);
+      composeString(t, "DeviceRequest", "status", element.getStatusElement(), -1);
     }
     if (element.hasIntentElement()) {
-      composeEnum(t, "DeviceRequest", "intent", element.getIntentElement(), -1);
+      composeString(t, "DeviceRequest", "intent", element.getIntentElement(), -1);
     }
     if (element.hasPriorityElement()) {
-      composeEnum(t, "DeviceRequest", "priority", element.getPriorityElement(), -1);
+      composeString(t, "DeviceRequest", "priority", element.getPriorityElement(), -1);
     }
     if (element.hasCode()) {
       composeType(t, "DeviceRequest", "code", element.getCode(), -1);

@@ -34,7 +34,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hl7.fhir.utilities.Utilities;
-import org.hl7.fhir.r4b.model.Enumerations.*;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.ICompositeType;
@@ -424,27 +423,27 @@ public class DeviceRequest extends DomainResource {
   /**
    * The status of the request.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 6, min = 0, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 6, min = 0, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "draft | active | on-hold | revoked | completed | entered-in-error | unknown", formalDefinition = "The status of the request.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/request-status")
-  protected Enumeration<RequestStatus> status;
+  protected StringType status;
 
   /**
    * Whether the request is a proposal, plan, an original order or a reflex order.
    */
-  @Child(name = "intent", type = { CodeType.class }, order = 7, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "intent", type = { StringType.class }, order = 7, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "proposal | plan | directive | order | original-order | reflex-order | filler-order | instance-order | option", formalDefinition = "Whether the request is a proposal, plan, an original order or a reflex order.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/request-intent")
-  protected Enumeration<RequestIntent> intent;
+  protected StringType intent;
 
   /**
    * Indicates how quickly the device request should be addressed with respect to
    * other requests.
    */
-  @Child(name = "priority", type = { CodeType.class }, order = 8, min = 0, max = 1, modifier = false, summary = true)
+  @Child(name = "priority", type = { StringType.class }, order = 8, min = 0, max = 1, modifier = false, summary = true)
   @Description(shortDefinition = "routine | urgent | asap | stat", formalDefinition = "Indicates how quickly the device request should be addressed with respect to other requests.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/request-priority")
-  protected Enumeration<RequestPriority> priority;
+  protected StringType priority;
 
   /**
    * The details of the device to be used.
@@ -590,7 +589,7 @@ public class DeviceRequest extends DomainResource {
   /**
    * Constructor
    */
-  public DeviceRequest(RequestIntent intent, DataType code, Reference subject) {
+  public DeviceRequest(String intent, DataType code, Reference subject) {
     super();
     this.setIntent(intent);
     this.setCode(code);
@@ -928,12 +927,12 @@ public class DeviceRequest extends DomainResource {
    *         object with id, value and extensions. The accessor "getStatus" gives
    *         direct access to the value
    */
-  public Enumeration<RequestStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create DeviceRequest.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<RequestStatus>(new RequestStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -950,7 +949,7 @@ public class DeviceRequest extends DomainResource {
    *              underlying object with id, value and extensions. The accessor
    *              "getStatus" gives direct access to the value
    */
-  public DeviceRequest setStatusElement(Enumeration<RequestStatus> value) {
+  public DeviceRequest setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -958,19 +957,19 @@ public class DeviceRequest extends DomainResource {
   /**
    * @return The status of the request.
    */
-  public RequestStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
   /**
    * @param value The status of the request.
    */
-  public DeviceRequest setStatus(RequestStatus value) {
+  public DeviceRequest setStatus(String value) {
     if (value == null)
       this.status = null;
     else {
       if (this.status == null)
-        this.status = new Enumeration<RequestStatus>(new RequestStatusEnumFactory());
+        this.status = new StringType();
       this.status.setValue(value);
     }
     return this;
@@ -982,12 +981,12 @@ public class DeviceRequest extends DomainResource {
    *         value and extensions. The accessor "getIntent" gives direct access to
    *         the value
    */
-  public Enumeration<RequestIntent> getIntentElement() {
+  public StringType getIntentElement() {
     if (this.intent == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create DeviceRequest.intent");
       else if (Configuration.doAutoCreate())
-        this.intent = new Enumeration<RequestIntent>(new RequestIntentEnumFactory()); // bb
+        this.intent = new StringType(); // bb
     return this.intent;
   }
 
@@ -1005,7 +1004,7 @@ public class DeviceRequest extends DomainResource {
    *              object with id, value and extensions. The accessor "getIntent"
    *              gives direct access to the value
    */
-  public DeviceRequest setIntentElement(Enumeration<RequestIntent> value) {
+  public DeviceRequest setIntentElement(StringType value) {
     this.intent = value;
     return this;
   }
@@ -1014,7 +1013,7 @@ public class DeviceRequest extends DomainResource {
    * @return Whether the request is a proposal, plan, an original order or a
    *         reflex order.
    */
-  public RequestIntent getIntent() {
+  public String getIntent() {
     return this.intent == null ? null : this.intent.getValue();
   }
 
@@ -1022,9 +1021,9 @@ public class DeviceRequest extends DomainResource {
    * @param value Whether the request is a proposal, plan, an original order or a
    *              reflex order.
    */
-  public DeviceRequest setIntent(RequestIntent value) {
+  public DeviceRequest setIntent(String value) {
     if (this.intent == null)
-      this.intent = new Enumeration<RequestIntent>(new RequestIntentEnumFactory());
+      this.intent = new StringType();
     this.intent.setValue(value);
     return this;
   }
@@ -1035,12 +1034,12 @@ public class DeviceRequest extends DomainResource {
    *         object with id, value and extensions. The accessor "getPriority"
    *         gives direct access to the value
    */
-  public Enumeration<RequestPriority> getPriorityElement() {
+  public StringType getPriorityElement() {
     if (this.priority == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create DeviceRequest.priority");
       else if (Configuration.doAutoCreate())
-        this.priority = new Enumeration<RequestPriority>(new RequestPriorityEnumFactory()); // bb
+        this.priority = new StringType(); // bb
     return this.priority;
   }
 
@@ -1058,7 +1057,7 @@ public class DeviceRequest extends DomainResource {
    *              the underlying object with id, value and extensions. The
    *              accessor "getPriority" gives direct access to the value
    */
-  public DeviceRequest setPriorityElement(Enumeration<RequestPriority> value) {
+  public DeviceRequest setPriorityElement(StringType value) {
     this.priority = value;
     return this;
   }
@@ -1067,7 +1066,7 @@ public class DeviceRequest extends DomainResource {
    * @return Indicates how quickly the device request should be addressed with
    *         respect to other requests.
    */
-  public RequestPriority getPriority() {
+  public String getPriority() {
     return this.priority == null ? null : this.priority.getValue();
   }
 
@@ -1075,12 +1074,12 @@ public class DeviceRequest extends DomainResource {
    * @param value Indicates how quickly the device request should be addressed
    *              with respect to other requests.
    */
-  public DeviceRequest setPriority(RequestPriority value) {
+  public DeviceRequest setPriority(String value) {
     if (value == null)
       this.priority = null;
     else {
       if (this.priority == null)
-        this.priority = new Enumeration<RequestPriority>(new RequestPriorityEnumFactory());
+        this.priority = new StringType();
       this.priority.setValue(value);
     }
     return this;
@@ -1818,10 +1817,10 @@ public class DeviceRequest extends DomainResource {
         java.lang.Integer.MAX_VALUE, priorRequest));
     children.add(
         new Property("groupIdentifier", "Identifier", "Composite request this is part of.", 0, 1, groupIdentifier));
-    children.add(new Property("status", "code", "The status of the request.", 0, 1, status));
-    children.add(new Property("intent", "code",
+    children.add(new Property("status", "string", "The status of the request.", 0, 1, status));
+    children.add(new Property("intent", "string",
         "Whether the request is a proposal, plan, an original order or a reflex order.", 0, 1, intent));
-    children.add(new Property("priority", "code",
+    children.add(new Property("priority", "string",
         "Indicates how quickly the device request should be addressed with respect to other requests.", 0, 1,
         priority));
     children.add(new Property("code[x]", "Reference(Device)|CodeableConcept", "The details of the device to be used.",
@@ -1889,12 +1888,12 @@ public class DeviceRequest extends DomainResource {
       /* groupIdentifier */ return new Property("groupIdentifier", "Identifier", "Composite request this is part of.",
           0, 1, groupIdentifier);
     case -892481550:
-      /* status */ return new Property("status", "code", "The status of the request.", 0, 1, status);
+      /* status */ return new Property("status", "string", "The status of the request.", 0, 1, status);
     case -1183762788:
-      /* intent */ return new Property("intent", "code",
+      /* intent */ return new Property("intent", "string",
           "Whether the request is a proposal, plan, an original order or a reflex order.", 0, 1, intent);
     case -1165461084:
-      /* priority */ return new Property("priority", "code",
+      /* priority */ return new Property("priority", "string",
           "Indicates how quickly the device request should be addressed with respect to other requests.", 0, 1,
           priority);
     case 941839219:
@@ -2000,11 +1999,11 @@ public class DeviceRequest extends DomainResource {
     case -445338488:
       /* groupIdentifier */ return this.groupIdentifier == null ? new Base[0] : new Base[] { this.groupIdentifier }; // Identifier
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<RequestStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -1183762788:
-      /* intent */ return this.intent == null ? new Base[0] : new Base[] { this.intent }; // Enumeration<RequestIntent>
+      /* intent */ return this.intent == null ? new Base[0] : new Base[] { this.intent }; // StringType
     case -1165461084:
-      /* priority */ return this.priority == null ? new Base[0] : new Base[] { this.priority }; // Enumeration<RequestPriority>
+      /* priority */ return this.priority == null ? new Base[0] : new Base[] { this.priority }; // StringType
     case 3059181:
       /* code */ return this.code == null ? new Base[0] : new Base[] { this.code }; // DataType
     case 1954460585:
@@ -2069,16 +2068,13 @@ public class DeviceRequest extends DomainResource {
       this.groupIdentifier = TypeConvertor.castToIdentifier(value); // Identifier
       return value;
     case -892481550: // status
-      value = new RequestStatusEnumFactory().fromType(TypeConvertor.castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<RequestStatus>
+      this.status = TypeConvertor.castToString(value); // StringType
       return value;
     case -1183762788: // intent
-      value = new RequestIntentEnumFactory().fromType(TypeConvertor.castToCode(value));
-      this.intent = (Enumeration) value; // Enumeration<RequestIntent>
+      this.intent = TypeConvertor.castToString(value); // StringType
       return value;
     case -1165461084: // priority
-      value = new RequestPriorityEnumFactory().fromType(TypeConvertor.castToCode(value));
-      this.priority = (Enumeration) value; // Enumeration<RequestPriority>
+      this.priority = TypeConvertor.castToString(value); // StringType
       return value;
     case 3059181: // code
       this.code = TypeConvertor.castToType(value); // DataType
@@ -2146,14 +2142,11 @@ public class DeviceRequest extends DomainResource {
     } else if (name.equals("groupIdentifier")) {
       this.groupIdentifier = TypeConvertor.castToIdentifier(value); // Identifier
     } else if (name.equals("status")) {
-      value = new RequestStatusEnumFactory().fromType(TypeConvertor.castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<RequestStatus>
+      this.status = TypeConvertor.castToString(value); // StringType
     } else if (name.equals("intent")) {
-      value = new RequestIntentEnumFactory().fromType(TypeConvertor.castToCode(value));
-      this.intent = (Enumeration) value; // Enumeration<RequestIntent>
+      this.intent = TypeConvertor.castToString(value); // StringType
     } else if (name.equals("priority")) {
-      value = new RequestPriorityEnumFactory().fromType(TypeConvertor.castToCode(value));
-      this.priority = (Enumeration) value; // Enumeration<RequestPriority>
+      this.priority = TypeConvertor.castToString(value); // StringType
     } else if (name.equals("code[x]")) {
       this.code = TypeConvertor.castToType(value); // DataType
     } else if (name.equals("parameter")) {
@@ -2321,11 +2314,11 @@ public class DeviceRequest extends DomainResource {
     case -445338488:
       /* groupIdentifier */ return new String[] { "Identifier" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -1183762788:
-      /* intent */ return new String[] { "code" };
+      /* intent */ return new String[] { "string" };
     case -1165461084:
-      /* priority */ return new String[] { "code" };
+      /* priority */ return new String[] { "string" };
     case 3059181:
       /* code */ return new String[] { "Reference", "CodeableConcept" };
     case 1954460585:
