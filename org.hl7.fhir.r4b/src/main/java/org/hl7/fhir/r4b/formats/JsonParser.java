@@ -11424,8 +11424,7 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Device.FHIRDeviceStatus.NULL,
-          new Device.FHIRDeviceStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("statusReason")) {
@@ -11563,8 +11562,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_carrierHRF"))
       parseElementProperties(getJObject(json, "_carrierHRF"), res.getCarrierHRFElement());
     if (json.has("entryType"))
-      res.setEntryTypeElement(parseEnumeration(json.get("entryType").getAsString(), Device.UDIEntryType.NULL,
-          new Device.UDIEntryTypeEnumFactory()));
+      res.setEntryTypeElement(parseString(json.get("entryType").getAsString()));
     if (json.has("_entryType"))
       parseElementProperties(getJObject(json, "_entryType"), res.getEntryTypeElement());
   }
@@ -11584,8 +11582,7 @@ public class JsonParser extends JsonParserBase {
     if (json.has("_name"))
       parseElementProperties(getJObject(json, "_name"), res.getNameElement());
     if (json.has("type"))
-      res.setTypeElement(parseEnumeration(json.get("type").getAsString(), Enumerations.DeviceNameType.NULL,
-          new Enumerations.DeviceNameTypeEnumFactory()));
+      res.setTypeElement(parseString(json.get("type").getAsString()));
     if (json.has("_type"))
       parseElementProperties(getJObject(json, "_type"), res.getTypeElement());
   }
@@ -45355,8 +45352,8 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(), new Device.FHIRDeviceStatusEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(), new Device.FHIRDeviceStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasStatusReason()) {
       openArray("statusReason");
@@ -45500,8 +45497,8 @@ public class JsonParser extends JsonParserBase {
       composeStringExtras("carrierHRF", element.getCarrierHRFElement(), false);
     }
     if (element.hasEntryTypeElement()) {
-      composeEnumerationCore("entryType", element.getEntryTypeElement(), new Device.UDIEntryTypeEnumFactory(), false);
-      composeEnumerationExtras("entryType", element.getEntryTypeElement(), new Device.UDIEntryTypeEnumFactory(), false);
+      composeStringCore("entryType", element.getEntryTypeElement(), false);
+      composeStringExtras("entryType", element.getEntryTypeElement(), false);
     }
   }
 
@@ -45522,8 +45519,8 @@ public class JsonParser extends JsonParserBase {
       composeStringExtras("name", element.getNameElement(), false);
     }
     if (element.hasTypeElement()) {
-      composeEnumerationCore("type", element.getTypeElement(), new Enumerations.DeviceNameTypeEnumFactory(), false);
-      composeEnumerationExtras("type", element.getTypeElement(), new Enumerations.DeviceNameTypeEnumFactory(), false);
+      composeStringCore("type", element.getTypeElement(), false);
+      composeStringExtras("type", element.getTypeElement(), false);
     }
   }
 

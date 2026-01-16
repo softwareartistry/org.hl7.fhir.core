@@ -8525,7 +8525,7 @@ public class RdfParser extends RdfParserBase {
       composeDeviceUdiCarrierComponent(t, "Device", "udiCarrier", element.getUdiCarrier().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "Device", "status", element.getStatusElement(), -1);
+      composeString(t, "Device", "status", element.getStatusElement(), -1);
     }
     for (int i = 0; i < element.getStatusReason().size(); i++) {
       composeCodeableConcept(t, "Device", "statusReason", element.getStatusReason().get(i), i);
@@ -8622,7 +8622,7 @@ public class RdfParser extends RdfParserBase {
       composeString(t, "DeviceUdiCarrierComponent", "carrierHRF", element.getCarrierHRFElement(), -1);
     }
     if (element.hasEntryTypeElement()) {
-      composeEnum(t, "DeviceUdiCarrierComponent", "entryType", element.getEntryTypeElement(), -1);
+      composeString(t, "DeviceUdiCarrierComponent", "entryType", element.getEntryTypeElement(), -1);
     }
   }
 
@@ -8641,7 +8641,7 @@ public class RdfParser extends RdfParserBase {
       composeString(t, "DeviceDeviceNameComponent", "name", element.getNameElement(), -1);
     }
     if (element.hasTypeElement()) {
-      composeEnum(t, "DeviceDeviceNameComponent", "type", element.getTypeElement(), -1);
+      composeString(t, "DeviceDeviceNameComponent", "type", element.getTypeElement(), -1);
     }
   }
 
