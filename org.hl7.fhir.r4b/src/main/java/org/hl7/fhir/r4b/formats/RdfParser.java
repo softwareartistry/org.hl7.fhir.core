@@ -9311,10 +9311,10 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "DocumentReference", "identifier", element.getIdentifier().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "DocumentReference", "status", element.getStatusElement(), -1);
+      composeString(t, "DocumentReference", "status", element.getStatusElement(), -1);
     }
     if (element.hasDocStatusElement()) {
-      composeEnum(t, "DocumentReference", "docStatus", element.getDocStatusElement(), -1);
+      composeString(t, "DocumentReference", "docStatus", element.getDocStatusElement(), -1);
     }
     if (element.hasType()) {
       composeCodeableConcept(t, "DocumentReference", "type", element.getType(), -1);
@@ -9366,7 +9366,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "relatesTo", name, element, index);
     if (element.hasCodeElement()) {
-      composeEnum(t, "DocumentReferenceRelatesToComponent", "code", element.getCodeElement(), -1);
+      composeString(t, "DocumentReferenceRelatesToComponent", "code", element.getCodeElement(), -1);
     }
     if (element.hasTarget()) {
       composeReference(t, "DocumentReferenceRelatesToComponent", "target", element.getTarget(), -1);

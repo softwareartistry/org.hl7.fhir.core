@@ -10547,11 +10547,9 @@ public class XmlParser extends XmlParserBase {
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("identifier")) {
       res.getIdentifier().add(parseIdentifier(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("status")) {
-      res.setStatusElement(parseEnumeration(xpp, Enumerations.DocumentReferenceStatus.NULL,
-          new Enumerations.DocumentReferenceStatusEnumFactory()));
+      res.setStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("docStatus")) {
-      res.setDocStatusElement(
-          parseEnumeration(xpp, Enumerations.CompositionStatus.NULL, new Enumerations.CompositionStatusEnumFactory()));
+      res.setDocStatusElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("type")) {
       res.setType(parseCodeableConcept(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("category")) {
@@ -10602,8 +10600,7 @@ public class XmlParser extends XmlParserBase {
       DocumentReference.DocumentReferenceRelatesToComponent res)
       throws XmlPullParserException, IOException, FHIRFormatError {
     if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("code")) {
-      res.setCodeElement(parseEnumeration(xpp, Enumerations.DocumentRelationshipType.NULL,
-          new Enumerations.DocumentRelationshipTypeEnumFactory()));
+      res.setCodeElement(parseString(xpp));
     } else if (eventType == XmlPullParser.START_TAG && xpp.getName().equals("target")) {
       res.setTarget(parseReference(xpp));
     } else if (!parseBackboneElementContent(eventType, xpp, res)) {
@@ -38351,9 +38348,9 @@ public class XmlParser extends XmlParserBase {
         composeIdentifier("identifier", e);
     }
     if (element.hasStatusElement())
-      composeEnumeration("status", element.getStatusElement(), new Enumerations.DocumentReferenceStatusEnumFactory());
+      composeString("status", element.getStatusElement());
     if (element.hasDocStatusElement())
-      composeEnumeration("docStatus", element.getDocStatusElement(), new Enumerations.CompositionStatusEnumFactory());
+      composeString("docStatus", element.getDocStatusElement());
     if (element.hasType()) {
       composeCodeableConcept("type", element.getType());
     }
@@ -38412,7 +38409,7 @@ public class XmlParser extends XmlParserBase {
       DocumentReference.DocumentReferenceRelatesToComponent element) throws IOException {
     composeBackboneElementElements(element);
     if (element.hasCodeElement())
-      composeEnumeration("code", element.getCodeElement(), new Enumerations.DocumentRelationshipTypeEnumFactory());
+      composeString("code", element.getCodeElement());
     if (element.hasTarget()) {
       composeReference("target", element.getTarget());
     }

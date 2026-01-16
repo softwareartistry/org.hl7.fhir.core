@@ -12488,13 +12488,11 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (json.has("status"))
-      res.setStatusElement(parseEnumeration(json.get("status").getAsString(), Enumerations.DocumentReferenceStatus.NULL,
-          new Enumerations.DocumentReferenceStatusEnumFactory()));
+      res.setStatusElement(parseString(json.get("status").getAsString()));
     if (json.has("_status"))
       parseElementProperties(getJObject(json, "_status"), res.getStatusElement());
     if (json.has("docStatus"))
-      res.setDocStatusElement(parseEnumeration(json.get("docStatus").getAsString(), Enumerations.CompositionStatus.NULL,
-          new Enumerations.CompositionStatusEnumFactory()));
+      res.setDocStatusElement(parseString(json.get("docStatus").getAsString()));
     if (json.has("_docStatus"))
       parseElementProperties(getJObject(json, "_docStatus"), res.getDocStatusElement());
     if (json.has("type"))
@@ -12563,8 +12561,7 @@ public class JsonParser extends JsonParserBase {
       DocumentReference.DocumentReferenceRelatesToComponent res) throws IOException, FHIRFormatError {
     parseBackboneElementProperties(json, res);
     if (json.has("code"))
-      res.setCodeElement(parseEnumeration(json.get("code").getAsString(), Enumerations.DocumentRelationshipType.NULL,
-          new Enumerations.DocumentRelationshipTypeEnumFactory()));
+      res.setCodeElement(parseString(json.get("code").getAsString()));
     if (json.has("_code"))
       parseElementProperties(getJObject(json, "_code"), res.getCodeElement());
     if (json.has("target"))
@@ -46467,16 +46464,12 @@ public class JsonParser extends JsonParserBase {
     }
     ;
     if (element.hasStatusElement()) {
-      composeEnumerationCore("status", element.getStatusElement(),
-          new Enumerations.DocumentReferenceStatusEnumFactory(), false);
-      composeEnumerationExtras("status", element.getStatusElement(),
-          new Enumerations.DocumentReferenceStatusEnumFactory(), false);
+      composeStringCore("status", element.getStatusElement(), false);
+      composeStringExtras("status", element.getStatusElement(), false);
     }
     if (element.hasDocStatusElement()) {
-      composeEnumerationCore("docStatus", element.getDocStatusElement(),
-          new Enumerations.CompositionStatusEnumFactory(), false);
-      composeEnumerationExtras("docStatus", element.getDocStatusElement(),
-          new Enumerations.CompositionStatusEnumFactory(), false);
+      composeStringCore("docStatus", element.getDocStatusElement(), false);
+      composeStringExtras("docStatus", element.getDocStatusElement(), false);
     }
     if (element.hasType()) {
       composeCodeableConcept("type", element.getType());
@@ -46551,10 +46544,8 @@ public class JsonParser extends JsonParserBase {
       DocumentReference.DocumentReferenceRelatesToComponent element) throws IOException {
     composeBackboneElementProperties(element);
     if (element.hasCodeElement()) {
-      composeEnumerationCore("code", element.getCodeElement(), new Enumerations.DocumentRelationshipTypeEnumFactory(),
-          false);
-      composeEnumerationExtras("code", element.getCodeElement(), new Enumerations.DocumentRelationshipTypeEnumFactory(),
-          false);
+      composeStringCore("code", element.getCodeElement(), false);
+      composeStringExtras("code", element.getCodeElement(), false);
     }
     if (element.hasTarget()) {
       composeReference("target", element.getTarget());
