@@ -33,7 +33,6 @@ package org.hl7.fhir.r4b.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.hl7.fhir.r4b.model.Enumerations.*;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.ICompositeType;

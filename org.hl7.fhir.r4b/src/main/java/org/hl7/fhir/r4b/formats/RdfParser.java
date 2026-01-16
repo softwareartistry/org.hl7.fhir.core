@@ -2186,7 +2186,7 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "AdverseEvent", "identifier", element.getIdentifier(), -1);
     }
     if (element.hasActualityElement()) {
-      composeEnum(t, "AdverseEvent", "actuality", element.getActualityElement(), -1);
+      composeString(t, "AdverseEvent", "actuality", element.getActualityElement(), -1);
     }
     for (int i = 0; i < element.getCategory().size(); i++) {
       composeCodeableConcept(t, "AdverseEvent", "category", element.getCategory().get(i), i);
@@ -2313,13 +2313,13 @@ public class RdfParser extends RdfParserBase {
       composeCodeableConcept(t, "AllergyIntolerance", "verificationStatus", element.getVerificationStatus(), -1);
     }
     if (element.hasTypeElement()) {
-      composeEnum(t, "AllergyIntolerance", "type", element.getTypeElement(), -1);
+      composeString(t, "AllergyIntolerance", "type", element.getTypeElement(), -1);
     }
     for (int i = 0; i < element.getCategory().size(); i++) {
-      composeEnum(t, "AllergyIntolerance", "category", element.getCategory().get(i), i);
+      composeString(t, "AllergyIntolerance", "category", element.getCategory().get(i), i);
     }
     if (element.hasCriticalityElement()) {
-      composeEnum(t, "AllergyIntolerance", "criticality", element.getCriticalityElement(), -1);
+      composeString(t, "AllergyIntolerance", "criticality", element.getCriticalityElement(), -1);
     }
     if (element.hasCode()) {
       composeCodeableConcept(t, "AllergyIntolerance", "code", element.getCode(), -1);
@@ -2378,7 +2378,7 @@ public class RdfParser extends RdfParserBase {
       composeDateTime(t, "AllergyIntoleranceReactionComponent", "onset", element.getOnsetElement(), -1);
     }
     if (element.hasSeverityElement()) {
-      composeEnum(t, "AllergyIntoleranceReactionComponent", "severity", element.getSeverityElement(), -1);
+      composeString(t, "AllergyIntoleranceReactionComponent", "severity", element.getSeverityElement(), -1);
     }
     if (element.hasExposureRoute()) {
       composeCodeableConcept(t, "AllergyIntoleranceReactionComponent", "exposureRoute", element.getExposureRoute(), -1);
@@ -2402,7 +2402,7 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "Appointment", "identifier", element.getIdentifier().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "Appointment", "status", element.getStatusElement(), -1);
+      composeString(t, "Appointment", "status", element.getStatusElement(), -1);
     }
     if (element.hasCancelationReason()) {
       composeCodeableConcept(t, "Appointment", "cancelationReason", element.getCancelationReason(), -1);
@@ -2484,10 +2484,10 @@ public class RdfParser extends RdfParserBase {
       composeReference(t, "AppointmentParticipantComponent", "actor", element.getActor(), -1);
     }
     if (element.hasRequiredElement()) {
-      composeEnum(t, "AppointmentParticipantComponent", "required", element.getRequiredElement(), -1);
+      composeString(t, "AppointmentParticipantComponent", "required", element.getRequiredElement(), -1);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "AppointmentParticipantComponent", "status", element.getStatusElement(), -1);
+      composeString(t, "AppointmentParticipantComponent", "status", element.getStatusElement(), -1);
     }
     if (element.hasPeriod()) {
       composePeriod(t, "AppointmentParticipantComponent", "period", element.getPeriod(), -1);
@@ -2785,13 +2785,13 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "BiologicallyDerivedProduct", "identifier", element.getIdentifier().get(i), i);
     }
     if (element.hasProductCategoryElement()) {
-      composeEnum(t, "BiologicallyDerivedProduct", "productCategory", element.getProductCategoryElement(), -1);
+      composeString(t, "BiologicallyDerivedProduct", "productCategory", element.getProductCategoryElement(), -1);
     }
     if (element.hasProductCode()) {
       composeCodeableConcept(t, "BiologicallyDerivedProduct", "productCode", element.getProductCode(), -1);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "BiologicallyDerivedProduct", "status", element.getStatusElement(), -1);
+      composeString(t, "BiologicallyDerivedProduct", "status", element.getStatusElement(), -1);
     }
     for (int i = 0; i < element.getRequest().size(); i++) {
       composeReference(t, "BiologicallyDerivedProduct", "request", element.getRequest().get(i), i);
@@ -2909,7 +2909,7 @@ public class RdfParser extends RdfParserBase {
           -1);
     }
     if (element.hasScaleElement()) {
-      composeEnum(t, "BiologicallyDerivedProductStorageComponent", "scale", element.getScaleElement(), -1);
+      composeString(t, "BiologicallyDerivedProductStorageComponent", "scale", element.getScaleElement(), -1);
     }
     if (element.hasDuration()) {
       composePeriod(t, "BiologicallyDerivedProductStorageComponent", "duration", element.getDuration(), -1);
@@ -3604,10 +3604,10 @@ public class RdfParser extends RdfParserBase {
       composeReference(t, "CarePlan", "partOf", element.getPartOf().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "CarePlan", "status", element.getStatusElement(), -1);
+      composeString(t, "CarePlan", "status", element.getStatusElement(), -1);
     }
     if (element.hasIntentElement()) {
-      composeEnum(t, "CarePlan", "intent", element.getIntentElement(), -1);
+      composeString(t, "CarePlan", "intent", element.getIntentElement(), -1);
     }
     for (int i = 0; i < element.getCategory().size(); i++) {
       composeCodeableConcept(t, "CarePlan", "category", element.getCategory().get(i), i);
@@ -3697,7 +3697,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "detail", name, element, index);
     if (element.hasKindElement()) {
-      composeEnum(t, "CarePlanActivityDetailComponent", "kind", element.getKindElement(), -1);
+      composeString(t, "CarePlanActivityDetailComponent", "kind", element.getKindElement(), -1);
     }
     for (int i = 0; i < element.getInstantiatesCanonical().size(); i++) {
       composeCanonical(t, "CarePlanActivityDetailComponent", "instantiatesCanonical",
@@ -3719,7 +3719,7 @@ public class RdfParser extends RdfParserBase {
       composeReference(t, "CarePlanActivityDetailComponent", "goal", element.getGoal().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "CarePlanActivityDetailComponent", "status", element.getStatusElement(), -1);
+      composeString(t, "CarePlanActivityDetailComponent", "status", element.getStatusElement(), -1);
     }
     if (element.hasStatusReason()) {
       composeCodeableConcept(t, "CarePlanActivityDetailComponent", "statusReason", element.getStatusReason(), -1);
@@ -3764,7 +3764,7 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "CareTeam", "identifier", element.getIdentifier().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "CareTeam", "status", element.getStatusElement(), -1);
+      composeString(t, "CareTeam", "status", element.getStatusElement(), -1);
     }
     for (int i = 0; i < element.getCategory().size(); i++) {
       composeCodeableConcept(t, "CareTeam", "category", element.getCategory().get(i), i);
@@ -3855,7 +3855,7 @@ public class RdfParser extends RdfParserBase {
       composeCodeableConcept(t, "CatalogEntry", "classification", element.getClassification().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "CatalogEntry", "status", element.getStatusElement(), -1);
+      composeString(t, "CatalogEntry", "status", element.getStatusElement(), -1);
     }
     if (element.hasValidityPeriod()) {
       composePeriod(t, "CatalogEntry", "validityPeriod", element.getValidityPeriod(), -1);
@@ -3891,7 +3891,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "relatedEntry", name, element, index);
     if (element.hasRelationtypeElement()) {
-      composeEnum(t, "CatalogEntryRelatedEntryComponent", "relationtype", element.getRelationtypeElement(), -1);
+      composeString(t, "CatalogEntryRelatedEntryComponent", "relationtype", element.getRelationtypeElement(), -1);
     }
     if (element.hasItem()) {
       composeReference(t, "CatalogEntryRelatedEntryComponent", "item", element.getItem(), -1);
@@ -5881,7 +5881,7 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "ClinicalImpression", "identifier", element.getIdentifier().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "ClinicalImpression", "status", element.getStatusElement(), -1);
+      composeString(t, "ClinicalImpression", "status", element.getStatusElement(), -1);
     }
     if (element.hasStatusReason()) {
       composeCodeableConcept(t, "ClinicalImpression", "statusReason", element.getStatusReason(), -1);
@@ -6463,7 +6463,7 @@ public class RdfParser extends RdfParserBase {
       composeReference(t, "Communication", "inResponseTo", element.getInResponseTo().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "Communication", "status", element.getStatusElement(), -1);
+    composeString(t, "Communication", "status", element.getStatusElement(), -1);
     }
     if (element.hasStatusReason()) {
       composeCodeableConcept(t, "Communication", "statusReason", element.getStatusReason(), -1);
@@ -6472,7 +6472,7 @@ public class RdfParser extends RdfParserBase {
       composeCodeableConcept(t, "Communication", "category", element.getCategory().get(i), i);
     }
     if (element.hasPriorityElement()) {
-      composeEnum(t, "Communication", "priority", element.getPriorityElement(), -1);
+    composeString(t, "Communication", "priority", element.getPriorityElement(), -1);
     }
     for (int i = 0; i < element.getMedium().size(); i++) {
       composeCodeableConcept(t, "Communication", "medium", element.getMedium().get(i), i);
@@ -7187,7 +7187,7 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "Consent", "identifier", element.getIdentifier().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "Consent", "status", element.getStatusElement(), -1);
+      composeString(t, "Consent", "status", element.getStatusElement(), -1);
     }
     if (element.hasScope()) {
       composeCodeableConcept(t, "Consent", "scope", element.getScope(), -1);
@@ -7277,7 +7277,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "provision", name, element, index);
     if (element.hasTypeElement()) {
-      composeEnum(t, "ProvisionComponent", "type", element.getTypeElement(), -1);
+      composeString(t, "ProvisionComponent", "type", element.getTypeElement(), -1);
     }
     if (element.hasPeriod()) {
       composePeriod(t, "ProvisionComponent", "period", element.getPeriod(), -1);
@@ -7342,7 +7342,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "data", name, element, index);
     if (element.hasMeaningElement()) {
-      composeEnum(t, "ProvisionDataComponent", "meaning", element.getMeaningElement(), -1);
+      composeString(t, "ProvisionDataComponent", "meaning", element.getMeaningElement(), -1);
     }
     if (element.hasReference()) {
       composeReference(t, "ProvisionDataComponent", "reference", element.getReference(), -1);
@@ -8430,13 +8430,13 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "DetectedIssue", "identifier", element.getIdentifier().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "DetectedIssue", "status", element.getStatusElement(), -1);
+      composeString(t, "DetectedIssue", "status", element.getStatusElement(), -1);
     }
     if (element.hasCode()) {
       composeCodeableConcept(t, "DetectedIssue", "code", element.getCode(), -1);
     }
     if (element.hasSeverityElement()) {
-      composeEnum(t, "DetectedIssue", "severity", element.getSeverityElement(), -1);
+      composeString(t, "DetectedIssue", "severity", element.getSeverityElement(), -1);
     }
     if (element.hasPatient()) {
       composeReference(t, "DetectedIssue", "patient", element.getPatient(), -1);
@@ -8525,7 +8525,7 @@ public class RdfParser extends RdfParserBase {
       composeDeviceUdiCarrierComponent(t, "Device", "udiCarrier", element.getUdiCarrier().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "Device", "status", element.getStatusElement(), -1);
+      composeString(t, "Device", "status", element.getStatusElement(), -1);
     }
     for (int i = 0; i < element.getStatusReason().size(); i++) {
       composeCodeableConcept(t, "Device", "statusReason", element.getStatusReason().get(i), i);
@@ -8622,7 +8622,7 @@ public class RdfParser extends RdfParserBase {
       composeString(t, "DeviceUdiCarrierComponent", "carrierHRF", element.getCarrierHRFElement(), -1);
     }
     if (element.hasEntryTypeElement()) {
-      composeEnum(t, "DeviceUdiCarrierComponent", "entryType", element.getEntryTypeElement(), -1);
+      composeString(t, "DeviceUdiCarrierComponent", "entryType", element.getEntryTypeElement(), -1);
     }
   }
 
@@ -8641,7 +8641,7 @@ public class RdfParser extends RdfParserBase {
       composeString(t, "DeviceDeviceNameComponent", "name", element.getNameElement(), -1);
     }
     if (element.hasTypeElement()) {
-      composeEnum(t, "DeviceDeviceNameComponent", "type", element.getTypeElement(), -1);
+      composeString(t, "DeviceDeviceNameComponent", "type", element.getTypeElement(), -1);
     }
   }
 
@@ -9013,13 +9013,13 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "DeviceRequest", "groupIdentifier", element.getGroupIdentifier(), -1);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "DeviceRequest", "status", element.getStatusElement(), -1);
+      composeString(t, "DeviceRequest", "status", element.getStatusElement(), -1);
     }
     if (element.hasIntentElement()) {
-      composeEnum(t, "DeviceRequest", "intent", element.getIntentElement(), -1);
+      composeString(t, "DeviceRequest", "intent", element.getIntentElement(), -1);
     }
     if (element.hasPriorityElement()) {
-      composeEnum(t, "DeviceRequest", "priority", element.getPriorityElement(), -1);
+      composeString(t, "DeviceRequest", "priority", element.getPriorityElement(), -1);
     }
     if (element.hasCode()) {
       composeType(t, "DeviceRequest", "code", element.getCode(), -1);
@@ -9157,7 +9157,7 @@ public class RdfParser extends RdfParserBase {
       composeReference(t, "DiagnosticReport", "basedOn", element.getBasedOn().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "DiagnosticReport", "status", element.getStatusElement(), -1);
+      composeString(t, "DiagnosticReport", "status", element.getStatusElement(), -1);
     }
     for (int i = 0; i < element.getCategory().size(); i++) {
       composeCodeableConcept(t, "DiagnosticReport", "category", element.getCategory().get(i), i);
@@ -9311,10 +9311,10 @@ public class RdfParser extends RdfParserBase {
       composeIdentifier(t, "DocumentReference", "identifier", element.getIdentifier().get(i), i);
     }
     if (element.hasStatusElement()) {
-      composeEnum(t, "DocumentReference", "status", element.getStatusElement(), -1);
+      composeString(t, "DocumentReference", "status", element.getStatusElement(), -1);
     }
     if (element.hasDocStatusElement()) {
-      composeEnum(t, "DocumentReference", "docStatus", element.getDocStatusElement(), -1);
+      composeString(t, "DocumentReference", "docStatus", element.getDocStatusElement(), -1);
     }
     if (element.hasType()) {
       composeCodeableConcept(t, "DocumentReference", "type", element.getType(), -1);
@@ -9366,7 +9366,7 @@ public class RdfParser extends RdfParserBase {
     }
     composeBackboneElement(t, "relatesTo", name, element, index);
     if (element.hasCodeElement()) {
-      composeEnum(t, "DocumentReferenceRelatesToComponent", "code", element.getCodeElement(), -1);
+      composeString(t, "DocumentReferenceRelatesToComponent", "code", element.getCodeElement(), -1);
     }
     if (element.hasTarget()) {
       composeReference(t, "DocumentReferenceRelatesToComponent", "target", element.getTarget(), -1);

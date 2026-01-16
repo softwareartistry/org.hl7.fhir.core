@@ -34,7 +34,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hl7.fhir.utilities.Utilities;
-import org.hl7.fhir.r4b.model.Enumerations.*;
 import org.hl7.fhir.instance.model.api.IBaseBackboneElement;
 import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.instance.model.api.ICompositeType;
@@ -54,694 +53,11 @@ import ca.uhn.fhir.model.api.annotation.Block;
 @ResourceDef(name = "CarePlan", profile = "http://hl7.org/fhir/StructureDefinition/CarePlan")
 public class CarePlan extends DomainResource {
 
-  public enum CarePlanActivityKind {
-    /**
-     * A booking of a healthcare event among patient(s), practitioner(s), related
-     * person(s) and/or device(s) for a specific date/time. This may result in one
-     * or more Encounter(s).
-     */
-    APPOINTMENT,
-    /**
-     * A request to convey information; e.g. the CDS system proposes that an alert
-     * be sent to a responsible provider, the CDS system proposes that the public
-     * health agency be notified about a reportable condition.
-     */
-    COMMUNICATIONREQUEST,
-    /**
-     * Represents a request for a patient to employ a medical device. The device may
-     * be an implantable device, or an external assistive device, such as a walker.
-     */
-    DEVICEREQUEST,
-    /**
-     * An order or request for both supply of the medication and the instructions
-     * for administration of the medication to a patient. The resource is called
-     * \"MedicationRequest\" rather than \"MedicationPrescription\" or
-     * \"MedicationOrder\" to generalize the use across inpatient and outpatient
-     * settings, including care plans, etc., and to harmonize with workflow
-     * patterns.
-     */
-    MEDICATIONREQUEST,
-    /**
-     * A request to supply a diet, formula feeding (enteral) or oral nutritional
-     * supplement to a patient/resident.
-     */
-    NUTRITIONORDER,
-    /**
-     * A task to be performed.
-     */
-    TASK,
-    /**
-     * A record of a request for service such as diagnostic investigations,
-     * treatments, or operations to be performed.
-     */
-    SERVICEREQUEST,
-    /**
-     * An authorization for the provision of glasses and/or contact lenses to a
-     * patient.
-     */
-    VISIONPRESCRIPTION,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
 
-    public static CarePlanActivityKind fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("Appointment".equals(codeString))
-        return APPOINTMENT;
-      if ("CommunicationRequest".equals(codeString))
-        return COMMUNICATIONREQUEST;
-      if ("DeviceRequest".equals(codeString))
-        return DEVICEREQUEST;
-      if ("MedicationRequest".equals(codeString))
-        return MEDICATIONREQUEST;
-      if ("NutritionOrder".equals(codeString))
-        return NUTRITIONORDER;
-      if ("Task".equals(codeString))
-        return TASK;
-      if ("ServiceRequest".equals(codeString))
-        return SERVICEREQUEST;
-      if ("VisionPrescription".equals(codeString))
-        return VISIONPRESCRIPTION;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown CarePlanActivityKind code '" + codeString + "'");
-    }
 
-    public String toCode() {
-      switch (this) {
-      case APPOINTMENT:
-        return "Appointment";
-      case COMMUNICATIONREQUEST:
-        return "CommunicationRequest";
-      case DEVICEREQUEST:
-        return "DeviceRequest";
-      case MEDICATIONREQUEST:
-        return "MedicationRequest";
-      case NUTRITIONORDER:
-        return "NutritionOrder";
-      case TASK:
-        return "Task";
-      case SERVICEREQUEST:
-        return "ServiceRequest";
-      case VISIONPRESCRIPTION:
-        return "VisionPrescription";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
 
-    public String getSystem() {
-      switch (this) {
-      case APPOINTMENT:
-        return "http://hl7.org/fhir/resource-types";
-      case COMMUNICATIONREQUEST:
-        return "http://hl7.org/fhir/resource-types";
-      case DEVICEREQUEST:
-        return "http://hl7.org/fhir/resource-types";
-      case MEDICATIONREQUEST:
-        return "http://hl7.org/fhir/resource-types";
-      case NUTRITIONORDER:
-        return "http://hl7.org/fhir/resource-types";
-      case TASK:
-        return "http://hl7.org/fhir/resource-types";
-      case SERVICEREQUEST:
-        return "http://hl7.org/fhir/resource-types";
-      case VISIONPRESCRIPTION:
-        return "http://hl7.org/fhir/resource-types";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
 
-    public String getDefinition() {
-      switch (this) {
-      case APPOINTMENT:
-        return "A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time. This may result in one or more Encounter(s).";
-      case COMMUNICATIONREQUEST:
-        return "A request to convey information; e.g. the CDS system proposes that an alert be sent to a responsible provider, the CDS system proposes that the public health agency be notified about a reportable condition.";
-      case DEVICEREQUEST:
-        return "Represents a request for a patient to employ a medical device. The device may be an implantable device, or an external assistive device, such as a walker.";
-      case MEDICATIONREQUEST:
-        return "An order or request for both supply of the medication and the instructions for administration of the medication to a patient. The resource is called \"MedicationRequest\" rather than \"MedicationPrescription\" or \"MedicationOrder\" to generalize the use across inpatient and outpatient settings, including care plans, etc., and to harmonize with workflow patterns.";
-      case NUTRITIONORDER:
-        return "A request to supply a diet, formula feeding (enteral) or oral nutritional supplement to a patient/resident.";
-      case TASK:
-        return "A task to be performed.";
-      case SERVICEREQUEST:
-        return "A record of a request for service such as diagnostic investigations, treatments, or operations to be performed.";
-      case VISIONPRESCRIPTION:
-        return "An authorization for the provision of glasses and/or contact lenses to a patient.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
 
-    public String getDisplay() {
-      switch (this) {
-      case APPOINTMENT:
-        return "Appointment";
-      case COMMUNICATIONREQUEST:
-        return "CommunicationRequest";
-      case DEVICEREQUEST:
-        return "DeviceRequest";
-      case MEDICATIONREQUEST:
-        return "MedicationRequest";
-      case NUTRITIONORDER:
-        return "NutritionOrder";
-      case TASK:
-        return "Task";
-      case SERVICEREQUEST:
-        return "ServiceRequest";
-      case VISIONPRESCRIPTION:
-        return "VisionPrescription";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class CarePlanActivityKindEnumFactory implements EnumFactory<CarePlanActivityKind> {
-    public CarePlanActivityKind fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("Appointment".equals(codeString))
-        return CarePlanActivityKind.APPOINTMENT;
-      if ("CommunicationRequest".equals(codeString))
-        return CarePlanActivityKind.COMMUNICATIONREQUEST;
-      if ("DeviceRequest".equals(codeString))
-        return CarePlanActivityKind.DEVICEREQUEST;
-      if ("MedicationRequest".equals(codeString))
-        return CarePlanActivityKind.MEDICATIONREQUEST;
-      if ("NutritionOrder".equals(codeString))
-        return CarePlanActivityKind.NUTRITIONORDER;
-      if ("Task".equals(codeString))
-        return CarePlanActivityKind.TASK;
-      if ("ServiceRequest".equals(codeString))
-        return CarePlanActivityKind.SERVICEREQUEST;
-      if ("VisionPrescription".equals(codeString))
-        return CarePlanActivityKind.VISIONPRESCRIPTION;
-      throw new IllegalArgumentException("Unknown CarePlanActivityKind code '" + codeString + "'");
-    }
-
-    public Enumeration<CarePlanActivityKind> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<CarePlanActivityKind>(this, CarePlanActivityKind.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<CarePlanActivityKind>(this, CarePlanActivityKind.NULL, code);
-      if ("Appointment".equals(codeString))
-        return new Enumeration<CarePlanActivityKind>(this, CarePlanActivityKind.APPOINTMENT, code);
-      if ("CommunicationRequest".equals(codeString))
-        return new Enumeration<CarePlanActivityKind>(this, CarePlanActivityKind.COMMUNICATIONREQUEST, code);
-      if ("DeviceRequest".equals(codeString))
-        return new Enumeration<CarePlanActivityKind>(this, CarePlanActivityKind.DEVICEREQUEST, code);
-      if ("MedicationRequest".equals(codeString))
-        return new Enumeration<CarePlanActivityKind>(this, CarePlanActivityKind.MEDICATIONREQUEST, code);
-      if ("NutritionOrder".equals(codeString))
-        return new Enumeration<CarePlanActivityKind>(this, CarePlanActivityKind.NUTRITIONORDER, code);
-      if ("Task".equals(codeString))
-        return new Enumeration<CarePlanActivityKind>(this, CarePlanActivityKind.TASK, code);
-      if ("ServiceRequest".equals(codeString))
-        return new Enumeration<CarePlanActivityKind>(this, CarePlanActivityKind.SERVICEREQUEST, code);
-      if ("VisionPrescription".equals(codeString))
-        return new Enumeration<CarePlanActivityKind>(this, CarePlanActivityKind.VISIONPRESCRIPTION, code);
-      throw new FHIRException("Unknown CarePlanActivityKind code '" + codeString + "'");
-    }
-
-    public String toCode(CarePlanActivityKind code) {
-       if (code == CarePlanActivityKind.NULL)
-           return null;
-       if (code == CarePlanActivityKind.APPOINTMENT)
-        return "Appointment";
-      if (code == CarePlanActivityKind.COMMUNICATIONREQUEST)
-        return "CommunicationRequest";
-      if (code == CarePlanActivityKind.DEVICEREQUEST)
-        return "DeviceRequest";
-      if (code == CarePlanActivityKind.MEDICATIONREQUEST)
-        return "MedicationRequest";
-      if (code == CarePlanActivityKind.NUTRITIONORDER)
-        return "NutritionOrder";
-      if (code == CarePlanActivityKind.TASK)
-        return "Task";
-      if (code == CarePlanActivityKind.SERVICEREQUEST)
-        return "ServiceRequest";
-      if (code == CarePlanActivityKind.VISIONPRESCRIPTION)
-        return "VisionPrescription";
-      return "?";
-   }
-
-    public String toSystem(CarePlanActivityKind code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum CarePlanActivityStatus {
-    /**
-     * Care plan activity is planned but no action has yet been taken.
-     */
-    NOTSTARTED,
-    /**
-     * Appointment or other booking has occurred but activity has not yet begun.
-     */
-    SCHEDULED,
-    /**
-     * Care plan activity has been started but is not yet complete.
-     */
-    INPROGRESS,
-    /**
-     * Care plan activity was started but has temporarily ceased with an expectation
-     * of resumption at a future time.
-     */
-    ONHOLD,
-    /**
-     * Care plan activity has been completed (more or less) as planned.
-     */
-    COMPLETED,
-    /**
-     * The planned care plan activity has been withdrawn.
-     */
-    CANCELLED,
-    /**
-     * The planned care plan activity has been ended prior to completion after the
-     * activity was started.
-     */
-    STOPPED,
-    /**
-     * The current state of the care plan activity is not known. Note: This concept
-     * is not to be used for \"other\" - one of the listed statuses is presumed to
-     * apply, but the authoring/source system does not know which one.
-     */
-    UNKNOWN,
-    /**
-     * Care plan activity was entered in error and voided.
-     */
-    ENTEREDINERROR,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static CarePlanActivityStatus fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("not-started".equals(codeString))
-        return NOTSTARTED;
-      if ("scheduled".equals(codeString))
-        return SCHEDULED;
-      if ("in-progress".equals(codeString))
-        return INPROGRESS;
-      if ("on-hold".equals(codeString))
-        return ONHOLD;
-      if ("completed".equals(codeString))
-        return COMPLETED;
-      if ("cancelled".equals(codeString))
-        return CANCELLED;
-      if ("stopped".equals(codeString))
-        return STOPPED;
-      if ("unknown".equals(codeString))
-        return UNKNOWN;
-      if ("entered-in-error".equals(codeString))
-        return ENTEREDINERROR;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown CarePlanActivityStatus code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case NOTSTARTED:
-        return "not-started";
-      case SCHEDULED:
-        return "scheduled";
-      case INPROGRESS:
-        return "in-progress";
-      case ONHOLD:
-        return "on-hold";
-      case COMPLETED:
-        return "completed";
-      case CANCELLED:
-        return "cancelled";
-      case STOPPED:
-        return "stopped";
-      case UNKNOWN:
-        return "unknown";
-      case ENTEREDINERROR:
-        return "entered-in-error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case NOTSTARTED:
-        return "http://hl7.org/fhir/care-plan-activity-status";
-      case SCHEDULED:
-        return "http://hl7.org/fhir/care-plan-activity-status";
-      case INPROGRESS:
-        return "http://hl7.org/fhir/care-plan-activity-status";
-      case ONHOLD:
-        return "http://hl7.org/fhir/care-plan-activity-status";
-      case COMPLETED:
-        return "http://hl7.org/fhir/care-plan-activity-status";
-      case CANCELLED:
-        return "http://hl7.org/fhir/care-plan-activity-status";
-      case STOPPED:
-        return "http://hl7.org/fhir/care-plan-activity-status";
-      case UNKNOWN:
-        return "http://hl7.org/fhir/care-plan-activity-status";
-      case ENTEREDINERROR:
-        return "http://hl7.org/fhir/care-plan-activity-status";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case NOTSTARTED:
-        return "Care plan activity is planned but no action has yet been taken.";
-      case SCHEDULED:
-        return "Appointment or other booking has occurred but activity has not yet begun.";
-      case INPROGRESS:
-        return "Care plan activity has been started but is not yet complete.";
-      case ONHOLD:
-        return "Care plan activity was started but has temporarily ceased with an expectation of resumption at a future time.";
-      case COMPLETED:
-        return "Care plan activity has been completed (more or less) as planned.";
-      case CANCELLED:
-        return "The planned care plan activity has been withdrawn.";
-      case STOPPED:
-        return "The planned care plan activity has been ended prior to completion after the activity was started.";
-      case UNKNOWN:
-        return "The current state of the care plan activity is not known.  Note: This concept is not to be used for \"other\" - one of the listed statuses is presumed to apply, but the authoring/source system does not know which one.";
-      case ENTEREDINERROR:
-        return "Care plan activity was entered in error and voided.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case NOTSTARTED:
-        return "Not Started";
-      case SCHEDULED:
-        return "Scheduled";
-      case INPROGRESS:
-        return "In Progress";
-      case ONHOLD:
-        return "On Hold";
-      case COMPLETED:
-        return "Completed";
-      case CANCELLED:
-        return "Cancelled";
-      case STOPPED:
-        return "Stopped";
-      case UNKNOWN:
-        return "Unknown";
-      case ENTEREDINERROR:
-        return "Entered in Error";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class CarePlanActivityStatusEnumFactory implements EnumFactory<CarePlanActivityStatus> {
-    public CarePlanActivityStatus fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("not-started".equals(codeString))
-        return CarePlanActivityStatus.NOTSTARTED;
-      if ("scheduled".equals(codeString))
-        return CarePlanActivityStatus.SCHEDULED;
-      if ("in-progress".equals(codeString))
-        return CarePlanActivityStatus.INPROGRESS;
-      if ("on-hold".equals(codeString))
-        return CarePlanActivityStatus.ONHOLD;
-      if ("completed".equals(codeString))
-        return CarePlanActivityStatus.COMPLETED;
-      if ("cancelled".equals(codeString))
-        return CarePlanActivityStatus.CANCELLED;
-      if ("stopped".equals(codeString))
-        return CarePlanActivityStatus.STOPPED;
-      if ("unknown".equals(codeString))
-        return CarePlanActivityStatus.UNKNOWN;
-      if ("entered-in-error".equals(codeString))
-        return CarePlanActivityStatus.ENTEREDINERROR;
-      throw new IllegalArgumentException("Unknown CarePlanActivityStatus code '" + codeString + "'");
-    }
-
-    public Enumeration<CarePlanActivityStatus> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<CarePlanActivityStatus>(this, CarePlanActivityStatus.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<CarePlanActivityStatus>(this, CarePlanActivityStatus.NULL, code);
-      if ("not-started".equals(codeString))
-        return new Enumeration<CarePlanActivityStatus>(this, CarePlanActivityStatus.NOTSTARTED, code);
-      if ("scheduled".equals(codeString))
-        return new Enumeration<CarePlanActivityStatus>(this, CarePlanActivityStatus.SCHEDULED, code);
-      if ("in-progress".equals(codeString))
-        return new Enumeration<CarePlanActivityStatus>(this, CarePlanActivityStatus.INPROGRESS, code);
-      if ("on-hold".equals(codeString))
-        return new Enumeration<CarePlanActivityStatus>(this, CarePlanActivityStatus.ONHOLD, code);
-      if ("completed".equals(codeString))
-        return new Enumeration<CarePlanActivityStatus>(this, CarePlanActivityStatus.COMPLETED, code);
-      if ("cancelled".equals(codeString))
-        return new Enumeration<CarePlanActivityStatus>(this, CarePlanActivityStatus.CANCELLED, code);
-      if ("stopped".equals(codeString))
-        return new Enumeration<CarePlanActivityStatus>(this, CarePlanActivityStatus.STOPPED, code);
-      if ("unknown".equals(codeString))
-        return new Enumeration<CarePlanActivityStatus>(this, CarePlanActivityStatus.UNKNOWN, code);
-      if ("entered-in-error".equals(codeString))
-        return new Enumeration<CarePlanActivityStatus>(this, CarePlanActivityStatus.ENTEREDINERROR, code);
-      throw new FHIRException("Unknown CarePlanActivityStatus code '" + codeString + "'");
-    }
-
-    public String toCode(CarePlanActivityStatus code) {
-       if (code == CarePlanActivityStatus.NULL)
-           return null;
-       if (code == CarePlanActivityStatus.NOTSTARTED)
-        return "not-started";
-      if (code == CarePlanActivityStatus.SCHEDULED)
-        return "scheduled";
-      if (code == CarePlanActivityStatus.INPROGRESS)
-        return "in-progress";
-      if (code == CarePlanActivityStatus.ONHOLD)
-        return "on-hold";
-      if (code == CarePlanActivityStatus.COMPLETED)
-        return "completed";
-      if (code == CarePlanActivityStatus.CANCELLED)
-        return "cancelled";
-      if (code == CarePlanActivityStatus.STOPPED)
-        return "stopped";
-      if (code == CarePlanActivityStatus.UNKNOWN)
-        return "unknown";
-      if (code == CarePlanActivityStatus.ENTEREDINERROR)
-        return "entered-in-error";
-      return "?";
-   }
-
-    public String toSystem(CarePlanActivityStatus code) {
-      return code.getSystem();
-    }
-  }
-
-  public enum CarePlanIntent {
-    /**
-     * The request is a suggestion made by someone/something that does not have an
-     * intention to ensure it occurs and without providing an authorization to act.
-     */
-    PROPOSAL,
-    /**
-     * The request represents an intention to ensure something occurs without
-     * providing an authorization for others to act.
-     */
-    PLAN,
-    /**
-     * The request represents a request/demand and authorization for action by a
-     * Practitioner.
-     */
-    ORDER,
-    /**
-     * The request represents a component or option for a RequestGroup that
-     * establishes timing, conditionality and/or other constraints among a set of
-     * requests. Refer to [[[RequestGroup]]] for additional information on how this
-     * status is used.
-     */
-    OPTION,
-    /**
-     * added to help the parsers with the generic types
-     */
-    NULL;
-
-    public static CarePlanIntent fromCode(String codeString) throws FHIRException {
-      if (codeString == null || "".equals(codeString))
-        return null;
-      if ("proposal".equals(codeString))
-        return PROPOSAL;
-      if ("plan".equals(codeString))
-        return PLAN;
-      if ("order".equals(codeString))
-        return ORDER;
-      if ("option".equals(codeString))
-        return OPTION;
-      if (Configuration.isAcceptInvalidEnums())
-        return null;
-      else
-        throw new FHIRException("Unknown CarePlanIntent code '" + codeString + "'");
-    }
-
-    public String toCode() {
-      switch (this) {
-      case PROPOSAL:
-        return "proposal";
-      case PLAN:
-        return "plan";
-      case ORDER:
-        return "order";
-      case OPTION:
-        return "option";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getSystem() {
-      switch (this) {
-      case PROPOSAL:
-        return "http://hl7.org/fhir/request-intent";
-      case PLAN:
-        return "http://hl7.org/fhir/request-intent";
-      case ORDER:
-        return "http://hl7.org/fhir/request-intent";
-      case OPTION:
-        return "http://hl7.org/fhir/request-intent";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDefinition() {
-      switch (this) {
-      case PROPOSAL:
-        return "The request is a suggestion made by someone/something that does not have an intention to ensure it occurs and without providing an authorization to act.";
-      case PLAN:
-        return "The request represents an intention to ensure something occurs without providing an authorization for others to act.";
-      case ORDER:
-        return "The request represents a request/demand and authorization for action by a Practitioner.";
-      case OPTION:
-        return "The request represents a component or option for a RequestGroup that establishes timing, conditionality and/or other constraints among a set of requests.  Refer to [[[RequestGroup]]] for additional information on how this status is used.";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-
-    public String getDisplay() {
-      switch (this) {
-      case PROPOSAL:
-        return "Proposal";
-      case PLAN:
-        return "Plan";
-      case ORDER:
-        return "Order";
-      case OPTION:
-        return "Option";
-      case NULL:
-        return null;
-      default:
-        return "?";
-      }
-    }
-  }
-
-  public static class CarePlanIntentEnumFactory implements EnumFactory<CarePlanIntent> {
-    public CarePlanIntent fromCode(String codeString) throws IllegalArgumentException {
-      if (codeString == null || "".equals(codeString))
-        if (codeString == null || "".equals(codeString))
-          return null;
-      if ("proposal".equals(codeString))
-        return CarePlanIntent.PROPOSAL;
-      if ("plan".equals(codeString))
-        return CarePlanIntent.PLAN;
-      if ("order".equals(codeString))
-        return CarePlanIntent.ORDER;
-      if ("option".equals(codeString))
-        return CarePlanIntent.OPTION;
-      throw new IllegalArgumentException("Unknown CarePlanIntent code '" + codeString + "'");
-    }
-
-    public Enumeration<CarePlanIntent> fromType(PrimitiveType<?> code) throws FHIRException {
-      if (code == null)
-        return null;
-      if (code.isEmpty())
-        return new Enumeration<CarePlanIntent>(this, CarePlanIntent.NULL, code);
-      String codeString = code.asStringValue();
-      if (codeString == null || "".equals(codeString))
-        return new Enumeration<CarePlanIntent>(this, CarePlanIntent.NULL, code);
-      if ("proposal".equals(codeString))
-        return new Enumeration<CarePlanIntent>(this, CarePlanIntent.PROPOSAL, code);
-      if ("plan".equals(codeString))
-        return new Enumeration<CarePlanIntent>(this, CarePlanIntent.PLAN, code);
-      if ("order".equals(codeString))
-        return new Enumeration<CarePlanIntent>(this, CarePlanIntent.ORDER, code);
-      if ("option".equals(codeString))
-        return new Enumeration<CarePlanIntent>(this, CarePlanIntent.OPTION, code);
-      throw new FHIRException("Unknown CarePlanIntent code '" + codeString + "'");
-    }
-
-    public String toCode(CarePlanIntent code) {
-       if (code == CarePlanIntent.NULL)
-           return null;
-       if (code == CarePlanIntent.PROPOSAL)
-        return "proposal";
-      if (code == CarePlanIntent.PLAN)
-        return "plan";
-      if (code == CarePlanIntent.ORDER)
-        return "order";
-      if (code == CarePlanIntent.OPTION)
-        return "option";
-      return "?";
-   }
-
-    public String toSystem(CarePlanIntent code) {
-      return code.getSystem();
-    }
-  }
 
   @Block()
   public static class CarePlanActivityComponent extends BackboneElement implements IBaseBackboneElement {
@@ -1283,10 +599,10 @@ public class CarePlan extends DomainResource {
      * CarePlan.activity.reference. For example, a MedicationRequest, a
      * ServiceRequest, or a CommunicationRequest.
      */
-    @Child(name = "kind", type = { CodeType.class }, order = 1, min = 0, max = 1, modifier = false, summary = false)
+    @Child(name = "kind", type = { StringType.class }, order = 1, min = 0, max = 1, modifier = false, summary = false)
     @Description(shortDefinition = "Appointment | CommunicationRequest | DeviceRequest | MedicationRequest | NutritionOrder | Task | ServiceRequest | VisionPrescription", formalDefinition = "A description of the kind of resource the in-line definition of a care plan activity is representing.  The CarePlan.activity.detail is an in-line definition when a resource is not referenced using CarePlan.activity.reference.  For example, a MedicationRequest, a ServiceRequest, or a CommunicationRequest.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/care-plan-activity-kind")
-    protected Enumeration<CarePlanActivityKind> kind;
+    protected StringType kind;
 
     /**
      * The URL pointing to a FHIR-defined protocol, guideline, questionnaire or
@@ -1350,10 +666,10 @@ public class CarePlan extends DomainResource {
     /**
      * Identifies what progress is being made for the specific activity.
      */
-    @Child(name = "status", type = { CodeType.class }, order = 8, min = 1, max = 1, modifier = true, summary = false)
+    @Child(name = "status", type = { StringType.class }, order = 8, min = 1, max = 1, modifier = true, summary = false)
     @Description(shortDefinition = "not-started | scheduled | in-progress | on-hold | completed | cancelled | stopped | unknown | entered-in-error", formalDefinition = "Identifies what progress is being made for the specific activity.")
     @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/care-plan-activity-status")
-    protected Enumeration<CarePlanActivityStatus> status;
+    protected StringType status;
 
     /**
      * Provides reason why the activity isn't yet started, is on hold, was
@@ -1451,7 +767,7 @@ public class CarePlan extends DomainResource {
     /**
      * Constructor
      */
-    public CarePlanActivityDetailComponent(CarePlanActivityStatus status) {
+    public CarePlanActivityDetailComponent(String status) {
       super();
       this.setStatus(status);
     }
@@ -1465,12 +781,12 @@ public class CarePlan extends DomainResource {
      *         This is the underlying object with id, value and extensions. The
      *         accessor "getKind" gives direct access to the value
      */
-    public Enumeration<CarePlanActivityKind> getKindElement() {
+    public StringType getKindElement() {
       if (this.kind == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create CarePlanActivityDetailComponent.kind");
         else if (Configuration.doAutoCreate())
-          this.kind = new Enumeration<CarePlanActivityKind>(new CarePlanActivityKindEnumFactory()); // bb
+        this.kind = new StringType(); // bb
       return this.kind;
     }
 
@@ -1492,7 +808,7 @@ public class CarePlan extends DomainResource {
      *              value and extensions. The accessor "getKind" gives direct access
      *              to the value
      */
-    public CarePlanActivityDetailComponent setKindElement(Enumeration<CarePlanActivityKind> value) {
+    public CarePlanActivityDetailComponent setKindElement(StringType value) {
       this.kind = value;
       return this;
     }
@@ -1504,7 +820,7 @@ public class CarePlan extends DomainResource {
      *         CarePlan.activity.reference. For example, a MedicationRequest, a
      *         ServiceRequest, or a CommunicationRequest.
      */
-    public CarePlanActivityKind getKind() {
+    public String getKind() {
       return this.kind == null ? null : this.kind.getValue();
     }
 
@@ -1516,12 +832,12 @@ public class CarePlan extends DomainResource {
      *              For example, a MedicationRequest, a ServiceRequest, or a
      *              CommunicationRequest.
      */
-    public CarePlanActivityDetailComponent setKind(CarePlanActivityKind value) {
-      if (value == null)
+    public CarePlanActivityDetailComponent setKind(String value) {
+      if (Utilities.noString(value))
         this.kind = null;
       else {
         if (this.kind == null)
-          this.kind = new Enumeration<CarePlanActivityKind>(new CarePlanActivityKindEnumFactory());
+          this.kind = new StringType();
         this.kind.setValue(value);
       }
       return this;
@@ -1868,12 +1184,12 @@ public class CarePlan extends DomainResource {
      *         specific activity.). This is the underlying object with id, value and
      *         extensions. The accessor "getStatus" gives direct access to the value
      */
-    public Enumeration<CarePlanActivityStatus> getStatusElement() {
+    public StringType getStatusElement() {
       if (this.status == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create CarePlanActivityDetailComponent.status");
         else if (Configuration.doAutoCreate())
-          this.status = new Enumeration<CarePlanActivityStatus>(new CarePlanActivityStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
       return this.status;
     }
 
@@ -1891,7 +1207,7 @@ public class CarePlan extends DomainResource {
      *              value and extensions. The accessor "getStatus" gives direct
      *              access to the value
      */
-    public CarePlanActivityDetailComponent setStatusElement(Enumeration<CarePlanActivityStatus> value) {
+    public CarePlanActivityDetailComponent setStatusElement(StringType value) {
       this.status = value;
       return this;
     }
@@ -1899,7 +1215,7 @@ public class CarePlan extends DomainResource {
     /**
      * @return Identifies what progress is being made for the specific activity.
      */
-    public CarePlanActivityStatus getStatus() {
+    public String getStatus() {
       return this.status == null ? null : this.status.getValue();
     }
 
@@ -1907,9 +1223,9 @@ public class CarePlan extends DomainResource {
      * @param value Identifies what progress is being made for the specific
      *              activity.
      */
-    public CarePlanActivityDetailComponent setStatus(CarePlanActivityStatus value) {
+    public CarePlanActivityDetailComponent setStatus(String value) {
       if (this.status == null)
-        this.status = new Enumeration<CarePlanActivityStatus>(new CarePlanActivityStatusEnumFactory());
+        this.status = new StringType();
       this.status.setValue(value);
       return this;
     }
@@ -2338,7 +1654,7 @@ public class CarePlan extends DomainResource {
 
     protected void listChildren(List<Property> children) {
       super.listChildren(children);
-      children.add(new Property("kind", "code",
+      children.add(new Property("kind", "string",
           "A description of the kind of resource the in-line definition of a care plan activity is representing.  The CarePlan.activity.detail is an in-line definition when a resource is not referenced using CarePlan.activity.reference.  For example, a MedicationRequest, a ServiceRequest, or a CommunicationRequest.",
           0, 1, kind));
       children.add(new Property("instantiatesCanonical",
@@ -2361,7 +1677,7 @@ public class CarePlan extends DomainResource {
       children.add(new Property("goal", "Reference(Goal)",
           "Internal reference that identifies the goals that this activity is intended to contribute towards meeting.",
           0, java.lang.Integer.MAX_VALUE, goal));
-      children.add(new Property("status", "code", "Identifies what progress is being made for the specific activity.",
+      children.add(new Property("status", "string", "Identifies what progress is being made for the specific activity.",
           0, 1, status));
       children.add(new Property("statusReason", "CodeableConcept",
           "Provides reason why the activity isn't yet started, is on hold, was cancelled, etc.", 0, 1, statusReason));
@@ -2391,7 +1707,7 @@ public class CarePlan extends DomainResource {
     public Property getNamedProperty(int _hash, String _name, boolean _checkValid) throws FHIRException {
       switch (_hash) {
       case 3292052:
-        /* kind */ return new Property("kind", "code",
+        /* kind */ return new Property("kind", "string",
             "A description of the kind of resource the in-line definition of a care plan activity is representing.  The CarePlan.activity.detail is an in-line definition when a resource is not referenced using CarePlan.activity.reference.  For example, a MedicationRequest, a ServiceRequest, or a CommunicationRequest.",
             0, 1, kind);
       case 8911915:
@@ -2421,7 +1737,7 @@ public class CarePlan extends DomainResource {
             "Internal reference that identifies the goals that this activity is intended to contribute towards meeting.",
             0, java.lang.Integer.MAX_VALUE, goal);
       case -892481550:
-        /* status */ return new Property("status", "code",
+        /* status */ return new Property("status", "string",
             "Identifies what progress is being made for the specific activity.", 0, 1, status);
       case 2051346646:
         /* statusReason */ return new Property("statusReason", "CodeableConcept",
@@ -2486,7 +1802,7 @@ public class CarePlan extends DomainResource {
     public Base[] getProperty(int hash, String name, boolean checkValid) throws FHIRException {
       switch (hash) {
       case 3292052:
-        /* kind */ return this.kind == null ? new Base[0] : new Base[] { this.kind }; // Enumeration<CarePlanActivityKind>
+        /* kind */ return this.kind == null ? new Base[0] : new Base[] { this.kind }; // StringType
       case 8911915:
         /* instantiatesCanonical */ return this.instantiatesCanonical == null ? new Base[0]
             : this.instantiatesCanonical.toArray(new Base[this.instantiatesCanonical.size()]); // CanonicalType
@@ -2504,7 +1820,7 @@ public class CarePlan extends DomainResource {
       case 3178259:
         /* goal */ return this.goal == null ? new Base[0] : this.goal.toArray(new Base[this.goal.size()]); // Reference
       case -892481550:
-        /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<CarePlanActivityStatus>
+        /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
       case 2051346646:
         /* statusReason */ return this.statusReason == null ? new Base[0] : new Base[] { this.statusReason }; // CodeableConcept
       case -1788508167:
@@ -2534,8 +1850,7 @@ public class CarePlan extends DomainResource {
     public Base setProperty(int hash, String name, Base value) throws FHIRException {
       switch (hash) {
       case 3292052: // kind
-        value = new CarePlanActivityKindEnumFactory().fromType(TypeConvertor.castToCode(value));
-        this.kind = (Enumeration) value; // Enumeration<CarePlanActivityKind>
+        this.kind = TypeConvertor.castToString(value); // StringType
         return value;
       case 8911915: // instantiatesCanonical
         this.getInstantiatesCanonical().add(TypeConvertor.castToCanonical(value)); // CanonicalType
@@ -2556,8 +1871,7 @@ public class CarePlan extends DomainResource {
         this.getGoal().add(TypeConvertor.castToReference(value)); // Reference
         return value;
       case -892481550: // status
-        value = new CarePlanActivityStatusEnumFactory().fromType(TypeConvertor.castToCode(value));
-        this.status = (Enumeration) value; // Enumeration<CarePlanActivityStatus>
+        this.status = TypeConvertor.castToString(value); // StringType
         return value;
       case 2051346646: // statusReason
         this.statusReason = TypeConvertor.castToCodeableConcept(value); // CodeableConcept
@@ -2595,8 +1909,7 @@ public class CarePlan extends DomainResource {
     @Override
     public Base setProperty(String name, Base value) throws FHIRException {
       if (name.equals("kind")) {
-        value = new CarePlanActivityKindEnumFactory().fromType(TypeConvertor.castToCode(value));
-        this.kind = (Enumeration) value; // Enumeration<CarePlanActivityKind>
+        this.kind = TypeConvertor.castToString(value); // StringType
       } else if (name.equals("instantiatesCanonical")) {
         this.getInstantiatesCanonical().add(TypeConvertor.castToCanonical(value));
       } else if (name.equals("instantiatesUri")) {
@@ -2610,8 +1923,7 @@ public class CarePlan extends DomainResource {
       } else if (name.equals("goal")) {
         this.getGoal().add(TypeConvertor.castToReference(value));
       } else if (name.equals("status")) {
-        value = new CarePlanActivityStatusEnumFactory().fromType(TypeConvertor.castToCode(value));
-        this.status = (Enumeration) value; // Enumeration<CarePlanActivityStatus>
+        this.status = TypeConvertor.castToString(value); // StringType
       } else if (name.equals("statusReason")) {
         this.statusReason = TypeConvertor.castToCodeableConcept(value); // CodeableConcept
       } else if (name.equals("doNotPerform")) {
@@ -2727,7 +2039,7 @@ public class CarePlan extends DomainResource {
     public String[] getTypesForProperty(int hash, String name) throws FHIRException {
       switch (hash) {
       case 3292052:
-        /* kind */ return new String[] { "code" };
+        /* kind */ return new String[] { "string" };
       case 8911915:
         /* instantiatesCanonical */ return new String[] { "canonical" };
       case -1926393373:
@@ -2741,7 +2053,7 @@ public class CarePlan extends DomainResource {
       case 3178259:
         /* goal */ return new String[] { "Reference" };
       case -892481550:
-        /* status */ return new String[] { "code" };
+        /* status */ return new String[] { "string" };
       case 2051346646:
         /* statusReason */ return new String[] { "CodeableConcept" };
       case -1788508167:
@@ -2981,19 +2293,19 @@ public class CarePlan extends DomainResource {
    * Indicates whether the plan is currently being acted upon, represents future
    * intentions or is now a historical record.
    */
-  @Child(name = "status", type = { CodeType.class }, order = 6, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "status", type = { StringType.class }, order = 6, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "draft | active | on-hold | revoked | completed | entered-in-error | unknown", formalDefinition = "Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical record.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/request-status")
-  protected Enumeration<RequestStatus> status;
+  protected StringType status;
 
   /**
    * Indicates the level of authority/intentionality associated with the care plan
    * and where the care plan fits into the workflow chain.
    */
-  @Child(name = "intent", type = { CodeType.class }, order = 7, min = 1, max = 1, modifier = true, summary = true)
+  @Child(name = "intent", type = { StringType.class }, order = 7, min = 1, max = 1, modifier = true, summary = true)
   @Description(shortDefinition = "proposal | plan | order | option", formalDefinition = "Indicates the level of authority/intentionality associated with the care plan and where the care plan fits into the workflow chain.")
   @ca.uhn.fhir.model.api.annotation.Binding(valueSet = "http://hl7.org/fhir/ValueSet/care-plan-intent")
-  protected Enumeration<CarePlanIntent> intent;
+  protected StringType intent;
 
   /**
    * Identifies what "kind" of plan this is to support differentiation between
@@ -3137,7 +2449,7 @@ public class CarePlan extends DomainResource {
   /**
    * Constructor
    */
-  public CarePlan(RequestStatus status, CarePlanIntent intent, Reference subject) {
+  public CarePlan(String status, String intent, Reference subject) {
     super();
     this.setStatus(status);
     this.setIntent(intent);
@@ -3513,12 +2825,12 @@ public class CarePlan extends DomainResource {
    *         This is the underlying object with id, value and extensions. The
    *         accessor "getStatus" gives direct access to the value
    */
-  public Enumeration<RequestStatus> getStatusElement() {
+  public StringType getStatusElement() {
     if (this.status == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create CarePlan.status");
       else if (Configuration.doAutoCreate())
-        this.status = new Enumeration<RequestStatus>(new RequestStatusEnumFactory()); // bb
+        this.status = new StringType(); // bb
     return this.status;
   }
 
@@ -3537,7 +2849,7 @@ public class CarePlan extends DomainResource {
    *              extensions. The accessor "getStatus" gives direct access to the
    *              value
    */
-  public CarePlan setStatusElement(Enumeration<RequestStatus> value) {
+  public CarePlan setStatusElement(StringType value) {
     this.status = value;
     return this;
   }
@@ -3546,7 +2858,7 @@ public class CarePlan extends DomainResource {
    * @return Indicates whether the plan is currently being acted upon, represents
    *         future intentions or is now a historical record.
    */
-  public RequestStatus getStatus() {
+  public String getStatus() {
     return this.status == null ? null : this.status.getValue();
   }
 
@@ -3554,9 +2866,9 @@ public class CarePlan extends DomainResource {
    * @param value Indicates whether the plan is currently being acted upon,
    *              represents future intentions or is now a historical record.
    */
-  public CarePlan setStatus(RequestStatus value) {
+  public CarePlan setStatus(String value) {
     if (this.status == null)
-      this.status = new Enumeration<RequestStatus>(new RequestStatusEnumFactory());
+      this.status = new StringType();
     this.status.setValue(value);
     return this;
   }
@@ -3567,12 +2879,12 @@ public class CarePlan extends DomainResource {
    *         workflow chain.). This is the underlying object with id, value and
    *         extensions. The accessor "getIntent" gives direct access to the value
    */
-  public Enumeration<CarePlanIntent> getIntentElement() {
+  public StringType getIntentElement() {
     if (this.intent == null)
       if (Configuration.errorOnAutoCreate())
         throw new Error("Attempt to auto-create CarePlan.intent");
       else if (Configuration.doAutoCreate())
-        this.intent = new Enumeration<CarePlanIntent>(new CarePlanIntentEnumFactory()); // bb
+        this.intent = new StringType(); // bb
     return this.intent;
   }
 
@@ -3591,7 +2903,7 @@ public class CarePlan extends DomainResource {
    *              value and extensions. The accessor "getIntent" gives direct
    *              access to the value
    */
-  public CarePlan setIntentElement(Enumeration<CarePlanIntent> value) {
+  public CarePlan setIntentElement(StringType value) {
     this.intent = value;
     return this;
   }
@@ -3600,7 +2912,7 @@ public class CarePlan extends DomainResource {
    * @return Indicates the level of authority/intentionality associated with the
    *         care plan and where the care plan fits into the workflow chain.
    */
-  public CarePlanIntent getIntent() {
+  public String getIntent() {
     return this.intent == null ? null : this.intent.getValue();
   }
 
@@ -3609,9 +2921,9 @@ public class CarePlan extends DomainResource {
    *              the care plan and where the care plan fits into the workflow
    *              chain.
    */
-  public CarePlan setIntent(CarePlanIntent value) {
+  public CarePlan setIntent(String value) {
     if (this.intent == null)
-      this.intent = new Enumeration<CarePlanIntent>(new CarePlanIntentEnumFactory());
+      this.intent = new StringType();
     this.intent.setValue(value);
     return this;
   }
@@ -4354,10 +3666,10 @@ public class CarePlan extends DomainResource {
     children.add(new Property("partOf", "Reference(CarePlan)",
         "A larger care plan of which this particular care plan is a component or step.", 0, java.lang.Integer.MAX_VALUE,
         partOf));
-    children.add(new Property("status", "code",
+    children.add(new Property("status", "string",
         "Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical record.",
         0, 1, status));
-    children.add(new Property("intent", "code",
+    children.add(new Property("intent", "string",
         "Indicates the level of authority/intentionality associated with the care plan and where the care plan fits into the workflow chain.",
         0, 1, intent));
     children.add(new Property("category", "CodeableConcept",
@@ -4431,11 +3743,11 @@ public class CarePlan extends DomainResource {
           "A larger care plan of which this particular care plan is a component or step.", 0,
           java.lang.Integer.MAX_VALUE, partOf);
     case -892481550:
-      /* status */ return new Property("status", "code",
+      /* status */ return new Property("status", "string",
           "Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical record.",
           0, 1, status);
     case -1183762788:
-      /* intent */ return new Property("intent", "code",
+      /* intent */ return new Property("intent", "string",
           "Indicates the level of authority/intentionality associated with the care plan and where the care plan fits into the workflow chain.",
           0, 1, intent);
     case 50511102:
@@ -4518,9 +3830,9 @@ public class CarePlan extends DomainResource {
     case -995410646:
       /* partOf */ return this.partOf == null ? new Base[0] : this.partOf.toArray(new Base[this.partOf.size()]); // Reference
     case -892481550:
-      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // Enumeration<RequestStatus>
+      /* status */ return this.status == null ? new Base[0] : new Base[] { this.status }; // StringType
     case -1183762788:
-      /* intent */ return this.intent == null ? new Base[0] : new Base[] { this.intent }; // Enumeration<CarePlanIntent>
+      /* intent */ return this.intent == null ? new Base[0] : new Base[] { this.intent }; // StringType
     case 50511102:
       /* category */ return this.category == null ? new Base[0] : this.category.toArray(new Base[this.category.size()]); // CodeableConcept
     case 110371416:
@@ -4582,12 +3894,10 @@ public class CarePlan extends DomainResource {
       this.getPartOf().add(TypeConvertor.castToReference(value)); // Reference
       return value;
     case -892481550: // status
-      value = new RequestStatusEnumFactory().fromType(TypeConvertor.castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<RequestStatus>
+      this.status = TypeConvertor.castToString(value); // StringType
       return value;
     case -1183762788: // intent
-      value = new CarePlanIntentEnumFactory().fromType(TypeConvertor.castToCode(value));
-      this.intent = (Enumeration) value; // Enumeration<CarePlanIntent>
+      this.intent = TypeConvertor.castToString(value); // StringType
       return value;
     case 50511102: // category
       this.getCategory().add(TypeConvertor.castToCodeableConcept(value)); // CodeableConcept
@@ -4655,11 +3965,9 @@ public class CarePlan extends DomainResource {
     } else if (name.equals("partOf")) {
       this.getPartOf().add(TypeConvertor.castToReference(value));
     } else if (name.equals("status")) {
-      value = new RequestStatusEnumFactory().fromType(TypeConvertor.castToCode(value));
-      this.status = (Enumeration) value; // Enumeration<RequestStatus>
+      this.status = TypeConvertor.castToString(value); // StringType
     } else if (name.equals("intent")) {
-      value = new CarePlanIntentEnumFactory().fromType(TypeConvertor.castToCode(value));
-      this.intent = (Enumeration) value; // Enumeration<CarePlanIntent>
+      this.intent = TypeConvertor.castToString(value); // StringType
     } else if (name.equals("category")) {
       this.getCategory().add(TypeConvertor.castToCodeableConcept(value));
     } else if (name.equals("title")) {
@@ -4819,9 +4127,9 @@ public class CarePlan extends DomainResource {
     case -995410646:
       /* partOf */ return new String[] { "Reference" };
     case -892481550:
-      /* status */ return new String[] { "code" };
+      /* status */ return new String[] { "string" };
     case -1183762788:
-      /* intent */ return new String[] { "code" };
+      /* intent */ return new String[] { "string" };
     case 50511102:
       /* category */ return new String[] { "CodeableConcept" };
     case 110371416:
